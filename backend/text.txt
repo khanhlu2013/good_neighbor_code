@@ -1,0 +1,89 @@
+. LOW PRIORITY INVENTORY
+. ----------------------
+  . upgrade api to support multiple spa web app
+  . upgrade api to support mobile app. (fow now api only work with browser)
+    . what is it mean for a mobile app to receive a cookie from a successful login response
+  . figure out how to use a post request for sign up and log out. did andrew mead use post?
+  . also understand get/post for good
+  . search by name with pagination/connection? damn
+  . think about the auth flow. If i just logout, i do not need to check if i am login. also i should know locally from cookie that i am not login.
+  . firgure out how to make the api agnostic to the front client url. any one can write a SPA app, host it somewhere, login to goodneighboor api and get redirect there. learn about the uri callback. seem like there is multiple. uri.
+  . how to replace manual await for Model.init() with a middle ware. what is the best practice for production?
+  . can composite key be utilize for a single column? or is it just the first key, and not the second key
+
+. INVENTORY
+. ---------
+  . if there is no internet, i need to response better.
+  . notification page
+  . write some test for the home/profile/auth route
+  . display list of your friend + remove friend
+  . add picture to profile
+  . on the front end, i need to somehow extract out all the const, including url and param expected such as addFriend : IdToAdd
+  . truely understand mongo, and how to fix the array duplicate issue that a user can't have duplicated friend
+  . seem like when the user db is empty, the get profile return error
+  . get prettier into code studio
+  . change connection into connection-model.js
+  . allow inviter to revoke friend after invited-person approved.
+  . think about profile -> connection organization to split up code
+  . clean up async handler from express and create a error handler middleware
+  . rename add to invite
+  . friends page:
+    how can i use existing feature on searchByEmail and manage this table?
+  . how can i test the frontend login page and the back end auth-api route? do i leave this alone?
+  . before each for e2e take a long time. invest do a script here
+  . provide spinner every where pending for response
+
+. TODAY
+. -----
+  . write some test
+  . re-organize the whole project as one git repo. including the front and back
+
+
+
+-----
+
+when i type error email to search
+  . empty text -> response
+  . invalid -> response
+  
+when i type correct email to search: a fetch need to be made
+  . no result
+  . yes result
+
+  (
+    . in this case, if i change the url api, how can i make front end test fail? because i can see that the backend test will fail but this is the case that a e2e is my only choice. 
+  )
+
+. ok, think about how can we eliminate the test config out of production code: auth route when env = test.
+. how can i write a start e2e script? to start the back-end server too
+
+-----
+. the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
+. express-session deprecated undefined resave option; provide resave option
+. there is a bit of manuall server setup for development: run the back end frist, then run the front end. do we need a script to do this work?
+. specify the backend api. and to switch between mode of test/development. 
+
+. how to test the frontend App.js when i already split the login code?
+. config with mocking the auth path
+  . so obviously, the login page for now can't be test. i pretty much have 2 page login page to use. one for test/development. i think i really should start using this page for development as well as test. this way i don't have to bother google which slow down my dev/test procedure. i can even do this offline.
+
+. for test purpose, i do not want to googleURL auth
+
+. hey, why dont i let test access google too. but never use it. that way production code is cleaner and a bit faster.
+
+---
+. also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
+. just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
+
+
+---
+ how can i tell cypress fail with assertion right? do snapshot testing please.
+
+ ---
+
+
+ . simplify the searchResult. this is a rare path. simplify it here. less test code. 
+
+ ---
+
+

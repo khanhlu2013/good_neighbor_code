@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start:frontend:devenv": "react-scripts start",
+    "start:frontend:testenv": "REACT_APP_NODE_ENV=test react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {
+    "jest": "^23.5.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4",
+    "route-node": "^3.4.0",
+    "validator": "^10.5.0"
+  },
+  "devDependencies": {
+    "@cypress/snapshot": "^2.0.1",
+    "cypress": "^3.0.3",
+    "react-test-renderer": "^16.4.2"
+  }
+}

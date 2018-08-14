@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FindByEmail render correctly 1`] = `
+<div>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      placeholder="by email"
+      type="text"
+      value=""
+    />
+    <input
+      type="submit"
+      value="Search friend"
+    />
+  </form>
+</div>
+`;

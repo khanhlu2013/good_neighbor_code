@@ -1,0 +1,22 @@
+{
+  "name": "good-neighboors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "start:mongo:testenv":"~/mongo/bin/mongod --dbpath ~/mongo-data/test",
+    "start:mongo:devenv":"~/mongo/bin/mongod --dbpath ~/mongo-data/development",
+
+    "smt" : "npm run start:mongo:testenv",
+    "sbt" : "npm run start:backend:testenv --prefix ./backend",
+    "sft" : "npm run start:frontend:testenv --prefix ./frontend",
+
+    "smd" : "npm run start:mongo:devenv",
+    "sbd" : "npm run start:backend:devenv --prefix ./backend",
+    "sfd" : "npm run start:frontend:devenv --prefix ./frontend"
+  },
+  "author": "",
+  "license": "ISC"
+}
