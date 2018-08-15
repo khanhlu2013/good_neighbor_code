@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import validator from "validator";
 import keys from "../configs/keys.js";
+import API from "../api/profile-api.js";
 
 class FindByEmail extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     email: "", //email to search
     searchedUser: null,
@@ -48,38 +52,22 @@ class FindByEmail extends Component {
     event.preventDefault();
   };
 
-  onCreateInvitationCb = invitingUser => {
+  createConnectionCb = userIdToAdd => {
     (async () => {
-      const body = JSON.stringify({ userIdToAdd: invitingUser._id });
-      const response = await fetch(keys.API_URL("profile.createInvitation"), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body,
-        credentials: "include"
-      });
+      const response = await API.createConnection(userIdToAdd);
       if (response.status === 200) {
-        this.props.onConnectionsChangeCb();
+        this.props.refreshConnectionsCb();
         const newConnection = await response.json();
         this.setState({ searchedConnection: newConnection });
       }
     })();
   };
 
-  onModifyInvitationCb = (connection, isApproved) => {
+  modifyConnectionCb = (connection, isApproved) => {
     (async () => {
-      const body = JSON.stringify({ connectionId: connection._id, isApproved });
-      const response = await fetch(keys.API_URL("profile.modifyInvitation"), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body,
-        credentials: "include"
-      });
+      const response = await API.modifyConnection(connection._id, isApproved);
       if (response.status === 200) {
-        this.props.onConnectionsChangeCb();
+        this.props.refreshConnectionsCb();
         const newConnection = await response.json();
         this.setState({ searchedConnection: newConnection });
       }
@@ -110,8 +98,8 @@ class FindByEmail extends Component {
           searchResponsed={this.state.searchResponsed}
           searchedUser={this.state.searchedUser}
           searchedConnection={this.state.searchedConnection}
-          onModifyInvitationCb={this.onModifyInvitationCb}
-          onCreateInvitationCb={this.onCreateInvitationCb}
+          modifyConnectionCb={this.modifyConnectionCb}
+          createConnectionCb={this.createConnectionCb}
         />
       </div>
     );
@@ -119,71 +107,85 @@ class FindByEmail extends Component {
 }
 
 function SearchResult(props) {
+  const {
+    loginUser,
+    email,
+    searchSubmited,
+    searchResponsed,
+    searchedUser,
+    searchedConnection,
+    modifyConnectionCb,
+    createConnectionCb
+  } = props;
+
   const onCreateInvitation = evt => {
-    props.onCreateInvitationCb(props.searchedUser);
+    createConnectionCb(searchedUser._id);
   };
 
   const onApproveInvitation = evt => {
-    props.onModifyInvitationCb(props.searchedConnection, true);
+    modifyConnectionCb(searchedConnection, true);
   };
 
   const onDenyInvitation = evt => {
-    props.onModifyInvitationCb(props.searchedConnection, false);
+    modifyConnectionCb(searchedConnection, false);
   };
 
   let message;
   let action;
 
-  if (props.searchedUser) {
+  if (searchedUser) {
     if (
-      /*you and searchedUser haven't exchanged invitation yet*/ props.searchedConnection ===
-      null
+      /*you and searchedUser haven't exchanged invitation yet*/
+      searchedConnection === null
     ) {
       message = ``;
       action = (
-        <button onClick={onCreateInvitation}>
-          Invite {props.searchedUser.name}
-        </button>
+        <button onClick={onCreateInvitation}>Invite {searchedUser.name}</button>
       );
-    } /*you and searchedUser have exchanged invitation*/ else {
+    } else {
+      /*you and searchedUser have exchanged invitation*/
       if (
-        /*you init the connection*/ props.searchedConnection.from ===
-        props.loginUser._id
+        /*you init the connection*/
+        searchedConnection.from === loginUser._id
       ) {
         if (
-          /*but you changed your mind*/ props.searchedConnection
-            .approvedByFrom === false
+          /*but you changed your mind*/
+          searchedConnection.approvedByFrom === false
         ) {
           message = `But you changed your mind.`;
           action = <button onClick={onApproveInvitation}>Undo</button>;
-        } /*and you havent changed your mind yet*/ else {
+        } else {
+          /*and you havent changed your mind yet*/
           if (
-            /*searchedUser haven't responsed you*/ props.searchedConnection
-              .approvedByTo === undefined
+            /*searchedUser haven't responsed you*/
+            searchedConnection.approvedByTo === undefined
           ) {
             message = `Please wait for approval!`;
           } else if (
-            /*searchedUser approved you*/ props.searchedConnection
-              .approvedByTo === true
+            /*searchedUser approved you*/
+            searchedConnection.approvedByTo === true
           ) {
             message = `And you are friends!`;
-          } /*searchedUser denided you*/ else {
+          } else {
+            /*searchedUser denided you*/
             message = `But sorry, you got denied!`;
           }
           action = <button onClick={onDenyInvitation}>Undo invite</button>;
         }
-        message = `You invited ${props.searchedUser.name}. ` + message;
-      } /*searchedUser init the connection*/ else {
+        message = `You invited ${searchedUser.name}. ` + message;
+      } else {
+        /*searchedUser init the connection*/
         if (
-          /*but searchedUser changed her mind*/ props.searchedConnection
-            .approvedByFrom === false
+          /*but searchedUser changed her mind*/
+          searchedConnection.approvedByFrom === false
         ) {
           message = `But changed his/her mind. Sorry!`;
           action = null;
-        } /*and searchedUser havent changed her mind yet*/ else {
+        } else {
+          /*and searchedUser havent changed her mind yet*/
           if (
-            /*you havent responsed searchedUser*/ props.searchedConnection
-              .approvedByTo === undefined
+            /*you havent responsed searchedUser*/
+            searchedConnection.approvedByTo === undefined
           ) {
             message = ``;
             action = (
@@ -193,41 +195,38 @@ function SearchResult(props) {
               </span>
             );
           } else if (
-            /*you approved searchedUser*/ props.searchedConnection
-              .approvedByTo === true
+            /*you approved searchedUser*/
+            searchedConnection.approvedByTo === true
           ) {
             message = `And you accpected!`;
             action = <button onClick={onDenyInvitation}>undo</button>;
-          } /*you denied searchedUser*/ else {
+          } else {
+            /*you denied searchedUser*/
             message = `And you denied.`;
             action = <button onClick={onApproveInvitation}>undo</button>;
           }
         }
-        message = `${props.searchedUser.name} invited you. ` + message;
+        message = `${searchedUser.name} invited you. ` + message;
       }
     }
   }
 
-  const emailNotEmptyAndInvalid =
-    props.email && !validator.isEmail(props.email);
+  const emailNotEmptyAndInvalid = email && !validator.isEmail(email);
   return (
     <div id="SearchResult-react">
-      {props.searchSubmited && !props.email && <p>Search text is empty!</p>}
-      {props.searchSubmited &&
-        emailNotEmptyAndInvalid && <p>Email is invalid!</p>}
-      {props.loginUser.email === props.email && (
-        <p>Can't add yourself as friend</p>
-      )}
-      {!props.searchedUser &&
-        props.searchSubmited &&
-        props.searchResponsed &&
-        validator.isEmail(props.email) &&
-        props.loginUser.email !== props.email && <p>result not found</p>}
+      {searchSubmited && !email && <p>Search text is empty!</p>}
+      {searchSubmited && emailNotEmptyAndInvalid && <p>Email is invalid!</p>}
+      {loginUser.email === email && <p>Can't add yourself as friend</p>}
+      {!searchedUser &&
+        searchSubmited &&
+        searchResponsed &&
+        validator.isEmail(email) &&
+        loginUser.email !== email && <p>result not found</p>}
 
-      {props.searchedUser && (
+      {searchedUser && (
         <div>
           <p>
-            Found {props.searchedUser.name}, email: {props.searchedUser.email}
+            Found {searchedUser.name}, email: {searchedUser.email}
           </p>
           <p>
             {message}

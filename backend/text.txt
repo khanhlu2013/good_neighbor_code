@@ -32,7 +32,7 @@
   . how can i test the frontend login page and the back end auth-api route? do i leave this alone?
   . before each for e2e take a long time. invest do a script here
   . provide spinner every where pending for response
-
+  . investigate props type
 . TODAY
 . -----
   . write some test
@@ -74,16 +74,10 @@ when i type correct email to search: a fetch need to be made
 ---
 . also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
-
-
----
- how can i tell cypress fail with assertion right? do snapshot testing please.
-
- ---
-
-
  . simplify the searchResult. this is a rare path. simplify it here. less test code. 
 
- ---
+---
+am i ready to continue? lets do a bit a design. so lets assume that i figure out the search and invite friend. i will continue to go on for the accept friend. should i have a pending request? yes why not. so i have a pending request. if i reject friend from here, i will have a reject list . i then can undo from this list. which go to friend list. now i understand the flow. i need to get the connections list. to do all this work
 
-
+---
+fix the email search to sync with the table
