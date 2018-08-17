@@ -1,19 +1,35 @@
 import React, { Component } from "react";
 import validator from "validator";
+import PropTypes from "prop-types";
+
 import keys from "../configs/keys.js";
-import API from "../api/profile-api.js";
 
 class FindByEmail extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     email: "", //email to search
     searchedUser: null,
-    searchedConnection: null, //connection is between loginUser and searchedUser
     searchSubmited: false,
     searchResponsed: true
   };
+
+  static getDerivedStateFromProps(props, state) {
+    let searchedConnection = null;
+    if (state.searchedUser && props.connections !== null) {
+      const lst = props.connections.filter(
+        connection =>
+          (connection.from._id === state.searchedUser._id &&
+            connection.to._id === props.loginUser._id) ||
+          (connection.from._id === props.loginUser._id &&
+            connection.to._id === state.searchedUser._id)
+      );
+      if (lst.length > 1) {
+        throw Error("Unexpected duplicate connections");
+      } else if (lst.length === 1) {
+        searchedConnection = lst[0];
+      }
+    }
+    return { searchedConnection };
+  }
 
   onSearchChange = event => {
     this.setState({ email: event.currentTarget.value });
@@ -23,8 +39,7 @@ class FindByEmail extends Component {
   onSearchSubmit = event => {
     this.setState({
       searchSubmited: true,
-      searchedUser: null,
-      searchedConnection: null
+      searchedUser: null
     });
     if (
       this.props.loginUser.email !== this.state.email &&
@@ -38,40 +53,14 @@ class FindByEmail extends Component {
           email: this.state.email
         });
         const response = await fetch(url, { credentials: "include" });
-        const {
-          user: searchedUser,
-          connection: searchedConnection
-        } = await response.json();
+        const { user: searchedUser } = await response.json();
         this.setState({
           searchedUser,
-          searchedConnection,
           searchResponsed: true
         });
       })();
     }
     event.preventDefault();
-  };
-
-  createConnectionCb = userIdToAdd => {
-    (async () => {
-      const response = await API.createConnection(userIdToAdd);
-      if (response.status === 200) {
-        this.props.refreshConnectionsCb();
-        const newConnection = await response.json();
-        this.setState({ searchedConnection: newConnection });
-      }
-    })();
-  };
-
-  modifyConnectionCb = (connection, isApproved) => {
-    (async () => {
-      const response = await API.modifyConnection(connection._id, isApproved);
-      if (response.status === 200) {
-        this.props.refreshConnectionsCb();
-        const newConnection = await response.json();
-        this.setState({ searchedConnection: newConnection });
-      }
-    })();
   };
 
   render() {
@@ -90,7 +79,6 @@ class FindByEmail extends Component {
             value={this.state.searchResponsed ? "Search" : "Searching ..."}
           />
         </form>
-
         <SearchResult
           loginUser={this.props.loginUser}
           email={this.state.email}
@@ -98,13 +86,20 @@ class FindByEmail extends Component {
           searchResponsed={this.state.searchResponsed}
           searchedUser={this.state.searchedUser}
           searchedConnection={this.state.searchedConnection}
-          modifyConnectionCb={this.modifyConnectionCb}
-          createConnectionCb={this.createConnectionCb}
+          modifyConnectionCb={this.props.modifyConnectionCb}
+          createConnectionCb={this.props.createConnectionCb}
         />
       </div>
     );
   }
 }
+
+FindByEmail.propTypes = {
+  loginUser: PropTypes.object.isRequired,
+  connections: PropTypes.array.isRequired,
+  createConnectionCb: PropTypes.func.isRequired,
+  modifyConnectionCb: PropTypes.func.isRequired
+};
 
 function SearchResult(props) {
   const {
@@ -140,20 +135,29 @@ function SearchResult(props) {
     ) {
       message = ``;
       action = (
-        <button onClick={onCreateInvitation}>Invite {searchedUser.name}</button>
+        <button id="createConnectionBtn" onClick={onCreateInvitation}>
+          Invite {searchedUser.name}
+        </button>
       );
     } else {
       /*you and searchedUser have exchanged invitation*/
       if (
         /*you init the connection*/
-        searchedConnection.from === loginUser._id
+        searchedConnection.from._id === loginUser._id
       ) {
         if (
           /*but you changed your mind*/
           searchedConnection.approvedByFrom === false
         ) {
           message = `But you changed your mind.`;
-          action = <button onClick={onApproveInvitation}>Undo</button>;
+          action = (
+            <button
+              id="approveConnectionByFromBtn"
+              onClick={onApproveInvitation}
+            >
+              Undo
+            </button>
+          );
         } else {
           /*and you havent changed your mind yet*/
           if (
@@ -170,7 +174,11 @@ function SearchResult(props) {
             /*searchedUser denided you*/
             message = `But sorry, you got denied!`;
           }
-          action = <button onClick={onDenyInvitation}>Undo invite</button>;
+          action = (
+            <button id="denyConnectionByFromBtn" onClick={onDenyInvitation}>
+              Undo invite
+            </button>
+          );
         }
         message = `You invited ${searchedUser.name}. ` + message;
       } else {
@@ -190,8 +198,18 @@ function SearchResult(props) {
             message = ``;
             action = (
               <span>
-                <button onClick={onApproveInvitation}>approve</button>
-                <button onClick={onDenyInvitation}>deny</button>
+                <button
+                  id="approveConnectionByToFirstTimeBtn"
+                  onClick={onApproveInvitation}
+                >
+                  approve
+                </button>
+                <button
+                  id="denyConnectionByToFirstTimeBtn"
+                  onClick={onDenyInvitation}
+                >
+                  deny
+                </button>
               </span>
             );
           } else if (
@@ -199,11 +217,25 @@ function SearchResult(props) {
             searchedConnection.approvedByTo === true
           ) {
             message = `And you accpected!`;
-            action = <button onClick={onDenyInvitation}>undo</button>;
+            action = (
+              <button
+                id="denyConnectionByToSecondTimeBtn"
+                onClick={onDenyInvitation}
+              >
+                undo
+              </button>
+            );
           } else {
             /*you denied searchedUser*/
             message = `And you denied.`;
-            action = <button onClick={onApproveInvitation}>undo</button>;
+            action = (
+              <button
+                id="approveConnectionByToSecondTimeBtn"
+                onClick={onApproveInvitation}
+              >
+                undo
+              </button>
+            );
           }
         }
         message = `${searchedUser.name} invited you. ` + message;
@@ -237,5 +269,16 @@ function SearchResult(props) {
     </div>
   );
 }
+
+SearchResult.propTypes = {
+  loginUser: PropTypes.object.isRequired,
+  email: PropTypes.string,
+  searchSubmited: PropTypes.bool.isRequired,
+  searchResponsed: PropTypes.bool.isRequired,
+  searchedUser: PropTypes.object,
+  searchedConnection: PropTypes.object,
+  modifyConnectionCb: PropTypes.func.isRequired,
+  createConnectionCb: PropTypes.func.isRequired
+};
 
 export default FindByEmail;

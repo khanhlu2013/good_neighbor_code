@@ -35,8 +35,7 @@ route.get("/searchEmail", authCheck, (req, res) => {
 
   (async () => {
     const searchedUser = await User.findOne({ email });
-    const connection = await Connection.findConnection(user, searchedUser);
-    res.send({ user: searchedUser, connection });
+    res.send({ user: searchedUser });
   })().catch(err => {
     console.log(err);
     res.status(500).send();

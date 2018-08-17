@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "jest": "^23.5.0",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
+    "react-spinners": "^0.4.4",
     "route-node": "^3.4.0",
     "validator": "^10.5.0"
   },

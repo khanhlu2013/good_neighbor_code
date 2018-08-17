@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../api/profile-api.js";
 
 function ConnectionTable(props) {
   const {
@@ -8,8 +7,9 @@ function ConnectionTable(props) {
     loginUserId,
     approveColumn,
     denyColumn,
-    refreshConnectionsCb
+    modifyConnectionCb
   } = props;
+
   return (
     <div id="ConnectionTable-react">
       <table>
@@ -32,7 +32,7 @@ function ConnectionTable(props) {
               loginUserId={loginUserId}
               approveColumn={approveColumn}
               denyColumn={denyColumn}
-              refreshConnectionsCb={refreshConnectionsCb}
+              modifyConnectionCb={modifyConnectionCb}
             />
           ))}
         </tbody>
@@ -47,7 +47,7 @@ function ConnectionRow(props) {
     loginUserId,
     approveColumn,
     denyColumn,
-    refreshConnectionsCb
+    modifyConnectionCb
   } = props;
   let theOther;
   if (connection.from._id === loginUserId) {
@@ -58,19 +58,11 @@ function ConnectionRow(props) {
     throw Error("Error: unexpected connection");
   }
 
-  const click = isApprove => {
-    (async () => {
-      const response = await API.modifyConnection(connection._id, isApprove);
-      if (response.status === 200) {
-        refreshConnectionsCb();
-      }
-    })();
-  };
   const approveClick = () => {
-    click(true);
+    modifyConnectionCb(connection, true);
   };
   const denyClick = () => {
-    click(false);
+    modifyConnectionCb(connection, false);
   };
 
   return (
