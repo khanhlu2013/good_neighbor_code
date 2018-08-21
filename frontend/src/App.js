@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import PropTypes from "prop-types";
 
-import { ConnectionManagement } from "./components/ConnectionManagement/index.js";
 import keys from "./configs/keys.js";
 import { Login } from "./components/Login";
+import { PrivateApp } from "./components/PrivateApp";
 
 class App extends Component {
   state = {
@@ -31,21 +30,5 @@ class App extends Component {
     }
   }
 }
-
-function PrivateApp(props) {
-  return (
-    <div id="PrivateApp-react" className="App">
-      <h1>Welcome to Good Neighboors</h1>
-      <div>
-        Profile: {props.loginUser.name} - {props.loginUser.email}
-        <a href={keys.API_URL("profile.logout")}>logout</a>
-      </div>
-      <ConnectionManagement loginUser={props.loginUser} />
-    </div>
-  );
-}
-PrivateApp.propTypes = {
-  loginUser: PropTypes.object.required
-};
 
 export default App;
