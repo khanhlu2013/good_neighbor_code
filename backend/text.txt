@@ -34,61 +34,31 @@
   . provide spinner every where pending for response
   . investigate props type
   . handle frontend error: lets say somehow the session terminated. and a user access API and get 401. i do not want to display a unhandle project rejection.
+  . make e2e test more stayble by narrow down the snapshot area
+  . allow multiple post image with the main image as the thumbnail
 
 . TODAY
 . -----
   . write some test
   . re-organize the whole project as one git repo. including the front and back
 
-
-
------
-
-when i type error email to search
-  . empty text -> response
-  . invalid -> response
-  
-when i type correct email to search: a fetch need to be made
-  . no result
-  . yes result
-
-  (
-    . in this case, if i change the url api, how can i make front end test fail? because i can see that the backend test will fail but this is the case that a e2e is my only choice. 
-  )
-
-. ok, think about how can we eliminate the test config out of production code: auth route when env = test.
-. how can i write a start e2e script? to start the back-end server too
-
 -----
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
 . express-session deprecated undefined resave option; provide resave option
-. there is a bit of manuall server setup for development: run the back end frist, then run the front end. do we need a script to do this work?
-. specify the backend api. and to switch between mode of test/development. 
 
-. how to test the frontend App.js when i already split the login code?
-. config with mocking the auth path
-  . so obviously, the login page for now can't be test. i pretty much have 2 page login page to use. one for test/development. i think i really should start using this page for development as well as test. this way i don't have to bother google which slow down my dev/test procedure. i can even do this offline.
-
-. for test purpose, i do not want to googleURL auth
-
-. hey, why dont i let test access google too. but never use it. that way production code is cleaner and a bit faster.
 
 ---
 . also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
- . simplify the searchResult. this is a rare path. simplify it here. less test code. 
 
 ---
-am i ready to continue? lets do a bit a design. so lets assume that i figure out the search and invite friend. i will continue to go on for the accept friend. should i have a pending request? yes why not. so i have a pending request. if i reject friend from here, i will have a reject list . i then can undo from this list. which go to friend list. now i understand the flow. i need to get the connections list. to do all this work
+ok, lets skip the testing for ConnectionTable
+---
+
+ok, lets move on a bit. what is the next task ? yay. post management. it is a post database. who post what. what is the db look like? user, what is the product look like? title, description, picture. with picture i have 3 options: no picture for now, 1 picture, and a front picture + more picture. pick 1,2,3. because if i put 1 picture, i will have to update later. 
 
 ---
-fix the email search to sync with the table
----
-separate the search user result. and modify/create connection panel
-
-connections = null is a good quick fix but it turn out to be a bad idea. because i rather have a more exclusive state for this.
-
----
-put back after each
-modifyConnectionCb take in a connectionId
-put back props.propname to be more explicit since we already do proptypes
+. eliminate default import for both backend and frontend. test auto import for backend.
+. time to reorganize my app. i need to separate profile out. profile is just email and name for now. nothing else. then connection. then post. ok lets do that. 
+  . back end api
+  . front end
