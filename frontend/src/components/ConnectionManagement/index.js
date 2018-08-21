@@ -60,11 +60,7 @@ class ConnectionManagement extends Component {
 
   render() {
     return (
-      <div id="Profile-react">
-        <div>
-          Profile: {this.props.loginUser.name} - {this.props.loginUser.email}
-          <a href={keys.API_URL("profile.logout")}>logout</a>
-        </div>
+      <div id="ConnectionManagement-react">
         <SearchByEmail
           refreshConnectionsCb={this.refreshConnectionsCb}
           loginUser={this.props.loginUser}

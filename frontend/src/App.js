@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
+import PropTypes from "prop-types";
+
 import { ConnectionManagement } from "./components/ConnectionManagement/index.js";
-import DummyLoginForTestPurpose from "./components/DummyLoginForTestPurpose.react.js";
 import keys from "./configs/keys.js";
+import { Login } from "./components/Login";
 
 class App extends Component {
   state = {
@@ -22,20 +24,28 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <h1>Welcome to Good Neighboors</h1>
-        {this.state.loginUser ? (
-          <ConnectionManagement loginUser={this.state.loginUser} />
-        ) : (
-          <div>
-            <a href={keys.API_URL("auth.google")}>Login with Google</a>
-            <DummyLoginForTestPurpose />
-          </div>
-        )}
-      </div>
-    );
+    if (this.state.loginUser) {
+      return <PrivateApp loginUser={this.state.loginUser} />;
+    } else {
+      return <Login />;
+    }
   }
 }
+
+function PrivateApp(props) {
+  return (
+    <div id="PrivateApp-react" className="App">
+      <h1>Welcome to Good Neighboors</h1>
+      <div>
+        Profile: {props.loginUser.name} - {props.loginUser.email}
+        <a href={keys.API_URL("profile.logout")}>logout</a>
+      </div>
+      <ConnectionManagement loginUser={props.loginUser} />
+    </div>
+  );
+}
+PrivateApp.propTypes = {
+  loginUser: PropTypes.object.required
+};
 
 export default App;

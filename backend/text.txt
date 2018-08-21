@@ -36,6 +36,7 @@
   . handle frontend error: lets say somehow the session terminated. and a user access API and get 401. i do not want to display a unhandle project rejection.
   . make e2e test more stayble by narrow down the snapshot area
   . allow multiple post image with the main image as the thumbnail
+  . eliminate default import for both backend and frontend. test auto import for backend.
 
 . TODAY
 . -----
@@ -58,7 +59,5 @@ ok, lets skip the testing for ConnectionTable
 ok, lets move on a bit. what is the next task ? yay. post management. it is a post database. who post what. what is the db look like? user, what is the product look like? title, description, picture. with picture i have 3 options: no picture for now, 1 picture, and a front picture + more picture. pick 1,2,3. because if i put 1 picture, i will have to update later. 
 
 ---
-. eliminate default import for both backend and frontend. test auto import for backend.
-. time to reorganize my app. i need to separate profile out. profile is just email and name for now. nothing else. then connection. then post. ok lets do that. 
-  . back end api
-  . front end
+
+. rename the id to match connectionmanagement

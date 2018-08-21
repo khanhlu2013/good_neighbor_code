@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import keys from "../configs/keys.js";
+import keys from "../../configs/keys.js";
 
 class DummyLoginForTestPurpose extends Component {
   state = {
