@@ -60,3 +60,4 @@ ok, lets move on a bit. what is the next task ? yay. post management. it is a po
 
 ---
 
+before doing post, i really want to fully test the connectionmanagement table. 

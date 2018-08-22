@@ -148,16 +148,23 @@ function ConnectionRow(props) {
   };
 
   return (
-    <tr id="ConnectionRow">
-      <td>{theOther.name}</td>
+    <tr className="ConnectionTableRow">
+      <td className="testing">{theOther.name}</td>
       {approveColumn && (
         <td>
-          <button onClick={approveClick}>{approveColumn}</button>
+          <button
+            className="ConnectionTableRowApproveBtn"
+            onClick={approveClick}
+          >
+            {approveColumn}
+          </button>
         </td>
       )}
       {denyColumn && (
         <td>
-          <button onClick={denyClick}>{denyColumn}</button>
+          <button className="ConnectionTableRowDenyBtn" onClick={denyClick}>
+            {denyColumn}
+          </button>
         </td>
       )}
     </tr>

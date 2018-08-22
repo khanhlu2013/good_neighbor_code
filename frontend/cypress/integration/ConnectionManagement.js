@@ -96,20 +96,62 @@ describe("ConnectionManagement", () => {
 
     it("can modify connection", () => {
       /*
-        . a -> b, a->c : (outFriend: 2,snap) (undo C, snap)
-        . c -> b
-        . b (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)    
+        1. a -> b, a->c : (outFriend: 2,snap) (deny C, snap)
+        2. c -> b
+        3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)    
       */
 
-      //a -> b, a->c : (outFriend: 2,snap) (undo C, snap)
+      //1. a -> b, a->c : (outFriend: 2,snap) (deny C, snap)
       cy.login(a.email);
       search(b.email);
       cy.get("#createConnectionBtn").click();
       search(c.email);
       cy.get("#createConnectionBtn").click();
-      snap("There are 2 outFriends");
+      snap("There are 2 out-connection");
 
-      //cy.get("#OutFriendTable #ConnectionRow")
+      cy.get("#OutFriendTable .ConnectionTableRow")
+        .eq(1)
+        .find(".ConnectionTableRowDenyBtn")
+        .click();
+
+      snap("remove one out-connection");
+
+      //2. c -> b
+      cy.switchAccount(c.email);
+      search(b.email);
+      cy.get("#createConnectionBtn").click();
+
+      //3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)
+      cy.switchAccount(b.email);
+      snap("There are 2 in-connection");
+      cy.get("#InFriendTable .ConnectionTableRow").should("have.length", 2);
+      cy.get("#InFriendTable .ConnectionTableRow")
+        .eq(0)
+        .find(".ConnectionTableRowApproveBtn")
+        .click();
+      cy.get("#InFriendTable .ConnectionTableRow")
+        .eq(0)
+        .find(".ConnectionTableRowDenyBtn")
+        .click();
+      snap("Approve/Deny InFriends");
+
+      //approve deny
+      cy.get("#DenyFriendTable .ConnectionTableRow")
+        .eq(0)
+        .find(".ConnectionTableRowApproveBtn")
+        .click();
+      snap("Approve Denied-Friends");
+
+      //deny friend
+      cy.get("#FriendTable .ConnectionTableRow")
+        .eq(0)
+        .find(".ConnectionTableRowDenyBtn")
+        .click();
+      cy.get("#FriendTable .ConnectionTableRow")
+        .eq(0)
+        .find(".ConnectionTableRowDenyBtn")
+        .click();
+      snap("Deny Approved-Friends");
     });
   });
 });
@@ -120,10 +162,10 @@ function snap(name) {
 }
 
 function search(email) {
-  cy.get("#SearchByEmail-react form input:text")
+  cy.get("#SearchByEmail-react>form>input:text")
     .clear()
     .type(`${email}{enter}`);
-  cy.get("#SearchByEmail-react input:submit").should("be.enabled"); //wait for search result
+  cy.get("#SearchByEmail-react>form>input:submit").should("be.enabled"); //wait for search result
 }
 
 function searchAndSnap(snapshotName, email) {
