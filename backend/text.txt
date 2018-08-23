@@ -37,6 +37,8 @@
   . make e2e test more stayble by narrow down the snapshot area
   . allow multiple post image with the main image as the thumbnail
   . eliminate default import for both backend and frontend. test auto import for backend.
+  . see if we can eliminate refreshConnectionsCb. if we don't differentiate between create/modify and just have a crudConnection, then we don't need to refresh it inside searchEmail because searchEmail just simply call crud for create and the parent management component will refresh it without needing to pass the cb in the child component
+  . should i factor out a lib to get posts, connections ...
 
 . TODAY
 . -----
@@ -55,9 +57,4 @@
 ---
 ok, lets skip the testing for ConnectionTable
 ---
-
-ok, lets move on a bit. what is the next task ? yay. post management. it is a post database. who post what. what is the db look like? user, what is the product look like? title, description, picture. with picture i have 3 options: no picture for now, 1 picture, and a front picture + more picture. pick 1,2,3. because if i put 1 picture, i will have to update later. 
-
----
-
-before doing post, i really want to fully test the connectionmanagement table. 
+work on post backend, then comback to the refreshingPost frontend

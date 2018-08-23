@@ -21,7 +21,9 @@ const API_NODE = new RouteNode("", "", [
     { name: "searchEmail", path: "/searchEmail?:email" },
     { name: "createConnection", path: "/createConnection" },
     { name: "modifyConnection", path: "/modifyConnection" },
-    { name: "connections", path: "/connections" }
+    { name: "connections", path: "/connections" },
+    { name: "posts", path: "/posts" },
+    { name: "crudPost", path: "/crudpost" }
   ]),
   new RouteNode("auth", "/auth", [
     { name: "google", path: "/google" },

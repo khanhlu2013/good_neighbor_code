@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import keys from "../configs/keys.js";
-import { ConnectionManagement } from "./ConnectionManagement/index.js";
+import { ConnectionManagement } from "./Connection/ConnectionManagement.js";
+import { PostManagement } from "./Post/PostManagement.js";
 
 function PrivateApp(props) {
   return (
@@ -12,12 +13,15 @@ function PrivateApp(props) {
         Profile: {props.loginUser.name} - {props.loginUser.email}
         <a href={keys.API_URL("profile.logout")}>logout</a>
       </div>
+      <hr />
       <ConnectionManagement loginUser={props.loginUser} />
+      <hr />
+      <PostManagement />
     </div>
   );
 }
 PrivateApp.propTypes = {
-  loginUser: PropTypes.object.required
+  loginUser: PropTypes.object.isRequired
 };
 
 export { PrivateApp };

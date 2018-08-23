@@ -61,6 +61,7 @@ class ConnectionManagement extends Component {
   render() {
     return (
       <div id="ConnectionManagement-react">
+        <h1>Friend Management</h1>
         <SearchByEmail
           refreshConnectionsCb={this.refreshConnectionsCb}
           loginUser={this.props.loginUser}

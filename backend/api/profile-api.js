@@ -2,6 +2,7 @@ const route = require("express").Router();
 const mongoose = require("mongoose");
 
 const Connection = require("../models/connection");
+const Post = require("../models/post");
 const User = require("../models/user");
 const keys = require("../configs/keys");
 
@@ -101,6 +102,56 @@ route.get("/connections", authCheck, (req, res) => {
       .populate("to");
 
     res.send(friends);
+  })().catch(e => {
+    console.log(e);
+    res.status(500).send();
+  });
+});
+
+route.get("/posts", authCheck, (req, res) => {
+  const { user } = req;
+  (async () => {
+    const posts = await Post.find({
+      user
+    });
+
+    res.send(posts);
+  })().catch(e => {
+    console.log(e);
+    res.status(500).send();
+  });
+});
+
+route.post("/crudpost", authCheck, (req, res) => {
+  const { user } = req;
+  const { postID, title, description } = req.body;
+
+  (async () => {
+    let post;
+    if (postID) {
+      if (!mongoose.Types.ObjectId.isValid(postID)) {
+        return res.status(400).send();
+      }
+
+      post = await Post.findById(postID);
+      if (!post) {
+        return res.status(400).send();
+      }
+
+      if (post.user != user._id) {
+        return res.status(401).send();
+      }
+
+      Object.assign(post, { title, description });
+    } else {
+      post = new Post({
+        user: user.id,
+        title: title,
+        description: description
+      });
+    }
+    await post.save();
+    res.send();
   })().catch(e => {
     console.log(e);
     res.status(500).send();
