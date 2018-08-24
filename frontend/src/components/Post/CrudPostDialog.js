@@ -4,18 +4,10 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 class CrudPostDialog extends Component {
-  constructor(props) {
-    super(props);
-    const { curCrudPost } = props;
-    let title = "";
-    let description = "";
-    if (curCrudPost) {
-      title = curCrudPost.title;
-      description = curCrudPost.description;
-    }
-
-    this.state = { title, description };
-  }
+  state = {
+    title: this.props.post ? this.props.post.title : "",
+    description: this.props.description ? this.props.post.description : ""
+  };
 
   onTitleChange = e => {
     this.setState({ title: e.currentTarget.value });
@@ -27,7 +19,7 @@ class CrudPostDialog extends Component {
 
   onSubmitPost = e => {
     this.props.onCrudPost(
-      this.props.curCrudPost,
+      this.state.postID,
       this.state.title,
       this.state.description
     );
@@ -39,7 +31,7 @@ class CrudPostDialog extends Component {
     return (
       <div id="CrudPostDialog-react">
         <Modal
-          isOpen={this.props.isOpenCrudPostDialog}
+          isOpen={this.props.isOpen}
           shouldCloseOnOverlayClick={false}
           shouldCloseOnEsc={false}
         >
@@ -68,8 +60,8 @@ class CrudPostDialog extends Component {
 }
 
 CrudPostDialog.propTypes = {
-  isOpenCrudPostDialog: PropTypes.bool.isRequired,
-  curCrudPost: PropTypes.object, //if null then we create post, otherwise we edit post
+  isOpen: PropTypes.bool.isRequired,
+  post: PropTypes.object, //if null then we create post, otherwise we edit post
   onCrudPost: PropTypes.func.isRequired,
   onCancelCrudPostDialog: PropTypes.func.isRequired
 };

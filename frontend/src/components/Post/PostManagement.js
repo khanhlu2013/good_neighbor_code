@@ -10,6 +10,7 @@ class PostManagement extends Component {
     refreshingPosts: false,
 
     //crud post
+    curCrudPostSessionID: null,
     curCrudPost: null,
     isOpenCrudPostDialog: false
   };
@@ -26,20 +27,18 @@ class PostManagement extends Component {
       });
       const posts = await response.json();
       this.setState({ posts, refreshingPosts: false });
-      console.log(posts);
     })();
   };
 
   createPost = () => {
     this.setState({
       isOpenCrudPostDialog: true,
-      curCrudPost: null
+      curCrudPost: null,
+      curCrudPostSessionID: Date.now().toString()
     });
   };
 
-  onCrudPost = async (curCrudPost, title, description) => {
-    const postID = curCrudPost ? curCrudPost._id : null;
-
+  onCrudPost = async (postID, title, description) => {
     await fetch(keys.API_URL("profile.crudPost"), {
       method: "POST",
       headers: {
@@ -49,7 +48,8 @@ class PostManagement extends Component {
       credentials: "include"
     });
     this.setState({
-      isOpenCrudPostDialog: false
+      isOpenCrudPostDialog: false,
+      curCrudPostSessionID: null
     });
     this.refreshPosts();
   };
@@ -63,12 +63,15 @@ class PostManagement extends Component {
       <div id="PostManagement-react">
         <button onClick={this.createPost}>create post</button>
         <PostTable posts={this.state.posts} />
-        <CrudPostDialog
-          isOpenCrudPostDialog={this.state.isOpenCrudPostDialog}
-          curCrudPost={this.state.curCrudPost}
-          onCrudPost={this.onCrudPost}
-          onCancelCrudPostDialog={this.onCancelCrudPostDialog}
-        />
+        {this.state.curCrudPostSessionID && (
+          <CrudPostDialog
+            key={this.state.curCrudPostSessionID}
+            isOpen={this.state.isOpenCrudPostDialog}
+            post={this.state.curCrudPost}
+            onCrudPost={this.onCrudPost}
+            onCancelCrudPostDialog={this.onCancelCrudPostDialog}
+          />
+        )}
       </div>
     );
   }
