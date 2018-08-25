@@ -1,7 +1,7 @@
-import keys from "../configs/keys.js";
+import { API_URL } from "./api-url";
 
 const profile = async () => {
-  const request = await fetch(keys.API_URL("profile"), {
+  const request = await fetch(API_URL("profile"), {
     credentials: "include"
   });
   if (request.status === 401) {
@@ -63,7 +63,7 @@ async function getJSON(response) {
 }
 
 async function post(dottedPath, params) {
-  const response = await fetch(keys.API_URL(dottedPath), {
+  const response = await fetch(API_URL(dottedPath), {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -76,7 +76,7 @@ async function post(dottedPath, params) {
 }
 
 async function get(dottedPath, params) {
-  const url = keys.API_URL(dottedPath, params);
+  const url = API_URL(dottedPath, params);
   const response = await fetch(url, { credentials: "include" });
   return await getJSON(response);
 }

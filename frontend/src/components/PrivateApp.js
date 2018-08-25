@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import keys from "../configs/keys.js";
 import { ConnectionManagement } from "./Connection/ConnectionManagement.js";
 import { PostManagement } from "./Post/PostManagement.js";
+import { API_URL } from "../api/api-url.js";
 
 function PrivateApp(props) {
   return (
@@ -11,7 +11,7 @@ function PrivateApp(props) {
       <h1>Welcome to Good Neighboors</h1>
       <div>
         Profile: {props.loginUser.name} - {props.loginUser.email}
-        <a href={keys.API_URL("profile.logout")}>logout</a>
+        <a href={API_URL("profile.logout")}>logout</a>
       </div>
       <hr />
       <ConnectionManagement loginUser={props.loginUser} />

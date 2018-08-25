@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import keys from "../../configs/keys.js";
+import { API_URL } from "../../api/api-url";
 
 class DummyLoginForTestPurpose extends Component {
   state = {
@@ -18,7 +18,7 @@ class DummyLoginForTestPurpose extends Component {
   };
 
   onSubmit = evt => {
-    const url = keys.API_URL("auth.dummy_login_for_test_purpose", {
+    const url = API_URL("auth.dummy_login_for_test_purpose", {
       email: this.state.email,
       name: this.state.name
     });
