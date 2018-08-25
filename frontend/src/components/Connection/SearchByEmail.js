@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import validator from "validator";
 import PropTypes from "prop-types";
 
-import keys from "../../configs/keys.js";
+import { API } from "../../api/profile-api.js";
 
 class SearchByEmail extends Component {
   /**
@@ -56,11 +56,7 @@ class SearchByEmail extends Component {
     if (!this.state.selfSearch && this.state.emailValid) {
       this.setState({ searchResponsed: false });
       (async () => {
-        const url = keys.API_URL("profile.searchEmail", {
-          email: this.state.email
-        });
-        const response = await fetch(url, { credentials: "include" });
-        const { user: searchedUser } = await response.json();
+        const searchedUser = await API.searchEmail(this.state.email);
         this.setState({
           searchedUser,
           searchResponsed: true

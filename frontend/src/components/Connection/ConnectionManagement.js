@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import keys from "../../configs/keys.js";
-import API from "../../api/profile-api.js";
 import { SearchByEmail } from "./SearchByEmail.js";
 import { ConnectionTables } from "./ConnectionTables.js";
+import { API } from "../../api/profile-api.js";
 
 class ConnectionManagement extends Component {
   state = {
@@ -26,10 +25,7 @@ class ConnectionManagement extends Component {
   refreshConnectionsCb = () => {
     this.setState({ refreshingConnections: true });
     (async () => {
-      const request = await fetch(keys.API_URL("profile.connections"), {
-        credentials: "include"
-      });
-      const connections = await request.json();
+      const connections = await API.connections();
       this.setState({ connections, refreshingConnections: false });
     })();
   };
@@ -37,8 +33,8 @@ class ConnectionManagement extends Component {
   createConnectionCb = userIdToAdd => {
     this.setState({ refreshingConnections: true });
     (async () => {
-      const response = await API.createConnection(userIdToAdd);
-      if (response.status === 200) {
+      const connection = await API.createConnection(userIdToAdd);
+      if (connection) {
         this.refreshConnectionsCb();
       }
     })();
@@ -47,8 +43,8 @@ class ConnectionManagement extends Component {
   modifyConnectionCb = (connectionId, isApproved) => {
     this.setState({ refreshingConnections: true });
     (async () => {
-      const response = await API.modifyConnection(connectionId, isApproved);
-      if (response.status === 200) {
+      const connection = await API.modifyConnection(connectionId, isApproved);
+      if (connection) {
         this.refreshConnectionsCb();
       }
     })();

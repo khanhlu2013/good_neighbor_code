@@ -1,28 +1,87 @@
 import keys from "../configs/keys.js";
 
-const modifyConnection = (connectionId, isApproved) => {
-  return fetch(keys.API_URL("profile.modifyConnection"), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ connectionId, isApproved }),
+const profile = async () => {
+  const request = await fetch(keys.API_URL("profile"), {
     credentials: "include"
+  });
+  if (request.status === 401) {
+    return null;
+  }
+  return await request.json();
+};
+
+const searchEmail = email => {
+  return get("profile.searchEmail", { email });
+};
+
+const connections = () => {
+  return get("profile.connections", {});
+};
+
+const modifyConnection = (connectionId, isApproved) => {
+  return post("profile.modifyConnection", {
+    connectionId,
+    isApproved
   });
 };
 
 const createConnection = userIdToAdd => {
-  return fetch(keys.API_URL("profile.createConnection"), {
+  return post("profile.createConnection", {
+    userIdToAdd
+  });
+};
+
+const posts = async () => {
+  return get("profile.posts", {});
+};
+
+const crudPost = async (postID, title, description) => {
+  const crudedPost = await post("profile.crudPost", {
+    postID,
+    title,
+    description
+  });
+  return crudedPost;
+};
+
+//- helper ----
+
+async function getJSON(response) {
+  const text = await response.text();
+  if (!text) {
+    return null;
+  }
+  return JSON.parse(text);
+}
+
+async function post(dottedPath, params) {
+  const response = await fetch(keys.API_URL(dottedPath), {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ userIdToAdd }),
+    body: JSON.stringify(params),
     credentials: "include"
   });
-};
 
-export default {
+  return await getJSON(response);
+}
+
+async function get(dottedPath, params) {
+  const url = keys.API_URL(dottedPath, params);
+  const response = await fetch(url, { credentials: "include" });
+  return await getJSON(response);
+}
+
+//-------------
+
+const API = {
+  profile,
+  searchEmail,
+  connections,
   modifyConnection,
-  createConnection
+  createConnection,
+  posts,
+  crudPost
 };
+export { API };

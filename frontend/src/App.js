@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import keys from "./configs/keys.js";
 import { Login } from "./components/Login";
 import { PrivateApp } from "./components/PrivateApp";
+import { API } from "./api/profile-api";
 
 class App extends Component {
   state = {
@@ -12,14 +12,11 @@ class App extends Component {
 
   componentDidMount() {
     (async () => {
-      let request;
-      request = await fetch(keys.API_URL("profile"), {
-        credentials: "include"
-      });
-      if (request.status !== 401) {
-        this.setState({ loginUser: await request.json() });
+      const user = await API.profile();
+      if (user) {
+        this.setState({ loginUser: user });
       }
-    })().catch(err => console.error("Error getting profile:", err));
+    })();
   }
 
   render() {

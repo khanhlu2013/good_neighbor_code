@@ -7,10 +7,11 @@ if (keys.NODE_ENV === "production") {
   throw Error("Unexpect production env");
 }
 
-route.get("/dummy_login_for_test_purpose", async (req, res) => {
+route.get("/dummy_login_for_test_purpose", (req, res, next) => {
   const User = require("../models/user");
   const { email, name } = req.query;
-  try {
+
+  (async () => {
     const user = await User.findOneOrCreate(email, name);
     req.login(user, err => {
       if (err) {
@@ -20,10 +21,7 @@ route.get("/dummy_login_for_test_purpose", async (req, res) => {
         return res.redirect(FRONTEND_URL);
       }
     });
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
+  })().catch(next);
 });
 
 module.exports = route;

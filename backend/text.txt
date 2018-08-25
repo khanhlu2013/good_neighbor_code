@@ -39,19 +39,44 @@
   . eliminate default import for both backend and frontend. test auto import for backend.
   . see if we can eliminate refreshConnectionsCb. if we don't differentiate between create/modify and just have a crudConnection, then we don't need to refresh it inside searchEmail because searchEmail just simply call crud for create and the parent management component will refresh it without needing to pass the cb in the child component
   . should i factor out a lib to get posts, connections ...
+  . create error handling for the front end to be more detail: internet or server bug
 
 . TODAY
 . -----
-  . write some test
-  . re-organize the whole project as one git repo. including the front and back
-
------
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
 . express-session deprecated undefined resave option; provide resave option
-
-
----
 . also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
 
 
+---
+. question
+  . how do i know a post have picture or not?
+
+. model
+  . post-model
+    . isActive
+
+  . share-log-model
+    . postID
+    . borrower
+    . createdAt
+    . isReturning
+    . isReturned
+    . validation: cant add a log item with duplicated postID that isn't re
+
+. ui
+  . share-log-in-table -> pending/finalized
+  . share-log-out-table -> pending/finalized
+
+  . post-active-table
+    . createdAt
+    . isActive
+    . upload picture, thumb
+    . edit: activate crudDialog
+  
+  . post-inactive-table
+
+  . post-crud-dialog
+    . createdAt
+    . isActive

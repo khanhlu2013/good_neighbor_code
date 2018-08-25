@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import { CrudPostDialog } from "./CrudPostDialog";
-import keys from "../../configs/keys";
 import { PostTable } from "./PostTable";
+import { API } from "../../api/profile-api";
 
 class PostManagement extends Component {
   state = {
@@ -22,10 +22,7 @@ class PostManagement extends Component {
   refreshPosts = () => {
     this.setState({ refreshingPosts: true });
     (async () => {
-      const response = await fetch(keys.API_URL("profile.posts"), {
-        credentials: "include"
-      });
-      const posts = await response.json();
+      const posts = await API.posts();
       this.setState({ posts, refreshingPosts: false });
     })();
   };
@@ -39,14 +36,7 @@ class PostManagement extends Component {
   };
 
   onCrudPost = async (postID, title, description) => {
-    await fetch(keys.API_URL("profile.crudPost"), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ postID, title, description }),
-      credentials: "include"
-    });
+    await API.crudPost(postID, title, description);
     this.setState({
       isOpenCrudPostDialog: false,
       curCrudPostSessionID: null

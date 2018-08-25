@@ -22,7 +22,7 @@ route.get("/", authCheck, (req, res) => {
   res.send(req.user);
 });
 
-route.get("/searchEmail", authCheck, (req, res) => {
+route.get("/searchEmail", authCheck, (req, res, next) => {
   const { email } = req.query;
   const { user } = req;
 
@@ -35,15 +35,11 @@ route.get("/searchEmail", authCheck, (req, res) => {
   }
 
   (async () => {
-    const searchedUser = await User.findOne({ email });
-    res.send({ user: searchedUser });
-  })().catch(err => {
-    console.log(err);
-    res.status(500).send();
-  });
+    res.send(await User.findOne({ email }));
+  })().catch(next);
 });
 
-route.post("/createConnection", authCheck, async (req, res) => {
+route.post("/createConnection", authCheck, (req, res, next) => {
   const { user } = req;
   const { userIdToAdd } = req.body;
 
@@ -55,19 +51,16 @@ route.post("/createConnection", authCheck, async (req, res) => {
     return res.status(400).send();
   }
 
-  try {
+  (async () => {
     const connection = await new Connection({
       from: user.id,
       to: userIdToAdd
     }).save();
     return res.send(connection);
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
+  })().catch(next);
 });
 
-route.post("/modifyConnection", authCheck, async (req, res) => {
+route.post("/modifyConnection", authCheck, (req, res, next) => {
   const { user } = req;
   const { connectionId, isApproved } = req.body;
 
@@ -78,7 +71,7 @@ route.post("/modifyConnection", authCheck, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(connectionId)) {
     return res.status(400).send();
   }
-  try {
+  (async () => {
     const connection = await Connection.findById(connectionId);
     if (connection.from.equals(user._id)) {
       connection.approvedByFrom = isApproved;
@@ -86,29 +79,22 @@ route.post("/modifyConnection", authCheck, async (req, res) => {
       connection.approvedByTo = isApproved;
     }
     return res.send(await connection.save());
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
+  })().catch(next);
 });
 
-route.get("/connections", authCheck, (req, res) => {
+route.get("/connections", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
-    const friends = await Connection.find({
+    const connections = await Connection.find({
       $or: [{ from: user }, { to: user }]
     })
       .populate("from")
       .populate("to");
-
-    res.send(friends);
-  })().catch(e => {
-    console.log(e);
-    res.status(500).send();
-  });
+    res.send(connections);
+  })().catch(next);
 });
 
-route.get("/posts", authCheck, (req, res) => {
+route.get("/posts", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
     const posts = await Post.find({
@@ -116,13 +102,10 @@ route.get("/posts", authCheck, (req, res) => {
     });
 
     res.send(posts);
-  })().catch(e => {
-    console.log(e);
-    res.status(500).send();
-  });
+  })().catch(next);
 });
 
-route.post("/crudpost", authCheck, (req, res) => {
+route.post("/crudpost", authCheck, (req, res, next) => {
   const { user } = req;
   const { postID, title, description } = req.body;
 
@@ -151,11 +134,8 @@ route.post("/crudpost", authCheck, (req, res) => {
       });
     }
     await post.save();
-    res.send();
-  })().catch(e => {
-    console.log(e);
-    res.status(500).send();
-  });
+    res.send(post);
+  })().catch(next);
 });
 
 module.exports = route;

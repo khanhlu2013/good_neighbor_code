@@ -50,6 +50,9 @@ Cypress.Commands.add("resetDB", email => {
   cy.exec(
     `~/mongo/bin/mongo good-neighboors-test --eval 'db.connections.deleteMany({})'`
   );
+  cy.exec(
+    `~/mongo/bin/mongo good-neighboors-test --eval 'db.posts.deleteMany({})'`
+  );
 });
 Cypress.Commands.add("insertUserDB", users => {
   const userObjs = users
