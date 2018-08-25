@@ -63,7 +63,7 @@
     . createdAt
     . isReturning
     . isReturned
-    . validation: cant add a log item with duplicated postID that isn't re
+    . validation: no inactive or pending: test it
 
 . ui
   . share-log-in-table -> pending/finalized
@@ -80,3 +80,6 @@
   . post-crud-dialog
     . createdAt
     . isActive
+
+
+. should i combine API for create/update or separate them

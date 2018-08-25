@@ -36,7 +36,11 @@ class PostManagement extends Component {
   };
 
   onCrudPost = async (postID, title, description) => {
-    await API.crudPost(postID, title, description);
+    if (postID) {
+      await API.updatePost(postID, title, description);
+    } else {
+      await API.createPost(postID, title, description);
+    }
     this.setState({
       isOpenCrudPostDialog: false,
       curCrudPostSessionID: null

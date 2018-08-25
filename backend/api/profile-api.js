@@ -6,6 +6,7 @@ const Post = require("../models/post");
 const User = require("../models/user");
 const keys = require("../configs/keys");
 
+// - auth ----
 const authCheck = (req, res, next) => {
   if (!req.user) {
     return res.status(401).send();
@@ -22,6 +23,7 @@ route.get("/", authCheck, (req, res) => {
   res.send(req.user);
 });
 
+// - user ----
 route.get("/searchEmail", authCheck, (req, res, next) => {
   const { email } = req.query;
   const { user } = req;
@@ -39,6 +41,7 @@ route.get("/searchEmail", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
+// - connection ----
 route.post("/createConnection", authCheck, (req, res, next) => {
   const { user } = req;
   const { userIdToAdd } = req.body;
@@ -94,6 +97,7 @@ route.get("/connections", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
+// - post ----
 route.get("/posts", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
@@ -105,34 +109,44 @@ route.get("/posts", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/crudpost", authCheck, (req, res, next) => {
+route.post("/createPost", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { title, description } = req.body;
+
+  (async () => {
+    const post = new Post({
+      user: user.id,
+      title: title,
+      description: description
+    });
+    await post.save();
+    res.send(post);
+  })().catch(next);
+});
+
+route.post("/updatePost", authCheck, (req, res, next) => {
   const { user } = req;
   const { postID, title, description } = req.body;
 
   (async () => {
-    let post;
-    if (postID) {
-      if (!mongoose.Types.ObjectId.isValid(postID)) {
-        return res.status(400).send();
-      }
-
-      post = await Post.findById(postID);
-      if (!post) {
-        return res.status(400).send();
-      }
-
-      if (post.user != user._id) {
-        return res.status(401).send();
-      }
-
-      Object.assign(post, { title, description });
-    } else {
-      post = new Post({
-        user: user.id,
-        title: title,
-        description: description
-      });
+    if (!postID) {
+      return res.status(400).send();
     }
+
+    if (!mongoose.Types.ObjectId.isValid(postID)) {
+      return res.status(400).send();
+    }
+
+    const post = await Post.findById(postID);
+    if (!post) {
+      return res.status(400).send();
+    }
+
+    if (post.user != user._id) {
+      return res.status(401).send();
+    }
+
+    Object.assign(post, { title, description });
     await post.save();
     res.send(post);
   })().catch(next);

@@ -35,9 +35,17 @@ const posts = async () => {
   return get("profile.posts", {});
 };
 
-const crudPost = async (postID, title, description) => {
-  const crudedPost = await post("profile.crudPost", {
+const updatePost = async (postID, title, description) => {
+  const crudedPost = await post("profile.updatePost", {
     postID,
+    title,
+    description
+  });
+  return crudedPost;
+};
+
+const createPost = async (title, description) => {
+  const crudedPost = await post("profile.createPost", {
     title,
     description
   });
@@ -82,6 +90,7 @@ const API = {
   modifyConnection,
   createConnection,
   posts,
-  crudPost
+  createPost,
+  updatePost
 };
 export { API };
