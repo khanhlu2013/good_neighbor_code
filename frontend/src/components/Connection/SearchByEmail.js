@@ -113,7 +113,7 @@ class SearchByEmail extends Component {
             loginUser={this.props.loginUser}
             searchedUser={this.state.searchedUser}
             searchedConnection={this.state.searchedConnection}
-            modifyConnectionCb={this.props.modifyConnectionCb}
+            updateConnectionCb={this.props.updateConnectionCb}
             createConnectionCb={this.props.createConnectionCb}
           />
         )}
@@ -126,7 +126,7 @@ SearchByEmail.propTypes = {
   loginUser: PropTypes.object.isRequired,
   connections: PropTypes.array.isRequired,
   createConnectionCb: PropTypes.func.isRequired,
-  modifyConnectionCb: PropTypes.func.isRequired
+  updateConnectionCb: PropTypes.func.isRequired
 };
 
 function CrudConnectionControlPanel(props) {
@@ -134,7 +134,7 @@ function CrudConnectionControlPanel(props) {
     loginUser,
     searchedUser,
     searchedConnection,
-    modifyConnectionCb,
+    updateConnectionCb,
     createConnectionCb
   } = props;
 
@@ -143,11 +143,11 @@ function CrudConnectionControlPanel(props) {
   };
 
   const onApproveConnection = evt => {
-    modifyConnectionCb(searchedConnection._id, true);
+    updateConnectionCb(searchedConnection._id, true);
   };
 
   const onDenyConnection = evt => {
-    modifyConnectionCb(searchedConnection._id, false);
+    updateConnectionCb(searchedConnection._id, false);
   };
 
   let message;
@@ -275,7 +275,7 @@ CrudConnectionControlPanel.propTypes = {
   loginUser: PropTypes.object.isRequired,
   searchedUser: PropTypes.object.isRequired,
   searchedConnection: PropTypes.object, //if null we can create connection
-  modifyConnectionCb: PropTypes.func.isRequired,
+  updateConnectionCb: PropTypes.func.isRequired,
   createConnectionCb: PropTypes.func.isRequired
 };
 

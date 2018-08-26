@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function ConnectionTables(props) {
-  const { loginUserId, connections, modifyConnectionCb } = props;
+  const { loginUserId, connections, updateConnectionCb } = props;
 
   const friends = connections.filter(
     connection => connection.approvedByFrom && connection.approvedByTo
@@ -33,7 +33,7 @@ function ConnectionTables(props) {
         loginUserId={loginUserId}
         approveColumn={undefined}
         denyColumn="remove"
-        modifyConnectionCb={modifyConnectionCb}
+        updateConnectionCb={updateConnectionCb}
       />
       <ConnectionTable
         id="InFriendTable"
@@ -42,7 +42,7 @@ function ConnectionTables(props) {
         loginUserId={loginUserId}
         approveColumn="approve"
         denyColumn="deny"
-        modifyConnectionCb={modifyConnectionCb}
+        updateConnectionCb={updateConnectionCb}
       />
       <ConnectionTable
         id="OutFriendTable"
@@ -51,7 +51,7 @@ function ConnectionTables(props) {
         loginUserId={loginUserId}
         approveColumn={undefined}
         denyColumn="undo"
-        modifyConnectionCb={modifyConnectionCb}
+        updateConnectionCb={updateConnectionCb}
       />
       <ConnectionTable
         id="DenyFriendTable"
@@ -60,7 +60,7 @@ function ConnectionTables(props) {
         loginUserId={loginUserId}
         approveColumn="undo"
         denyColumn={undefined}
-        modifyConnectionCb={modifyConnectionCb}
+        updateConnectionCb={updateConnectionCb}
       />
     </div>
   );
@@ -68,7 +68,7 @@ function ConnectionTables(props) {
 ConnectionTables.propTypes = {
   loginUserId: PropTypes.string.isRequired,
   connections: PropTypes.array.isRequired,
-  modifyConnectionCb: PropTypes.func.isRequired
+  updateConnectionCb: PropTypes.func.isRequired
 };
 
 function ConnectionTable(props) {
@@ -79,7 +79,7 @@ function ConnectionTable(props) {
     loginUserId,
     approveColumn,
     denyColumn,
-    modifyConnectionCb
+    updateConnectionCb
   } = props;
 
   return (
@@ -104,7 +104,7 @@ function ConnectionTable(props) {
               loginUserId={loginUserId}
               approveColumn={approveColumn}
               denyColumn={denyColumn}
-              modifyConnectionCb={modifyConnectionCb}
+              updateConnectionCb={updateConnectionCb}
             />
           ))}
         </tbody>
@@ -120,7 +120,7 @@ ConnectionTable.propTypes = {
   loginUserId: PropTypes.string.isRequired,
   approveColumn: PropTypes.string,
   denyColumn: PropTypes.string,
-  modifyConnectionCb: PropTypes.func.isRequired
+  updateConnectionCb: PropTypes.func.isRequired
 };
 
 function ConnectionRow(props) {
@@ -129,7 +129,7 @@ function ConnectionRow(props) {
     loginUserId,
     approveColumn,
     denyColumn,
-    modifyConnectionCb
+    updateConnectionCb
   } = props;
   let theOther;
   if (connection.from._id === loginUserId) {
@@ -141,10 +141,10 @@ function ConnectionRow(props) {
   }
 
   const approveClick = () => {
-    modifyConnectionCb(connection._id, true);
+    updateConnectionCb(connection._id, true);
   };
   const denyClick = () => {
-    modifyConnectionCb(connection._id, false);
+    updateConnectionCb(connection._id, false);
   };
 
   return (
@@ -176,7 +176,7 @@ ConnectionRow.propTypes = {
   loginUserId: PropTypes.string.isRequired,
   approveColumn: PropTypes.string,
   denyColumn: PropTypes.string,
-  modifyConnectionCb: PropTypes.func.isRequired
+  updateConnectionCb: PropTypes.func.isRequired
 };
 
 export { ConnectionTables };

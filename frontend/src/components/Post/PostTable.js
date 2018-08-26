@@ -7,6 +7,7 @@ function PostTable(props) {
       <tr key={post._id}>
         <td>{post.title}</td>
         <td>{post.description}</td>
+        <td>{post.dateCreated}</td>
       </tr>
     );
   });
@@ -14,8 +15,9 @@ function PostTable(props) {
     <table>
       <thead>
         <tr>
-          <th>Post title</th>
-          <th>Post description</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Date created</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>

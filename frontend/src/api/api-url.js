@@ -19,12 +19,18 @@ const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [
     { name: "logout", path: "/logout" },
     { name: "searchEmail", path: "/searchEmail?:email" },
-    { name: "createConnection", path: "/createConnection" },
-    { name: "modifyConnection", path: "/modifyConnection" },
+    // - connection
     { name: "connections", path: "/connections" },
+    { name: "createConnection", path: "/createConnection" },
+    { name: "updateConnection", path: "/updateConnection" },
+    // - post
     { name: "posts", path: "/posts" },
     { name: "createPost", path: "/createPost" },
-    { name: "updatePost", path: "/updatePost" }
+    { name: "updatePost", path: "/updatePost" },
+    // - shareLog
+    { name: "shareLogs", path: "/shareLogs" },
+    { name: "updateInshareLogs", path: "/updateInshareLogs" },
+    { name: "updateOutshareLogs", path: "/updateOutshareLogs" }
   ]),
   new RouteNode("auth", "/auth", [
     { name: "google", path: "/google" },

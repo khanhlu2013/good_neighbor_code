@@ -40,6 +40,7 @@
   . see if we can eliminate refreshConnectionsCb. if we don't differentiate between create/modify and just have a crudConnection, then we don't need to refresh it inside searchEmail because searchEmail just simply call crud for create and the parent management component will refresh it without needing to pass the cb in the child component
   . should i factor out a lib to get posts, connections ...
   . create error handling for the front end to be more detail: internet or server bug
+  . shareLog, create and update failure should be unit tested and not e2e tested.
 
 . TODAY
 . -----
@@ -53,18 +54,6 @@
 . question
   . how do i know a post have picture or not?
 
-. model
-  . post-model
-    . isActive
-
-  . share-log-model
-    . postID
-    . borrower
-    . createdAt
-    . isReturning
-    . isReturned
-    . validation: no inactive or pending: test it
-
 . ui
   . share-log-in-table -> pending/finalized
   . share-log-out-table -> pending/finalized
@@ -77,9 +66,8 @@
   
   . post-inactive-table
 
+  . shareLog create and update button
+
   . post-crud-dialog
     . createdAt
     . isActive
-
-
-. should i combine API for create/update or separate them

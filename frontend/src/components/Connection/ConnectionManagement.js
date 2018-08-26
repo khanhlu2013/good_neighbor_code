@@ -40,10 +40,10 @@ class ConnectionManagement extends Component {
     })();
   };
 
-  modifyConnectionCb = (connectionId, isApproved) => {
+  updateConnectionCb = (connectionId, isApproved) => {
     this.setState({ refreshingConnections: true });
     (async () => {
-      const connection = await API.modifyConnection(connectionId, isApproved);
+      const connection = await API.updateConnection(connectionId, isApproved);
       if (connection) {
         this.refreshConnectionsCb();
       }
@@ -64,12 +64,12 @@ class ConnectionManagement extends Component {
           connections={this.state.connections}
           refreshingConnections={this.state.refreshingConnections}
           createConnectionCb={this.createConnectionCb}
-          modifyConnectionCb={this.modifyConnectionCb}
+          updateConnectionCb={this.updateConnectionCb}
         />
         <ConnectionTables
           loginUserId={this.props.loginUser._id}
           connections={this.state.connections}
-          modifyConnectionCb={this.modifyConnectionCb}
+          updateConnectionCb={this.updateConnectionCb}
         />
         <button onClick={this.uploadWidget}>Add Image</button>
         {this.state.refreshingConnections && <p>Refreshing Connection ...</p>}

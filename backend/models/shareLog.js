@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Post = require("./post");
+const Connection = require("./connection");
 
 const ShareLogSchema = new Schema({
-  postID: {
+  post: {
     type: Schema.Types.ObjectId,
     ref: "Post",
     required: true
@@ -13,7 +14,7 @@ const ShareLogSchema = new Schema({
     ref: "User",
     required: true
   },
-  createdAt: {
+  dateCreated: {
     type: Date,
     default: Date.now,
     required: true
@@ -31,21 +32,38 @@ const ShareLogSchema = new Schema({
 });
 
 ShareLogSchema.pre("save", async function() {
-  const { postID } = this;
+  const { postID, borrower, isReturning, isReturned, isNew } = this;
   const ShareLog = this.constructor;
 
-  //verify active post
+  //verify postID
   const post = await Post.findById(postID);
-  if (!post.isActive) {
-    throw Error("Post is inactive. Can't be shared!");
+  if (!post) {
+    throw Error("Post is not exist.");
   }
 
-  //verify non-pending post
-  const pendingPost = await ShareLog.findOne({ postID, isReturned: false });
-  if (pendingPost) {
-    throw Error("Post is pending. Can't be shared!");
+  //verify connection
+  const connection = await Connection.findOneByUser(borrower, post.by);
+  if (!connection) {
+    throw Error("Post.by is not connected with borrower.");
+  }
+
+  if (isNew) {
+    if (isReturning || isReturned) {
+      throw Error("Cant create isReturning or isReturned ShareLog");
+    }
+
+    //verify active post
+    if (!post.isActive) {
+      throw Error("Post is not active.");
+    }
+
+    //verify non-pending post
+    const pendingPost = await ShareLog.findOne({ postID, isReturned: false });
+    if (pendingPost) {
+      throw Error("Post is pending.");
+    }
   }
 });
 
 const ShareLog = mongoose.model("ShareLog", ShareLogSchema);
-module.exports = ShareLog;
+module.exports = { ShareLog };

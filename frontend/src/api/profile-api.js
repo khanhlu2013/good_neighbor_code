@@ -14,15 +14,9 @@ const searchEmail = email => {
   return get("profile.searchEmail", { email });
 };
 
+// - connection
 const connections = () => {
   return get("profile.connections", {});
-};
-
-const modifyConnection = (connectionId, isApproved) => {
-  return post("profile.modifyConnection", {
-    connectionId,
-    isApproved
-  });
 };
 
 const createConnection = userIdToAdd => {
@@ -31,8 +25,25 @@ const createConnection = userIdToAdd => {
   });
 };
 
-const posts = async () => {
-  return get("profile.posts", {});
+const updateConnection = (connectionId, isApproved) => {
+  return post("profile.updateConnection", {
+    connectionId,
+    isApproved
+  });
+};
+
+// - post
+const posts = async isActive => {
+  // if (!isActive) -> we will retrieve both
+  return get("profile.posts", { isActive });
+};
+
+const createPost = async (title, description) => {
+  const crudedPost = await post("profile.createPost", {
+    title,
+    description
+  });
+  return crudedPost;
 };
 
 const updatePost = async (postID, title, description) => {
@@ -44,12 +55,39 @@ const updatePost = async (postID, title, description) => {
   return crudedPost;
 };
 
-const createPost = async (title, description) => {
-  const crudedPost = await post("profile.createPost", {
-    title,
-    description
+// -  shareLog
+const shareLogs = async (isIn, isOut) => {
+  if (!isIn && !isOut) {
+    throw Error("Must specify at least in or out shareLogs to get");
+  }
+  const shareLogs = await get("profile.shareLogs", {
+    isIn,
+    isOut
   });
-  return crudedPost;
+  return shareLogs;
+};
+
+const createShareLog = async postID => {
+  const shareLog = await post("profile.createShareLog", {
+    postID
+  });
+  return shareLog;
+};
+
+const updateInShareLog = async (shareLogID, isReturning) => {
+  const shareLog = await post("profile.updateInShareLog", {
+    shareLogID,
+    isReturning
+  });
+  return shareLog;
+};
+
+const updateOutShareLog = async (shareLogID, isReturned) => {
+  const shareLog = await post("profile.updateInShareLog", {
+    shareLogID,
+    isReturned
+  });
+  return shareLog;
 };
 
 //- helper ----
@@ -87,10 +125,16 @@ const API = {
   profile,
   searchEmail,
   connections,
-  modifyConnection,
   createConnection,
+  updateConnection,
+  // - post
   posts,
   createPost,
-  updatePost
+  updatePost,
+  // - shareLog
+  shareLogs,
+  createShareLog,
+  updateInShareLog,
+  updateOutShareLog
 };
 export { API };

@@ -21,7 +21,7 @@ const PostSchema = new Schema({
     type: Boolean,
     required: true
   },
-  createdAt: {
+  dateCreated: {
     type: Date,
     default: Date.now,
     required: true
