@@ -18,7 +18,7 @@ class DummyLoginForTestPurpose extends Component {
   };
 
   onSubmit = evt => {
-    const url = API_URL("auth.dummy_login_for_test_purpose", {
+    const url = API_URL("auth.login_for_test_dev", {
       email: this.state.email,
       name: this.state.name
     });

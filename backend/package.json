@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:backend:testenv": "export NODE_ENV=test && nodemon app-test-dev-env.js",
-    "start:backend:devenv": "nodemon app-test-dev-env.js"
+    "start:backend:testenv": "export NODE_ENV=test && nodemon app.js"
   },
   "author": "",
   "license": "ISC",

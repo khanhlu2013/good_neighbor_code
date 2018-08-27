@@ -41,6 +41,7 @@
   . should i factor out a lib to get posts, connections ...
   . create error handling for the front end to be more detail: internet or server bug
   . shareLog, create and update failure should be unit tested and not e2e tested.
+  . work on deployment. and provide a make-sense mvp for auth. 
 
 . TODAY
 . -----
@@ -71,13 +72,6 @@
   . post-crud-dialog
     . createdAt
     . isActive
-
----
-test and dev env for backend doesn't have a beautiful symetry. work on this and provide a log error middleware at the leaf level. work on deployment. and provide a make-sense mvp for auth. 
-
-how to show server send down error ?
-
-
 
 ---
 work on share log api backend
