@@ -82,3 +82,4 @@ move connections out of manageconnection. to be share with browse post
 
 ---
 . work on InPostManagement now
+. but before above, i need to finish the outpost, isactive

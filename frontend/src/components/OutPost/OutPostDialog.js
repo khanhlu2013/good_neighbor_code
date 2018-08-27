@@ -19,7 +19,7 @@ class OutPostDialog extends Component {
   };
 
   onSubmitPost = e => {
-    this.props.onCrudPost(
+    this.props.onCrudOutPostCb(
       this.state.postID,
       this.state.title,
       this.state.description
@@ -30,7 +30,7 @@ class OutPostDialog extends Component {
 
   render() {
     return (
-      <div id="CrudPostDialog-react">
+      <div id="OutPostDialog-react">
         <Modal
           isOpen={this.props.isOpen}
           shouldCloseOnOverlayClick={false}
@@ -63,7 +63,7 @@ class OutPostDialog extends Component {
 OutPostDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   post: PropTypes.object, //if null then we create post, otherwise we edit post
-  onCrudPost: PropTypes.func.isRequired,
+  onCrudOutPostCb: PropTypes.func.isRequired,
   onCancelCrudPostDialog: PropTypes.func.isRequired
 };
 

@@ -6,13 +6,13 @@ import { API } from "../../api/profile-api";
 
 class OutPostManagement extends Component {
   state = {
-    posts: [],
+    outPosts: [],
     refreshingPosts: false,
 
     //crud post
-    curCrudPostSessionID: null,
-    curCrudPost: null,
-    isOpenCrudPostDialog: false
+    curCrudOutPostSessionID: null,
+    curCrudOutPost: null,
+    isOpenOutPostDialog: false
   };
 
   componentDidMount() {
@@ -22,47 +22,47 @@ class OutPostManagement extends Component {
   refreshPosts = () => {
     this.setState({ refreshingPosts: true });
     (async () => {
-      const posts = await API.posts();
-      this.setState({ posts, refreshingPosts: false });
+      const outPosts = await API.outPosts();
+      this.setState({ outPosts, refreshingPosts: false });
     })();
   };
 
   createPost = () => {
     this.setState({
-      isOpenCrudPostDialog: true,
-      curCrudPost: null,
-      curCrudPostSessionID: Date.now().toString()
+      isOpenOutPostDialog: true,
+      curCrudOutPost: null,
+      curCrudOutPostSessionID: Date.now().toString()
     });
   };
 
-  onCrudPost = async (postID, title, description) => {
+  onCrudOutPostCb = async (postID, title, description) => {
     if (postID) {
       await API.updatePost(postID, title, description);
     } else {
       await API.createPost(title, description);
     }
     this.setState({
-      isOpenCrudPostDialog: false,
-      curCrudPostSessionID: null
+      isOpenOutPostDialog: false,
+      curCrudOutPostSessionID: null
     });
     this.refreshPosts();
   };
 
   onCancelCrudPostDialog = () => {
-    this.setState({ isOpenCrudPostDialog: false });
+    this.setState({ isOpenOutPostDialog: false });
   };
 
   render() {
     return (
       <div id="OutPostManagement-react">
         <button onClick={this.createPost}>create post</button>
-        <OutPostTable posts={this.state.posts} />
-        {this.state.curCrudPostSessionID && (
+        <OutPostTable outPosts={this.state.outPosts} />
+        {this.state.curCrudOutPostSessionID && (
           <OutPostDialog
-            key={this.state.curCrudPostSessionID}
-            isOpen={this.state.isOpenCrudPostDialog}
-            post={this.state.curCrudPost}
-            onCrudPost={this.onCrudPost}
+            key={this.state.curCrudOutPostSessionID}
+            isOpen={this.state.isOpenOutPostDialog}
+            post={this.state.curCrudOutPost}
+            onCrudOutPostCb={this.onCrudOutPostCb}
             onCancelCrudPostDialog={this.onCancelCrudPostDialog}
           />
         )}

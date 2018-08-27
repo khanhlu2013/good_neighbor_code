@@ -33,9 +33,9 @@ const updateConnection = (connectionId, isApproved) => {
 };
 
 // - post
-const posts = async isActive => {
+const outPosts = async isActive => {
   // if (!isActive) -> we will retrieve both
-  return get("profile.posts", { isActive });
+  return get("profile.outPosts", { isActive });
 };
 
 const createPost = async (title, description) => {
@@ -128,7 +128,7 @@ const API = {
   createConnection,
   updateConnection,
   // - post
-  posts,
+  outPosts,
   createPost,
   updatePost,
   // - shareLog

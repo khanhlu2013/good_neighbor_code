@@ -24,7 +24,7 @@ const API_NODE = new RouteNode("", "", [
     { name: "createConnection", path: "/createConnection" },
     { name: "updateConnection", path: "/updateConnection" },
     // - post
-    { name: "posts", path: "/posts" },
+    { name: "outPosts", path: "/outPosts" },
     { name: "createPost", path: "/createPost" },
     { name: "updatePost", path: "/updatePost" },
     // - shareLog

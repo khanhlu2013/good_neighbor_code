@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function OutPostTable(props) {
-  const postRows = props.posts.map(post => {
+  const postRows = props.outPosts.map(post => {
     return (
       <tr key={post._id}>
         <td>{post.title}</td>
@@ -12,7 +12,7 @@ function OutPostTable(props) {
     );
   });
   return (
-    <table>
+    <table id="OutPostTable-react">
       <thead>
         <tr>
           <th>Title</th>
@@ -25,7 +25,7 @@ function OutPostTable(props) {
   );
 }
 OutPostTable.propTypes = {
-  posts: PropTypes.array.isRequired
+  outPosts: PropTypes.array.isRequired
 };
 
 export { OutPostTable };

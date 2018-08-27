@@ -99,7 +99,7 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
 });
 
 // - post ----
-route.get("/posts", authCheck, (req, res, next) => {
+route.get("/outPosts", authCheck, (req, res, next) => {
   const { user } = req;
   const { isActive } = req.query;
   (async () => {
