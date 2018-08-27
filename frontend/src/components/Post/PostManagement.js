@@ -39,7 +39,7 @@ class PostManagement extends Component {
     if (postID) {
       await API.updatePost(postID, title, description);
     } else {
-      await API.createPost(postID, title, description);
+      await API.createPost(title, description);
     }
     this.setState({
       isOpenCrudPostDialog: false,

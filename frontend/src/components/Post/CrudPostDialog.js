@@ -6,7 +6,8 @@ Modal.setAppElement("#root");
 class CrudPostDialog extends Component {
   state = {
     title: this.props.post ? this.props.post.title : "",
-    description: this.props.description ? this.props.post.description : ""
+    description: this.props.description ? this.props.post.description : "",
+    postID: this.props.post ? this.props.post._id : null
   };
 
   onTitleChange = e => {

@@ -71,3 +71,14 @@
   . post-crud-dialog
     . createdAt
     . isActive
+
+---
+test and dev env for backend doesn't have a beautiful symetry. work on this and provide a log error middleware at the leaf level. work on deployment. and provide a make-sense mvp for auth. 
+
+how to show server send down error ?
+
+
+
+---
+work on share log api backend
+

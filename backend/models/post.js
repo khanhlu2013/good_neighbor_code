@@ -19,12 +19,13 @@ const PostSchema = new Schema({
   },
   isActive: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   dateCreated: {
     type: Date,
-    default: Date.now,
-    required: true
+    required: true,
+    default: Date.now
   }
 });
 

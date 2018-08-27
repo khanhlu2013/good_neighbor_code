@@ -102,13 +102,14 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
 route.get("/posts", authCheck, (req, res, next) => {
   const { user } = req;
   const { isActive } = req.query;
-
   (async () => {
-    const posts = await Post.find({
-      user,
-      // if (!isActive) -> we will retrieve both
-      isActive: isActive ? isActive : undefined
-    });
+    const query = {
+      by: user
+    };
+    if (isActive) {
+      query.isActive = isActive;
+    }
+    const posts = await Post.find(query);
 
     res.send(posts);
   })().catch(next);
@@ -117,10 +118,9 @@ route.get("/posts", authCheck, (req, res, next) => {
 route.post("/createPost", authCheck, (req, res, next) => {
   const { user } = req;
   const { title, description } = req.body;
-
   (async () => {
     const post = new Post({
-      user: user.id,
+      by: user,
       title: title,
       description: description
     });
@@ -147,7 +147,7 @@ route.post("/updatePost", authCheck, (req, res, next) => {
       return res.status(400).send();
     }
 
-    if (post.user != user._id) {
+    if (post.by.equal(user._id)) {
       return res.status(401).send();
     }
 
