@@ -157,6 +157,22 @@ route.post("/updatePost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
+route.get("/browsePosts", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { isActive } = req.query;
+  (async () => {
+    const query = {
+      by: user
+    };
+    if (isActive) {
+      query.isActive = isActive;
+    }
+    const posts = await Post.find(query);
+
+    res.send(posts);
+  })().catch(next);
+});
+
 // - shareLog
 route.get("/shareLogs", authCheck, (req, res, next) => {
   const { isIn, isOut } = req.query;

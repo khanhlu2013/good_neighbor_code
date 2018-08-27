@@ -157,6 +157,8 @@ describe("ConnectionManagement", () => {
 });
 
 function snap(name) {
+  // cy.contains("Refreshing Connection ...").should("not.be.visible");
+  // cy.contains("Refreshing Connection ...").should("be.visible");
   cy.contains("Refreshing Connection ...").should("not.be.visible");
   cy.get("#ConnectionManagement-react").snapshot({ name });
 }

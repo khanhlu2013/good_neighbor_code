@@ -74,5 +74,11 @@
     . isActive
 
 ---
-work on share log api backend
 
+browse post have to do with connection. but that will be responsible from the backend. i guess connection and browse post will have to share something. but for the mvp, i don't care for now. it can be validate on the backend. yes this is better. this make this 2 component of connections and browsePost independent.
+---
+
+move connections out of manageconnection. to be share with browse post
+
+---
+can i throw in the expect refreshing connection to be visible and then to not visible?
