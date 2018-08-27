@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-class CrudPostDialog extends Component {
+class OutPostDialog extends Component {
   state = {
     title: this.props.post ? this.props.post.title : "",
     description: this.props.description ? this.props.post.description : "",
@@ -60,11 +60,11 @@ class CrudPostDialog extends Component {
   }
 }
 
-CrudPostDialog.propTypes = {
+OutPostDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   post: PropTypes.object, //if null then we create post, otherwise we edit post
   onCrudPost: PropTypes.func.isRequired,
   onCancelCrudPostDialog: PropTypes.func.isRequired
 };
 
-export { CrudPostDialog };
+export { OutPostDialog };

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { CrudPostDialog } from "./CrudPostDialog";
-import { PostTable } from "./PostTable";
+import { OutPostDialog } from "./OutPostDialog";
+import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
 
-class PostManagement extends Component {
+class OutPostManagement extends Component {
   state = {
     posts: [],
     refreshingPosts: false,
@@ -54,11 +54,11 @@ class PostManagement extends Component {
 
   render() {
     return (
-      <div id="PostManagement-react">
+      <div id="OutPostManagement-react">
         <button onClick={this.createPost}>create post</button>
-        <PostTable posts={this.state.posts} />
+        <OutPostTable posts={this.state.posts} />
         {this.state.curCrudPostSessionID && (
-          <CrudPostDialog
+          <OutPostDialog
             key={this.state.curCrudPostSessionID}
             isOpen={this.state.isOpenCrudPostDialog}
             post={this.state.curCrudPost}
@@ -71,4 +71,4 @@ class PostManagement extends Component {
   }
 }
 
-export { PostManagement };
+export { OutPostManagement };

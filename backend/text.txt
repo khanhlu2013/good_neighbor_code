@@ -81,4 +81,4 @@ browse post have to do with connection. but that will be responsible from the ba
 move connections out of manageconnection. to be share with browse post
 
 ---
-can i throw in the expect refreshing connection to be visible and then to not visible?
+. work on InPostManagement now

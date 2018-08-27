@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function PostTable(props) {
+function OutPostTable(props) {
   const postRows = props.posts.map(post => {
     return (
       <tr key={post._id}>
@@ -24,8 +24,8 @@ function PostTable(props) {
     </table>
   );
 }
-PostTable.propTypes = {
+OutPostTable.propTypes = {
   posts: PropTypes.array.isRequired
 };
 
-export { PostTable };
+export { OutPostTable };
