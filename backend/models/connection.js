@@ -34,11 +34,13 @@ ConnectionSchema.pre("save", async function() {
     throw Error("Error: reverse connection exist");
   }
 });
-ConnectionSchema.statics.findOneByUsers = async function(user1, user2) {
+ConnectionSchema.statics.findMyConnections = async function(me) {
   const Connection = this;
-  return await Connection.findOne({
-    $or: [{ from: user1, to: user2 }, { from: user2, to: user1 }]
-  });
+  return await Connection.find({
+    $or: [{ from: me }, { to: me }]
+  })
+    .populate("from")
+    .populate("to");
 };
 
 const Connection = mongoose.model("Connection", ConnectionSchema);

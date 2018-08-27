@@ -38,19 +38,21 @@ const outPosts = async isActive => {
   return get("profile.outPosts", { isActive });
 };
 
-const createPost = async (title, description) => {
+const createPost = async (title, description, isActive) => {
   const crudedPost = await post("profile.createPost", {
     title,
-    description
+    description,
+    isActive
   });
   return crudedPost;
 };
 
-const updatePost = async (postID, title, description) => {
+const updatePost = async (postID, title, description, isActive) => {
   const crudedPost = await post("profile.updatePost", {
     postID,
     title,
-    description
+    description,
+    isActive
   });
   return crudedPost;
 };

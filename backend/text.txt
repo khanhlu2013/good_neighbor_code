@@ -42,6 +42,8 @@
   . create error handling for the front end to be more detail: internet or server bug
   . shareLog, create and update failure should be unit tested and not e2e tested.
   . work on deployment. and provide a make-sense mvp for auth. 
+  . when i login, i need to make it a post because if it is a get, i will be able to go back into history which is a undesireable behavior
+  . fuck: change post into user. shareLog to have from and to
 
 . TODAY
 . -----
@@ -82,4 +84,16 @@ move connections out of manageconnection. to be share with browse post
 
 ---
 . work on InPostManagement now
-. but before above, i need to finish the outpost, isactive
+
+---
+
+. from
+  . lets work on pendingOutShareLog: this will be incoporate into OutPost table
+
+. to
+  . lets work on pendingInShareLog
+  . lets work on available post
+ (realization: ShareLog have 3 stage: pending, sharing, finalized:approve/reject)
+---
+
+so how do i have available post? get all my friends, get all their post and associated pendingShareLog. there. 

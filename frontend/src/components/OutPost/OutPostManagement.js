@@ -27,7 +27,7 @@ class OutPostManagement extends Component {
     })();
   };
 
-  createPost = () => {
+  onOpenOutPostCreateDialog = () => {
     this.setState({
       isOpenOutPostDialog: true,
       curCrudOutPost: null,
@@ -35,11 +35,19 @@ class OutPostManagement extends Component {
     });
   };
 
-  onCrudOutPostCb = async (postID, title, description) => {
+  onOpenOutPostEditDialogCb = post => {
+    this.setState({
+      isOpenOutPostDialog: true,
+      curCrudOutPost: post,
+      curCrudOutPostSessionID: Date.now().toString()
+    });
+  };
+
+  onCrudOutPostCb = async (postID, title, description, isActive) => {
     if (postID) {
-      await API.updatePost(postID, title, description);
+      await API.updatePost(postID, title, description, isActive);
     } else {
-      await API.createPost(title, description);
+      await API.createPost(title, description, isActive);
     }
     this.setState({
       isOpenOutPostDialog: false,
@@ -55,13 +63,17 @@ class OutPostManagement extends Component {
   render() {
     return (
       <div id="OutPostManagement-react">
-        <button onClick={this.createPost}>create post</button>
-        <OutPostTable outPosts={this.state.outPosts} />
+        <h1>Out Posts Management</h1>
+        <button onClick={this.onOpenOutPostCreateDialog}>create post</button>
+        <OutPostTable
+          outPosts={this.state.outPosts}
+          onOpenOutPostEditDialogCb={this.onOpenOutPostEditDialogCb}
+        />
         {this.state.curCrudOutPostSessionID && (
           <OutPostDialog
             key={this.state.curCrudOutPostSessionID}
             isOpen={this.state.isOpenOutPostDialog}
-            post={this.state.curCrudOutPost}
+            outPost={this.state.curCrudOutPost}
             onCrudOutPostCb={this.onCrudOutPostCb}
             onCancelCrudPostDialog={this.onCancelCrudPostDialog}
           />

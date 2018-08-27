@@ -19,12 +19,11 @@ const ShareLogSchema = new Schema({
     default: Date.now,
     required: true
   },
-  isReturning: {
+  isApprovedByFrom: {
     type: Boolean,
-    required: true,
-    default: false
+    required: false //pending request is undefined
   },
-  isReturned: {
+  isReturnedByTo: {
     type: Boolean,
     required: true,
     default: false
@@ -32,7 +31,7 @@ const ShareLogSchema = new Schema({
 });
 
 ShareLogSchema.pre("save", async function() {
-  const { postID, borrower, isReturning, isReturned, isNew } = this;
+  const { postID, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
   const ShareLog = this.constructor;
 
   //verify postID
@@ -41,15 +40,9 @@ ShareLogSchema.pre("save", async function() {
     throw Error("Post is not exist.");
   }
 
-  //verify connection
-  const connection = await Connection.findOneByUser(borrower, post.by);
-  if (!connection) {
-    throw Error("Post.by is not connected with borrower.");
-  }
-
   if (isNew) {
-    if (isReturning || isReturned) {
-      throw Error("Cant create isReturning or isReturned ShareLog");
+    if (isApprovedByFrom !== undefined || isReturnedByTo === true) {
+      throw Error("Unexpected initial ShareLog state ");
     }
 
     //verify active post
@@ -57,10 +50,20 @@ ShareLogSchema.pre("save", async function() {
       throw Error("Post is not active.");
     }
 
-    //verify non-pending post
-    const pendingPost = await ShareLog.findOne({ postID, isReturned: false });
-    if (pendingPost) {
-      throw Error("Post is pending.");
+    //verify connection
+    const connection = await Connection.findOneByUser(borrower, post.by);
+    if (!connection || !connection.approvedByTo || !connection.approvedByFrom) {
+      throw Error("Post.by is not connected with borrower.");
+    }
+
+    //verify non-sharing shareLog
+    const sharingShareLog = await ShareLog.findOne({
+      postID,
+      isApprovedByFrom: true,
+      isReturnedByTo: false
+    });
+    if (sharingShareLog) {
+      throw Error("Post is not available.");
     }
   }
 });

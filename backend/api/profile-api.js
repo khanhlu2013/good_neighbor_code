@@ -46,11 +46,7 @@ route.get("/searchEmail", authCheck, (req, res, next) => {
 route.get("/connections", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
-    const connections = await Connection.find({
-      $or: [{ from: user }, { to: user }]
-    })
-      .populate("from")
-      .populate("to");
+    const connections = await Connection.findMyConnections(user);
     res.send(connections);
   })().catch(next);
 });
@@ -117,12 +113,13 @@ route.get("/outPosts", authCheck, (req, res, next) => {
 
 route.post("/createPost", authCheck, (req, res, next) => {
   const { user } = req;
-  const { title, description } = req.body;
+  const { title, description, isActive } = req.body;
   (async () => {
     const post = new Post({
       by: user,
-      title: title,
-      description: description
+      title,
+      description,
+      isActive
     });
     await post.save();
     res.send(post);
@@ -131,7 +128,7 @@ route.post("/createPost", authCheck, (req, res, next) => {
 
 route.post("/updatePost", authCheck, (req, res, next) => {
   const { user } = req;
-  const { postID, title, description } = req.body;
+  const { postID, title, description, isActive } = req.body;
 
   (async () => {
     if (!postID) {
@@ -146,18 +143,17 @@ route.post("/updatePost", authCheck, (req, res, next) => {
     if (!post) {
       return res.status(400).send();
     }
-
-    if (post.by.equal(user._id)) {
+    if (!post.by.equals(user._id)) {
       return res.status(401).send();
     }
 
-    Object.assign(post, { title, description });
+    Object.assign(post, { title, description, isActive });
     await post.save();
     res.send(post);
   })().catch(next);
 });
 
-route.get("/browsePosts", authCheck, (req, res, next) => {
+route.get("/inPosts", authCheck, (req, res, next) => {
   const { user } = req;
   const { isActive } = req.query;
   (async () => {
