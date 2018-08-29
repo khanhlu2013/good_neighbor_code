@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Connection = require("../models/connection");
 const Post = require("../models/post");
 const User = require("../models/user");
-const ShareLog = require("../models/shareLog");
+const Share = require("../models/share");
 const keys = require("../configs/keys");
 
 // - auth ----
@@ -155,43 +155,32 @@ route.post("/updatePost", authCheck, (req, res, next) => {
 
 route.get("/inPosts", authCheck, (req, res, next) => {
   const { user } = req;
-  const { isActive } = req.query;
-  (async () => {
-    const query = {
-      by: user
-    };
-    if (isActive) {
-      query.isActive = isActive;
-    }
-    const posts = await Post.find(query);
-
-    res.send(posts);
-  })().catch(next);
+  (async () => {})().catch(next);
 });
 
-// - shareLog
-route.get("/shareLogs", authCheck, (req, res, next) => {
-  const { isIn, isOut } = req.query;
-  const { user } = req;
+// - share
+// route.get("/share", authCheck, (req, res, next) => {
+//   const { isIn, isOut } = req.query;
+//   const { user } = req;
 
-  if (!isIn && !isOut) {
-    return res.status(400).send();
-  }
-  const query = {};
-  if (isIn) {
-    query.isIn = isIn;
-  }
-  if (isOut) {
-    query.isOut = isOut;
-  }
+//   if (!isIn && !isOut) {
+//     return res.status(400).send();
+//   }
+//   const query = {};
+//   if (isIn) {
+//     query.isIn = isIn;
+//   }
+//   if (isOut) {
+//     query.isOut = isOut;
+//   }
 
-  (async () => {
-    const shareLogs = await ShareLog.find(query);
-    res.send(shareLogs);
-  })().catch(next);
-});
+//   (async () => {
+//     const shares = await Share.find(query);
+//     res.send(shares);
+//   })().catch(next);
+// });
 
-route.post("/createShareLog", authCheck, (req, res, next) => {
+route.post("/createShare", authCheck, (req, res, next) => {
   const { user } = req;
   const { postID } = req.body;
 
@@ -200,60 +189,60 @@ route.post("/createShareLog", authCheck, (req, res, next) => {
   }
 
   (async () => {
-    const shareLog = new ShareLog({
+    const share = new Share({
       post: postID,
       borrower: user.id
     });
-    await post.shareLog().save();
-    res.send(shareLog);
+    await post.share().save();
+    res.send(share);
   })().catch(next);
 });
 
-route.post("/updateInShareLog", authCheck, (req, res, next) => {
+route.post("/updateInShare", authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareLogID, isReturning } = req.body;
+  const { shareID, isReturning } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareLogID)) {
+  if (!mongoose.Types.ObjectId.isValid(shareID)) {
     return res.status(400).send();
   }
 
   (async () => {
-    const shareLog = await ShareLog.findById(shareLogID);
-    if (!shareLog) {
+    const share = await Share.findById(shareID);
+    if (!share) {
       return res.status(400).send();
     }
 
-    if (!shareLog.borrower.equal(user._id)) {
+    if (!share.borrower.equal(user._id)) {
       return res.status(401).send();
     }
 
-    shareLog.isReturning = isReturning;
-    await shareLog.save();
-    res.send(shareLog);
+    share.isReturning = isReturning;
+    await share.save();
+    res.send(share);
   })().catch(next);
 });
 
-route.post("/updateOutShareLog", authCheck, (req, res, next) => {
+route.post("/updateOutShare", authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareLogID, isReturned } = req.body;
+  const { shareID, isReturned } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareLogID)) {
+  if (!mongoose.Types.ObjectId.isValid(shareID)) {
     return res.status(400).send();
   }
 
   (async () => {
-    const shareLog = await ShareLog.findById(shareLogID).populate("post");
-    if (!shareLog) {
+    const share = await Share.findById(shareID).populate("post");
+    if (!share) {
       return res.status(400).send();
     }
 
-    if (!shareLog.post.by.equal(user._id)) {
+    if (!share.post.by.equal(user._id)) {
       return res.status(401).send();
     }
 
-    shareLog.isReturned = isReturned;
-    await shareLog.save();
-    res.send(shareLog);
+    share.isReturned = isReturned;
+    await share.save();
+    res.send(share);
   })().catch(next);
 });
 

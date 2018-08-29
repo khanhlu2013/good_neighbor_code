@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Post = require("./post");
 const Connection = require("./connection");
 
-const ShareLogSchema = new Schema({
+const ShareSchema = new Schema({
   post: {
     type: Schema.Types.ObjectId,
     ref: "Post",
@@ -30,9 +30,9 @@ const ShareLogSchema = new Schema({
   }
 });
 
-ShareLogSchema.pre("save", async function() {
+ShareSchema.pre("save", async function() {
   const { postID, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
-  const ShareLog = this.constructor;
+  const Share = this.constructor;
 
   //verify postID
   const post = await Post.findById(postID);
@@ -42,7 +42,7 @@ ShareLogSchema.pre("save", async function() {
 
   if (isNew) {
     if (isApprovedByFrom !== undefined || isReturnedByTo === true) {
-      throw Error("Unexpected initial ShareLog state ");
+      throw Error("Unexpected initial Share state ");
     }
 
     //verify active post
@@ -56,17 +56,17 @@ ShareLogSchema.pre("save", async function() {
       throw Error("Post.by is not connected with borrower.");
     }
 
-    //verify non-sharing shareLog
-    const sharingShareLog = await ShareLog.findOne({
+    //verify non-sharing share
+    const sharingShare = await Share.findOne({
       postID,
       isApprovedByFrom: true,
       isReturnedByTo: false
     });
-    if (sharingShareLog) {
+    if (sharingShare) {
       throw Error("Post is not available.");
     }
   }
 });
 
-const ShareLog = mongoose.model("ShareLog", ShareLogSchema);
-module.exports = { ShareLog };
+const Share = mongoose.model("Share", ShareSchema);
+module.exports = { Share };

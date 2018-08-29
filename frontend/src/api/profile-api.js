@@ -57,39 +57,39 @@ const updatePost = async (postID, title, description, isActive) => {
   return crudedPost;
 };
 
-// -  shareLog
-const shareLogs = async (isIn, isOut) => {
-  if (!isIn && !isOut) {
-    throw Error("Must specify at least in or out shareLogs to get");
-  }
-  const shareLogs = await get("profile.shareLogs", {
-    isIn,
-    isOut
-  });
-  return shareLogs;
-};
+// -  share
+// const shares = async (isIn, isOut) => {
+//   if (!isIn && !isOut) {
+//     throw Error("Must specify at least in or out share to get");
+//   }
+//   const shares = await get("profile.share", {
+//     isIn,
+//     isOut
+//   });
+//   return shares;
+// };
 
-const createShareLog = async postID => {
-  const shareLog = await post("profile.createShareLog", {
+const createShare = async postID => {
+  const share = await post("profile.createShare", {
     postID
   });
-  return shareLog;
+  return share;
 };
 
-const updateInShareLog = async (shareLogID, isReturning) => {
-  const shareLog = await post("profile.updateInShareLog", {
-    shareLogID,
+const updateInShare = async (shareID, isReturning) => {
+  const share = await post("profile.updateInShare", {
+    shareID,
     isReturning
   });
-  return shareLog;
+  return share;
 };
 
-const updateOutShareLog = async (shareLogID, isReturned) => {
-  const shareLog = await post("profile.updateInShareLog", {
-    shareLogID,
+const updateOutShare = async (shareID, isReturned) => {
+  const share = await post("profile.updateInShare", {
+    shareID,
     isReturned
   });
-  return shareLog;
+  return share;
 };
 
 //- helper ----
@@ -133,10 +133,10 @@ const API = {
   outPosts,
   createPost,
   updatePost,
-  // - shareLog
-  shareLogs,
-  createShareLog,
-  updateInShareLog,
-  updateOutShareLog
+  // - share
+  //shares,
+  createShare,
+  updateInShare,
+  updateOutShare
 };
 export { API };

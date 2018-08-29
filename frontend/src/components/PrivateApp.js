@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ConnectionManagement } from "./Connection/ConnectionManagement.js";
-import { OutPostManagement } from "./OutPost/OutPostManagement.js";
+import { PostManagement } from "./Post/PostManagement.js";
 import { API_URL } from "../api/api-url.js";
 import { API } from "../api/profile-api.js";
 
@@ -61,7 +61,7 @@ class PrivateApp extends Component {
           updateConnectionCb={this.updateConnectionCb}
         />
         <hr />
-        <OutPostManagement />
+        <PostManagement />
       </div>
     );
   }

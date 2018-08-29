@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-class OutPostDialog extends Component {
+class PostDialog extends Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +42,7 @@ class OutPostDialog extends Component {
 
   render() {
     return (
-      <div id="OutPostDialog-react">
+      <div id="PostDialog-react">
         <Modal
           isOpen={this.props.isOpen}
           shouldCloseOnOverlayClick={false}
@@ -80,11 +80,11 @@ class OutPostDialog extends Component {
   }
 }
 
-OutPostDialog.propTypes = {
+PostDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   outPost: PropTypes.object, //if null then we create post, otherwise we edit post
   onCrudOutPostCb: PropTypes.func.isRequired,
   onCancelCrudPostDialog: PropTypes.func.isRequired
 };
 
-export { OutPostDialog };
+export { PostDialog };

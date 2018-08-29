@@ -92,8 +92,19 @@ move connections out of manageconnection. to be share with browse post
 
 . to
   . lets work on pendingInShareLog
-  . lets work on available post
+  . lets work on InPost: available,sharing
+
  (realization: ShareLog have 3 stage: pending, sharing, finalized:approve/reject)
 ---
 
-so how do i have available post? get all my friends, get all their post and associated pendingShareLog. there. 
+. inShareLog: browse table show all post
+. inShareLog: requesting table: 
+. inShareLog: all -> can't borrow requesting by me. who is requesting
+. outShareLog: requesting table -> approve: make sure you already give or will give share
+. outShareLog: sharing : show sharing
+. inShareLog: sharing table: return
+. outShareLog: sharing : update no longer share
+
+
+
+
