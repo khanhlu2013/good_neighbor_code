@@ -60,20 +60,13 @@ const outPosts = async () => {
 
 // - inPost
 const inPosts = async () => {
-  const inPosts = await get("profile.inPosts", {}); //inPosts <-> [{user,posts}, ...]
+  const inPosts = await get("profile.inPosts", {}); //inPosts <-> [{user,post}, ...]
 
-  const unwindPosts2D = inPosts.map(inPost => {
-    const array = inPost.posts.map(post => {
-      return { post, user: inPost.user };
-    });
-    return array;
-  });
-  const unwindPosts1D = [].concat(...unwindPosts2D);
-  return unwindPosts1D.map(raw => {
+  return inPosts.map(raw => {
     const {
       post: postRaw,
-      user: userRaw,
-      post: { shares: sharesRaw }
+      post: { shares: sharesRaw },
+      user: userRaw
     } = raw;
     const shares = sharesRaw.map(
       shareRaw =>

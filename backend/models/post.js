@@ -32,7 +32,7 @@ const PostSchema = new Schema({
 });
 
 PostSchema.statics.findInPosts = async function(me) {
-  const findFriends = [
+  const findUsers = [
     {
       $match: {
         approvedByTo: true,
@@ -43,7 +43,7 @@ PostSchema.statics.findInPosts = async function(me) {
     {
       $project: {
         _id: 0,
-        friend: {
+        user: {
           $cond: {
             if: { $eq: ["$from", me._id] },
             then: "$to",
@@ -51,13 +51,26 @@ PostSchema.statics.findInPosts = async function(me) {
           }
         }
       }
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "user",
+        foreignField: "_id",
+        as: "user"
+      }
+    },
+    {
+      $project: {
+        user: { $arrayElemAt: ["$user", 0] }
+      }
     }
   ];
-  const joinFriendWithPost = [
+  const joinUserWithPost = [
     {
       $lookup: {
         from: "posts",
-        localField: "friend",
+        localField: "user._id",
         foreignField: "by",
         as: "post"
       }
@@ -86,40 +99,12 @@ PostSchema.statics.findInPosts = async function(me) {
       $project: {
         "post.shares.post": 0 //since share is join from post, i know this share is from that post
       }
-    },
-    {
-      $group: {
-        _id: "$friend",
-        posts: { $push: "$post" }
-      }
-    },
-    {
-      $project: {
-        friend: "$_id", //since share is join from post, i know this share is from that post
-        posts: 1,
-        _id: 0
-      }
     }
   ];
   const inPosts = await Connection.aggregate([
-    ...findFriends,
-    ...joinFriendWithPost,
-    ...joinPostwithShare,
-
-    {
-      $lookup: {
-        from: "users",
-        localField: "friend",
-        foreignField: "_id",
-        as: "user"
-      }
-    },
-    {
-      $project: {
-        user: { $arrayElemAt: ["$user", 0] },
-        posts: 1
-      }
-    }
+    ...findUsers,
+    ...joinUserWithPost,
+    ...joinPostwithShare
   ]).exec();
   return inPosts;
 };
