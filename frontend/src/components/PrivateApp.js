@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ConnectionManagement } from "./Connection/ConnectionManagement.js";
-import { PostManagement } from "./Post/PostManagement.js";
+import { OutPostManagement } from "./Post/OutPostManagement.js";
 import { API_URL } from "../api/api-url.js";
 import { API } from "../api/profile-api.js";
+import { InPostTable } from "./InPost/InPostTable.js";
 
 class PrivateApp extends Component {
   state = {
     connections: [],
-    isRefreshingConnections: false
+    isRefreshingConnections: false,
+    inPosts: [],
+    isRefreshingInPosts: false
   };
 
   componentDidMount() {
     this.refreshConnections();
+    this.refreshInPosts();
   }
 
   refreshConnections = () => {
@@ -21,6 +25,14 @@ class PrivateApp extends Component {
     (async () => {
       const connections = await API.connections();
       this.setState({ connections, isRefreshingConnections: false });
+    })();
+  };
+
+  refreshInPosts = () => {
+    this.setState({ isRefreshingInPosts: true });
+    (async () => {
+      const inPosts = await API.inPosts();
+      this.setState({ inPosts, isRefreshingInPosts: false });
     })();
   };
 
@@ -61,7 +73,9 @@ class PrivateApp extends Component {
           updateConnectionCb={this.updateConnectionCb}
         />
         <hr />
-        <PostManagement />
+        <OutPostManagement />
+        <hr />
+        <InPostTable inPosts={this.state.inPosts} />
       </div>
     );
   }

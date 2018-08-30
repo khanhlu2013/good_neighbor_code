@@ -43,7 +43,8 @@
   . shareLog, create and update failure should be unit tested and not e2e tested.
   . work on deployment. and provide a make-sense mvp for auth. 
   . when i login, i need to make it a post because if it is a get, i will be able to go back into history which is a undesireable behavior
-  . fuck: change post into user. shareLog to have from and to
+  . fuck: change post into user. shareLog to have from and to; or consider borrower and lender. but from and to do share many time. and well understood from many context. 
+  . for share, isReturnByTo can't be true if isApprovedByFrom is undefined or false. i need this validation
 
 . TODAY
 . -----
@@ -97,14 +98,17 @@ move connections out of manageconnection. to be share with browse post
  (realization: ShareLog have 3 stage: pending, sharing, finalized:approve/reject)
 ---
 
-. inShareLog: browse table show all post
-. inShareLog: requesting table: 
-. inShareLog: all -> can't borrow requesting by me. who is requesting
+. inPosts: allTable
+. inPosts: requesting table: 
+. inPosts: all -> can't borrow requesting by me. who is requesting
 . outShareLog: requesting table -> approve: make sure you already give or will give share
 . outShareLog: sharing : show sharing
-. inShareLog: sharing table: return
+. inPosts: sharing table: return
 . outShareLog: sharing : update no longer share
+. change posts into outpost
 
 
 
-
+---
+  . work on dev env so that test wont destroy the data for dev purpose
+  . change back into outPost damn it

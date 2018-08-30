@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
-import { PostDialog } from "./PostDialog";
-import { PostTable } from "./PostTable";
+import { OutPostDialog } from "./OutPostDialog";
+import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
 
-class PostManagement extends Component {
+class OutPostManagement extends Component {
   state = {
-    outPosts: [],
+    posts: [],
     refreshingPosts: false,
 
     //crud post
-    curCrudOutPostSessionID: null,
+    curCrudPostSessionID: null,
     curCrudOutPost: null,
     isOpenPostDialog: false
   };
@@ -22,8 +22,8 @@ class PostManagement extends Component {
   refreshPosts = () => {
     this.setState({ refreshingPosts: true });
     (async () => {
-      const outPosts = await API.outPosts();
-      this.setState({ outPosts, refreshingPosts: false });
+      const posts = await API.outPosts();
+      this.setState({ posts, refreshingPosts: false });
     })();
   };
 
@@ -31,7 +31,7 @@ class PostManagement extends Component {
     this.setState({
       isOpenPostDialog: true,
       curCrudOutPost: null,
-      curCrudOutPostSessionID: Date.now().toString()
+      curCrudPostSessionID: Date.now().toString()
     });
   };
 
@@ -39,7 +39,7 @@ class PostManagement extends Component {
     this.setState({
       isOpenPostDialog: true,
       curCrudOutPost: post,
-      curCrudOutPostSessionID: Date.now().toString()
+      curCrudPostSessionID: Date.now().toString()
     });
   };
 
@@ -51,7 +51,7 @@ class PostManagement extends Component {
     }
     this.setState({
       isOpenPostDialog: false,
-      curCrudOutPostSessionID: null
+      curCrudPostSessionID: null
     });
     this.refreshPosts();
   };
@@ -62,16 +62,18 @@ class PostManagement extends Component {
 
   render() {
     return (
-      <div id="PostManagement-react">
-        <h1>Posts Management</h1>
-        <button onClick={this.onOpenOutPostCreateDialog}>create post</button>
-        <PostTable
-          outPosts={this.state.outPosts}
+      <div id="OutPostManagement-react">
+        <h1>Out Posts Management</h1>
+        <button id="createPostBtn" onClick={this.onOpenOutPostCreateDialog}>
+          create post
+        </button>
+        <OutPostTable
+          posts={this.state.posts}
           onOpenOutPostEditDialogCb={this.onOpenOutPostEditDialogCb}
         />
-        {this.state.curCrudOutPostSessionID && (
-          <PostDialog
-            key={this.state.curCrudOutPostSessionID}
+        {this.state.curCrudPostSessionID && (
+          <OutPostDialog
+            key={this.state.curCrudPostSessionID}
             isOpen={this.state.isOpenPostDialog}
             outPost={this.state.curCrudOutPost}
             onCrudOutPostCb={this.onCrudOutPostCb}
@@ -83,4 +85,4 @@ class PostManagement extends Component {
   }
 }
 
-export { PostManagement };
+export { OutPostManagement };

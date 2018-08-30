@@ -1,4 +1,5 @@
 import { API_URL } from "./api-url";
+import { Post, Share } from "../models/post";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
@@ -33,11 +34,6 @@ const updateConnection = (connectionId, isApproved) => {
 };
 
 // - post
-const outPosts = async isActive => {
-  // if (!isActive) -> we will retrieve both
-  return get("profile.outPosts", { isActive });
-};
-
 const createPost = async (title, description, isActive) => {
   const crudedPost = await post("profile.createPost", {
     title,
@@ -57,18 +53,51 @@ const updatePost = async (postID, title, description, isActive) => {
   return crudedPost;
 };
 
-// -  share
-// const shares = async (isIn, isOut) => {
-//   if (!isIn && !isOut) {
-//     throw Error("Must specify at least in or out share to get");
-//   }
-//   const shares = await get("profile.share", {
-//     isIn,
-//     isOut
-//   });
-//   return shares;
-// };
+// - outPost
+const outPosts = async () => {
+  return get("profile.outPosts", {});
+};
 
+// - inPost
+const inPosts = async () => {
+  const inPosts = await get("profile.inPosts", {}); //inPosts <-> [{user,posts}, ...]
+
+  const unwindPosts2D = inPosts.map(inPost => {
+    const array = inPost.posts.map(post => {
+      return { post, user: inPost.user };
+    });
+    return array;
+  });
+  const unwindPosts1D = [].concat(...unwindPosts2D);
+  return unwindPosts1D.map(raw => {
+    const {
+      post: postRaw,
+      user: userRaw,
+      post: { shares: sharesRaw }
+    } = raw;
+    const shares = sharesRaw.map(
+      shareRaw =>
+        new Share(
+          shareRaw._id,
+          shareRaw.borrower,
+          shareRaw.dateCreated,
+          shareRaw.isApprovedByFrom,
+          shareRaw.isReturnedByTo
+        )
+    );
+    return new Post(
+      postRaw._id,
+      userRaw,
+      postRaw.isActive,
+      postRaw.title,
+      postRaw.description,
+      postRaw.dateCreated,
+      shares
+    );
+  });
+};
+
+// -  share
 const createShare = async postID => {
   const share = await post("profile.createShare", {
     postID
@@ -126,14 +155,15 @@ async function get(dottedPath, params) {
 const API = {
   profile,
   searchEmail,
+  //connection
   connections,
   createConnection,
   updateConnection,
-  // - post
-  outPosts,
+  //post
   createPost,
   updatePost,
-  // - share
+  outPosts,
+  inPosts,
   //shares,
   createShare,
   updateInShare,

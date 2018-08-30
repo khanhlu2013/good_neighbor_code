@@ -95,22 +95,6 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
 });
 
 // - post ----
-route.get("/outPosts", authCheck, (req, res, next) => {
-  const { user } = req;
-  const { isActive } = req.query;
-  (async () => {
-    const query = {
-      by: user
-    };
-    if (isActive) {
-      query.isActive = isActive;
-    }
-    const posts = await Post.find(query);
-
-    res.send(posts);
-  })().catch(next);
-});
-
 route.post("/createPost", authCheck, (req, res, next) => {
   const { user } = req;
   const { title, description, isActive } = req.body;
@@ -153,32 +137,21 @@ route.post("/updatePost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.get("/inPosts", authCheck, (req, res, next) => {
+route.get("/outPosts", authCheck, (req, res, next) => {
   const { user } = req;
-  (async () => {})().catch(next);
+  (async () => {
+    const posts = await Post.find({ by: user });
+    res.send(posts);
+  })().catch(next);
 });
 
-// - share
-// route.get("/share", authCheck, (req, res, next) => {
-//   const { isIn, isOut } = req.query;
-//   const { user } = req;
-
-//   if (!isIn && !isOut) {
-//     return res.status(400).send();
-//   }
-//   const query = {};
-//   if (isIn) {
-//     query.isIn = isIn;
-//   }
-//   if (isOut) {
-//     query.isOut = isOut;
-//   }
-
-//   (async () => {
-//     const shares = await Share.find(query);
-//     res.send(shares);
-//   })().catch(next);
-// });
+route.get("/inPosts", authCheck, (req, res, next) => {
+  const { user } = req;
+  (async () => {
+    const inPosts = await Post.findInPosts(user);
+    res.send(inPosts);
+  })().catch(next);
+});
 
 route.post("/createShare", authCheck, (req, res, next) => {
   const { user } = req;

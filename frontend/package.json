@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start:frontend:devenv": "react-scripts start",
     "start:frontend:testenv": "REACT_APP_NODE_ENV=test react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

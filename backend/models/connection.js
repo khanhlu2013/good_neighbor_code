@@ -34,6 +34,12 @@ ConnectionSchema.pre("save", async function() {
     throw Error("Error: reverse connection exist");
   }
 });
+ConnectionSchema.statics.findOneByUsers = async function(user1, user2) {
+  const Connection = this;
+  return await Connection.findOne({
+    $or: [{ from: user1, to: user2 }, { from: user2, to: user1 }]
+  });
+};
 ConnectionSchema.statics.findMyConnections = async function(me) {
   const Connection = this;
   return await Connection.find({
@@ -42,59 +48,6 @@ ConnectionSchema.statics.findMyConnections = async function(me) {
     .populate("from") //frontend need to know the name and email of user
     .populate("to"); //frontend need to know the name and email of user
 };
-ConnectionSchema.statics.findMyFriends = async function(me) {
-  const Connection = this;
-  const connections = await Connection.findMyConnections(me);
-  const friends = connections
-    .filter(
-      connection => connection.isApprovedByFrom && connection.isApprovedByTo
-    )
-    .map(
-      connection =>
-        connection.from.equals(me) ? connection.to : connection.from
-    );
-  return friends;
-};
-ConnectionSchema.statics.findMyFriendsOptimize = async function(me) {
-  const Connection = this;
-  const connections = await Connection.aggregate([
-    {
-      $match: {
-        approvedByTo: true,
-        approvedByFrom: true,
-        $or: [{ from: me._id }, { to: me._id }]
-      }
-    },
-    {
-      $project: {
-        _id: 0,
-        friend: {
-          $cond: {
-            if: { $eq: ["$from", me._id] },
-            then: "$to",
-            else: "$from"
-          }
-        }
-      }
-    },
-    {
-      $lookup: {
-        from: "posts",
-        localField: "friend",
-        foreignField: "by",
-        as: "posts"
-      }
-    }
-    // {
-    //   $lookup: {
-    //     from: "posts",
-    //     localField: "friend",
-    //     foreignField: "by",
-    //     as: "posts"
-    //   }
-    // },
-  ]).exec();
-  return connections;
-};
+
 const Connection = mongoose.model("Connection", ConnectionSchema);
 module.exports = Connection;

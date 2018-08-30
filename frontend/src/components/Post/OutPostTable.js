@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function PostTable(props) {
-  const { outPosts, onOpenOutPostEditDialogCb } = props;
-  const postRows = outPosts.map(post => {
+function OutPostTable(props) {
+  const { posts, onOpenOutPostEditDialogCb } = props;
+  const postRows = posts.map(post => {
     return (
       <PostTableRow
         key={post._id}
@@ -13,7 +13,7 @@ function PostTable(props) {
     );
   });
   return (
-    <table id="PostTable-react">
+    <table id="OutPostTable-react">
       <thead>
         <tr>
           <th>Title</th>
@@ -26,8 +26,8 @@ function PostTable(props) {
     </table>
   );
 }
-PostTable.propTypes = {
-  outPosts: PropTypes.array.isRequired,
+OutPostTable.propTypes = {
+  posts: PropTypes.array.isRequired,
   onOpenOutPostEditDialogCb: PropTypes.func.isRequired
 };
 
@@ -56,4 +56,4 @@ PostTableRow.propsType = {
   onOpenOutPostEditDialogCb: PropTypes.func.isRequired
 };
 
-export { PostTable };
+export { OutPostTable };

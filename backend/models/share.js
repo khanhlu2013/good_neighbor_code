@@ -31,12 +31,12 @@ const ShareSchema = new Schema({
 });
 
 ShareSchema.pre("save", async function() {
-  const { postID, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
+  const { post, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
   const Share = this.constructor;
 
   //verify postID
-  const post = await Post.findById(postID);
-  if (!post) {
+  const postDoc = await Post.findById(post);
+  if (!postDoc) {
     throw Error("Post is not exist.");
   }
 
@@ -46,19 +46,19 @@ ShareSchema.pre("save", async function() {
     }
 
     //verify active post
-    if (!post.isActive) {
+    if (!postDoc.isActive) {
       throw Error("Post is not active.");
     }
 
     //verify connection
-    const connection = await Connection.findOneByUser(borrower, post.by);
+    const connection = await Connection.findOneByUsers(borrower, postDoc.by);
     if (!connection || !connection.approvedByTo || !connection.approvedByFrom) {
       throw Error("Post.by is not connected with borrower.");
     }
 
     //verify non-sharing share
     const sharingShare = await Share.findOne({
-      postID,
+      post,
       isApprovedByFrom: true,
       isReturnedByTo: false
     });
@@ -69,4 +69,4 @@ ShareSchema.pre("save", async function() {
 });
 
 const Share = mongoose.model("Share", ShareSchema);
-module.exports = { Share };
+module.exports = Share;
