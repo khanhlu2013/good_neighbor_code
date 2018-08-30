@@ -103,23 +103,23 @@ PostSchema.statics.findInPosts = async function(me) {
   ];
   const inPosts = await Connection.aggregate([
     ...findFriends,
-    ...joinFriendWithPost
-    // ...joinPostwithShare,
+    ...joinFriendWithPost,
+    ...joinPostwithShare,
 
-    // {
-    //   $lookup: {
-    //     from: "users",
-    //     localField: "friend",
-    //     foreignField: "_id",
-    //     as: "user"
-    //   }
-    // },
-    // {
-    //   $project: {
-    //     user: { $arrayElemAt: ["$user", 0] },
-    //     posts: 1
-    //   }
-    // }
+    {
+      $lookup: {
+        from: "users",
+        localField: "friend",
+        foreignField: "_id",
+        as: "user"
+      }
+    },
+    {
+      $project: {
+        user: { $arrayElemAt: ["$user", 0] },
+        posts: 1
+      }
+    }
   ]).exec();
   return inPosts;
 };
