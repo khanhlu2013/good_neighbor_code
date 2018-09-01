@@ -16,9 +16,8 @@ const Share = require("../models/share");
   // const share = new Share({ post: p1._id, borrower: me._id });
   // await share.save();
 
-  const inPosts = await Post.findInPosts(me);
-  //console.log(util.inspect(inPosts, { showHidden: false, depth: null }));
-  console.log(JSON.stringify(inPosts, null, 4));
+  const outPosts = await Post.findOutPosts(u1);
+  console.log(JSON.stringify(outPosts, null, 4));
 })().catch(e => {
   console.log(e);
 });

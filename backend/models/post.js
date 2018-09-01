@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Connection = require("./connection");
+const User = require("./user");
 
 const PostSchema = new Schema({
   by: {
@@ -34,6 +35,21 @@ const PostSchema = new Schema({
 PostSchema.statics.findOutPosts = async function(user) {
   const Post = this;
   return Post.find({ by: user }).populate("by");
+  // const Post = this;
+  // const outPosts = await Post.aggregate([
+  //   {
+  //     $match: {
+  //       by: user._id
+  //     }
+  //   },
+  //   {
+  //     $project: {
+  //       user: "$by",
+  //       post
+  //     }
+  //   }
+  // ]);
+  // return outPosts;
 };
 
 PostSchema.statics.findInPosts = async function(user) {
@@ -71,13 +87,16 @@ PostSchema.statics.findInPosts = async function(user) {
       $unwind: {
         path: "$post"
       }
+    },
+    {
+      $replaceRoot: { newRoot: "$post" }
     }
   ];
   const joinPostwithShare = [
     {
       $lookup: {
         from: "shares",
-        localField: "post._id",
+        localField: "_id",
         foreignField: "post",
         as: "share"
       }
@@ -108,8 +127,8 @@ PostSchema.statics.findInPosts = async function(user) {
     {
       $group: {
         _id: {
-          user: "$user",
-          post: "$post._id"
+          user: "$by",
+          post: "$_id"
         },
         shares: {
           $push: "$share"

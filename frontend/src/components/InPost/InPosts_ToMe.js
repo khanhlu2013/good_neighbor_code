@@ -81,4 +81,6 @@ InPostsToMeRequestingTableRow.propTypes = {
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
+function InPostsToMeBorrowingTable(props) {}
+
 export { InPostsToMe };
