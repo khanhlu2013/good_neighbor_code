@@ -85,7 +85,7 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
   }
   (async () => {
     const connection = await Connection.findById(connectionId);
-    if (connection.from.equals(user._id)) {
+    if (connection.from.ss(user._id)) {
       connection.approvedByFrom = isApproved;
     } else {
       connection.approvedByTo = isApproved;
@@ -127,7 +127,7 @@ route.post("/updatePost", authCheck, (req, res, next) => {
     if (!post) {
       return res.status(400).send();
     }
-    if (!post.by.equals(user._id)) {
+    if (!post.by.ss(user._id)) {
       return res.status(401).send();
     }
 
@@ -140,7 +140,7 @@ route.post("/updatePost", authCheck, (req, res, next) => {
 route.get("/outPosts", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
-    const posts = await Post.find({ by: user });
+    const posts = await Post.findOutPosts(user);
     res.send(posts);
   })().catch(next);
 });
@@ -164,10 +164,33 @@ route.post("/createShare", authCheck, (req, res, next) => {
   (async () => {
     const share = new Share({
       post: postID,
-      borrower: user.id
+      borrower: user._id
     });
-    await post.share().save();
+    await share.save();
     res.send(share);
+  })().catch(next);
+});
+
+route.post("/deleteShare", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { shareID } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(shareID)) {
+    return res.status(400).send();
+  }
+
+  (async () => {
+    const share = await Share.findById(shareID);
+    if (!share) {
+      return res.status(400).send();
+    }
+
+    if (!share.borrower.equals(user._id)) {
+      return res.status(401).send();
+    }
+
+    await share.remove();
+    res.send();
   })().catch(next);
 });
 
@@ -185,7 +208,7 @@ route.post("/updateInShare", authCheck, (req, res, next) => {
       return res.status(400).send();
     }
 
-    if (!share.borrower.equal(user._id)) {
+    if (!share.borrower.equals(user._id)) {
       return res.status(401).send();
     }
 
@@ -209,7 +232,7 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
       return res.status(400).send();
     }
 
-    if (!share.post.by.equal(user._id)) {
+    if (!share.post.by.equals(user._id)) {
       return res.status(401).send();
     }
 

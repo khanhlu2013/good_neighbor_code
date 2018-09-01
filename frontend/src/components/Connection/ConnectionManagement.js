@@ -15,7 +15,7 @@ function ConnectionManagement(props) {
         updateConnectionCb={props.updateConnectionCb}
       />
       <ConnectionTables
-        loginUserId={props.loginUser._id}
+        loginUserId={props.loginUser.id}
         connections={props.connections}
         updateConnectionCb={props.updateConnectionCb}
       />

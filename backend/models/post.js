@@ -31,13 +31,18 @@ const PostSchema = new Schema({
   }
 });
 
-PostSchema.statics.findInPosts = async function(me) {
+PostSchema.statics.findOutPosts = async function(user) {
+  const Post = this;
+  return Post.find({ by: user }).populate("by");
+};
+
+PostSchema.statics.findInPosts = async function(user) {
   const findUsers = [
     {
       $match: {
         approvedByTo: true,
         approvedByFrom: true,
-        $or: [{ from: me._id }, { to: me._id }]
+        $or: [{ from: user._id }, { to: user._id }]
       }
     },
     {
@@ -45,24 +50,11 @@ PostSchema.statics.findInPosts = async function(me) {
         _id: 0,
         user: {
           $cond: {
-            if: { $eq: ["$from", me._id] },
+            if: { $eq: ["$from", user._id] },
             then: "$to",
             else: "$from"
           }
         }
-      }
-    },
-    {
-      $lookup: {
-        from: "users",
-        localField: "user",
-        foreignField: "_id",
-        as: "user"
-      }
-    },
-    {
-      $project: {
-        user: { $arrayElemAt: ["$user", 0] }
       }
     }
   ];
@@ -70,14 +62,9 @@ PostSchema.statics.findInPosts = async function(me) {
     {
       $lookup: {
         from: "posts",
-        localField: "user._id",
+        localField: "user",
         foreignField: "by",
         as: "post"
-      }
-    },
-    {
-      $project: {
-        "post.by": 0 //posts result is grouped by posted user. remove unnessesary
       }
     },
     {
@@ -92,19 +79,74 @@ PostSchema.statics.findInPosts = async function(me) {
         from: "shares",
         localField: "post._id",
         foreignField: "post",
-        as: "post.shares"
+        as: "share"
+      }
+    },
+    {
+      $unwind: {
+        path: "$share",
+        preserveNullAndEmptyArrays: true
+      }
+    }
+  ];
+  const joinWithBorrower = [
+    {
+      $lookup: {
+        from: "users",
+        localField: "share.borrower",
+        foreignField: "_id",
+        as: "share.borrower"
+      }
+    },
+    {
+      $addFields: {
+        "share.borrower": { $arrayElemAt: ["$share.borrower", 0] }
+      }
+    }
+  ];
+  const finalized = [
+    {
+      $group: {
+        _id: {
+          user: "$user",
+          post: "$post._id"
+        },
+        shares: {
+          $push: "$share"
+        }
+      }
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "_id.user",
+        foreignField: "_id",
+        as: "userInfo"
+      }
+    },
+    {
+      $lookup: {
+        from: "posts",
+        localField: "_id.post",
+        foreignField: "_id",
+        as: "postInfo"
       }
     },
     {
       $project: {
-        "post.shares.post": 0 //since share is join from post, i know this share is from that post
+        _id: 0,
+        user: { $arrayElemAt: ["$userInfo", 0] },
+        post: { $arrayElemAt: ["$postInfo", 0] },
+        shares: 1
       }
     }
   ];
   const inPosts = await Connection.aggregate([
     ...findUsers,
     ...joinUserWithPost,
-    ...joinPostwithShare
+    ...joinPostwithShare,
+    ...joinWithBorrower,
+    ...finalized
   ]).exec();
   return inPosts;
 };

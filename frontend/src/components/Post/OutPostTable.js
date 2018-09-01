@@ -6,7 +6,7 @@ function OutPostTable(props) {
   const postRows = posts.map(post => {
     return (
       <PostTableRow
-        key={post._id}
+        key={post.id}
         post={post}
         onOpenOutPostEditDialogCb={onOpenOutPostEditDialogCb}
       />

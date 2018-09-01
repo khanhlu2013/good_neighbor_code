@@ -10,7 +10,7 @@ class OutPostDialog extends Component {
     const {
       title = "",
       description = "",
-      _id: postID = null,
+      id: postID = null,
       isActive = true
     } = props.outPost ? props.outPost : {};
 

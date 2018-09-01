@@ -45,7 +45,7 @@
   . when i login, i need to make it a post because if it is a get, i will be able to go back into history which is a undesireable behavior
   . fuck: change post into user. shareLog to have from and to; or consider borrower and lender. but from and to do share many time. and well understood from many context. 
   . for share, isReturnByTo can't be true if isApprovedByFrom is undefined or false. i need this validation
-
+ . renaming share.borrower
 . TODAY
 . -----
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
@@ -112,3 +112,6 @@ move connections out of manageconnection. to be share with browse post
 ---
   . work on dev env so that test wont destroy the data for dev purpose
   . change back into outPost damn it
+
+---
+. lets work on outPost in include share

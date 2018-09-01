@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 
 import { Login } from "./components/Login";
-import { PrivateApp } from "./components/PrivateApp";
+import { PrivateApp } from "./AppPrivate";
 import { API } from "./api/profile-api";
 
 class App extends Component {

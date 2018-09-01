@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { ConnectionManagement } from "./Connection/ConnectionManagement.js";
-import { OutPostManagement } from "./Post/OutPostManagement.js";
-import { API_URL } from "../api/api-url.js";
-import { API } from "../api/profile-api.js";
-import { InPostTable } from "./InPost/InPostTable.js";
+import { ConnectionManagement } from "./components/Connection/ConnectionManagement.js";
+import { OutPostManagement } from "./components/Post/OutPostManagement.js";
+import { API_URL } from "./api/api-url.js";
+import { API } from "./api/profile-api.js";
+import { InPostManagement } from "./components/InPost/InPostManagement.js";
 
 class PrivateApp extends Component {
   state = {
@@ -56,6 +56,20 @@ class PrivateApp extends Component {
     })();
   };
 
+  onDeleteRequestingShareCb = shareID => {
+    (async () => {
+      await API.deleteShare(shareID);
+      this.refreshInPosts();
+    })();
+  };
+
+  onCreateShareCb = postID => {
+    (async () => {
+      await API.createShare(postID);
+      this.refreshInPosts();
+    })();
+  };
+
   render() {
     return (
       <div id="PrivateApp-react" className="App">
@@ -75,7 +89,12 @@ class PrivateApp extends Component {
         <hr />
         <OutPostManagement />
         <hr />
-        <InPostTable inPosts={this.state.inPosts} />
+        <InPostManagement
+          loginUser={this.props.loginUser}
+          inPosts={this.state.inPosts}
+          onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
+          onCreateShareCb={this.onCreateShareCb}
+        />
       </div>
     );
   }

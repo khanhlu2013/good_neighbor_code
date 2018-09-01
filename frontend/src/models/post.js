@@ -1,7 +1,7 @@
 class Post {
-  constructor(postID, user, isActive, title, description, dateCreated, shares) {
+  constructor(id, user, isActive, title, description, dateCreated, shares) {
     Object.assign(this, {
-      postID,
+      id,
       user,
       isActive,
       title,
@@ -39,23 +39,32 @@ class Post {
   get rejected() {
     return this.shares.filter(share => share.isApprovedByFrom === false);
   }
+
+  isRequestingBy(userId) {
+    const lst = this.requesting.filter(
+      request => request.borrower.id === userId
+    );
+    if (lst.length > 1) {
+      throw Error("Unexpected duplicate requesting data");
+    }
+
+    return lst.length === 1;
+  }
 }
 
 class Share {
-  constructor(
-    shareID,
-    borrower,
-    dateCreated,
-    isApprovedByFrom,
-    isReturnedByTo
-  ) {
+  constructor(id, borrower, dateCreated, isApprovedByFrom, isReturnedByTo) {
     Object.assign(this, {
-      shareID,
+      id,
       borrower,
       dateCreated,
       isApprovedByFrom,
       isReturnedByTo
     });
+  }
+
+  setPost(post) {
+    this.post = post;
   }
 }
 

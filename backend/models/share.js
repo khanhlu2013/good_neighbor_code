@@ -30,6 +30,14 @@ const ShareSchema = new Schema({
   }
 });
 
+ShareSchema.pre("remove", async function() {
+  if (this.isApprovedByFrom !== undefined) {
+    throw Error(
+      "Can only remove requesting share, but not reject, or borrowing, or borrowed share"
+    );
+  }
+});
+
 ShareSchema.pre("save", async function() {
   const { post, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
   const Share = this.constructor;
@@ -56,13 +64,24 @@ ShareSchema.pre("save", async function() {
       throw Error("Post.by is not connected with borrower.");
     }
 
-    //verify non-sharing share
-    const sharingShare = await Share.findOne({
+    //verify not requesting, not borrowing, not rejected
+    const verifyingShares = await Share.findOne({
       post,
-      isApprovedByFrom: true,
-      isReturnedByTo: false
+      $or: [
+        {
+          isApprovedByFrom: undefined //requesting
+        },
+        {
+          isApprovedByFrom: false //rejected
+        },
+        {
+          //borrowing
+          isApprovedByFrom: true,
+          isReturnedByTo: false
+        }
+      ]
     });
-    if (sharingShare) {
+    if (verifyingShares) {
       throw Error("Post is not available.");
     }
   }
