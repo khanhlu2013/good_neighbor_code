@@ -9,19 +9,19 @@ function ConnectionTables(props) {
   );
   const inFriends = connections.filter(
     connection =>
-      connection.to._id === loginUserId &&
+      connection.to.id === loginUserId &&
       connection.approvedByFrom &&
       connection.approvedByTo === undefined
   );
   const outFriends = connections.filter(
     connection =>
-      connection.from._id === loginUserId &&
+      connection.from.id === loginUserId &&
       connection.approvedByFrom &&
       connection.approvedByTo === undefined
   );
   const rejectedFriends = connections.filter(
     connection =>
-      connection.to._id === loginUserId && connection.approvedByTo === false
+      connection.to.id === loginUserId && connection.approvedByTo === false
   );
 
   return (
@@ -99,7 +99,7 @@ function ConnectionTable(props) {
         <tbody>
           {props.connections.map(connection => (
             <ConnectionRow
-              key={connection._id}
+              key={connection.id}
               connection={connection}
               loginUserId={loginUserId}
               approveColumn={approveColumn}
@@ -132,19 +132,19 @@ function ConnectionRow(props) {
     updateConnectionCb
   } = props;
   let theOther;
-  if (connection.from._id === loginUserId) {
+  if (connection.from.id === loginUserId) {
     theOther = connection.to;
-  } else if (connection.to._id === loginUserId) {
+  } else if (connection.to.id === loginUserId) {
     theOther = connection.from;
   } else {
     throw Error("Error: unexpected connection");
   }
 
   const approveClick = () => {
-    updateConnectionCb(connection._id, true);
+    updateConnectionCb(connection.id, true);
   };
   const denyClick = () => {
-    updateConnectionCb(connection._id, false);
+    updateConnectionCb(connection.id, false);
   };
 
   return (

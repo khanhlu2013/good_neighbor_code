@@ -1,3 +1,5 @@
+139-80  12:30pm
+
 . LOW PRIORITY INVENTORY
 . ----------------------
   . upgrade api to support multiple spa web app
@@ -122,6 +124,6 @@ move connections out of manageconnection. to be share with browse post
 . ss
 . test update post
 . connection create a frontend model
-. post.by ?
+
 
 

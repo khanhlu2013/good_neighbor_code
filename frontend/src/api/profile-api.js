@@ -1,6 +1,7 @@
 import { API_URL } from "./api-url";
 import { Post, Share } from "../model/post";
 import { User } from "../model/user";
+import { Connection } from "../model/connection";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
@@ -24,8 +25,22 @@ const searchEmail = async searchedEmail => {
 };
 
 // - connection
-const connections = () => {
-  return get("profile.connections", {});
+const connections = async () => {
+  const raws = await get("profile.connections", {});
+  return raws.map(raw => {
+    const {
+      _id: id,
+      from: { _id: fromID, email: fromEmail, name: fromName },
+      to: { _id: toID, email: toEmail, name: toName },
+      approvedByTo,
+      approvedByFrom
+    } = raw;
+
+    const from = new User(fromID, fromEmail, fromName);
+    const to = new User(toID, toEmail, toName);
+
+    return new Connection(id, from, to, approvedByTo, approvedByFrom);
+  });
 };
 
 const createConnection = userIdToAdd => {

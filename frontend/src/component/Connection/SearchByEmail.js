@@ -20,10 +20,10 @@ class SearchByEmail extends Component {
     if (state.searchedUser && props.connections !== null) {
       const lst = props.connections.filter(
         connection =>
-          (connection.from._id === state.searchedUser.id &&
-            connection.to._id === props.loginUser.id) ||
-          (connection.from._id === props.loginUser.id &&
-            connection.to._id === state.searchedUser.id)
+          (connection.from.id === state.searchedUser.id &&
+            connection.to.id === props.loginUser.id) ||
+          (connection.from.id === props.loginUser.id &&
+            connection.to.id === state.searchedUser.id)
       );
       if (lst.length > 1) {
         throw Error("Unexpected duplicate connections");
@@ -143,11 +143,11 @@ function CrudConnectionControlPanel(props) {
   };
 
   const onApproveConnection = evt => {
-    updateConnectionCb(searchedConnection._id, true);
+    updateConnectionCb(searchedConnection.id, true);
   };
 
   const onDenyConnection = evt => {
-    updateConnectionCb(searchedConnection._id, false);
+    updateConnectionCb(searchedConnection.id, false);
   };
 
   let message;
@@ -167,7 +167,7 @@ function CrudConnectionControlPanel(props) {
     /*you and searchedUser have exchanged invitation*/
     if (
       /*you init the connection*/
-      searchedConnection.from._id === loginUser.id
+      searchedConnection.from.id === loginUser.id
     ) {
       if (
         /*but you changed your mind*/
