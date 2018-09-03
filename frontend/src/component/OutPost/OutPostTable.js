@@ -51,7 +51,9 @@ function PostTableRow(props) {
       <td>{outPost.borrowing}</td>
       <td>{outPost.isActive.toString()}</td>
       <td>
-        <button onClick={onCrudClick}>edit</button>
+        <button className="OutPostTableRowEditBtn" onClick={onCrudClick}>
+          edit
+        </button>
       </td>
     </tr>
   );
