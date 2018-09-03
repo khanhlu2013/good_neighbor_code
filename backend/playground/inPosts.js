@@ -2,10 +2,10 @@ process.env.NODE_ENV = "test";
 require("../configs/mongodb-config");
 const util = require("util");
 
-const Connection = require("../models/connection");
-const User = require("../models/user");
-const Post = require("../models/post");
-const Share = require("../models/share");
+const Connection = require("../model/connection");
+const User = require("../model/user");
+const Post = require("../model/post");
+const Share = require("../model/share");
 
 (async () => {
   const u1 = await User.findOne({ email: "1@1.com" });

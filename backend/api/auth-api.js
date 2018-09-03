@@ -13,7 +13,7 @@ route.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 
 if (keys.NODE_ENV !== "production") {
   route.get("/login_for_test_dev", (req, res, next) => {
-    const User = require("../models/user");
+    const User = require("../model/user");
     const { email, name } = req.query;
     (async () => {
       const user = await User.findOneOrCreate(email, name);

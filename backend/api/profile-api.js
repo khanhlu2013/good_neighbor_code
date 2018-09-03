@@ -1,10 +1,10 @@
 const route = require("express").Router();
 const mongoose = require("mongoose");
 
-const Connection = require("../models/connection");
-const Post = require("../models/post");
-const User = require("../models/user");
-const Share = require("../models/share");
+const Connection = require("../model/connection");
+const Post = require("../model/post");
+const User = require("../model/user");
+const Share = require("../model/share");
 const keys = require("../configs/keys");
 
 // - auth ----

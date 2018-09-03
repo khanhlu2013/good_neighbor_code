@@ -1,6 +1,6 @@
 import { API_URL } from "./api-url";
-import { Post, Share } from "../models/post";
-import { User } from "../models/user";
+import { Post, Share } from "../model/post";
+import { User } from "../model/user";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
