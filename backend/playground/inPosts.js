@@ -12,7 +12,7 @@ const Share = require("../model/share");
   const u2 = await User.findOne({ email: "2@2.com" });
   const me = await User.findOne({ email: "me@me.com" });
 
-  // const p1 = await Post.findOne({ by: u1._id });
+  // const p1 = await Post.findOne({ user: u1._id });
   // const share = new Share({ post: p1._id, borrower: me._id });
   // await share.save();
 

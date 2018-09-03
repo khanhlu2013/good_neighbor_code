@@ -59,9 +59,9 @@ ShareSchema.pre("save", async function() {
     }
 
     //verify connection
-    const connection = await Connection.findOneByUsers(borrower, postDoc.by);
+    const connection = await Connection.findOneByUsers(borrower, postDoc.user);
     if (!connection || !connection.approvedByTo || !connection.approvedByFrom) {
-      throw Error("Post.by is not connected with borrower.");
+      throw Error("Post.user is not connected with borrower.");
     }
 
     //verify not requesting, not borrowing, not rejected

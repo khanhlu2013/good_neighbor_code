@@ -96,7 +96,7 @@ Cypress.Commands.add("insertPosts", posts => {
       if (p._id) {
         idStr = `,"_id":ObjectId("${p._id.toHexString()}")`;
       }
-      return `{"by":ObjectId("${p.by.toHexString()}"),"title":"${
+      return `{"user":ObjectId("${p.user.toHexString()}"),"title":"${
         p.title
       }","description":"${p.description}","isActive":${p.isActive} ${idStr}}`;
     })

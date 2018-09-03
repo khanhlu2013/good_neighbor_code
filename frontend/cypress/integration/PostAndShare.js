@@ -24,13 +24,13 @@ describe("Post and Share", () => {
     approvedByFrom: true
   };
   const p1 = {
-    by: u1._id,
+    user: u1._id,
     title: "title 1",
     description: "description 1",
     isActive: true
   };
   const p2 = {
-    by: u2._id,
+    user: u2._id,
     title: "title 2",
     description: "description 2",
     isActive: true

@@ -100,7 +100,7 @@ route.post("/createPost", authCheck, (req, res, next) => {
   const { title, description, isActive } = req.body;
   (async () => {
     const post = new Post({
-      by: user,
+      user,
       title,
       description,
       isActive
@@ -127,7 +127,7 @@ route.post("/updatePost", authCheck, (req, res, next) => {
     if (!post) {
       return res.status(400).send();
     }
-    if (!post.by.ss(user._id)) {
+    if (!post.user.equals(user._id)) {
       return res.status(401).send();
     }
 
@@ -232,7 +232,7 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
       return res.status(400).send();
     }
 
-    if (!share.post.by.equals(user._id)) {
+    if (!share.post.user.equals(user._id)) {
       return res.status(401).send();
     }
 

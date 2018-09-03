@@ -119,7 +119,8 @@ move connections out of manageconnection. to be share with browse post
   . change back into outPost damn it
 
 ---
-
+. ss
+. test update post
 . connection create a frontend model
 . post.by ?
 

@@ -6,7 +6,7 @@ import { API } from "../../api/profile-api.js";
 
 class SearchByEmail extends Component {
   /**
-   * Search by email, then create or modify connection
+   * Search email, then create or modify connection
    */
   state = {
     email: "", //email to search

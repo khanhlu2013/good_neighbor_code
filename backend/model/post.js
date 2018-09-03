@@ -5,7 +5,7 @@ const Connection = require("./connection");
 const User = require("./user");
 
 const PostSchema = new Schema({
-  by: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
@@ -67,7 +67,7 @@ const format_user_post_shares = [
   {
     $group: {
       _id: {
-        user: "$by",
+        user: "$user",
         post: "$_id"
       },
       shares: {
@@ -107,13 +107,11 @@ const processPostsRawData = [
 ];
 
 PostSchema.statics.findOutPosts = async function(user) {
-  // const Post = this;
-  // return Post.find({ by: user }).populate("by");
   const Post = this;
   const outPosts = await Post.aggregate([
     {
       $match: {
-        by: user._id
+        user: user._id
       }
     },
     ...processPostsRawData
@@ -148,7 +146,7 @@ PostSchema.statics.findInPosts = async function(user) {
       $lookup: {
         from: "posts",
         localField: "user",
-        foreignField: "by",
+        foreignField: "user",
         as: "post"
       }
     },
