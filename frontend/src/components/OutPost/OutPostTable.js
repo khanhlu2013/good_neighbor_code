@@ -13,7 +13,7 @@ function OutPostTable(props) {
     );
   });
   return (
-    <table id="OutPostAllTable-react">
+    <table id="OutPostTable-react">
       <thead>
         <tr>
           <th>Title</th>
@@ -42,7 +42,7 @@ function PostTableRow(props) {
   };
 
   return (
-    <tr className="OutPostAllTableRow">
+    <tr className="OutPostTableRow">
       <td>{outPost.title}</td>
       <td>{outPost.description}</td>
       <td>{outPost.borrowed.length}</td>

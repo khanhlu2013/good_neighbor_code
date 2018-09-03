@@ -1,28 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function InPostsToMe(props) {
-  const { shares, onDeleteRequestingShareCb } = props;
-  const requestingShares = shares.filter(
-    share =>
-      share.isApprovedByFrom === undefined && share.isReturnedByTo === false
-  );
-
-  return (
-    <InPostsToMeRequestingTable
-      requestingShares={requestingShares}
-      onDeleteRequestingShareCb={onDeleteRequestingShareCb}
-    />
-  );
-}
-InPostsToMe.propTypes = {
-  shares: PropTypes.array.isRequired
-};
-
-function InPostsToMeRequestingTable(props) {
+function InShareRequestingTable(props) {
   const { requestingShares, onDeleteRequestingShareCb } = props;
   const rows = requestingShares.map(share => (
-    <InPostsToMeRequestingTableRow
+    <InShareRequestingTableRow
       key={share.id}
       requestingShare={share}
       onDeleteRequestingShareCb={onDeleteRequestingShareCb}
@@ -30,7 +12,7 @@ function InPostsToMeRequestingTable(props) {
   ));
 
   return (
-    <table id="InPostRequestingTable-react">
+    <table id="InShareRequestingTable-react">
       <thead>
         <tr>
           <th>From</th>
@@ -47,12 +29,12 @@ function InPostsToMeRequestingTable(props) {
   );
 }
 
-InPostsToMeRequestingTable.propTypes = {
+InShareRequestingTable.propTypes = {
   requestingShares: PropTypes.array.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
-function InPostsToMeRequestingTableRow(props) {
+function InShareRequestingTableRow(props) {
   const { onDeleteRequestingShareCb, requestingShare } = props;
   const { post } = requestingShare;
 
@@ -61,7 +43,7 @@ function InPostsToMeRequestingTableRow(props) {
   };
 
   return (
-    <tr className="InPostRequestingTableRow">
+    <tr className="InShareRequestingTableRow">
       <td>{post.user.email}</td>
       <td>{post.title}</td>
       <td>{post.description}</td>
@@ -70,7 +52,7 @@ function InPostsToMeRequestingTableRow(props) {
       <td>me + {post.requesting.length - 1}</td>
       <td>
         <button
-          className="InPostRequestingTableRowUndoBtn"
+          className="InShareRequestingTableRowUndoBtn"
           onClick={onDeleteRequestingShare}
         >
           undo
@@ -79,11 +61,11 @@ function InPostsToMeRequestingTableRow(props) {
     </tr>
   );
 }
-InPostsToMeRequestingTableRow.propTypes = {
+InShareRequestingTableRow.propTypes = {
   requestingShare: PropTypes.object.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
 //function InPostsToMeBorrowingTable(props) {}
 
-export { InPostsToMe };
+export { InShareRequestingTable };

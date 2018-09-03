@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { ConnectionManagement } from "./components/Connection/ConnectionManagement.js";
-import { OutPostManagement } from "./components/Post/OutPostManagement.js";
+import { OutPostManagement } from "./components/OutPost/OutPostManagement.js";
 import { API_URL } from "./api/api-url.js";
 import { API } from "./api/profile-api.js";
 import { InPostManagement } from "./components/InPost/InPostManagement.js";

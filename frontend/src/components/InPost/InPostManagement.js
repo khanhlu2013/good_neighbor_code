@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { InPostFromAll } from "./InPosts_FromAll";
-import { InPostsToMe } from "./InPosts_ToMe";
+import { InPostTable } from "./InPostTable";
+import { InShareRequestingTable } from "./InShareRequestingTable";
 
 function InPostManagement(props) {
   const {
@@ -15,17 +15,21 @@ function InPostManagement(props) {
     post.shares.filter(share => share.borrower.id === loginUser.id)
   );
   const myInPostShares = [].concat(...myInPostShares2D);
+  const requestingShares = myInPostShares.filter(
+    share =>
+      share.isApprovedByFrom === undefined && share.isReturnedByTo === false
+  );
 
   return (
     <div id="InPostManagement-react">
       <h1>InPosts Managements</h1>
-      <InPostFromAll
+      <InPostTable
         loginUser={loginUser}
         allInPosts={inPosts}
         onCreateShareCb={onCreateShareCb}
       />
-      <InPostsToMe
-        shares={myInPostShares}
+      <InShareRequestingTable
+        requestingShares={requestingShares}
         onDeleteRequestingShareCb={onDeleteRequestingShareCb}
       />
       {isRefreshingInPosts && <p>Refreshing in posts ...</p>}

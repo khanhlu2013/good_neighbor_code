@@ -88,15 +88,15 @@ function snapOutPosts(name) {
 }
 
 function inPosts_makeRequest(rowIndex) {
-  cy.get("#InPostAllTable-react .InPostAllTableRow")
+  cy.get("#InPostTable-react .InPostTableRow")
     .eq(rowIndex)
-    .find(".InPostAllTableRowBorrowBtn")
+    .find(".InPostTableRowBorrowBtn")
     .click();
 }
 
 function inPosts_makeRequestUndo(rowIndex) {
-  cy.get("#InPostRequestingTable-react .InPostRequestingTableRow")
+  cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
     .eq(0)
-    .find(".InPostRequestingTableRowUndoBtn")
+    .find(".InShareRequestingTableRowUndoBtn")
     .click();
 }

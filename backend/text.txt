@@ -111,16 +111,16 @@ move connections out of manageconnection. to be share with browse post
 
 
 ---
+.
+  . InPosts, InShares(Requesting, Borrowing, Borrowed)
+  . OutPosts, OutShare(Requesting, Borrowing, Borrowed)
+
   . work on dev env so that test wont destroy the data for dev purpose
   . change back into outPost damn it
 
 ---
-. test and then refactor: rename
-  . inShareRequesting
-  . inShareBorrowing ...
 
-
-
+. connection create a frontend model
 . post.by ?
-. InPosts, InShares(Requesting, Borrowing, Borrowed)
-. OutPosts, OutShare(Requesting, Borrowing, Borrowed)
+
+

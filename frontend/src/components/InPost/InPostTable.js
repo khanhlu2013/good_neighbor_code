@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function InPostFromAll(props) {
+function InPostTable(props) {
   const { allInPosts, onCreateShareCb, loginUser } = props;
   const rows = allInPosts.map(inPost => (
-    <InPostFromAllRow
+    <InPostTableRow
       key={inPost.id}
       loginUser={loginUser}
       inPost={inPost}
@@ -13,7 +13,7 @@ function InPostFromAll(props) {
   ));
 
   return (
-    <table id="InPostAllTable-react">
+    <table id="InPostTable-react">
       <thead>
         <tr>
           <th>From</th>
@@ -31,20 +31,20 @@ function InPostFromAll(props) {
   );
 }
 
-InPostFromAll.propTypes = {
+InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
   allInPosts: PropTypes.array.isRequired,
   onCreateShareCb: PropTypes.func.isRequired
 };
 
-function InPostFromAllRow(props) {
+function InPostTableRow(props) {
   const { loginUser, inPost, onCreateShareCb } = props;
   const onCreateShare = e => {
     onCreateShareCb(inPost.id);
   };
   const isRequesting = inPost.isRequestingBy(loginUser.id);
   return (
-    <tr className="InPostAllTableRow">
+    <tr className="InPostTableRow">
       <td>{inPost.user.email}</td>
       <td>{inPost.title}</td>
       <td>{inPost.description}</td>
@@ -55,10 +55,7 @@ function InPostFromAllRow(props) {
       <td>
         {isRequesting && "requesting ..."}
         {!isRequesting && (
-          <button
-            className="InPostAllTableRowBorrowBtn"
-            onClick={onCreateShare}
-          >
+          <button className="InPostTableRowBorrowBtn" onClick={onCreateShare}>
             borrow
           </button>
         )}
@@ -66,10 +63,10 @@ function InPostFromAllRow(props) {
     </tr>
   );
 }
-InPostFromAllRow.propTypes = {
+InPostTableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
   onCreateShareCb: PropTypes.func.isRequired
 };
 
-export { InPostFromAll };
+export { InPostTable };
