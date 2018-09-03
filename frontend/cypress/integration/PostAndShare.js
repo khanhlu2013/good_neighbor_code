@@ -50,25 +50,15 @@ describe("Post and Share", () => {
     snapOutPosts("user can create an OutPost");
 
     //user can make a request to borrow
-    cy.get("#InPostAllTable-react .InPostAllTableRow")
-      .eq(0)
-      .find(".InPostAllTableRowBorrowBtn")
-      .click();
+    inPosts_makeRequest(0);
     snapInPosts("user can make a request to borrow");
 
     //user can undo a request to borrow
-    cy.get("#InPostRequestingTable-react .InPostRequestingTableRow")
-      .eq(0)
-      .find(".InPostRequestingTableRowUndoBtn")
-      .click();
-    snapInPosts("user can undo a request to borrow");
+    inPosts_makeRequestUndo(0);
+    snapInPosts("user can undo a request");
 
     //lets borrow again and switch to user 1 to approve
-    //user can make a request to borrow
-    cy.get("#InPostAllTable-react .InPostAllTableRow")
-      .eq(0)
-      .find(".InPostAllTableRowBorrowBtn")
-      .click();
+    inPosts_makeRequest(0);
     cy.switchUser(u1.email);
     snapOutPosts("requesting table display correctly");
   });
@@ -95,4 +85,18 @@ function snapInPosts(name) {
 function snapOutPosts(name) {
   cy.contains("refreshing out posts ...").should("not.be.visible");
   cy.get("#OutPostManagement-react").snapshot({ name });
+}
+
+function inPosts_makeRequest(rowIndex) {
+  cy.get("#InPostAllTable-react .InPostAllTableRow")
+    .eq(rowIndex)
+    .find(".InPostAllTableRowBorrowBtn")
+    .click();
+}
+
+function inPosts_makeRequestUndo(rowIndex) {
+  cy.get("#InPostRequestingTable-react .InPostRequestingTableRow")
+    .eq(0)
+    .find(".InPostRequestingTableRowUndoBtn")
+    .click();
 }

@@ -107,11 +107,7 @@ describe("ConnectionManagement", () => {
       cy.get("#createConnectionBtn").click();
       snap("There are 2 out-connection");
 
-      cy.get("#OutFriendTable .ConnectionTableRow")
-        .eq(1)
-        .find(".ConnectionTableRowDenyBtn")
-        .click();
-
+      outRequests_deny(1);
       snap("remove one out-connection");
 
       //2. c -> b
@@ -123,32 +119,18 @@ describe("ConnectionManagement", () => {
       cy.switchUser(b.email);
       snap("There are 2 in-connection");
       cy.get("#InFriendTable .ConnectionTableRow").should("have.length", 2);
-      cy.get("#InFriendTable .ConnectionTableRow")
-        .eq(0)
-        .find(".ConnectionTableRowApproveBtn")
-        .click();
-      cy.get("#InFriendTable .ConnectionTableRow")
-        .eq(0)
-        .find(".ConnectionTableRowDenyBtn")
-        .click();
+
+      inRequests_approve(0);
+      inRequests_deny(0);
       snap("Approve/Deny InFriends");
 
       //approve deny
-      cy.get("#DenyFriendTable .ConnectionTableRow")
-        .eq(0)
-        .find(".ConnectionTableRowApproveBtn")
-        .click();
+      denyRequests_approve(0);
       snap("Approve Denied-Friends");
 
       //deny friend
-      cy.get("#FriendTable .ConnectionTableRow")
-        .eq(0)
-        .find(".ConnectionTableRowDenyBtn")
-        .click();
-      cy.get("#FriendTable .ConnectionTableRow")
-        .eq(0)
-        .find(".ConnectionTableRowDenyBtn")
-        .click();
+      friends_deny(0);
+      friends_deny(0);
       snap("Deny Approved-Friends");
     });
   });
@@ -176,4 +158,39 @@ function searchAndSnap(snapshotName, email) {
 function clickAndSnap(snapshotName, clickSelector) {
   cy.get(clickSelector).click();
   snap(snapshotName);
+}
+
+function outRequests_deny(rowIndex) {
+  cy.get("#OutFriendTable .ConnectionTableRow")
+    .eq(rowIndex)
+    .find(".ConnectionTableRowDenyBtn")
+    .click();
+}
+
+function inRequests_approve(rowIndex) {
+  cy.get("#InFriendTable .ConnectionTableRow")
+    .eq(rowIndex)
+    .find(".ConnectionTableRowApproveBtn")
+    .click();
+}
+
+function inRequests_deny(rowIndex) {
+  cy.get("#InFriendTable .ConnectionTableRow")
+    .eq(rowIndex)
+    .find(".ConnectionTableRowDenyBtn")
+    .click();
+}
+
+function denyRequests_approve(rowIndex) {
+  cy.get("#DenyFriendTable .ConnectionTableRow")
+    .eq(rowIndex)
+    .find(".ConnectionTableRowApproveBtn")
+    .click();
+}
+
+function friends_deny(rowIndex) {
+  cy.get("#FriendTable .ConnectionTableRow")
+    .eq(rowIndex)
+    .find(".ConnectionTableRowDenyBtn")
+    .click();
 }

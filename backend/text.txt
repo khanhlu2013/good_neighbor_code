@@ -121,4 +121,6 @@ move connections out of manageconnection. to be share with browse post
 
 
 
-. i like to clean test up use more util func
+. post.by ?
+. InPosts, InShares(Requesting, Borrowing, Borrowed)
+. OutPosts, OutShare(Requesting, Borrowing, Borrowed)
