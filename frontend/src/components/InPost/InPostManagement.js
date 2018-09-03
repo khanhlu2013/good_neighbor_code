@@ -5,8 +5,9 @@ import { InPostsToMe } from "./InPosts_ToMe";
 
 function InPostManagement(props) {
   const {
-    inPosts,
     loginUser,
+    inPosts,
+    isRefreshingInPosts,
     onDeleteRequestingShareCb,
     onCreateShareCb
   } = props;
@@ -27,12 +28,14 @@ function InPostManagement(props) {
         shares={myInPostShares}
         onDeleteRequestingShareCb={onDeleteRequestingShareCb}
       />
+      {isRefreshingInPosts && <p>Refreshing in posts ...</p>}
     </div>
   );
 }
 InPostManagement.propTypes = {
-  inPosts: PropTypes.array.isRequired,
   loginUser: PropTypes.object.isRequired,
+  inPosts: PropTypes.array.isRequired,
+  isRefreshingInPosts: PropTypes.bool.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired,
   onCreateShareCb: PropTypes.func.isRequired
 };

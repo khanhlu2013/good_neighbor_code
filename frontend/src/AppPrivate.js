@@ -92,6 +92,7 @@ class PrivateApp extends Component {
         <InPostManagement
           loginUser={this.props.loginUser}
           inPosts={this.state.inPosts}
+          isRefreshingInPosts={this.state.isRefreshingInPosts}
           onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
           onCreateShareCb={this.onCreateShareCb}
         />

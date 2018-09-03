@@ -14,9 +14,12 @@ const profile = async () => {
 };
 
 const searchEmail = async searchedEmail => {
-  const { _id: id, email, name } = await get("profile.searchEmail", {
-    searchedEmail
+  const json = await get("profile.searchEmail", {
+    email: searchedEmail
   });
+  if (!json) return null;
+
+  const { _id: id, email, name } = json;
   return new User(id, email, name);
 };
 
@@ -60,53 +63,14 @@ const updatePost = async (postID, title, description, isActive) => {
 
 // - outPost
 const outPosts = async () => {
-  const raws = await get("profile.outPosts", {});
-  return raws.map(rawPost => {
-    const {
-      _id,
-      by: userRaw,
-      title,
-      description,
-      isActive,
-      dateCreated
-    } = rawPost;
-    const user = new User(userRaw._id, userRaw.email, userRaw.name);
-    return new Post(_id, user, isActive, title, description, dateCreated);
-  });
+  const postsRaw = await get("profile.outPosts", {});
+  return processPostsRawData(postsRaw);
 };
 
 // - inPost
 const inPosts = async () => {
-  const inPosts = await get("profile.inPosts", {}); //inPosts <-> [{user,post}, ...]
-  return inPosts.map(raw => {
-    const { post: postRaw, user: userRaw } = raw;
-    const sharesRaw = raw.shares.filter(share => share._id !== undefined);
-
-    const shares = sharesRaw.map(shareRaw => {
-      const { _id: userId, email, name } = shareRaw.borrower;
-      const borrower = new User(userId, email, name);
-      return new Share(
-        shareRaw._id,
-        borrower,
-        shareRaw.dateCreated,
-        shareRaw.isApprovedByFrom,
-        shareRaw.isReturnedByTo
-      );
-    });
-    const post = new Post(
-      postRaw._id,
-      userRaw,
-      postRaw.isActive,
-      postRaw.title,
-      postRaw.description,
-      postRaw.dateCreated,
-      shares
-    );
-    for (const share of post.shares) {
-      share.setPost(post);
-    }
-    return post;
-  });
+  const postsRaw = await get("profile.inPosts", {}); //inPosts <-> [{user,post,shares}, ...]
+  return processPostsRawData(postsRaw);
 };
 
 // -  share
@@ -167,6 +131,37 @@ async function get(dottedPath, params) {
   return await getJSON(response);
 }
 
+function processPostsRawData(postsRaw) {
+  return postsRaw.map(raw => {
+    const { post: postRaw, user: userRaw } = raw;
+    const sharesRaw = raw.shares.filter(share => share._id !== undefined);
+
+    const shares = sharesRaw.map(shareRaw => {
+      const { _id: userId, email, name } = shareRaw.borrower;
+      const borrower = new User(userId, email, name);
+      return new Share(
+        shareRaw._id,
+        borrower,
+        shareRaw.dateCreated,
+        shareRaw.isApprovedByFrom,
+        shareRaw.isReturnedByTo
+      );
+    });
+    const post = new Post(
+      postRaw._id,
+      userRaw,
+      postRaw.isActive,
+      postRaw.title,
+      postRaw.description,
+      postRaw.dateCreated,
+      shares
+    );
+    for (const share of post.shares) {
+      share.setPost(post);
+    }
+    return post;
+  });
+}
 //-------------
 
 const API = {

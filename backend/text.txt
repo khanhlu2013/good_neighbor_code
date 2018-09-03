@@ -46,6 +46,7 @@
   . fuck: change post into user. shareLog to have from and to; or consider borrower and lender. but from and to do share many time. and well understood from many context. 
   . for share, isReturnByTo can't be true if isApprovedByFrom is undefined or false. i need this validation
  . renaming share.borrower
+ . create a model for connection for the frontend
 . TODAY
 . -----
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
@@ -114,4 +115,10 @@ move connections out of manageconnection. to be share with browse post
   . change back into outPost damn it
 
 ---
-. lets work on outPost in include share
+. test and then refactor: rename
+  . inShareRequesting
+  . inShareBorrowing ...
+
+
+
+. i like to clean test up use more util func

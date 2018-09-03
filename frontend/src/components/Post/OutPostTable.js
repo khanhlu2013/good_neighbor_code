@@ -2,24 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function OutPostTable(props) {
-  const { posts, onOpenOutPostEditDialogCb } = props;
-  const postRows = posts.map(post => {
+  const { outPosts, onOpenOutPostEditDialogCb } = props;
+  const postRows = outPosts.map(outPost => {
     return (
       <PostTableRow
-        key={post.id}
-        post={post}
+        key={outPost.id}
+        outPost={outPost}
         onOpenOutPostEditDialogCb={onOpenOutPostEditDialogCb}
       />
     );
   });
   return (
-    <table id="OutPostTable-react">
+    <table id="OutPostAllTable-react">
       <thead>
         <tr>
           <th>Title</th>
           <th>Description</th>
+          <th>borrowed</th>
+          <th>rejected</th>
+          <th>requesting</th>
+          <th>borrowing</th>
           <th>Is Active</th>
-          <th>Date created</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>
@@ -27,23 +30,26 @@ function OutPostTable(props) {
   );
 }
 OutPostTable.propTypes = {
-  posts: PropTypes.array.isRequired,
+  outPosts: PropTypes.array.isRequired,
   onOpenOutPostEditDialogCb: PropTypes.func.isRequired
 };
 
 function PostTableRow(props) {
-  const { post, onOpenOutPostEditDialogCb } = props;
+  const { outPost, onOpenOutPostEditDialogCb } = props;
 
   const onCrudClick = () => {
-    onOpenOutPostEditDialogCb(post);
+    onOpenOutPostEditDialogCb(outPost);
   };
 
   return (
-    <tr>
-      <td>{post.title}</td>
-      <td>{post.description}</td>
-      <td>{post.isActive.toString()}</td>
-      <td>{post.dateCreated}</td>
+    <tr className="OutPostAllTableRow">
+      <td>{outPost.title}</td>
+      <td>{outPost.description}</td>
+      <td>{outPost.borrowed.length}</td>
+      <td>{outPost.rejected.length}</td>
+      <td>{outPost.requesting.length}</td>
+      <td>{outPost.borrowing}</td>
+      <td>{outPost.isActive.toString()}</td>
       <td>
         <button onClick={onCrudClick}>edit</button>
       </td>
@@ -52,7 +58,7 @@ function PostTableRow(props) {
 }
 
 PostTableRow.propsType = {
-  post: PropTypes.object.isRequired,
+  outPost: PropTypes.object.isRequired,
   onOpenOutPostEditDialogCb: PropTypes.func.isRequired
 };
 

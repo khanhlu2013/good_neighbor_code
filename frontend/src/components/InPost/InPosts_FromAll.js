@@ -13,7 +13,7 @@ function InPostFromAll(props) {
   ));
 
   return (
-    <table>
+    <table id="InPostAllTable-react">
       <thead>
         <tr>
           <th>From</th>
@@ -44,7 +44,7 @@ function InPostFromAllRow(props) {
   };
   const isRequesting = inPost.isRequestingBy(loginUser.id);
   return (
-    <tr>
+    <tr className="InPostAllTableRow">
       <td>{inPost.user.email}</td>
       <td>{inPost.title}</td>
       <td>{inPost.description}</td>
@@ -54,7 +54,14 @@ function InPostFromAllRow(props) {
       <td>{inPost.borrowing}</td>
       <td>
         {isRequesting && "requesting ..."}
-        {!isRequesting && <button onClick={onCreateShare}>borrow</button>}
+        {!isRequesting && (
+          <button
+            className="InPostAllTableRowBorrowBtn"
+            onClick={onCreateShare}
+          >
+            borrow
+          </button>
+        )}
       </td>
     </tr>
   );

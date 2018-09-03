@@ -9,12 +9,10 @@ function InPostsToMe(props) {
   );
 
   return (
-    <div id="InPostsToMe-react">
-      <InPostsToMeRequestingTable
-        requestingShares={requestingShares}
-        onDeleteRequestingShareCb={onDeleteRequestingShareCb}
-      />
-    </div>
+    <InPostsToMeRequestingTable
+      requestingShares={requestingShares}
+      onDeleteRequestingShareCb={onDeleteRequestingShareCb}
+    />
   );
 }
 InPostsToMe.propTypes = {
@@ -32,7 +30,7 @@ function InPostsToMeRequestingTable(props) {
   ));
 
   return (
-    <table>
+    <table id="InPostRequestingTable-react">
       <thead>
         <tr>
           <th>From</th>
@@ -63,7 +61,7 @@ function InPostsToMeRequestingTableRow(props) {
   };
 
   return (
-    <tr>
+    <tr className="InPostRequestingTableRow">
       <td>{post.user.email}</td>
       <td>{post.title}</td>
       <td>{post.description}</td>
@@ -71,7 +69,12 @@ function InPostsToMeRequestingTableRow(props) {
       <td>{post.rejected.length}</td>
       <td>me + {post.requesting.length - 1}</td>
       <td>
-        <button onClick={onDeleteRequestingShare}>undo</button>
+        <button
+          className="InPostRequestingTableRowUndoBtn"
+          onClick={onDeleteRequestingShare}
+        >
+          undo
+        </button>
       </td>
     </tr>
   );
@@ -81,6 +84,6 @@ InPostsToMeRequestingTableRow.propTypes = {
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
-function InPostsToMeBorrowingTable(props) {}
+//function InPostsToMeBorrowingTable(props) {}
 
 export { InPostsToMe };

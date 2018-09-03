@@ -10,8 +10,7 @@ describe("ConnectionManagement", () => {
     };
 
     beforeEach(() => {
-      cy.resetDB();
-      cy.insertUserDB([lu, tu]);
+      cy.setupDB([lu, tu]);
       cy.loadApp();
     });
 
@@ -46,7 +45,7 @@ describe("ConnectionManagement", () => {
       clickAndSnap("DenyConnectionByFrom", "#denyConnectionByFromBtn");
       clickAndSnap("ApproveConnectionByFrom", "#approveConnectionByFromBtn");
 
-      cy.switchAccount(tu.email);
+      cy.switchUser(tu.email);
 
       searchAndSnap("Searched incomming connection", lu.email);
 
@@ -65,7 +64,7 @@ describe("ConnectionManagement", () => {
 
       //search deny by to
       cy.get("#denyConnectionByToSecondTimeBtn").click();
-      cy.switchAccount(lu.email);
+      cy.switchUser(lu.email);
       searchAndSnap("SeachDenyByTo", tu.email);
     });
   });
@@ -85,8 +84,7 @@ describe("ConnectionManagement", () => {
     };
 
     beforeEach(() => {
-      cy.resetDB();
-      cy.insertUserDB([a, b, c]);
+      cy.setupDB([a, b, c]);
       cy.loadApp();
     });
 
@@ -117,12 +115,12 @@ describe("ConnectionManagement", () => {
       snap("remove one out-connection");
 
       //2. c -> b
-      cy.switchAccount(c.email);
+      cy.switchUser(c.email);
       search(b.email);
       cy.get("#createConnectionBtn").click();
 
       //3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)
-      cy.switchAccount(b.email);
+      cy.switchUser(b.email);
       snap("There are 2 in-connection");
       cy.get("#InFriendTable .ConnectionTableRow").should("have.length", 2);
       cy.get("#InFriendTable .ConnectionTableRow")

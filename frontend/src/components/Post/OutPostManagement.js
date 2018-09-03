@@ -6,8 +6,8 @@ import { API } from "../../api/profile-api";
 
 class OutPostManagement extends Component {
   state = {
-    posts: [],
-    refreshingPosts: false,
+    outPosts: [],
+    isRefreshingOutPosts: false,
 
     //crud post
     curCrudPostSessionID: null,
@@ -16,14 +16,14 @@ class OutPostManagement extends Component {
   };
 
   componentDidMount() {
-    this.refreshPosts();
+    this.doRefreshOutPosts();
   }
 
-  refreshPosts = () => {
-    this.setState({ refreshingPosts: true });
+  doRefreshOutPosts = () => {
+    this.setState({ isRefreshingOutPosts: true });
     (async () => {
-      const posts = await API.outPosts();
-      this.setState({ posts, refreshingPosts: false });
+      const outPosts = await API.outPosts();
+      this.setState({ outPosts, isRefreshingOutPosts: false });
     })();
   };
 
@@ -53,7 +53,7 @@ class OutPostManagement extends Component {
       isOpenPostDialog: false,
       curCrudPostSessionID: null
     });
-    this.refreshPosts();
+    this.doRefreshOutPosts();
   };
 
   onCancelCrudPostDialog = () => {
@@ -68,7 +68,7 @@ class OutPostManagement extends Component {
           create post
         </button>
         <OutPostTable
-          posts={this.state.posts}
+          outPosts={this.state.outPosts}
           onOpenOutPostEditDialogCb={this.onOpenOutPostEditDialogCb}
         />
         {this.state.curCrudPostSessionID && (
@@ -80,6 +80,7 @@ class OutPostManagement extends Component {
             onCancelCrudPostDialog={this.onCancelCrudPostDialog}
           />
         )}
+        {this.state.isRefreshingOutPosts && <p>refreshing out posts ...</p>}
       </div>
     );
   }
