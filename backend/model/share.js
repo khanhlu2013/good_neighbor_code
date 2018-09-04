@@ -39,12 +39,18 @@ ShareSchema.pre("remove", async function() {
 });
 
 ShareSchema.pre("save", async function() {
-  const { post, borrower, isApprovedByFrom, isReturnedByTo, isNew } = this;
+  const {
+    post: postID,
+    borrower,
+    isApprovedByFrom,
+    isReturnedByTo,
+    isNew
+  } = this;
   const Share = this.constructor;
 
   //verify postID
-  const postDoc = await Post.findById(post);
-  if (!postDoc) {
+  const post = await Post.findById(postID);
+  if (!post) {
     throw Error("Post is not exist.");
   }
 
@@ -54,35 +60,27 @@ ShareSchema.pre("save", async function() {
     }
 
     //verify active post
-    if (!postDoc.isActive) {
+    if (!post.isActive) {
       throw Error("Post is not active.");
     }
 
     //verify connection
-    const connection = await Connection.findOneByUsers(borrower, postDoc.user);
+    const connection = await Connection.findOneByUsers(borrower, post.user);
     if (!connection || !connection.approvedByTo || !connection.approvedByFrom) {
       throw Error("Post.user is not connected with borrower.");
     }
 
-    //verify not requesting, not borrowing, not rejected
+    //verify not currently: requesting or borrowing or denied
     const verifyingShares = await Share.findOne({
-      post,
+      postID,
+      borrower,
       $or: [
-        {
-          isApprovedByFrom: undefined //requesting
-        },
-        {
-          isApprovedByFrom: false //rejected
-        },
-        {
-          //borrowing
-          isApprovedByFrom: true,
-          isReturnedByTo: false
-        }
+        { isApprovedByFrom: { $not: { $eq: true } } }, //currently not approve <=> aka <=> requesting or denied
+        { isReturnedByTo: false } //currently borrowing
       ]
     });
     if (verifyingShares) {
-      throw Error("Post is not available.");
+      throw Error("Post is not available");
     }
   }
 });

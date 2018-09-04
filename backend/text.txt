@@ -49,6 +49,7 @@
   . for share, isReturnByTo can't be true if isApprovedByFrom is undefined or false. i need this validation
  . renaming share.borrower
  . create a model for connection for the frontend
+ . color coded available post , and current borrowing post
 . TODAY
 . -----
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
@@ -73,5 +74,10 @@
 
 outShareRequesting
   . share with post from me. 
+
+
+---
+how does the backend validate that only 1 borrower at a time?
+allow borrow a current borrowing. color coded
 
 

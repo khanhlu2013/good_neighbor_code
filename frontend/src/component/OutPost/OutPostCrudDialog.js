@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-class OutPostDialog extends Component {
+class OutPostCrudDialog extends Component {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ class OutPostDialog extends Component {
       description = "",
       id: postID = null,
       isActive = true
-    } = props.outPost ? props.outPost : {};
+    } = props.post ? props.post : {};
 
     this.state = { title, description, postID, isActive };
   }
@@ -30,7 +30,7 @@ class OutPostDialog extends Component {
   };
 
   onSubmitPost = e => {
-    this.props.onCrudOutPostCb(
+    this.props.onCrudPostCb(
       this.state.postID,
       this.state.title,
       this.state.description,
@@ -42,14 +42,14 @@ class OutPostDialog extends Component {
 
   render() {
     return (
-      <div id="OutPostDialog-react">
+      <div id="OutPostCrudDialog-react">
         <Modal
           isOpen={this.props.isOpen}
           shouldCloseOnOverlayClick={false}
           shouldCloseOnEsc={false}
         >
           <h1>CrudPost Dialog</h1>
-          <form id="OutPostDialogForm-react" onSubmit={this.onSubmitPost}>
+          <form id="OutPostCrudDialogForm-react" onSubmit={this.onSubmitPost}>
             <input
               type="text"
               onChange={this.onTitleChange}
@@ -80,11 +80,11 @@ class OutPostDialog extends Component {
   }
 }
 
-OutPostDialog.propTypes = {
+OutPostCrudDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  outPost: PropTypes.object, //if null then we create post, otherwise we edit post
-  onCrudOutPostCb: PropTypes.func.isRequired,
+  post: PropTypes.object, //if null then we create post, otherwise we edit post
+  onCrudPostCb: PropTypes.func.isRequired,
   onCancelCrudPostDialog: PropTypes.func.isRequired
 };
 
-export { OutPostDialog };
+export { OutPostCrudDialog };

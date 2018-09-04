@@ -19,8 +19,9 @@ function InShareRequestingTable(props) {
           <th>title</th>
           <th>description</th>
           <th>borrowed</th>
-          <th>rejected</th>
+          <th>denied</th>
           <th>requesting</th>
+          <th>borrowing</th>
           <th>undo</th>
         </tr>
       </thead>
@@ -42,14 +43,18 @@ function InShareRequestingTableRow(props) {
     onDeleteRequestingShareCb(requestingShare.id);
   };
 
+  const borrowingShare = post.borrowing;
+  const borrower = borrowingShare ? borrowingShare.borrower : null;
+
   return (
     <tr className="InShareRequestingTableRow">
       <td>{post.user.email}</td>
       <td>{post.title}</td>
       <td>{post.description}</td>
       <td>{post.borrowed.length}</td>
-      <td>{post.rejected.length}</td>
+      <td>{post.denied.length}</td>
       <td>me + {post.requesting.length - 1}</td>
+      <td>{borrower ? borrower.email : ""}</td>
       <td>
         <button
           className="InShareRequestingTableRowUndoBtn"

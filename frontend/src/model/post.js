@@ -36,7 +36,7 @@ class Post {
     return this.shares.filter(share => share.isApprovedByFrom === undefined);
   }
 
-  get rejected() {
+  get denied() {
     return this.shares.filter(share => share.isApprovedByFrom === false);
   }
 

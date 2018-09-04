@@ -87,16 +87,16 @@ const postForm = {
     cy.get("#createPostBtn").click();
   },
   snap: name => {
-    cy.get("#OutPostDialogForm-react").snapshot({ name });
+    cy.get("#OutPostCrudDialogForm-react").snapshot({ name });
   },
   fillOut: (title, description, isActive) => {
-    cy.get("#OutPostDialogForm-react>:text")
+    cy.get("#OutPostCrudDialogForm-react>:text")
       .clear()
       .type(`${title}`);
-    cy.get("#OutPostDialogForm-react>textarea")
+    cy.get("#OutPostCrudDialogForm-react>textarea")
       .clear()
       .type(`${description}`);
-    const isActiveCheckBox = cy.get("#OutPostDialogForm-react :checkbox");
+    const isActiveCheckBox = cy.get("#OutPostCrudDialogForm-react :checkbox");
     if (isActive) {
       isActiveCheckBox.check();
     } else {
@@ -104,7 +104,7 @@ const postForm = {
     }
   },
   submit: () => {
-    cy.get("#OutPostDialogForm-react>:submit").click();
+    cy.get("#OutPostCrudDialogForm-react>:submit").click();
   }
 };
 

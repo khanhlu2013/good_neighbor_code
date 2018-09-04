@@ -1,103 +1,135 @@
 import React, { Component } from "react";
 
-import { OutPostDialog } from "./OutPostDialog";
+import { OutPostCrudDialog } from "./OutPostCrudDialog";
 import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
-import { OutShareRequestingTable } from "./OutShareRequestingTable";
+import { OutPostDecisionDialog } from "./OutPostDecisionDialog";
 
 class OutPostManagement extends Component {
   state = {
-    outPosts: [],
-    isRefreshingOutPosts: false,
+    posts: [],
+    isRefreshingPosts: false,
 
     //crud post
     curCrudPostSessionID: null,
-    curCrudOutPost: null,
-    isOpenPostDialog: false
+    isOpenCrudDialog: false,
+    curCrudPost: null,
+
+    isOpenDecisionDialog: false,
+    curDecidePost: null
   };
 
   componentDidMount() {
-    this.doRefreshOutPosts();
+    this.doRefreshPosts();
   }
 
-  doRefreshOutPosts = () => {
-    this.setState({ isRefreshingOutPosts: true });
+  doRefreshPosts = () => {
+    this.setState({ isRefreshingPosts: true });
     (async () => {
-      const outPosts = await API.outPosts();
-      this.setState({ outPosts, isRefreshingOutPosts: false });
+      const posts = await API.outPosts();
+      this.setState({ posts, isRefreshingPosts: false });
     })();
   };
 
-  onOpenOutPostCreateDialog = () => {
+  onOpenNewCrudDialog = () => {
     this.setState({
-      isOpenPostDialog: true,
-      curCrudOutPost: null,
+      isOpenCrudDialog: true,
+      curCrudPost: null,
       curCrudPostSessionID: Date.now().toString()
     });
   };
 
-  onOpenOutPostEditDialogCb = post => {
+  onOpenCrudDialogCb = post => {
     this.setState({
-      isOpenPostDialog: true,
-      curCrudOutPost: post,
+      isOpenCrudDialog: true,
+      curCrudPost: post,
       curCrudPostSessionID: Date.now().toString()
     });
   };
 
-  onCrudOutPostCb = async (postID, title, description, isActive) => {
+  onOpenDecideDialogCb = post => {
+    this.setState({
+      isOpenDecisionDialog: true,
+      curDecidePost: post
+    });
+  };
+
+  onCrudPostCb = async (postID, title, description, isActive) => {
     if (postID) {
       await API.updatePost(postID, title, description, isActive);
     } else {
       await API.createPost(title, description, isActive);
     }
     this.setState({
-      isOpenPostDialog: false,
+      isOpenCrudDialog: false,
       curCrudPostSessionID: null
     });
-    this.doRefreshOutPosts();
+    this.doRefreshPosts();
   };
 
   onDecideOutShareRequestingCb = async (shareID, isApprove) => {
-    this.setState({ isRefreshingOutPosts: true });
+    this.setState({ isRefreshingPosts: true });
     await API.decideOutShareRequesting(shareID, isApprove);
-    this.doRefreshOutPosts();
+    this.doRefreshPosts();
   };
 
   onCancelCrudPostDialog = () => {
-    this.setState({ isOpenPostDialog: false });
+    this.setState({ isOpenCrudDialog: false });
+  };
+
+  onUndoBorrowingCb = shareID => {
+    console.log("undo borrowing", shareID);
+  };
+
+  onUndoDeniedShareCb = shareID => {
+    console.log("undo denied share", shareID);
+  };
+
+  onDecideRequestingShareCb = (shareID, isApprove) => {
+    console.log("decide requesting share", isApprove, shareID);
+  };
+
+  onExitPostDecisionDialogCb = () => {
+    this.setState({
+      isOpenDecisionDialog: false,
+      curDecidePost: null
+    });
   };
 
   render() {
-    const outShareRequesting2D = this.state.outPosts.map(outPost => {
-      return outPost.shares.filter(share => share.isRequesting);
-    });
-    const outShareRequesting = [].concat(...outShareRequesting2D);
-
     return (
       <div id="OutPostManagement-react">
         <h1>Out Posts Management</h1>
-        <button id="createPostBtn" onClick={this.onOpenOutPostCreateDialog}>
+        <button id="createPostBtn" onClick={this.onOpenNewCrudDialog}>
           create post
         </button>
         <OutPostTable
-          outPosts={this.state.outPosts}
-          onOpenOutPostEditDialogCb={this.onOpenOutPostEditDialogCb}
-        />
-        <OutShareRequestingTable
-          shares={outShareRequesting}
-          onDecideOutShareRequestingCb={this.onDecideOutShareRequestingCb}
+          posts={this.state.posts}
+          onOpenCrudDialogCb={this.onOpenCrudDialogCb}
+          onOpenDecideDialogCb={this.onOpenDecideDialogCb}
         />
 
         {this.state.curCrudPostSessionID && (
-          <OutPostDialog
+          <OutPostCrudDialog
             key={this.state.curCrudPostSessionID}
-            isOpen={this.state.isOpenPostDialog}
-            outPost={this.state.curCrudOutPost}
-            onCrudOutPostCb={this.onCrudOutPostCb}
+            isOpen={this.state.isOpenCrudDialog}
+            post={this.state.curCrudPost}
+            onCrudPostCb={this.onCrudPostCb}
             onCancelCrudPostDialog={this.onCancelCrudPostDialog}
           />
         )}
-        {this.state.isRefreshingOutPosts && <p>refreshing out posts ...</p>}
+
+        {this.state.isOpenDecisionDialog && (
+          <OutPostDecisionDialog
+            isOpen={this.state.isOpenDecisionDialog}
+            post={this.state.curDecidePost}
+            onUndoBorrowingCb={this.onUndoBorrowingCb}
+            onUndoDeniedShareCb={this.onUndoDeniedShareCb}
+            onDecideRequestingShareCb={this.onDecideRequestingShareCb}
+            onExitDialogCb={this.onExitPostDecisionDialogCb}
+          />
+        )}
+        {this.state.isRefreshingPosts && <p>refreshing out posts ...</p>}
       </div>
     );
   }

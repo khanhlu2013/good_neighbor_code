@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function OutPostTable(props) {
-  const { outPosts, onOpenOutPostEditDialogCb } = props;
-  const postRows = outPosts.map(outPost => {
+  const { posts, onOpenCrudDialogCb, onOpenDecideDialogCb } = props;
+  const postRows = posts.map(post => {
     return (
       <PostTableRow
-        key={outPost.id}
-        outPost={outPost}
-        onOpenOutPostEditDialogCb={onOpenOutPostEditDialogCb}
+        key={post.id}
+        post={post}
+        onOpenCrudDialogCb={onOpenCrudDialogCb}
+        onOpenDecideDialogCb={onOpenDecideDialogCb}
       />
     );
   });
@@ -16,13 +17,15 @@ function OutPostTable(props) {
     <table id="OutPostTable-react">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Description</th>
+          <th>title</th>
+          <th>description</th>
           <th>borrowed</th>
-          <th>rejected</th>
+          <th>denied</th>
           <th>requesting</th>
           <th>borrowing</th>
-          <th>Is Active</th>
+          <th>active</th>
+          <th>edit</th>
+          <th>share</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>
@@ -30,29 +33,43 @@ function OutPostTable(props) {
   );
 }
 OutPostTable.propTypes = {
-  outPosts: PropTypes.array.isRequired,
-  onOpenOutPostEditDialogCb: PropTypes.func.isRequired
+  posts: PropTypes.array.isRequired,
+  onOpenCrudDialogCb: PropTypes.func.isRequired,
+  onOpenDecideDialogCb: PropTypes.func.isRequired
 };
 
 function PostTableRow(props) {
-  const { outPost, onOpenOutPostEditDialogCb } = props;
+  const { post, onOpenCrudDialogCb, onOpenDecideDialogCb } = props;
 
-  const onCrudClick = () => {
-    onOpenOutPostEditDialogCb(outPost);
+  const onCrudPostClick = e => {
+    onOpenCrudDialogCb(post);
   };
 
+  const onDecidePostClick = e => {
+    onOpenDecideDialogCb(post);
+  };
+  const borrowingShare = post.borrowing;
+  const borrower = borrowingShare ? borrowingShare.borrower : null;
   return (
     <tr className="OutPostTableRow">
-      <td>{outPost.title}</td>
-      <td>{outPost.description}</td>
-      <td>{outPost.borrowed.length}</td>
-      <td>{outPost.rejected.length}</td>
-      <td>{outPost.requesting.length}</td>
-      <td>{outPost.borrowing.borrower.email}</td>
-      <td>{outPost.isActive.toString()}</td>
+      <td>{post.title}</td>
+      <td>{post.description}</td>
+      <td>{post.borrowed.length}</td>
+      <td>{post.denied.length}</td>
+      <td>{post.requesting.length}</td>
+      <td>{borrower ? borrower.email : ""}</td>
+      <td>{post.isActive.toString()}</td>
       <td>
-        <button className="OutPostTableRowEditBtn" onClick={onCrudClick}>
+        <button className="OutPostTableRowEditBtn" onClick={onCrudPostClick}>
           edit
+        </button>
+      </td>
+      <td>
+        <button
+          className="OutPostTableRowDecideBtn"
+          onClick={onDecidePostClick}
+        >
+          share
         </button>
       </td>
     </tr>
@@ -60,8 +77,9 @@ function PostTableRow(props) {
 }
 
 PostTableRow.propsType = {
-  outPost: PropTypes.object.isRequired,
-  onOpenOutPostEditDialogCb: PropTypes.func.isRequired
+  post: PropTypes.object.isRequired,
+  onOpenCrudDialogCb: PropTypes.func.isRequired,
+  onOpenDecideDialogCb: PropTypes.func.isRequired
 };
 
 export { OutPostTable };
