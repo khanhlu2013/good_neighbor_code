@@ -52,20 +52,4 @@ class Post {
   }
 }
 
-class Share {
-  constructor(id, borrower, dateCreated, isApprovedByFrom, isReturnedByTo) {
-    Object.assign(this, {
-      id,
-      borrower,
-      dateCreated,
-      isApprovedByFrom,
-      isReturnedByTo
-    });
-  }
-
-  setPost(post) {
-    this.post = post;
-  }
-}
-
-export { Post, Share };
+export { Post };

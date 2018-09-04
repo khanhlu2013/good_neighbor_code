@@ -48,7 +48,7 @@ function PostTableRow(props) {
       <td>{outPost.borrowed.length}</td>
       <td>{outPost.rejected.length}</td>
       <td>{outPost.requesting.length}</td>
-      <td>{outPost.borrowing}</td>
+      <td>{outPost.borrowing.borrower.email}</td>
       <td>{outPost.isActive.toString()}</td>
       <td>
         <button className="OutPostTableRowEditBtn" onClick={onCrudClick}>

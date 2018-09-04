@@ -61,68 +61,17 @@
 . question
   . how do i know a post have picture or not?
 
-. ui
-  . share-log-in-table -> pending/finalized
-  . share-log-out-table -> pending/finalized
-
-  . post-active-table
-    . createdAt
-    . isActive
-    . upload picture, thumb
-    . edit: activate crudDialog
-  
-  . post-inactive-table
-
-  . shareLog create and update button
-
-  . post-crud-dialog
-    . createdAt
-    . isActive
-
 ---
+. test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
 
-browse post have to do with connection. but that will be responsible from the backend. i guess connection and browse post will have to share something. but for the mvp, i don't care for now. it can be validate on the backend. yes this is better. this make this 2 component of connections and browsePost independent.
----
-
-move connections out of manageconnection. to be share with browse post
-
----
-. work on InPostManagement now
-
----
-
-. from
-  . lets work on pendingOutShareLog: this will be incoporate into OutPost table
-
-. to
-  . lets work on pendingInShareLog
-  . lets work on InPost: available,sharing
-
- (realization: ShareLog have 3 stage: pending, sharing, finalized:approve/reject)
----
-
-. inPosts: allTable
-. inPosts: requesting table: 
-. inPosts: all -> can't borrow requesting by me. who is requesting
 . outShareLog: requesting table -> approve: make sure you already give or will give share
-. outShareLog: sharing : show sharing
-. inPosts: sharing table: return
-. outShareLog: sharing : update no longer share
-. change posts into outpost
-
-
-
----
 .
   . InPosts, InShares(Requesting, Borrowing, Borrowed)
   . OutPosts, OutShare(Requesting, Borrowing, Borrowed)
 
-  . work on dev env so that test wont destroy the data for dev purpose
-  . change back into outPost damn it
-
 ---
-. test update post
-. connection create a frontend model
 
+outShareRequesting
+  . share with post from me. 
 
 

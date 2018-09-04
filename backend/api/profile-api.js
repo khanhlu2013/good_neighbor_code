@@ -194,33 +194,61 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/updateInShare", authCheck, (req, res, next) => {
-  const { user } = req;
-  const { shareID, isReturning } = req.body;
+// route.post("/updateInShare", authCheck, (req, res, next) => {
+//   const { user } = req;
+//   const { shareID, isReturning } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareID)) {
+//   if (!mongoose.Types.ObjectId.isValid(shareID)) {
+//     return res.status(400).send();
+//   }
+
+//   (async () => {
+//     const share = await Share.findById(shareID);
+//     if (!share) {
+//       return res.status(400).send();
+//     }
+
+//     if (!share.borrower.equals(user._id)) {
+//       return res.status(401).send();
+//     }
+
+//     share.isReturning = isReturning;
+//     await share.save();
+//     res.send(share);
+//   })().catch(next);
+// });
+
+// route.post("/updateOutShare", authCheck, (req, res, next) => {
+//   const { user } = req;
+//   const { shareID, isReturned } = req.body;
+
+//   if (!mongoose.Types.ObjectId.isValid(shareID)) {
+//     return res.status(400).send();
+//   }
+
+//   (async () => {
+//     const share = await Share.findById(shareID).populate("post");
+//     if (!share) {
+//       return res.status(400).send();
+//     }
+
+//     if (!share.post.user.equals(user._id)) {
+//       return res.status(401).send();
+//     }
+
+//     share.isReturned = isReturned;
+//     await share.save();
+//     res.send(share);
+//   })().catch(next);
+// });
+
+route.post("/decideOutShareRequesting", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { shareID, isApprove } = req.body;
+
+  if (isApprove === undefined) {
     return res.status(400).send();
   }
-
-  (async () => {
-    const share = await Share.findById(shareID);
-    if (!share) {
-      return res.status(400).send();
-    }
-
-    if (!share.borrower.equals(user._id)) {
-      return res.status(401).send();
-    }
-
-    share.isReturning = isReturning;
-    await share.save();
-    res.send(share);
-  })().catch(next);
-});
-
-route.post("/updateOutShare", authCheck, (req, res, next) => {
-  const { user } = req;
-  const { shareID, isReturned } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(shareID)) {
     return res.status(400).send();
@@ -232,11 +260,16 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
       return res.status(400).send();
     }
 
+    if (share.isReturnedByTo === true) {
+      //can't decide if item is returned
+      return res.status(400).send();
+    }
+
     if (!share.post.user.equals(user._id)) {
       return res.status(401).send();
     }
 
-    share.isReturned = isReturned;
+    share.isApprovedByFrom = isApprove;
     await share.save();
     res.send(share);
   })().catch(next);

@@ -1,7 +1,8 @@
 import { API_URL } from "./api-url";
-import { Post, Share } from "../model/post";
+import { Post } from "../model/post";
 import { User } from "../model/user";
 import { Connection } from "../model/connection";
+import { Share } from "../model/share";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
@@ -101,18 +102,10 @@ const deleteShare = async shareID => {
   return;
 };
 
-const updateInShare = async (shareID, isReturning) => {
-  const share = await post("profile.updateInShare", {
+const decideOutShareRequesting = async (shareID, isApprove) => {
+  const share = await post("profile.decideOutShareRequesting", {
     shareID,
-    isReturning
-  });
-  return share;
-};
-
-const updateOutShare = async (shareID, isReturned) => {
-  const share = await post("profile.updateInShare", {
-    shareID,
-    isReturned
+    isApprove
   });
   return share;
 };
@@ -194,7 +187,6 @@ const API = {
   //shares,
   createShare,
   deleteShare,
-  updateInShare,
-  updateOutShare
+  decideOutShareRequesting
 };
 export { API };

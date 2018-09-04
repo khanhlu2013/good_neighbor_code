@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { OutPostDialog } from "./OutPostDialog";
 import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
+import { OutShareRequestingTable } from "./OutShareRequestingTable";
 
 class OutPostManagement extends Component {
   state = {
@@ -56,11 +57,22 @@ class OutPostManagement extends Component {
     this.doRefreshOutPosts();
   };
 
+  onDecideOutShareRequestingCb = async (shareID, isApprove) => {
+    this.setState({ isRefreshingOutPosts: true });
+    await API.decideOutShareRequesting(shareID, isApprove);
+    this.doRefreshOutPosts();
+  };
+
   onCancelCrudPostDialog = () => {
     this.setState({ isOpenPostDialog: false });
   };
 
   render() {
+    const outShareRequesting2D = this.state.outPosts.map(outPost => {
+      return outPost.shares.filter(share => share.isRequesting);
+    });
+    const outShareRequesting = [].concat(...outShareRequesting2D);
+
     return (
       <div id="OutPostManagement-react">
         <h1>Out Posts Management</h1>
@@ -71,6 +83,11 @@ class OutPostManagement extends Component {
           outPosts={this.state.outPosts}
           onOpenOutPostEditDialogCb={this.onOpenOutPostEditDialogCb}
         />
+        <OutShareRequestingTable
+          shares={outShareRequesting}
+          onDecideOutShareRequestingCb={this.onDecideOutShareRequestingCb}
+        />
+
         {this.state.curCrudPostSessionID && (
           <OutPostDialog
             key={this.state.curCrudPostSessionID}
