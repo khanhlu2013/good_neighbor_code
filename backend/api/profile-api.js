@@ -242,27 +242,22 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
 //   })().catch(next);
 // });
 
-route.post("/decideOutShareRequesting", authCheck, (req, res, next) => {
+route.post("/updateOutShare", authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID, isApprove } = req.body;
 
-  if (isApprove === undefined) {
-    return res.status(400).send();
-  }
-
   if (!mongoose.Types.ObjectId.isValid(shareID)) {
-    return res.status(400).send();
+    throw Error("ShareID is not valid");
   }
 
   (async () => {
     const share = await Share.findById(shareID).populate("post");
     if (!share) {
-      return res.status(400).send();
+      throw Error(`ShareID ${shareID} is not found`);
     }
 
     if (share.isReturnedByTo === true) {
-      //can't decide if item is returned
-      return res.status(400).send();
+      throw Error("Share is finalized. Update outShare is not allow");
     }
 
     if (!share.post.user.equals(user._id)) {

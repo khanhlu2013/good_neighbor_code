@@ -9,19 +9,20 @@ function OutPostDecisionDialog(props) {
     post,
     onUndoBorrowingCb,
     onUndoDeniedShareCb,
-    onDecideRequestingShareCb,
+    onDecideShareCb,
     onExitDialogCb
   } = props;
 
+  const borrowingShare = post.borrowing;
+  const borrower = borrowingShare ? borrowingShare.borrower : null;
+
   const onUndoBorrowing = e => {
-    onUndoBorrowingCb(post.id);
+    onUndoBorrowingCb(borrowingShare.id);
   };
   const onExitDialog = e => {
     onExitDialogCb();
   };
 
-  const borrowingShare = post.borrowing;
-  const borrower = borrowingShare ? borrowingShare.borrower : null;
   return (
     <div id="OutPostDecisionDialog-react">
       <Modal
@@ -36,7 +37,7 @@ function OutPostDecisionDialog(props) {
         </p>
         <RequestingTable
           shares={post.requesting}
-          onDecideRequestingShareCb={onDecideRequestingShareCb}
+          onDecideShareCb={onDecideShareCb}
         />
         <DeniedTable
           shares={post.denied}
@@ -54,14 +55,18 @@ OutPostDecisionDialog.propTypes = {
   post: PropTypes.object.isRequired,
   onUndoBorrowingCb: PropTypes.func.isRequired,
   onUndoDeniedShareCb: PropTypes.func.isRequired,
-  onDecideRequestingShareCb: PropTypes.func.isRequired,
+  onDecideShareCb: PropTypes.func.isRequired,
   onExitDialogCb: PropTypes.func.isRequired
 };
 
 function DeniedTable(props) {
   const { shares, onUndoDeniedShareCb } = props;
   const rows = shares.map(share => (
-    <DeniedTableRow share={share} onUndoDeniedShareCb={onUndoDeniedShareCb} />
+    <DeniedTableRow
+      key={share.id}
+      share={share}
+      onUndoDeniedShareCb={onUndoDeniedShareCb}
+    />
   ));
   return (
     <table id="OutShareDeniedTable-react">
@@ -101,12 +106,12 @@ DeniedTable.propTypes = {
 };
 
 function RequestingTable(props) {
-  const { shares, onDecideRequestingShareCb } = props;
+  const { shares, onDecideShareCb } = props;
   const rows = shares.map(share => (
     <RequestingTableRow
       key={share.id}
       share={share}
-      onDecideRequestingShareCb={onDecideRequestingShareCb}
+      onDecideShareCb={onDecideShareCb}
     />
   ));
   return (
@@ -125,16 +130,16 @@ function RequestingTable(props) {
 }
 RequestingTable.propTypes = {
   shares: PropTypes.array.isRequired,
-  onDecideRequestingShareCb: PropTypes.func.isRequired
+  onDecideShareCb: PropTypes.func.isRequired
 };
 
 function RequestingTableRow(props) {
-  const { share, onDecideRequestingShareCb } = props;
+  const { share, onDecideShareCb } = props;
   const onApprove = e => {
-    onDecideRequestingShareCb(share.id, true);
+    onDecideShareCb(share.id, true);
   };
   const onDeny = e => {
-    onDecideRequestingShareCb(share.id, false);
+    onDecideShareCb(share.id, false);
   };
   return (
     <tr className="OutShareRequestingTableRow">
@@ -152,7 +157,7 @@ function RequestingTableRow(props) {
 }
 RequestingTableRow.propTypes = {
   share: PropTypes.object.isRequired,
-  onDecideRequestingShareCb: PropTypes.func.isRequired
+  onDecideShareCb: PropTypes.func.isRequired
 };
 
 function BorrowedTable(props) {

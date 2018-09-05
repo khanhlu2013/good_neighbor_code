@@ -44,14 +44,14 @@ const connections = async () => {
   });
 };
 
-const createConnection = userIdToAdd => {
-  return post("profile.createConnection", {
+const createConnection = async userIdToAdd => {
+  await post("profile.createConnection", {
     userIdToAdd
   });
 };
 
-const updateConnection = (connectionId, isApproved) => {
-  return post("profile.updateConnection", {
+const updateConnection = async (connectionId, isApproved) => {
+  await post("profile.updateConnection", {
     connectionId,
     isApproved
   });
@@ -59,22 +59,20 @@ const updateConnection = (connectionId, isApproved) => {
 
 // - post
 const createPost = async (title, description, isActive) => {
-  const crudedPost = await post("profile.createPost", {
+  await post("profile.createPost", {
     title,
     description,
     isActive
   });
-  return crudedPost;
 };
 
 const updatePost = async (postID, title, description, isActive) => {
-  const crudedPost = await post("profile.updatePost", {
+  await post("profile.updatePost", {
     postID,
     title,
     description,
     isActive
   });
-  return crudedPost;
 };
 
 // - outPost
@@ -91,23 +89,20 @@ const inPosts = async () => {
 
 // -  share
 const createShare = async postID => {
-  const share = await post("profile.createShare", {
+  await post("profile.createShare", {
     postID
   });
-  return share;
 };
 
 const deleteShare = async shareID => {
   await post("profile.deleteShare", { shareID });
-  return;
 };
 
-const decideOutShareRequesting = async (shareID, isApprove) => {
-  const share = await post("profile.decideOutShareRequesting", {
+const updateOutShare = async (shareID, isApprove) => {
+  await post("profile.updateOutShare", {
     shareID,
     isApprove
   });
-  return share;
 };
 
 //- helper ----
@@ -187,6 +182,6 @@ const API = {
   //shares,
   createShare,
   deleteShare,
-  decideOutShareRequesting
+  updateOutShare
 };
 export { API };

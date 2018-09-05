@@ -40,6 +40,7 @@ ShareSchema.pre("remove", async function() {
 
 ShareSchema.pre("save", async function() {
   const {
+    _id: shareID,
     post: postID,
     borrower,
     isApprovedByFrom,
@@ -81,6 +82,18 @@ ShareSchema.pre("save", async function() {
     });
     if (verifyingShares) {
       throw Error("Post is not available");
+    }
+  } else {
+    //edit share
+    if (isApprovedByFrom === true) {
+      const verifyingShare = await Share.findOne({
+        _id: { $not: { $eq: shareID } },
+        post: postID,
+        isApprovedByFrom: true
+      });
+      if (verifyingShare) {
+        throw Error("Only one borrower at a time");
+      }
     }
   }
 });

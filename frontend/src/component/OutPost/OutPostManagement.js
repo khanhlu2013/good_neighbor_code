@@ -23,12 +23,10 @@ class OutPostManagement extends Component {
     this.doRefreshPosts();
   }
 
-  doRefreshPosts = () => {
+  doRefreshPosts = async () => {
     this.setState({ isRefreshingPosts: true });
-    (async () => {
-      const posts = await API.outPosts();
-      this.setState({ posts, isRefreshingPosts: false });
-    })();
+    const posts = await API.outPosts();
+    this.setState({ posts, isRefreshingPosts: false });
   };
 
   onOpenNewCrudDialog = () => {
@@ -64,13 +62,27 @@ class OutPostManagement extends Component {
       isOpenCrudDialog: false,
       curCrudPostSessionID: null
     });
-    this.doRefreshPosts();
+    await this.doRefreshPosts();
   };
 
-  onDecideOutShareRequestingCb = async (shareID, isApprove) => {
+  doUpdateShare = async (shareID, isApprove) => {
     this.setState({ isRefreshingPosts: true });
-    await API.decideOutShareRequesting(shareID, isApprove);
-    this.doRefreshPosts();
+    await API.updateOutShare(shareID, isApprove);
+    await this.doRefreshPosts();
+    const [newDecidePost] = this.state.posts.filter(
+      post => post.shares.filter(share => share.id === shareID).length === 1
+    );
+    if (!newDecidePost) {
+      throw Error("Cant find curDecidePost");
+    }
+    this.setState({ curDecidePost: newDecidePost });
+  };
+
+  onDecideShareCb = async (shareID, isApprove) => {
+    if (isApprove === undefined) {
+      throw Error("Unexpected decision");
+    }
+    this.doUpdateShare(shareID, isApprove);
   };
 
   onCancelCrudPostDialog = () => {
@@ -78,15 +90,11 @@ class OutPostManagement extends Component {
   };
 
   onUndoBorrowingCb = shareID => {
-    console.log("undo borrowing", shareID);
+    this.doUpdateShare(shareID, undefined);
   };
 
   onUndoDeniedShareCb = shareID => {
-    console.log("undo denied share", shareID);
-  };
-
-  onDecideRequestingShareCb = (shareID, isApprove) => {
-    console.log("decide requesting share", isApprove, shareID);
+    this.doUpdateShare(shareID, undefined);
   };
 
   onExitPostDecisionDialogCb = () => {
@@ -125,7 +133,7 @@ class OutPostManagement extends Component {
             post={this.state.curDecidePost}
             onUndoBorrowingCb={this.onUndoBorrowingCb}
             onUndoDeniedShareCb={this.onUndoDeniedShareCb}
-            onDecideRequestingShareCb={this.onDecideRequestingShareCb}
+            onDecideShareCb={this.onDecideShareCb}
             onExitDialogCb={this.onExitPostDecisionDialogCb}
           />
         )}

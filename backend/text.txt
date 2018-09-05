@@ -50,6 +50,9 @@
  . renaming share.borrower
  . create a model for connection for the frontend
  . color coded available post , and current borrowing post
+. how do i know a post have picture or not?
+
+
 . TODAY
 . -----
 . the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
@@ -60,24 +63,11 @@
 
 ---
 . question
-  . how do i know a post have picture or not?
-
+  
 ---
 . test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
-
-. outShareLog: requesting table -> approve: make sure you already give or will give share
-.
-  . InPosts, InShares(Requesting, Borrowing, Borrowed)
-  . OutPosts, OutShare(Requesting, Borrowing, Borrowed)
-
+---
+. throw Error("Share is finalized. Update outShare is not allow"); : can i move this into the pre save?
 ---
 
-outShareRequesting
-  . share with post from me. 
-
-
----
-how does the backend validate that only 1 borrower at a time?
-allow borrow a current borrowing. color coded
-
-
+. lets just test a few i guess
