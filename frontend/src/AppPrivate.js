@@ -16,24 +16,21 @@ class PrivateApp extends Component {
   };
 
   componentDidMount() {
+    this.setState({ isRefreshingConnections: true });
     this.refreshConnections();
+
+    this.setState({ isRefreshingInPosts: true });
     this.refreshInPosts();
   }
 
-  refreshConnections = () => {
-    this.setState({ isRefreshingConnections: true });
-    (async () => {
-      const connections = await API.connections();
-      this.setState({ connections, isRefreshingConnections: false });
-    })();
+  refreshConnections = async () => {
+    const connections = await API.connections();
+    this.setState({ connections, isRefreshingConnections: false });
   };
 
-  refreshInPosts = () => {
-    this.setState({ isRefreshingInPosts: true });
-    (async () => {
-      const inPosts = await API.inPosts();
-      this.setState({ inPosts, isRefreshingInPosts: false });
-    })();
+  refreshInPosts = async () => {
+    const inPosts = await API.inPosts();
+    this.setState({ inPosts, isRefreshingInPosts: false });
   };
 
   createConnectionCb = userIdToAdd => {
@@ -53,6 +50,7 @@ class PrivateApp extends Component {
   };
 
   onDeleteRequestingShareCb = shareID => {
+    this.setState({ isRefreshingInPosts: true });
     (async () => {
       await API.deleteShare(shareID);
       this.refreshInPosts();
@@ -60,6 +58,7 @@ class PrivateApp extends Component {
   };
 
   onCreateShareCb = postID => {
+    this.setState({ isRefreshingInPosts: true });
     (async () => {
       await API.createShare(postID);
       this.refreshInPosts();
