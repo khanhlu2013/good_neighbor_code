@@ -70,4 +70,5 @@
 . throw Error("Share is finalized. Update outShare is not allow"); : can i move this into the pre save?
 ---
 
-. lets just test a few i guess
+. undeterministic when i do what? when i make a request. 
+. lets just fix the connection first

@@ -39,20 +39,16 @@ class PrivateApp extends Component {
   createConnectionCb = userIdToAdd => {
     this.setState({ isRefreshingConnections: true });
     (async () => {
-      const connection = await API.createConnection(userIdToAdd);
-      if (connection) {
-        this.refreshConnections();
-      }
+      await API.createConnection(userIdToAdd);
+      this.refreshConnections();
     })();
   };
 
   updateConnectionCb = (connectionId, isApproved) => {
     this.setState({ isRefreshingConnections: true });
     (async () => {
-      const connection = await API.updateConnection(connectionId, isApproved);
-      if (connection) {
-        this.refreshConnections();
-      }
+      await API.updateConnection(connectionId, isApproved);
+      this.refreshConnections();
     })();
   };
 

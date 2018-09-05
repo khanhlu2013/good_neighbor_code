@@ -25,7 +25,7 @@ function OutPostTable(props) {
           <th>borrowing</th>
           <th>active</th>
           <th>edit</th>
-          <th>share</th>
+          <th>decide</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>
@@ -69,7 +69,7 @@ function PostTableRow(props) {
           className="OutPostTableRowDecideBtn"
           onClick={onDecidePostClick}
         >
-          share
+          decide
         </button>
       </td>
     </tr>

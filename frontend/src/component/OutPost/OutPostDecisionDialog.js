@@ -33,7 +33,14 @@ function OutPostDecisionDialog(props) {
         <h1>Out Post Decision Dialog</h1>
         <p>
           Current borrower: {borrower ? borrower.email : "none"}
-          {borrower && <button onClick={onUndoBorrowing}>undo</button>}
+          {borrower && (
+            <button
+              id="OutPostDecisionDialogUndoApproveBtn"
+              onClick={onUndoBorrowing}
+            >
+              undo
+            </button>
+          )}
         </p>
         <RequestingTable
           shares={post.requesting}
@@ -44,7 +51,9 @@ function OutPostDecisionDialog(props) {
           onUndoDeniedShareCb={onUndoDeniedShareCb}
         />
         <BorrowedTable shares={post.borrowed} />
-        <button onClick={onExitDialog}>exit</button>
+        <button id="OutPostDecisionDialogExitBtn" onClick={onExitDialog}>
+          exit
+        </button>
       </Modal>
     </div>
   );
@@ -115,7 +124,7 @@ function RequestingTable(props) {
     />
   ));
   return (
-    <table>
+    <table id="OutShareRequestingTable">
       <caption>Requesting table</caption>
       <thead>
         <tr>
@@ -145,12 +154,18 @@ function RequestingTableRow(props) {
     <tr className="OutShareRequestingTableRow">
       <td>{share.borrower.email}</td>
       <td>
-        <button disabled={share.post.borrowing !== null} onClick={onApprove}>
+        <button
+          className="OutShareRequestingTableRowApproveBtn"
+          disabled={share.post.borrowing !== null}
+          onClick={onApprove}
+        >
           approve
         </button>
       </td>
       <td>
-        <button onClick={onDeny}>deny</button>
+        <button className="OutShareRequestingTableRowDenyBtn" onClick={onDeny}>
+          deny
+        </button>
       </td>
     </tr>
   );
