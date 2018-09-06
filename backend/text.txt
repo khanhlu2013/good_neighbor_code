@@ -60,7 +60,7 @@
 . also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
 
-
+-----
 
 
 
