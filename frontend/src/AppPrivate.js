@@ -30,7 +30,13 @@ class PrivateApp extends Component {
 
   refreshInPosts = async () => {
     const inPosts = await API.inPosts();
-    this.setState({ inPosts, isRefreshingInPosts: false });
+    const inPostsFilterDeny = inPosts.filter(inPost =>
+      inPost.denied.every(
+        share => share.borrower.id !== this.props.loginUser.id
+      )
+    );
+
+    this.setState({ inPosts: inPostsFilterDeny, isRefreshingInPosts: false });
   };
 
   createConnectionCb = userIdToAdd => {
@@ -66,7 +72,19 @@ class PrivateApp extends Component {
   };
 
   onReturnBorrowingShareCb = shareID => {
-    console.log("Returning share", shareID);
+    const [post] = this.state.inPosts.filter(
+      post => post.shares.filter(share => share.id === shareID).length === 1
+    );
+    if (
+      window.confirm(`You are returning ${post.title}. This can not be undo!`)
+    ) {
+      this.setState({ isRefreshingInPosts: true });
+      (async () => {
+        const isReturnedByTo = true;
+        await API.updateInShare(shareID, isReturnedByTo);
+        this.refreshInPosts();
+      })();
+    }
   };
 
   render() {

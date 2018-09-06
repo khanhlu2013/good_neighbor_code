@@ -6,7 +6,7 @@ function InShareBorrowingTable(props) {
   const rows = shares.map(share => (
     <InShareBorrowingTableRow
       key={share.id}
-      borrowingShare={share}
+      share={share}
       onReturnBorrowingShareCb={onReturnBorrowingShareCb}
     />
   ));
@@ -35,11 +35,11 @@ InShareBorrowingTable.propTypes = {
 };
 
 function InShareBorrowingTableRow(props) {
-  const { onReturnBorrowingShareCb, borrowingShare } = props;
-  const { post } = borrowingShare;
+  const { onReturnBorrowingShareCb, share } = props;
+  const { post } = share;
 
   const onReturn = e => {
-    onReturnBorrowingShareCb(borrowingShare.id);
+    onReturnBorrowingShareCb(share.id);
   };
 
   return (
@@ -62,7 +62,7 @@ function InShareBorrowingTableRow(props) {
   );
 }
 InShareBorrowingTableRow.propTypes = {
-  borrowingShare: PropTypes.object.isRequired,
+  share: PropTypes.object.isRequired,
   onReturnBorrowingShareCb: PropTypes.func.isRequired
 };
 

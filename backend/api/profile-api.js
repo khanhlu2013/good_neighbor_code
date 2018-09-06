@@ -194,53 +194,33 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-// route.post("/updateInShare", authCheck, (req, res, next) => {
-//   const { user } = req;
-//   const { shareID, isReturning } = req.body;
+route.post("/updateInShare", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { shareID, isReturnedByTo } = req.body;
 
-//   if (!mongoose.Types.ObjectId.isValid(shareID)) {
-//     return res.status(400).send();
-//   }
+  if (isReturnedByTo !== true) {
+    throw Error("Unexpected usage of updateInShare");
+  }
 
-//   (async () => {
-//     const share = await Share.findById(shareID);
-//     if (!share) {
-//       return res.status(400).send();
-//     }
+  if (!mongoose.Types.ObjectId.isValid(shareID)) {
+    throw Error("Invalid shareID");
+  }
 
-//     if (!share.borrower.equals(user._id)) {
-//       return res.status(401).send();
-//     }
+  (async () => {
+    const share = await Share.findById(shareID);
+    if (!share) {
+      throw Error("Can not find ShareID");
+    }
 
-//     share.isReturning = isReturning;
-//     await share.save();
-//     res.send(share);
-//   })().catch(next);
-// });
+    if (!share.borrower.equals(user._id)) {
+      throw Error("Unauthorized access");
+    }
 
-// route.post("/updateOutShare", authCheck, (req, res, next) => {
-//   const { user } = req;
-//   const { shareID, isReturned } = req.body;
-
-//   if (!mongoose.Types.ObjectId.isValid(shareID)) {
-//     return res.status(400).send();
-//   }
-
-//   (async () => {
-//     const share = await Share.findById(shareID).populate("post");
-//     if (!share) {
-//       return res.status(400).send();
-//     }
-
-//     if (!share.post.user.equals(user._id)) {
-//       return res.status(401).send();
-//     }
-
-//     share.isReturned = isReturned;
-//     await share.save();
-//     res.send(share);
-//   })().catch(next);
-// });
+    share.isReturnedByTo = isReturnedByTo;
+    await share.save();
+    res.send(share);
+  })().catch(next);
+});
 
 route.post("/updateOutShare", authCheck, (req, res, next) => {
   const { user } = req;
@@ -261,7 +241,7 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
     }
 
     if (!share.post.user.equals(user._id)) {
-      return res.status(401).send();
+      throw Error("Unauthorized access");
     }
 
     share.isApprovedByFrom = isApprove;

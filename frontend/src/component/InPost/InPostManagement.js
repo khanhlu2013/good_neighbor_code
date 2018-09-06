@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { InPostTable } from "./InPostTable";
 import { InShareRequestingTable } from "./InShareRequestingTable";
 import { InShareBorrowingTable } from "./InShareBorrowingTable";
+import { InShareBorrowedTable } from "./InShareBorrowedTable";
 
 function InPostManagement(props) {
   const {
@@ -19,6 +20,7 @@ function InPostManagement(props) {
   const myInShares1D = [].concat(...myInShares2D);
   const requestingShares = myInShares1D.filter(share => share.isRequesting);
   const borrowingShares = myInShares1D.filter(share => share.isBorrowing);
+  const borrowedShares = myInShares1D.filter(share => share.isBorrowed);
 
   return (
     <div id="InPostManagement-react">
@@ -36,7 +38,7 @@ function InPostManagement(props) {
         shares={borrowingShares}
         onReturnBorrowingShareCb={onReturnBorrowingShareCb}
       />
-
+      <InShareBorrowedTable shares={borrowedShares} />
       {isRefreshingInPosts && <p>Refreshing in posts ...</p>}
     </div>
   );

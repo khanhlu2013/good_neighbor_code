@@ -1,24 +1,20 @@
 const tree = {
   outPost: {
-    table: {
-      decide: post => {
-        cy.get("#OutPostTable-react .OutPostTableRow")
-          .then(rows => {
-            const row = Array.from(rows).find(row => {
-              const text = row.textContent;
-              return (
-                text.includes(post.title) && text.includes(post.description)
-              );
-            });
-            return cy.wrap(row);
-          })
-          .find(".OutPostTableRowDecideBtn")
-          .click();
-      },
-      snap: name => {
-        cy.contains("refreshing out posts ...").should("not.be.visible");
-        cy.get("#OutPostManagement-react").snapshot({ name });
-      }
+    decide: post => {
+      cy.get("#OutPostTable-react .OutPostTableRow")
+        .then(rows => {
+          const row = Array.from(rows).find(row => {
+            const text = row.textContent;
+            return text.includes(post.title) && text.includes(post.description);
+          });
+          return cy.wrap(row);
+        })
+        .find(".OutPostTableRowDecideBtn")
+        .click();
+    },
+    snap: name => {
+      cy.contains("refreshing out posts ...").should("not.be.visible");
+      cy.get("#OutPostManagement-react").snapshot({ name });
     },
     decisionDialog: {
       undoApprove: () => {
@@ -47,8 +43,9 @@ const tree = {
       }
     }
   },
+  // ----------------------------------------------
   inPost: {
-    requestingTable_undo: post => {
+    undoRequesting: post => {
       cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
         .then(rows => {
           const row = Array.from(rows).find(row => {
@@ -75,6 +72,18 @@ const tree = {
     snap: name => {
       cy.contains("Refreshing in posts ...").should("not.be.visible");
       cy.get("#InPostManagement-react").snapshot({ name });
+    },
+    returnBorrowing: post => {
+      cy.get("#InShareBorrowingTable-react .InShareBorrowingTableRow")
+        .then(rows => {
+          const row = Array.from(rows).find(row => {
+            const text = row.textContent;
+            return text.includes(post.title) && text.includes(post.description);
+          });
+          return cy.wrap(row);
+        })
+        .find(".InShareBorrowingTableRowReturnBtn")
+        .click();
     }
   }
 };

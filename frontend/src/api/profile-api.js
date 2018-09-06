@@ -105,6 +105,13 @@ const updateOutShare = async (shareID, isApprove) => {
   });
 };
 
+const updateInShare = async (shareID, isReturnedByTo) => {
+  await post("profile.updateInShare", {
+    shareID,
+    isReturnedByTo
+  });
+};
+
 //- helper ----
 
 async function getJSON(response) {
@@ -182,6 +189,7 @@ const API = {
   //shares,
   createShare,
   deleteShare,
-  updateOutShare
+  updateOutShare,
+  updateInShare
 };
 export { API };

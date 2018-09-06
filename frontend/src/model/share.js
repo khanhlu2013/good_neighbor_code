@@ -20,6 +20,10 @@ class Share {
   get isBorrowing() {
     return this.isApprovedByFrom === true && this.isReturnedByTo === false;
   }
+
+  get isBorrowed() {
+    return this.isApprovedByFrom === true && this.isReturnedByTo === true;
+  }
 }
 
 export { Share };

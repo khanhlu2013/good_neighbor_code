@@ -75,10 +75,9 @@ describe("Share", () => {
 
       4. stranger see that i am borrowing it, color shoud change
       5. i see that i am borrowing and return it.
-      . friend can see that i returned it
-      . stranger can see it is available again
-      . friend can see color change and need to decide again: deny it
-      . stranger just dont see that item anymore
+      6. stranger can see it is available again
+      7. friend can see available color again to decide: deny it
+      8. stranger just dont see that item anymore
       . friend undo deny
       . stranger see it is requesting again
     */
@@ -90,7 +89,7 @@ describe("Share", () => {
     tree.inPost.snap("app can display friend's InPosts: there are 2");
     tree.inPost.request(p2_friend);
     tree.inPost.snap("user can make a request from inPosts");
-    tree.inPost.requestingTable_undo(p2_friend);
+    tree.inPost.undoRequesting(p2_friend);
     tree.inPost.snap("user can undo a request");
     tree.inPost.request(p2_friend);
 
@@ -104,8 +103,8 @@ describe("Share", () => {
 
     //3.
     cy.switchUser(friend.email);
-    tree.outPost.table.snap("app can display outPosts with requesting info");
-    tree.outPost.table.decide(p2_friend);
+    tree.outPost.snap("app can display outPosts with requesting info");
+    tree.outPost.decide(p2_friend);
     tree.outPost.decisionDialog.snap(
       "app can show decide dialog with requesting users"
     );
@@ -123,5 +122,31 @@ describe("Share", () => {
     //5.
     cy.switchUser(me.email);
     tree.inPost.snap("app show current borrowing list");
+    tree.inPost.returnBorrowing(p2_friend);
+    tree.inPost.snap("user can return a borrowing post");
+
+    //6.
+    cy.switchUser(stranger.email);
+    tree.inPost.snap(
+      "app can show available inPost after returned for borrower perspective"
+    );
+
+    //7.
+    cy.switchUser(friend.email);
+    tree.outPost.snap(
+      "app can show available outPost after returned for owner perspective"
+    );
+    tree.outPost.decide(p2_friend);
+    tree.outPost.decisionDialog.snap(
+      "decision dialog no longer have a borrower"
+    );
+    tree.outPost.decisionDialog.decide(stranger, false);
+    tree.outPost.decisionDialog.snap("decision dialog show can deny requester");
+    tree.outPost.decisionDialog.exit();
+    tree.outPost.snap("app show outPost with deny request info");
+
+    //8.
+    cy.switchUser(stranger.email);
+    tree.inPost.snap("app hide deny requesting inPost");
   });
 });

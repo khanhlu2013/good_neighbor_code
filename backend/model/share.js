@@ -73,13 +73,14 @@ ShareSchema.pre("save", async function() {
 
     //verify not currently: requesting or borrowing or denied
     const verifyingShares = await Share.findOne({
-      postID,
+      post: postID,
       borrower,
       $or: [
         { isApprovedByFrom: { $not: { $eq: true } } }, //currently not approve <=> aka <=> requesting or denied
         { isReturnedByTo: false } //currently borrowing
       ]
     });
+    console.log("create new share", postID, borrower, verifyingShares);
     if (verifyingShares) {
       throw Error("Post is not available");
     }
