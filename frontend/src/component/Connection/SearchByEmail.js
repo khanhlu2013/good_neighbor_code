@@ -69,7 +69,7 @@ class SearchByEmail extends Component {
   render() {
     let msg = null;
     if (this.state.searchSubmited && this.state.emailEmpty) {
-      msg = "Search text is empty!";
+      msg = null; //ignore empty search text
     } else if (
       this.state.searchSubmited &&
       this.state.emailNotEmptyAndNotValid

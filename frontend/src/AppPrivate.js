@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { ConnectionManagement } from "./component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "./component/OutPost/OutPostManagement.js";
@@ -90,30 +93,43 @@ class PrivateApp extends Component {
   render() {
     return (
       <div id="PrivateApp-react" className="App">
-        <h1>Welcome to Good Neighboors</h1>
-        <div>
-          Profile: {this.props.loginUser.name} - {this.props.loginUser.email}
-          <a href={API_URL("profile.logout")}>logout</a>
+        <div className="App-header">
+          <h1>Welcome to Good Neighboors</h1>
+          <h3>
+            {this.props.loginUser.name} - {this.props.loginUser.email}
+            <a href={API_URL("profile.logout")}>logout</a>
+          </h3>
         </div>
-        <hr />
-        <ConnectionManagement
-          loginUser={this.props.loginUser}
-          connections={this.state.connections}
-          isRefreshingConnections={this.state.isRefreshingConnections}
-          createConnectionCb={this.createConnectionCb}
-          updateConnectionCb={this.updateConnectionCb}
-        />
-        <hr />
-        <OutPostManagement />
-        <hr />
-        <InPostManagement
-          loginUser={this.props.loginUser}
-          inPosts={this.state.inPosts}
-          isRefreshingInPosts={this.state.isRefreshingInPosts}
-          onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
-          onCreateRequestingShareCb={this.onCreateRequestingShareCb}
-          onReturnBorrowingShareCb={this.onReturnBorrowingShareCb}
-        />
+        <Tabs>
+          <TabList>
+            <Tab>Friends</Tab>
+            <Tab>My Posts</Tab>
+            <Tab>Friend Posts</Tab>
+          </TabList>
+
+          <TabPanel>
+            <ConnectionManagement
+              loginUser={this.props.loginUser}
+              connections={this.state.connections}
+              isRefreshingConnections={this.state.isRefreshingConnections}
+              createConnectionCb={this.createConnectionCb}
+              updateConnectionCb={this.updateConnectionCb}
+            />
+          </TabPanel>
+          <TabPanel>
+            <OutPostManagement />
+          </TabPanel>
+          <TabPanel>
+            <InPostManagement
+              loginUser={this.props.loginUser}
+              inPosts={this.state.inPosts}
+              isRefreshingInPosts={this.state.isRefreshingInPosts}
+              onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
+              onCreateRequestingShareCb={this.onCreateRequestingShareCb}
+              onReturnBorrowingShareCb={this.onReturnBorrowingShareCb}
+            />
+          </TabPanel>
+        </Tabs>
       </div>
     );
   }

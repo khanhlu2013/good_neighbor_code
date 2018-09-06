@@ -7,7 +7,6 @@ import { ConnectionTables } from "./ConnectionTables.js";
 function ConnectionManagement(props) {
   return (
     <div id="ConnectionManagement-react">
-      <h1>Friend Management</h1>
       <SearchByEmail
         loginUser={props.loginUser}
         connections={props.connections}

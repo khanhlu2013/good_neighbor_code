@@ -51,7 +51,7 @@
  . create a model for connection for the frontend
  . color coded available post , and current borrowing post
 . how do i know a post have picture or not?
-
+. test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
 
 . TODAY
 . -----
@@ -61,16 +61,7 @@
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
 
 
----
-. question
-  
----
-. test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
----
-. throw Error("Share is finalized. Update outShare is not allow"); : can i move this into the pre save?
 
-. can i change test to borrow from post 1
----
 
 
 

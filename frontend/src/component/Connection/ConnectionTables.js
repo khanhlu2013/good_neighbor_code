@@ -25,43 +25,49 @@ function ConnectionTables(props) {
   );
 
   return (
-    <div id="ConnectionTables-react">
-      <ConnectionTable
-        id="FriendTable"
-        title="Friends"
-        connections={friends}
-        loginUserId={loginUserId}
-        approveColumn={undefined}
-        denyColumn="remove"
-        updateConnectionCb={updateConnectionCb}
-      />
-      <ConnectionTable
-        id="InFriendTable"
-        title="Incomming invite"
-        connections={inFriends}
-        loginUserId={loginUserId}
-        approveColumn="approve"
-        denyColumn="deny"
-        updateConnectionCb={updateConnectionCb}
-      />
-      <ConnectionTable
-        id="OutFriendTable"
-        title="Outgoing invite"
-        connections={outFriends}
-        loginUserId={loginUserId}
-        approveColumn={undefined}
-        denyColumn="undo"
-        updateConnectionCb={updateConnectionCb}
-      />
-      <ConnectionTable
-        id="DenyFriendTable"
-        title="Denied invite"
-        connections={rejectedFriends}
-        loginUserId={loginUserId}
-        approveColumn="undo"
-        denyColumn={undefined}
-        updateConnectionCb={updateConnectionCb}
-      />
+    <div id="ConnectionTables-react" className="container">
+      <div className="row">
+        <div className="col-sm">
+          <ConnectionTable
+            id="FriendTable"
+            title="Friends"
+            connections={friends}
+            loginUserId={loginUserId}
+            approveColumn={undefined}
+            denyColumn="remove"
+            updateConnectionCb={updateConnectionCb}
+          />
+        </div>
+        <div className="col-sm">
+          <ConnectionTable
+            id="InFriendTable"
+            title="Friend Incomming Requests"
+            connections={inFriends}
+            loginUserId={loginUserId}
+            approveColumn="approve"
+            denyColumn="deny"
+            updateConnectionCb={updateConnectionCb}
+          />
+          <ConnectionTable
+            id="OutFriendTable"
+            title="Your Outgoing Requests"
+            connections={outFriends}
+            loginUserId={loginUserId}
+            approveColumn={undefined}
+            denyColumn="undo"
+            updateConnectionCb={updateConnectionCb}
+          />
+          <ConnectionTable
+            id="DenyFriendTable"
+            title="Your denal of Friend Incomming Requests"
+            connections={rejectedFriends}
+            loginUserId={loginUserId}
+            approveColumn="undo"
+            denyColumn={undefined}
+            updateConnectionCb={updateConnectionCb}
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -83,33 +89,29 @@ function ConnectionTable(props) {
   } = props;
 
   return (
-    <div id={id}>
-      <table>
-        <caption>
-          {title}: {connections.length} count
-        </caption>
-        <thead>
-          <tr>
-            <th>name</th>
-            {approveColumn && <th>{approveColumn}</th>}
-            {denyColumn && <th>{denyColumn}</th>}
-          </tr>
-        </thead>
+    <table id={id} className="table">
+      <caption>{title}</caption>
+      <thead className="thead-light">
+        <tr>
+          <th>name</th>
+          {approveColumn && <th>{approveColumn}</th>}
+          {denyColumn && <th>{denyColumn}</th>}
+        </tr>
+      </thead>
 
-        <tbody>
-          {props.connections.map(connection => (
-            <ConnectionRow
-              key={connection.id}
-              connection={connection}
-              loginUserId={loginUserId}
-              approveColumn={approveColumn}
-              denyColumn={denyColumn}
-              updateConnectionCb={updateConnectionCb}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <tbody>
+        {connections.map(connection => (
+          <ConnectionRow
+            key={connection.id}
+            connection={connection}
+            loginUserId={loginUserId}
+            approveColumn={approveColumn}
+            denyColumn={denyColumn}
+            updateConnectionCb={updateConnectionCb}
+          />
+        ))}
+      </tbody>
+    </table>
   );
 }
 
