@@ -89,7 +89,7 @@ class OutPostManagement extends Component {
     this.setState({ isOpenCrudDialog: false });
   };
 
-  onUndoBorrowingCb = shareID => {
+  onUndoApproveRequestingCb = shareID => {
     this.doUpdateShare(shareID, undefined);
   };
 
@@ -131,7 +131,7 @@ class OutPostManagement extends Component {
           <OutPostDecisionDialog
             isOpen={this.state.isOpenDecisionDialog}
             post={this.state.curDecidePost}
-            onUndoBorrowingCb={this.onUndoBorrowingCb}
+            onUndoApproveRequestingCb={this.onUndoApproveRequestingCb}
             onUndoDeniedShareCb={this.onUndoDeniedShareCb}
             onDecideShareCb={this.onDecideShareCb}
             onExitDialogCb={this.onExitPostDecisionDialogCb}

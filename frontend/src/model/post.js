@@ -11,39 +11,27 @@ class Post {
     });
   }
 
-  get borrowed() {
-    return this.shares.filter(
-      share => share.isApprovedByFrom && share.isReturnedByTo
-    );
+  get requesting() {
+    return this.shares.filter(share => share.isRequesting);
   }
 
   get borrowing() {
-    const lst = this.shares.filter(
-      share => share.isApprovedByFrom && !share.isReturnedByTo
-    );
-
-    if (lst.length > 1) {
-      throw Error("Bug: unexpected multiple borrowing");
-    }
-
-    if (lst.length === 1) {
-      return lst[0];
-    }
-    return null;
+    const lst = this.shares.filter(share => share.isBorrowing);
+    if (lst.length > 1) throw Error("unexpected multiple borrowing");
+    const [result] = lst;
+    return result;
   }
 
-  get requesting() {
-    return this.shares.filter(share => share.isApprovedByFrom === undefined);
+  get borrowed() {
+    return this.shares.filter(share => share.isBorrowed);
   }
 
   get denied() {
-    return this.shares.filter(share => share.isApprovedByFrom === false);
+    return this.shares.filter(share => share.isDenied);
   }
 
   isRequestingBy(userId) {
-    const lst = this.requesting.filter(
-      request => request.borrower.id === userId
-    );
+    const lst = this.requesting.filter(share => share.borrower.id === userId);
     if (lst.length > 1) {
       throw Error("Unexpected duplicate requesting data");
     }

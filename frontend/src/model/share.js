@@ -24,6 +24,10 @@ class Share {
   get isBorrowed() {
     return this.isApprovedByFrom === true && this.isReturnedByTo === true;
   }
+
+  get isDenied() {
+    return this.isApprovedByFrom === false;
+  }
 }
 
 export { Share };

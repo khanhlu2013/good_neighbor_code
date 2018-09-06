@@ -69,10 +69,8 @@
 ---
 . throw Error("Share is finalized. Update outShare is not allow"); : can i move this into the pre save?
 
-.onUndoBorrowingCb should be onUndoApproveRequestingCb
+. can i change test to borrow from post 1
 ---
 
-. lets just keep going i guess. lets work on the borrowing table so i can return it. this will be a shares table. with the only option is return. well, i guess i can undo it as well right? true. but well, lets just provide this as a undo-able action. then the only option is return . for now, i guess i just gona skip the dialog?
 
-. upgrade Share model to calculate isRequesting, isBorrowing, isReturned
 

@@ -35,15 +35,17 @@ describe("Share", () => {
     const p1_friend = {
       user: friend._id,
       title: "Friend Post number 1",
-      description: "Friend first post",
+      description: "Super cool stuff!",
       isActive: true
     };
     const p2_friend = {
       user: friend._id,
       title: "Friend Post number 2",
-      description: "Friend second post",
+      description: "Just stuff ...",
       isActive: true
     };
+
+    const wantedPost = p1_friend;
 
     const p_stranger = {
       user: stranger._id,
@@ -87,16 +89,16 @@ describe("Share", () => {
     //1.
     cy.login(me.email);
     tree.inPost.snap("app can display friend's InPosts: there are 2");
-    tree.inPost.request(p2_friend);
+    tree.inPost.request(wantedPost);
     tree.inPost.snap("user can make a request from inPosts");
-    tree.inPost.undoRequesting(p2_friend);
+    tree.inPost.undoRequesting(wantedPost);
     tree.inPost.snap("user can undo a request");
-    tree.inPost.request(p2_friend);
+    tree.inPost.request(wantedPost);
 
     //2.
     cy.switchUser(stranger.email);
     tree.inPost.snap("app can display requesting inPost");
-    tree.inPost.request(p2_friend);
+    tree.inPost.request(wantedPost);
     tree.inPost.snap(
       "app can display inShareRequesting that how many requesting"
     );
@@ -104,7 +106,7 @@ describe("Share", () => {
     //3.
     cy.switchUser(friend.email);
     tree.outPost.snap("app can display outPosts with requesting info");
-    tree.outPost.decide(p2_friend);
+    tree.outPost.decide(wantedPost);
     tree.outPost.decisionDialog.snap(
       "app can show decide dialog with requesting users"
     );
@@ -122,7 +124,7 @@ describe("Share", () => {
     //5.
     cy.switchUser(me.email);
     tree.inPost.snap("app show current borrowing list");
-    tree.inPost.returnBorrowing(p2_friend);
+    tree.inPost.returnBorrowing(wantedPost);
     tree.inPost.snap("user can return a borrowing post");
 
     //6.
@@ -136,7 +138,7 @@ describe("Share", () => {
     tree.outPost.snap(
       "app can show available outPost after returned for owner perspective"
     );
-    tree.outPost.decide(p2_friend);
+    tree.outPost.decide(wantedPost);
     tree.outPost.decisionDialog.snap(
       "decision dialog no longer have a borrower"
     );

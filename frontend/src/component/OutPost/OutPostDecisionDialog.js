@@ -7,7 +7,7 @@ function OutPostDecisionDialog(props) {
   const {
     isOpen,
     post,
-    onUndoBorrowingCb,
+    onUndoApproveRequestingCb,
     onUndoDeniedShareCb,
     onDecideShareCb,
     onExitDialogCb
@@ -17,7 +17,7 @@ function OutPostDecisionDialog(props) {
   const borrower = borrowingShare ? borrowingShare.borrower : null;
 
   const onUndoBorrowing = e => {
-    onUndoBorrowingCb(borrowingShare.id);
+    onUndoApproveRequestingCb(borrowingShare.id);
   };
   const onExitDialog = e => {
     onExitDialogCb();
@@ -62,7 +62,7 @@ function OutPostDecisionDialog(props) {
 OutPostDecisionDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   post: PropTypes.object.isRequired,
-  onUndoBorrowingCb: PropTypes.func.isRequired,
+  onUndoApproveRequestingCb: PropTypes.func.isRequired,
   onUndoDeniedShareCb: PropTypes.func.isRequired,
   onDecideShareCb: PropTypes.func.isRequired,
   onExitDialogCb: PropTypes.func.isRequired
@@ -156,7 +156,7 @@ function RequestingTableRow(props) {
       <td>
         <button
           className="OutShareRequestingTableRowApproveBtn"
-          disabled={share.post.borrowing !== null}
+          disabled={Boolean(share.post.borrowing)}
           onClick={onApprove}
         >
           approve
