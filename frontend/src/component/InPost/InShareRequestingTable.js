@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InShareRequestingTable(props) {
-  const { requestingShares, onDeleteRequestingShareCb } = props;
-  const rows = requestingShares.map(share => (
+  const { shares, onDeleteRequestingShareCb } = props;
+  const rows = shares.map(share => (
     <InShareRequestingTableRow
       key={share.id}
-      requestingShare={share}
+      share={share}
       onDeleteRequestingShareCb={onDeleteRequestingShareCb}
     />
   ));
@@ -31,16 +31,16 @@ function InShareRequestingTable(props) {
 }
 
 InShareRequestingTable.propTypes = {
-  requestingShares: PropTypes.array.isRequired,
+  shares: PropTypes.array.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
 function InShareRequestingTableRow(props) {
-  const { onDeleteRequestingShareCb, requestingShare } = props;
-  const { post } = requestingShare;
+  const { onDeleteRequestingShareCb, share } = props;
+  const { post } = share;
 
   const onDeleteRequestingShare = e => {
-    onDeleteRequestingShareCb(requestingShare.id);
+    onDeleteRequestingShareCb(share.id);
   };
 
   const borrowingShare = post.borrowing;
@@ -67,7 +67,7 @@ function InShareRequestingTableRow(props) {
   );
 }
 InShareRequestingTableRow.propTypes = {
-  requestingShare: PropTypes.object.isRequired,
+  share: PropTypes.object.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 

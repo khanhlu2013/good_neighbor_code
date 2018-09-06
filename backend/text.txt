@@ -68,7 +68,11 @@
 . test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
 ---
 . throw Error("Share is finalized. Update outShare is not allow"); : can i move this into the pre save?
+
+.onUndoBorrowingCb should be onUndoApproveRequestingCb
 ---
 
-. undeterministic when i do what? when i make a request. 
-. lets just fix the connection first
+. lets just keep going i guess. lets work on the borrowing table so i can return it. this will be a shares table. with the only option is return. well, i guess i can undo it as well right? true. but well, lets just provide this as a undo-able action. then the only option is return . for now, i guess i just gona skip the dialog?
+
+. upgrade Share model to calculate isRequesting, isBorrowing, isReturned
+

@@ -2,23 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { InPostTable } from "./InPostTable";
 import { InShareRequestingTable } from "./InShareRequestingTable";
+import { InShareBorrowingTable } from "./InShareBorrowingTable";
 
 function InPostManagement(props) {
   const {
     loginUser,
     inPosts,
     isRefreshingInPosts,
+    onCreateRequestingShareCb,
     onDeleteRequestingShareCb,
-    onCreateShareCb
+    onReturnBorrowingShareCb
   } = props;
-  const myInPostShares2D = inPosts.map(post =>
+  const myInShares2D = inPosts.map(post =>
     post.shares.filter(share => share.borrower.id === loginUser.id)
   );
-  const myInPostShares = [].concat(...myInPostShares2D);
-  const requestingShares = myInPostShares.filter(
-    share =>
-      share.isApprovedByFrom === undefined && share.isReturnedByTo === false
-  );
+  const myInShares1D = [].concat(...myInShares2D);
+  const requestingShares = myInShares1D.filter(share => share.isRequesting);
+  const borrowingShares = myInShares1D.filter(share => share.isBorrowing);
 
   return (
     <div id="InPostManagement-react">
@@ -26,12 +26,17 @@ function InPostManagement(props) {
       <InPostTable
         loginUser={loginUser}
         allInPosts={inPosts}
-        onCreateShareCb={onCreateShareCb}
+        onCreateRequestingShareCb={onCreateRequestingShareCb}
       />
       <InShareRequestingTable
-        requestingShares={requestingShares}
+        shares={requestingShares}
         onDeleteRequestingShareCb={onDeleteRequestingShareCb}
       />
+      <InShareBorrowingTable
+        shares={borrowingShares}
+        onReturnBorrowingShareCb={onReturnBorrowingShareCb}
+      />
+
       {isRefreshingInPosts && <p>Refreshing in posts ...</p>}
     </div>
   );
@@ -41,7 +46,8 @@ InPostManagement.propTypes = {
   inPosts: PropTypes.array.isRequired,
   isRefreshingInPosts: PropTypes.bool.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired,
-  onCreateShareCb: PropTypes.func.isRequired
+  onCreateRequestingShareCb: PropTypes.func.isRequired,
+  onReturnBorrowingShareCb: PropTypes.func.isRequired
 };
 
 export { InPostManagement };

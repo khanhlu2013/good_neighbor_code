@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InPostTable(props) {
-  const { allInPosts, onCreateShareCb, loginUser } = props;
+  const { allInPosts, onCreateRequestingShareCb, loginUser } = props;
   const rows = allInPosts.map(inPost => (
     <InPostTableRow
       key={inPost.id}
       loginUser={loginUser}
       inPost={inPost}
-      onCreateShareCb={onCreateShareCb}
+      onCreateRequestingShareCb={onCreateRequestingShareCb}
     />
   ));
 
@@ -34,13 +34,13 @@ function InPostTable(props) {
 InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
   allInPosts: PropTypes.array.isRequired,
-  onCreateShareCb: PropTypes.func.isRequired
+  onCreateRequestingShareCb: PropTypes.func.isRequired
 };
 
 function InPostTableRow(props) {
-  const { loginUser, inPost, onCreateShareCb } = props;
+  const { loginUser, inPost, onCreateRequestingShareCb } = props;
   const onCreateShare = e => {
-    onCreateShareCb(inPost.id);
+    onCreateRequestingShareCb(inPost.id);
   };
   const isRequesting = inPost.isRequestingBy(loginUser.id);
   const borrowingShare = inPost.borrowing;
@@ -68,7 +68,7 @@ function InPostTableRow(props) {
 InPostTableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
-  onCreateShareCb: PropTypes.func.isRequired
+  onCreateRequestingShareCb: PropTypes.func.isRequired
 };
 
 export { InPostTable };

@@ -49,6 +49,14 @@ class PrivateApp extends Component {
     })();
   };
 
+  onCreateRequestingShareCb = postID => {
+    this.setState({ isRefreshingInPosts: true });
+    (async () => {
+      await API.createShare(postID);
+      this.refreshInPosts();
+    })();
+  };
+
   onDeleteRequestingShareCb = shareID => {
     this.setState({ isRefreshingInPosts: true });
     (async () => {
@@ -57,12 +65,8 @@ class PrivateApp extends Component {
     })();
   };
 
-  onCreateShareCb = postID => {
-    this.setState({ isRefreshingInPosts: true });
-    (async () => {
-      await API.createShare(postID);
-      this.refreshInPosts();
-    })();
+  onReturnBorrowingShareCb = shareID => {
+    console.log("Returning share", shareID);
   };
 
   render() {
@@ -89,7 +93,8 @@ class PrivateApp extends Component {
           inPosts={this.state.inPosts}
           isRefreshingInPosts={this.state.isRefreshingInPosts}
           onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
-          onCreateShareCb={this.onCreateShareCb}
+          onCreateRequestingShareCb={this.onCreateRequestingShareCb}
+          onReturnBorrowingShareCb={this.onReturnBorrowingShareCb}
         />
       </div>
     );
