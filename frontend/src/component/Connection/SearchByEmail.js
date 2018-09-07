@@ -106,7 +106,7 @@ class SearchByEmail extends Component {
             value={this.state.searchResponsed ? "Search" : "Searching ..."}
           />
         </form>
-        <div>{msg && <p>{msg}</p>}</div>
+        {msg && <p className="lead">{msg}</p>}
 
         {this.state.searchedUser && (
           <CrudConnectionControlPanel
@@ -159,7 +159,11 @@ function CrudConnectionControlPanel(props) {
   ) {
     message = ``;
     action = (
-      <button id="createConnectionBtn" onClick={onCreateConnection}>
+      <button
+        className="btn btn-success"
+        id="createConnectionBtn"
+        onClick={onCreateConnection}
+      >
         Invite {searchedUser.name}
       </button>
     );
@@ -175,7 +179,11 @@ function CrudConnectionControlPanel(props) {
       ) {
         message = `But you changed your mind.`;
         action = (
-          <button id="approveConnectionByFromBtn" onClick={onApproveConnection}>
+          <button
+            className="btn btn-success"
+            id="approveConnectionByFromBtn"
+            onClick={onApproveConnection}
+          >
             Undo
           </button>
         );
@@ -196,7 +204,11 @@ function CrudConnectionControlPanel(props) {
           message = `But sorry, you got denied!`;
         }
         action = (
-          <button id="denyConnectionByFromBtn" onClick={onDenyConnection}>
+          <button
+            className="btn btn-danger"
+            id="denyConnectionByFromBtn"
+            onClick={onDenyConnection}
+          >
             Undo invite
           </button>
         );
@@ -220,12 +232,14 @@ function CrudConnectionControlPanel(props) {
           action = (
             <span>
               <button
+                className="btn btn-success"
                 id="approveConnectionByToFirstTimeBtn"
                 onClick={onApproveConnection}
               >
                 approve
               </button>
               <button
+                className="btn btn-danger"
                 id="denyConnectionByToFirstTimeBtn"
                 onClick={onDenyConnection}
               >
@@ -240,6 +254,7 @@ function CrudConnectionControlPanel(props) {
           message = `And you accpected!`;
           action = (
             <button
+              className="btn btn-danger"
               id="denyConnectionByToSecondTimeBtn"
               onClick={onDenyConnection}
             >
@@ -251,6 +266,7 @@ function CrudConnectionControlPanel(props) {
           message = `And you denied.`;
           action = (
             <button
+              className="btn btn-success"
               id="approveConnectionByToSecondTimeBtn"
               onClick={onApproveConnection}
             >

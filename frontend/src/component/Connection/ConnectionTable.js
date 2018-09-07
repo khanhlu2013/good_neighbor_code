@@ -13,11 +13,10 @@ function ConnectionTable(props) {
   } = props;
 
   return (
-    <table id={id} className="table">
-      <caption>{title}</caption>
+    <table id={id} className="table table-striped">
       <thead className="thead-light">
         <tr>
-          <th>name</th>
+          <th>{title}</th>
           {approveColumn && <th>{approveColumn}</th>}
           {denyColumn && <th>{denyColumn}</th>}
         </tr>
@@ -75,11 +74,11 @@ function ConnectionRow(props) {
 
   return (
     <tr className="ConnectionTableRow">
-      <td className="testing">{theOther.name}</td>
+      <td>{theOther.name}</td>
       {approveColumn && (
         <td>
           <button
-            className="ConnectionTableRowApproveBtn"
+            className="ConnectionTableRowApproveBtn btn btn-success"
             onClick={approveClick}
           >
             {approveColumn}
@@ -88,7 +87,10 @@ function ConnectionRow(props) {
       )}
       {denyColumn && (
         <td>
-          <button className="ConnectionTableRowDenyBtn" onClick={denyClick}>
+          <button
+            className="ConnectionTableRowDenyBtn btn btn-danger"
+            onClick={denyClick}
+          >
             {denyColumn}
           </button>
         </td>

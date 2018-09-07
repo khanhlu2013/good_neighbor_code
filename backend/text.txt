@@ -61,7 +61,13 @@
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
 
 -----
+. change inPost, outPost into myPost and friendPost: developing experience is higher with higher level language
+. remove the ability to undo an invite, less button, less confusion? friendly, less option. ok.
 
 
+---
 
+work on validation for crud dialog
 
+work on dialog css
+  . say that we are creating new or editing old

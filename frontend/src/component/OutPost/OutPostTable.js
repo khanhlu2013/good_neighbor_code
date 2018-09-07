@@ -14,8 +14,8 @@ function OutPostTable(props) {
     );
   });
   return (
-    <table id="OutPostTable-react">
-      <thead>
+    <table id="OutPostTable-react" className="table table-striped">
+      <thead className="thead-light">
         <tr>
           <th>title</th>
           <th>description</th>
@@ -25,7 +25,7 @@ function OutPostTable(props) {
           <th>borrowing</th>
           <th>active</th>
           <th>edit</th>
-          <th>decide</th>
+          <th>share</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>
@@ -50,8 +50,10 @@ function PostTableRow(props) {
   };
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
+  const isRequesting = post.requesting.length !== 0;
+
   return (
-    <tr className="OutPostTableRow">
+    <tr className={"OutPostTableRow" + (isRequesting ? " table-warning" : "")}>
       <td>{post.title}</td>
       <td>{post.description}</td>
       <td>{post.borrowed.length}</td>
@@ -60,17 +62,24 @@ function PostTableRow(props) {
       <td>{borrower ? borrower.email : ""}</td>
       <td>{post.isActive.toString()}</td>
       <td>
-        <button className="OutPostTableRowEditBtn" onClick={onCrudPostClick}>
+        <button
+          className="OutPostTableRowEditBtn btn btn-primary"
+          onClick={onCrudPostClick}
+        >
           edit
         </button>
       </td>
       <td>
-        <button
-          className="OutPostTableRowDecideBtn"
-          onClick={onDecidePostClick}
-        >
-          decide
-        </button>
+        {(post.denied.length !== 0 ||
+          post.requesting.length !== 0 ||
+          post.borrowing) && (
+          <button
+            className="OutPostTableRowDecideBtn btn btn-success"
+            onClick={onDecidePostClick}
+          >
+            share
+          </button>
+        )}
       </td>
     </tr>
   );

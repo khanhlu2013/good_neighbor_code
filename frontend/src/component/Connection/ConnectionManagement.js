@@ -33,12 +33,6 @@ function ConnectionManagement(props) {
 
   return (
     <div id="ConnectionManagement-react" className="container">
-      <SearchByEmail
-        loginUser={props.loginUser}
-        connections={props.connections}
-        createConnectionCb={props.createConnectionCb}
-        updateConnectionCb={props.updateConnectionCb}
-      />
       <div className="row">
         <div className="col-sm">
           <ConnectionTable
@@ -52,33 +46,46 @@ function ConnectionManagement(props) {
           />
         </div>
         <div className="col-sm">
-          <ConnectionTable
-            id="InFriendTable"
-            title="Friend Incomming Requests"
-            connections={inFriends}
-            loginUserId={loginUserId}
-            approveColumn="approve"
-            denyColumn="deny"
-            updateConnectionCb={updateConnectionCb}
+          <SearchByEmail
+            loginUser={props.loginUser}
+            connections={props.connections}
+            createConnectionCb={props.createConnectionCb}
+            updateConnectionCb={props.updateConnectionCb}
           />
-          <ConnectionTable
-            id="OutFriendTable"
-            title="Your Outgoing Requests"
-            connections={outFriends}
-            loginUserId={loginUserId}
-            approveColumn={undefined}
-            denyColumn="undo"
-            updateConnectionCb={updateConnectionCb}
-          />
-          <ConnectionTable
-            id="DenyFriendTable"
-            title="Your denal of Friend Incomming Requests"
-            connections={rejectedFriends}
-            loginUserId={loginUserId}
-            approveColumn="undo"
-            denyColumn={undefined}
-            updateConnectionCb={updateConnectionCb}
-          />
+          <hr />
+          {inFriends.length !== 0 && (
+            <ConnectionTable
+              id="InFriendTable"
+              title="Friend Incomming Requests"
+              connections={inFriends}
+              loginUserId={loginUserId}
+              approveColumn="approve"
+              denyColumn="deny"
+              updateConnectionCb={updateConnectionCb}
+            />
+          )}
+          {outFriends.length !== 0 && (
+            <ConnectionTable
+              id="OutFriendTable"
+              title="Your Outgoing Requests"
+              connections={outFriends}
+              loginUserId={loginUserId}
+              approveColumn={undefined}
+              denyColumn="undo"
+              updateConnectionCb={updateConnectionCb}
+            />
+          )}
+          {rejectedFriends.length !== 0 && (
+            <ConnectionTable
+              id="DenyFriendTable"
+              title="Your denal of Friend Incomming Requests"
+              connections={rejectedFriends}
+              loginUserId={loginUserId}
+              approveColumn="undo"
+              denyColumn={undefined}
+              updateConnectionCb={updateConnectionCb}
+            />
+          )}
         </div>
       </div>
       {props.isRefreshingConnections && <p>Refreshing Connection ...</p>}

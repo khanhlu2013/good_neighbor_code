@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   margin: 0 auto;
-  width: 960px; /* or whatever you like */
+  width: 960px;
 }
 
 .App-logo {
@@ -10,7 +10,6 @@
 }
 
 .App-header {
-  background-color: lightgrey;
   height: 120px;
   padding: 5px;
   color: black;
@@ -31,4 +30,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ReactModal__title {
+  text-align: center;
+  margin: 40px;
+}
+
+.ReactModal__Content {
+  margin: 0 auto;
+  width: 960px;
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity 150ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
 }

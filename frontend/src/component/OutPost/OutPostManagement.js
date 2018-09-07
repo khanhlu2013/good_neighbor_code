@@ -107,10 +107,14 @@ class OutPostManagement extends Component {
   render() {
     return (
       <div id="OutPostManagement-react">
-        <h1>Out Posts Management</h1>
-        <button id="createPostBtn" onClick={this.onOpenNewCrudDialog}>
-          create post
+        <button
+          className="btn btn-primary"
+          id="createPostBtn"
+          onClick={this.onOpenNewCrudDialog}
+        >
+          new post
         </button>
+
         <OutPostTable
           posts={this.state.posts}
           onOpenCrudDialogCb={this.onOpenCrudDialogCb}
