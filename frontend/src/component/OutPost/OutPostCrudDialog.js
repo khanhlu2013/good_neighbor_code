@@ -1,47 +1,65 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import deepEqual from "deep-equal";
+import classNames from "classnames";
+import _ from "lodash";
+
+import { Post } from "../../model/post";
+
 Modal.setAppElement("#root");
 
 class OutPostCrudDialog extends Component {
   constructor(props) {
     super(props);
+    let post = props.post;
+    if (!post) {
+      post = new Post(null, null, true, "", "", null, null);
+    }
+    this.state = { post, initPost: post };
+  }
 
-    const {
-      title = "",
-      description = "",
-      id: postID = null,
-      isActive = true
-    } = props.post ? props.post : {};
-
-    this.state = { title, description, postID, isActive };
+  static getDerivedStateFromProps(props, state) {
+    return { isPostChanged: !deepEqual(state.post, state.initPost) };
   }
 
   onTitleChange = e => {
-    this.setState({ title: e.currentTarget.value });
+    const post = _.cloneDeep(this.state.post);
+    post.title = e.target.value;
+    this.setState({ post });
   };
 
   onDescriptionChange = e => {
-    this.setState({ description: e.currentTarget.value });
+    const post = _.cloneDeep(this.state.post);
+    post.description = e.target.value;
+    this.setState({ post });
   };
 
   onIsActiveChange = e => {
-    this.setState({ isActive: e.target.checked });
+    const post = _.cloneDeep(this.state.post);
+    post.isActive = e.target.checked;
+    this.setState({ post });
   };
 
   onSubmitPost = e => {
+    const { post } = this.state;
     this.props.onCrudPostCb(
-      this.state.postID,
-      this.state.title,
-      this.state.description,
-      this.state.isActive
+      post.id,
+      post.title,
+      post.description,
+      post.isActive
     );
 
     e.preventDefault();
   };
 
   render() {
-    const title = this.state.postID
+    const { post } = this.state;
+    const error = post.getValidateError();
+    const validTitle = !error || !error.title;
+    const validDescription = !error || !error.description;
+
+    const dialogTitle = this.props.post
       ? `Edit '${this.props.post.title}' post`
       : "Create new post";
     return (
@@ -51,7 +69,7 @@ class OutPostCrudDialog extends Component {
           shouldCloseOnOverlayClick={false}
           shouldCloseOnEsc={false}
         >
-          <h1 className="ReactModal__title">{title}</h1>
+          <h1 className="ReactModal__title">{dialogTitle}</h1>
           <form id="OutPostCrudDialogForm-react" onSubmit={this.onSubmitPost}>
             <div className="form-group row">
               <label
@@ -64,12 +82,17 @@ class OutPostCrudDialog extends Component {
                 <input
                   id="outpostCrudDialogFormTitle"
                   type="text"
-                  className="form-control"
+                  className={classNames({
+                    "form-control": true,
+                    "is-valid": validTitle,
+                    "is-invalid": !validTitle
+                  })}
                   aria-describedby="post title"
                   onChange={this.onTitleChange}
-                  value={this.state.title}
+                  value={post.title}
                   placeholder="post title"
                 />
+                <div className="invalid-feedback">required</div>
               </div>
             </div>
 
@@ -84,13 +107,18 @@ class OutPostCrudDialog extends Component {
                 <textarea
                   id="outpostCrudDialogFormDescription"
                   type="text"
-                  className="form-control"
+                  className={classNames({
+                    "form-control": true,
+                    "is-valid": validDescription,
+                    "is-invalid": !validDescription
+                  })}
                   aria-describedby="post description"
                   onChange={this.onDescriptionChange}
-                  value={this.state.description}
+                  value={post.description}
                   rows="4"
                   placeholder="post description"
                 />
+                <div className="invalid-feedback">required</div>
               </div>
             </div>
 
@@ -102,7 +130,7 @@ class OutPostCrudDialog extends Component {
                     className="form-check-input"
                     type="checkbox"
                     id="outpostCrudDialogFormIsActive"
-                    checked={this.state.isActive}
+                    checked={post.isActive}
                     onChange={this.onIsActiveChange}
                   />
                   <label
@@ -123,7 +151,13 @@ class OutPostCrudDialog extends Component {
                 >
                   cancel
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button
+                  disabled={
+                    !this.state.isPostChanged || post.getValidateError()
+                  }
+                  type="submit"
+                  className="btn btn-primary"
+                >
                   ok
                 </button>
               </div>

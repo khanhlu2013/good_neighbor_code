@@ -38,6 +38,25 @@ class Post {
 
     return lst.length === 1;
   }
+
+  getValidateError() {
+    let title = undefined;
+    let description = undefined;
+
+    if (!this.title) {
+      title = "title is required";
+    }
+
+    if (!this.description) {
+      description = "description is required";
+    }
+
+    if (!title && !description) {
+      return null;
+    } else {
+      return { title, description };
+    }
+  }
 }
 
 export { Post };

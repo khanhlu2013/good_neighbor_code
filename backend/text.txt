@@ -52,6 +52,9 @@
  . color coded available post , and current borrowing post
 . how do i know a post have picture or not?
 . test when connection change, InPost will be changing. this will be affecting current borrowing. think about mvp
+. Using Immutable Data Structures: https://reactjs.org/docs/optimizing-performance.html#the-power-of-not-mutating-data
+. https://facebook.github.io/immutable-js/
+. post: { ...state.post, isActive }, immutable.js seem can aleviate this boilerplate
 
 . TODAY
 . -----
@@ -63,11 +66,11 @@
 -----
 . change inPost, outPost into myPost and friendPost: developing experience is higher with higher level language
 . remove the ability to undo an invite, less button, less confusion? friendly, less option. ok.
-
+. kill event.currentTarget?
 
 ---
+work on decide dialog : css 
+work on friend post css
 
-work on validation for crud dialog
 
-work on dialog css
-  . say that we are creating new or editing old
+
