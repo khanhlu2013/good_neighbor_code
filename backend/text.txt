@@ -69,8 +69,8 @@
 . kill event.currentTarget?
 
 ---
-work on decide dialog : css 
 work on friend post css
 
 
-
+---
+work on decide dialog : css 

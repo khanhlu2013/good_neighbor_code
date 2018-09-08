@@ -1,14 +1,71 @@
 class Post {
-  constructor(id, user, isActive, title, description, dateCreated, shares) {
+  constructor(
+    _id,
+    _user,
+    _isActive,
+    _title,
+    _description,
+    _dateCreated,
+    shares
+  ) {
     Object.assign(this, {
-      id,
-      user,
-      isActive,
-      title,
-      description,
-      dateCreated,
+      _id,
+      _user,
+      _isActive,
+      _title: _title,
+      _description: _description,
+      _dateCreated,
       shares
     });
+  }
+
+  get id() {
+    return this._id;
+  }
+  set id(value) {
+    this._id = value;
+  }
+
+  get user() {
+    return this._user;
+  }
+  set user(value) {
+    this._user = value;
+  }
+
+  get isActive() {
+    return this._isActive;
+  }
+  set isActive(value) {
+    this._isActive = value;
+  }
+
+  get title() {
+    return this._title;
+  }
+  set title(value) {
+    this._title = value;
+  }
+
+  get description() {
+    return this._description;
+  }
+  set description(value) {
+    this._description = value;
+  }
+
+  get dateCreated() {
+    return this._dateCreated;
+  }
+  set dateCreated(value) {
+    this._dateCreated = value;
+  }
+
+  get shares() {
+    return this._shares;
+  }
+  set shares(value) {
+    this._shares = value;
   }
 
   get requesting() {
@@ -43,11 +100,11 @@ class Post {
     let title = undefined;
     let description = undefined;
 
-    if (!this.title) {
+    if (!this.title.trim()) {
       title = "title is required";
     }
 
-    if (!this.description) {
+    if (!this.description.trim()) {
       description = "description is required";
     }
 
