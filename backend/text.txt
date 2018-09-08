@@ -70,7 +70,11 @@
 
 ---
 work on friend post css
-
+work on decide dialog : css 
+work on friends tab show friend request
+work on my post show request
 
 ---
-work on decide dialog : css 
+. text center isn't gona work for me
+put glyphycon remove in both friend and outFriend request, make col the same
+  . 1 for approve, 1 for delete, and 10 for name

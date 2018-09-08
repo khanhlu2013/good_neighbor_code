@@ -44,6 +44,17 @@ function ConnectionManagement(props) {
             denyColumn="remove"
             updateConnectionCb={updateConnectionCb}
           />
+          {outFriends.length !== 0 && (
+            <ConnectionTable
+              id="OutFriendTable"
+              title="Your Outgoing Requests"
+              connections={outFriends}
+              loginUserId={loginUserId}
+              approveColumn={undefined}
+              denyColumn="remove"
+              updateConnectionCb={updateConnectionCb}
+            />
+          )}
         </div>
         <div className="col-sm">
           <SearchByEmail
@@ -61,17 +72,6 @@ function ConnectionManagement(props) {
               loginUserId={loginUserId}
               approveColumn="approve"
               denyColumn="deny"
-              updateConnectionCb={updateConnectionCb}
-            />
-          )}
-          {outFriends.length !== 0 && (
-            <ConnectionTable
-              id="OutFriendTable"
-              title="Your Outgoing Requests"
-              connections={outFriends}
-              loginUserId={loginUserId}
-              approveColumn={undefined}
-              denyColumn="undo"
               updateConnectionCb={updateConnectionCb}
             />
           )}

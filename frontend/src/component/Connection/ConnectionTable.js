@@ -16,9 +16,9 @@ function ConnectionTable(props) {
     <table id={id} className="table table-striped">
       <thead className="thead-light">
         <tr>
-          <th>{title}</th>
-          {approveColumn && <th>{approveColumn}</th>}
-          {denyColumn && <th>{denyColumn}</th>}
+          <th scope="col">{`${title}: ${connections.length}`}</th>
+          {approveColumn && <th scope="col">{approveColumn}</th>}
+          {denyColumn && <th scope="col">{denyColumn}</th>}
         </tr>
       </thead>
 
