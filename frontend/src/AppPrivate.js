@@ -91,6 +91,17 @@ class PrivateApp extends Component {
   };
 
   render() {
+    const friendRequests = this.state.connections.filter(
+      connection =>
+        connection.to.id === this.props.loginUser.id &&
+        connection.approvedByFrom &&
+        connection.approvedByTo === undefined
+    ).length;
+
+    // const inPostRequests = this.state.inPosts.filter(
+    //   post => post.requesting.length !== 0
+    // ).length;
+
     return (
       <div id="PrivateApp-react" className="App">
         <div className="App-header">
@@ -102,7 +113,18 @@ class PrivateApp extends Component {
         </div>
         <Tabs>
           <TabList>
-            <Tab>Friends</Tab>
+            <Tab>
+              Friends
+              <span className="text-danger">
+                {friendRequests === 0 ? "" : ` (${friendRequests})`}
+              </span>
+            </Tab>
+            {/* <Tab>
+              My Posts
+              <span className="text-danger">
+                {inPostRequests === 0 ? "" : ` (${inPostRequests})`}
+              </span>
+            </Tab> */}
             <Tab>My Posts</Tab>
             <Tab>Friend Posts</Tab>
           </TabList>

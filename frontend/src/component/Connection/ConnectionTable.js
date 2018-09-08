@@ -13,7 +13,7 @@ function ConnectionTable(props) {
   } = props;
 
   return (
-    <table id={id} className="table table-striped">
+    <table id={id} className="table table-striped table-bordered">
       <thead className="thead-light">
         <tr>
           <th scope="col">{`${title}: ${connections.length}`}</th>
