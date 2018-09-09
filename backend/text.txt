@@ -55,6 +55,8 @@
 . Using Immutable Data Structures: https://reactjs.org/docs/optimizing-performance.html#the-power-of-not-mutating-data
 . https://facebook.github.io/immutable-js/
 . post: { ...state.post, isActive }, immutable.js seem can aleviate this boilerplate
+. put glyphycon remove in both friend and outFriend request, make col the same
+
 
 . TODAY
 . -----
@@ -69,12 +71,19 @@
 . kill event.currentTarget?
 
 ---
+work on the app header. separate name, email, and logout
 work on friend post css
 work on decide dialog : css 
 work on friends tab show friend request
 work on my post show request
 
 ---
-. text center isn't gona work for me
-put glyphycon remove in both friend and outFriend request, make col the same
-  . 1 for approve, 1 for delete, and 10 for name
+
+. it is an anti-pattern to move outPost into the outer app. the outer app only concern for now what is the count of the requesting post. lets tackle this separately with test. so lets go all the way with production first. so when i try to snap it, it need to wait. that is production property. which mean refreshing post need to be true. 
+
+here is the plan: refreshing post need to be true to start out. there must be an id to indicate the refreshing status when i try to snap thing. text is only a temporary thing. the fix for now will be an inicating className. 
+
+1. sidetrack: refreshing post mix between sync and async. i can fix this later. 
+2. contact with the outside world about the requesting post count together with 
+  side track: why can not i use posts as a null to indicate it is not available? this could be a derived state. ok. 
+3. fix the test.

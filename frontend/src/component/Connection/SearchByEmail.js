@@ -92,7 +92,7 @@ class SearchByEmail extends Component {
     }
 
     return (
-      <div id="SearchByEmail-react">
+      <div id="SearchByEmail-react" className="text-center">
         <form onSubmit={this.onSearchSubmit}>
           <input
             type="text"
@@ -101,6 +101,7 @@ class SearchByEmail extends Component {
             onChange={this.onSearchChange}
           />
           <input
+            className="btn btn-primary"
             disabled={!this.state.searchResponsed}
             type="submit"
             value={this.state.searchResponsed ? "Search" : "Searching ..."}
@@ -205,7 +206,7 @@ function CrudConnectionControlPanel(props) {
         }
         action = (
           <button
-            className="btn btn-danger"
+            className="btn btn-warning"
             id="denyConnectionByFromBtn"
             onClick={onDenyConnection}
           >
@@ -239,7 +240,7 @@ function CrudConnectionControlPanel(props) {
                 approve
               </button>
               <button
-                className="btn btn-danger"
+                className="btn btn-warning"
                 id="denyConnectionByToFirstTimeBtn"
                 onClick={onDenyConnection}
               >
@@ -254,7 +255,7 @@ function CrudConnectionControlPanel(props) {
           message = `And you accpected!`;
           action = (
             <button
-              className="btn btn-danger"
+              className="btn btn-warning"
               id="denyConnectionByToSecondTimeBtn"
               onClick={onDenyConnection}
             >

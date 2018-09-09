@@ -13,28 +13,30 @@ function ConnectionTable(props) {
   } = props;
 
   return (
-    <table id={id} className="table table-striped table-bordered">
-      <thead className="thead-light">
-        <tr>
-          <th scope="col">{`${title}: ${connections.length}`}</th>
-          {approveColumn && <th scope="col">{approveColumn}</th>}
-          {denyColumn && <th scope="col">{denyColumn}</th>}
-        </tr>
-      </thead>
+    <div className="container-fluid">
+      <table id={id} className="table table-striped table-bordered">
+        <thead className="thead-light">
+          <tr className="d-flex">
+            <th className="col-9">{`${title}: ${connections.length}`}</th>
+            {approveColumn && <th className="col-3">{approveColumn}</th>}
+            {denyColumn && <th className="col-3">{denyColumn}</th>}
+          </tr>
+        </thead>
 
-      <tbody>
-        {connections.map(connection => (
-          <ConnectionRow
-            key={connection.id}
-            connection={connection}
-            loginUserId={loginUserId}
-            approveColumn={approveColumn}
-            denyColumn={denyColumn}
-            updateConnectionCb={updateConnectionCb}
-          />
-        ))}
-      </tbody>
-    </table>
+        <tbody>
+          {connections.map(connection => (
+            <ConnectionRow
+              key={connection.id}
+              connection={connection}
+              loginUserId={loginUserId}
+              approveColumn={approveColumn}
+              denyColumn={denyColumn}
+              updateConnectionCb={updateConnectionCb}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -73,10 +75,10 @@ function ConnectionRow(props) {
   };
 
   return (
-    <tr className="ConnectionTableRow">
-      <td>{theOther.name}</td>
+    <tr className="ConnectionTableRow d-flex">
+      <td className="col-6">{theOther.name}</td>
       {approveColumn && (
-        <td>
+        <td className="col-3">
           <button
             className="ConnectionTableRowApproveBtn btn btn-success"
             onClick={approveClick}
@@ -86,7 +88,7 @@ function ConnectionRow(props) {
         </td>
       )}
       {denyColumn && (
-        <td>
+        <td className="col-3">
           <button
             className="ConnectionTableRowDenyBtn btn btn-danger"
             onClick={denyClick}

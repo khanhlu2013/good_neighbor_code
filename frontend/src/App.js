@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 
+import "./App.css";
 import { Login } from "./component/Login";
 import { PrivateApp } from "./AppPrivate";
 import { API } from "./api/profile-api";

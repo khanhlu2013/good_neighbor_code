@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { SearchByEmail } from "./SearchByEmail.js";
-import { ConnectionTable } from "./ConnectionTable.js";
+import { ConnectionFriendTable } from "./ConnectionTable_friend.js";
+import { ConnectionOutTable } from "./ConnectionTable_out.js";
+import { ConnectionDenyTable } from "./ConnectionTable_deny.js";
+import { ConnectionInTable } from "./ConnectionTable_in.js";
 
 function ConnectionManagement(props) {
   const {
@@ -26,10 +29,6 @@ function ConnectionManagement(props) {
       connection.approvedByFrom &&
       connection.approvedByTo === undefined
   );
-  // const rejectedFriends = connections.filter(
-  //   connection =>
-  //     connection.to.id === loginUserId && connection.approvedByTo === false
-  // );
   const rejectedFriends = connections.filter(
     connection =>
       (connection.to.id === loginUserId && connection.approvedByTo === false) ||
@@ -41,31 +40,19 @@ function ConnectionManagement(props) {
     <div id="ConnectionManagement-react" className="container">
       <div className="row">
         <div className="col-sm">
-          <ConnectionTable
-            id="FriendTable"
-            title="Friends"
+          <ConnectionFriendTable
             connections={friends}
             loginUserId={loginUserId}
-            approveColumn={undefined}
-            denyColumn="remove"
             updateConnectionCb={updateConnectionCb}
           />
-          <ConnectionTable
-            id="OutFriendTable"
-            title="Waiting for friend's response"
+          <ConnectionOutTable
             connections={outFriends}
             loginUserId={loginUserId}
-            approveColumn={undefined}
-            denyColumn="remove"
             updateConnectionCb={updateConnectionCb}
           />
-          <ConnectionTable
-            id="DenyFriendTable"
-            title="Denial list"
+          <ConnectionDenyTable
             connections={rejectedFriends}
             loginUserId={loginUserId}
-            approveColumn="undo"
-            denyColumn={undefined}
             updateConnectionCb={updateConnectionCb}
           />
         </div>
@@ -77,13 +64,9 @@ function ConnectionManagement(props) {
             updateConnectionCb={props.updateConnectionCb}
           />
           <hr />
-          <ConnectionTable
-            id="InFriendTable"
-            title="Friend requests"
+          <ConnectionInTable
             connections={inFriends}
             loginUserId={loginUserId}
-            approveColumn="approve"
-            denyColumn="deny"
             updateConnectionCb={updateConnectionCb}
           />
         </div>
