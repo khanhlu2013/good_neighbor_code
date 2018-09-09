@@ -98,10 +98,6 @@ class PrivateApp extends Component {
         connection.approvedByTo === undefined
     ).length;
 
-    // const inPostRequests = this.state.inPosts.filter(
-    //   post => post.requesting.length !== 0
-    // ).length;
-
     return (
       <div id="PrivateApp-react" className="App">
         <div className="App-header">
@@ -113,34 +109,15 @@ class PrivateApp extends Component {
         </div>
         <Tabs>
           <TabList>
+            <Tab>Friend Posts</Tab>
+            <Tab>My Posts</Tab>
             <Tab>
               Friends
               <span className="text-danger">
                 {friendRequests === 0 ? "" : ` (${friendRequests})`}
               </span>
             </Tab>
-            {/* <Tab>
-              My Posts
-              <span className="text-danger">
-                {inPostRequests === 0 ? "" : ` (${inPostRequests})`}
-              </span>
-            </Tab> */}
-            <Tab>My Posts</Tab>
-            <Tab>Friend Posts</Tab>
           </TabList>
-
-          <TabPanel>
-            <ConnectionManagement
-              loginUser={this.props.loginUser}
-              connections={this.state.connections}
-              isRefreshingConnections={this.state.isRefreshingConnections}
-              createConnectionCb={this.createConnectionCb}
-              updateConnectionCb={this.updateConnectionCb}
-            />
-          </TabPanel>
-          <TabPanel>
-            <OutPostManagement />
-          </TabPanel>
           <TabPanel>
             <InPostManagement
               loginUser={this.props.loginUser}
@@ -149,6 +126,18 @@ class PrivateApp extends Component {
               onDeleteRequestingShareCb={this.onDeleteRequestingShareCb}
               onCreateRequestingShareCb={this.onCreateRequestingShareCb}
               onReturnBorrowingShareCb={this.onReturnBorrowingShareCb}
+            />
+          </TabPanel>
+          <TabPanel>
+            <OutPostManagement />
+          </TabPanel>
+          <TabPanel>
+            <ConnectionManagement
+              loginUser={this.props.loginUser}
+              connections={this.state.connections}
+              isRefreshingConnections={this.state.isRefreshingConnections}
+              createConnectionCb={this.createConnectionCb}
+              updateConnectionCb={this.updateConnectionCb}
             />
           </TabPanel>
         </Tabs>

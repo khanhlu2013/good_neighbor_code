@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const userNameColClass = "col-8";
 const decideColClass = "col-2 text-center";
@@ -13,8 +14,12 @@ function ConnectionInTable(props) {
         <thead className="thead-light">
           <tr className="d-flex">
             <th className={userNameColClass}>Friend requests</th>
-            <th className={decideColClass}>ok</th>
-            <th className={decideColClass}>no</th>
+            <th className={decideColClass}>
+              <FontAwesomeIcon icon="thumbs-up" />
+            </th>
+            <th className={decideColClass}>
+              <FontAwesomeIcon icon="thumbs-down" />
+            </th>
           </tr>
         </thead>
 
@@ -58,7 +63,7 @@ function ConnectionRow(props) {
           className="ConnectionTableRowApproveBtn btn btn-success"
           onClick={approveClick}
         >
-          ok
+          <FontAwesomeIcon icon="thumbs-up" />
         </button>
       </td>
       <td className={decideColClass}>
@@ -66,7 +71,7 @@ function ConnectionRow(props) {
           className="ConnectionTableRowDenyBtn btn btn-warning"
           onClick={denyClick}
         >
-          X
+          <FontAwesomeIcon icon="thumbs-down" />
         </button>
       </td>
     </tr>

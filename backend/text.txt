@@ -82,8 +82,8 @@ work on my post show request
 . it is an anti-pattern to move outPost into the outer app. the outer app only concern for now what is the count of the requesting post. lets tackle this separately with test. so lets go all the way with production first. so when i try to snap it, it need to wait. that is production property. which mean refreshing post need to be true. 
 
 here is the plan: refreshing post need to be true to start out. there must be an id to indicate the refreshing status when i try to snap thing. text is only a temporary thing. the fix for now will be an inicating className. 
+---
 
-1. sidetrack: refreshing post mix between sync and async. i can fix this later. 
 2. contact with the outside world about the requesting post count together with 
-  side track: why can not i use posts as a null to indicate it is not available? this could be a derived state. ok. 
-3. fix the test.
+
+

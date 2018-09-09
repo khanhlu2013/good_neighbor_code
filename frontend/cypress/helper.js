@@ -1,20 +1,67 @@
 const tree = {
+  // ----------------------------------------------
+  connection: {
+    focusTab: () => {
+      cy.get("#react-tabs-4").click();
+    }
+  },
+  // ----------------------------------------------
   outPost: {
-    decide: post => {
-      cy.get("#OutPostTable-react .OutPostTableRow")
-        .then(rows => {
-          const row = Array.from(rows).find(row => {
-            const text = row.textContent;
-            return text.includes(post.title) && text.includes(post.description);
-          });
-          return cy.wrap(row);
-        })
-        .find(".OutPostTableRowDecideBtn")
-        .click();
+    focusTab: () => {
+      cy.get("#react-tabs-2").click();
+    },
+    table: {
+      decide: post => {
+        cy.get("#OutPostTable-react .OutPostTableRow")
+          .then(rows => {
+            const row = Array.from(rows).find(row => {
+              const text = row.textContent;
+              return (
+                text.includes(post.title) && text.includes(post.description)
+              );
+            });
+            return cy.wrap(row);
+          })
+          .find(".OutPostTableRowDecideBtn")
+          .click();
+      },
+      edit: rowIndex => {
+        cy.get("#OutPostTable-react .OutPostTableRow")
+          .eq(rowIndex)
+          .find(".OutPostTableRowEditBtn")
+          .click();
+      }
     },
     snap: name => {
-      cy.contains("refreshing out posts ...").should("not.be.visible");
+      cy.get(".isRefreshingOutPost").should("not.be.visible");
       cy.get("#OutPostManagement-react").snapshot({ name });
+    },
+    crudDialog: {
+      open: () => {
+        cy.get("#createPostBtn").click();
+      },
+      snap: name => {
+        cy.get("#OutPostCrudDialogForm-react").snapshot({ name });
+      },
+      fillOut: (title, description, isActive) => {
+        cy.get("#OutPostCrudDialogForm-react :text")
+          .clear()
+          .type(`${title}`);
+        cy.get("#OutPostCrudDialogForm-react textarea")
+          .clear()
+          .type(`${description}`);
+        const isActiveCheckBox = cy.get(
+          "#OutPostCrudDialogForm-react :checkbox"
+        );
+        if (isActive) {
+          isActiveCheckBox.check();
+        } else {
+          isActiveCheckBox.uncheck();
+        }
+      },
+      submit: () => {
+        cy.get("#OutPostCrudDialogForm-react :submit").click();
+      }
     },
     decisionDialog: {
       undoApprove: () => {
@@ -35,7 +82,7 @@ const tree = {
           .click();
       },
       snap: name => {
-        cy.contains("refreshing out posts ...").should("not.be.visible");
+        cy.get(".isRefreshingOutPost").should("not.be.visible");
         cy.get("#OutPostDecisionDialog-react").snapshot({ name });
       },
       exit: () => {
@@ -45,6 +92,9 @@ const tree = {
   },
   // ----------------------------------------------
   inPost: {
+    focusTab: () => {
+      cy.get("##react-tabs-0").click();
+    },
     undoRequesting: post => {
       cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
         .then(rows => {

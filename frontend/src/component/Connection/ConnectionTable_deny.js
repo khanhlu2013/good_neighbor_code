@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const userNameColClass = "col-9";
 const removeColClass = "col-3 text-center";
@@ -57,7 +58,7 @@ function ConnectionRow(props) {
           className="ConnectionTableRowDenyBtn btn btn-success"
           onClick={undoClick}
         >
-          undo
+          <FontAwesomeIcon icon="undo-alt" />
         </button>
       </td>
     </tr>

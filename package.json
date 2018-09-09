@@ -8,7 +8,8 @@
     "start:mongo": "~/mongo/bin/mongod --dbpath ~/mongo-data",
     "sm": "npm run start:mongo",
     "sbt": "npm run start:backend:testenv --prefix ./backend",
-    "sft": "npm run start:frontend:testenv --prefix ./frontend"
+    "sft": "npm run start:frontend:testenv --prefix ./frontend",
+    "co": "npm run cypress:open --prefix ./frontend"
   },
   "author": "",
   "license": "ISC"

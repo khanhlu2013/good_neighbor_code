@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 
 import { OutPostCrudDialog } from "./OutPostCrudDialog";
 import { OutPostTable } from "./OutPostTable";
@@ -7,8 +8,7 @@ import { OutPostDecisionDialog } from "./OutPostDecisionDialog";
 
 class OutPostManagement extends Component {
   state = {
-    posts: [],
-    isRefreshingPosts: false,
+    posts: null,
 
     //crud post
     curCrudPostSessionID: null,
@@ -20,13 +20,12 @@ class OutPostManagement extends Component {
   };
 
   componentDidMount() {
+    this.setState({ posts: null });
     this.doRefreshPosts();
   }
 
   doRefreshPosts = async () => {
-    this.setState({ isRefreshingPosts: true });
-    const posts = await API.outPosts();
-    this.setState({ posts, isRefreshingPosts: false });
+    this.setState({ posts: await API.outPosts() });
   };
 
   onOpenNewCrudDialog = () => {
@@ -53,24 +52,25 @@ class OutPostManagement extends Component {
   };
 
   onCrudPostCb = async (postID, title, description, isActive) => {
+    this.setState({
+      isOpenCrudDialog: false,
+      curCrudPostSessionID: null
+    });
+    this.setState({ posts: null });
     if (postID) {
       await API.updatePost(postID, title, description, isActive);
     } else {
       await API.createPost(title, description, isActive);
     }
-    this.setState({
-      isOpenCrudDialog: false,
-      curCrudPostSessionID: null
-    });
-    await this.doRefreshPosts();
+    this.doRefreshPosts();
   };
 
   doUpdateShare = async (shareID, isApprove) => {
-    this.setState({ isRefreshingPosts: true });
+    this.setState({ post: null });
     await API.updateOutShare(shareID, isApprove);
     await this.doRefreshPosts();
-    const [newDecidePost] = this.state.posts.filter(
-      post => post.shares.filter(share => share.id === shareID).length === 1
+    const [newDecidePost] = this.state.posts.filter(post =>
+      post.shares.some(share => share.id === shareID)
     );
     if (!newDecidePost) {
       throw Error("Cant find curDecidePost");
@@ -106,7 +106,10 @@ class OutPostManagement extends Component {
 
   render() {
     return (
-      <div id="OutPostManagement-react">
+      <div
+        id="OutPostManagement-react"
+        className={classNames({ isRefreshingOutPost: !this.state.posts })}
+      >
         <button
           className="btn btn-primary"
           id="createPostBtn"
@@ -115,11 +118,13 @@ class OutPostManagement extends Component {
           new post
         </button>
 
-        <OutPostTable
-          posts={this.state.posts}
-          onOpenCrudDialogCb={this.onOpenCrudDialogCb}
-          onOpenDecideDialogCb={this.onOpenDecideDialogCb}
-        />
+        {this.state.posts && (
+          <OutPostTable
+            posts={this.state.posts}
+            onOpenCrudDialogCb={this.onOpenCrudDialogCb}
+            onOpenDecideDialogCb={this.onOpenDecideDialogCb}
+          />
+        )}
 
         {this.state.curCrudPostSessionID && (
           <OutPostCrudDialog
@@ -141,7 +146,6 @@ class OutPostManagement extends Component {
             onExitDialogCb={this.onExitPostDecisionDialogCb}
           />
         )}
-        {this.state.isRefreshingPosts && <p>refreshing out posts ...</p>}
       </div>
     );
   }

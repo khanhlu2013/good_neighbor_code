@@ -105,8 +105,9 @@ describe("Share", () => {
 
     //3.
     cy.switchUser(friend.email);
+    tree.outPost.focusTab();
     tree.outPost.snap("app can display outPosts with requesting info");
-    tree.outPost.decide(wantedPost);
+    tree.outPost.table.decide(wantedPost);
     tree.outPost.decisionDialog.snap(
       "app can show decide dialog with requesting users"
     );
@@ -135,10 +136,11 @@ describe("Share", () => {
 
     //7.
     cy.switchUser(friend.email);
+    tree.outPost.focusTab();
     tree.outPost.snap(
       "app can show available outPost after returned for owner perspective"
     );
-    tree.outPost.decide(wantedPost);
+    tree.outPost.table.decide(wantedPost);
     tree.outPost.decisionDialog.snap(
       "decision dialog no longer have a borrower"
     );

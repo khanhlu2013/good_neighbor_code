@@ -1,5 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const titleClass = "col-2";
+const descriptionClass = "col-2";
+const borrowedClass = "text-center col-1";
+const deniedClass = "text-center col-1";
+const requestingClass = "text-center col-1";
+const borrowingClass = "col-2";
+const activeClass = "text-center col-1";
+const editClass = "text-center col-1";
+const shareClass = "text-center col-1";
 
 function OutPostTable(props) {
   const { posts, onOpenCrudDialogCb, onOpenDecideDialogCb } = props;
@@ -17,15 +28,15 @@ function OutPostTable(props) {
     <table id="OutPostTable-react" className="table table-striped">
       <thead className="thead-light">
         <tr>
-          <th>title</th>
-          <th>description</th>
-          <th>borrowed</th>
-          <th>denied</th>
-          <th>requesting</th>
-          <th>borrowing</th>
-          <th>active</th>
-          <th>edit</th>
-          <th>share</th>
+          <th className={titleClass}>title</th>
+          <th className={descriptionClass}>description</th>
+          <th className={borrowedClass}>borrowed</th>
+          <th className={deniedClass}>denied</th>
+          <th className={requestingClass}>requesting</th>
+          <th className={borrowingClass}>borrowing</th>
+          <th className={activeClass}>active</th>
+          <th className={editClass}>edit</th>
+          <th className={shareClass}>share</th>
         </tr>
       </thead>
       <tbody>{postRows}</tbody>
@@ -53,23 +64,23 @@ function PostTableRow(props) {
   const isRequesting = post.requesting.length !== 0;
 
   return (
-    <tr className={"OutPostTableRow" + (isRequesting ? " table-warning" : "")}>
-      <td>{post.title}</td>
-      <td>{post.description}</td>
-      <td>{post.borrowed.length}</td>
-      <td>{post.denied.length}</td>
-      <td>{post.requesting.length}</td>
-      <td>{borrower ? borrower.email : ""}</td>
-      <td>{post.isActive.toString()}</td>
-      <td>
+    <tr className={"OutPostTableRow" + (isRequesting ? " table-success" : "")}>
+      <td className={titleClass}>{post.title}</td>
+      <td className={descriptionClass}>{post.description}</td>
+      <td className={borrowedClass}>{post.borrowed.length}</td>
+      <td className={deniedClass}>{post.denied.length}</td>
+      <td className={requestingClass}>{post.requesting.length}</td>
+      <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
+      <td className={activeClass}>{post.isActive.toString()}</td>
+      <td className={editClass}>
         <button
           className="OutPostTableRowEditBtn btn btn-primary"
           onClick={onCrudPostClick}
         >
-          edit
+          <FontAwesomeIcon icon="pencil-alt" />
         </button>
       </td>
-      <td>
+      <td className={shareClass}>
         {(post.denied.length !== 0 ||
           post.requesting.length !== 0 ||
           post.borrowing) && (
@@ -77,7 +88,7 @@ function PostTableRow(props) {
             className="OutPostTableRowDecideBtn btn btn-success"
             onClick={onDecidePostClick}
           >
-            share
+            <FontAwesomeIcon icon="share-alt" />
           </button>
         )}
       </td>
