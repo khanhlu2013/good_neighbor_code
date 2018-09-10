@@ -8,12 +8,12 @@ class DummyLoginForTestPurpose extends Component {
   };
 
   onEmailChange = evt => {
-    const email = evt.currentTarget.value;
+    const email = evt.target.value;
     this.setState({ email });
   };
 
   onNameChange = evt => {
-    const name = evt.currentTarget.value;
+    const name = evt.target.value;
     this.setState({ name });
   };
 

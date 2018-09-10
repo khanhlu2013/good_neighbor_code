@@ -58,7 +58,7 @@ function InPostTableRow(props) {
         {isRequesting && "requesting ..."}
         {!isRequesting && (
           <button className="InPostTableRowBorrowBtn" onClick={onCreateShare}>
-            borrow
+            request
           </button>
         )}
       </td>

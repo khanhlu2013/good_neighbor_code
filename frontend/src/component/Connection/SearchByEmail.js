@@ -45,7 +45,7 @@ class SearchByEmail extends Component {
   }
 
   onSearchChange = event => {
-    this.setState({ email: event.currentTarget.value, searchSubmited: false });
+    this.setState({ email: event.target.value, searchSubmited: false });
   };
 
   onSearchSubmit = event => {

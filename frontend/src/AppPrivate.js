@@ -51,33 +51,35 @@ class PrivateApp extends Component {
         <div className="App-header">
           <h1>Welcome to Good Neighboors</h1>
           <h3>
-            {this.props.loginUser.name} - {this.props.loginUser.email}
-            <a href={API_URL("profile.logout")}>logout</a>
+            {this.props.loginUser.name} - {this.props.loginUser.email} -
+            <a href={API_URL("profile.logout")}> logout</a>
           </h3>
         </div>
         <Tabs>
-          <TabList>
-            <Tab>Friend Posts</Tab>
-            <Tab>
-              <span
-                className={className({
-                  isRefreshingOutPost: requestingOutPostCount === null
-                })}
-              >
-                My Posts
-              </span>
-              {Boolean(requestingOutPostCount) && (
-                <span className="text-danger">{` (${requestingOutPostCount})`}</span>
-              )}
-            </Tab>
-            <Tab>
-              <span>Friends</span>
+          <div className="Tab-list">
+            <TabList>
+              <Tab>Friend Posts</Tab>
+              <Tab>
+                <span
+                  className={className({
+                    isRefreshingOutPost: requestingOutPostCount === null
+                  })}
+                >
+                  My Posts
+                </span>
+                {Boolean(requestingOutPostCount) && (
+                  <span className="text-danger">{` (${requestingOutPostCount})`}</span>
+                )}
+              </Tab>
+              <Tab>
+                <span>Friends</span>
 
-              {Boolean(requestingFriendCount) && (
-                <span className="text-danger">{` (${requestingFriendCount})`}</span>
-              )}
-            </Tab>
-          </TabList>
+                {Boolean(requestingFriendCount) && (
+                  <span className="text-danger">{` (${requestingFriendCount})`}</span>
+                )}
+              </Tab>
+            </TabList>
+          </div>
           <TabPanel>
             <InPostManagement loginUser={this.props.loginUser} />
           </TabPanel>
