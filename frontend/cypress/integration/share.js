@@ -69,7 +69,7 @@ describe("Share", () => {
 
     /*
       1. i see that there are 2 posts from friend, i borrow one, undo and borrow again
-      2. stranger see that i am requesting, but no current borrowing, so she request too
+      2. stranger see that i am requesting, so she request too
       3. friend login:
         . approve stranger
         . undo stranger
@@ -105,8 +105,10 @@ describe("Share", () => {
 
     //3.
     cy.switchUser(friend.email);
-    tree.outPost.focusTab();
-    tree.outPost.snap("app can display outPosts with requesting info");
+    tree.outPost.tab.snap("outPost tab show requesting info");
+    tree.outPost.tab.focus();
+    tree.outPost.table.snap("outPost table show requesting info");
+
     tree.outPost.table.decide(wantedPost);
     tree.outPost.decisionDialog.snap(
       "app can show decide dialog with requesting users"
@@ -136,8 +138,8 @@ describe("Share", () => {
 
     //7.
     cy.switchUser(friend.email);
-    tree.outPost.focusTab();
-    tree.outPost.snap(
+    tree.outPost.tab.focus();
+    tree.outPost.table.snap(
       "app can show available outPost after returned for owner perspective"
     );
     tree.outPost.table.decide(wantedPost);
@@ -147,7 +149,7 @@ describe("Share", () => {
     tree.outPost.decisionDialog.decide(stranger, false);
     tree.outPost.decisionDialog.snap("decision dialog show can deny requester");
     tree.outPost.decisionDialog.exit();
-    tree.outPost.snap("app show outPost with deny request info");
+    tree.outPost.table.snap("app show outPost with deny request info");
 
     //8.
     cy.switchUser(stranger.email);

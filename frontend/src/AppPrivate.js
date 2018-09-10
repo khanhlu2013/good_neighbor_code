@@ -15,7 +15,8 @@ class PrivateApp extends Component {
     connections: [],
     isRefreshingConnections: false,
     inPosts: [],
-    isRefreshingInPosts: false
+    isRefreshingInPosts: false,
+    requestingOutPostCount: null
   };
 
   componentDidMount() {
@@ -24,6 +25,13 @@ class PrivateApp extends Component {
 
     this.setState({ isRefreshingInPosts: true });
     this.refreshInPosts();
+
+    (async () => {
+      const outPosts = await API.outPosts();
+      this.doUpdateRequestingOutPostCount(
+        OutPostManagement.calculateRequestingPostCount(outPosts)
+      );
+    })();
   }
 
   refreshConnections = async () => {
@@ -90,7 +98,12 @@ class PrivateApp extends Component {
     }
   };
 
+  doUpdateRequestingOutPostCount = count => {
+    this.setState({ requestingOutPostCount: count });
+  };
+
   render() {
+    const { requestingOutPostCount } = this.state;
     const friendRequests = this.state.connections.filter(
       connection =>
         connection.to.id === this.props.loginUser.id &&
@@ -110,12 +123,18 @@ class PrivateApp extends Component {
         <Tabs>
           <TabList>
             <Tab>Friend Posts</Tab>
-            <Tab>My Posts</Tab>
+
+            <Tab>
+              My Posts
+              {Boolean(requestingOutPostCount) && (
+                <span className="text-danger">{` (${requestingOutPostCount})`}</span>
+              )}
+            </Tab>
             <Tab>
               Friends
-              <span className="text-danger">
-                {friendRequests === 0 ? "" : ` (${friendRequests})`}
-              </span>
+              {friendRequests !== 0 && (
+                <span className="text-danger">{` (${friendRequests})`}</span>
+              )}
             </Tab>
           </TabList>
           <TabPanel>
@@ -129,7 +148,11 @@ class PrivateApp extends Component {
             />
           </TabPanel>
           <TabPanel>
-            <OutPostManagement />
+            <OutPostManagement
+              onUpdateRequestingPostCountCb={
+                this.doUpdateRequestingOutPostCount
+              }
+            />
           </TabPanel>
           <TabPanel>
             <ConnectionManagement

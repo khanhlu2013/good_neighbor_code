@@ -84,6 +84,9 @@ work on my post show request
 here is the plan: refreshing post need to be true to start out. there must be an id to indicate the refreshing status when i try to snap thing. text is only a temporary thing. the fix for now will be an inicating className. 
 ---
 
-2. contact with the outside world about the requesting post count together with 
+. when i change connection, i should also change inpost
+. can i upgrade test to snap the notification info?
 
+---
 
+{isRefreshingInPosts && <p>Refreshing in posts ...</p>}

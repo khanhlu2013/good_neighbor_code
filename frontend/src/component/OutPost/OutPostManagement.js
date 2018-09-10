@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import { OutPostCrudDialog } from "./OutPostCrudDialog";
 import { OutPostTable } from "./OutPostTable";
@@ -19,13 +20,33 @@ class OutPostManagement extends Component {
     curDecidePost: null
   };
 
+  static calculateRequestingPostCount = posts => {
+    if (posts === null) {
+      return null;
+    }
+    return posts.filter(post => post.requesting.length !== 0).length;
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      requestingPostCount: OutPostManagement.calculateRequestingPostCount(
+        state.posts
+      )
+    };
+  }
+
   componentDidMount() {
-    this.setState({ posts: null });
+    this.setPostsState(null);
     this.doRefreshPosts();
   }
 
+  setPostsState(posts) {
+    this.setState({ posts });
+    this.props.onUpdateRequestingPostCountCb(this.state.requestingPostCount);
+  }
+
   doRefreshPosts = async () => {
-    this.setState({ posts: await API.outPosts() });
+    this.setPostsState(await API.outPosts());
   };
 
   onOpenNewCrudDialog = () => {
@@ -51,12 +72,12 @@ class OutPostManagement extends Component {
     });
   };
 
-  onCrudPostCb = async (postID, title, description, isActive) => {
+  doCrudPost = async (postID, title, description, isActive) => {
     this.setState({
       isOpenCrudDialog: false,
       curCrudPostSessionID: null
     });
-    this.setState({ posts: null });
+    this.setPostsState(null);
     if (postID) {
       await API.updatePost(postID, title, description, isActive);
     } else {
@@ -66,7 +87,7 @@ class OutPostManagement extends Component {
   };
 
   doUpdateShare = async (shareID, isApprove) => {
-    this.setState({ post: null });
+    this.setPostsState(null);
     await API.updateOutShare(shareID, isApprove);
     await this.doRefreshPosts();
     const [newDecidePost] = this.state.posts.filter(post =>
@@ -131,7 +152,7 @@ class OutPostManagement extends Component {
             key={this.state.curCrudPostSessionID}
             isOpen={this.state.isOpenCrudDialog}
             post={this.state.curCrudPost}
-            onCrudPostCb={this.onCrudPostCb}
+            onCrudPostCb={this.doCrudPost}
             onCancelCrudPostDialog={this.onCancelCrudPostDialog}
           />
         )}
@@ -150,5 +171,8 @@ class OutPostManagement extends Component {
     );
   }
 }
+OutPostManagement.propType = {
+  onUpdateRequestingPostCountCb: PropTypes.func.isRequired
+};
 
 export { OutPostManagement };

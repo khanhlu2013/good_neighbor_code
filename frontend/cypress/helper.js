@@ -7,8 +7,13 @@ const tree = {
   },
   // ----------------------------------------------
   outPost: {
-    focusTab: () => {
-      cy.get("#react-tabs-2").click();
+    tab: {
+      focus: () => {
+        cy.get("#react-tabs-2").click();
+      },
+      snap: name => {
+        cy.get("#react-tabs-2").snapshot({ name });
+      }
     },
     table: {
       decide: post => {
@@ -30,16 +35,13 @@ const tree = {
           .eq(rowIndex)
           .find(".OutPostTableRowEditBtn")
           .click();
+      },
+      snap: name => {
+        cy.get(".isRefreshingOutPost").should("not.be.visible");
+        cy.get("#OutPostManagement-react").snapshot({ name });
       }
     },
-    snap: name => {
-      cy.get(".isRefreshingOutPost").should("not.be.visible");
-      cy.get("#OutPostManagement-react").snapshot({ name });
-    },
     crudDialog: {
-      open: () => {
-        cy.get("#createPostBtn").click();
-      },
       snap: name => {
         cy.get("#OutPostCrudDialogForm-react").snapshot({ name });
       },
@@ -88,6 +90,9 @@ const tree = {
       exit: () => {
         cy.get("#OutPostDecisionDialogExitBtn").click();
       }
+    },
+    createNewPost: () => {
+      cy.get("#createPostBtn").click();
     }
   },
   // ----------------------------------------------

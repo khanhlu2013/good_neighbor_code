@@ -15,16 +15,16 @@ describe("Post", () => {
     cy.login(me.email);
 
     //app show empty out post
-    tree.outPost.focusTab();
-    tree.outPost.snap("app show empty OutPost");
+    tree.outPost.tab.focus();
+    tree.outPost.table.snap("app show empty OutPost");
 
     //user can post
-    tree.outPost.crudDialog.open();
+    tree.outPost.createNewPost();
     tree.outPost.crudDialog.snap("app show empty post form");
     tree.outPost.crudDialog.fillOut("me title", "me description", true);
     tree.outPost.crudDialog.snap("app show fill out form");
     tree.outPost.crudDialog.submit();
-    tree.outPost.snap("app's outPostTable show new created post");
+    tree.outPost.table.snap("app's outPostTable show new created post");
 
     tree.outPost.table.edit(0);
     tree.outPost.crudDialog.snap("app show pre-filled post form with edit");
@@ -34,6 +34,6 @@ describe("Post", () => {
       false
     );
     tree.outPost.crudDialog.submit();
-    tree.outPost.snap("app's outPostTable show edited post");
+    tree.outPost.table.snap("app's outPostTable show edited post");
   });
 });

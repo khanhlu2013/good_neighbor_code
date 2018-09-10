@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import className from "classnames";
 
 const titleClass = "col-2";
 const descriptionClass = "col-2";
@@ -64,7 +65,12 @@ function PostTableRow(props) {
   const isRequesting = post.requesting.length !== 0;
 
   return (
-    <tr className={"OutPostTableRow" + (isRequesting ? " table-success" : "")}>
+    <tr
+      className={className({
+        OutPostTableRow: true,
+        "table-warning": isRequesting
+      })}
+    >
       <td className={titleClass}>{post.title}</td>
       <td className={descriptionClass}>{post.description}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
