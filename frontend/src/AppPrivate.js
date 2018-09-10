@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import className from "classnames";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -58,13 +59,20 @@ class PrivateApp extends Component {
           <TabList>
             <Tab>Friend Posts</Tab>
             <Tab>
-              My Posts
+              <span
+                className={className({
+                  isRefreshingOutPost: requestingOutPostCount === null
+                })}
+              >
+                My Posts
+              </span>
               {Boolean(requestingOutPostCount) && (
                 <span className="text-danger">{` (${requestingOutPostCount})`}</span>
               )}
             </Tab>
             <Tab>
-              Friends
+              <span>Friends</span>
+
               {Boolean(requestingFriendCount) && (
                 <span className="text-danger">{` (${requestingFriendCount})`}</span>
               )}

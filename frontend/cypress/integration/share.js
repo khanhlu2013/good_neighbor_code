@@ -74,9 +74,9 @@ describe("Share", () => {
       3. friend login:
         . (notification show request)
         . approve stranger
-        . (notification doesn't show request and table doesn't cause tention)
         . undo stranger
         . approve me
+        . (notification doesn't show request and table doesn't cause tention)
 
       4. stranger see that i am borrowing it, color shoud change
       5. i see that i am borrowing and return it.
@@ -117,9 +117,19 @@ describe("Share", () => {
       "app can show decide dialog with requesting users"
     );
     outPostTree.decisionDialog.decide(stranger, true);
-    outPostTree.decisionDialog.snap("owner can approve a borrower");
+    outPostTree.decisionDialog.snap(
+      "decision dialog allow owner to approve requester"
+    );
+    outPostTree.decisionDialog.exit();
+    outPostTree.table.snap("OutPost table can show approved requester");
+    outPostTree.tab.snap(
+      "OutPost notification is removed when requesting post get approved"
+    );
+    outPostTree.table.decide(wantedPost);
     outPostTree.decisionDialog.undoApprove();
-    outPostTree.decisionDialog.snap("owner can undo an approval");
+    outPostTree.decisionDialog.snap(
+      "decision dialog allow owner to undo an approval"
+    );
     outPostTree.decisionDialog.decide(me, true);
     outPostTree.decisionDialog.exit();
 

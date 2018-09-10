@@ -4,6 +4,7 @@ const tab = {
     cy.get("#react-tabs-2").click();
   },
   snap: name => {
+    cy.get(".isRefreshingOutPost").should("not.be.visible");
     cy.get("#react-tabs-2").snapshot({ name });
   }
 };
