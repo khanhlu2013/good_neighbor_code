@@ -62,13 +62,12 @@ function PostTableRow(props) {
   };
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
-  const isRequesting = post.requesting.length !== 0;
 
   return (
     <tr
       className={className({
         OutPostTableRow: true,
-        "table-warning": isRequesting
+        "table-warning": post.isRequestingWithNoBorrowing
       })}
     >
       <td className={titleClass}>{post.title}</td>

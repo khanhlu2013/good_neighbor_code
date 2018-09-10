@@ -57,7 +57,7 @@
 . post: { ...state.post, isActive }, immutable.js seem can aleviate this boilerplate
 . put glyphycon remove in both friend and outFriend request, make col the same
 . when connection change, inPost need to refresh (by a key from privateApp)
-. can i upgrade test to snap the notification info?
+
 
 . TODAY
 . -----
@@ -72,10 +72,20 @@
 . kill event.currentTarget?
 
 ---
+. friendPost change borrow to request 
 work on the app header. separate name, email, and logout
 work on friend post css
 work on decide dialog : css 
 work on friends tab show friend request
 work on my post show request
 
+---
 
+. can i upgrade test to snap the notification info?
+  . protential issue when updating and snapping the notification
+  
+so where can it be? friend does not change. the only one for now is outPost. and what stage does i snap the outPost notification? i need to put in a class here too. and wait for it when snap
+
+simulate this error, slow down the server, snap outPostnotification when it should change.
+
+. notice that when i approve, isRequesting is no longer true even though there is request. see it and fix this issue. use this to indicate css

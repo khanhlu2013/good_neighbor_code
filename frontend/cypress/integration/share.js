@@ -72,7 +72,9 @@ describe("Share", () => {
       1. i see that there are 2 posts from friend, i borrow one, undo and borrow again
       2. stranger see that i am requesting, so she request too
       3. friend login:
+        . (notification show request)
         . approve stranger
+        . (notification doesn't show request and table doesn't cause tention)
         . undo stranger
         . approve me
 

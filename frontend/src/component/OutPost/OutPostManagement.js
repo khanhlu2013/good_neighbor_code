@@ -24,7 +24,7 @@ class OutPostManagement extends Component {
     if (posts === null) {
       return null;
     }
-    return posts.filter(post => post.requesting.length !== 0).length;
+    return posts.filter(post => post.isRequestingWithNoBorrowing).length;
   };
 
   static getDerivedStateFromProps(props, state) {
