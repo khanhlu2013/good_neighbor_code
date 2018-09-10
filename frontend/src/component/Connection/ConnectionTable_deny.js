@@ -55,7 +55,7 @@ function ConnectionRow(props) {
       </td>
       <td className={removeColClass}>
         <button
-          className="ConnectionTableRowDenyBtn btn btn-success"
+          className="ConnectionTableRowApproveBtn btn btn-success"
           onClick={undoClick}
         >
           <FontAwesomeIcon icon="undo-alt" />

@@ -42,7 +42,7 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    this.props.onUpdateRequestingPostCountCb(this.state.requestingPostCount);
+    this.props.requestingOutPostCountChangedCb(this.state.requestingPostCount);
   }
 
   doRefreshPosts = async () => {
@@ -172,7 +172,7 @@ class OutPostManagement extends Component {
   }
 }
 OutPostManagement.propType = {
-  onUpdateRequestingPostCountCb: PropTypes.func.isRequired
+  requestingOutPostCountChangedCb: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

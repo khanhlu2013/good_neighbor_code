@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InPostTable(props) {
-  const { allInPosts, onCreateRequestingShareCb, loginUser } = props;
-  const rows = allInPosts.map(inPost => (
+  const { inPosts, onCreateRequestingShareCb, loginUser } = props;
+  const rows = inPosts.map(inPost => (
     <InPostTableRow
       key={inPost.id}
       loginUser={loginUser}
@@ -33,7 +33,7 @@ function InPostTable(props) {
 
 InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  allInPosts: PropTypes.array.isRequired,
+  inPosts: PropTypes.array.isRequired,
   onCreateRequestingShareCb: PropTypes.func.isRequired
 };
 

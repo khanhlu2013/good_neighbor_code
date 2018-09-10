@@ -1,3 +1,5 @@
+const { connectionTree } = require("../helper_connection");
+
 describe("ConnectionManagement", () => {
   describe("SearchByEmail", () => {
     const lu = {
@@ -22,8 +24,8 @@ describe("ConnectionManagement", () => {
       //login
       cy.login(lu.email);
 
-      //test the profile page
-      snap("ConnectionManagement init state");
+      connectionTree.tab.focus();
+      connectionTree.snap("ConnectionManagement init state");
 
       //SEARCH BY EMAIL - INVALID SEARCH
       searchAndSnap("Invalid search: empty email", "");
@@ -40,13 +42,14 @@ describe("ConnectionManagement", () => {
       cy.login(lu.email);
 
       //create connection
-      search(tu.email);
+      connectionTree.tab.focus();
+      connectionTree.search(tu.email);
       clickAndSnap("Created connection", "#createConnectionBtn");
       clickAndSnap("DenyConnectionByFrom", "#denyConnectionByFromBtn");
       clickAndSnap("ApproveConnectionByFrom", "#approveConnectionByFromBtn");
 
       cy.switchUser(tu.email);
-
+      connectionTree.tab.focus();
       searchAndSnap("Searched incomming connection", lu.email);
 
       clickAndSnap(
@@ -65,6 +68,7 @@ describe("ConnectionManagement", () => {
       //search deny by to
       cy.get("#denyConnectionByToSecondTimeBtn").click();
       cy.switchUser(lu.email);
+      connectionTree.tab.focus();
       searchAndSnap("SeachDenyByTo", tu.email);
     });
   });
@@ -101,96 +105,52 @@ describe("ConnectionManagement", () => {
 
       //1. a -> b, a->c : (outFriend: 2,snap) (deny C, snap)
       cy.login(a.email);
-      search(b.email);
+      connectionTree.tab.focus();
+      connectionTree.search(b.email);
       cy.get("#createConnectionBtn").click();
-      search(c.email);
+      connectionTree.search(c.email);
       cy.get("#createConnectionBtn").click();
-      snap("There are 2 out-connection");
+      connectionTree.snap("Waiting list can display correct data");
 
-      outRequests_deny(1);
-      snap("remove one out-connection");
+      connectionTree.outRequests_deny(1);
+      connectionTree.snap("remove one out-connection");
 
       //2. c -> b
       cy.switchUser(c.email);
-      search(b.email);
+      connectionTree.tab.focus();
+      connectionTree.search(b.email);
       cy.get("#createConnectionBtn").click();
 
       //3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)
       cy.switchUser(b.email);
-      snap("There are 2 in-connection");
+      connectionTree.tab.focus();
+      connectionTree.snap("Friend request table can display correct data");
       cy.get("#InFriendTable .ConnectionTableRow").should("have.length", 2);
 
-      inRequests_approve(0);
-      inRequests_deny(0);
-      snap("Approve/Deny InFriends");
+      connectionTree.inRequests_approve(0);
+      connectionTree.inRequests_deny(0);
+      connectionTree.snap("Approve/Deny InFriends");
 
       //approve deny
-      denyRequests_approve(0);
-      snap("Approve Denied-Friends");
+      connectionTree.denyRequests_approve(0);
+      connectionTree.snap("Approve Denied-Friends");
 
       //deny friend
-      friends_deny(0);
-      friends_deny(0);
-      snap("Deny Approved-Friends");
+      connectionTree.friends_deny(0);
+      connectionTree.friends_deny(0);
+      connectionTree.snap(
+        "Friend table and deny table can display correct data"
+      );
     });
   });
 });
 
-function snap(name) {
-  // cy.contains("Refreshing Connection ...").should("not.be.visible");
-  // cy.contains("Refreshing Connection ...").should("be.visible");
-  cy.contains("Refreshing Connection ...").should("not.be.visible");
-  cy.get("#ConnectionManagement-react").snapshot({ name });
-}
-
-function search(email) {
-  cy.get("#SearchByEmail-react>form>input:text")
-    .clear()
-    .type(`${email}{enter}`);
-  cy.get("#SearchByEmail-react>form>input:submit").should("be.enabled"); //wait for search result
-}
-
 function searchAndSnap(snapshotName, email) {
-  search(email);
-  snap(snapshotName);
+  connectionTree.search(email);
+  connectionTree.snap(snapshotName);
 }
 
 function clickAndSnap(snapshotName, clickSelector) {
   cy.get(clickSelector).click();
-  snap(snapshotName);
-}
-
-function outRequests_deny(rowIndex) {
-  cy.get("#OutFriendTable .ConnectionTableRow")
-    .eq(rowIndex)
-    .find(".ConnectionTableRowDenyBtn")
-    .click();
-}
-
-function inRequests_approve(rowIndex) {
-  cy.get("#InFriendTable .ConnectionTableRow")
-    .eq(rowIndex)
-    .find(".ConnectionTableRowApproveBtn")
-    .click();
-}
-
-function inRequests_deny(rowIndex) {
-  cy.get("#InFriendTable .ConnectionTableRow")
-    .eq(rowIndex)
-    .find(".ConnectionTableRowDenyBtn")
-    .click();
-}
-
-function denyRequests_approve(rowIndex) {
-  cy.get("#DenyFriendTable .ConnectionTableRow")
-    .eq(rowIndex)
-    .find(".ConnectionTableRowApproveBtn")
-    .click();
-}
-
-function friends_deny(rowIndex) {
-  cy.get("#FriendTable .ConnectionTableRow")
-    .eq(rowIndex)
-    .find(".ConnectionTableRowDenyBtn")
-    .click();
+  connectionTree.snap(snapshotName);
 }

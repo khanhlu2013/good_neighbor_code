@@ -12,56 +12,38 @@ import { InPostManagement } from "./component/InPost/InPostManagement.js";
 
 class PrivateApp extends Component {
   state = {
-    connections: [],
-    isRefreshingConnections: false,
-    requestingOutPostCount: null
+    requestingOutPostCount: null,
+    requestingFriendCount: null
   };
 
   componentDidMount() {
-    this.setState({ isRefreshingConnections: true });
-    this.refreshConnections();
-
     (async () => {
       const outPosts = await API.outPosts();
-      this.doUpdateRequestingOutPostCount(
+      this.onRequestingOutPostCountChanged(
         OutPostManagement.calculateRequestingPostCount(outPosts)
+      );
+    })();
+
+    (async () => {
+      const connections = await API.connections();
+      this.onFriendRequestCountChanged(
+        ConnectionManagement.calculateFriendRequestCount(
+          connections,
+          this.props.loginUser.id
+        )
       );
     })();
   }
 
-  refreshConnections = async () => {
-    const connections = await API.connections();
-    this.setState({ connections, isRefreshingConnections: false });
+  onFriendRequestCountChanged = count => {
+    this.setState({ requestingFriendCount: count });
   };
-
-  createConnectionCb = userIdToAdd => {
-    this.setState({ isRefreshingConnections: true });
-    (async () => {
-      await API.createConnection(userIdToAdd);
-      this.refreshConnections();
-    })();
-  };
-
-  updateConnectionCb = (connectionId, isApproved) => {
-    this.setState({ isRefreshingConnections: true });
-    (async () => {
-      await API.updateConnection(connectionId, isApproved);
-      this.refreshConnections();
-    })();
-  };
-
-  doUpdateRequestingOutPostCount = count => {
+  onRequestingOutPostCountChanged = count => {
     this.setState({ requestingOutPostCount: count });
   };
 
   render() {
-    const { requestingOutPostCount } = this.state;
-    const friendRequests = this.state.connections.filter(
-      connection =>
-        connection.to.id === this.props.loginUser.id &&
-        connection.approvedByFrom &&
-        connection.approvedByTo === undefined
-    ).length;
+    const { requestingOutPostCount, requestingFriendCount } = this.state;
 
     return (
       <div id="PrivateApp-react" className="App">
@@ -75,7 +57,6 @@ class PrivateApp extends Component {
         <Tabs>
           <TabList>
             <Tab>Friend Posts</Tab>
-
             <Tab>
               My Posts
               {Boolean(requestingOutPostCount) && (
@@ -84,8 +65,8 @@ class PrivateApp extends Component {
             </Tab>
             <Tab>
               Friends
-              {friendRequests !== 0 && (
-                <span className="text-danger">{` (${friendRequests})`}</span>
+              {Boolean(requestingFriendCount) && (
+                <span className="text-danger">{` (${requestingFriendCount})`}</span>
               )}
             </Tab>
           </TabList>
@@ -94,18 +75,15 @@ class PrivateApp extends Component {
           </TabPanel>
           <TabPanel>
             <OutPostManagement
-              onUpdateRequestingPostCountCb={
-                this.doUpdateRequestingOutPostCount
+              requestingOutPostCountChangedCb={
+                this.onRequestingOutPostCountChanged
               }
             />
           </TabPanel>
           <TabPanel>
             <ConnectionManagement
               loginUser={this.props.loginUser}
-              connections={this.state.connections}
-              isRefreshingConnections={this.state.isRefreshingConnections}
-              createConnectionCb={this.createConnectionCb}
-              updateConnectionCb={this.updateConnectionCb}
+              onFriendRequestCountChangedCb={this.onFriendRequestCountChanged}
             />
           </TabPanel>
         </Tabs>
@@ -118,3 +96,16 @@ PrivateApp.propTypes = {
 };
 
 export { PrivateApp };
+
+// uploadWidget = () => {
+//   window.cloudinary.openUploadWidget(
+//     {
+//       cloud_name: "goodneighboors",
+//       upload_preset: "postimage",
+//       public_id: "abcd1234"
+//     },
+//     function(error, result) {
+//       console.log(result);
+//     }
+//   );
+// };

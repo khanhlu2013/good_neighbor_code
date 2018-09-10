@@ -56,7 +56,8 @@
 . https://facebook.github.io/immutable-js/
 . post: { ...state.post, isActive }, immutable.js seem can aleviate this boilerplate
 . put glyphycon remove in both friend and outFriend request, make col the same
-
+. when connection change, inPost need to refresh (by a key from privateApp)
+. can i upgrade test to snap the notification info?
 
 . TODAY
 . -----
@@ -77,16 +78,4 @@ work on decide dialog : css
 work on friends tab show friend request
 work on my post show request
 
----
 
-. it is an anti-pattern to move outPost into the outer app. the outer app only concern for now what is the count of the requesting post. lets tackle this separately with test. so lets go all the way with production first. so when i try to snap it, it need to wait. that is production property. which mean refreshing post need to be true. 
-
-here is the plan: refreshing post need to be true to start out. there must be an id to indicate the refreshing status when i try to snap thing. text is only a temporary thing. the fix for now will be an inicating className. 
----
-
-. when i change connection, i should also change inpost
-. can i upgrade test to snap the notification info?
-
----
-
-privatize connection, and make a link to private app to fully control inPost with a key.

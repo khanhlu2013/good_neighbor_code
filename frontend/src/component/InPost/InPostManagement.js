@@ -83,7 +83,7 @@ class InPostManagement extends Component {
   };
 
   render() {
-    const isRefreshingInPosts = this.state.inPosts !== null;
+    const isRefreshingInPosts = this.state.inPosts === null;
     return (
       <div
         id="InPostManagement-react"
@@ -91,11 +91,11 @@ class InPostManagement extends Component {
       >
         <h1>InPosts Managements</h1>
 
-        {isRefreshingInPosts && (
+        {!isRefreshingInPosts && (
           <div>
             <InPostTable
               loginUser={this.props.loginUser}
-              allInPosts={this.state.inPosts}
+              inPosts={this.state.inPosts}
               onCreateRequestingShareCb={this.doCreateRequestingShare}
             />
             <InShareRequestingTable

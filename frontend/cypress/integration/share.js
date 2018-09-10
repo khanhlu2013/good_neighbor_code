@@ -1,6 +1,7 @@
 const mongodb = require("mongodb");
 const { ObjectID } = mongodb;
-const { tree } = require("../helper.js");
+const { outPostTree } = require("../helper_outPost");
+const { inPostTree } = require("../helper_inPost");
 
 describe("Share", () => {
   it("can request, approve, deny, return, and undo", () => {
@@ -88,71 +89,71 @@ describe("Share", () => {
 
     //1.
     cy.login(me.email);
-    tree.inPost.snap("app can display friend's InPosts: there are 2");
-    tree.inPost.request(wantedPost);
-    tree.inPost.snap("user can make a request from inPosts");
-    tree.inPost.undoRequesting(wantedPost);
-    tree.inPost.snap("user can undo a request");
-    tree.inPost.request(wantedPost);
+    inPostTree.snap("app can display friend's InPosts: there are 2");
+    inPostTree.request(wantedPost);
+    inPostTree.snap("user can make a request from inPosts");
+    inPostTree.undoRequesting(wantedPost);
+    inPostTree.snap("user can undo a request");
+    inPostTree.request(wantedPost);
 
     //2.
     cy.switchUser(stranger.email);
-    tree.inPost.snap("app can display requesting inPost");
-    tree.inPost.request(wantedPost);
-    tree.inPost.snap(
+    inPostTree.snap("app can display requesting inPost");
+    inPostTree.request(wantedPost);
+    inPostTree.snap(
       "app can display inShareRequesting that how many requesting"
     );
 
     //3.
     cy.switchUser(friend.email);
-    tree.outPost.tab.snap("outPost tab show requesting info");
-    tree.outPost.tab.focus();
-    tree.outPost.table.snap("outPost table show requesting info");
+    outPostTree.tab.snap("outPost tab show requesting info");
+    outPostTree.tab.focus();
+    outPostTree.table.snap("outPost table show requesting info");
 
-    tree.outPost.table.decide(wantedPost);
-    tree.outPost.decisionDialog.snap(
+    outPostTree.table.decide(wantedPost);
+    outPostTree.decisionDialog.snap(
       "app can show decide dialog with requesting users"
     );
-    tree.outPost.decisionDialog.decide(stranger, true);
-    tree.outPost.decisionDialog.snap("owner can approve a borrower");
-    tree.outPost.decisionDialog.undoApprove();
-    tree.outPost.decisionDialog.snap("owner can undo an approval");
-    tree.outPost.decisionDialog.decide(me, true);
-    tree.outPost.decisionDialog.exit();
+    outPostTree.decisionDialog.decide(stranger, true);
+    outPostTree.decisionDialog.snap("owner can approve a borrower");
+    outPostTree.decisionDialog.undoApprove();
+    outPostTree.decisionDialog.snap("owner can undo an approval");
+    outPostTree.decisionDialog.decide(me, true);
+    outPostTree.decisionDialog.exit();
 
     //4.
     cy.switchUser(stranger.email);
-    tree.inPost.snap("app show requesting inPost with current borrowing user");
+    inPostTree.snap("app show requesting inPost with current borrowing user");
 
     //5.
     cy.switchUser(me.email);
-    tree.inPost.snap("app show current borrowing list");
-    tree.inPost.returnBorrowing(wantedPost);
-    tree.inPost.snap("user can return a borrowing post");
+    inPostTree.snap("app show current borrowing list");
+    inPostTree.returnBorrowing(wantedPost);
+    inPostTree.snap("user can return a borrowing post");
 
     //6.
     cy.switchUser(stranger.email);
-    tree.inPost.snap(
+    inPostTree.snap(
       "app can show available inPost after returned for borrower perspective"
     );
 
     //7.
     cy.switchUser(friend.email);
-    tree.outPost.tab.focus();
-    tree.outPost.table.snap(
+    outPostTree.tab.focus();
+    outPostTree.table.snap(
       "app can show available outPost after returned for owner perspective"
     );
-    tree.outPost.table.decide(wantedPost);
-    tree.outPost.decisionDialog.snap(
+    outPostTree.table.decide(wantedPost);
+    outPostTree.decisionDialog.snap(
       "decision dialog no longer have a borrower"
     );
-    tree.outPost.decisionDialog.decide(stranger, false);
-    tree.outPost.decisionDialog.snap("decision dialog show can deny requester");
-    tree.outPost.decisionDialog.exit();
-    tree.outPost.table.snap("app show outPost with deny request info");
+    outPostTree.decisionDialog.decide(stranger, false);
+    outPostTree.decisionDialog.snap("decision dialog show can deny requester");
+    outPostTree.decisionDialog.exit();
+    outPostTree.table.snap("app show outPost with deny request info");
 
     //8.
     cy.switchUser(stranger.email);
-    tree.inPost.snap("app hide deny requesting inPost");
+    inPostTree.snap("app hide deny requesting inPost");
   });
 });
