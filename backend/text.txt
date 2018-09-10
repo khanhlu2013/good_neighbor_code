@@ -89,4 +89,4 @@ here is the plan: refreshing post need to be true to start out. there must be an
 
 ---
 
-{isRefreshingInPosts && <p>Refreshing in posts ...</p>}
+privatize connection, and make a link to private app to fully control inPost with a key.
