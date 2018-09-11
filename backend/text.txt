@@ -71,5 +71,6 @@
 . remove the ability to undo an invite, less button, less confusion? friendly, less option. ok.
 
 ---
+. remove logo
 demo: show a connection management that undo will cover all senario
 

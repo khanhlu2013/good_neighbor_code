@@ -5,11 +5,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { ConnectionManagement } from "./component/Connection/ConnectionManagement.js";
-import { OutPostManagement } from "./component/OutPost/OutPostManagement.js";
-import { API_URL } from "./api/api-url.js";
-import { API } from "./api/profile-api.js";
-import { InPostManagement } from "./component/InPost/InPostManagement.js";
+import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
+import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
+import { API } from "../api/profile-api.js";
+import { InPostManagement } from "../component/InPost/InPostManagement.js";
 
 class PrivateApp extends Component {
   state = {
@@ -62,14 +61,7 @@ class PrivateApp extends Component {
     );
 
     return (
-      <div id="PrivateApp-react" className="App">
-        <div className="App-header">
-          <h1>Welcome to Good Neighboors</h1>
-          <h3>
-            {this.props.loginUser.name} - {this.props.loginUser.email} -
-            <a href={API_URL("profile.logout")}> logout</a>
-          </h3>
-        </div>
+      <div id="PrivateApp-react">
         <Tabs>
           <div className="Tab-list">
             <TabList>

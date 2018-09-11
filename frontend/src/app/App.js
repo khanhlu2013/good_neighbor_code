@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import { Login } from "./component/Login";
+import { Login } from "./AppPublic";
 import { PrivateApp } from "./AppPrivate";
-import { API } from "./api/profile-api";
+import { API } from "../api/profile-api";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -19,6 +19,7 @@ import {
   faRecycle, //borrowed
   faUserClock
 } from "@fortawesome/free-solid-svg-icons";
+import { API_URL } from "../api/api-url";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -48,11 +49,22 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loginUser) {
-      return <PrivateApp loginUser={this.state.loginUser} />;
-    } else {
-      return <Login />;
-    }
+    const { loginUser } = this.state;
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h1>Welcome to Good Neighboors</h1>
+          {loginUser && (
+            <h3>
+              {loginUser.name} - {loginUser.email} -
+              <a href={API_URL("profile.logout")}> logout</a>
+            </h3>
+          )}
+        </div>
+
+        {loginUser ? <PrivateApp loginUser={loginUser} /> : <Login />}
+      </div>
+    );
   }
 }
 

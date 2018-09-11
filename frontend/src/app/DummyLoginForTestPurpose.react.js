@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API_URL } from "../../api/api-url";
+import { API_URL } from "../api/api-url";
 
 class DummyLoginForTestPurpose extends Component {
   state = {
