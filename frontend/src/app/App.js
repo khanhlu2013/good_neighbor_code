@@ -55,10 +55,10 @@ class App extends Component {
         <div className="App-header">
           <h1>Welcome to Good Neighboors</h1>
           {loginUser && (
-            <h3>
+            <h4>
               {loginUser.name} - {loginUser.email} -
               <a href={API_URL("profile.logout")}> logout</a>
-            </h3>
+            </h4>
           )}
         </div>
 
