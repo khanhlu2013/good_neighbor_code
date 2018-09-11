@@ -1,5 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const fromClass = "col-2";
+const titleClass = "col-3";
+const descriptionClass = "col-3";
+const borrowedClass = "text-center col-1";
+const deniedClass = "text-center col-1";
+const requestingClass = "text-center col-1";
+const returnClass = "text-center col-1";
 
 function InShareBorrowingTable(props) {
   const { shares, onReturnBorrowingShareCb } = props;
@@ -12,16 +21,19 @@ function InShareBorrowingTable(props) {
   ));
 
   return (
-    <table id="InShareBorrowingTable-react">
-      <thead>
+    <table
+      id="InShareBorrowingTable-react"
+      className="table table-striped table-bordered"
+    >
+      <thead className="thead-light">
         <tr>
-          <th>From</th>
-          <th>title</th>
-          <th>description</th>
-          <th>borrowed</th>
-          <th>denied</th>
-          <th>requesting</th>
-          <th>return</th>
+          <th className={fromClass}>From</th>
+          <th className={titleClass}>title</th>
+          <th className={descriptionClass}>description</th>
+          <th className={borrowedClass}>borrowed</th>
+          <th className={deniedClass}>denied</th>
+          <th className={requestingClass}>requesting</th>
+          <th className={returnClass}>return</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -44,18 +56,18 @@ function InShareBorrowingTableRow(props) {
 
   return (
     <tr className="InShareBorrowingTableRow">
-      <td>{post.user.email}</td>
-      <td>{post.title}</td>
-      <td>{post.description}</td>
-      <td>{post.borrowed.length}</td>
-      <td>{post.denied.length}</td>
-      <td>{post.requesting.length}</td>
-      <td>
+      <td className={fromClass}>{post.user.email}</td>
+      <td className={titleClass}>{post.title}</td>
+      <td className={descriptionClass}>{post.description}</td>
+      <td className={borrowedClass}>{post.borrowed.length}</td>
+      <td className={deniedClass}>{post.denied.length}</td>
+      <td className={requestingClass}>{post.requesting.length}</td>
+      <td className={returnClass}>
         <button
-          className="InShareBorrowingTableRowReturnBtn"
+          className="InShareBorrowingTableRowReturnBtn btn btn-warning"
           onClick={onReturn}
         >
-          return
+          <FontAwesomeIcon icon="location-arrow" />
         </button>
       </td>
     </tr>

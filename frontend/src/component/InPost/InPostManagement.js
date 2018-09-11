@@ -71,7 +71,7 @@ class InPostManagement extends Component {
       post => post.shares.filter(share => share.id === shareID).length === 1
     );
     if (
-      window.confirm(`You are returning ${post.title}. This can not be undo!`)
+      window.confirm(`You are returning '${post.title}'. This can not be undo!`)
     ) {
       this.setState({ inPosts: null });
       (async () => {
@@ -89,8 +89,6 @@ class InPostManagement extends Component {
         id="InPostManagement-react"
         className={className({ isRefreshingInPosts })}
       >
-        <h1>InPosts Managements</h1>
-
         {!isRefreshingInPosts && (
           <div>
             <InPostTable

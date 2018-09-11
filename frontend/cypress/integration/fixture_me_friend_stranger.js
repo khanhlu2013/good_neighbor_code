@@ -2,35 +2,34 @@ const mongodb = require("mongodb");
 const { ObjectID } = mongodb;
 
 describe("Fixture Dev 2", () => {
-  const u1 = {
+  const friend = {
     _id: new ObjectID(),
-    email: "1@1.com",
-    name: "User One"
+    email: "my@friend.com",
+    name: "My Friend"
   };
-  const u2 = {
+  const stranger = {
     _id: new ObjectID(),
-    email: "2@2.com",
-    name: "User Two"
+    email: "stranger@person.com",
+    name: "Stranger Person"
   };
   const me = {
     _id: new ObjectID(),
     email: "me@me.com",
     name: "Me Here"
   };
-  const c_me_u1 = {
+  const c_me_friend = {
     _id: new ObjectID(),
-    from: u1._id,
+    from: friend._id,
     to: me._id,
     approvedByTo: true,
     approvedByFrom: true
   };
 
   beforeEach(() => {
-    cy.setupDB([u1, u2, me], [c_me_u1]);
+    cy.setupDB([friend, stranger, me], [c_me_friend]);
   });
 
   it("insert fixture", () => {
-    cy.loadApp();
-    cy.login(u1.email);
+    expect(true).to.equal(true);
   });
 });

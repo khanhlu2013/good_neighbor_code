@@ -12,7 +12,10 @@ import {
   faTrashAlt,
   faUndoAlt,
   faShareAlt,
-  faPencilAlt
+  faPencilAlt,
+  faQuestion,
+  faCheck,
+  faLocationArrow
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faThumbsUp,
@@ -20,7 +23,10 @@ library.add(
   faTrashAlt,
   faUndoAlt,
   faShareAlt,
-  faPencilAlt
+  faPencilAlt,
+  faQuestion,
+  faCheck,
+  faLocationArrow
 );
 
 class App extends Component {

@@ -26,7 +26,10 @@ function OutPostTable(props) {
     );
   });
   return (
-    <table id="OutPostTable-react" className="table table-striped">
+    <table
+      id="OutPostTable-react"
+      className="table table-striped table-bordered"
+    >
       <thead className="thead-light">
         <tr>
           <th className={titleClass}>title</th>

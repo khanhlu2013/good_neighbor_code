@@ -43,8 +43,23 @@ class PrivateApp extends Component {
     this.setState({ requestingOutPostCount: count });
   };
 
+  _computeNotificationHtml = count => {
+    let html = null;
+    if (count !== null && count !== 0) {
+      html = <span className="text-danger">{` (${count})`}</span>;
+    }
+    return html;
+  };
+
   render() {
     const { requestingOutPostCount, requestingFriendCount } = this.state;
+
+    const myPostNotification = this._computeNotificationHtml(
+      requestingOutPostCount
+    );
+    const friendNotification = this._computeNotificationHtml(
+      requestingFriendCount
+    );
 
     return (
       <div id="PrivateApp-react" className="App">
@@ -66,17 +81,14 @@ class PrivateApp extends Component {
                   })}
                 >
                   My Posts
+                  {myPostNotification}
                 </span>
-                {Boolean(requestingOutPostCount) && (
-                  <span className="text-danger">{` (${requestingOutPostCount})`}</span>
-                )}
               </Tab>
               <Tab>
-                <span>Friends</span>
-
-                {Boolean(requestingFriendCount) && (
-                  <span className="text-danger">{` (${requestingFriendCount})`}</span>
-                )}
+                <span>
+                  Friends
+                  {friendNotification}
+                </span>
               </Tab>
             </TabList>
           </div>

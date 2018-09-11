@@ -90,7 +90,8 @@ ShareSchema.pre("save", async function() {
       const verifyingShare = await Share.findOne({
         _id: { $not: { $eq: shareID } },
         post: postID,
-        isApprovedByFrom: true
+        isApprovedByFrom: true,
+        isReturnedByTo: false
       });
       if (verifyingShare) {
         throw Error("Only one borrower at a time");

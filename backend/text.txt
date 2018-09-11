@@ -71,11 +71,8 @@
 . remove the ability to undo an invite, less button, less confusion? friendly, less option. ok.
 
 ---
+demo: show a connection management that undo will cover all senario
 
-work on friend post css
 work on decide dialog : css 
-work on friends tab show friend request
-work on my post show request
-
 ---
 
