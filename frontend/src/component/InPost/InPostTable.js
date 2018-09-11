@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
 const fromClass = "col-2";
-const titleClass = "col-3";
-const descriptionClass = "col-2";
+const titleClass = "col-5";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
@@ -30,13 +29,20 @@ function InPostTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>From</th>
+          <th className={fromClass}>All posts</th>
           <th className={titleClass}>title</th>
-          <th className={descriptionClass}>description</th>
-          <th className={borrowedClass}>borrowed</th>
-          <th className={deniedClass}>denied</th>
-          <th className={requestingClass}>requesting</th>
-          <th className={borrowingClass}>borrowing</th>
+          <th className={borrowedClass}>
+            <FontAwesomeIcon icon="recycle" />
+          </th>
+          <th className={deniedClass}>
+            <FontAwesomeIcon icon="thumbs-down" />
+          </th>
+          <th className={requestingClass}>
+            <FontAwesomeIcon icon="question" />
+          </th>
+          <th className={borrowingClass}>
+            <FontAwesomeIcon icon="user-clock" />
+          </th>
           <th className={requestClass}>request</th>
         </tr>
       </thead>
@@ -70,7 +76,6 @@ function InPostTableRow(props) {
     >
       <td className={fromClass}>{inPost.user.email}</td>
       <td className={titleClass}>{inPost.title}</td>
-      <td className={descriptionClass}>{inPost.description}</td>
       <td className={borrowedClass}>{inPost.borrowed.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
       <td className={requestingClass}>{inPost.requesting.length}</td>

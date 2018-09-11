@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 Modal.setAppElement("#root");
 
 function OutPostDecisionDialog(props) {
@@ -30,30 +31,45 @@ function OutPostDecisionDialog(props) {
         shouldCloseOnOverlayClick={false}
         shouldCloseOnEsc={false}
       >
-        <h1>Out Post Decision Dialog</h1>
-        <p>
+        <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
+        <h3 className="text-center">
           Current borrower: {borrower ? borrower.email : "none"}
           {borrower && (
             <button
+              className="btn btn-lg btn-warning"
               id="OutPostDecisionDialogUndoApproveBtn"
               onClick={onUndoBorrowing}
             >
               undo
             </button>
           )}
-        </p>
-        <RequestingTable
-          shares={post.requesting}
-          onDecideShareCb={onDecideShareCb}
-        />
-        <DeniedTable
-          shares={post.denied}
-          onUndoDeniedShareCb={onUndoDeniedShareCb}
-        />
-        <BorrowedTable shares={post.borrowed} />
-        <button id="OutPostDecisionDialogExitBtn" onClick={onExitDialog}>
-          exit
-        </button>
+        </h3>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
+              <RequestingTable
+                shares={post.requesting}
+                onDecideShareCb={onDecideShareCb}
+              />
+            </div>
+            <div className="col-sm">
+              <DeniedTable
+                shares={post.denied}
+                onUndoDeniedShareCb={onUndoDeniedShareCb}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="text-center">
+          <button
+            className="btn btn-lg btn-warning"
+            id="OutPostDecisionDialogExitBtn"
+            onClick={onExitDialog}
+          >
+            exit
+          </button>
+        </div>
       </Modal>
     </div>
   );
@@ -68,6 +84,9 @@ OutPostDecisionDialog.propTypes = {
   onExitDialogCb: PropTypes.func.isRequired
 };
 
+const denyTableFromClass = "col-10";
+const denyTableUndoClass = "col-2 text-center";
+
 function DeniedTable(props) {
   const { shares, onUndoDeniedShareCb } = props;
   const rows = shares.map(share => (
@@ -78,12 +97,14 @@ function DeniedTable(props) {
     />
   ));
   return (
-    <table id="OutShareDeniedTable-react">
-      <caption>Denied Table</caption>
-      <thead>
+    <table
+      id="OutShareDeniedTable-react"
+      className="table table-striped table-bordered"
+    >
+      <thead className="thead-light">
         <tr>
-          <td>User</td>
-          <td>undo</td>
+          <th className={denyTableFromClass}>Denial list</th>
+          <th className={denyTableUndoClass}>undo</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -98,9 +119,11 @@ function DeniedTableRow(props) {
   };
   return (
     <tr className="OutShareDeniedTableRow">
-      <td>{share.borrower.email}</td>
-      <td>
-        <button onClick={onUndo}>undo</button>
+      <td className={denyTableFromClass}>{share.borrower.email}</td>
+      <td className={denyTableUndoClass}>
+        <button className="btn btn-success" onClick={onUndo}>
+          <FontAwesomeIcon icon="undo-alt" />
+        </button>
       </td>
     </tr>
   );
@@ -114,6 +137,10 @@ DeniedTable.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
+const requestingTableFromClass = "col-10";
+const requestingTableApproveClass = "text-center col-1";
+const requestingTableDenyClass = "text-center col-1";
+
 function RequestingTable(props) {
   const { shares, onDecideShareCb } = props;
   const rows = shares.map(share => (
@@ -124,13 +151,19 @@ function RequestingTable(props) {
     />
   ));
   return (
-    <table id="OutShareRequestingTable">
-      <caption>Requesting table</caption>
-      <thead>
+    <table
+      className="table table-striped table-bordered"
+      id="OutShareRequestingTable"
+    >
+      <thead className="thead-light">
         <tr>
-          <th>User</th>
-          <th>approve</th>
-          <th>denied</th>
+          <th className={requestingTableFromClass}>Waiting list</th>
+          <th className={requestingTableApproveClass}>
+            <FontAwesomeIcon icon="thumbs-up" />
+          </th>
+          <th className={requestingTableDenyClass}>
+            <FontAwesomeIcon icon="thumbs-up" />
+          </th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -152,19 +185,23 @@ function RequestingTableRow(props) {
   };
   return (
     <tr className="OutShareRequestingTableRow">
-      <td>{share.borrower.email}</td>
-      <td>
-        <button
-          className="OutShareRequestingTableRowApproveBtn"
-          disabled={Boolean(share.post.borrowing)}
-          onClick={onApprove}
-        >
-          approve
-        </button>
+      <td className={requestingTableFromClass}>{share.borrower.email}</td>
+      <td className={requestingTableApproveClass}>
+        {!Boolean(share.post.borrowing) && (
+          <button
+            className="OutShareRequestingTableRowApproveBtn btn btn-success"
+            onClick={onApprove}
+          >
+            <FontAwesomeIcon icon="thumbs-up" />
+          </button>
+        )}
       </td>
-      <td>
-        <button className="OutShareRequestingTableRowDenyBtn" onClick={onDeny}>
-          deny
+      <td className={requestingTableDenyClass}>
+        <button
+          className="OutShareRequestingTableRowDenyBtn btn btn-warning"
+          onClick={onDeny}
+        >
+          <FontAwesomeIcon icon="thumbs-down" />
         </button>
       </td>
     </tr>
@@ -173,13 +210,6 @@ function RequestingTableRow(props) {
 RequestingTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   onDecideShareCb: PropTypes.func.isRequired
-};
-
-function BorrowedTable(props) {
-  return <h1>borrowed table</h1>;
-}
-BorrowedTable.propTypes = {
-  shares: PropTypes.array.isRequired
 };
 
 export { OutPostDecisionDialog };

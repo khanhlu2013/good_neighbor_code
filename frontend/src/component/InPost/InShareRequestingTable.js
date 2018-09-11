@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const fromClass = "col-2";
-const titleClass = "col-2";
-const descriptionClass = "col-2";
+const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
@@ -28,13 +27,20 @@ function InShareRequestingTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>From</th>
+          <th className={fromClass}>Requesting</th>
           <th className={titleClass}>title</th>
-          <th className={descriptionClass}>description</th>
-          <th className={borrowedClass}>borrowed</th>
-          <th className={deniedClass}>denied</th>
-          <th className={requestingClass}>requesting</th>
-          <th className={borrowingClass}>borrowing</th>
+          <th className={borrowedClass}>
+            <FontAwesomeIcon icon="recycle" />
+          </th>
+          <th className={deniedClass}>
+            <FontAwesomeIcon icon="thumbs-down" />
+          </th>
+          <th className={requestingClass}>
+            <FontAwesomeIcon icon="question" />
+          </th>
+          <th className={borrowingClass}>
+            <FontAwesomeIcon icon="user-clock" />
+          </th>
           <th className={undoClass}>undo</th>
         </tr>
       </thead>
@@ -63,10 +69,9 @@ function InShareRequestingTableRow(props) {
     <tr className="InShareRequestingTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
-      <td className={descriptionClass}>{post.description}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
-      <td className={requestingClass}>me + {post.requesting.length - 1}</td>
+      <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={undoClass}>
         <button

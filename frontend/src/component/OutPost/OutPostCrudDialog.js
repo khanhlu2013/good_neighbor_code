@@ -142,25 +142,21 @@ class OutPostCrudDialog extends Component {
                 </div>
               </div>
             </div>
-            <div className="form-group row">
-              <div className="col-sm-10">
-                <button
-                  type="button"
-                  onClick={this.props.onCancelCrudPostDialog}
-                  className="btn btn-warning"
-                >
-                  cancel
-                </button>
-                <button
-                  disabled={
-                    !this.state.isPostChanged || post.getValidateError()
-                  }
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  ok
-                </button>
-              </div>
+            <div className="text-center">
+              <button
+                disabled={!this.state.isPostChanged || post.getValidateError()}
+                type="submit"
+                className="btn btn-lg btn-primary"
+              >
+                ok
+              </button>
+              <button
+                type="button"
+                onClick={this.props.onCancelCrudPostDialog}
+                className="btn btn-lg btn-warning"
+              >
+                cancel
+              </button>
             </div>
           </form>
         </Modal>

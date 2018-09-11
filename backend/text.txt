@@ -73,6 +73,3 @@
 ---
 demo: show a connection management that undo will cover all senario
 
-work on decide dialog : css 
----
-

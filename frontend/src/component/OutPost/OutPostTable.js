@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
-const titleClass = "col-2";
-const descriptionClass = "col-2";
+const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
-const borrowingClass = "col-2";
+const borrowingClass = "text-center col-2";
 const activeClass = "text-center col-1";
 const editClass = "text-center col-1";
 const shareClass = "text-center col-1";
@@ -33,11 +32,18 @@ function OutPostTable(props) {
       <thead className="thead-light">
         <tr>
           <th className={titleClass}>title</th>
-          <th className={descriptionClass}>description</th>
-          <th className={borrowedClass}>borrowed</th>
-          <th className={deniedClass}>denied</th>
-          <th className={requestingClass}>requesting</th>
-          <th className={borrowingClass}>borrowing</th>
+          <th className={borrowedClass}>
+            <FontAwesomeIcon icon="recycle" />
+          </th>
+          <th className={deniedClass}>
+            <FontAwesomeIcon icon="thumbs-down" />
+          </th>
+          <th className={requestingClass}>
+            <FontAwesomeIcon icon="question" />
+          </th>
+          <th className={borrowingClass}>
+            <FontAwesomeIcon icon="user-clock" />
+          </th>
           <th className={activeClass}>active</th>
           <th className={editClass}>edit</th>
           <th className={shareClass}>share</th>
@@ -74,12 +80,13 @@ function PostTableRow(props) {
       })}
     >
       <td className={titleClass}>{post.title}</td>
-      <td className={descriptionClass}>{post.description}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
-      <td className={activeClass}>{post.isActive.toString()}</td>
+      <td className={activeClass}>
+        {post.isActive && <FontAwesomeIcon icon="check" />}
+      </td>
       <td className={editClass}>
         <button
           className="OutPostTableRowEditBtn btn btn-primary"

@@ -87,24 +87,28 @@ class InPostManagement extends Component {
     return (
       <div
         id="InPostManagement-react"
-        className={className({ isRefreshingInPosts })}
+        className={className({ isRefreshingInPosts, container: true })}
       >
         {!isRefreshingInPosts && (
-          <div>
-            <InPostTable
-              loginUser={this.props.loginUser}
-              inPosts={this.state.inPosts}
-              onCreateRequestingShareCb={this.doCreateRequestingShare}
-            />
-            <InShareRequestingTable
-              shares={this.state.requestingShares}
-              onDeleteRequestingShareCb={this.doDeleteRequestingShare}
-            />
-            <InShareBorrowingTable
-              shares={this.state.borrowingShares}
-              onReturnBorrowingShareCb={this.doReturnBorrowingShare}
-            />
-            <InShareBorrowedTable shares={this.state.borrowedShares} />
+          <div className="row">
+            <div className="col-sm">
+              <InPostTable
+                loginUser={this.props.loginUser}
+                inPosts={this.state.inPosts}
+                onCreateRequestingShareCb={this.doCreateRequestingShare}
+              />
+            </div>
+            <div className="col-sm">
+              <InShareRequestingTable
+                shares={this.state.requestingShares}
+                onDeleteRequestingShareCb={this.doDeleteRequestingShare}
+              />
+              <InShareBorrowingTable
+                shares={this.state.borrowingShares}
+                onReturnBorrowingShareCb={this.doReturnBorrowingShare}
+              />
+              <InShareBorrowedTable shares={this.state.borrowedShares} />
+            </div>
           </div>
         )}
       </div>

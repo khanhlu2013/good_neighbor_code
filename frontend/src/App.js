@@ -11,11 +11,13 @@ import {
   faThumbsDown,
   faTrashAlt,
   faUndoAlt,
-  faShareAlt,
-  faPencilAlt,
+  faShareAlt, //decision
+  faPencilAlt, //edit
   faQuestion,
   faCheck,
-  faLocationArrow
+  faLocationArrow, //return
+  faRecycle, //borrowed
+  faUserClock
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faThumbsUp,
@@ -26,7 +28,9 @@ library.add(
   faPencilAlt,
   faQuestion,
   faCheck,
-  faLocationArrow
+  faLocationArrow,
+  faRecycle,
+  faUserClock
 );
 
 class App extends Component {

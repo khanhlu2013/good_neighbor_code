@@ -16,7 +16,7 @@ const table = {
       .then(rows => {
         const row = Array.from(rows).find(row => {
           const text = row.textContent;
-          return text.includes(post.title) && text.includes(post.description);
+          return text.includes(post.title);
         });
         return cy.wrap(row);
       })
