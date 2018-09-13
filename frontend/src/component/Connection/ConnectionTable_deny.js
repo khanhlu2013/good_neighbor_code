@@ -8,6 +8,15 @@ const removeColClass = "col-3 text-center";
 function ConnectionDenyTable(props) {
   const { connections, loginUserId, updateConnectionCb } = props;
 
+  const rows = connections.map(connection => (
+    <ConnectionRow
+      key={connection.id}
+      connection={connection}
+      loginUserId={loginUserId}
+      updateConnectionCb={updateConnectionCb}
+    />
+  ));
+
   return (
     <div className="container-fluid">
       <table
@@ -21,16 +30,7 @@ function ConnectionDenyTable(props) {
           </tr>
         </thead>
 
-        <tbody>
-          {connections.map(connection => (
-            <ConnectionRow
-              key={connection.id}
-              connection={connection}
-              loginUserId={loginUserId}
-              updateConnectionCb={updateConnectionCb}
-            />
-          ))}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   );

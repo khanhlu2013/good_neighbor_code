@@ -7,7 +7,14 @@ const userNameColClass = "col-9";
 
 function ConnectionOutTable(props) {
   const { connections, loginUserId, updateConnectionCb } = props;
-
+  const rows = connections.map(connection => (
+    <ConnectionRow
+      key={connection.id}
+      connection={connection}
+      loginUserId={loginUserId}
+      updateConnectionCb={updateConnectionCb}
+    />
+  ));
   return (
     <div className="container-fluid">
       <table id="OutFriendTable" className="table table-striped table-bordered">
@@ -18,16 +25,7 @@ function ConnectionOutTable(props) {
           </tr>
         </thead>
 
-        <tbody>
-          {connections.map(connection => (
-            <ConnectionRow
-              key={connection.id}
-              connection={connection}
-              loginUserId={loginUserId}
-              updateConnectionCb={updateConnectionCb}
-            />
-          ))}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   );

@@ -12,6 +12,12 @@ require("./configs/passport-config");
 
 //app/middleware
 const app = express();
+if (process.env.NODE_ENV === "test") {
+  app.use(function(req, res, next) {
+    setTimeout(next, 1000);
+  });
+}
+
 app.use(
   cors({
     origin: [keys.FRONTEND_URL],

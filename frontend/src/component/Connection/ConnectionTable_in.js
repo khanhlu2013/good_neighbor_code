@@ -7,7 +7,14 @@ const decideColClass = "col-2 text-center";
 
 function ConnectionInTable(props) {
   const { connections, loginUserId, updateConnectionCb } = props;
-
+  const rows = connections.map(connection => (
+    <ConnectionRow
+      key={connection.id}
+      connection={connection}
+      loginUserId={loginUserId}
+      updateConnectionCb={updateConnectionCb}
+    />
+  ));
   return (
     <div className="container-fluid">
       <table id="InFriendTable" className="table table-striped table-bordered">
@@ -23,16 +30,7 @@ function ConnectionInTable(props) {
           </tr>
         </thead>
 
-        <tbody>
-          {connections.map(connection => (
-            <ConnectionRow
-              key={connection.id}
-              connection={connection}
-              loginUserId={loginUserId}
-              updateConnectionCb={updateConnectionCb}
-            />
-          ))}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   );

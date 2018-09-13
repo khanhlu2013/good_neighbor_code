@@ -27,15 +27,19 @@ class ConnectionManagement extends Component {
   }
 
   componentDidMount() {
-    this.setConnections(null);
-    this.doRefreshConnections();
+    this.props.onFriendRequestCountChangedCb(null);
+
+    (async () => {
+      const connections = await API.connections();
+      this.setConnectionsAndNotifyRequestingCount(connections);
+    })();
   }
 
   doRefreshConnections = async () => {
-    this.setConnections(await API.connections());
+    this.setConnectionsAndNotifyRequestingCount(await API.connections());
   };
 
-  setConnections(connections) {
+  setConnectionsAndNotifyRequestingCount(connections) {
     this.setState({ connections });
     this.props.onFriendRequestCountChangedCb(
       ConnectionManagement.calculateFriendRequestCount(
@@ -46,7 +50,7 @@ class ConnectionManagement extends Component {
   }
 
   onCreateConnection = userIdToAdd => {
-    this.setConnections(null);
+    this.setConnectionsAndNotifyRequestingCount(null);
     (async () => {
       await API.createConnection(userIdToAdd);
       this.doRefreshConnections();
@@ -54,7 +58,7 @@ class ConnectionManagement extends Component {
   };
 
   onUpdateConnection = (connectionId, isApproved) => {
-    this.setConnections(null);
+    this.setConnectionsAndNotifyRequestingCount(null);
     (async () => {
       await API.updateConnection(connectionId, isApproved);
       this.doRefreshConnections();
@@ -63,39 +67,33 @@ class ConnectionManagement extends Component {
 
   render() {
     let loginUserId = this.props.loginUser.id;
-    let connections = this.state.connections || [];
+    let { connections } = this.state;
 
-    const friends = connections.filter(
-      connection => connection.approvedByFrom && connection.approvedByTo
-    );
-    const inFriends = connections.filter(
-      connection =>
-        connection.to.id === loginUserId &&
-        connection.approvedByFrom &&
-        connection.approvedByTo === undefined
-    );
-    const outFriends = connections.filter(
-      connection =>
-        connection.from.id === loginUserId &&
-        connection.approvedByFrom &&
-        connection.approvedByTo === undefined
-    );
-    const rejectedFriends = connections.filter(
-      connection =>
-        (connection.to.id === loginUserId &&
-          connection.approvedByTo === false) ||
-        (connection.from.id === loginUserId &&
-          connection.approvedByFrom === false)
-    );
-
-    return (
-      <div
-        id="ConnectionManagement-react"
-        className={className({
-          container: true,
-          isRefreshingConnections: this.state.connections === null
-        })}
-      >
+    let contentHtml = null;
+    if (connections !== null) {
+      const friends = connections.filter(
+        connection => connection.approvedByFrom && connection.approvedByTo
+      );
+      const inFriends = connections.filter(
+        connection =>
+          connection.to.id === loginUserId &&
+          connection.approvedByFrom &&
+          connection.approvedByTo === undefined
+      );
+      const outFriends = connections.filter(
+        connection =>
+          connection.from.id === loginUserId &&
+          connection.approvedByFrom &&
+          connection.approvedByTo === undefined
+      );
+      const rejectedFriends = connections.filter(
+        connection =>
+          (connection.to.id === loginUserId &&
+            connection.approvedByTo === false) ||
+          (connection.from.id === loginUserId &&
+            connection.approvedByFrom === false)
+      );
+      contentHtml = (
         <div className="row">
           <div className="col-sm">
             <ConnectionFriendTable
@@ -128,6 +126,18 @@ class ConnectionManagement extends Component {
             />
           </div>
         </div>
+      );
+    }
+
+    return (
+      <div
+        id="ConnectionManagement-react"
+        className={className({
+          container: true,
+          isRefreshingConnections: connections === null
+        })}
+      >
+        {contentHtml}
       </div>
     );
   }

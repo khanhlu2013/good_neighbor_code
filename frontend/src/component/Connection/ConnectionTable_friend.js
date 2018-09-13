@@ -8,28 +8,27 @@ const removeColClass = "col-3 text-center";
 function ConnectionFriendTable(props) {
   const { connections, loginUserId, updateConnectionCb } = props;
 
+  const friendCount = connections.length;
+  const rows = connections.map(connection => (
+    <ConnectionRow
+      key={connection.id}
+      connection={connection}
+      loginUserId={loginUserId}
+      updateConnectionCb={updateConnectionCb}
+    />
+  ));
+
   return (
     <div className="container-fluid">
       <table id="FriendTable" className="table table-striped table-bordered">
         <thead className="thead-light">
           <tr className="d-flex">
-            <th className={userNameColClass}>{`Friends: ${
-              connections.length
-            }`}</th>
+            <th className={userNameColClass}>{`Friends: ${friendCount}`}</th>
             <th className={removeColClass}>remove</th>
           </tr>
         </thead>
 
-        <tbody>
-          {connections.map(connection => (
-            <ConnectionRow
-              key={connection.id}
-              connection={connection}
-              loginUserId={loginUserId}
-              updateConnectionCb={updateConnectionCb}
-            />
-          ))}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   );
