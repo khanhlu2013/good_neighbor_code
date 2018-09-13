@@ -5,7 +5,10 @@ const connectionTree = {
     }
   },
   snap: name => {
-    cy.contains(".isRefreshingConnections").should("not.be.visible");
+    cy.get("#ConnectionManagement-react").should(
+      "not.have.class",
+      "isRefreshingConnections"
+    );
     cy.get("#ConnectionManagement-react").snapshot({ name });
   },
   search: email => {

@@ -90,7 +90,7 @@ describe("ConnectionManagement", () => {
       /*
         1. a -> b, a->c : (outFriend: 2,snap) (deny C, snap)
         2. c -> b
-        3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)    
+        3. a -> b <- c (inFriend:2, snap), (approve 1, snap) , (deny 1, snap)
       */
 
       //1. a -> b, a->c : (outFriend: 2,snap) (deny C, snap)

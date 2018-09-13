@@ -93,7 +93,7 @@ class ConnectionManagement extends Component {
         id="ConnectionManagement-react"
         className={className({
           container: true,
-          isRefreshingConnections: connections === null
+          isRefreshingConnections: this.state.connections === null
         })}
       >
         <div className="row">
