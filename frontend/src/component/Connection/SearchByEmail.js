@@ -114,7 +114,6 @@ class SearchByEmail extends Component {
             loginUser={this.props.loginUser}
             searchedUser={this.state.searchedUser}
             searchedConnection={this.state.searchedConnection}
-            updateConnectionCb={this.props.updateConnectionCb}
             createConnectionCb={this.props.createConnectionCb}
           />
         )}
@@ -126,8 +125,7 @@ class SearchByEmail extends Component {
 SearchByEmail.propTypes = {
   loginUser: PropTypes.object.isRequired,
   connections: PropTypes.array.isRequired,
-  createConnectionCb: PropTypes.func.isRequired,
-  updateConnectionCb: PropTypes.func.isRequired
+  createConnectionCb: PropTypes.func.isRequired
 };
 
 function CrudConnectionControlPanel(props) {
@@ -135,7 +133,6 @@ function CrudConnectionControlPanel(props) {
     loginUser,
     searchedUser,
     searchedConnection,
-    updateConnectionCb,
     createConnectionCb
   } = props;
 
@@ -143,22 +140,13 @@ function CrudConnectionControlPanel(props) {
     createConnectionCb(searchedUser.id);
   };
 
-  const onApproveConnection = evt => {
-    updateConnectionCb(searchedConnection.id, true);
-  };
-
-  const onDenyConnection = evt => {
-    updateConnectionCb(searchedConnection.id, false);
-  };
-
-  let message;
-  let action;
+  let message = "";
+  let action = null;
 
   if (
     /*you and searchedUser haven't exchanged invitation yet*/
     searchedConnection === null
   ) {
-    message = ``;
     action = (
       <button
         className="btn btn-success"
@@ -174,109 +162,54 @@ function CrudConnectionControlPanel(props) {
       /*you init the connection*/
       searchedConnection.from.id === loginUser.id
     ) {
+      message = `You invited ${searchedUser.name}. `;
       if (
         /*but you changed your mind*/
         searchedConnection.approvedByFrom === false
       ) {
-        message = `But you changed your mind.`;
-        action = (
-          <button
-            className="btn btn-success"
-            id="approveConnectionByFromBtn"
-            onClick={onApproveConnection}
-          >
-            Undo
-          </button>
-        );
+        message += `But you changed your mind.`;
       } else {
         /*and you havent changed your mind yet*/
         if (
           /*searchedUser haven't responsed you*/
           searchedConnection.approvedByTo === undefined
         ) {
-          message = `Please wait for approval!`;
+          message += `Please wait for approval!`;
         } else if (
           /*searchedUser approved you*/
           searchedConnection.approvedByTo === true
         ) {
-          message = `And you are friends!`;
+          message += `And you are friends!`;
         } else {
           /*searchedUser denided you*/
-          message = `But sorry, you got denied!`;
+          message += `But sorry, you got denied!`;
         }
-        action = (
-          <button
-            className="btn btn-warning"
-            id="denyConnectionByFromBtn"
-            onClick={onDenyConnection}
-          >
-            Undo invite
-          </button>
-        );
       }
-      message = `You invited ${searchedUser.name}. ` + message;
     } else {
       /*searchedUser init the connection*/
+      message = `${searchedUser.name} invited you. `;
       if (
         /*but searchedUser changed her mind*/
         searchedConnection.approvedByFrom === false
       ) {
-        message = `But changed his/her mind. Sorry!`;
-        action = null;
+        message += `But changed his/her mind. Sorry!`;
       } else {
         /*and searchedUser havent changed her mind yet*/
         if (
           /*you havent responsed searchedUser*/
           searchedConnection.approvedByTo === undefined
         ) {
-          message = ``;
-          action = (
-            <span>
-              <button
-                className="btn btn-success"
-                id="approveConnectionByToFirstTimeBtn"
-                onClick={onApproveConnection}
-              >
-                approve
-              </button>
-              <button
-                className="btn btn-warning"
-                id="denyConnectionByToFirstTimeBtn"
-                onClick={onDenyConnection}
-              >
-                deny
-              </button>
-            </span>
-          );
+          message += `Please response.`;
         } else if (
           /*you approved searchedUser*/
           searchedConnection.approvedByTo === true
         ) {
-          message = `And you accpected!`;
-          action = (
-            <button
-              className="btn btn-warning"
-              id="denyConnectionByToSecondTimeBtn"
-              onClick={onDenyConnection}
-            >
-              undo
-            </button>
-          );
+          message += `And you accpected!`;
         } else {
           /*you denied searchedUser*/
-          message = `And you denied.`;
-          action = (
-            <button
-              className="btn btn-success"
-              id="approveConnectionByToSecondTimeBtn"
-              onClick={onApproveConnection}
-            >
-              undo
-            </button>
-          );
+          message += `And you denied.`;
         }
       }
-      message = `${searchedUser.name} invited you. ` + message;
     }
   }
 
@@ -292,7 +225,6 @@ CrudConnectionControlPanel.propTypes = {
   loginUser: PropTypes.object.isRequired,
   searchedUser: PropTypes.object.isRequired,
   searchedConnection: PropTypes.object, //if null we can create connection
-  updateConnectionCb: PropTypes.func.isRequired,
   createConnectionCb: PropTypes.func.isRequired
 };
 

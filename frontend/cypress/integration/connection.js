@@ -44,32 +44,22 @@ describe("ConnectionManagement", () => {
       //create connection
       connectionTree.tab.focus();
       connectionTree.search(tu.email);
-      clickAndSnap("Created connection", "#createConnectionBtn");
-      clickAndSnap("DenyConnectionByFrom", "#denyConnectionByFromBtn");
-      clickAndSnap("ApproveConnectionByFrom", "#approveConnectionByFromBtn");
+
+      connectionTree.snap("can search new user and display invite button");
+      cy.get("#createConnectionBtn").click();
+      connectionTree.snap("can invite user");
 
       cy.switchUser(tu.email);
       connectionTree.tab.focus();
-      searchAndSnap("Searched incomming connection", lu.email);
+      searchAndSnap("can search incomming connection", lu.email);
 
-      clickAndSnap(
-        "ApproveConnectionByToFirstTime",
-        "#approveConnectionByToFirstTimeBtn"
-      );
-      clickAndSnap(
-        "DenyConnectionByToSecondTime",
-        "#denyConnectionByToSecondTimeBtn"
-      );
-      clickAndSnap(
-        "ApproveConnectionByToSecondTime",
-        "#approveConnectionByToSecondTimeBtn"
-      );
+      //approve -> show approve
+      connectionTree.inRequests_approve(0);
+      connectionTree.snap("can search for already-friend user");
 
-      //search deny by to
-      cy.get("#denyConnectionByToSecondTimeBtn").click();
-      cy.switchUser(lu.email);
-      connectionTree.tab.focus();
-      searchAndSnap("SeachDenyByTo", tu.email);
+      //deny -> show deny
+      connectionTree.friends_deny(0);
+      connectionTree.snap("can search denied user");
     });
   });
 

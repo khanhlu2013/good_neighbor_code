@@ -119,7 +119,6 @@ class ConnectionManagement extends Component {
               loginUser={this.props.loginUser}
               connections={connections}
               createConnectionCb={this.onCreateConnection}
-              updateConnectionCb={this.onUpdateConnection}
             />
             <hr />
             <ConnectionInTable
