@@ -24,6 +24,7 @@
     "react-scripts": "1.1.4",
     "react-spinners": "^0.4.4",
     "react-tabs": "^2.3.0",
+    "react-youtube": "^7.6.0",
     "route-node": "^3.4.0",
     "validator": "^10.5.0"
   },

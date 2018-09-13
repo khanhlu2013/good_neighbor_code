@@ -65,12 +65,24 @@
 . express-session deprecated undefined resave option; provide resave option
 . also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
 . just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
-
------
-. change inPost, outPost into myPost and friendPost: developing experience is higher with higher level language
-. remove the ability to undo an invite, less button, less confusion? friendly, less option. ok.
-
+. investigate: when i go to google page and go back, it show incorrect login page instead of login page again
 ---
-. remove logo
 demo: show a connection management that undo will cover all senario
 
+---
+
+. personally, here are some of my stuff that i dont use all the time. 
+. here might be yours
+. so possibly we can share them, get to know each other hobie, build relationship,  and get access to tons of stuff. 
+. (social media) imagine if sharing physical stuff is as easy as sharing a facebook post
+. well, welcome to good neighbor, a social media app i wrote to let you easily communicate, keep track, and share stuff within your network. 
+. we can get to see the journey and story our stuff created among our love one
+. thank you and happy sharing
+
+---
+
+With good neighboor, There is a single entry point to access the app using using a google account. On your first time using good neighboor, the app will create an account for you in the background. 
+
+...
+
+Usually, an app provide a few option to sign up and login. But may be, less is more. You don't have to remember if you have sign up or not. or if you signed up with google or facebook or with an email and password. there is no chance for a duplicated account. 

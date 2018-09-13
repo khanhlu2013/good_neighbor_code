@@ -1,13 +1,14 @@
-.App {
+.App-body {
   margin: 0 auto;
+  margin-top: 40px;
   width: 1300px;
 }
 
 .App-header {
-  height: 120px;
   padding: 5px;
   color: black;
   text-align: center;
+  background-color: rgb(236, 236, 236);
 }
 
 .Tab-list {

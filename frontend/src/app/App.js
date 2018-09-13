@@ -1,25 +1,29 @@
 import React, { Component } from "react";
 
-import "./App.css";
-import { Login } from "./AppPublic";
-import { PrivateApp } from "./AppPrivate";
+import "./app.css";
+import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faThumbsUp,
-  faThumbsDown,
-  faTrashAlt,
+  faThumbsUp, //approve
+  faThumbsDown, //deny
+  faTrashAlt, //remove
   faUndoAlt,
   faShareAlt, //decision
   faPencilAlt, //edit
-  faQuestion,
-  faCheck,
+  faQuestion, //requesting
+  faCheck, //is active
   faLocationArrow, //return
   faRecycle, //borrowed
-  faUserClock
+  faUserClock, //borrowing
+  faPlay, //play youtube video
+  faPause, //pause youtube video
+  faClock //youtube video duration
 } from "@fortawesome/free-solid-svg-icons";
 import { API_URL } from "../api/api-url";
+import { PublicApp } from "./appPublic";
+import { Login } from "./login";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -31,7 +35,10 @@ library.add(
   faCheck,
   faLocationArrow,
   faRecycle,
-  faUserClock
+  faUserClock,
+  faPlay,
+  faPause,
+  faClock
 );
 
 class App extends Component {
@@ -51,18 +58,21 @@ class App extends Component {
   render() {
     const { loginUser } = this.state;
     return (
-      <div className="App">
+      <div>
         <div className="App-header">
-          <h1>Welcome to Good Neighboors</h1>
-          {loginUser && (
+          <h1>Welcome to Good Neighbor</h1>
+          {loginUser ? (
             <h4>
               {loginUser.name} - {loginUser.email} -
               <a href={API_URL("profile.logout")}> logout</a>
             </h4>
+          ) : (
+            <Login />
           )}
         </div>
-
-        {loginUser ? <PrivateApp loginUser={loginUser} /> : <Login />}
+        <div className="App-body">
+          {loginUser ? <PrivateApp loginUser={loginUser} /> : <PublicApp />}
+        </div>
       </div>
     );
   }
