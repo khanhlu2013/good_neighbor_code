@@ -1,11 +1,11 @@
 // - TAB
 const tab = {
   focus: () => {
-    cy.get("#react-tabs-2").click();
+    cy.get("#TabSelector_OutPost").click();
   },
   snap: name => {
     cy.get(".isRefreshingOutPost").should("not.be.visible");
-    cy.get("#react-tabs-2").snapshot({ name });
+    cy.get("#TabSelector_OutPost").snapshot({ name });
   }
 };
 

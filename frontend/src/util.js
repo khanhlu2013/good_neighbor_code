@@ -51,7 +51,7 @@ class LoadingIcon extends Component {
 
   getAnimateString() {
     if (!this.props.isAnimate) {
-      return "";
+      return null;
     }
 
     const { curAnimateDotCount } = this.state;
@@ -68,9 +68,14 @@ class LoadingIcon extends Component {
   }
 
   render() {
-    const text = this.props.text || "";
+    const { text } = this.props;
     const animateString = this.getAnimateString();
-    return <span id="LoadingIcon-react">{`${text} ${animateString}`}</span>;
+    return (
+      <span id="LoadingIcon-react">
+        {text !== null && text}
+        {animateString !== null && <b>{animateString}</b>}
+      </span>
+    );
   }
 }
 

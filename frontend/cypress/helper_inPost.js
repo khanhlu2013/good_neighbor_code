@@ -1,6 +1,6 @@
 const inPostTree = {
   focusTab: () => {
-    cy.get("##react-tabs-0").click();
+    cy.get("#TabSelector_InPost`").click();
   },
   undoRequesting: post => {
     cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")

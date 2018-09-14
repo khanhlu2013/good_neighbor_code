@@ -1,7 +1,7 @@
 const connectionTree = {
   tab: {
     focus: () => {
-      cy.get("#react-tabs-4").click();
+      cy.get("#TabSelector_Connection").click();
     }
   },
   snap: name => {

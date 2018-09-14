@@ -109,8 +109,10 @@ ok, lets see we would set a proptype to not require.  this mean user can put in 
 i see that refreshing connection should only be run once. on component did mount. 
   
 but before that, when i click on create connection, the call back is call. it is responsible to set the state for my component that i am inviting. when it finish create connection, it will be responsible to clear it out
+
+---
+. make sure i redo the test : no more isRefreshing ...
+
 . can i wrap an id to the tab so that i don't have to use the default indexed-based id for consistency testing. (in case i switch around the tab position)
 
-remove waiting list animate
-undo deny, just animate
-friend list remove animate
+test connection management

@@ -10,8 +10,8 @@ import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
-    requestingOutPostCount: null,
-    requestingFriendCount: null,
+    requestingOutPostCount: 0,
+    requestingFriendCount: 0,
     selectedTabIndex: null
   };
 
@@ -48,14 +48,14 @@ class PrivateApp extends Component {
     return (
       <div id="PrivateApp-react">
         <Tabs>
-          <div className="Tab-list">
+          <div className="Tab-selector-list">
             <TabList>
-              <Tab>Friend Posts</Tab>
-              <Tab>
+              <Tab id="TabSelector_InPost">Friend Posts</Tab>
+              <Tab id="TabSelector_OutPost">
                 My Posts
                 {myPostNotification}
               </Tab>
-              <Tab>
+              <Tab id="TabSelector_Connection">
                 Friend
                 {friendNotification}
               </Tab>
