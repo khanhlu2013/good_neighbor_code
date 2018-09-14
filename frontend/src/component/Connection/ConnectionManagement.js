@@ -8,6 +8,7 @@ import { ConnectionOutTable } from "./ConnectionTable_out.js";
 import { ConnectionDenyTable } from "./ConnectionTable_deny.js";
 import { ConnectionInTable } from "./ConnectionTable_in.js";
 import { API } from "../../api/profile-api.js";
+import { LoadingIcon } from "../../util.js";
 
 class ConnectionManagement extends Component {
   state = {
@@ -137,7 +138,13 @@ class ConnectionManagement extends Component {
           isRefreshingConnections: connections === null
         })}
       >
-        {contentHtml}
+        {contentHtml !== null ? (
+          contentHtml
+        ) : (
+          <h1 className="text-center">
+            <LoadingIcon text="Please wait ..." />
+          </h1>
+        )}
       </div>
     );
   }

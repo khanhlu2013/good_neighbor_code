@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 const nullOrRequiredValidator = expectedType => {
   if (expectedType !== "array") {
     return Error(`Unexpected ${expectedType}`);
@@ -22,4 +25,12 @@ const nullOrRequiredValidator = expectedType => {
   };
 };
 
-export { nullOrRequiredValidator };
+function LoadingIcon(props) {
+  const { text } = props;
+  return <span id="LoadingIcon-react">{text}</span>;
+}
+LoadingIcon.propTypes = {
+  text: PropTypes.string.isRequired
+};
+
+export { nullOrRequiredValidator, LoadingIcon };

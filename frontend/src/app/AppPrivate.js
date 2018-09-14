@@ -1,39 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import className from "classnames";
 
 import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
 import { API } from "../api/profile-api.js";
 import { InPostManagement } from "../component/InPost/InPostManagement.js";
+import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
     requestingOutPostCount: null,
     requestingFriendCount: null
   };
-
-  componentDidMount() {
-    (async () => {
-      const outPosts = await API.outPosts();
-      this.onRequestingOutPostCountChanged(
-        OutPostManagement.calculateRequestingPostCount(outPosts)
-      );
-    })();
-
-    (async () => {
-      const connections = await API.connections();
-      this.onFriendRequestCountChanged(
-        ConnectionManagement.calculateFriendRequestCount(
-          connections,
-          this.props.loginUser.id
-        )
-      );
-    })();
-  }
 
   onFriendRequestCountChanged = count => {
     this.setState({ requestingFriendCount: count });
@@ -46,6 +26,11 @@ class PrivateApp extends Component {
     let html = null;
     if (count !== null && count !== 0) {
       html = <span className="text-danger">{` (${count})`}</span>;
+    } else if (count === null) {
+      html = <LoadingIcon text="..." />;
+    } else {
+      if (count !== 0) throw Error("Unexpected code path");
+      html = null;
     }
     return html;
   };
@@ -62,25 +47,25 @@ class PrivateApp extends Component {
 
     return (
       <div id="PrivateApp-react">
-        <Tabs>
+        <Tabs forceRenderTabPanel={false}>
           <div className="Tab-list">
             <TabList>
               <Tab>Friend Posts</Tab>
               <Tab>
-                <span
+                <div
                   className={className({
                     isRefreshingOutPost: requestingOutPostCount === null
                   })}
                 >
                   My Posts
                   {myPostNotification}
-                </span>
+                </div>
               </Tab>
               <Tab>
-                <span>
-                  Friends
+                <div id="FriendDashboard-react">
+                  Friend
                   {friendNotification}
-                </span>
+                </div>
               </Tab>
             </TabList>
           </div>
