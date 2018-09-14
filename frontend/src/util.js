@@ -1,36 +1,82 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+import _ from "underscore";
 
-const nullOrRequiredValidator = expectedType => {
-  if (expectedType !== "array") {
-    return Error(`Unexpected ${expectedType}`);
+const nullOrRequiredValidator = type => {
+  if (!["array", "string"].includes(type)) {
+    return Error(`Unexpected ${type}`);
   }
 
   return function(props, propName, componentName) {
     const { [propName]: data } = props;
-    console.log(props);
-    console.log(propName);
-    console.log(data);
+
     if (data === undefined) {
       return new Error(`Undefined '${propName}' is not allowed`);
     }
 
-    if (data !== null) {
+    if (data === null) {
       return; //this is allow when data is loading
     }
 
-    if (expectedType === "array" && !Array.isArray(data)) {
+    if (type === "array" && !Array.isArray(data)) {
       return new Error(`${propName} must be an array`);
+    } else if (type === "string" && !_.isString(data)) {
+      return new Error(`${propName} must be a string`);
     }
   };
 };
 
-function LoadingIcon(props) {
-  const { text } = props;
-  return <span id="LoadingIcon-react">{text}</span>;
+class LoadingIcon extends Component {
+  state = {
+    curAnimateDotCount: 0
+  };
+  static get animateDotCountMax() {
+    return 3;
+  }
+  componentDidMount() {
+    if (this.props.isAnimate) {
+      this.startAnimate();
+    }
+  }
+
+  startAnimate() {
+    setInterval(() => {
+      this.setState((state, props) => {
+        const nextAnimateDot =
+          (state.curAnimateDotCount + 1) % LoadingIcon.animateDotCountMax;
+        return { curAnimateDotCount: nextAnimateDot };
+      });
+    }, 150);
+  }
+
+  getAnimateString() {
+    if (!this.props.isAnimate) {
+      return "";
+    }
+
+    const { curAnimateDotCount } = this.state;
+    let array = new Array(LoadingIcon.animateDotCountMax);
+    for (let index of array.keys()) {
+      if (index === curAnimateDotCount) {
+        array[index] = "\u06D4";
+      } else {
+        array[index] = ".";
+      }
+    }
+
+    return array.join("");
+  }
+
+  render() {
+    const text = this.props.text || "";
+    const animateString = this.getAnimateString();
+    return <span id="LoadingIcon-react">{`${text} ${animateString}`}</span>;
+  }
 }
+
 LoadingIcon.propTypes = {
-  text: PropTypes.string.isRequired
+  text: nullOrRequiredValidator("string"),
+  isAnimate: PropTypes.bool.isRequired
 };
 
 export { nullOrRequiredValidator, LoadingIcon };

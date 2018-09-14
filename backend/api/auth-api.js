@@ -19,8 +19,7 @@ if (keys.NODE_ENV !== "production") {
       const user = await User.findOneOrCreate(email, name);
       req.login(user, err => {
         if (err) {
-          console.log(err);
-          res.status(500).send();
+          throw err;
         } else {
           return res.redirect(keys.FRONTEND_URL);
         }

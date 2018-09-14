@@ -14,7 +14,7 @@ require("./configs/passport-config");
 const app = express();
 if (process.env.NODE_ENV === "test") {
   app.use(function(req, res, next) {
-    setTimeout(next, 1000);
+    setTimeout(next, 700);
   });
 }
 
@@ -42,7 +42,7 @@ app.use("/profile", require("./api/profile-api"));
 
 //log error
 app.use(function logError(err, req, res, next) {
-  console.log("There is Error");
+  console.error("There is Error");
   console.error(err.stack);
   next(err);
 });

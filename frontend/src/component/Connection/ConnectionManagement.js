@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { SearchByEmail } from "./SearchByEmail.js";
 import { ConnectionFriendTable } from "./ConnectionTable_friend.js";
@@ -12,7 +11,9 @@ import { LoadingIcon } from "../../util.js";
 
 class ConnectionManagement extends Component {
   state = {
-    connections: null
+    connections: null,
+    isCreatingConnection: false,
+    connectionIdCurrentlyUpdating: null
   };
 
   static calculateFriendRequestCount(connections, loginUserId) {
@@ -51,26 +52,31 @@ class ConnectionManagement extends Component {
   }
 
   onCreateConnection = userIdToAdd => {
-    this.setConnectionsAndNotifyRequestingCount(null);
+    this.props.onFriendRequestCountChangedCb(null);
+    this.setState({ isCreatingConnection: true });
     (async () => {
       await API.createConnection(userIdToAdd);
-      this.doRefreshConnections();
+      await this.doRefreshConnections();
+      this.setState({ isCreatingConnection: false });
     })();
   };
 
   onUpdateConnection = (connectionId, isApproved) => {
-    this.setConnectionsAndNotifyRequestingCount(null);
+    this.props.onFriendRequestCountChangedCb(null);
+    this.setState({ connectionIdCurrentlyUpdating: connectionId });
     (async () => {
       await API.updateConnection(connectionId, isApproved);
-      this.doRefreshConnections();
+      await this.doRefreshConnections();
+      this.setState({ connectionIdCurrentlyUpdating: null });
     })();
   };
 
   render() {
     let loginUserId = this.props.loginUser.id;
-    let { connections } = this.state;
+    let { connections, connectionIdCurrentlyUpdating } = this.state;
 
-    let contentHtml = null;
+    let htmlContent;
+
     if (connections !== null) {
       const friends = connections.filter(
         connection => connection.approvedByFrom && connection.approvedByTo
@@ -94,21 +100,25 @@ class ConnectionManagement extends Component {
           (connection.from.id === loginUserId &&
             connection.approvedByFrom === false)
       );
-      contentHtml = (
+
+      htmlContent = (
         <div className="row">
           <div className="col-sm">
             <ConnectionFriendTable
               connections={friends}
+              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
             <ConnectionOutTable
               connections={outFriends}
+              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
             <ConnectionDenyTable
               connections={rejectedFriends}
+              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
@@ -118,33 +128,29 @@ class ConnectionManagement extends Component {
               loginUser={this.props.loginUser}
               connections={connections}
               createConnectionCb={this.onCreateConnection}
+              isCreatingConnection={this.state.isCreatingConnection}
             />
             <hr />
             <ConnectionInTable
               connections={inFriends}
+              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
           </div>
         </div>
       );
+    } else {
+      htmlContent = (
+        <h1 className="text-center">
+          <LoadingIcon text="please wait" isAnimate={true} />
+        </h1>
+      );
     }
 
     return (
-      <div
-        id="ConnectionManagement-react"
-        className={className({
-          container: true,
-          isRefreshingConnections: connections === null
-        })}
-      >
-        {contentHtml !== null ? (
-          contentHtml
-        ) : (
-          <h1 className="text-center">
-            <LoadingIcon text="Please wait ..." />
-          </h1>
-        )}
+      <div id="ConnectionManagement-react" className="container">
+        {htmlContent}
       </div>
     );
   }

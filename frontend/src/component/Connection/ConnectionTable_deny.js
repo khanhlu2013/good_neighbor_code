@@ -1,17 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nullOrRequiredValidator, LoadingIcon } from "../../util";
 
 const userNameColClass = "col-9";
 const removeColClass = "col-3 text-center";
 
 function ConnectionDenyTable(props) {
-  const { connections, loginUserId, updateConnectionCb } = props;
+  const {
+    connections,
+    loginUserId,
+    updateConnectionCb,
+    connectionIdCurrentlyUpdating
+  } = props;
 
   const rows = connections.map(connection => (
     <ConnectionRow
       key={connection.id}
       connection={connection}
+      isUpdatingConnection={connection.id === connectionIdCurrentlyUpdating}
       loginUserId={loginUserId}
       updateConnectionCb={updateConnectionCb}
     />
@@ -38,12 +45,18 @@ function ConnectionDenyTable(props) {
 
 ConnectionDenyTable.propTypes = {
   connections: PropTypes.array.isRequired,
+  connectionIdCurrentlyUpdating: nullOrRequiredValidator("string"),
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
 function ConnectionRow(props) {
-  const { connection, loginUserId, updateConnectionCb } = props;
+  const {
+    connection,
+    loginUserId,
+    updateConnectionCb,
+    isUpdatingConnection
+  } = props;
   const undoClick = () => {
     updateConnectionCb(connection.id, true);
   };
@@ -54,12 +67,16 @@ function ConnectionRow(props) {
         {connection.getTheOtherUser(loginUserId).name}
       </td>
       <td className={removeColClass}>
-        <button
-          className="ConnectionTableRowApproveBtn btn btn-success"
-          onClick={undoClick}
-        >
-          <FontAwesomeIcon icon="undo-alt" />
-        </button>
+        {isUpdatingConnection ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="ConnectionTableRowApproveBtn btn btn-success"
+            onClick={undoClick}
+          >
+            <FontAwesomeIcon icon="undo-alt" />
+          </button>
+        )}
       </td>
     </tr>
   );
@@ -67,6 +84,7 @@ function ConnectionRow(props) {
 
 ConnectionRow.propTypes = {
   connection: PropTypes.object.isRequired,
+  isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };

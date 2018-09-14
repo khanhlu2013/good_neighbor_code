@@ -5,14 +5,14 @@ import className from "classnames";
 
 import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
-import { API } from "../api/profile-api.js";
 import { InPostManagement } from "../component/InPost/InPostManagement.js";
 import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
     requestingOutPostCount: null,
-    requestingFriendCount: null
+    requestingFriendCount: null,
+    selectedTabIndex: null
   };
 
   onFriendRequestCountChanged = count => {
@@ -27,7 +27,7 @@ class PrivateApp extends Component {
     if (count !== null && count !== 0) {
       html = <span className="text-danger">{` (${count})`}</span>;
     } else if (count === null) {
-      html = <LoadingIcon text="..." />;
+      html = <LoadingIcon text={null} isAnimate={true} />;
     } else {
       if (count !== 0) throw Error("Unexpected code path");
       html = null;
@@ -47,25 +47,17 @@ class PrivateApp extends Component {
 
     return (
       <div id="PrivateApp-react">
-        <Tabs forceRenderTabPanel={false}>
+        <Tabs>
           <div className="Tab-list">
             <TabList>
               <Tab>Friend Posts</Tab>
               <Tab>
-                <div
-                  className={className({
-                    isRefreshingOutPost: requestingOutPostCount === null
-                  })}
-                >
-                  My Posts
-                  {myPostNotification}
-                </div>
+                My Posts
+                {myPostNotification}
               </Tab>
               <Tab>
-                <div id="FriendDashboard-react">
-                  Friend
-                  {friendNotification}
-                </div>
+                Friend
+                {friendNotification}
               </Tab>
             </TabList>
           </div>

@@ -1,18 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nullOrRequiredValidator, LoadingIcon } from "../../util";
 
 const userNameColClass = "col-9";
 const removeColClass = "col-3 text-center";
 
 function ConnectionFriendTable(props) {
-  const { connections, loginUserId, updateConnectionCb } = props;
+  const {
+    connections,
+    loginUserId,
+    updateConnectionCb,
+    connectionIdCurrentlyUpdating
+  } = props;
 
   const friendCount = connections.length;
   const rows = connections.map(connection => (
     <ConnectionRow
       key={connection.id}
       connection={connection}
+      isUpdatingConnection={connection.id === connectionIdCurrentlyUpdating}
       loginUserId={loginUserId}
       updateConnectionCb={updateConnectionCb}
     />
@@ -36,12 +43,18 @@ function ConnectionFriendTable(props) {
 
 ConnectionFriendTable.propTypes = {
   connections: PropTypes.array.isRequired,
+  connectionIdCurrentlyUpdating: nullOrRequiredValidator("string"),
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
 function ConnectionRow(props) {
-  const { connection, loginUserId, updateConnectionCb } = props;
+  const {
+    connection,
+    loginUserId,
+    updateConnectionCb,
+    isUpdatingConnection
+  } = props;
   const denyClick = () => {
     updateConnectionCb(connection.id, false);
   };
@@ -52,12 +65,16 @@ function ConnectionRow(props) {
         {connection.getTheOtherUser(loginUserId).name}
       </td>
       <td className={removeColClass}>
-        <button
-          className="ConnectionTableRowDenyBtn btn btn-warning"
-          onClick={denyClick}
-        >
-          <FontAwesomeIcon icon="trash-alt" />
-        </button>
+        {isUpdatingConnection ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="ConnectionTableRowDenyBtn btn btn-warning"
+            onClick={denyClick}
+          >
+            <FontAwesomeIcon icon="trash-alt" />
+          </button>
+        )}
       </td>
     </tr>
   );
@@ -65,6 +82,7 @@ function ConnectionRow(props) {
 
 ConnectionRow.propTypes = {
   connection: PropTypes.object.isRequired,
+  isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };

@@ -59,7 +59,7 @@
 . when connection change, inPost need to refresh (by a key from privateApp)
   . remove react tab, so that i can make the app more perforamnce on lazy loading.  ( i need to find a better library)
   . create notification-dashboard api for dash board notification. this can be delay until i find a better react tab. cause for now, all stuff will load, and will set my dash board for me
-
+. optimization: utilize backend data when crud api, do not refresh the whole data
 
 . TODAY
 . -----
@@ -96,14 +96,21 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . how can i indicate that i am inviting a friend? should i start to work with single doc? yes i think so
 
 ---
-
+. forceRenderTabPanel is right now false and it is unmounting component. 
 . is outside notification should have a class too for refreshing connection?
 . what is the problem with the whole refresh? can i use this minimal approach?
 . a bit of flashing public_app after login before loading the private app
 
 ok, lets see we would set a proptype to not require.  this mean user can put in null or forget it. 
 
-
+. .isRefreshingOutPost class, replace it with LoadingIcon
+. dont let test slow down with youtube video
 
 i see that refreshing connection should only be run once. on component did mount. 
   
+but before that, when i click on create connection, the call back is call. it is responsible to set the state for my component that i am inviting. when it finish create connection, it will be responsible to clear it out
+. can i wrap an id to the tab so that i don't have to use the default indexed-based id for consistency testing. (in case i switch around the tab position)
+
+remove waiting list animate
+undo deny, just animate
+friend list remove animate

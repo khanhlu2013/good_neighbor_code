@@ -1,20 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nullOrRequiredValidator, LoadingIcon } from "../../util";
 
 const userNameColClass = "col-8";
 const decideColClass = "col-2 text-center";
 
 function ConnectionInTable(props) {
-  const { connections, loginUserId, updateConnectionCb } = props;
+  const {
+    connections,
+    loginUserId,
+    updateConnectionCb,
+    connectionIdCurrentlyUpdating
+  } = props;
+
   const rows = connections.map(connection => (
     <ConnectionRow
       key={connection.id}
       connection={connection}
+      isUpdatingConnection={connection.id === connectionIdCurrentlyUpdating}
       loginUserId={loginUserId}
       updateConnectionCb={updateConnectionCb}
     />
   ));
+
   return (
     <div className="container-fluid">
       <table id="InFriendTable" className="table table-striped table-bordered">
@@ -38,12 +47,18 @@ function ConnectionInTable(props) {
 
 ConnectionInTable.propTypes = {
   connections: PropTypes.array.isRequired,
+  connectionIdCurrentlyUpdating: nullOrRequiredValidator("string"),
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
 function ConnectionRow(props) {
-  const { connection, loginUserId, updateConnectionCb } = props;
+  const {
+    connection,
+    loginUserId,
+    updateConnectionCb,
+    isUpdatingConnection
+  } = props;
 
   const approveClick = () => {
     updateConnectionCb(connection.id, true);
@@ -57,20 +72,28 @@ function ConnectionRow(props) {
       <td className="col-8">{connection.getTheOtherUser(loginUserId).name}</td>
 
       <td className={decideColClass}>
-        <button
-          className="ConnectionTableRowApproveBtn btn btn-success"
-          onClick={approveClick}
-        >
-          <FontAwesomeIcon icon="thumbs-up" />
-        </button>
+        {isUpdatingConnection ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="ConnectionTableRowApproveBtn btn btn-success"
+            onClick={approveClick}
+          >
+            <FontAwesomeIcon icon="thumbs-up" />
+          </button>
+        )}
       </td>
       <td className={decideColClass}>
-        <button
-          className="ConnectionTableRowDenyBtn btn btn-warning"
-          onClick={denyClick}
-        >
-          <FontAwesomeIcon icon="thumbs-down" />
-        </button>
+        {isUpdatingConnection ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="ConnectionTableRowDenyBtn btn btn-warning"
+            onClick={denyClick}
+          >
+            <FontAwesomeIcon icon="thumbs-down" />
+          </button>
+        )}
       </td>
     </tr>
   );
@@ -78,6 +101,7 @@ function ConnectionRow(props) {
 
 ConnectionRow.propTypes = {
   connection: PropTypes.object.isRequired,
+  isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };

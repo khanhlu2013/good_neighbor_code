@@ -3,6 +3,7 @@ import validator from "validator";
 import PropTypes from "prop-types";
 
 import { API } from "../../api/profile-api.js";
+import { LoadingIcon } from "../../util.js";
 
 class SearchByEmail extends Component {
   /**
@@ -12,7 +13,7 @@ class SearchByEmail extends Component {
     email: "", //email to search
     searchedUser: null,
     searchSubmited: false,
-    searchResponsed: true
+    isSearching: false
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -53,13 +54,13 @@ class SearchByEmail extends Component {
       searchSubmited: true,
       searchedUser: null
     });
-    if (!this.state.selfSearch && this.state.emailValid) {
-      this.setState({ searchResponsed: false });
+    if (this.state.emailValid && !this.state.selfSearch) {
+      this.setState({ isSearching: true });
       (async () => {
         const searchedUser = await API.searchEmail(this.state.email);
         this.setState({
           searchedUser,
-          searchResponsed: true
+          isSearching: false
         });
       })();
     }
@@ -80,7 +81,7 @@ class SearchByEmail extends Component {
     } else if (
       !this.state.searchedUser &&
       this.state.searchSubmited &&
-      this.state.searchResponsed &&
+      !this.state.isSearching &&
       this.state.emailValid &&
       !this.state.selfSearch
     ) {
@@ -100,12 +101,11 @@ class SearchByEmail extends Component {
             value={this.state.email}
             onChange={this.onSearchChange}
           />
-          <input
-            className="btn btn-primary"
-            disabled={!this.state.searchResponsed}
-            type="submit"
-            value={this.state.searchResponsed ? "Search" : "Searching ..."}
-          />
+          {this.state.isSearching ? (
+            <LoadingIcon text="searching" isAnimate={true} />
+          ) : (
+            <input className="btn btn-primary" type="submit" value="search" />
+          )}
         </form>
         {msg && <p className="lead">{msg}</p>}
 
@@ -114,6 +114,7 @@ class SearchByEmail extends Component {
             loginUser={this.props.loginUser}
             searchedUser={this.state.searchedUser}
             searchedConnection={this.state.searchedConnection}
+            isCreatingConnection={this.props.isCreatingConnection}
             createConnectionCb={this.props.createConnectionCb}
           />
         )}
@@ -125,6 +126,7 @@ class SearchByEmail extends Component {
 SearchByEmail.propTypes = {
   loginUser: PropTypes.object.isRequired,
   connections: PropTypes.array.isRequired,
+  isCreatingConnection: PropTypes.bool.isRequired,
   createConnectionCb: PropTypes.func.isRequired
 };
 
@@ -133,6 +135,7 @@ function CrudConnectionControlPanel(props) {
     loginUser,
     searchedUser,
     searchedConnection,
+    isCreatingConnection,
     createConnectionCb
   } = props;
 
@@ -147,15 +150,21 @@ function CrudConnectionControlPanel(props) {
     /*you and searchedUser haven't exchanged invitation yet*/
     searchedConnection === null
   ) {
-    action = (
-      <button
-        className="btn btn-success"
-        id="createConnectionBtn"
-        onClick={onCreateConnection}
-      >
-        Invite {searchedUser.name}
-      </button>
-    );
+    if (isCreatingConnection) {
+      action = (
+        <LoadingIcon text={`Inviting ${searchedUser.name}`} isAnimate={true} />
+      );
+    } else {
+      action = (
+        <button
+          className="btn btn-success"
+          id="createConnectionBtn"
+          onClick={onCreateConnection}
+        >
+          Invite {searchedUser.name}
+        </button>
+      );
+    }
   } else {
     /*you and searchedUser have exchanged invitation*/
     if (
@@ -225,6 +234,7 @@ CrudConnectionControlPanel.propTypes = {
   loginUser: PropTypes.object.isRequired,
   searchedUser: PropTypes.object.isRequired,
   searchedConnection: PropTypes.object, //if null we can create connection
+  isCreatingConnection: PropTypes.bool.isRequired,
   createConnectionCb: PropTypes.func.isRequired
 };
 

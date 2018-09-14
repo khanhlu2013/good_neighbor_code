@@ -80,7 +80,6 @@ ShareSchema.pre("save", async function() {
         { isReturnedByTo: false } //currently borrowing
       ]
     });
-    console.log("create new share", postID, borrower, verifyingShares);
     if (verifyingShares) {
       throw Error("Post is not available");
     }
