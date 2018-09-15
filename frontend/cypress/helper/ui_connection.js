@@ -1,3 +1,6 @@
+// const getSearchLoadingIcon = () =>
+//   cy.get("#SearchByEmail-react #LoadingIcon-react");
+
 const connectionTree = {
   tab: {
     focus: () => {
@@ -5,17 +8,34 @@ const connectionTree = {
     }
   },
   snap: name => {
-    cy.get("#ConnectionManagement-react .LoadingIcon-react").should(
+    cy.get("#ConnectionManagement-react #LoadingIcon-react").should(
       "not.be.visible"
     );
     cy.get("#ConnectionManagement-react").snapshot({ name });
   },
-  search: email => {
-    cy.get("#SearchByEmail-react>form>input:text")
-      .clear()
-      .type(`${email}{enter}`);
-
-    cy.get("#SearchByEmail-react>form>input:submit").should("be.enabled"); //wait for search result
+  snapRightAway: name => {
+    cy.get("#ConnectionManagement-react").snapshot({ name });
+  },
+  search: {
+    exe: email => {
+      cy.get("#SearchByEmail-react>form>input:text")
+        .clear()
+        .type(`${email}{enter}`);
+    },
+    snap: name => {
+      cy.get("#SearchByEmail-react #LoadingIcon-react").should(
+        "not.be.visible"
+      );
+      cy.get("#SearchByEmail-react").snapshot({ name });
+    },
+    snapRightAway: name => {
+      cy.get("#SearchByEmail-react").snapshot({ name });
+    },
+    getSearchBtnLoadingIcon: () =>
+      cy.get("#SearchByEmail-react form #LoadingIcon-react"),
+    getInviteBtnLoadingIcon: () =>
+      cy.get("#CrudConnectionControlPanel-react #LoadingIcon-react"),
+    getCreateConnectionBtn: () => cy.get("#createConnectionBtn")
   },
 
   outRequests_deny: rowIndex => {

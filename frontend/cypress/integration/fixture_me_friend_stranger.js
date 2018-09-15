@@ -26,8 +26,8 @@ describe("Fixture Dev 2", () => {
   };
 
   beforeEach(() => {
-    //cy.setupDB([friend, stranger, me], [c_me_friend]);
-    cy.setupDB([friend, stranger, me], []);
+    //cy.setupDb([friend, stranger, me], [c_me_friend]);
+    cy.setupDb([friend, stranger, me], []);
   });
 
   it("insert fixture", () => {

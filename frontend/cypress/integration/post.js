@@ -10,7 +10,7 @@ describe("Post", () => {
       name: "Me Here"
     };
 
-    cy.setupDB([me]);
+    cy.setupDb([me]);
     cy.loadApp();
     cy.login(me.email);
 

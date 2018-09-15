@@ -18,11 +18,7 @@ function PublicApp(props) {
   ];
   const videos = data.map(data => new Video(...data));
 
-  return (
-    <div id="PublicApp-react">
-      <PlayList videos={videos} />
-    </div>
-  );
+  return <div id="PublicApp-react">{/* <PlayList videos={videos} /> */}</div>;
 }
 
 const videoTitleClass = "col-9";

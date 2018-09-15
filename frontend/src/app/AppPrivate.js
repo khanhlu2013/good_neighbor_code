@@ -50,14 +50,20 @@ class PrivateApp extends Component {
         <Tabs>
           <div className="Tab-selector-list">
             <TabList>
-              <Tab id="TabSelector_InPost">Friend Posts</Tab>
-              <Tab id="TabSelector_OutPost">
-                My Posts
-                {myPostNotification}
+              <Tab>
+                <span id="TabSelector_InPost">Friend Posts</span>
               </Tab>
-              <Tab id="TabSelector_Connection">
-                Friend
-                {friendNotification}
+              <Tab>
+                <span id="TabSelector_OutPost">
+                  My Posts
+                  {myPostNotification}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_Connection">
+                  Friend
+                  {friendNotification}
+                </span>
               </Tab>
             </TabList>
           </div>

@@ -62,7 +62,7 @@ describe("Share", () => {
       isActive: true
     };
 
-    cy.setupDB(
+    cy.setupDb(
       [friend, stranger, me],
       [conn_me_friend, conn_friend_stranger],
       [p1_friend, p2_friend, p_stranger, p_me]
