@@ -49,29 +49,18 @@ class OutPostCrudDialog extends Component {
     e.preventDefault();
   };
 
-  render() {
-    const { isCrudingPost, post: postProp } = this.props;
-    const { post } = this.state;
-    const error = post.getValidateError();
-    const validTitle = !error || !error.title;
-    const validDescription = !error || !error.description;
+  getOkCancelHtml = () => {
+    const { post, isCrudingPost } = this.props;
+    let resultHtml;
 
-    const dialogTitle = this.props.post
-      ? `Edit '${this.props.post.title}' post`
-      : "Create new post";
-
-    let okCancelPanelHtml;
     if (isCrudingPost) {
-      okCancelPanelHtml = (
+      resultHtml = (
         <h1>
-          <LoadingIcon
-            text={postProp ? "Editing" : "Creating"}
-            isAnimate={true}
-          />
+          <LoadingIcon text={post ? "Editing" : "Creating"} isAnimate={true} />
         </h1>
       );
     } else {
-      okCancelPanelHtml = (
+      resultHtml = (
         <Fragment>
           <button
             disabled={!this.state.isPostChanged || post.getValidateError()}
@@ -90,6 +79,19 @@ class OutPostCrudDialog extends Component {
         </Fragment>
       );
     }
+
+    return resultHtml;
+  };
+
+  render() {
+    const { post } = this.state;
+    const error = post.getValidateError();
+    const validTitle = !error || !error.title;
+    const validDescription = !error || !error.description;
+
+    const dialogTitle = this.props.post
+      ? `Edit '${this.props.post.title}' post`
+      : "Create new post";
 
     return (
       <div id="OutPostCrudDialog-react">
@@ -171,7 +173,7 @@ class OutPostCrudDialog extends Component {
                 </div>
               </div>
             </div>
-            <div className="text-center">{okCancelPanelHtml}</div>
+            <div className="text-center">{this.getOkCancelHtml()}</div>
           </form>
         </Modal>
       </div>

@@ -136,10 +136,10 @@ lets just talk how the flow is for now , understand it first
 create a isCrudingFlag and pass it into the dialog. do not close it right away.
 
 ---
-side track: test loading icon when enter conenction management and inpost / out post
+side track: test loading icon when enter connection management and inpost / out post
 side track: connection management: doRefreshPost is it fully fix?
 side track : put a please wait on outPost loading.
 side track : OutPostCrudDialog make post a nullorRequired
 ---
-
+i am unhappy with outPost code
 

@@ -43,21 +43,21 @@ class OutPostManagement extends Component {
     this.doRefreshPosts();
   }
 
+  doRefreshPosts = async () => {
+    this.setPostsState(await API.outPosts());
+  };
+
   setPostsState(posts) {
     this.setState({ posts });
     this.props.requestingOutPostCountChangedCb(this.state.requestingPostCount);
   }
 
-  doRefreshPosts = async () => {
-    this.setPostsState(await API.outPosts());
-  };
-
-  onOpenNewCrudDialog = () => {
+  onOpenCrudDialog_create = () => {
     const post = null;
-    this.openCrudDialog(post);
+    this.onOpenCrudDialog_edit(post);
   };
 
-  openCrudDialog = post => {
+  onOpenCrudDialog_edit = post => {
     this.setState({
       isOpenCrudDialog: true,
       curCrudPost: post,
@@ -65,14 +65,7 @@ class OutPostManagement extends Component {
     });
   };
 
-  onOpenDecideDialogCb = post => {
-    this.setState({
-      isOpenDecisionDialog: true,
-      curDecidePost: post
-    });
-  };
-
-  onCrudDialogOkCb = (postID, title, description, isActive) => {
+  onCrudDialogOk = (postID, title, description, isActive) => {
     this.setState({
       isCrudingPost: true
     });
@@ -88,8 +81,15 @@ class OutPostManagement extends Component {
     })();
   };
 
-  onCrudDialogCancelCb = () => {
+  onCrudDialogCancel = () => {
     this.setState({ isOpenCrudDialog: false });
+  };
+
+  onOpenDecideDialogCb = post => {
+    this.setState({
+      isOpenDecisionDialog: true,
+      curDecidePost: post
+    });
   };
 
   doUpdateShare = async (shareID, isApprove) => {
@@ -136,7 +136,7 @@ class OutPostManagement extends Component {
         <button
           className="btn btn-primary"
           id="createPostBtn"
-          onClick={this.onOpenNewCrudDialog}
+          onClick={this.onOpenCrudDialog_create}
         >
           new post
         </button>
@@ -144,7 +144,7 @@ class OutPostManagement extends Component {
         {this.state.posts && (
           <OutPostTable
             posts={this.state.posts}
-            onEditPost={this.openCrudDialog}
+            onEditPost={this.onOpenCrudDialog_edit}
             onOpenDecideDialogCb={this.onOpenDecideDialogCb}
           />
         )}
@@ -155,8 +155,8 @@ class OutPostManagement extends Component {
             isOpen={this.state.isOpenCrudDialog}
             post={this.state.curCrudPost}
             isCrudingPost={this.state.isCrudingPost}
-            onOk={this.onCrudDialogOkCb}
-            onCancel={this.onCrudDialogCancelCb}
+            onOk={this.onCrudDialogOk}
+            onCancel={this.onCrudDialogCancel}
           />
         )}
 
