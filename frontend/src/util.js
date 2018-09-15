@@ -58,7 +58,7 @@ class LoadingIcon extends Component {
     let array = new Array(LoadingIcon.animateDotCountMax);
     for (let index of array.keys()) {
       if (index === curAnimateDotCount) {
-        array[index] = "\u06D4";
+        array[index] = "\u00B7";
       } else {
         array[index] = ".";
       }

@@ -111,11 +111,35 @@ i see that refreshing connection should only be run once. on component did mount
 but before that, when i click on create connection, the call back is call. it is responsible to set the state for my component that i am inviting. when it finish create connection, it will be responsible to clear it out
 
 ---
+. how do i factor crud dialog out and decision dialog out of outpost to scale
 . make sure i redo the test : no more isRefreshing ...
+. make sure i test the outer tab/private app/notification
+---
+lets test outPost, i need to get loading icon into InPost
+  . one time loading for outPost: do net set outPosts to null;
+  . do not allow null to outpost and conditional render it
+  . create/edit outPost dialog need to wait there 
 
 ---
-lets test inPost next
+
+lets just talk how the flow is for now , understand it first
+  . click button
+  . set open flag, and sessionId so that the old dialog will be killed
+  . fill out dialog and click ok 
+  . onCrudPostCb
+    . set open flag false
+    . await api
+    . do refresh Posts.
+
+---
+
+create a isCrudingFlag and pass it into the dialog. do not close it right away.
+
+---
+side track: test loading icon when enter conenction management and inpost / out post
+side track: connection management: doRefreshPost is it fully fix?
+side track : put a please wait on outPost loading.
+side track : OutPostCrudDialog make post a nullorRequired
+---
 
 
-
-  

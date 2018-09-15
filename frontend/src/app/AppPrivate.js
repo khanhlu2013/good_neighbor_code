@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import className from "classnames";
 
 import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";

@@ -13,13 +13,13 @@ const editClass = "text-center col-1";
 const shareClass = "text-center col-1";
 
 function OutPostTable(props) {
-  const { posts, onOpenCrudDialogCb, onOpenDecideDialogCb } = props;
+  const { posts, onEditPost, onOpenDecideDialogCb } = props;
   const postRows = posts.map(post => {
     return (
       <PostTableRow
         key={post.id}
         post={post}
-        onOpenCrudDialogCb={onOpenCrudDialogCb}
+        onEditPost={onEditPost}
         onOpenDecideDialogCb={onOpenDecideDialogCb}
       />
     );
@@ -55,15 +55,15 @@ function OutPostTable(props) {
 }
 OutPostTable.propTypes = {
   posts: PropTypes.array.isRequired,
-  onOpenCrudDialogCb: PropTypes.func.isRequired,
+  onEditPost: PropTypes.func.isRequired,
   onOpenDecideDialogCb: PropTypes.func.isRequired
 };
 
 function PostTableRow(props) {
-  const { post, onOpenCrudDialogCb, onOpenDecideDialogCb } = props;
+  const { post, onEditPost, onOpenDecideDialogCb } = props;
 
-  const onCrudPostClick = e => {
-    onOpenCrudDialogCb(post);
+  const onEditBtnClicked = e => {
+    onEditPost(post);
   };
 
   const onDecidePostClick = e => {
@@ -90,7 +90,7 @@ function PostTableRow(props) {
       <td className={editClass}>
         <button
           className="OutPostTableRowEditBtn btn btn-primary"
-          onClick={onCrudPostClick}
+          onClick={onEditBtnClicked}
         >
           <FontAwesomeIcon icon="pencil-alt" />
         </button>
@@ -113,7 +113,7 @@ function PostTableRow(props) {
 
 PostTableRow.propsType = {
   post: PropTypes.object.isRequired,
-  onOpenCrudDialogCb: PropTypes.func.isRequired,
+  onEditPost: PropTypes.func.isRequired,
   onOpenDecideDialogCb: PropTypes.func.isRequired
 };
 

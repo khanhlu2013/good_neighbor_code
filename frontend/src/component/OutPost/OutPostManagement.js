@@ -11,11 +11,13 @@ class OutPostManagement extends Component {
   state = {
     posts: null,
 
-    //crud post
+    //crud
     curCrudPostSessionID: null,
     isOpenCrudDialog: false,
     curCrudPost: null,
+    isCrudingPost: false,
 
+    //decision
     isOpenDecisionDialog: false,
     curDecidePost: null
   };
@@ -36,7 +38,8 @@ class OutPostManagement extends Component {
   }
 
   componentDidMount() {
-    this.setPostsState(null);
+    const requestingPostCount = null;
+    this.props.requestingOutPostCountChangedCb(requestingPostCount);
     this.doRefreshPosts();
   }
 
@@ -50,14 +53,11 @@ class OutPostManagement extends Component {
   };
 
   onOpenNewCrudDialog = () => {
-    this.setState({
-      isOpenCrudDialog: true,
-      curCrudPost: null,
-      curCrudPostSessionID: Date.now().toString()
-    });
+    const post = null;
+    this.openCrudDialog(post);
   };
 
-  onOpenCrudDialogCb = post => {
+  openCrudDialog = post => {
     this.setState({
       isOpenCrudDialog: true,
       curCrudPost: post,
@@ -72,18 +72,24 @@ class OutPostManagement extends Component {
     });
   };
 
-  doCrudPost = async (postID, title, description, isActive) => {
+  onCrudDialogOkCb = (postID, title, description, isActive) => {
     this.setState({
-      isOpenCrudDialog: false,
-      curCrudPostSessionID: null
+      isCrudingPost: true
     });
-    this.setPostsState(null);
-    if (postID) {
-      await API.updatePost(postID, title, description, isActive);
-    } else {
-      await API.createPost(title, description, isActive);
-    }
-    this.doRefreshPosts();
+
+    (async () => {
+      if (postID) {
+        await API.updatePost(postID, title, description, isActive);
+      } else {
+        await API.createPost(title, description, isActive);
+      }
+      await this.doRefreshPosts();
+      this.setState({ isCrudingPost: false, isOpenCrudDialog: false });
+    })();
+  };
+
+  onCrudDialogCancelCb = () => {
+    this.setState({ isOpenCrudDialog: false });
   };
 
   doUpdateShare = async (shareID, isApprove) => {
@@ -104,10 +110,6 @@ class OutPostManagement extends Component {
       throw Error("Unexpected decision");
     }
     this.doUpdateShare(shareID, isApprove);
-  };
-
-  onCancelCrudPostDialog = () => {
-    this.setState({ isOpenCrudDialog: false });
   };
 
   onUndoApproveRequestingCb = shareID => {
@@ -142,7 +144,7 @@ class OutPostManagement extends Component {
         {this.state.posts && (
           <OutPostTable
             posts={this.state.posts}
-            onOpenCrudDialogCb={this.onOpenCrudDialogCb}
+            onEditPost={this.openCrudDialog}
             onOpenDecideDialogCb={this.onOpenDecideDialogCb}
           />
         )}
@@ -152,8 +154,9 @@ class OutPostManagement extends Component {
             key={this.state.curCrudPostSessionID}
             isOpen={this.state.isOpenCrudDialog}
             post={this.state.curCrudPost}
-            onCrudPostCb={this.doCrudPost}
-            onCancelCrudPostDialog={this.onCancelCrudPostDialog}
+            isCrudingPost={this.state.isCrudingPost}
+            onOk={this.onCrudDialogOkCb}
+            onCancel={this.onCrudDialogCancelCb}
           />
         )}
 

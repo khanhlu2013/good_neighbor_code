@@ -4,21 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import YouTube from "react-youtube";
 import className from "classnames";
 
-class Video {
-  constructor(title, duration, id) {
-    Object.assign(this, { title, duration, id });
-  }
-}
+// class Video {
+//   constructor(title, duration, id) {
+//     Object.assign(this, { title, duration, id });
+//   }
+// }
 
 function PublicApp(props) {
-  const data = [
-    ["Good Neighbor: what & why", "1:04", "OUaq9xb8qeE"],
-    ["Sign Up / Login: less is more", "1:02", "xprWVgeTLLk"]
-    //["Friend management", "1:02", "xprWVgeTLLk"]
-  ];
-  const videos = data.map(data => new Video(...data));
+  // const data = [
+  //   ["Good Neighbor: what & why", "1:04", "OUaq9xb8qeE"],
+  //   ["Sign Up / Login: less is more", "1:02", "xprWVgeTLLk"]
+  // ];
+  // const videos = data.map(data => new Video(...data));
+  // return <div id="PublicApp-react">{<PlayList videos={videos} />}</div>;
 
-  return <div id="PublicApp-react">{/* <PlayList videos={videos} /> */}</div>;
+  return <div id="PublicApp-react" />;
 }
 
 const videoTitleClass = "col-9";

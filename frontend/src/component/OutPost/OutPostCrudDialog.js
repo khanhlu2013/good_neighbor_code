@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import deepEqual from "deep-equal";
@@ -6,6 +6,7 @@ import classNames from "classnames";
 import _ from "lodash";
 
 import { Post } from "../../model/post";
+import { LoadingIcon } from "../../util";
 
 Modal.setAppElement("#root");
 
@@ -43,17 +44,13 @@ class OutPostCrudDialog extends Component {
 
   onSubmitPost = e => {
     const { post } = this.state;
-    this.props.onCrudPostCb(
-      post.id,
-      post.title,
-      post.description,
-      post.isActive
-    );
+    this.props.onOk(post.id, post.title, post.description, post.isActive);
 
     e.preventDefault();
   };
 
   render() {
+    const { isCrudingPost, post: postProp } = this.props;
     const { post } = this.state;
     const error = post.getValidateError();
     const validTitle = !error || !error.title;
@@ -62,6 +59,38 @@ class OutPostCrudDialog extends Component {
     const dialogTitle = this.props.post
       ? `Edit '${this.props.post.title}' post`
       : "Create new post";
+
+    let okCancelPanelHtml;
+    if (isCrudingPost) {
+      okCancelPanelHtml = (
+        <h1>
+          <LoadingIcon
+            text={postProp ? "Editing" : "Creating"}
+            isAnimate={true}
+          />
+        </h1>
+      );
+    } else {
+      okCancelPanelHtml = (
+        <Fragment>
+          <button
+            disabled={!this.state.isPostChanged || post.getValidateError()}
+            type="submit"
+            className="btn btn-lg btn-primary"
+          >
+            ok
+          </button>
+          <button
+            type="button"
+            onClick={this.props.onCancel}
+            className="btn btn-lg btn-warning"
+          >
+            cancel
+          </button>
+        </Fragment>
+      );
+    }
+
     return (
       <div id="OutPostCrudDialog-react">
         <Modal
@@ -142,22 +171,7 @@ class OutPostCrudDialog extends Component {
                 </div>
               </div>
             </div>
-            <div className="text-center">
-              <button
-                disabled={!this.state.isPostChanged || post.getValidateError()}
-                type="submit"
-                className="btn btn-lg btn-primary"
-              >
-                ok
-              </button>
-              <button
-                type="button"
-                onClick={this.props.onCancelCrudPostDialog}
-                className="btn btn-lg btn-warning"
-              >
-                cancel
-              </button>
-            </div>
+            <div className="text-center">{okCancelPanelHtml}</div>
           </form>
         </Modal>
       </div>
@@ -168,8 +182,9 @@ class OutPostCrudDialog extends Component {
 OutPostCrudDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   post: PropTypes.object, //if null then we create post, otherwise we edit post
-  onCrudPostCb: PropTypes.func.isRequired,
-  onCancelCrudPostDialog: PropTypes.func.isRequired
+  isCrudingPost: PropTypes.bool.isRequired,
+  onOk: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 export { OutPostCrudDialog };
