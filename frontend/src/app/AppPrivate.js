@@ -36,7 +36,7 @@ class PrivateApp extends Component {
 
   render() {
     const { requestingOutPostCount, requestingFriendCount } = this.state;
-
+    const { loginUser } = this.props;
     const myPostNotification = this._computeNotificationHtml(
       requestingOutPostCount
     );
@@ -71,6 +71,7 @@ class PrivateApp extends Component {
           </TabPanel>
           <TabPanel>
             <OutPostManagement
+              loginUser={loginUser}
               requestingOutPostCountChangedCb={
                 this.onRequestingOutPostCountChanged
               }

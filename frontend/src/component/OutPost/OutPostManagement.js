@@ -6,6 +6,8 @@ import { OutPostCrudDialog } from "./OutPostCrudDialog";
 import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./OutPostDecisionDialog";
+import { LoadingIcon } from "../../util";
+import { Post } from "../../model/post";
 
 class OutPostManagement extends Component {
   state = {
@@ -41,12 +43,10 @@ class OutPostManagement extends Component {
   componentDidMount() {
     const requestingPostCount = null;
     this.props.requestingOutPostCountChangedCb(requestingPostCount);
-    this.doRefreshPosts();
+    (async () => {
+      this.setPostsState(await API.outPosts());
+    })();
   }
-
-  doRefreshPosts = async () => {
-    this.setPostsState(await API.outPosts());
-  };
 
   setPostsState(posts) {
     this.setState({ posts });
@@ -74,11 +74,40 @@ class OutPostManagement extends Component {
 
     (async () => {
       if (postID) {
-        await API.updatePost(postID, title, description, isActive);
+        const {
+          updatedTitle,
+          updatedDescription,
+          updatedIsActive
+        } = await API.updatePost(postID, title, description, isActive);
+        const [oldPost] = this.state.posts.filter(post => post.id === postID);
+        oldPost.title = updatedTitle;
+        oldPost.description = updatedDescription;
+        oldPost.isActive = updatedIsActive;
+        this.setState({
+          posts: [
+            ...this.state.posts.filter(post => post.id !== postID),
+            oldPost
+          ]
+        });
       } else {
-        await API.createPost(title, description, isActive);
+        const {
+          createdId,
+          createdIsActive,
+          createdTitle,
+          createdDescription,
+          createdDateCreated
+        } = await API.createPost(title, description, isActive);
+        const newPost = new Post(
+          createdId,
+          this.props.loginUser,
+          createdIsActive,
+          createdTitle,
+          createdDescription,
+          createdDateCreated,
+          []
+        );
+        this.setState({ posts: [...this.state.posts, newPost] });
       }
-      await this.doRefreshPosts();
       this.setState({ isCrudingPost: false, isOpenCrudDialog: false });
     })();
   };
@@ -107,15 +136,26 @@ class OutPostManagement extends Component {
   _updateShare = (shareID, isApprove) => {
     this.setState({ isDecidingPost: true });
     (async () => {
-      await API.updateOutShare(shareID, isApprove);
-      await this.doRefreshPosts();
-      const [newDecidePost] = this.state.posts.filter(post =>
+      const decidedIsApprovedByFrom = await API.updateOutShare(
+        shareID,
+        isApprove
+      );
+      const [decidedPost] = this.state.posts.filter(post =>
         post.shares.some(share => share.id === shareID)
       );
-      if (!newDecidePost) {
-        throw Error("Cant find curDecidePost");
-      }
-      this.setState({ curDecidePost: newDecidePost, isDecidingPost: false });
+      const [decidedShare] = decidedPost.shares.filter(
+        share => share.id === shareID
+      );
+      decidedShare.isApprovedByFrom = decidedIsApprovedByFrom;
+      decidedPost.shares = [
+        ...decidedPost.shares.filter(share => share.id !== shareID),
+        decidedShare
+      ];
+      this.setPostsState([
+        ...this.state.posts.filter(post => post.id !== decidedPost.id),
+        decidedPost
+      ]);
+      this.setState({ curDecidePost: decidedPost, isDecidingPost: false });
     })();
   };
 
@@ -150,12 +190,16 @@ class OutPostManagement extends Component {
           new post
         </button>
 
-        {this.state.posts && (
+        {this.state.posts ? (
           <OutPostTable
             posts={this.state.posts}
             onEditPost={this.onOpenCrudDialog_edit}
             onDecidePost={this.onOpenDecideDialog}
           />
+        ) : (
+          <h1 className="text-center">
+            <LoadingIcon text="loading" isAnimate={true} />
+          </h1>
         )}
 
         {this.state.curCrudPostSessionID && (
@@ -185,6 +229,7 @@ class OutPostManagement extends Component {
   }
 }
 OutPostManagement.propType = {
+  loginUser: PropTypes.object.isRequired,
   requestingOutPostCountChangedCb: PropTypes.func.isRequired
 };
 

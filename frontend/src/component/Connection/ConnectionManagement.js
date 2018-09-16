@@ -143,7 +143,7 @@ class ConnectionManagement extends Component {
     } else {
       htmlContent = (
         <h1 className="text-center">
-          <LoadingIcon text="please wait" isAnimate={true} />
+          <LoadingIcon text="loading" isAnimate={true} />
         </h1>
       );
     }

@@ -59,20 +59,44 @@ const updateConnection = async (connectionId, isApproved) => {
 
 // - post
 const createPost = async (title, description, isActive) => {
-  await post("profile.createPost", {
+  const {
+    _id: createdId,
+    isActive: createdIsActive,
+    title: createdTitle,
+    description: createdDescription,
+    dateCreated: createdDateCreated
+  } = await post("profile.createPost", {
     title,
     description,
     isActive
   });
+
+  return {
+    createdId,
+    createdIsActive,
+    createdTitle,
+    createdDescription,
+    createdDateCreated
+  };
 };
 
 const updatePost = async (postID, title, description, isActive) => {
-  await post("profile.updatePost", {
+  const {
+    title: updatedTitle,
+    description: updatedDescription,
+    isActive: updatedIsActive
+  } = await post("profile.updatePost", {
     postID,
     title,
     description,
     isActive
   });
+
+  return {
+    updatedTitle,
+    updatedDescription,
+    updatedIsActive
+  };
 };
 
 // - outPost
@@ -99,10 +123,15 @@ const deleteShare = async shareID => {
 };
 
 const updateOutShare = async (shareID, isApprove) => {
-  await post("profile.updateOutShare", {
-    shareID,
-    isApprove
-  });
+  const { isApprovedByFrom: decidedIsApprovedByFrom } = await post(
+    "profile.updateOutShare",
+    {
+      shareID,
+      isApprove
+    }
+  );
+
+  return decidedIsApprovedByFrom;
 };
 
 const updateInShare = async (shareID, isReturnedByTo) => {

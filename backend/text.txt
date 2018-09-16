@@ -103,7 +103,6 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 
 ok, lets see we would set a proptype to not require.  this mean user can put in null or forget it. 
 
-. .isRefreshingOutPost class, replace it with LoadingIcon
 . dont let test slow down with youtube video
 . make sure i test the notification
 i see that refreshing connection should only be run once. on component did mount. 
@@ -139,8 +138,22 @@ create a isCrudingFlag and pass it into the dialog. do not close it right away.
 side track: what happen if i remove 2 connections(or anything) while waiting
 side track: test loading icon when enter connection management and inpost / out post
 side track : OutPostCrudDialog make post a nullorRequired
+side track : do investigate why it seem to take more time than just a second to do api
 ---
+side track :isRefreshingOutPost class
+---
+(side track: sort the post and connections)
+(sidetrack, make sure i clean up the doRefreshPost and doRefreshConnection)
+(sidetrack: create and update api)
+(sidetrack with this, i will be able to factor out the component to share some dialog state)
+(side track, i don't like user raw in process data, lets verify it is raw with _id, fix it. then comeback
+(side track: test outPost)
+  . optimize local update  edit connection, create connection, inPostManagement
 
-side track : put a please wait on outPost loading.
-side track: connection management: doRefreshPost is it fully fix?
+. lets test the outpost? then spit it into 2 component: crud and decide
+
+
+
+
+
 

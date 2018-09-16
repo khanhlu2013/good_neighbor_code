@@ -55,20 +55,24 @@ class OutPostCrudDialog extends Component {
   };
 
   getOkCancelHtml = () => {
-    const { post, isCrudingPost } = this.props;
     let resultHtml;
 
-    if (isCrudingPost) {
+    if (this.props.isCrudingPost) {
       resultHtml = (
         <h1>
-          <LoadingIcon text={post ? "Editing" : "Creating"} isAnimate={true} />
+          <LoadingIcon
+            text={this.props.post ? "Editing" : "Creating"}
+            isAnimate={true}
+          />
         </h1>
       );
     } else {
       resultHtml = (
         <Fragment>
           <button
-            disabled={!this.state.isPostChanged || post.getValidateError()}
+            disabled={
+              !this.state.isPostChanged || this.state.post.getValidateError()
+            }
             type="submit"
             className="btn btn-lg btn-primary"
           >
