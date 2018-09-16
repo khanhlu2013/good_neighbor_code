@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +26,49 @@ function OutPostDecisionDialog(props) {
     onExit();
   };
 
+  const content = (
+    <Fragment>
+      <h3 className="text-center">
+        Current borrower: {borrower ? borrower.email : "none"}
+        {borrower && (
+          <button
+            className="btn btn-lg btn-warning"
+            id="OutPostDecisionDialogUndoApproveBtn"
+            onClick={onUndoApproveBtnClicked}
+          >
+            undo
+          </button>
+        )}
+      </h3>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+            <RequestingTable
+              shares={post.requesting}
+              onDecideShare={onDecideShare}
+            />
+          </div>
+          <div className="col-sm">
+            <DeniedTable
+              shares={post.denied}
+              onUndoDeniedShare={onUndoDeniedShare}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="text-center">
+        <button
+          className="btn btn-lg btn-warning"
+          id="OutPostDecisionDialogExitBtn"
+          onClick={onExitBtnClicked}
+        >
+          exit
+        </button>
+      </div>
+    </Fragment>
+  );
+
   return (
     <div id="OutPostDecisionDialog-react">
       <Modal
@@ -34,50 +77,13 @@ function OutPostDecisionDialog(props) {
         shouldCloseOnEsc={false}
       >
         <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
-        <h3 className="text-center">
-          Current borrower: {borrower ? borrower.email : "none"}
-          {borrower && (
-            <button
-              className="btn btn-lg btn-warning"
-              id="OutPostDecisionDialogUndoApproveBtn"
-              onClick={onUndoApproveBtnClicked}
-            >
-              undo
-            </button>
-          )}
-        </h3>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-sm">
-              <RequestingTable
-                shares={post.requesting}
-                onDecideShare={onDecideShare}
-              />
-            </div>
-            <div className="col-sm">
-              <DeniedTable
-                shares={post.denied}
-                onUndoDeniedShare={onUndoDeniedShare}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          {isDecidingPost ? (
-            <h1>
-              <LoadingIcon text="Please wait" isAnimate={true} />
-            </h1>
-          ) : (
-            <button
-              className="btn btn-lg btn-warning"
-              id="OutPostDecisionDialogExitBtn"
-              onClick={onExitBtnClicked}
-            >
-              exit
-            </button>
-          )}
-        </div>
+        {isDecidingPost ? (
+          <h1 className="text-center">
+            <LoadingIcon text="Please wait" isAnimate={true} />
+          </h1>
+        ) : (
+          content
+        )}
       </Modal>
     </div>
   );

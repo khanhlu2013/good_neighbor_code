@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
-import deepEqual from "deep-equal";
 import classNames from "classnames";
 import _ from "lodash";
 
@@ -21,7 +20,13 @@ class OutPostCrudDialog extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    return { isPostChanged: !deepEqual(state.post, state.initPost) };
+    const { post, initPost } = state;
+
+    const isPostChanged =
+      post.title !== initPost.title ||
+      post.description !== initPost.description ||
+      post.isActive !== initPost.isActive;
+    return { isPostChanged };
   }
 
   onTitleChange = e => {

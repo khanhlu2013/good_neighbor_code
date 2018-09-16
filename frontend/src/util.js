@@ -28,7 +28,8 @@ const nullOrRequiredValidator = type => {
 
 class LoadingIcon extends Component {
   state = {
-    curAnimateDotCount: 0
+    curAnimateDotCount: 0,
+    animateInterval: null
   };
   static get animateDotCountMax() {
     return 3;
@@ -39,14 +40,23 @@ class LoadingIcon extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { animateInterval } = this.state;
+    if (animateInterval) {
+      clearInterval(animateInterval);
+    }
+  }
+
   startAnimate() {
-    setInterval(() => {
+    const animateInterval = setInterval(() => {
       this.setState((state, props) => {
         const nextAnimateDot =
           (state.curAnimateDotCount + 1) % LoadingIcon.animateDotCountMax;
         return { curAnimateDotCount: nextAnimateDot };
       });
     }, 150);
+
+    this.setState({ animateInterval });
   }
 
   getAnimateString() {

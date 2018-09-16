@@ -136,13 +136,11 @@ lets just talk how the flow is for now , understand it first
 create a isCrudingFlag and pass it into the dialog. do not close it right away.
 
 ---
+side track: what happen if i remove 2 connections(or anything) while waiting
 side track: test loading icon when enter connection management and inpost / out post
-side track: connection management: doRefreshPost is it fully fix?
-side track : put a please wait on outPost loading.
 side track : OutPostCrudDialog make post a nullorRequired
 ---
-i am unhappy with outPost code : i want to eliminate the refresh the whole Post. because this require another async operation on top of the crud operation. lets give it a try.
 
-i need to look at my api, make sure it return the correct format so that the same json to model will work
+side track : put a please wait on outPost loading.
+side track: connection management: doRefreshPost is it fully fix?
 
-ok, when create or edit post, just the post are actually change, i guess i can just give back the json right? and let it reconstructing the model. this does add more code. lets wait ? 
