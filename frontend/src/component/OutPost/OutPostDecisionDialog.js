@@ -2,26 +2,28 @@ import React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LoadingIcon } from "../../util";
 Modal.setAppElement("#root");
 
 function OutPostDecisionDialog(props) {
   const {
     isOpen,
     post,
-    onUndoApproveRequestingCb,
-    onUndoDeniedShareCb,
-    onDecideShareCb,
-    onExitDialogCb
+    isDecidingPost,
+    onUndoApproveShare,
+    onUndoDeniedShare,
+    onDecideShare,
+    onExit
   } = props;
 
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
 
-  const onUndoBorrowing = e => {
-    onUndoApproveRequestingCb(borrowingShare.id);
+  const onUndoApproveBtnClicked = e => {
+    onUndoApproveShare(borrowingShare.id);
   };
-  const onExitDialog = e => {
-    onExitDialogCb();
+  const onExitBtnClicked = e => {
+    onExit();
   };
 
   return (
@@ -38,7 +40,7 @@ function OutPostDecisionDialog(props) {
             <button
               className="btn btn-lg btn-warning"
               id="OutPostDecisionDialogUndoApproveBtn"
-              onClick={onUndoBorrowing}
+              onClick={onUndoApproveBtnClicked}
             >
               undo
             </button>
@@ -50,25 +52,31 @@ function OutPostDecisionDialog(props) {
             <div className="col-sm">
               <RequestingTable
                 shares={post.requesting}
-                onDecideShareCb={onDecideShareCb}
+                onDecideShare={onDecideShare}
               />
             </div>
             <div className="col-sm">
               <DeniedTable
                 shares={post.denied}
-                onUndoDeniedShareCb={onUndoDeniedShareCb}
+                onUndoDeniedShare={onUndoDeniedShare}
               />
             </div>
           </div>
         </div>
         <div className="text-center">
-          <button
-            className="btn btn-lg btn-warning"
-            id="OutPostDecisionDialogExitBtn"
-            onClick={onExitDialog}
-          >
-            exit
-          </button>
+          {isDecidingPost ? (
+            <h1>
+              <LoadingIcon text="Please wait" isAnimate={true} />
+            </h1>
+          ) : (
+            <button
+              className="btn btn-lg btn-warning"
+              id="OutPostDecisionDialogExitBtn"
+              onClick={onExitBtnClicked}
+            >
+              exit
+            </button>
+          )}
         </div>
       </Modal>
     </div>
@@ -78,22 +86,23 @@ function OutPostDecisionDialog(props) {
 OutPostDecisionDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   post: PropTypes.object.isRequired,
-  onUndoApproveRequestingCb: PropTypes.func.isRequired,
-  onUndoDeniedShareCb: PropTypes.func.isRequired,
-  onDecideShareCb: PropTypes.func.isRequired,
-  onExitDialogCb: PropTypes.func.isRequired
+  isDecidingPost: PropTypes.bool.isRequired,
+  onUndoApproveShare: PropTypes.func.isRequired,
+  onUndoDeniedShare: PropTypes.func.isRequired,
+  onDecideShare: PropTypes.func.isRequired,
+  onExit: PropTypes.func.isRequired
 };
 
 const denyTableFromClass = "col-10";
 const denyTableUndoClass = "col-2 text-center";
 
 function DeniedTable(props) {
-  const { shares, onUndoDeniedShareCb } = props;
+  const { shares, onUndoDeniedShare } = props;
   const rows = shares.map(share => (
     <DeniedTableRow
       key={share.id}
       share={share}
-      onUndoDeniedShareCb={onUndoDeniedShareCb}
+      onUndoDeniedShare={onUndoDeniedShare}
     />
   ));
   return (
@@ -112,10 +121,10 @@ function DeniedTable(props) {
   );
 }
 function DeniedTableRow(props) {
-  const { share, onUndoDeniedShareCb } = props;
+  const { share, onUndoDeniedShare } = props;
 
   const onUndo = e => {
-    onUndoDeniedShareCb(share.id);
+    onUndoDeniedShare(share.id);
   };
   return (
     <tr className="OutShareDeniedTableRow">
@@ -130,7 +139,7 @@ function DeniedTableRow(props) {
 }
 DeniedTableRow.propTypes = {
   share: PropTypes.object.isRequired,
-  onUndoDeniedShareCb: PropTypes.func.isRequired
+  onUndoDeniedShare: PropTypes.func.isRequired
 };
 
 DeniedTable.propTypes = {
@@ -142,12 +151,12 @@ const requestingTableApproveClass = "text-center col-1";
 const requestingTableDenyClass = "text-center col-1";
 
 function RequestingTable(props) {
-  const { shares, onDecideShareCb } = props;
+  const { shares, onDecideShare } = props;
   const rows = shares.map(share => (
     <RequestingTableRow
       key={share.id}
       share={share}
-      onDecideShareCb={onDecideShareCb}
+      onDecideShare={onDecideShare}
     />
   ));
   return (
@@ -172,16 +181,16 @@ function RequestingTable(props) {
 }
 RequestingTable.propTypes = {
   shares: PropTypes.array.isRequired,
-  onDecideShareCb: PropTypes.func.isRequired
+  onDecideShare: PropTypes.func.isRequired
 };
 
 function RequestingTableRow(props) {
-  const { share, onDecideShareCb } = props;
+  const { share, onDecideShare } = props;
   const onApprove = e => {
-    onDecideShareCb(share.id, true);
+    onDecideShare(share.id, true);
   };
   const onDeny = e => {
-    onDecideShareCb(share.id, false);
+    onDecideShare(share.id, false);
   };
   return (
     <tr className="OutShareRequestingTableRow">
@@ -209,7 +218,7 @@ function RequestingTableRow(props) {
 }
 RequestingTableRow.propTypes = {
   share: PropTypes.object.isRequired,
-  onDecideShareCb: PropTypes.func.isRequired
+  onDecideShare: PropTypes.func.isRequired
 };
 
 export { OutPostDecisionDialog };

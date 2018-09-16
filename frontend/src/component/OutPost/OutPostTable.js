@@ -13,14 +13,14 @@ const editClass = "text-center col-1";
 const shareClass = "text-center col-1";
 
 function OutPostTable(props) {
-  const { posts, onEditPost, onOpenDecideDialogCb } = props;
+  const { posts, onEditPost, onDecidePost } = props;
   const postRows = posts.map(post => {
     return (
       <PostTableRow
         key={post.id}
         post={post}
         onEditPost={onEditPost}
-        onOpenDecideDialogCb={onOpenDecideDialogCb}
+        onDecidePost={onDecidePost}
       />
     );
   });
@@ -56,18 +56,18 @@ function OutPostTable(props) {
 OutPostTable.propTypes = {
   posts: PropTypes.array.isRequired,
   onEditPost: PropTypes.func.isRequired,
-  onOpenDecideDialogCb: PropTypes.func.isRequired
+  onDecidePost: PropTypes.func.isRequired
 };
 
 function PostTableRow(props) {
-  const { post, onEditPost, onOpenDecideDialogCb } = props;
+  const { post, onEditPost, onDecidePost } = props;
 
   const onEditBtnClicked = e => {
     onEditPost(post);
   };
 
   const onDecidePostClick = e => {
-    onOpenDecideDialogCb(post);
+    onDecidePost(post);
   };
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
@@ -114,7 +114,7 @@ function PostTableRow(props) {
 PostTableRow.propsType = {
   post: PropTypes.object.isRequired,
   onEditPost: PropTypes.func.isRequired,
-  onOpenDecideDialogCb: PropTypes.func.isRequired
+  onDecidePost: PropTypes.func.isRequired
 };
 
 export { OutPostTable };

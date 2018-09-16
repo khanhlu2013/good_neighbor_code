@@ -14,12 +14,13 @@ class OutPostManagement extends Component {
     //crud
     curCrudPostSessionID: null,
     isOpenCrudDialog: false,
-    curCrudPost: null,
+    curEditPost: null,
     isCrudingPost: false,
 
     //decision
     isOpenDecisionDialog: false,
-    curDecidePost: null
+    curDecidePost: null,
+    isDecidingPost: false
   };
 
   static calculateRequestingPostCount = posts => {
@@ -52,6 +53,7 @@ class OutPostManagement extends Component {
     this.props.requestingOutPostCountChangedCb(this.state.requestingPostCount);
   }
 
+  // CRUD START --------------------------------
   onOpenCrudDialog_create = () => {
     const post = null;
     this.onOpenCrudDialog_edit(post);
@@ -60,7 +62,7 @@ class OutPostManagement extends Component {
   onOpenCrudDialog_edit = post => {
     this.setState({
       isOpenCrudDialog: true,
-      curCrudPost: post,
+      curEditPost: post,
       curCrudPostSessionID: Date.now().toString()
     });
   };
@@ -85,47 +87,54 @@ class OutPostManagement extends Component {
     this.setState({ isOpenCrudDialog: false });
   };
 
-  onOpenDecideDialogCb = post => {
+  // CRUD END --------------------------------
+
+  // DECISION START --------------------------
+  onOpenDecideDialog = post => {
     this.setState({
       isOpenDecisionDialog: true,
       curDecidePost: post
     });
   };
 
-  doUpdateShare = async (shareID, isApprove) => {
-    this.setPostsState(null);
-    await API.updateOutShare(shareID, isApprove);
-    await this.doRefreshPosts();
-    const [newDecidePost] = this.state.posts.filter(post =>
-      post.shares.some(share => share.id === shareID)
-    );
-    if (!newDecidePost) {
-      throw Error("Cant find curDecidePost");
-    }
-    this.setState({ curDecidePost: newDecidePost });
-  };
-
-  onDecideShareCb = async (shareID, isApprove) => {
-    if (isApprove === undefined) {
-      throw Error("Unexpected decision");
-    }
-    this.doUpdateShare(shareID, isApprove);
-  };
-
-  onUndoApproveRequestingCb = shareID => {
-    this.doUpdateShare(shareID, undefined);
-  };
-
-  onUndoDeniedShareCb = shareID => {
-    this.doUpdateShare(shareID, undefined);
-  };
-
-  onExitPostDecisionDialogCb = () => {
+  onExitDecisionDialog = () => {
     this.setState({
       isOpenDecisionDialog: false,
       curDecidePost: null
     });
   };
+
+  _updateShare = (shareID, isApprove) => {
+    this.setState({ isDecidingPost: true });
+    (async () => {
+      await API.updateOutShare(shareID, isApprove);
+      await this.doRefreshPosts();
+      const [newDecidePost] = this.state.posts.filter(post =>
+        post.shares.some(share => share.id === shareID)
+      );
+      if (!newDecidePost) {
+        throw Error("Cant find curDecidePost");
+      }
+      this.setState({ curDecidePost: newDecidePost, isDecidingPost: false });
+    })();
+  };
+
+  onUndoDeniedShare = shareID => {
+    this._updateShare(shareID, undefined);
+  };
+
+  onUndoApproveShare = shareID => {
+    this._updateShare(shareID, undefined);
+  };
+
+  onDecideShare = (shareID, isApprove) => {
+    if (isApprove === undefined) {
+      throw Error("Unexpected decision");
+    }
+
+    this._updateShare(shareID, isApprove);
+  };
+  // DECISION END --------------------------
 
   render() {
     return (
@@ -145,7 +154,7 @@ class OutPostManagement extends Component {
           <OutPostTable
             posts={this.state.posts}
             onEditPost={this.onOpenCrudDialog_edit}
-            onOpenDecideDialogCb={this.onOpenDecideDialogCb}
+            onDecidePost={this.onOpenDecideDialog}
           />
         )}
 
@@ -153,7 +162,7 @@ class OutPostManagement extends Component {
           <OutPostCrudDialog
             key={this.state.curCrudPostSessionID}
             isOpen={this.state.isOpenCrudDialog}
-            post={this.state.curCrudPost}
+            post={this.state.curEditPost}
             isCrudingPost={this.state.isCrudingPost}
             onOk={this.onCrudDialogOk}
             onCancel={this.onCrudDialogCancel}
@@ -164,10 +173,11 @@ class OutPostManagement extends Component {
           <OutPostDecisionDialog
             isOpen={this.state.isOpenDecisionDialog}
             post={this.state.curDecidePost}
-            onUndoApproveRequestingCb={this.onUndoApproveRequestingCb}
-            onUndoDeniedShareCb={this.onUndoDeniedShareCb}
-            onDecideShareCb={this.onDecideShareCb}
-            onExitDialogCb={this.onExitPostDecisionDialogCb}
+            isDecidingPost={this.state.isDecidingPost}
+            onUndoApproveShare={this.onUndoApproveShare}
+            onUndoDeniedShare={this.onUndoDeniedShare}
+            onDecideShare={this.onDecideShare}
+            onExit={this.onExitDecisionDialog}
           />
         )}
       </div>
