@@ -8,7 +8,7 @@ const me = {
   name: "Me Here"
 };
 
-describe("Post", () => {
+describe("Out crud feature", () => {
   it("can create and edit post", () => {
     cy.setupDb([me]);
     cy.loadApp();

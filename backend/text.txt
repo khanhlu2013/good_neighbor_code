@@ -156,8 +156,12 @@ side track: test loading icon for outpost : content and dashboard
 ---
 
 . lets test the outpost then spit it into 2 component: crud and decide
+. work on inPost loading icon and test
 
+---
 
-. do loading icon for share. and test it.
+.test outPostDecide
+  . dialog
+    approve, undo, deny, undo
 
-
+  . can show LoadingIcon

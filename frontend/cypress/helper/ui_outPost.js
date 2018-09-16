@@ -4,6 +4,12 @@ const waitForCrudDialogLoadingFinish = () => {
   );
 };
 
+const waitForDecisionDialogLoadingFinish = () => {
+  cy.get("#OutPostDecisionDialog-react #LoadingIcon-react").should(
+    "not.be.visible"
+  );
+};
+
 // - TAB
 const tab = {
   focus: () => {
@@ -76,6 +82,17 @@ const decisionDialog = {
   undoApprove: () => {
     cy.get("#OutPostDecisionDialogUndoApproveBtn").click();
   },
+  undoDenied: user => {
+    cy.get("#OutShareDeniedTable-react")
+      .then(rows => {
+        const row = Array.from(rows).find(row =>
+          row.textContent.includes(user.email)
+        );
+        return cy.wrap(row);
+      })
+      .find(".OutShareDeniedTableRowUndoBtn")
+      .click();
+  },
   decide: (user, isApprove) => {
     const btnClassName = isApprove
       ? "OutShareRequestingTableRowApproveBtn"
@@ -91,14 +108,16 @@ const decisionDialog = {
       .click();
   },
   snap: name => {
-    cy.get("#OutPostDecisionDialog-react #LoadingIcon-react").should(
-      "not.be.visible"
-    );
+    waitForDecisionDialogLoadingFinish();
+    cy.get("#OutPostDecisionDialog-react").snapshot({ name });
+  },
+  snapRightAway: name => {
     cy.get("#OutPostDecisionDialog-react").snapshot({ name });
   },
   exit: () => {
     cy.get("#OutPostDecisionDialogExitBtn").click();
-  }
+  },
+  waitForLoadingFinish: waitForDecisionDialogLoadingFinish
 };
 
 const outPostTree = {

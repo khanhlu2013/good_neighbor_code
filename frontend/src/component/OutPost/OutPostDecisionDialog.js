@@ -70,12 +70,12 @@ function OutPostDecisionDialog(props) {
   );
 
   return (
-    <div id="OutPostDecisionDialog-react">
-      <Modal
-        isOpen={isOpen}
-        shouldCloseOnOverlayClick={false}
-        shouldCloseOnEsc={false}
-      >
+    <Modal
+      isOpen={isOpen}
+      shouldCloseOnOverlayClick={false}
+      shouldCloseOnEsc={false}
+    >
+      <div id="OutPostDecisionDialog-react">
         <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
         {isDecidingPost ? (
           <h1 className="text-center">
@@ -84,8 +84,8 @@ function OutPostDecisionDialog(props) {
         ) : (
           content
         )}
-      </Modal>
-    </div>
+      </div>
+    </Modal>
   );
 }
 
@@ -136,7 +136,10 @@ function DeniedTableRow(props) {
     <tr className="OutShareDeniedTableRow">
       <td className={denyTableFromClass}>{share.borrower.email}</td>
       <td className={denyTableUndoClass}>
-        <button className="btn btn-success" onClick={onUndo}>
+        <button
+          className="btn btn-success OutShareDeniedTableRowUndoBtn"
+          onClick={onUndo}
+        >
           <FontAwesomeIcon icon="undo-alt" />
         </button>
       </td>

@@ -5,6 +5,7 @@ Cypress.Commands.add("setupDb", (users, connections, posts, shares) => {
   cy.insertUsers(users);
   cy.insertConnections(connections);
   cy.insertPosts(posts);
+  cy.insertShares(shares);
 });
 
 Cypress.Commands.add("clearAllDb", email => {
@@ -98,5 +99,25 @@ Cypress.Commands.add("insertPosts", posts => {
 
   cy.exec(
     `~/mongo/bin/mongo good-neighboors-test --eval 'db.posts.insertMany([${str}])'`
+  );
+});
+
+Cypress.Commands.add("insertShares", shares => {
+  if (!shares || shares.length === 0) {
+    return;
+  }
+  const str = shares
+    .map(s => {
+      let idStr = "";
+      if (s._id) {
+        idStr = `,"_id":ObjectId("${s._id.toHexString()}")`;
+      }
+      return `{"post":ObjectId("${s.post._id.toHexString()}"),"borrower":ObjectId("${s.borrower._id.toHexString()}"),"isApprovedByFrom":${
+        s.isApprovedByFrom
+      },"isReturnedByTo":${s.isReturnedByTo} ${idStr}}`;
+    })
+    .join(",");
+  cy.exec(
+    `~/mongo/bin/mongo good-neighboors-test --eval 'db.shares.insertMany([${str}])'`
   );
 });
