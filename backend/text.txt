@@ -135,12 +135,13 @@ lets just talk how the flow is for now , understand it first
 create a isCrudingFlag and pass it into the dialog. do not close it right away.
 
 ---
+side track: filter unactive post? currently, user can borrow unactive post and back end throw error.
 side track: what happen if i remove 2 connections(or anything) while waiting
 side track: test loading icon when enter connection management and inpost / out post
 side track : OutPostCrudDialog make post a nullorRequired
 side track : do investigate why it seem to take more time than just a second to do api
 ---
-side track :isRefreshingOutPost class
+side track :isRefreshing... class
 ---
 (side track: sort the post and connections)
 (sidetrack, make sure i clean up the doRefreshPost and doRefreshConnection)
@@ -149,11 +150,14 @@ side track :isRefreshingOutPost class
 (side track, i don't like user raw in process data, lets verify it is raw with _id, fix it. then comeback
 (side track: test outPost)
   . optimize local update  edit connection, create connection, inPostManagement
-
-. lets test the outpost? then spit it into 2 component: crud and decide
-
+side track: test loading icon for outpost : content and dashboard
 
 
+---
 
+. lets test the outpost then spit it into 2 component: crud and decide
+
+
+. do loading icon for share. and test it.
 
 

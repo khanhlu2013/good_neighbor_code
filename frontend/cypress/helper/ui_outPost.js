@@ -1,10 +1,16 @@
+const waitForCrudDialogLoadingFinish = () => {
+  cy.get("#OutPostCrudDialogForm-react #LoadingIcon-react").should(
+    "not.be.visible"
+  );
+};
+
 // - TAB
 const tab = {
   focus: () => {
     cy.get("#TabSelector_OutPost").click();
   },
   snap: name => {
-    cy.get(".isRefreshingOutPost").should("not.be.visible");
+    cy.get("#TabSelector_OutPost #LoadingIcon-react").should("not.be.visible");
     cy.get("#TabSelector_OutPost").snapshot({ name });
   }
 };
@@ -30,14 +36,19 @@ const table = {
       .click();
   },
   snap: name => {
-    cy.get(".isRefreshingOutPost").should("not.be.visible");
+    cy.get("#OutPostManagement-react #LoadingIcon-react").should(
+      "not.be.visible"
+    );
+    cy.get("#OutPostManagement-react").snapshot({ name });
+  },
+  snapRightAway: name => {
     cy.get("#OutPostManagement-react").snapshot({ name });
   }
 };
 
 //- CRUD-DIALOG
 const crudDialog = {
-  snap: name => {
+  snapRightAway: name => {
     cy.get("#OutPostCrudDialogForm-react").snapshot({ name });
   },
   fillOut: (title, description, isActive) => {
@@ -56,7 +67,8 @@ const crudDialog = {
   },
   submit: () => {
     cy.get("#OutPostCrudDialogForm-react :submit").click();
-  }
+  },
+  waitForLoadingFinish: waitForCrudDialogLoadingFinish
 };
 
 //- DECISION-DIALOG
@@ -79,7 +91,9 @@ const decisionDialog = {
       .click();
   },
   snap: name => {
-    cy.get(".isRefreshingOutPost").should("not.be.visible");
+    cy.get("#OutPostDecisionDialog-react #LoadingIcon-react").should(
+      "not.be.visible"
+    );
     cy.get("#OutPostDecisionDialog-react").snapshot({ name });
   },
   exit: () => {

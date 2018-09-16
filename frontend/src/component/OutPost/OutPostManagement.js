@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 
 import { OutPostCrudDialog } from "./OutPostCrudDialog";
@@ -178,10 +177,7 @@ class OutPostManagement extends Component {
 
   render() {
     return (
-      <div
-        id="OutPostManagement-react"
-        className={classNames({ isRefreshingOutPost: !this.state.posts })}
-      >
+      <div id="OutPostManagement-react">
         <button
           className="btn btn-primary"
           id="createPostBtn"
