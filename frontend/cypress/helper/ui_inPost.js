@@ -9,7 +9,7 @@ const inPostTree = {
     }
   },
   undoRequesting: post => {
-    cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
+    cy.get("#InShareRequestedTable-react .InShareRequestedTableRow")
       .then(rows => {
         const row = Array.from(rows).find(row => {
           const text = row.textContent;
@@ -17,7 +17,7 @@ const inPostTree = {
         });
         return cy.wrap(row);
       })
-      .find(".InShareRequestingTableRowUndoBtn")
+      .find(".InShareRequestedTableRowUndoBtn")
       .click();
   },
   request: post => {
