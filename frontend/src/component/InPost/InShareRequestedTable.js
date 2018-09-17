@@ -12,10 +12,10 @@ const requestingClass = "text-center col-1";
 const borrowingClass = "text-center col-2";
 const undoClass = "text-center col-1";
 
-function InShareRequestingTable(props) {
+function InShareRequestedTable(props) {
   const { shares, deletingShareIds, onDeleteRequestingShareCb } = props;
   const rows = shares.map(share => (
-    <InShareRequestingTableRow
+    <InShareRequestedTableRow
       key={share.id}
       share={share}
       isDeletingShare={deletingShareIds.includes(share.id)}
@@ -25,7 +25,7 @@ function InShareRequestingTable(props) {
 
   return (
     <table
-      id="InShareRequestingTable-react"
+      id="InShareRequestedTable-react"
       className="table table-striped table-bordered"
     >
       <thead className="thead-light">
@@ -52,13 +52,13 @@ function InShareRequestingTable(props) {
   );
 }
 
-InShareRequestingTable.propTypes = {
+InShareRequestedTable.propTypes = {
   shares: PropTypes.array.isRequired,
   deletingShareIds: PropTypes.array.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
-function InShareRequestingTableRow(props) {
+function InShareRequestedTableRow(props) {
   const { onDeleteRequestingShareCb, share, isDeletingShare } = props;
   const { post } = share;
 
@@ -70,7 +70,7 @@ function InShareRequestingTableRow(props) {
   const borrower = borrowingShare ? borrowingShare.borrower : null;
 
   return (
-    <tr className="InShareRequestingTableRow">
+    <tr className="InShareRequestedTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
@@ -82,7 +82,7 @@ function InShareRequestingTableRow(props) {
           <LoadingIcon text={null} isAnimate={true} />
         ) : (
           <button
-            className="InShareRequestingTableRowUndoBtn btn btn-warning"
+            className="InShareRequestedTableRowUndoBtn btn btn-warning"
             onClick={onDeleteRequestingShare}
           >
             <FontAwesomeIcon icon="undo-alt" />
@@ -92,7 +92,7 @@ function InShareRequestingTableRow(props) {
     </tr>
   );
 }
-InShareRequestingTableRow.propTypes = {
+InShareRequestedTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   isDeletingShare: PropTypes.bool.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
@@ -100,4 +100,4 @@ InShareRequestingTableRow.propTypes = {
 
 //function InPostsToMeBorrowingTable(props) {}
 
-export { InShareRequestingTable };
+export { InShareRequestedTable };
