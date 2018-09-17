@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
+import { LoadingIcon } from "../../util";
 
 const fromClass = "col-2";
 const titleClass = "col-5";
@@ -12,12 +13,18 @@ const borrowingClass = "text-center col-1";
 const requestClass = "text-center col-1";
 
 function InPostTable(props) {
-  const { inPosts, onCreateRequestingShareCb, loginUser } = props;
+  const {
+    inPosts,
+    requestingPostIds,
+    onCreateRequestingShareCb,
+    loginUser
+  } = props;
   const rows = inPosts.map(inPost => (
     <InPostTableRow
       key={inPost.id}
       loginUser={loginUser}
       inPost={inPost}
+      isRequestingPost={requestingPostIds.includes(inPost.id)}
       onCreateRequestingShareCb={onCreateRequestingShareCb}
     />
   ));
@@ -54,24 +61,30 @@ function InPostTable(props) {
 InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPosts: PropTypes.array.isRequired,
+  requestingPostIds: PropTypes.array.isRequired,
   onCreateRequestingShareCb: PropTypes.func.isRequired
 };
 
 function InPostTableRow(props) {
-  const { loginUser, inPost, onCreateRequestingShareCb } = props;
+  const {
+    loginUser,
+    inPost,
+    isRequestingPost,
+    onCreateRequestingShareCb
+  } = props;
   const onCreateShare = e => {
     onCreateRequestingShareCb(inPost.id);
   };
-  const isMeRequesting = inPost.isRequestingBy(loginUser.id);
+  const isMeRequested = inPost.isRequestingBy(loginUser.id);
   const borrowingShare = inPost.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
-  const isMeBorrowing = borrower && borrower.id === loginUser.id;
+  const isMeBorrowed = borrower && borrower.id === loginUser.id;
 
   return (
     <tr
       className={className({
         InPostTableRow: true,
-        "table-success": isMeRequesting || isMeBorrowing
+        "table-success": isMeRequested || isMeBorrowed
       })}
     >
       <td className={fromClass}>{inPost.user.email}</td>
@@ -81,10 +94,12 @@ function InPostTableRow(props) {
       <td className={requestingClass}>{inPost.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>
-        {isMeRequesting || isMeBorrowing ? (
+        {isMeRequested || isMeBorrowed ? (
           <span>
             <FontAwesomeIcon icon="check" />
           </span>
+        ) : isRequestingPost ? (
+          <LoadingIcon text={null} isAnimate={true} />
         ) : (
           <button
             className="InPostTableRowBorrowBtn btn btn-success"
@@ -100,6 +115,7 @@ function InPostTableRow(props) {
 InPostTableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
+  isRequestingPost: PropTypes.bool.isRequired,
   onCreateRequestingShareCb: PropTypes.func.isRequired
 };
 

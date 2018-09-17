@@ -1,6 +1,12 @@
+const waitForLoading = () => {
+  cy.get("#InPostManagement-react #LoadingIcon-react").should("not.be.visible");
+};
+
 const inPostTree = {
-  focusTab: () => {
-    cy.get("#TabSelector_InPost`").click();
+  tab: {
+    focus: () => {
+      cy.get("#TabSelector_InPost").click();
+    }
   },
   undoRequesting: post => {
     cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
@@ -26,8 +32,11 @@ const inPostTree = {
       .find(".InPostTableRowBorrowBtn")
       .click();
   },
+  snapRightAway: name => {
+    cy.get("#InPostManagement-react").snapshot({ name });
+  },
   snap: name => {
-    cy.get(".isRefreshingInPosts").should("not.be.visible");
+    waitForLoading();
     cy.get("#InPostManagement-react").snapshot({ name });
   },
   returnBorrowing: post => {

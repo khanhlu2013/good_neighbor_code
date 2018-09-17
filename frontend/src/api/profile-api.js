@@ -113,9 +113,20 @@ const inPosts = async () => {
 
 // -  share
 const createShare = async postID => {
-  await post("profile.createShare", {
+  const {
+    _id: createdShareId,
+    dateCreated: createdDateCreated,
+    isApprovedByFrom: createdIsApprovedByFrom,
+    isReturnedByTo: createdIsReturnedByTo
+  } = await post("profile.createShare", {
     postID
   });
+  return {
+    createdShareId,
+    createdDateCreated,
+    createdIsApprovedByFrom,
+    createdIsReturnedByTo
+  };
 };
 
 const deleteShare = async shareID => {
@@ -135,10 +146,15 @@ const updateOutShare = async (shareID, isApprove) => {
 };
 
 const updateInShare = async (shareID, isReturnedByTo) => {
-  await post("profile.updateInShare", {
-    shareID,
-    isReturnedByTo
-  });
+  const { isReturnedByTo: resultIsReturnByTo } = await post(
+    "profile.updateInShare",
+    {
+      shareID,
+      isReturnedByTo
+    }
+  );
+
+  return { resultIsReturnByTo };
 };
 
 //- helper ----
@@ -183,7 +199,8 @@ function processPostsRawData(postsRaw) {
         borrower,
         shareRaw.dateCreated,
         shareRaw.isApprovedByFrom,
-        shareRaw.isReturnedByTo
+        shareRaw.isReturnedByTo,
+        null //post to be set later
       );
     });
     const post = new Post(

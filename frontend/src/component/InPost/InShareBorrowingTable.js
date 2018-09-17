@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LoadingIcon } from "../../util";
 
 const fromClass = "col-3";
 const titleClass = "col-5";
@@ -10,11 +11,12 @@ const requestingClass = "text-center col-1";
 const returnClass = "text-center col-1";
 
 function InShareBorrowingTable(props) {
-  const { shares, onReturnBorrowingShareCb } = props;
+  const { shares, onReturnBorrowingShareCb, returningShareIds } = props;
   const rows = shares.map(share => (
     <InShareBorrowingTableRow
       key={share.id}
       share={share}
+      isReturningShare={returningShareIds.includes(share.id)}
       onReturnBorrowingShareCb={onReturnBorrowingShareCb}
     />
   ));
@@ -47,11 +49,12 @@ function InShareBorrowingTable(props) {
 
 InShareBorrowingTable.propTypes = {
   shares: PropTypes.array.isRequired,
+  returningShareIds: PropTypes.array.isRequired,
   onReturnBorrowingShareCb: PropTypes.func.isRequired
 };
 
 function InShareBorrowingTableRow(props) {
-  const { onReturnBorrowingShareCb, share } = props;
+  const { onReturnBorrowingShareCb, share, isReturningShare } = props;
   const { post } = share;
 
   const onReturn = e => {
@@ -66,18 +69,23 @@ function InShareBorrowingTableRow(props) {
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={returnClass}>
-        <button
-          className="InShareBorrowingTableRowReturnBtn btn btn-warning"
-          onClick={onReturn}
-        >
-          <FontAwesomeIcon icon="location-arrow" />
-        </button>
+        {isReturningShare ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="InShareBorrowingTableRowReturnBtn btn btn-warning"
+            onClick={onReturn}
+          >
+            <FontAwesomeIcon icon="location-arrow" />
+          </button>
+        )}
       </td>
     </tr>
   );
 }
 InShareBorrowingTableRow.propTypes = {
   share: PropTypes.object.isRequired,
+  isReturningShare: PropTypes.bool.isRequired,
   onReturnBorrowingShareCb: PropTypes.func.isRequired
 };
 

@@ -15,7 +15,9 @@ const app = express();
 if (process.env.NODE_ENV === "test") {
   app.use(function(req, res, next) {
     setTimeout(next, 70); //this allow test to pass
+    //setTimeout(next, 100); //this allow test to pass
     //setTimeout(next, 500); //this allow test to pass
+    //setTimeout(next, 1500); //this allow test to pass
   });
 }
 

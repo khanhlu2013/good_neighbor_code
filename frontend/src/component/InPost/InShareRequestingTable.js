@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { LoadingIcon } from "../../util";
+
 const fromClass = "col-2";
 const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
@@ -11,11 +13,12 @@ const borrowingClass = "text-center col-2";
 const undoClass = "text-center col-1";
 
 function InShareRequestingTable(props) {
-  const { shares, onDeleteRequestingShareCb } = props;
+  const { shares, deletingShareIds, onDeleteRequestingShareCb } = props;
   const rows = shares.map(share => (
     <InShareRequestingTableRow
       key={share.id}
       share={share}
+      isDeletingShare={deletingShareIds.includes(share.id)}
       onDeleteRequestingShareCb={onDeleteRequestingShareCb}
     />
   ));
@@ -51,11 +54,12 @@ function InShareRequestingTable(props) {
 
 InShareRequestingTable.propTypes = {
   shares: PropTypes.array.isRequired,
+  deletingShareIds: PropTypes.array.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 
 function InShareRequestingTableRow(props) {
-  const { onDeleteRequestingShareCb, share } = props;
+  const { onDeleteRequestingShareCb, share, isDeletingShare } = props;
   const { post } = share;
 
   const onDeleteRequestingShare = e => {
@@ -74,18 +78,23 @@ function InShareRequestingTableRow(props) {
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={undoClass}>
-        <button
-          className="InShareRequestingTableRowUndoBtn btn btn-warning"
-          onClick={onDeleteRequestingShare}
-        >
-          <FontAwesomeIcon icon="undo-alt" />
-        </button>
+        {isDeletingShare ? (
+          <LoadingIcon text={null} isAnimate={true} />
+        ) : (
+          <button
+            className="InShareRequestingTableRowUndoBtn btn btn-warning"
+            onClick={onDeleteRequestingShare}
+          >
+            <FontAwesomeIcon icon="undo-alt" />
+          </button>
+        )}
       </td>
     </tr>
   );
 }
 InShareRequestingTableRow.propTypes = {
   share: PropTypes.object.isRequired,
+  isDeletingShare: PropTypes.bool.isRequired,
   onDeleteRequestingShareCb: PropTypes.func.isRequired
 };
 

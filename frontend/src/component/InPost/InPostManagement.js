@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { InPostTable } from "./InPostTable";
 import { InShareRequestingTable } from "./InShareRequestingTable";
 import { InShareBorrowingTable } from "./InShareBorrowingTable";
 import { InShareBorrowedTable } from "./InShareBorrowedTable";
 import { API } from "../../api/profile-api";
+import { Share } from "../../model/share";
+import { LoadingIcon } from "../../util";
 
 class InPostManagement extends Component {
   state = {
-    inPosts: null
+    inPosts: null,
+    requestingPostIds: [],
+    deletingShareIds: [],
+    returningShareIds: []
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -35,11 +39,7 @@ class InPostManagement extends Component {
     };
   }
 
-  componentDidMount() {
-    this.refreshInPosts();
-  }
-
-  refreshInPosts = async () => {
+  async componentDidMount() {
     const inPosts = await API.inPosts();
     const inPostsFilterDeny = inPosts.filter(inPost =>
       inPost.denied.every(
@@ -48,69 +48,143 @@ class InPostManagement extends Component {
     );
 
     this.setState({ inPosts: inPostsFilterDeny });
-  };
+  }
 
-  doCreateRequestingShare = postID => {
-    this.setState({ inPosts: null });
+  doCreateRequestingShare = postId => {
+    this.setState({
+      requestingPostIds: [...this.state.requestingPostIds, postId]
+    });
     (async () => {
-      await API.createShare(postID);
-      this.refreshInPosts();
+      const {
+        createdShareId,
+        createdDateCreated,
+        createdIsApprovedByFrom,
+        createdIsReturnedByTo
+      } = await API.createShare(postId);
+      const newShare = new Share(
+        createdShareId,
+        this.props.loginUser,
+        createdDateCreated,
+        createdIsApprovedByFrom,
+        createdIsReturnedByTo,
+        null //post to be set later
+      );
+      const curPost = this.state.inPosts.find(post => post.id === postId);
+      curPost.shares.push(newShare);
+      newShare.post = curPost;
+      this.setState({
+        inPosts: [
+          ...this.state.inPosts.filter(post => post.id !== postId),
+          curPost
+        ],
+        requestingPostIds: this.state.requestingPostIds.filter(
+          id => id !== postId
+        )
+      });
     })();
   };
 
-  doDeleteRequestingShare = shareID => {
-    this.setState({ inPosts: null });
+  doDeleteRequestingShare = shareId => {
+    this.setState({
+      deletingShareIds: [...this.state.deletingShareIds, shareId]
+    });
+
     (async () => {
-      await API.deleteShare(shareID);
-      this.refreshInPosts();
+      await API.deleteShare(shareId);
+
+      const { inPosts } = this.state;
+      const curPost = inPosts.find(post =>
+        post.shares.some(share => share.id === shareId)
+      );
+      curPost.shares = curPost.shares.filter(share => share.id !== shareId);
+      this.setState({
+        inPosts: [...inPosts.filter(post => post.id !== curPost.id), curPost]
+      });
+      this.setState({
+        deletingShareIds: [
+          ...this.state.deletingShareIds.filter(id => id !== shareId)
+        ]
+      });
     })();
   };
 
-  doReturnBorrowingShare = shareID => {
-    const [post] = this.state.inPosts.filter(
-      post => post.shares.filter(share => share.id === shareID).length === 1
+  doReturnBorrowingShare = shareId => {
+    const curPost = this.state.inPosts.find(post =>
+      post.shares.some(share => share.id === shareId)
     );
     if (
-      window.confirm(`You are returning '${post.title}'. This can not be undo!`)
+      window.confirm(
+        `You are returning '${curPost.title}'. This can not be undo!`
+      )
     ) {
-      this.setState({ inPosts: null });
+      this.setState({
+        returningShareIds: [...this.state.returningShareIds, shareId]
+      });
       (async () => {
         const isReturnedByTo = true;
-        await API.updateInShare(shareID, isReturnedByTo);
-        this.refreshInPosts();
+        const { resultIsReturnByTo } = await API.updateInShare(
+          shareId,
+          isReturnedByTo
+        );
+
+        const curShare = curPost.shares.find(share => share.id === shareId);
+        curShare.isReturnedByTo = resultIsReturnByTo;
+        curPost.shares = [
+          ...curPost.shares.filter(share => share.id !== shareId),
+          curShare
+        ];
+        this.setState({
+          inPosts: [
+            ...this.state.inPosts.filter(post => post.id !== curPost.id),
+            curPost
+          ],
+          returningShareIds: [
+            ...this.state.returningShareIds.filter(id => id !== shareId)
+          ]
+        });
       })();
     }
   };
 
   render() {
-    const isRefreshingInPosts = this.state.inPosts === null;
-    return (
-      <div
-        id="InPostManagement-react"
-        className={className({ isRefreshingInPosts, container: true })}
-      >
-        {!isRefreshingInPosts && (
-          <div className="row">
-            <div className="col-sm">
-              <InPostTable
-                loginUser={this.props.loginUser}
-                inPosts={this.state.inPosts}
-                onCreateRequestingShareCb={this.doCreateRequestingShare}
-              />
-            </div>
-            <div className="col-sm">
-              <InShareRequestingTable
-                shares={this.state.requestingShares}
-                onDeleteRequestingShareCb={this.doDeleteRequestingShare}
-              />
-              <InShareBorrowingTable
-                shares={this.state.borrowingShares}
-                onReturnBorrowingShareCb={this.doReturnBorrowingShare}
-              />
-              <InShareBorrowedTable shares={this.state.borrowedShares} />
-            </div>
+    let content;
+    if (this.state.inPosts !== null) {
+      content = (
+        <div className="row">
+          <div className="col-sm">
+            <InPostTable
+              loginUser={this.props.loginUser}
+              inPosts={this.state.inPosts}
+              requestingPostIds={this.state.requestingPostIds}
+              onCreateRequestingShareCb={this.doCreateRequestingShare}
+            />
           </div>
-        )}
+          <div className="col-sm">
+            <InShareRequestingTable
+              shares={this.state.requestingShares}
+              onDeleteRequestingShareCb={this.doDeleteRequestingShare}
+              deletingShareIds={this.state.deletingShareIds}
+            />
+            <InShareBorrowingTable
+              shares={this.state.borrowingShares}
+              returningShareIds={this.state.returningShareIds}
+              onReturnBorrowingShareCb={this.doReturnBorrowingShare}
+            />
+            <InShareBorrowedTable shares={this.state.borrowedShares} />
+          </div>
+        </div>
+      );
+    } else {
+      content = (
+        <h1 className="text-center">
+          <LoadingIcon text="loading" isAnimate={true} />
+        </h1>
+      );
+    }
+
+    return (
+      <div id="InPostManagement-react" className="container">
+        {content}
       </div>
     );
   }

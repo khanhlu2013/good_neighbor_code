@@ -1,11 +1,19 @@
 class Share {
-  constructor(id, borrower, dateCreated, isApprovedByFrom, isReturnedByTo) {
+  constructor(
+    id,
+    borrower,
+    dateCreated,
+    isApprovedByFrom,
+    isReturnedByTo,
+    post
+  ) {
     Object.assign(this, {
       id,
       borrower,
       dateCreated,
       isApprovedByFrom,
-      isReturnedByTo
+      isReturnedByTo,
+      post
     });
   }
 
