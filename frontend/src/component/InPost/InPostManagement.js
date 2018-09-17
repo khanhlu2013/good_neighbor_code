@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { InPostTable } from "./InPostTable";
-import { InShareRequestedTable } from "./InShareRequestedTable";
+import { InShareRequestingTable } from "./InShareRequestingTable";
 import { InShareBorrowingTable } from "./InShareBorrowingTable";
 import { InShareReturnedTable } from "./InShareReturnedTable";
 import { API } from "../../api/profile-api";
@@ -160,7 +160,7 @@ class InPostManagement extends Component {
             />
           </div>
           <div className="col-sm">
-            <InShareRequestedTable
+            <InShareRequestingTable
               shares={this.state.requestingShares}
               onDeleteRequestingShareCb={this.doDeleteRequestingShare}
               deletingShareIds={this.state.deletingShareIds}
