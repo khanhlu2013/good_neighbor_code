@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
 const titleClass = "col-4";
-const borrowedClass = "text-center col-1";
+const returnedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
 const borrowingClass = "text-center col-2";
@@ -32,7 +32,7 @@ function OutPostTable(props) {
       <thead className="thead-light">
         <tr>
           <th className={titleClass}>title</th>
-          <th className={borrowedClass}>
+          <th className={returnedClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
           <th className={deniedClass}>
@@ -80,7 +80,7 @@ function PostTableRow(props) {
       })}
     >
       <td className={titleClass}>{post.title}</td>
-      <td className={borrowedClass}>{post.borrowed.length}</td>
+      <td className={returnedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>

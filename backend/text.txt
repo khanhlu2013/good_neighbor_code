@@ -172,3 +172,6 @@ side track : make sure i test multiple pending request for all
 side track make sure i test both dynamic and static for all
 ---
 
+isRequestingPost should change into something clearer, that have to do with http/ajax
+
+borrowed should be either borrowing or returned

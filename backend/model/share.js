@@ -33,7 +33,7 @@ const ShareSchema = new Schema({
 ShareSchema.pre("remove", async function() {
   if (this.isApprovedByFrom !== undefined) {
     throw Error(
-      "Can only remove requesting share, but not reject, or borrowed, or returned share"
+      "Can only remove requesting share, but not denied, or borrowing, or returned share"
     );
   }
 });
