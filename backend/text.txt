@@ -170,9 +170,6 @@ side track renaming InPostManagement, clean up shorter name
 side track: swap column for post and user, also sort 
 side track : make sure i test multiple pending request for all
 side track : i should change requesting into requested
-test requestingPostIds, by the way, i like to have a code review on this updatingIds array.
-side track, make sure the button is tested with dynamic testing
 ---
-
-make sure i test both dynamic and static for all
+side track make sure i test both dynamic and static for all
 
