@@ -12,10 +12,10 @@ const requestClass = "text-center col-1";
 const borrowClass = "text-center col-2";
 const undoClass = "text-center col-1";
 
-function InShareRequestTable(props) {
+function Table(props) {
   const { shares, deletingShareIds, onDeleteShare } = props;
   const rows = shares.map(share => (
-    <InShareRequestTableRow
+    <TableRow
       key={share.id}
       share={share}
       isDeletingShare={deletingShareIds.includes(share.id)}
@@ -53,13 +53,13 @@ function InShareRequestTable(props) {
   );
 }
 
-InShareRequestTable.propTypes = {
+Table.propTypes = {
   shares: PropTypes.array.isRequired,
   deletingShareIds: PropTypes.array.isRequired,
   onDeleteShare: PropTypes.func.isRequired
 };
 
-function InShareRequestTableRow(props) {
+function TableRow(props) {
   const { onDeleteShare, share, isDeletingShare } = props;
   const { post } = share;
 
@@ -93,10 +93,10 @@ function InShareRequestTableRow(props) {
     </tr>
   );
 }
-InShareRequestTableRow.propTypes = {
+TableRow.propTypes = {
   share: PropTypes.object.isRequired,
   isDeletingShare: PropTypes.bool.isRequired,
   onDeleteShare: PropTypes.func.isRequired
 };
 
-export { InShareRequestTable };
+export { Table as InShareRequestTable };

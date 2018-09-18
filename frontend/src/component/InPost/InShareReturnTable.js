@@ -9,11 +9,9 @@ const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 const borrowClass = "text-center col-2";
 
-function InShareReturnTable(props) {
+function Table(props) {
   const { shares } = props;
-  const rows = shares.map(share => (
-    <InShareReturnTableRow key={share.id} share={share} />
-  ));
+  const rows = shares.map(share => <TableRow key={share.id} share={share} />);
 
   return (
     <table
@@ -43,11 +41,11 @@ function InShareReturnTable(props) {
   );
 }
 
-InShareReturnTable.propTypes = {
+Table.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-function InShareReturnTableRow(props) {
+function TableRow(props) {
   const { share } = props;
   const { post } = share;
 
@@ -64,8 +62,8 @@ function InShareReturnTableRow(props) {
     </tr>
   );
 }
-InShareReturnTableRow.propTypes = {
+TableRow.propTypes = {
   share: PropTypes.object.isRequired
 };
 
-export { InShareReturnTable };
+export { Table as InShareReturnTable };

@@ -12,11 +12,11 @@ const activeClass = "text-center col-1";
 const editClass = "text-center col-1";
 const shareClass = "text-center col-1";
 
-function OutPostTable(props) {
+function Table(props) {
   const { posts, onEditPost, onDecidePost } = props;
   const postRows = posts.map(post => {
     return (
-      <PostTableRow
+      <TableRow
         key={post.id}
         post={post}
         onEditPost={onEditPost}
@@ -53,13 +53,13 @@ function OutPostTable(props) {
     </table>
   );
 }
-OutPostTable.propTypes = {
+Table.propTypes = {
   posts: PropTypes.array.isRequired,
   onEditPost: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired
 };
 
-function PostTableRow(props) {
+function TableRow(props) {
   const { post, onEditPost, onDecidePost } = props;
 
   const onEditBtnClicked = e => {
@@ -111,10 +111,10 @@ function PostTableRow(props) {
   );
 }
 
-PostTableRow.propsType = {
+TableRow.propsType = {
   post: PropTypes.object.isRequired,
   onEditPost: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired
 };
 
-export { OutPostTable };
+export { Table as OutPostTable };

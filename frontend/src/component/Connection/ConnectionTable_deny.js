@@ -6,7 +6,7 @@ import { LoadingIcon } from "../../util";
 const userNameColClass = "col-9";
 const removeColClass = "col-3 text-center";
 
-function ConnectionDenyTable(props) {
+function Table(props) {
   const {
     connections,
     loginUserId,
@@ -15,7 +15,7 @@ function ConnectionDenyTable(props) {
   } = props;
 
   const rows = connections.map(connection => (
-    <ConnectionRow
+    <TableRow
       key={connection.id}
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
@@ -43,14 +43,14 @@ function ConnectionDenyTable(props) {
   );
 }
 
-ConnectionDenyTable.propTypes = {
+Table.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-function ConnectionRow(props) {
+function TableRow(props) {
   const {
     connection,
     loginUserId,
@@ -82,11 +82,11 @@ function ConnectionRow(props) {
   );
 }
 
-ConnectionRow.propTypes = {
+TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-export { ConnectionDenyTable };
+export { Table as ConnectionDenyTable };

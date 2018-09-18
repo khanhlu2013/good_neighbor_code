@@ -6,7 +6,7 @@ import { LoadingIcon } from "../../util";
 const removeColClass = "col-3 text-center";
 const userNameColClass = "col-9";
 
-function ConnectionOutTable(props) {
+function Table(props) {
   const {
     connections,
     loginUserId,
@@ -15,7 +15,7 @@ function ConnectionOutTable(props) {
   } = props;
 
   const rows = connections.map(connection => (
-    <ConnectionRow
+    <TableRow
       key={connection.id}
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
@@ -40,14 +40,14 @@ function ConnectionOutTable(props) {
   );
 }
 
-ConnectionOutTable.propTypes = {
+Table.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-function ConnectionRow(props) {
+function TableRow(props) {
   const {
     connection,
     loginUserId,
@@ -80,11 +80,11 @@ function ConnectionRow(props) {
   );
 }
 
-ConnectionRow.propTypes = {
+TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-export { ConnectionOutTable };
+export { Table as ConnectionOutTable };

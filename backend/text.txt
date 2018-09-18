@@ -166,5 +166,3 @@ side track : OutPostCrudDialog make post a nullorRequired
 
 
 sidetrack: rename ...Table, ...TableRow and simplify it all
-
-

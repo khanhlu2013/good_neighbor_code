@@ -6,7 +6,7 @@ import { LoadingIcon } from "../../util";
 const userNameColClass = "col-8";
 const decideColClass = "col-2 text-center";
 
-function ConnectionInTable(props) {
+function Table(props) {
   const {
     connections,
     loginUserId,
@@ -15,7 +15,7 @@ function ConnectionInTable(props) {
   } = props;
 
   const rows = connections.map(connection => (
-    <ConnectionRow
+    <TableRow
       key={connection.id}
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
@@ -45,14 +45,14 @@ function ConnectionInTable(props) {
   );
 }
 
-ConnectionInTable.propTypes = {
+Table.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-function ConnectionRow(props) {
+function TableRow(props) {
   const {
     connection,
     loginUserId,
@@ -99,11 +99,11 @@ function ConnectionRow(props) {
   );
 }
 
-ConnectionRow.propTypes = {
+TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
 
-export { ConnectionInTable };
+export { Table as ConnectionInTable };

@@ -11,10 +11,10 @@ const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 const borrowClass = "text-center col-1";
 
-function InPostTable(props) {
+function Table(props) {
   const { posts, requestingPostIds, onCreateShare, loginUser } = props;
   const rows = posts.map(inPost => (
-    <InPostTableRow
+    <TableRow
       key={inPost.id}
       loginUser={loginUser}
       inPost={inPost}
@@ -53,14 +53,14 @@ function InPostTable(props) {
   );
 }
 
-InPostTable.propTypes = {
+Table.propTypes = {
   loginUser: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   requestingPostIds: PropTypes.array.isRequired,
   onCreateShare: PropTypes.func.isRequired
 };
 
-function InPostTableRow(props) {
+function TableRow(props) {
   const { loginUser, inPost, isRequestingPost, onCreateShare } = props;
   const onCreateShareClicked = e => {
     onCreateShare(inPost.id);
@@ -109,11 +109,11 @@ function InPostTableRow(props) {
     </tr>
   );
 }
-InPostTableRow.propTypes = {
+TableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
   onCreateShare: PropTypes.func.isRequired
 };
 
-export { InPostTable };
+export { Table as InPostTable };
