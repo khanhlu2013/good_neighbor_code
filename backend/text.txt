@@ -197,7 +197,8 @@ side track: really kill the freaking refresh world.
 
 investigate the loading icon on deny table when i deny connection from the friend request. Anyway, optimize it so that an extra request is not needed.
 
+---
 
-side track: i like the world notify...count, it is very clear. the on...changeCb is not clear.
-side track: who call api-url.js? can i combine this with a helper?
-side track: i still need to work on the damn tab and notification. this is important. may be i just go with it for now before i find a better tab.
+notification: 
+
+  what do i want to do, find a tab or stick with it? ok fuck it, lets stick with it and make this minimal for now. fail fast baby.

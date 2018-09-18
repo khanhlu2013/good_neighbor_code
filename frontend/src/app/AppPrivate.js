@@ -9,15 +9,14 @@ import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
-    requestOutPostCount: 0,
-    requestFriendCount: 0,
+    requestOutPostCount: null,
+    requestFriendCount: null,
     selectedTabIndex: null
   };
-
   onFriendRequestCountChanged = count => {
     this.setState({ requestFriendCount: count });
   };
-  onRequestOutPostCountChanged = count => {
+  onOutPostRequestCountChanged = count => {
     this.setState({ requestOutPostCount: count });
   };
 
@@ -37,16 +36,16 @@ class PrivateApp extends Component {
   render() {
     const { requestOutPostCount, requestFriendCount } = this.state;
     const { loginUser } = this.props;
-    const myPostNotification = this._computeNotificationHtml(
+    const outPostNotification = this._computeNotificationHtml(
       requestOutPostCount
     );
-    const friendNotification = this._computeNotificationHtml(
+    const friendRequestNotification = this._computeNotificationHtml(
       requestFriendCount
     );
 
     return (
       <div id="PrivateApp-react">
-        <Tabs>
+        <Tabs forceRenderTabPanel={true}>
           <div className="Tab-selector-list">
             <TabList>
               <Tab>
@@ -55,13 +54,13 @@ class PrivateApp extends Component {
               <Tab>
                 <span id="TabSelector_OutPost">
                   My Posts
-                  {myPostNotification}
+                  {outPostNotification}
                 </span>
               </Tab>
               <Tab>
                 <span id="TabSelector_Connection">
                   Friend
-                  {friendNotification}
+                  {friendRequestNotification}
                 </span>
               </Tab>
             </TabList>
@@ -72,13 +71,13 @@ class PrivateApp extends Component {
           <TabPanel>
             <OutPostManagement
               loginUser={loginUser}
-              requestOutPostCountChangedCb={this.onRequestOutPostCountChanged}
+              onNotifyOutPostRequestCount={this.onOutPostRequestCountChanged}
             />
           </TabPanel>
           <TabPanel>
             <ConnectionManagement
               loginUser={this.props.loginUser}
-              onFriendRequestCountChangedCb={this.onFriendRequestCountChanged}
+              onNotifyFriendRequestCount={this.onFriendRequestCountChanged}
             />
           </TabPanel>
         </Tabs>
