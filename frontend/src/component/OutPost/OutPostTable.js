@@ -80,7 +80,7 @@ function PostTableRow(props) {
       })}
     >
       <td className={titleClass}>{post.title}</td>
-      <td className={returnedClass}>{post.borrowed.length}</td>
+      <td className={returnedClass}>{post.returned.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
