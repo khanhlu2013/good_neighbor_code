@@ -33,7 +33,7 @@ const ShareSchema = new Schema({
 ShareSchema.pre("remove", async function() {
   if (this.isApprovedByFrom !== undefined) {
     throw Error(
-      "Can only remove requesting share, but not reject, or borrowing, or borrowed share"
+      "Can only remove request share, but not deny, or borrow, or return share"
     );
   }
 });
@@ -71,12 +71,12 @@ ShareSchema.pre("save", async function() {
       throw Error("Post.user is not connected with borrower.");
     }
 
-    //verify not currently: requesting or borrowing or denied
+    //verify not currently: request or borrow or deny
     const verifyingShares = await Share.findOne({
       post: postID,
       borrower,
       $or: [
-        { isApprovedByFrom: { $not: { $eq: true } } }, //currently not approve <=> aka <=> requesting or denied
+        { isApprovedByFrom: { $not: { $eq: true } } }, //currently not_borrow <=> aka <=> request_or_deny
         { isReturnedByTo: false } //currently borrowing
       ]
     });

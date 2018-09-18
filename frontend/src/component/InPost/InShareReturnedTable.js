@@ -9,15 +9,15 @@ const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 const borrowingClass = "text-center col-2";
 
-function InShareBorrowedTable(props) {
+function InShareReturnedTable(props) {
   const { shares } = props;
   const rows = shares.map(share => (
-    <InShareBorrowedTableRow key={share.id} share={share} />
+    <InShareReturnedTableRow key={share.id} share={share} />
   ));
 
   return (
     <table
-      id="InShareBorrowedTable-react"
+      id="InShareReturnedTable-react"
       className="table table-striped table-bordered"
     >
       <thead className="thead-light">
@@ -43,18 +43,18 @@ function InShareBorrowedTable(props) {
   );
 }
 
-InShareBorrowedTable.propTypes = {
+InShareReturnedTable.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-function InShareBorrowedTableRow(props) {
+function InShareReturnedTableRow(props) {
   const { share } = props;
   const { post } = share;
 
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
   return (
-    <tr className="InShareBorrowedTableRow">
+    <tr className="InShareReturnedTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
@@ -64,8 +64,8 @@ function InShareBorrowedTableRow(props) {
     </tr>
   );
 }
-InShareBorrowedTableRow.propTypes = {
+InShareReturnedTableRow.propTypes = {
   share: PropTypes.object.isRequired
 };
 
-export { InShareBorrowedTable };
+export { InShareReturnedTable };

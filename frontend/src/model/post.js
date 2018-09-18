@@ -68,12 +68,12 @@ class Post {
     this._shares = value;
   }
 
-  get requesting() {
-    return this.shares.filter(share => share.isRequesting);
+  get request() {
+    return this.shares.filter(share => share.isRequest);
   }
 
-  get isRequestingWithNoBorrowing() {
-    return this.requesting.length !== 0 && !this.borrowing;
+  get isRequestWithNoBorrowing() {
+    return this.request.length !== 0 && !this.borrowing;
   }
 
   get borrowing() {
@@ -91,10 +91,10 @@ class Post {
     return this.shares.filter(share => share.isDenied);
   }
 
-  isRequestingBy(userId) {
-    const lst = this.requesting.filter(share => share.borrower.id === userId);
+  isRequestBy(userId) {
+    const lst = this.request.filter(share => share.borrower.id === userId);
     if (lst.length > 1) {
-      throw Error("Unexpected duplicate requesting data");
+      throw Error("Unexpected duplicate request data");
     }
 
     return lst.length === 1;

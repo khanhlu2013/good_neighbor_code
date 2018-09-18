@@ -8,15 +8,14 @@ const fromClass = "col-2";
 const titleClass = "col-5";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
-const requestingClass = "text-center col-1";
-const borrowingClass = "text-center col-1";
 const requestClass = "text-center col-1";
+const borrowingClass = "text-center col-1";
 
 function InPostTable(props) {
   const {
     inPosts,
     requestingPostIds,
-    onCreateRequestingShareCb,
+    onCreateRequestShareCb,
     loginUser
   } = props;
   const rows = inPosts.map(inPost => (
@@ -25,7 +24,7 @@ function InPostTable(props) {
       loginUser={loginUser}
       inPost={inPost}
       isRequestingPost={requestingPostIds.includes(inPost.id)}
-      onCreateRequestingShareCb={onCreateRequestingShareCb}
+      onCreateRequestShareCb={onCreateRequestShareCb}
     />
   ));
 
@@ -44,7 +43,7 @@ function InPostTable(props) {
           <th className={deniedClass}>
             <FontAwesomeIcon icon="thumbs-down" />
           </th>
-          <th className={requestingClass}>
+          <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
           <th className={borrowingClass}>
@@ -62,20 +61,15 @@ InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPosts: PropTypes.array.isRequired,
   requestingPostIds: PropTypes.array.isRequired,
-  onCreateRequestingShareCb: PropTypes.func.isRequired
+  onCreateRequestShareCb: PropTypes.func.isRequired
 };
 
 function InPostTableRow(props) {
-  const {
-    loginUser,
-    inPost,
-    isRequestingPost,
-    onCreateRequestingShareCb
-  } = props;
+  const { loginUser, inPost, isRequestingPost, onCreateRequestShareCb } = props;
   const onCreateShare = e => {
-    onCreateRequestingShareCb(inPost.id);
+    onCreateRequestShareCb(inPost.id);
   };
-  const isMeRequested = inPost.isRequestingBy(loginUser.id);
+  const isMeRequested = inPost.isRequestBy(loginUser.id);
   const borrowingShare = inPost.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
   const isMeBorrowed = borrower && borrower.id === loginUser.id;
@@ -91,7 +85,7 @@ function InPostTableRow(props) {
       <td className={titleClass}>{inPost.title}</td>
       <td className={borrowedClass}>{inPost.borrowed.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
-      <td className={requestingClass}>{inPost.requesting.length}</td>
+      <td className={requestClass}>{inPost.request.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>
         {isMeRequested || isMeBorrowed ? (
@@ -116,7 +110,7 @@ InPostTableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
-  onCreateRequestingShareCb: PropTypes.func.isRequired
+  onCreateRequestShareCb: PropTypes.func.isRequired
 };
 
 export { InPostTable };

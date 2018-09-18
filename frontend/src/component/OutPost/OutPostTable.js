@@ -6,7 +6,7 @@ import className from "classnames";
 const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
-const requestingClass = "text-center col-1";
+const requestClass = "text-center col-1";
 const borrowingClass = "text-center col-2";
 const activeClass = "text-center col-1";
 const editClass = "text-center col-1";
@@ -38,7 +38,7 @@ function OutPostTable(props) {
           <th className={deniedClass}>
             <FontAwesomeIcon icon="thumbs-down" />
           </th>
-          <th className={requestingClass}>
+          <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
           <th className={borrowingClass}>
@@ -76,13 +76,13 @@ function PostTableRow(props) {
     <tr
       className={className({
         OutPostTableRow: true,
-        "table-warning": post.isRequestingWithNoBorrowing
+        "table-warning": post.isRequestWithNoBorrowing
       })}
     >
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
-      <td className={requestingClass}>{post.requesting.length}</td>
+      <td className={requestClass}>{post.request.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={activeClass}>
         {post.isActive && <FontAwesomeIcon icon="check" />}
@@ -97,7 +97,7 @@ function PostTableRow(props) {
       </td>
       <td className={shareClass}>
         {(post.denied.length !== 0 ||
-          post.requesting.length !== 0 ||
+          post.request.length !== 0 ||
           post.borrowing) && (
           <button
             className="OutPostTableRowDecideBtn btn btn-success"

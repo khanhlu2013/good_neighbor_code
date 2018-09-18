@@ -1,4 +1,23 @@
-139-80  12:30pm
+Share story
+    /*
+      1. i see that there are 2 posts from friend, i borrow one, undo and borrow again
+      2. stranger see that i am requesting, so she request too
+      3. friend login:
+        . (notification show request)
+        . approve stranger
+        . undo stranger
+        . approve me
+        . (notification doesn't show request and table doesn't cause tention)
+
+      4. stranger see that i am borrowing it, color shoud change
+      5. i see that i am borrowing and return it.
+      6. stranger can see it is available again
+      7. friend can see available color again to decide: deny it
+      8. stranger just dont see that item anymore
+      . friend undo deny
+      . stranger see it is requesting again
+    */
+
 
 . LOW PRIORITY INVENTORY
 . ----------------------
@@ -157,7 +176,7 @@ side track: test loading icon for outpost : content and dashboard
 
 ---
 . really do notification inpost and outpost to notify approved and returned
-. sidetrack support multiple requesting
+. sidetrack support multiple http request, check it for all
 . sidetrack : how is multiple updating work out in connection management and everywhere else?
 . sidetrack : show off multiple deleting share id or returning share id
 . work on inPost loading icon and test
@@ -169,7 +188,8 @@ side track: test loading icon for each tab
 side track renaming InPostManagement, clean up shorter name
 side track: swap column for post and user, also sort 
 side track : make sure i test multiple pending request for all
-side track : i should change requesting into requested
 ---
-side track make sure i test both dynamic and static for all
 
+what do i have now? i just said that i should not have tense . so i have request, borrow, return right?
+
+lets give it a try locally

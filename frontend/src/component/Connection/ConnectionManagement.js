@@ -33,15 +33,15 @@ class ConnectionManagement extends Component {
 
     (async () => {
       const connections = await API.connections();
-      this.setConnectionsAndNotifyRequestingCount(connections);
+      this.setConnectionsAndNotifyRequestCount(connections);
     })();
   }
 
   doRefreshConnections = async () => {
-    this.setConnectionsAndNotifyRequestingCount(await API.connections());
+    this.setConnectionsAndNotifyRequestCount(await API.connections());
   };
 
-  setConnectionsAndNotifyRequestingCount(connections) {
+  setConnectionsAndNotifyRequestCount(connections) {
     this.setState({ connections });
     this.props.onFriendRequestCountChangedCb(
       ConnectionManagement.calculateFriendRequestCount(

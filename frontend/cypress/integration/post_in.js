@@ -102,7 +102,7 @@ describe("InPost feature", () => {
     inPostTree.snap("user can make request");
 
     //can undo request
-    inPostTree.undoRequesting(post);
+    inPostTree.undoRequest(post);
     inPostTree.snap("user can undo request");
 
     //can return
@@ -141,7 +141,7 @@ describe("InPost feature", () => {
     inPostTree.snapRightAway("all post table");
 
     //requested table
-    inPostTree.undoRequesting(post);
+    inPostTree.undoRequest(post);
     inPostTree.snapRightAway("requested table");
 
     //borrowed table

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { InPostTable } from "./InPostTable";
-import { InShareRequestingTable } from "./InShareRequestingTable";
+import { InShareRequestTable } from "./InShareRequestTable";
 import { InShareBorrowingTable } from "./InShareBorrowingTable";
 import { InShareBorrowedTable } from "./InShareBorrowedTable";
 import { API } from "../../api/profile-api";
@@ -18,7 +18,7 @@ class InPostManagement extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    let requestingShares = null;
+    let requestShares = null;
     let borrowingShares = null;
     let borrowedShares = null;
 
@@ -27,13 +27,13 @@ class InPostManagement extends Component {
         post.shares.filter(share => share.borrower.id === props.loginUser.id)
       );
       const myInShares1D = [].concat(...myInShares2D);
-      requestingShares = myInShares1D.filter(share => share.isRequesting);
+      requestShares = myInShares1D.filter(share => share.isRequest);
       borrowingShares = myInShares1D.filter(share => share.isBorrowing);
       borrowedShares = myInShares1D.filter(share => share.isBorrowed);
     }
 
     return {
-      requestingShares,
+      requestShares,
       borrowingShares,
       borrowedShares
     };
@@ -50,7 +50,7 @@ class InPostManagement extends Component {
     this.setState({ inPosts: inPostsFilterDeny });
   }
 
-  doCreateRequestingShare = postId => {
+  doCreateRequestShare = postId => {
     this.setState({
       requestingPostIds: [...this.state.requestingPostIds, postId]
     });
@@ -84,7 +84,7 @@ class InPostManagement extends Component {
     })();
   };
 
-  doDeleteRequestingShare = shareId => {
+  doDeleteRequestShare = shareId => {
     this.setState({
       deletingShareIds: [...this.state.deletingShareIds, shareId]
     });
@@ -156,13 +156,13 @@ class InPostManagement extends Component {
               loginUser={this.props.loginUser}
               inPosts={this.state.inPosts}
               requestingPostIds={this.state.requestingPostIds}
-              onCreateRequestingShareCb={this.doCreateRequestingShare}
+              onCreateRequestShareCb={this.doCreateRequestShare}
             />
           </div>
           <div className="col-sm">
-            <InShareRequestingTable
-              shares={this.state.requestingShares}
-              onDeleteRequestingShareCb={this.doDeleteRequestingShare}
+            <InShareRequestTable
+              shares={this.state.requestShares}
+              onDeleteRequestShareCb={this.doDeleteRequestShare}
               deletingShareIds={this.state.deletingShareIds}
             />
             <InShareBorrowingTable

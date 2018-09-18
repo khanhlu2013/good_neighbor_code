@@ -24,24 +24,22 @@ class OutPostManagement extends Component {
     isDecidingPost: false
   };
 
-  static calculateRequestingPostCount = posts => {
+  static calculateRequestPostCount = posts => {
     if (posts === null) {
       return null;
     }
-    return posts.filter(post => post.isRequestingWithNoBorrowing).length;
+    return posts.filter(post => post.isRequestWithNoBorrowing).length;
   };
 
   static getDerivedStateFromProps(props, state) {
     return {
-      requestingPostCount: OutPostManagement.calculateRequestingPostCount(
-        state.posts
-      )
+      requestPostCount: OutPostManagement.calculateRequestPostCount(state.posts)
     };
   }
 
   componentDidMount() {
-    const requestingPostCount = null;
-    this.props.requestingOutPostCountChangedCb(requestingPostCount);
+    const requestPostCount = null;
+    this.props.requestOutPostCountChangedCb(requestPostCount);
     (async () => {
       this.setPostsState(await API.outPosts());
     })();
@@ -49,7 +47,7 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    this.props.requestingOutPostCountChangedCb(this.state.requestingPostCount);
+    this.props.requestOutPostCountChangedCb(this.state.requestPostCount);
   }
 
   // CRUD START --------------------------------
@@ -226,7 +224,7 @@ class OutPostManagement extends Component {
 }
 OutPostManagement.propType = {
   loginUser: PropTypes.object.isRequired,
-  requestingOutPostCountChangedCb: PropTypes.func.isRequired
+  requestOutPostCountChangedCb: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

@@ -7,7 +7,7 @@ const fromClass = "col-3";
 const titleClass = "col-5";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
-const requestingClass = "text-center col-1";
+const requestClass = "text-center col-1";
 const returnClass = "text-center col-1";
 
 function InShareBorrowingTable(props) {
@@ -36,7 +36,7 @@ function InShareBorrowingTable(props) {
           <th className={deniedClass}>
             <FontAwesomeIcon icon="thumbs-down" />
           </th>
-          <th className={requestingClass}>
+          <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
           <th className={returnClass}>return</th>
@@ -67,7 +67,7 @@ function InShareBorrowingTableRow(props) {
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
-      <td className={requestingClass}>{post.requesting.length}</td>
+      <td className={requestClass}>{post.request.length}</td>
       <td className={returnClass}>
         {isReturningShare ? (
           <LoadingIcon text={null} isAnimate={true} />

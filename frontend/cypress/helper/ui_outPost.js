@@ -95,9 +95,9 @@ const decisionDialog = {
   },
   decide: (user, isApprove) => {
     const btnClassName = isApprove
-      ? "OutShareRequestingTableRowApproveBtn"
-      : "OutShareRequestingTableRowDenyBtn";
-    cy.get("#OutShareRequestingTable .OutShareRequestingTableRow")
+      ? "OutShareRequestTableRowApproveBtn"
+      : "OutShareRequestTableRowDenyBtn";
+    cy.get("#OutShareRequestTable .OutShareRequestTableRow")
       .then(rows => {
         const row = Array.from(rows).find(row =>
           row.textContent.includes(user.email)

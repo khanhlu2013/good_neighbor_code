@@ -15,7 +15,7 @@ import {
   faUndoAlt,
   faShareAlt, //decision
   faPencilAlt, //edit
-  faQuestion, //requesting
+  faQuestion, //request
   faCheck, //is active
   faLocationArrow, //return
   faRecycle, //borrowed

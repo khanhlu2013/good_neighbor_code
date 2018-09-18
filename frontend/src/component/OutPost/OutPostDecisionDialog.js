@@ -44,10 +44,7 @@ function OutPostDecisionDialog(props) {
       <div className="container">
         <div className="row">
           <div className="col-sm">
-            <RequestingTable
-              shares={post.requesting}
-              onDecideShare={onDecideShare}
-            />
+            <RequestTable shares={post.request} onDecideShare={onDecideShare} />
           </div>
           <div className="col-sm">
             <DeniedTable
@@ -155,14 +152,14 @@ DeniedTable.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-const requestingTableFromClass = "col-10";
-const requestingTableApproveClass = "text-center col-1";
-const requestingTableDenyClass = "text-center col-1";
+const requestTableFromClass = "col-10";
+const requestTableApproveClass = "text-center col-1";
+const requestTableDenyClass = "text-center col-1";
 
-function RequestingTable(props) {
+function RequestTable(props) {
   const { shares, onDecideShare } = props;
   const rows = shares.map(share => (
-    <RequestingTableRow
+    <RequestTableRow
       key={share.id}
       share={share}
       onDecideShare={onDecideShare}
@@ -171,15 +168,15 @@ function RequestingTable(props) {
   return (
     <table
       className="table table-striped table-bordered"
-      id="OutShareRequestingTable"
+      id="OutShareRequestTable"
     >
       <thead className="thead-light">
         <tr>
-          <th className={requestingTableFromClass}>Waiting list</th>
-          <th className={requestingTableApproveClass}>
+          <th className={requestTableFromClass}>Waiting list</th>
+          <th className={requestTableApproveClass}>
             <FontAwesomeIcon icon="thumbs-up" />
           </th>
-          <th className={requestingTableDenyClass}>
+          <th className={requestTableDenyClass}>
             <FontAwesomeIcon icon="thumbs-up" />
           </th>
         </tr>
@@ -188,12 +185,12 @@ function RequestingTable(props) {
     </table>
   );
 }
-RequestingTable.propTypes = {
+RequestTable.propTypes = {
   shares: PropTypes.array.isRequired,
   onDecideShare: PropTypes.func.isRequired
 };
 
-function RequestingTableRow(props) {
+function RequestTableRow(props) {
   const { share, onDecideShare } = props;
   const onApprove = e => {
     onDecideShare(share.id, true);
@@ -202,21 +199,21 @@ function RequestingTableRow(props) {
     onDecideShare(share.id, false);
   };
   return (
-    <tr className="OutShareRequestingTableRow">
-      <td className={requestingTableFromClass}>{share.borrower.email}</td>
-      <td className={requestingTableApproveClass}>
+    <tr className="OutShareRequestTableRow">
+      <td className={requestTableFromClass}>{share.borrower.email}</td>
+      <td className={requestTableApproveClass}>
         {!Boolean(share.post.borrowing) && (
           <button
-            className="OutShareRequestingTableRowApproveBtn btn btn-success"
+            className="OutShareRequestTableRowApproveBtn btn btn-success"
             onClick={onApprove}
           >
             <FontAwesomeIcon icon="thumbs-up" />
           </button>
         )}
       </td>
-      <td className={requestingTableDenyClass}>
+      <td className={requestTableDenyClass}>
         <button
-          className="OutShareRequestingTableRowDenyBtn btn btn-warning"
+          className="OutShareRequestTableRowDenyBtn btn btn-warning"
           onClick={onDeny}
         >
           <FontAwesomeIcon icon="thumbs-down" />
@@ -225,7 +222,7 @@ function RequestingTableRow(props) {
     </tr>
   );
 }
-RequestingTableRow.propTypes = {
+RequestTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   onDecideShare: PropTypes.func.isRequired
 };

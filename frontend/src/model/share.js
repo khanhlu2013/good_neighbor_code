@@ -21,7 +21,7 @@ class Share {
     this.post = post;
   }
 
-  get isRequesting() {
+  get isRequest() {
     return this.isApprovedByFrom === undefined;
   }
 

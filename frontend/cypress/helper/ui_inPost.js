@@ -8,8 +8,8 @@ const inPostTree = {
       cy.get("#TabSelector_InPost").click();
     }
   },
-  undoRequesting: post => {
-    cy.get("#InShareRequestingTable-react .InShareRequestingTableRow")
+  undoRequest: post => {
+    cy.get("#InShareRequestTable-react .InShareRequestTableRow")
       .then(rows => {
         const row = Array.from(rows).find(row => {
           const text = row.textContent;
@@ -17,7 +17,7 @@ const inPostTree = {
         });
         return cy.wrap(row);
       })
-      .find(".InShareRequestingTableRowUndoBtn")
+      .find(".InShareRequestTableRowUndoBtn")
       .click();
   },
   request: post => {

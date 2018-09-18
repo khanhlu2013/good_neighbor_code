@@ -9,16 +9,16 @@ import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
-    requestingOutPostCount: 0,
-    requestingFriendCount: 0,
+    requestOutPostCount: 0,
+    requestFriendCount: 0,
     selectedTabIndex: null
   };
 
   onFriendRequestCountChanged = count => {
-    this.setState({ requestingFriendCount: count });
+    this.setState({ requestFriendCount: count });
   };
-  onRequestingOutPostCountChanged = count => {
-    this.setState({ requestingOutPostCount: count });
+  onRequestOutPostCountChanged = count => {
+    this.setState({ requestOutPostCount: count });
   };
 
   _computeNotificationHtml = count => {
@@ -35,13 +35,13 @@ class PrivateApp extends Component {
   };
 
   render() {
-    const { requestingOutPostCount, requestingFriendCount } = this.state;
+    const { requestOutPostCount, requestFriendCount } = this.state;
     const { loginUser } = this.props;
     const myPostNotification = this._computeNotificationHtml(
-      requestingOutPostCount
+      requestOutPostCount
     );
     const friendNotification = this._computeNotificationHtml(
-      requestingFriendCount
+      requestFriendCount
     );
 
     return (
@@ -72,9 +72,7 @@ class PrivateApp extends Component {
           <TabPanel>
             <OutPostManagement
               loginUser={loginUser}
-              requestingOutPostCountChangedCb={
-                this.onRequestingOutPostCountChanged
-              }
+              requestOutPostCountChangedCb={this.onRequestOutPostCountChanged}
             />
           </TabPanel>
           <TabPanel>
