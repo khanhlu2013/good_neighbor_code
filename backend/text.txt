@@ -17,7 +17,15 @@ Share story
       . friend undo deny
       . stranger see it is requesting again
     */
+---
 
+With good neighboor, There is a single entry point to access the app using using a google account. On your first time using good neighboor, the app will create an account for you in the background. 
+
+...
+
+Usually, an app provide a few option to sign up and login. But may be, less is more. You don't have to remember if you have sign up or not. or if you signed up with google or facebook or with an email and password. there is no chance for a duplicated account. 
+
+---
 
 . LOW PRIORITY INVENTORY
 . ----------------------
@@ -84,6 +92,7 @@ Share story
 . split outpost component into 2 stated componont: crud and decision
 . create front end model validation
 . notification when request is approved and borrow is return. 
+. a bit of flashing public_app after login before loading the private app
 
 . TODAY
 . -----
@@ -105,64 +114,16 @@ demo: show a connection management that undo will cover all senario
 . we can get to see the journey and story our stuff created among our love one
 . thank you and happy sharing
 
----
 
-With good neighboor, There is a single entry point to access the app using using a google account. On your first time using good neighboor, the app will create an account for you in the background. 
-
-...
-
-Usually, an app provide a few option to sign up and login. But may be, less is more. You don't have to remember if you have sign up or not. or if you signed up with google or facebook or with an email and password. there is no chance for a duplicated account. 
 
 ---
-. start working on the slow connection user experience
+. i need to make the app say that it is creating an account. this way user wont create duplicated account. 
 
-. what is the searching state indicate by
-. how can i indicate that i am inviting a friend? should i start to work with single doc? yes i think so
-
----
-. forceRenderTabPanel is right now false and it is unmounting component. 
-. is outside notification should have a class too for refreshing connection?
-. what is the problem with the whole refresh? can i use this minimal approach?
-. a bit of flashing public_app after login before loading the private app
-
-ok, lets see we would set a proptype to not require.  this mean user can put in null or forget it. 
-
-. dont let test slow down with youtube video
-. make sure i test the notification
-i see that refreshing connection should only be run once. on component did mount. 
-  
-but before that, when i click on create connection, the call back is call. it is responsible to set the state for my component that i am inviting. when it finish create connection, it will be responsible to clear it out
-
----
-. how do i factor crud dialog out and decision dialog out of outpost to scale
-. make sure i redo the test : no more isRefreshing ...
 . make sure i test the outer tab/private app/notification
----
-lets test outPost, i need to get loading icon into InPost
-  . one time loading for outPost: do net set outPosts to null;
-  . do not allow null to outpost and conditional render it
-  . create/edit outPost dialog need to wait there 
 
----
+  . make sure have an an id for the whole tab so i can snap it. call it tab-selection-panel,(side track do i have it already and where is it used)
 
-lets just talk how the flow is for now , understand it first
-  . click button
-  . set open flag, and sessionId so that the old dialog will be killed
-  . fill out dialog and click ok 
-  . onCrudPostCb
-    . set open flag false
-    . await api
-    . do refresh Posts.
-
----
-
-create a isCrudingFlag and pass it into the dialog. do not close it right away.
-
+  . load data and snap right away and snap with wait. expect notification to show
 ---
 
 
-side track : OutPostCrudDialog make post a nullorRequired
-
-
-
-sidetrack: rename ...Table, ...TableRow and simplify it all
