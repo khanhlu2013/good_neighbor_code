@@ -9,7 +9,7 @@ const titleClass = "col-5";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
-const borrowingClass = "text-center col-1";
+const borrowClass = "text-center col-1";
 
 function InPostTable(props) {
   const {
@@ -46,7 +46,7 @@ function InPostTable(props) {
           <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
-          <th className={borrowingClass}>
+          <th className={borrowClass}>
             <FontAwesomeIcon icon="user-clock" />
           </th>
           <th className={requestClass}>request</th>
@@ -70,8 +70,8 @@ function InPostTableRow(props) {
     onCreateRequestShareCb(inPost.id);
   };
   const isMeRequested = inPost.isRequestBy(loginUser.id);
-  const borrowingShare = inPost.borrowing;
-  const borrower = borrowingShare ? borrowingShare.borrower : null;
+  const borrowShare = inPost.borrow;
+  const borrower = borrowShare ? borrowShare.borrower : null;
   const isMeBorrowed = borrower && borrower.id === loginUser.id;
 
   return (
@@ -86,7 +86,7 @@ function InPostTableRow(props) {
       <td className={borrowedClass}>{inPost.borrowed.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
       <td className={requestClass}>{inPost.request.length}</td>
-      <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
+      <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>
         {isMeRequested || isMeBorrowed ? (
           <span>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { InPostTable } from "./InPostTable";
 import { InShareRequestTable } from "./InShareRequestTable";
-import { InShareBorrowingTable } from "./InShareBorrowingTable";
+import { InShareBorrowTable } from "./InShareBorrowTable";
 import { InShareBorrowedTable } from "./InShareBorrowedTable";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
@@ -19,7 +19,7 @@ class InPostManagement extends Component {
 
   static getDerivedStateFromProps(props, state) {
     let requestShares = null;
-    let borrowingShares = null;
+    let borrowShares = null;
     let borrowedShares = null;
 
     if (state.inPosts) {
@@ -28,13 +28,13 @@ class InPostManagement extends Component {
       );
       const myInShares1D = [].concat(...myInShares2D);
       requestShares = myInShares1D.filter(share => share.isRequest);
-      borrowingShares = myInShares1D.filter(share => share.isBorrowing);
+      borrowShares = myInShares1D.filter(share => share.isBorrow);
       borrowedShares = myInShares1D.filter(share => share.isBorrowed);
     }
 
     return {
       requestShares,
-      borrowingShares,
+      borrowShares,
       borrowedShares
     };
   }
@@ -108,7 +108,7 @@ class InPostManagement extends Component {
     })();
   };
 
-  doReturnBorrowingShare = shareId => {
+  doReturnBorrowShare = shareId => {
     const curPost = this.state.inPosts.find(post =>
       post.shares.some(share => share.id === shareId)
     );
@@ -165,10 +165,10 @@ class InPostManagement extends Component {
               onDeleteRequestShareCb={this.doDeleteRequestShare}
               deletingShareIds={this.state.deletingShareIds}
             />
-            <InShareBorrowingTable
-              shares={this.state.borrowingShares}
+            <InShareBorrowTable
+              shares={this.state.borrowShares}
               returningShareIds={this.state.returningShareIds}
-              onReturnBorrowingShareCb={this.doReturnBorrowingShare}
+              onReturnBorrowShareCb={this.doReturnBorrowShare}
             />
             <InShareBorrowedTable shares={this.state.borrowedShares} />
           </div>

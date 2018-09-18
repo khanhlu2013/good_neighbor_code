@@ -7,7 +7,7 @@ const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
-const borrowingClass = "text-center col-2";
+const borrowClass = "text-center col-2";
 const activeClass = "text-center col-1";
 const editClass = "text-center col-1";
 const shareClass = "text-center col-1";
@@ -41,7 +41,7 @@ function OutPostTable(props) {
           <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
-          <th className={borrowingClass}>
+          <th className={borrowClass}>
             <FontAwesomeIcon icon="user-clock" />
           </th>
           <th className={activeClass}>active</th>
@@ -69,21 +69,21 @@ function PostTableRow(props) {
   const onDecidePostClick = e => {
     onDecidePost(post);
   };
-  const borrowingShare = post.borrowing;
-  const borrower = borrowingShare ? borrowingShare.borrower : null;
+  const borrowShare = post.borrow;
+  const borrower = borrowShare ? borrowShare.borrower : null;
 
   return (
     <tr
       className={className({
         OutPostTableRow: true,
-        "table-warning": post.isRequestWithNoBorrowing
+        "table-warning": post.isRequestWithNoBorrow
       })}
     >
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestClass}>{post.request.length}</td>
-      <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
+      <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={activeClass}>
         {post.isActive && <FontAwesomeIcon icon="check" />}
       </td>
@@ -98,7 +98,7 @@ function PostTableRow(props) {
       <td className={shareClass}>
         {(post.denied.length !== 0 ||
           post.request.length !== 0 ||
-          post.borrowing) && (
+          post.borrow) && (
           <button
             className="OutPostTableRowDecideBtn btn btn-success"
             onClick={onDecidePostClick}

@@ -19,7 +19,7 @@ import {
   faCheck, //is active
   faLocationArrow, //return
   faRecycle, //borrowed
-  faUserClock, //borrowing
+  faUserClock, //borrow
   faPlay, //play youtube video
   faPause, //pause youtube video
   faClock //youtube video duration

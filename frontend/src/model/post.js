@@ -72,13 +72,13 @@ class Post {
     return this.shares.filter(share => share.isRequest);
   }
 
-  get isRequestWithNoBorrowing() {
-    return this.request.length !== 0 && !this.borrowing;
+  get isRequestWithNoBorrow() {
+    return this.request.length !== 0 && !this.borrow;
   }
 
-  get borrowing() {
-    const lst = this.shares.filter(share => share.isBorrowing);
-    if (lst.length > 1) throw Error("unexpected multiple borrowing");
+  get borrow() {
+    const lst = this.shares.filter(share => share.isBorrow);
+    if (lst.length > 1) throw Error("unexpected multiple borrow");
     const [result] = lst;
     return result;
   }

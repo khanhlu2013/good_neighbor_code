@@ -9,7 +9,7 @@ const titleClass = "col-4";
 const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
-const borrowingClass = "text-center col-2";
+const borrowClass = "text-center col-2";
 const undoClass = "text-center col-1";
 
 function InShareRequestTable(props) {
@@ -41,7 +41,7 @@ function InShareRequestTable(props) {
           <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
-          <th className={borrowingClass}>
+          <th className={borrowClass}>
             <FontAwesomeIcon icon="user-clock" />
           </th>
           <th className={undoClass}>undo</th>
@@ -66,8 +66,8 @@ function InShareRequestTableRow(props) {
     onDeleteRequestShareCb(share.id);
   };
 
-  const borrowingShare = post.borrowing;
-  const borrower = borrowingShare ? borrowingShare.borrower : null;
+  const borrowShare = post.borrow;
+  const borrower = borrowShare ? borrowShare.borrower : null;
 
   return (
     <tr className="InShareRequestTableRow">
@@ -76,7 +76,7 @@ function InShareRequestTableRow(props) {
       <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestClass}>{post.request.length}</td>
-      <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
+      <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={undoClass}>
         {isDeletingShare ? (
           <LoadingIcon text={null} isAnimate={true} />
@@ -97,7 +97,5 @@ InShareRequestTableRow.propTypes = {
   isDeletingShare: PropTypes.bool.isRequired,
   onDeleteRequestShareCb: PropTypes.func.isRequired
 };
-
-//function InPostsToMeBorrowingTable(props) {}
 
 export { InShareRequestTable };

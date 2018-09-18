@@ -39,8 +39,8 @@ const inPostTree = {
     waitForLoading();
     cy.get("#InPostManagement-react").snapshot({ name });
   },
-  returnBorrowing: post => {
-    cy.get("#InShareBorrowingTable-react .InShareBorrowingTableRow")
+  returnBorrow: post => {
+    cy.get("#InShareBorrowTable-react .InShareBorrowTableRow")
       .then(rows => {
         const row = Array.from(rows).find(row => {
           const text = row.textContent;
@@ -48,7 +48,7 @@ const inPostTree = {
         });
         return cy.wrap(row);
       })
-      .find(".InShareBorrowingTableRowReturnBtn")
+      .find(".InShareBorrowTableRowReturnBtn")
       .click();
   }
 };

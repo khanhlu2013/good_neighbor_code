@@ -16,11 +16,11 @@ function OutPostDecisionDialog(props) {
     onExit
   } = props;
 
-  const borrowingShare = post.borrowing;
-  const borrower = borrowingShare ? borrowingShare.borrower : null;
+  const borrowShare = post.borrow;
+  const borrower = borrowShare ? borrowShare.borrower : null;
 
   const onUndoApproveBtnClicked = e => {
-    onUndoApproveShare(borrowingShare.id);
+    onUndoApproveShare(borrowShare.id);
   };
   const onExitBtnClicked = e => {
     onExit();
@@ -202,7 +202,7 @@ function RequestTableRow(props) {
     <tr className="OutShareRequestTableRow">
       <td className={requestTableFromClass}>{share.borrower.email}</td>
       <td className={requestTableApproveClass}>
-        {!Boolean(share.post.borrowing) && (
+        {!Boolean(share.post.borrow) && (
           <button
             className="OutShareRequestTableRowApproveBtn btn btn-success"
             onClick={onApprove}

@@ -77,7 +77,7 @@ ShareSchema.pre("save", async function() {
       borrower,
       $or: [
         { isApprovedByFrom: { $not: { $eq: true } } }, //currently not_borrow <=> aka <=> request_or_deny
-        { isReturnedByTo: false } //currently borrowing
+        { isReturnedByTo: false } //currently borrow
       ]
     });
     if (verifyingShares) {

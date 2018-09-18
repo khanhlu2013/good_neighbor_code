@@ -117,7 +117,7 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
-    inPostTree.returnBorrowing(post);
+    inPostTree.returnBorrow(post);
     inPostTree.snap("user can return borrowed");
   });
 
@@ -155,7 +155,7 @@ describe("InPost feature", () => {
       }
     ]);
     cy.loadApp();
-    inPostTree.returnBorrowing(post);
+    inPostTree.returnBorrow(post);
     inPostTree.snapRightAway("borrowed table");
   });
 });

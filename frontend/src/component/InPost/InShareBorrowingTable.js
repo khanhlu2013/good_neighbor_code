@@ -10,25 +10,25 @@ const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 const returnClass = "text-center col-1";
 
-function InShareBorrowingTable(props) {
-  const { shares, onReturnBorrowingShareCb, returningShareIds } = props;
+function InShareBorrowTable(props) {
+  const { shares, onReturnBorrowShareCb, returningShareIds } = props;
   const rows = shares.map(share => (
-    <InShareBorrowingTableRow
+    <InShareBorrowTableRow
       key={share.id}
       share={share}
       isReturningShare={returningShareIds.includes(share.id)}
-      onReturnBorrowingShareCb={onReturnBorrowingShareCb}
+      onReturnBorrowShareCb={onReturnBorrowShareCb}
     />
   ));
 
   return (
     <table
-      id="InShareBorrowingTable-react"
+      id="InShareBorrowTable-react"
       className="table table-striped table-bordered"
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>Borrowing</th>
+          <th className={fromClass}>Borrow</th>
           <th className={titleClass}>title</th>
           <th className={borrowedClass}>
             <FontAwesomeIcon icon="recycle" />
@@ -47,22 +47,22 @@ function InShareBorrowingTable(props) {
   );
 }
 
-InShareBorrowingTable.propTypes = {
+InShareBorrowTable.propTypes = {
   shares: PropTypes.array.isRequired,
   returningShareIds: PropTypes.array.isRequired,
-  onReturnBorrowingShareCb: PropTypes.func.isRequired
+  onReturnBorrowShareCb: PropTypes.func.isRequired
 };
 
-function InShareBorrowingTableRow(props) {
-  const { onReturnBorrowingShareCb, share, isReturningShare } = props;
+function InShareBorrowTableRow(props) {
+  const { onReturnBorrowShareCb, share, isReturningShare } = props;
   const { post } = share;
 
   const onReturn = e => {
-    onReturnBorrowingShareCb(share.id);
+    onReturnBorrowShareCb(share.id);
   };
 
   return (
-    <tr className="InShareBorrowingTableRow">
+    <tr className="InShareBorrowTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
       <td className={borrowedClass}>{post.borrowed.length}</td>
@@ -73,7 +73,7 @@ function InShareBorrowingTableRow(props) {
           <LoadingIcon text={null} isAnimate={true} />
         ) : (
           <button
-            className="InShareBorrowingTableRowReturnBtn btn btn-warning"
+            className="InShareBorrowTableRowReturnBtn btn btn-warning"
             onClick={onReturn}
           >
             <FontAwesomeIcon icon="location-arrow" />
@@ -83,10 +83,10 @@ function InShareBorrowingTableRow(props) {
     </tr>
   );
 }
-InShareBorrowingTableRow.propTypes = {
+InShareBorrowTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onReturnBorrowingShareCb: PropTypes.func.isRequired
+  onReturnBorrowShareCb: PropTypes.func.isRequired
 };
 
-export { InShareBorrowingTable };
+export { InShareBorrowTable };

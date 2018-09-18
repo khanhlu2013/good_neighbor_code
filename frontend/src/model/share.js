@@ -25,7 +25,7 @@ class Share {
     return this.isApprovedByFrom === undefined;
   }
 
-  get isBorrowing() {
+  get isBorrow() {
     return this.isApprovedByFrom === true && this.isReturnedByTo === false;
   }
 
