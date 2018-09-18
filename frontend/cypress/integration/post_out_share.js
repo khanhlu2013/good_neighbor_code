@@ -28,7 +28,7 @@ const post = {
 };
 
 describe("Outpost share feature ", () => {
-  it("table can display request,approved,deny,borrowed info", () => {
+  it("table can display request,borrow,deny,return info", () => {
     //no share data
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
@@ -84,7 +84,7 @@ describe("Outpost share feature ", () => {
     outPostTree.tab.focus();
     outPostTree.table.snap("table can show post with denied info");
 
-    //borrowed
+    //return
     cy.clearShareDb();
     cy.insertShares([
       {
@@ -97,7 +97,7 @@ describe("Outpost share feature ", () => {
 
     cy.loadApp();
     outPostTree.tab.focus();
-    outPostTree.table.snap("table can show post with borrowed info");
+    outPostTree.table.snap("table can show post with return info");
   });
 
   it("dialog can approve deny and undo share info", () => {

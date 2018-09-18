@@ -63,7 +63,7 @@ describe("InPost feature", () => {
     inPostTree.tab.focus();
     inPostTree.snap("with denied data");
 
-    //with borrowed info
+    //with borrow info
     cy.clearShareDb();
     cy.insertShares([
       {
@@ -75,9 +75,9 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
-    inPostTree.snap("with borrowed data");
+    inPostTree.snap("with borrow data");
 
-    //with returned info
+    //with return info
     cy.clearShareDb();
     cy.insertShares([
       {
@@ -89,10 +89,10 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
-    inPostTree.snap("with returned data");
+    inPostTree.snap("with return data");
   });
 
-  it("tables has buttons to make request, undo request, return borrowed", () => {
+  it("tables has buttons to make request, undo request, return borrow", () => {
     //can make request
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
@@ -118,7 +118,7 @@ describe("InPost feature", () => {
     cy.loadApp();
     inPostTree.tab.focus();
     inPostTree.returnBorrow(post);
-    inPostTree.snap("user can return borrowed");
+    inPostTree.snap("user can return borrow");
   });
 
   it("has loadingIcon", () => {
@@ -144,7 +144,7 @@ describe("InPost feature", () => {
     inPostTree.undoRequest(post);
     inPostTree.snapRightAway("request table");
 
-    //borrowed table
+    //borrow table
     cy.clearShareDb();
     cy.insertShares([
       {
@@ -156,6 +156,6 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.returnBorrow(post);
-    inPostTree.snapRightAway("borrowed table");
+    inPostTree.snapRightAway("borrow table");
   });
 });
