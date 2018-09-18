@@ -5,10 +5,9 @@ import { LoadingIcon } from "../../util";
 
 const fromClass = "col-3";
 const titleClass = "col-5";
-const borrowedClass = "text-center col-1";
+const returnClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
-const returnClass = "text-center col-1";
 
 function InShareBorrowTable(props) {
   const { shares, onReturnBorrowShareCb, returningShareIds } = props;
@@ -30,7 +29,7 @@ function InShareBorrowTable(props) {
         <tr>
           <th className={fromClass}>Borrow</th>
           <th className={titleClass}>title</th>
-          <th className={borrowedClass}>
+          <th className={returnClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
           <th className={deniedClass}>
@@ -65,7 +64,7 @@ function InShareBorrowTableRow(props) {
     <tr className="InShareBorrowTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
-      <td className={borrowedClass}>{post.borrowed.length}</td>
+      <td className={returnClass}>{post.return.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestClass}>{post.request.length}</td>
       <td className={returnClass}>

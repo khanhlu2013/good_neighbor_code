@@ -18,7 +18,7 @@ import {
   faQuestion, //request
   faCheck, //is active
   faLocationArrow, //return
-  faRecycle, //borrowed
+  faRecycle, //return
   faUserClock, //borrow
   faPlay, //play youtube video
   faPause, //pause youtube video
