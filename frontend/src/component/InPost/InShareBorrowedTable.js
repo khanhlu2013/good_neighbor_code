@@ -4,27 +4,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const fromClass = "col-2";
 const titleClass = "col-5";
-const returnedClass = "text-center col-1";
+const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
 const borrowingClass = "text-center col-2";
 
-function InShareReturnedTable(props) {
+function InShareBorrowedTable(props) {
   const { shares } = props;
   const rows = shares.map(share => (
-    <InShareReturnedTableRow key={share.id} share={share} />
+    <InShareBorrowedTableRow key={share.id} share={share} />
   ));
 
   return (
     <table
-      id="InShareReturnedTable-react"
+      id="InShareBorrowedTable-react"
       className="table table-striped table-bordered"
     >
       <thead className="thead-light">
         <tr>
           <th className={fromClass}>Borrowed log</th>
           <th className={titleClass}>title</th>
-          <th className={returnedClass}>
+          <th className={borrowedClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
           <th className={deniedClass}>
@@ -43,29 +43,29 @@ function InShareReturnedTable(props) {
   );
 }
 
-InShareReturnedTable.propTypes = {
+InShareBorrowedTable.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-function InShareReturnedTableRow(props) {
+function InShareBorrowedTableRow(props) {
   const { share } = props;
   const { post } = share;
 
   const borrowingShare = post.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
   return (
-    <tr className="InShareReturnedTableRow">
+    <tr className="InShareBorrowedTableRow">
       <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
-      <td className={returnedClass}>{post.borrowed.length}</td>
+      <td className={borrowedClass}>{post.borrowed.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestingClass}>{post.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
     </tr>
   );
 }
-InShareReturnedTableRow.propTypes = {
+InShareBorrowedTableRow.propTypes = {
   share: PropTypes.object.isRequired
 };
 
-export { InShareReturnedTable };
+export { InShareBorrowedTable };

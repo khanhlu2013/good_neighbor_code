@@ -83,8 +83,8 @@ class Post {
     return result;
   }
 
-  get returned() {
-    return this.shares.filter(share => share.isReturned);
+  get borrowed() {
+    return this.shares.filter(share => share.isBorrowed);
   }
 
   get denied() {

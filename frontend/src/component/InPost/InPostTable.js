@@ -6,7 +6,7 @@ import { LoadingIcon } from "../../util";
 
 const fromClass = "col-2";
 const titleClass = "col-5";
-const returnedClass = "text-center col-1";
+const borrowedClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestingClass = "text-center col-1";
 const borrowingClass = "text-center col-1";
@@ -38,7 +38,7 @@ function InPostTable(props) {
         <tr>
           <th className={fromClass}>All posts</th>
           <th className={titleClass}>title</th>
-          <th className={returnedClass}>
+          <th className={borrowedClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
           <th className={deniedClass}>
@@ -75,26 +75,26 @@ function InPostTableRow(props) {
   const onCreateShare = e => {
     onCreateRequestingShareCb(inPost.id);
   };
-  const isMeRequesting = inPost.isRequestingBy(loginUser.id);
+  const isMeRequested = inPost.isRequestingBy(loginUser.id);
   const borrowingShare = inPost.borrowing;
   const borrower = borrowingShare ? borrowingShare.borrower : null;
-  const isMeBorrowing = borrower && borrower.id === loginUser.id;
+  const isMeBorrowed = borrower && borrower.id === loginUser.id;
 
   return (
     <tr
       className={className({
         InPostTableRow: true,
-        "table-success": isMeRequesting || isMeBorrowing
+        "table-success": isMeRequested || isMeBorrowed
       })}
     >
       <td className={fromClass}>{inPost.user.email}</td>
       <td className={titleClass}>{inPost.title}</td>
-      <td className={returnedClass}>{inPost.borrowed.length}</td>
+      <td className={borrowedClass}>{inPost.borrowed.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
       <td className={requestingClass}>{inPost.requesting.length}</td>
       <td className={borrowingClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>
-        {isMeRequesting || isMeBorrowing ? (
+        {isMeRequested || isMeBorrowed ? (
           <span>
             <FontAwesomeIcon icon="check" />
           </span>

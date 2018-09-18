@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { InPostTable } from "./InPostTable";
 import { InShareRequestingTable } from "./InShareRequestingTable";
 import { InShareBorrowingTable } from "./InShareBorrowingTable";
-import { InShareReturnedTable } from "./InShareReturnedTable";
+import { InShareBorrowedTable } from "./InShareBorrowedTable";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { LoadingIcon } from "../../util";
@@ -20,7 +20,7 @@ class InPostManagement extends Component {
   static getDerivedStateFromProps(props, state) {
     let requestingShares = null;
     let borrowingShares = null;
-    let returnedShares = null;
+    let borrowedShares = null;
 
     if (state.inPosts) {
       const myInShares2D = state.inPosts.map(post =>
@@ -29,13 +29,13 @@ class InPostManagement extends Component {
       const myInShares1D = [].concat(...myInShares2D);
       requestingShares = myInShares1D.filter(share => share.isRequesting);
       borrowingShares = myInShares1D.filter(share => share.isBorrowing);
-      returnedShares = myInShares1D.filter(share => share.isReturned);
+      borrowedShares = myInShares1D.filter(share => share.isBorrowed);
     }
 
     return {
       requestingShares,
       borrowingShares,
-      returnedShares
+      borrowedShares
     };
   }
 
@@ -170,7 +170,7 @@ class InPostManagement extends Component {
               returningShareIds={this.state.returningShareIds}
               onReturnBorrowingShareCb={this.doReturnBorrowingShare}
             />
-            <InShareReturnedTable shares={this.state.returnedShares} />
+            <InShareBorrowedTable shares={this.state.borrowedShares} />
           </div>
         </div>
       );
