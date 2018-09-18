@@ -19,7 +19,7 @@ const connection = {
   approvedByFrom: true
 };
 
-describe("InPost feature", () => {
+describe("InPost", () => {
   const post = {
     _id: new ObjectID(),
     user: tu._id,
@@ -28,7 +28,7 @@ describe("InPost feature", () => {
     isActive: true
   };
 
-  it("has inpost tables can display data correctly", () => {
+  it("tables (all, request, borrow, return) can display data correctly", () => {
     //no request info
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
@@ -92,7 +92,7 @@ describe("InPost feature", () => {
     inPostTree.snap("with return data");
   });
 
-  it("tables has buttons to make request, undo request, return borrow", () => {
+  it("tables(all, request, borrow, return) has buttons to make, undo, return request", () => {
     //can make request
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
@@ -121,7 +121,7 @@ describe("InPost feature", () => {
     inPostTree.snap("user can return borrow");
   });
 
-  it("has loadingIcon", () => {
+  it("LoadingIcon", () => {
     const post = {
       _id: new ObjectID(),
       user: tu._id,
@@ -134,15 +134,15 @@ describe("InPost feature", () => {
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
     cy.login(lu.email);
-    inPostTree.snapRightAway("main page");
+    inPostTree.waitForMainPageLoadingFinish();
 
     //all post table
     inPostTree.request(post);
-    inPostTree.snapRightAway("all post table");
+    inPostTree.snapRightAway("all post table -> make request");
 
     //request table
     inPostTree.undoRequest(post);
-    inPostTree.snapRightAway("request table");
+    inPostTree.snapRightAway("request table -> undo request");
 
     //borrow table
     cy.clearShareDb();
@@ -156,6 +156,6 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.returnBorrow(post);
-    inPostTree.snapRightAway("borrow table");
+    inPostTree.snapRightAway("borrow table -> return");
   });
 });

@@ -8,7 +8,7 @@ const me = {
   name: "Me Here"
 };
 
-describe("Out crud feature", () => {
+describe("OutPost crud", () => {
   it("can create and edit post", () => {
     cy.setupDb([me]);
     cy.loadApp();
@@ -37,16 +37,12 @@ describe("Out crud feature", () => {
     outPostTree.table.snap("app's outPostTable show edited post");
   });
 
-  it("can show loading icon", () => {
+  it("LoadingIcon", () => {
     cy.setupDb([me]);
     cy.loadApp();
     cy.login(me.email);
-
-    //loading icon when first load
     outPostTree.tab.focus();
-    outPostTree.table.snapRightAway(
-      "app show loading icon when first load tab"
-    );
+    outPostTree.waitForMainPageLoadingFinish();
 
     //loading icon when create new
     outPostTree.createNewPost();

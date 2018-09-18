@@ -10,13 +10,19 @@ const waitForDecisionDialogLoadingFinish = () => {
   );
 };
 
+const waitForMainPageLoadingFinish = () => {
+  cy.get("#OutPostManagement-react #LoadingIcon-react").should(
+    "not.be.visible"
+  );
+};
+
 // - TAB
 const tab = {
   focus: () => {
     cy.get("#TabSelector_OutPost").click();
   },
   snap: name => {
-    cy.get("#TabSelector_OutPost #LoadingIcon-react").should("not.be.visible");
+    waitForMainPageLoadingFinish();
     cy.get("#TabSelector_OutPost").snapshot({ name });
   }
 };
@@ -42,9 +48,7 @@ const table = {
       .click();
   },
   snap: name => {
-    cy.get("#OutPostManagement-react #LoadingIcon-react").should(
-      "not.be.visible"
-    );
+    waitForMainPageLoadingFinish();
     cy.get("#OutPostManagement-react").snapshot({ name });
   },
   snapRightAway: name => {
@@ -123,6 +127,7 @@ const decisionDialog = {
 const outPostTree = {
   tab,
   table,
+  waitForMainPageLoadingFinish,
   crudDialog,
   decisionDialog,
   createNewPost: () => {

@@ -27,7 +27,7 @@ const post = {
   isActive: true
 };
 
-describe("Outpost share feature ", () => {
+describe("Outpost share ", () => {
   it("table can display request,borrow,deny,return info", () => {
     //no share data
     cy.setupDb([lu, tu], [connection], [post]);
@@ -132,7 +132,7 @@ describe("Outpost share feature ", () => {
     outPostTree.decisionDialog.snap("Dialog can undo denied request");
   });
 
-  it("dialog can show LoadingIcon", () => {
+  it("LoadingIcon", () => {
     const share = {
       post,
       borrower: tu,
@@ -143,8 +143,8 @@ describe("Outpost share feature ", () => {
     cy.setupDb([lu, tu], [connection], [post], [share]);
     cy.loadApp();
     cy.login(lu.email);
-
     outPostTree.tab.focus();
+    outPostTree.waitForMainPageLoadingFinish();
     outPostTree.table.decide(post);
 
     //approve request

@@ -3,7 +3,7 @@ const { ObjectID } = mongodb;
 
 const { connectionTree } = require("../helper/ui_connection");
 
-describe("Connection -> Search component", () => {
+describe("Connection SearchByEmail", () => {
   const lu = {
     _id: new ObjectID(),
     email: "lu@us.com",
@@ -120,7 +120,7 @@ describe("Connection -> Search component", () => {
     connectionTree.search.snap("can invite user");
   });
 
-  it("can show loadingIcon during search and invite user", () => {
+  it("LoadingIcon (search/invite)", () => {
     cy.setupDb([lu, tu]);
     cy.loadApp();
     cy.login(lu.email);

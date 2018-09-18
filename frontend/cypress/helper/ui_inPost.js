@@ -1,4 +1,4 @@
-const waitForLoading = () => {
+const waitForMainPageLoadingFinish = () => {
   cy.get("#InPostManagement-react #LoadingIcon-react").should("not.be.visible");
 };
 
@@ -36,7 +36,7 @@ const inPostTree = {
     cy.get("#InPostManagement-react").snapshot({ name });
   },
   snap: name => {
-    waitForLoading();
+    waitForMainPageLoadingFinish();
     cy.get("#InPostManagement-react").snapshot({ name });
   },
   returnBorrow: post => {
@@ -50,7 +50,8 @@ const inPostTree = {
       })
       .find(".InShareBorrowTableRowReturnBtn")
       .click();
-  }
+  },
+  waitForMainPageLoadingFinish
 };
 
 export { inPostTree };

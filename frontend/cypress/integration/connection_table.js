@@ -3,7 +3,7 @@ const { ObjectID } = mongodb;
 
 const { connectionTree } = require("../helper/ui_connection");
 
-describe("Connection Tables Component", () => {
+describe("Connection Tables(friend,in,out,deny)", () => {
   const lu = {
     _id: new ObjectID(),
     email: "lu@us.com",
@@ -163,7 +163,7 @@ describe("Connection Tables Component", () => {
     connectionTree.snap("deny-friend table can undo");
   });
 
-  it("can show LoadingIcon when editing connection", () => {
+  it("LoadingIcon", () => {
     cy.setupDb([lu, tu]);
 
     //in-friend table can approve
