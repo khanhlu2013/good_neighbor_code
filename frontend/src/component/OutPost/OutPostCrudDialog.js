@@ -5,7 +5,7 @@ import classNames from "classnames";
 import _ from "lodash";
 
 import { Post } from "../../model/post";
-import { LoadingIcon } from "../../util";
+import { LoadingIcon, nullOrRequiredValidator } from "../../util";
 
 Modal.setAppElement("#root");
 
@@ -192,7 +192,7 @@ class OutPostCrudDialog extends Component {
 
 OutPostCrudDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  post: PropTypes.object, //if null then we create post, otherwise we edit post
+  post: nullOrRequiredValidator("object"),
   isCrudingPost: PropTypes.bool.isRequired,
   onOk: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired

@@ -80,7 +80,10 @@ Share story
   . create notification-dashboard api for dash board notification. this can be delay until i find a better react tab. cause for now, all stuff will load, and will set my dash board for me
 . optimization: utilize backend data when crud api, do not refresh the whole data
 . split out post into 2 stated component: crud and decide (the management code is too big)
-. date sort, for request, borrow, return ...
+. date sort, for request, borrow, return share: create field for model and create ui feature to default sort and custom sort
+. split outpost component into 2 stated componont: crud and decision
+. create front end model validation
+. notification when request is approved and borrow is return. 
 
 . TODAY
 . -----
@@ -159,25 +162,12 @@ create a isCrudingFlag and pass it into the dialog. do not close it right away.
 side track: filter unactive post? currently, user can borrow unactive post and back end throw error.
 side track: what happen if i remove 2 connections(or anything) while waiting
 side track: test loading icon when enter connection management and inpost / out post
+
+
 side track : OutPostCrudDialog make post a nullorRequired
-side track : do investigate why it seem to take more time than just a second to do api
----
-side track :isRefreshing... class
----
 
 
 
----
-. really do notification inpost and outpost to notify approved and returned
----
 
-
-(side track a master search for a refresh word, make sure no class, no method.)
-(side track: sort the post and connections)
-(sidetrack, make sure i clean up the doRefreshPost and doRefreshConnection)
-(sidetrack: create and update api)
-(sidetrack with this, i will be able to factor out the component to share some dialog state)
-
-(side track, i don't like user raw in process data, lets verify it is raw with _id, fix it. then comeback
 
 
