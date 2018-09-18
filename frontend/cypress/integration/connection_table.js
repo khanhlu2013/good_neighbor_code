@@ -5,12 +5,12 @@ const { connectionTree } = require("../helper/ui_connection");
 
 describe("Connection Tables(friend,in,out,deny)", () => {
   const lu = {
-    _id: new ObjectID(),
+    id: new ObjectID(),
     email: "lu@us.com",
     name: "Lu Tran"
   };
   const tu = {
-    _id: new ObjectID(),
+    id: new ObjectID(),
     email: "tu@pr.com",
     name: "Tu Nguyen"
   };
@@ -20,8 +20,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
 
     //in user
     const in_connection = {
-      from: tu._id,
-      to: lu._id,
+      from: tu.id,
+      to: lu.id,
       approvedByTo: undefined,
       approvedByFrom: true
     };
@@ -34,8 +34,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //out user
     cy.clearConnectionDb();
     const out_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: undefined,
       approvedByFrom: true
     };
@@ -47,8 +47,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //friend user
     cy.clearConnectionDb();
     const friend_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: true,
       approvedByFrom: true
     };
@@ -60,8 +60,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //in-deny user
     cy.clearConnectionDb();
     const in_deny_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: false,
       approvedByFrom: true
     };
@@ -73,8 +73,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //out-deny user
     cy.clearConnectionDb();
     const out_deny_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: true,
       approvedByFrom: false
     };
@@ -90,8 +90,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //in-friend table can approve
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -106,8 +106,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -121,8 +121,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: true,
         approvedByFrom: true
       }
@@ -136,8 +136,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: lu._id,
-        to: tu._id,
+        from: lu.id,
+        to: tu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -151,8 +151,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: false,
         approvedByFrom: true
       }
@@ -169,8 +169,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     //in-friend table can approve
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -185,8 +185,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -200,8 +200,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: true,
         approvedByFrom: true
       }
@@ -215,8 +215,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: lu._id,
-        to: tu._id,
+        from: lu.id,
+        to: tu.id,
         approvedByTo: undefined,
         approvedByFrom: true
       }
@@ -230,8 +230,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.clearConnectionDb();
     cy.insertConnections([
       {
-        from: tu._id,
-        to: lu._id,
+        from: tu.id,
+        to: lu.id,
         approvedByTo: false,
         approvedByFrom: true
       }

@@ -3,7 +3,7 @@ const { ObjectID } = mongodb;
 const { outPostTree } = require("../helper/ui_outPost");
 
 const me = {
-  _id: new ObjectID(),
+  id: new ObjectID(),
   email: "me@me.com",
   name: "Me Here"
 };

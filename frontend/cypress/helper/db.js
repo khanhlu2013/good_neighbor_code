@@ -48,8 +48,8 @@ Cypress.Commands.add("insertUsers", users => {
   const str = users
     .map(u => {
       let idStr = "";
-      if (u._id) {
-        idStr = `,"_id":ObjectId("${u._id.toHexString()}")`;
+      if (u.id) {
+        idStr = `,"_id":ObjectId("${u.id.toHexString()}")`;
       }
       return `{"email":"${u.email}","name":"${u.name}"${idStr}}`;
     })
@@ -67,8 +67,8 @@ Cypress.Commands.add("insertConnections", connections => {
   const str = connections
     .map(c => {
       let idStr = "";
-      if (c._id) {
-        idStr = `,"_id":ObjectId("${c._id.toHexString()}")`;
+      if (c.id) {
+        idStr = `,"_id":ObjectId("${c.id.toHexString()}")`;
       }
       return `{"from":ObjectId("${c.from.toHexString()}"),"to":ObjectId("${c.to.toHexString()}"),"approvedByTo":${
         c.approvedByTo
@@ -88,8 +88,8 @@ Cypress.Commands.add("insertPosts", posts => {
   const str = posts
     .map(p => {
       let idStr = "";
-      if (p._id) {
-        idStr = `,"_id":ObjectId("${p._id.toHexString()}")`;
+      if (p.id) {
+        idStr = `,"_id":ObjectId("${p.id.toHexString()}")`;
       }
       return `{"user":ObjectId("${p.user.toHexString()}"),"title":"${
         p.title
@@ -109,10 +109,10 @@ Cypress.Commands.add("insertShares", shares => {
   const str = shares
     .map(s => {
       let idStr = "";
-      if (s._id) {
-        idStr = `,"_id":ObjectId("${s._id.toHexString()}")`;
+      if (s.id) {
+        idStr = `,"_id":ObjectId("${s.id.toHexString()}")`;
       }
-      return `{"post":ObjectId("${s.post._id.toHexString()}"),"borrower":ObjectId("${s.borrower._id.toHexString()}"),"isApprovedByFrom":${
+      return `{"post":ObjectId("${s.post.id.toHexString()}"),"borrower":ObjectId("${s.borrower.id.toHexString()}"),"isApprovedByFrom":${
         s.isApprovedByFrom
       },"isReturnedByTo":${s.isReturnedByTo} ${idStr}}`;
     })

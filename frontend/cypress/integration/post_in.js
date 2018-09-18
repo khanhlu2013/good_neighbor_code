@@ -3,26 +3,26 @@ const { ObjectID } = mongodb;
 const { inPostTree } = require("../helper/ui_inPost");
 
 const lu = {
-  _id: new ObjectID(),
+  id: new ObjectID(),
   email: "lu@us.com",
   name: "Lu Tran"
 };
 const tu = {
-  _id: new ObjectID(),
+  id: new ObjectID(),
   email: "tu@pr.com",
   name: "Tu Nguyen"
 };
 const connection = {
-  from: lu._id,
-  to: tu._id,
+  from: lu.id,
+  to: tu.id,
   approvedByTo: true,
   approvedByFrom: true
 };
 
 describe("InPost", () => {
   const post = {
-    _id: new ObjectID(),
-    user: tu._id,
+    id: new ObjectID(),
+    user: tu.id,
     title: "title",
     description: "description",
     isActive: true
@@ -123,8 +123,8 @@ describe("InPost", () => {
 
   it("LoadingIcon", () => {
     const post = {
-      _id: new ObjectID(),
-      user: tu._id,
+      id: new ObjectID(),
+      user: tu.id,
       title: "title 1",
       description: "description 1",
       isActive: true

@@ -3,25 +3,25 @@ const { ObjectID } = mongodb;
 const { outPostTree } = require("../helper/ui_outPost");
 
 const lu = {
-  _id: new ObjectID(),
+  id: new ObjectID(),
   email: "lu@us.com",
   name: "Lu Tran"
 };
 const tu = {
-  _id: new ObjectID(),
+  id: new ObjectID(),
   email: "tu@pr.com",
   name: "Tu Nguyen"
 };
 const connection = {
-  from: lu._id,
-  to: tu._id,
+  from: lu.id,
+  to: tu.id,
   approvedByTo: true,
   approvedByFrom: true
 };
 
 const post = {
-  _id: new ObjectID(),
-  user: lu._id,
+  id: new ObjectID(),
+  user: lu.id,
   title: "title",
   description: "description",
   isActive: true

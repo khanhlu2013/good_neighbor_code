@@ -5,12 +5,12 @@ const { connectionTree } = require("../helper/ui_connection");
 
 describe("Connection SearchByEmail", () => {
   const lu = {
-    _id: new ObjectID(),
+    id: new ObjectID(),
     email: "lu@us.com",
     name: "Lu Tran"
   };
   const tu = {
-    _id: new ObjectID(),
+    id: new ObjectID(),
     email: "tu@pr.com",
     name: "Tu Nguyen"
   };
@@ -44,8 +44,8 @@ describe("Connection SearchByEmail", () => {
 
     //in user
     const in_connection = {
-      from: tu._id,
-      to: lu._id,
+      from: tu.id,
+      to: lu.id,
       approvedByTo: undefined,
       approvedByFrom: true
     };
@@ -58,8 +58,8 @@ describe("Connection SearchByEmail", () => {
     //out user
     cy.clearConnectionDb();
     const out_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: undefined,
       approvedByFrom: true
     };
@@ -71,8 +71,8 @@ describe("Connection SearchByEmail", () => {
     //friend user
     cy.clearConnectionDb();
     const friend_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: true,
       approvedByFrom: true
     };
@@ -84,8 +84,8 @@ describe("Connection SearchByEmail", () => {
     //in-deny user
     cy.clearConnectionDb();
     const in_deny_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: false,
       approvedByFrom: true
     };
@@ -97,8 +97,8 @@ describe("Connection SearchByEmail", () => {
     //out-deny user
     cy.clearConnectionDb();
     const out_deny_connection = {
-      from: lu._id,
-      to: tu._id,
+      from: lu.id,
+      to: tu.id,
       approvedByTo: true,
       approvedByFrom: false
     };
