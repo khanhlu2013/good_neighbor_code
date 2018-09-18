@@ -13,7 +13,7 @@ class ConnectionManagement extends Component {
   state = {
     connections: null,
     isCreatingConnection: false,
-    connectionIdCurrentlyUpdating: null
+    updatingConnectionIds: []
   };
 
   static calculateFriendRequestCount(connections, loginUserId) {
@@ -37,10 +37,6 @@ class ConnectionManagement extends Component {
     })();
   }
 
-  doRefreshConnections = async () => {
-    this.setConnectionsAndNotifyRequestCount(await API.connections());
-  };
-
   setConnectionsAndNotifyRequestCount(connections) {
     this.setState({ connections });
     this.props.onFriendRequestCountChangedCb(
@@ -55,25 +51,46 @@ class ConnectionManagement extends Component {
     this.props.onFriendRequestCountChangedCb(null);
     this.setState({ isCreatingConnection: true });
     (async () => {
-      await API.createConnection(userIdToAdd);
-      await this.doRefreshConnections();
+      const newConnection = await API.createConnection(userIdToAdd);
+      this.setConnectionsAndNotifyRequestCount([...this.state, newConnection]);
       this.setState({ isCreatingConnection: false });
     })();
   };
 
   onUpdateConnection = (connectionId, isApproved) => {
     this.props.onFriendRequestCountChangedCb(null);
-    this.setState({ connectionIdCurrentlyUpdating: connectionId });
+    this.setState({
+      updatingConnectionIds: [...this.state.updatingConnectionIds, connectionId]
+    });
     (async () => {
-      await API.updateConnection(connectionId, isApproved);
-      await this.doRefreshConnections();
-      this.setState({ connectionIdCurrentlyUpdating: null });
+      const {
+        updatedApprovedByTo,
+        updatedApprovedByFrom
+      } = await API.updateConnection(connectionId, isApproved);
+
+      const curConnection = this.state.connections.find(
+        connection => connection.id === connectionId
+      );
+      curConnection.approvedByFrom = updatedApprovedByFrom;
+      curConnection.approvedByTo = updatedApprovedByTo;
+      this.setConnectionsAndNotifyRequestCount([
+        ...this.state.connections.filter(
+          connection => connection.id !== curConnection.id
+        ),
+        curConnection
+      ]);
+
+      this.setState({
+        updatingConnectionIds: this.state.updatingConnectionIds.filter(
+          id => id !== connectionId
+        )
+      });
     })();
   };
 
   render() {
     let loginUserId = this.props.loginUser.id;
-    let { connections, connectionIdCurrentlyUpdating } = this.state;
+    let { connections, updatingConnectionIds } = this.state;
 
     let htmlContent;
 
@@ -106,19 +123,19 @@ class ConnectionManagement extends Component {
           <div className="col-sm">
             <ConnectionFriendTable
               connections={friends}
-              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
+              updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
             <ConnectionOutTable
               connections={outFriends}
-              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
+              updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
             <ConnectionDenyTable
               connections={rejectedFriends}
-              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
+              updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
@@ -133,7 +150,7 @@ class ConnectionManagement extends Component {
             <hr />
             <ConnectionInTable
               connections={inFriends}
-              connectionIdCurrentlyUpdating={connectionIdCurrentlyUpdating}
+              updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               updateConnectionCb={this.onUpdateConnection}
             />
