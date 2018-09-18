@@ -1,8 +1,11 @@
 import { API_URL } from "./api-url";
 import { Post } from "../model/post";
 import { User } from "../model/user";
-import { Connection } from "../model/connection";
 import { Share } from "../model/share";
+import {
+  constructConnectionsFromRaws,
+  constructConnectionFromRaw
+} from "./api-helper";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
@@ -28,33 +31,28 @@ const searchEmail = async searchedEmail => {
 // - connection
 const connections = async () => {
   const raws = await get("profile.connections", {});
-  return raws.map(raw => {
-    const {
-      _id: id,
-      from: { _id: fromID, email: fromEmail, name: fromName },
-      to: { _id: toID, email: toEmail, name: toName },
-      approvedByTo,
-      approvedByFrom
-    } = raw;
-
-    const from = new User(fromID, fromEmail, fromName);
-    const to = new User(toID, toEmail, toName);
-
-    return new Connection(id, from, to, approvedByTo, approvedByFrom);
-  });
+  return constructConnectionsFromRaws(raws);
 };
 
 const createConnection = async userIdToAdd => {
-  await post("profile.createConnection", {
+  const raw = await post("profile.createConnection", {
     userIdToAdd
   });
+  return constructConnectionFromRaw(raw);
 };
 
 const updateConnection = async (connectionId, isApproved) => {
-  await post("profile.updateConnection", {
+  const {
+    approvedByTo: updatedApprovedByTo,
+    approvedByFrom: updatedApprovedByFrom
+  } = await post("profile.updateConnection", {
     connectionId,
     isApproved
   });
+  return {
+    updatedApprovedByTo,
+    updatedApprovedByFrom
+  };
 };
 
 // - post

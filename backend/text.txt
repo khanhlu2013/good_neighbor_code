@@ -180,7 +180,6 @@ side track: test loading icon for outpost : content and dashboard
 . sidetrack : how is multiple updating work out in connection management and everywhere else?
 . sidetrack : show off multiple deleting share id or returning share id
 . work on inPost loading icon and test
-. make sure i can't delete twice share id, by disable the btn
 ---
 sidetrack: test dont have to deal with _id, the cy.db does
 side track: when test, distingush about static(set data and snap) vs dynamic(story line and snap) testing
@@ -190,6 +189,15 @@ side track: swap column for post and user, also sort
 side track : make sure i test multiple pending request for all
 ---
 
-what do i have now? i just said that i should not have tense . so i have request, borrow, return right?
+multiple pending request
+  . connections : all of the 4 table can use multiple request, i need to do it
+side track: really kill the freaking refresh world. 
 
-lets give it a try locally
+---
+
+investigate the loading icon on deny table when i deny connection from the friend request. Anyway, optimize it so that an extra request is not needed.
+
+
+side track: i like the world notify...count, it is very clear. the on...changeCb is not clear.
+side track: who call api-url.js? can i combine this with a helper?
+side track: i still need to work on the damn tab and notification. this is important. may be i just go with it for now before i find a better tab.

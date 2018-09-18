@@ -19,15 +19,22 @@ describe("Fixture Dev 2", () => {
   };
   const c_me_friend = {
     _id: new ObjectID(),
-    from: friend._id,
-    to: me._id,
+    from: me._id,
+    to: friend._id,
+    approvedByTo: true,
+    approvedByFrom: true
+  };
+  const c_friend_stranger = {
+    _id: new ObjectID(),
+    from: stranger._id,
+    to: friend._id,
     approvedByTo: true,
     approvedByFrom: true
   };
 
   beforeEach(() => {
-    //cy.setupDb([friend, stranger, me], [c_me_friend]);
-    cy.setupDb([friend, stranger, me], []);
+    cy.setupDb([friend, stranger, me], [c_me_friend, c_friend_stranger]);
+    // cy.setupDb([friend, stranger, me], []);
   });
 
   it("insert fixture", () => {

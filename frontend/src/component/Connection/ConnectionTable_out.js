@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { nullOrRequiredValidator, LoadingIcon } from "../../util";
+import { LoadingIcon } from "../../util";
 
 const removeColClass = "col-3 text-center";
 const userNameColClass = "col-9";
@@ -11,14 +11,14 @@ function ConnectionOutTable(props) {
     connections,
     loginUserId,
     updateConnectionCb,
-    connectionIdCurrentlyUpdating
+    updatingConnectionIds
   } = props;
 
   const rows = connections.map(connection => (
     <ConnectionRow
       key={connection.id}
       connection={connection}
-      isUpdatingConnection={connection.id === connectionIdCurrentlyUpdating}
+      isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
       loginUserId={loginUserId}
       updateConnectionCb={updateConnectionCb}
     />
@@ -42,7 +42,7 @@ function ConnectionOutTable(props) {
 
 ConnectionOutTable.propTypes = {
   connections: PropTypes.array.isRequired,
-  connectionIdCurrentlyUpdating: nullOrRequiredValidator("string"),
+  updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
   updateConnectionCb: PropTypes.func.isRequired
 };
