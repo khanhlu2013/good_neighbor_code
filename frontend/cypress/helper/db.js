@@ -93,7 +93,9 @@ Cypress.Commands.add("insertPosts", posts => {
       }
       return `{"user":ObjectId("${p.user.toHexString()}"),"title":"${
         p.title
-      }","description":"${p.description}","isActive":${p.isActive} ${idStr}}`;
+      }","description":"${
+        p.description
+      }","isActive":${p.isActive.toString()} ${idStr}}`;
     })
     .join(",");
 

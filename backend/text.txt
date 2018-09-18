@@ -159,15 +159,12 @@ lets just talk how the flow is for now , understand it first
 create a isCrudingFlag and pass it into the dialog. do not close it right away.
 
 ---
-side track: filter unactive post? currently, user can borrow unactive post and back end throw error.
-side track: what happen if i remove 2 connections(or anything) while waiting
-side track: test loading icon when enter connection management and inpost / out post
 
 
 side track : OutPostCrudDialog make post a nullorRequired
 
 
 
-
+sidetrack: rename ...Table, ...TableRow and simplify it all
 
 

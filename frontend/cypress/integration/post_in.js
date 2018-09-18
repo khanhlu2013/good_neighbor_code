@@ -28,13 +28,28 @@ describe("InPost", () => {
     isActive: true
   };
 
+  const inActivePost = {
+    id: new ObjectID(),
+    user: tu.id,
+    title: "title",
+    description: "description",
+    isActive: false
+  };
+
   it("tables (all, request, borrow, return) can display data correctly", () => {
-    //no request info
-    cy.setupDb([lu, tu], [connection], [post]);
+    //no request and not active info
+    cy.setupDb([lu, tu], [connection], [inActivePost]);
     cy.loadApp();
     cy.login(lu.email);
     inPostTree.tab.focus();
-    inPostTree.snap("no request data");
+    inPostTree.snap("no request data and not active post");
+
+    //no request and active info
+    cy.clearPostDb();
+    cy.insertPosts([post]);
+    cy.loadApp();
+    inPostTree.tab.focus();
+    inPostTree.snap("no request data and active post");
 
     //with request info
     cy.insertShares([

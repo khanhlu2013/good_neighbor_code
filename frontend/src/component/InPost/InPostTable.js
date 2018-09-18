@@ -70,6 +70,28 @@ function InPostTableRow(props) {
   const borrower = borrowShare ? borrowShare.borrower : null;
   const isMeBorrow = borrower && borrower.id === loginUser.id;
 
+  let requestColumnHtml;
+  if (isMeRequest || isMeBorrow) {
+    requestColumnHtml = (
+      <span>
+        <FontAwesomeIcon icon="check" />
+      </span>
+    );
+  } else if (isRequestingPost) {
+    requestColumnHtml = <LoadingIcon text={null} isAnimate={true} />;
+  } else if (!inPost.isActive) {
+    requestColumnHtml = "not active";
+  } else {
+    requestColumnHtml = (
+      <button
+        className="InPostTableRowBorrowBtn btn btn-success"
+        onClick={onCreateShareClicked}
+      >
+        <FontAwesomeIcon icon="question" />
+      </button>
+    );
+  }
+
   return (
     <tr
       className={className({
@@ -83,22 +105,7 @@ function InPostTableRow(props) {
       <td className={deniedClass}>{inPost.denied.length}</td>
       <td className={requestClass}>{inPost.request.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
-      <td className={requestClass}>
-        {isMeRequest || isMeBorrow ? (
-          <span>
-            <FontAwesomeIcon icon="check" />
-          </span>
-        ) : isRequestingPost ? (
-          <LoadingIcon text={null} isAnimate={true} />
-        ) : (
-          <button
-            className="InPostTableRowBorrowBtn btn btn-success"
-            onClick={onCreateShareClicked}
-          >
-            <FontAwesomeIcon icon="question" />
-          </button>
-        )}
-      </td>
+      <td className={requestClass}>{requestColumnHtml}</td>
     </tr>
   );
 }
