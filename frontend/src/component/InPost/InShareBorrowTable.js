@@ -27,8 +27,8 @@ function InShareBorrowTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>Borrow</th>
-          <th className={titleClass}>title</th>
+          <th className={titleClass}>borrow</th>
+          <th className={fromClass}>from</th>
           <th className={returnClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
@@ -62,8 +62,8 @@ function InShareBorrowTableRow(props) {
 
   return (
     <tr className="InShareBorrowTableRow">
-      <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
+      <td className={fromClass}>{post.user.email}</td>
       <td className={returnClass}>{post.return.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestClass}>{post.request.length}</td>

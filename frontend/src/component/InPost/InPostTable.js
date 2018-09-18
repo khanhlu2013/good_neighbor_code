@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 import { LoadingIcon } from "../../util";
 
-const fromClass = "col-2";
 const titleClass = "col-5";
+const fromClass = "col-2";
 const returnClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
@@ -35,8 +35,9 @@ function InPostTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>All posts</th>
-          <th className={titleClass}>title</th>
+          <th className={titleClass}>all</th>
+          <th className={fromClass}>from</th>
+
           <th className={returnClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
@@ -81,8 +82,8 @@ function InPostTableRow(props) {
         "table-success": isMeRequest || isMeBorrow
       })}
     >
-      <td className={fromClass}>{inPost.user.email}</td>
       <td className={titleClass}>{inPost.title}</td>
+      <td className={fromClass}>{inPost.user.email}</td>
       <td className={returnClass}>{inPost.return.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
       <td className={requestClass}>{inPost.request.length}</td>

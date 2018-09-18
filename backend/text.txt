@@ -80,6 +80,7 @@ Share story
   . create notification-dashboard api for dash board notification. this can be delay until i find a better react tab. cause for now, all stuff will load, and will set my dash board for me
 . optimization: utilize backend data when crud api, do not refresh the whole data
 . split out post into 2 stated component: crud and decide (the management code is too big)
+. date sort, for request, borrow, return ...
 
 . TODAY
 . -----
@@ -182,7 +183,10 @@ side track: test loading icon for outpost : content and dashboard
 sidetrack: test dont have to deal with _id, the cy.db does
 side track: when test, distingush about static(set data and snap) vs dynamic(story line and snap) testing
 side track: test loading icon for each tab
+
+
+
 side track renaming InPostManagement, clean up shorter name
-side track: swap column for post and user, also sort 
+
 
 

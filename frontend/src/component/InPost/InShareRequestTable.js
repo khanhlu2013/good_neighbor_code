@@ -30,8 +30,9 @@ function InShareRequestTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={fromClass}>Request</th>
-          <th className={titleClass}>title</th>
+          <th className={titleClass}>request</th>
+          <th className={fromClass}>from</th>
+
           <th className={returnClass}>
             <FontAwesomeIcon icon="recycle" />
           </th>
@@ -71,8 +72,8 @@ function InShareRequestTableRow(props) {
 
   return (
     <tr className="InShareRequestTableRow">
-      <td className={fromClass}>{post.user.email}</td>
       <td className={titleClass}>{post.title}</td>
+      <td className={fromClass}>{post.user.email}</td>
       <td className={returnClass}>{post.return.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
       <td className={requestClass}>{post.request.length}</td>
