@@ -36,7 +36,7 @@ describe("InPost feature", () => {
     inPostTree.tab.focus();
     inPostTree.snap("no request data");
 
-    //with requested info
+    //with request info
     cy.insertShares([
       {
         post,
@@ -47,7 +47,7 @@ describe("InPost feature", () => {
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
-    inPostTree.snap("with requested data");
+    inPostTree.snap("with request data");
 
     //with denied info
     cy.clearShareDb();
@@ -140,9 +140,9 @@ describe("InPost feature", () => {
     inPostTree.request(post);
     inPostTree.snapRightAway("all post table");
 
-    //requested table
+    //request table
     inPostTree.undoRequest(post);
-    inPostTree.snapRightAway("requested table");
+    inPostTree.snapRightAway("request table");
 
     //borrowed table
     cy.clearShareDb();

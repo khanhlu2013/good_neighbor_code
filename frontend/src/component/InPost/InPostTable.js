@@ -69,16 +69,16 @@ function InPostTableRow(props) {
   const onCreateShare = e => {
     onCreateRequestShareCb(inPost.id);
   };
-  const isMeRequested = inPost.isRequestBy(loginUser.id);
+  const isMeRequest = inPost.isRequestBy(loginUser.id);
   const borrowShare = inPost.borrow;
   const borrower = borrowShare ? borrowShare.borrower : null;
-  const isMeBorrowed = borrower && borrower.id === loginUser.id;
+  const isMeBorrow = borrower && borrower.id === loginUser.id;
 
   return (
     <tr
       className={className({
         InPostTableRow: true,
-        "table-success": isMeRequested || isMeBorrowed
+        "table-success": isMeRequest || isMeBorrow
       })}
     >
       <td className={fromClass}>{inPost.user.email}</td>
@@ -88,7 +88,7 @@ function InPostTableRow(props) {
       <td className={requestClass}>{inPost.request.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>
-        {isMeRequested || isMeBorrowed ? (
+        {isMeRequest || isMeBorrow ? (
           <span>
             <FontAwesomeIcon icon="check" />
           </span>
