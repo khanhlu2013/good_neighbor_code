@@ -1,11 +1,6 @@
 import { API_URL } from "./api-url";
-import { Post } from "../model/post";
 import { User } from "../model/user";
-import { Share } from "../model/share";
-import {
-  constructConnectionsFromRaws,
-  constructConnectionFromRaw
-} from "./api-helper";
+import { rawsToConnections, rawToConnection, rawsToPosts } from "./api-helper";
 
 const profile = async () => {
   const request = await fetch(API_URL("profile"), {
@@ -31,14 +26,14 @@ const searchEmail = async searchedEmail => {
 // - connection
 const connections = async () => {
   const raws = await get("profile.connections", {});
-  return constructConnectionsFromRaws(raws);
+  return rawsToConnections(raws);
 };
 
 const createConnection = async userIdToAdd => {
   const raw = await post("profile.createConnection", {
     userIdToAdd
   });
-  return constructConnectionFromRaw(raw);
+  return rawToConnection(raw);
 };
 
 const updateConnection = async (connectionId, isApproved) => {
@@ -100,13 +95,13 @@ const updatePost = async (postID, title, description, isActive) => {
 // - outPost
 const outPosts = async () => {
   const postsRaw = await get("profile.outPosts", {});
-  return processPostsRawData(postsRaw);
+  return rawsToPosts(postsRaw);
 };
 
 // - inPost
 const inPosts = async () => {
   const postsRaw = await get("profile.inPosts", {}); //inPosts <-> [{user,post,shares}, ...]
-  return processPostsRawData(postsRaw);
+  return rawsToPosts(postsRaw);
 };
 
 // -  share
@@ -184,38 +179,6 @@ async function get(dottedPath, params) {
   return await getJSON(response);
 }
 
-function processPostsRawData(postsRaw) {
-  return postsRaw.map(raw => {
-    const { post: postRaw, user: userRaw } = raw;
-    const sharesRaw = raw.shares.filter(share => share._id !== undefined);
-
-    const shares = sharesRaw.map(shareRaw => {
-      const { _id: userId, email, name } = shareRaw.borrower;
-      const borrower = new User(userId, email, name);
-      return new Share(
-        shareRaw._id,
-        borrower,
-        shareRaw.dateCreated,
-        shareRaw.isApprovedByFrom,
-        shareRaw.isReturnedByTo,
-        null //post to be set later
-      );
-    });
-    const post = new Post(
-      postRaw._id,
-      userRaw,
-      postRaw.isActive,
-      postRaw.title,
-      postRaw.description,
-      postRaw.dateCreated,
-      shares
-    );
-    for (const share of post.shares) {
-      share.setPost(post);
-    }
-    return post;
-  });
-}
 //-------------
 
 const API = {

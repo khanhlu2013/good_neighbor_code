@@ -1,7 +1,9 @@
 import { Connection } from "../model/connection";
 import { User } from "../model/user";
+import { Post } from "../model/post";
+import { Share } from "../model/share";
 
-const constructConnectionFromRaw = raw => {
+const rawToConnection = raw => {
   const {
     _id: id,
     from: { _id: fromID, email: fromEmail, name: fromName },
@@ -15,8 +17,42 @@ const constructConnectionFromRaw = raw => {
   return new Connection(id, from, to, approvedByTo, approvedByFrom);
 };
 
-const constructConnectionsFromRaws = raws => {
-  return raws.map(raw => constructConnectionFromRaw(raw));
+const rawsToConnections = raws => {
+  return raws.map(raw => rawToConnection(raw));
 };
 
-export { constructConnectionsFromRaws, constructConnectionFromRaw };
+function rawsToPosts(raws) {
+  return raws.map(raw => {
+    const { post: postRaw, user: userRaw } = raw;
+    const sharesRaw = raw.shares.filter(share => share._id !== undefined);
+
+    const shares = sharesRaw.map(shareRaw => {
+      const { _id: userId, email, name } = shareRaw.borrower;
+      const borrower = new User(userId, email, name);
+      return new Share(
+        shareRaw._id,
+        borrower,
+        shareRaw.dateCreated,
+        shareRaw.isApprovedByFrom,
+        shareRaw.isReturnedByTo,
+        null //post to be set later
+      );
+    });
+    const { _id: userId, email: userEmail, name: userName } = userRaw;
+    const post = new Post(
+      postRaw._id,
+      new User(userId, userEmail, userName),
+      postRaw.isActive,
+      postRaw.title,
+      postRaw.description,
+      postRaw.dateCreated,
+      shares
+    );
+    for (const share of post.shares) {
+      share.setPost(post);
+    }
+    return post;
+  });
+}
+
+export { rawsToConnections, rawToConnection, rawsToPosts };

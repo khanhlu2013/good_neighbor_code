@@ -164,24 +164,20 @@ side track : do investigate why it seem to take more time than just a second to 
 ---
 side track :isRefreshing... class
 ---
+
+
+
+---
+. really do notification inpost and outpost to notify approved and returned
+---
+
+
 (side track a master search for a refresh word, make sure no class, no method.)
 (side track: sort the post and connections)
 (sidetrack, make sure i clean up the doRefreshPost and doRefreshConnection)
 (sidetrack: create and update api)
 (sidetrack with this, i will be able to factor out the component to share some dialog state)
+
 (side track, i don't like user raw in process data, lets verify it is raw with _id, fix it. then comeback
-(side track: test outPost)
-  . optimize local update  edit connection, create connection, inPostManagement
-side track: test loading icon for outpost : content and dashboard
-
-
----
-. really do notification inpost and outpost to notify approved and returned
-
-. work on inPost loading icon and test
----
-
-sidetrack: test dont have to deal with _id, the cy.db does
-
 
 
