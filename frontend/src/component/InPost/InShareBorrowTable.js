@@ -10,13 +10,13 @@ const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 
 function InShareBorrowTable(props) {
-  const { shares, onReturnBorrowShareCb, returningShareIds } = props;
+  const { shares, onReturnShare, returningShareIds } = props;
   const rows = shares.map(share => (
     <InShareBorrowTableRow
       key={share.id}
       share={share}
       isReturningShare={returningShareIds.includes(share.id)}
-      onReturnBorrowShareCb={onReturnBorrowShareCb}
+      onReturnShare={onReturnShare}
     />
   ));
 
@@ -49,15 +49,15 @@ function InShareBorrowTable(props) {
 InShareBorrowTable.propTypes = {
   shares: PropTypes.array.isRequired,
   returningShareIds: PropTypes.array.isRequired,
-  onReturnBorrowShareCb: PropTypes.func.isRequired
+  onReturnShare: PropTypes.func.isRequired
 };
 
 function InShareBorrowTableRow(props) {
-  const { onReturnBorrowShareCb, share, isReturningShare } = props;
+  const { onReturnShare, share, isReturningShare } = props;
   const { post } = share;
 
-  const onReturn = e => {
-    onReturnBorrowShareCb(share.id);
+  const onReturnClicked = e => {
+    onReturnShare(share.id);
   };
 
   return (
@@ -73,7 +73,7 @@ function InShareBorrowTableRow(props) {
         ) : (
           <button
             className="InShareBorrowTableRowReturnBtn btn btn-warning"
-            onClick={onReturn}
+            onClick={onReturnClicked}
           >
             <FontAwesomeIcon icon="location-arrow" />
           </button>
@@ -85,7 +85,7 @@ function InShareBorrowTableRow(props) {
 InShareBorrowTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onReturnBorrowShareCb: PropTypes.func.isRequired
+  onReturnShare: PropTypes.func.isRequired
 };
 
 export { InShareBorrowTable };

@@ -11,7 +11,7 @@ import { LoadingIcon } from "../../util";
 
 class InPostManagement extends Component {
   state = {
-    inPosts: null,
+    posts: null,
     requestingPostIds: [],
     deletingShareIds: [],
     returningShareIds: []
@@ -22,8 +22,8 @@ class InPostManagement extends Component {
     let borrowShares = null;
     let returnShares = null;
 
-    if (state.inPosts) {
-      const myInShares2D = state.inPosts.map(post =>
+    if (state.posts) {
+      const myInShares2D = state.posts.map(post =>
         post.shares.filter(share => share.borrower.id === props.loginUser.id)
       );
       const myInShares1D = [].concat(...myInShares2D);
@@ -40,17 +40,17 @@ class InPostManagement extends Component {
   }
 
   async componentDidMount() {
-    const inPosts = await API.inPosts();
-    const inPostsFilterDeny = inPosts.filter(inPost =>
+    const posts = await API.inPosts();
+    const inPostsFilterDeny = posts.filter(inPost =>
       inPost.denied.every(
         share => share.borrower.id !== this.props.loginUser.id
       )
     );
 
-    this.setState({ inPosts: inPostsFilterDeny });
+    this.setState({ posts: inPostsFilterDeny });
   }
 
-  doCreateRequestShare = postId => {
+  onCreateShare = postId => {
     this.setState({
       requestingPostIds: [...this.state.requestingPostIds, postId]
     });
@@ -69,14 +69,12 @@ class InPostManagement extends Component {
         createdIsReturnedByTo,
         null //post to be set later
       );
-      const curPost = this.state.inPosts.find(post => post.id === postId);
+      const { posts } = this.state;
+      const curPost = posts.find(post => post.id === postId);
       curPost.shares.push(newShare);
       newShare.post = curPost;
       this.setState({
-        inPosts: [
-          ...this.state.inPosts.filter(post => post.id !== postId),
-          curPost
-        ],
+        posts: [...posts.filter(post => post.id !== postId), curPost],
         requestingPostIds: this.state.requestingPostIds.filter(
           id => id !== postId
         )
@@ -84,7 +82,7 @@ class InPostManagement extends Component {
     })();
   };
 
-  doDeleteRequestShare = shareId => {
+  onDeleteShare = shareId => {
     this.setState({
       deletingShareIds: [...this.state.deletingShareIds, shareId]
     });
@@ -92,13 +90,13 @@ class InPostManagement extends Component {
     (async () => {
       await API.deleteShare(shareId);
 
-      const { inPosts } = this.state;
-      const curPost = inPosts.find(post =>
+      const { posts } = this.state;
+      const curPost = posts.find(post =>
         post.shares.some(share => share.id === shareId)
       );
       curPost.shares = curPost.shares.filter(share => share.id !== shareId);
       this.setState({
-        inPosts: [...inPosts.filter(post => post.id !== curPost.id), curPost]
+        posts: [...posts.filter(post => post.id !== curPost.id), curPost]
       });
       this.setState({
         deletingShareIds: [
@@ -108,8 +106,8 @@ class InPostManagement extends Component {
     })();
   };
 
-  doReturnBorrowShare = shareId => {
-    const curPost = this.state.inPosts.find(post =>
+  onReturnShare = shareId => {
+    const curPost = this.state.posts.find(post =>
       post.shares.some(share => share.id === shareId)
     );
     if (
@@ -134,8 +132,8 @@ class InPostManagement extends Component {
           curShare
         ];
         this.setState({
-          inPosts: [
-            ...this.state.inPosts.filter(post => post.id !== curPost.id),
+          posts: [
+            ...this.state.posts.filter(post => post.id !== curPost.id),
             curPost
           ],
           returningShareIds: [
@@ -148,27 +146,27 @@ class InPostManagement extends Component {
 
   render() {
     let content;
-    if (this.state.inPosts !== null) {
+    if (this.state.posts !== null) {
       content = (
         <div className="row">
           <div className="col-sm">
             <InPostTable
               loginUser={this.props.loginUser}
-              inPosts={this.state.inPosts}
+              posts={this.state.posts}
               requestingPostIds={this.state.requestingPostIds}
-              onCreateRequestShareCb={this.doCreateRequestShare}
+              onCreateShare={this.onCreateShare}
             />
           </div>
           <div className="col-sm">
             <InShareRequestTable
               shares={this.state.requestShares}
-              onDeleteRequestShareCb={this.doDeleteRequestShare}
               deletingShareIds={this.state.deletingShareIds}
+              onDeleteShare={this.onDeleteShare}
             />
             <InShareBorrowTable
               shares={this.state.borrowShares}
               returningShareIds={this.state.returningShareIds}
-              onReturnBorrowShareCb={this.doReturnBorrowShare}
+              onReturnShare={this.onReturnShare}
             />
             <InShareReturnTable shares={this.state.returnShares} />
           </div>

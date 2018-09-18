@@ -13,13 +13,13 @@ const borrowClass = "text-center col-2";
 const undoClass = "text-center col-1";
 
 function InShareRequestTable(props) {
-  const { shares, deletingShareIds, onDeleteRequestShareCb } = props;
+  const { shares, deletingShareIds, onDeleteShare } = props;
   const rows = shares.map(share => (
     <InShareRequestTableRow
       key={share.id}
       share={share}
       isDeletingShare={deletingShareIds.includes(share.id)}
-      onDeleteRequestShareCb={onDeleteRequestShareCb}
+      onDeleteShare={onDeleteShare}
     />
   ));
 
@@ -56,15 +56,15 @@ function InShareRequestTable(props) {
 InShareRequestTable.propTypes = {
   shares: PropTypes.array.isRequired,
   deletingShareIds: PropTypes.array.isRequired,
-  onDeleteRequestShareCb: PropTypes.func.isRequired
+  onDeleteShare: PropTypes.func.isRequired
 };
 
 function InShareRequestTableRow(props) {
-  const { onDeleteRequestShareCb, share, isDeletingShare } = props;
+  const { onDeleteShare, share, isDeletingShare } = props;
   const { post } = share;
 
-  const onDeleteRequestShare = e => {
-    onDeleteRequestShareCb(share.id);
+  const onDeleteClicked = e => {
+    onDeleteShare(share.id);
   };
 
   const borrowShare = post.borrow;
@@ -84,7 +84,7 @@ function InShareRequestTableRow(props) {
         ) : (
           <button
             className="InShareRequestTableRowUndoBtn btn btn-warning"
-            onClick={onDeleteRequestShare}
+            onClick={onDeleteClicked}
           >
             <FontAwesomeIcon icon="undo-alt" />
           </button>
@@ -96,7 +96,7 @@ function InShareRequestTableRow(props) {
 InShareRequestTableRow.propTypes = {
   share: PropTypes.object.isRequired,
   isDeletingShare: PropTypes.bool.isRequired,
-  onDeleteRequestShareCb: PropTypes.func.isRequired
+  onDeleteShare: PropTypes.func.isRequired
 };
 
 export { InShareRequestTable };

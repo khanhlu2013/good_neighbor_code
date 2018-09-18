@@ -12,19 +12,14 @@ const requestClass = "text-center col-1";
 const borrowClass = "text-center col-1";
 
 function InPostTable(props) {
-  const {
-    inPosts,
-    requestingPostIds,
-    onCreateRequestShareCb,
-    loginUser
-  } = props;
-  const rows = inPosts.map(inPost => (
+  const { posts, requestingPostIds, onCreateShare, loginUser } = props;
+  const rows = posts.map(inPost => (
     <InPostTableRow
       key={inPost.id}
       loginUser={loginUser}
       inPost={inPost}
       isRequestingPost={requestingPostIds.includes(inPost.id)}
-      onCreateRequestShareCb={onCreateRequestShareCb}
+      onCreateShare={onCreateShare}
     />
   ));
 
@@ -60,15 +55,15 @@ function InPostTable(props) {
 
 InPostTable.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  inPosts: PropTypes.array.isRequired,
+  posts: PropTypes.array.isRequired,
   requestingPostIds: PropTypes.array.isRequired,
-  onCreateRequestShareCb: PropTypes.func.isRequired
+  onCreateShare: PropTypes.func.isRequired
 };
 
 function InPostTableRow(props) {
-  const { loginUser, inPost, isRequestingPost, onCreateRequestShareCb } = props;
-  const onCreateShare = e => {
-    onCreateRequestShareCb(inPost.id);
+  const { loginUser, inPost, isRequestingPost, onCreateShare } = props;
+  const onCreateShareClicked = e => {
+    onCreateShare(inPost.id);
   };
   const isMeRequest = inPost.isRequestBy(loginUser.id);
   const borrowShare = inPost.borrow;
@@ -98,7 +93,7 @@ function InPostTableRow(props) {
         ) : (
           <button
             className="InPostTableRowBorrowBtn btn btn-success"
-            onClick={onCreateShare}
+            onClick={onCreateShareClicked}
           >
             <FontAwesomeIcon icon="question" />
           </button>
@@ -111,7 +106,7 @@ InPostTableRow.propTypes = {
   loginUser: PropTypes.object.isRequired,
   inPost: PropTypes.object.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
-  onCreateRequestShareCb: PropTypes.func.isRequired
+  onCreateShare: PropTypes.func.isRequired
 };
 
 export { InPostTable };
