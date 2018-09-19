@@ -127,10 +127,13 @@ demo: show a connection management that undo will cover all senario
 ---
 
 create a log table for outShareReturn
-  . back end create a field in the model: yes, no, require, default is no
   . front end construct that that model
   . display it on the ui as a click btn
   . receivingShareIds
   . front end api
   . back end api.
   . notifications
+
+
+  isAcknowledgedApprovedByFrom : borrow
+  isAcknowledgedReturnedByTo : return

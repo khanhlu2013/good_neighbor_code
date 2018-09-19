@@ -16,7 +16,7 @@ import {
   faShareAlt, //decision
   faPencilAlt, //edit
   faQuestion, //request
-  faCheck, //is active
+  faCheck, //is active, accept approval and borrow
   faLocationArrow, //return
   faRecycle, //return
   faUserClock, //borrow

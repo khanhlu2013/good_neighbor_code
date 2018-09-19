@@ -110,7 +110,9 @@ const createShare = async postID => {
     _id: createdShareId,
     dateCreated: createdDateCreated,
     isApprovedByFrom: createdIsApprovedByFrom,
-    isReturnedByTo: createdIsReturnedByTo
+    isAcknowledgedApprovedByFrom: createdIsAcknowledgedApprovedByFrom,
+    isReturnedByTo: createdIsReturnedByTo,
+    isAcknowledgedReturnedByTo: createdIsAcknowledgedReturnedByTo
   } = await post("profile.createShare", {
     postID
   });
@@ -118,7 +120,9 @@ const createShare = async postID => {
     createdShareId,
     createdDateCreated,
     createdIsApprovedByFrom,
-    createdIsReturnedByTo
+    createdIsAcknowledgedApprovedByFrom,
+    createdIsReturnedByTo,
+    createdIsAcknowledgedReturnedByTo
   };
 };
 

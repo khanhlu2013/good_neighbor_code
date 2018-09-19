@@ -59,14 +59,18 @@ class InPostManagement extends Component {
         createdShareId,
         createdDateCreated,
         createdIsApprovedByFrom,
-        createdIsReturnedByTo
+        createdIsReceivedByTo,
+        createdIsReturnedByTo,
+        createdIsReceivedByFrom
       } = await API.createShare(postId);
       const newShare = new Share(
         createdShareId,
         this.props.loginUser,
         createdDateCreated,
         createdIsApprovedByFrom,
+        createdIsReceivedByTo,
         createdIsReturnedByTo,
+        createdIsReceivedByFrom,
         null //post to be set later
       );
       const { posts } = this.state;

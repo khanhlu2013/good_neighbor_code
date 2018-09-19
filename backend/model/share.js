@@ -23,7 +23,19 @@ const ShareSchema = new Schema({
     type: Boolean,
     required: false //pending request is undefined
   },
+  isAcknowledgedApprovedByFrom: {
+    //officially borrow
+    type: Boolean,
+    required: true,
+    default: false
+  },
   isReturnedByTo: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  isAcknowledgedReturnedByTo: {
+    //officially return
     type: Boolean,
     required: true,
     default: false

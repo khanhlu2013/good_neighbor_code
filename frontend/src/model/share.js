@@ -4,7 +4,9 @@ class Share {
     borrower,
     dateCreated,
     isApprovedByFrom,
+    isAcknowledgedApprovedByFrom,
     isReturnedByTo,
+    isAcknowledgedReturnedByTo,
     post
   ) {
     Object.assign(this, {
@@ -12,7 +14,9 @@ class Share {
       borrower,
       dateCreated,
       isApprovedByFrom,
+      isAcknowledgedApprovedByFrom,
       isReturnedByTo,
+      isAcknowledgedReturnedByTo,
       post
     });
   }
