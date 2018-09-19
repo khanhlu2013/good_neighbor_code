@@ -64,8 +64,8 @@ function TableRow(props) {
     <tr className="InShareBorrowTableRow">
       <td className={titleClass}>{post.title}</td>
       <td className={fromClass}>{post.user.email}</td>
-      <td className={returnClass}>{post.return.length}</td>
-      <td className={deniedClass}>{post.denied.length}</td>
+      <td className={returnClass}>{post.returnShares.length}</td>
+      <td className={deniedClass}>{post.denyShares.length}</td>
       <td className={requestClass}>{post.requestShares.length}</td>
       <td className={returnClass}>
         {isReturningShare ? (

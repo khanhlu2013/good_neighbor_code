@@ -42,7 +42,7 @@ class InPostManagement extends Component {
   async componentDidMount() {
     const posts = await API.inPosts();
     const inPostsFilterDeny = posts.filter(inPost =>
-      inPost.denied.every(
+      inPost.denyShares.every(
         share => share.borrower.id !== this.props.loginUser.id
       )
     );

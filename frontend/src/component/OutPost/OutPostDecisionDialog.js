@@ -16,7 +16,7 @@ function OutPostDecisionDialog(props) {
     onExit
   } = props;
 
-  const borrowShare = post.borrow;
+  const borrowShare = post.curBorrowShare;
   const borrower = borrowShare ? borrowShare.borrower : null;
 
   const onUndoApproveBtnClicked = e => {
@@ -51,7 +51,7 @@ function OutPostDecisionDialog(props) {
           </div>
           <div className="col-sm">
             <DeniedTable
-              shares={post.denied}
+              shares={post.denyShares}
               onUndoDeniedShare={onUndoDeniedShare}
             />
           </div>
@@ -205,7 +205,7 @@ function RequestTableRow(props) {
     <tr className="OutShareRequestTableRow">
       <td className={requestTableFromClass}>{share.borrower.email}</td>
       <td className={requestTableApproveClass}>
-        {!Boolean(share.post.borrow) && (
+        {!Boolean(share.post.curBorrowShare) && (
           <button
             className="OutShareRequestTableRowApproveBtn btn btn-success"
             onClick={onApprove}

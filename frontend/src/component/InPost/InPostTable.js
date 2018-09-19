@@ -66,7 +66,7 @@ function TableRow(props) {
     onCreateShare(inPost.id);
   };
   const isMeRequest = inPost.isRequestBy(loginUser.id);
-  const borrowShare = inPost.borrow;
+  const borrowShare = inPost.curBorrowShare;
   const borrower = borrowShare ? borrowShare.borrower : null;
   const isMeBorrow = borrower && borrower.id === loginUser.id;
 
@@ -101,8 +101,8 @@ function TableRow(props) {
     >
       <td className={titleClass}>{inPost.title}</td>
       <td className={fromClass}>{inPost.user.email}</td>
-      <td className={returnClass}>{inPost.return.length}</td>
-      <td className={deniedClass}>{inPost.denied.length}</td>
+      <td className={returnClass}>{inPost.returnShares.length}</td>
+      <td className={deniedClass}>{inPost.denyShares.length}</td>
       <td className={requestClass}>{inPost.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>{requestColumnHtml}</td>

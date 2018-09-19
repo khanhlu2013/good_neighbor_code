@@ -73,21 +73,21 @@ class Post {
   }
 
   get isRequestWithNoBorrow() {
-    return this.requestShares.length !== 0 && !this.borrow;
+    return this.requestShares.length !== 0 && !this.curBorrowShare;
   }
 
-  get borrow() {
+  get curBorrowShare() {
     const lst = this.shares.filter(share => share.isBorrow);
     if (lst.length > 1) throw Error("unexpected multiple borrow");
     const [result] = lst;
     return result;
   }
 
-  get return() {
+  get returnShares() {
     return this.shares.filter(share => share.isReturn);
   }
 
-  get denied() {
+  get denyShares() {
     return this.shares.filter(share => share.isDenied);
   }
 

@@ -49,14 +49,14 @@ function TableRow(props) {
   const { share } = props;
   const { post } = share;
 
-  const borrowShare = post.borrow;
+  const borrowShare = post.curBorrowShare;
   const borrower = borrowShare ? borrowShare.borrower : null;
   return (
     <tr className="InShareReturnTableRow">
       <td className={titleClass}>{post.title}</td>
       <td className={fromClass}>{post.user.email}</td>
-      <td className={returnClass}>{post.return.length}</td>
-      <td className={deniedClass}>{post.denied.length}</td>
+      <td className={returnClass}>{post.returnShares.length}</td>
+      <td className={deniedClass}>{post.denyShares.length}</td>
       <td className={requestClass}>{post.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
     </tr>

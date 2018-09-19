@@ -69,7 +69,7 @@ function TableRow(props) {
   const onDecidePostClick = e => {
     onDecidePost(post);
   };
-  const borrowShare = post.borrow;
+  const borrowShare = post.curBorrowShare;
   const borrower = borrowShare ? borrowShare.borrower : null;
 
   return (
@@ -80,8 +80,8 @@ function TableRow(props) {
       })}
     >
       <td className={titleClass}>{post.title}</td>
-      <td className={returnClass}>{post.return.length}</td>
-      <td className={deniedClass}>{post.denied.length}</td>
+      <td className={returnClass}>{post.returnShares.length}</td>
+      <td className={deniedClass}>{post.denyShares.length}</td>
       <td className={requestClass}>{post.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={activeClass}>
@@ -96,9 +96,9 @@ function TableRow(props) {
         </button>
       </td>
       <td className={shareClass}>
-        {(post.denied.length !== 0 ||
+        {(post.denyShares.length !== 0 ||
           post.requestShares.length !== 0 ||
-          post.borrow) && (
+          post.curBorrowShare) && (
           <button
             className="OutPostTableRowDecideBtn btn btn-success"
             onClick={onDecidePostClick}
