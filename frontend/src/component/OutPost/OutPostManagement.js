@@ -7,6 +7,7 @@ import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./OutPostDecisionDialog";
 import { LoadingIcon } from "../../util";
 import { Post } from "../../model/post";
+import { OutShareReturnTable } from "./OutShareReturnTable";
 
 class OutPostManagement extends Component {
   state = {
@@ -32,9 +33,14 @@ class OutPostManagement extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    return {
-      requestPostCount: OutPostManagement.calculateRequestPostCount(state.posts)
-    };
+    let returnShares = null;
+    if (state.posts) {
+      const returnShares2D = state.posts.map(post =>
+        post.shares.filter(share => share.isReturn)
+      );
+      returnShares = [].concat(...returnShares2D);
+    }
+    return { returnShares };
   }
 
   componentDidMount() {
@@ -47,7 +53,9 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    this.props.onNotifyOutPostRequestCount(this.state.requestPostCount);
+    const requestPostCount = OutPostManagement.calculateRequestPostCount(posts);
+
+    this.props.onNotifyOutPostRequestCount(requestPostCount);
   }
 
   // CRUD START --------------------------------
@@ -174,6 +182,35 @@ class OutPostManagement extends Component {
   // DECISION END --------------------------
 
   render() {
+    const { posts } = this.state;
+    let content;
+    if (posts) {
+      content = (
+        <div className="row">
+          <div className="col-sm">
+            <OutPostTable
+              posts={this.state.posts}
+              onEditPost={this.onOpenCrudDialog_edit}
+              onDecidePost={this.onOpenDecideDialog}
+            />
+          </div>
+          <div className="col-sm">
+            <OutShareReturnTable
+              shares={this.state.returnShares}
+              deletingShareIds={this.state.deletingShareIds}
+              onDeleteShare={this.onDeleteShare}
+            />
+          </div>
+        </div>
+      );
+    } else {
+      content = (
+        <h1 className="text-center">
+          <LoadingIcon text="loading" isAnimate={true} />
+        </h1>
+      );
+    }
+
     return (
       <div id="OutPostManagement-react">
         <button
@@ -184,17 +221,7 @@ class OutPostManagement extends Component {
           new post
         </button>
 
-        {this.state.posts ? (
-          <OutPostTable
-            posts={this.state.posts}
-            onEditPost={this.onOpenCrudDialog_edit}
-            onDecidePost={this.onOpenDecideDialog}
-          />
-        ) : (
-          <h1 className="text-center">
-            <LoadingIcon text="loading" isAnimate={true} />
-          </h1>
-        )}
+        {content}
 
         {this.state.curCrudPostSessionID && (
           <OutPostCrudDialog
