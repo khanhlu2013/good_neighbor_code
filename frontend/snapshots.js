@@ -17,12 +17,12 @@ module.exports = {
       "Can search in-deny connection": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><input class=\"btn btn-primary\"\n      type=\"submit\"\n      value=\"search\"></form>\n  <p class=\"lead\">Found Tu Nguyen, email: tu@pr.com</p>\n  <div id=\"CrudConnectionControlPanel-react\">You invited Tu Nguyen. But sorry, you got denied!</div>\n</div>",
       "Can search out-deny connection": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><input class=\"btn btn-primary\"\n      type=\"submit\"\n      value=\"search\"></form>\n  <p class=\"lead\">Found Tu Nguyen, email: tu@pr.com</p>\n  <div id=\"CrudConnectionControlPanel-react\">You invited Tu Nguyen. But you changed your mind.</div>\n</div>"
     },
-    "can invite new user": {
-      "can invite user": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><input class=\"btn btn-primary\"\n      type=\"submit\"\n      value=\"search\"></form>\n  <p class=\"lead\">Found Tu Nguyen, email: tu@pr.com</p>\n  <div id=\"CrudConnectionControlPanel-react\"><button class=\"btn btn-success\"\n      id=\"createConnectionBtn\">Invite Tu Nguyen</button></div>\n</div>"
-    },
     "LoadingIcon (search/invite)": {
       "Show loadingIcon during search user": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><span id=\"LoadingIcon-react\">searching<b>·..</b></span></form>\n</div>",
       "Show loadingIcon during invite user": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><input class=\"btn btn-primary\"\n      type=\"submit\"\n      value=\"search\"></form>\n  <p class=\"lead\">Found Tu Nguyen, email: tu@pr.com</p>\n  <div id=\"CrudConnectionControlPanel-react\"><span id=\"LoadingIcon-react\">Inviting Tu Nguyen<b>·..</b></span></div>\n</div>"
+    },
+    "can invite new user": {
+      "can invite user": "<div id=\"SearchByEmail-react\"\n  class=\"text-center\">\n  <form><input type=\"text\"\n      placeholder=\"by email\"\n      value=\"tu@pr.com\"><input class=\"btn btn-primary\"\n      type=\"submit\"\n      value=\"search\"></form>\n  <p class=\"lead\">Found Tu Nguyen, email: tu@pr.com</p>\n  <div id=\"CrudConnectionControlPanel-react\">You invited Tu Nguyen. Please wait for approval!</div>\n</div>"
     }
   },
   "Connection Tables(friend,in,out,deny)": {

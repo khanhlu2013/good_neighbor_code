@@ -52,7 +52,10 @@ class ConnectionManagement extends Component {
     this.setState({ isCreatingConnection: true });
     (async () => {
       const newConnection = await API.createConnection(userIdToAdd);
-      this.setConnectionsAndNotifyRequestCount([...this.state, newConnection]);
+      this.setConnectionsAndNotifyRequestCount([
+        ...this.state.connections,
+        newConnection
+      ]);
       this.setState({ isCreatingConnection: false });
     })();
   };

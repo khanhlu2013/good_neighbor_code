@@ -64,9 +64,10 @@ route.post("/createConnection", authCheck, (req, res, next) => {
   }
 
   (async () => {
+    const userToAdd = await User.findById(userIdToAdd);
     const connection = await new Connection({
-      from: user.id,
-      to: userIdToAdd
+      from: user,
+      to: userToAdd
     }).save();
     return res.send(connection);
   })().catch(next);
