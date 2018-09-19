@@ -49,10 +49,10 @@ const table = {
   },
   snap: name => {
     waitForMainPageLoadingFinish();
-    cy.get("#OutPostManagement-react").snapshot({ name });
+    cy.get("#OutPostTable-react").snapshot({ name });
   },
   snapRightAway: name => {
-    cy.get("#OutPostManagement-react").snapshot({ name });
+    cy.get("#OutPostTable-react").snapshot({ name });
   }
 };
 

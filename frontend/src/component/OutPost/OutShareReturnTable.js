@@ -16,7 +16,7 @@ function Table(props) {
 
   return (
     <table
-      id="InShareReturnTable-react"
+      id="OutShareReturnTable-react"
       className="table table-sm table-striped table-bordered"
     >
       <thead className="thead-light">
