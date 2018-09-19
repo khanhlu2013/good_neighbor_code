@@ -44,7 +44,10 @@ function OutPostDecisionDialog(props) {
       <div className="container">
         <div className="row">
           <div className="col-sm">
-            <RequestTable shares={post.request} onDecideShare={onDecideShare} />
+            <RequestTable
+              shares={post.requestShares}
+              onDecideShare={onDecideShare}
+            />
           </div>
           <div className="col-sm">
             <DeniedTable

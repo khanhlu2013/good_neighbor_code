@@ -66,7 +66,7 @@ function TableRow(props) {
       <td className={fromClass}>{post.user.email}</td>
       <td className={returnClass}>{post.return.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
-      <td className={requestClass}>{post.request.length}</td>
+      <td className={requestClass}>{post.requestShares.length}</td>
       <td className={returnClass}>
         {isReturningShare ? (
           <LoadingIcon text={null} isAnimate={true} />

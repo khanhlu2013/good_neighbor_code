@@ -103,7 +103,7 @@ function TableRow(props) {
       <td className={fromClass}>{inPost.user.email}</td>
       <td className={returnClass}>{inPost.return.length}</td>
       <td className={deniedClass}>{inPost.denied.length}</td>
-      <td className={requestClass}>{inPost.request.length}</td>
+      <td className={requestClass}>{inPost.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={requestClass}>{requestColumnHtml}</td>
     </tr>

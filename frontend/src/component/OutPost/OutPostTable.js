@@ -82,7 +82,7 @@ function TableRow(props) {
       <td className={titleClass}>{post.title}</td>
       <td className={returnClass}>{post.return.length}</td>
       <td className={deniedClass}>{post.denied.length}</td>
-      <td className={requestClass}>{post.request.length}</td>
+      <td className={requestClass}>{post.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
       <td className={activeClass}>
         {post.isActive && <FontAwesomeIcon icon="check" />}
@@ -97,7 +97,7 @@ function TableRow(props) {
       </td>
       <td className={shareClass}>
         {(post.denied.length !== 0 ||
-          post.request.length !== 0 ||
+          post.requestShares.length !== 0 ||
           post.borrow) && (
           <button
             className="OutPostTableRowDecideBtn btn btn-success"

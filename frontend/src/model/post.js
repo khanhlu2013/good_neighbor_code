@@ -68,12 +68,12 @@ class Post {
     this._shares = value;
   }
 
-  get request() {
+  get requestShares() {
     return this.shares.filter(share => share.isRequest);
   }
 
   get isRequestWithNoBorrow() {
-    return this.request.length !== 0 && !this.borrow;
+    return this.requestShares.length !== 0 && !this.borrow;
   }
 
   get borrow() {
@@ -92,7 +92,9 @@ class Post {
   }
 
   isRequestBy(userId) {
-    const lst = this.request.filter(share => share.borrower.id === userId);
+    const lst = this.requestShares.filter(
+      share => share.borrower.id === userId
+    );
     if (lst.length > 1) {
       throw Error("Unexpected duplicate request data");
     }
