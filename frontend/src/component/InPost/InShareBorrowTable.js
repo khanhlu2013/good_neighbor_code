@@ -5,9 +5,9 @@ import { LoadingIcon } from "../../util";
 
 const fromClass = "col-3";
 const titleClass = "col-5";
-const returnClass = "text-center col-1";
-const deniedClass = "text-center col-1";
+const recycleClass = "text-center col-1";
 const requestClass = "text-center col-1";
+const doReturnClass = "text-center col-1";
 
 function Table(props) {
   const { shares, onReturnShare, returningShareIds } = props;
@@ -29,16 +29,13 @@ function Table(props) {
         <tr>
           <th className={titleClass}>borrow</th>
           <th className={fromClass}>from</th>
-          <th className={returnClass}>
+          <th className={recycleClass}>
             <FontAwesomeIcon icon="recycle" />
-          </th>
-          <th className={deniedClass}>
-            <FontAwesomeIcon icon="thumbs-down" />
           </th>
           <th className={requestClass}>
             <FontAwesomeIcon icon="question" />
           </th>
-          <th className={returnClass}>return</th>
+          <th className={doReturnClass}>return</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -64,10 +61,9 @@ function TableRow(props) {
     <tr className="InShareBorrowTableRow">
       <td className={titleClass}>{post.title}</td>
       <td className={fromClass}>{post.user.email}</td>
-      <td className={returnClass}>{post.returnShares.length}</td>
-      <td className={deniedClass}>{post.denyShares.length}</td>
+      <td className={recycleClass}>{post.returnShares.length}</td>
       <td className={requestClass}>{post.requestShares.length}</td>
-      <td className={returnClass}>
+      <td className={doReturnClass}>
         {isReturningShare ? (
           <LoadingIcon text={null} isAnimate={true} />
         ) : (
