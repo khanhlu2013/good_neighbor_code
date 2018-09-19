@@ -223,6 +223,30 @@ route.post("/updateInShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
+route.post("/awareApprovedInShare", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { shareId } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(shareId)) {
+    throw Error("Invalid shareId");
+  }
+
+  (async () => {
+    const share = await Share.findById(shareId);
+    if (!share) {
+      throw Error("Can not find shareId");
+    }
+
+    if (!share.borrower.equals(user._id)) {
+      throw Error("Unauthorized access");
+    }
+
+    share.isAwareApprovedByFrom = true;
+    await share.save();
+    res.send(share);
+  })().catch(next);
+});
+
 route.post("/updateOutShare", authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID, isApprove } = req.body;

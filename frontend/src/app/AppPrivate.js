@@ -11,6 +11,7 @@ class PrivateApp extends Component {
   state = {
     requestOutPostCount: null,
     requestFriendCount: null,
+    unawareApprovedShareCount: null,
     selectedTabIndex: null
   };
   onFriendRequestCountChanged = count => {
@@ -18,6 +19,10 @@ class PrivateApp extends Component {
   };
   onOutPostRequestCountChanged = count => {
     this.setState({ requestOutPostCount: count });
+  };
+
+  onUnawareApprovedShareCountChanged = count => {
+    this.setState({ unawareApprovedShareCount: count });
   };
 
   _computeNotificationHtml = count => {
@@ -34,7 +39,11 @@ class PrivateApp extends Component {
   };
 
   render() {
-    const { requestOutPostCount, requestFriendCount } = this.state;
+    const {
+      requestOutPostCount,
+      requestFriendCount,
+      unawareApprovedShareCount
+    } = this.state;
     const { loginUser } = this.props;
     const outPostNotification = this._computeNotificationHtml(
       requestOutPostCount
@@ -43,13 +52,19 @@ class PrivateApp extends Component {
       requestFriendCount
     );
 
+    const inPostNotification = this._computeNotificationHtml(
+      unawareApprovedShareCount
+    );
     return (
       <div id="PrivateApp-react">
         <Tabs forceRenderTabPanel={true}>
           <div className="Tab-selector-list">
             <TabList>
               <Tab>
-                <span id="TabSelector_InPost">Friend Posts</span>
+                <span id="TabSelector_InPost">
+                  Friend Posts
+                  {inPostNotification}
+                </span>
               </Tab>
               <Tab>
                 <span id="TabSelector_OutPost">
@@ -66,7 +81,12 @@ class PrivateApp extends Component {
             </TabList>
           </div>
           <TabPanel>
-            <InPostManagement loginUser={this.props.loginUser} />
+            <InPostManagement
+              loginUser={this.props.loginUser}
+              onNotifyUnawareApprovedShareCount={
+                this.onUnawareApprovedShareCountChanged
+              }
+            />
           </TabPanel>
           <TabPanel>
             <OutPostManagement

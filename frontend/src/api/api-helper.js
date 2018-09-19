@@ -34,9 +34,9 @@ function rawsToPosts(raws) {
         borrower,
         shareRaw.dateCreated,
         shareRaw.isApprovedByFrom,
-        shareRaw.isAcknowledgedApprovedByFrom,
+        shareRaw.isAwareApprovedByFrom,
         shareRaw.isReturnedByTo,
-        shareRaw.isAcknowledgedReturnedByTo,
+        shareRaw.isAwareReturnedByTo,
         null //post to be set later
       );
     });

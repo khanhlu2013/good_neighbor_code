@@ -125,15 +125,13 @@ demo: show a connection management that undo will cover all senario
 
   . load data and snap right away and snap with wait. expect notification to show
 ---
-
-create a log table for outShareReturn
-  . front end construct that that model
-  . display it on the ui as a click btn
-  . receivingShareIds
-  . front end api
-  . back end api.
-  . notifications
+. sidetrack: make the api more specific: return share, acknowledgeApproved ... not general like updateShare 
+. sidetrack: see if i can share code in the offline-updating of share
+. make video to show what is good neightboor look like. 
+. side track: make a remark how many request in borrow list, so that borrower might consider return it
 
 
-  isAcknowledgedApprovedByFrom : borrow
-  isAcknowledgedReturnedByTo : return
+
+. notify approvedRequestCount
+
+unaware
