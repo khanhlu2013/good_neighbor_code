@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
 import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
@@ -9,56 +9,41 @@ import { LoadingIcon } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
-    requestOutPostCount: null,
-    requestFriendCount: null,
+    postRequestCount: null,
+    friendRequestCount: null,
     unawareApproveShareCount: null,
     selectedTabIndex: null
   };
   onFriendRequestCountChange = count => {
-    this.setState({ requestFriendCount: count });
+    this.setState({ friendRequestCount: count });
   };
-  onOutPostRequestCountChange = count => {
-    this.setState({ requestOutPostCount: count });
+  onPostRequestCountChange = count => {
+    this.setState({ postRequestCount: count });
   };
 
   onUnawareApproveShareCountChange = count => {
     this.setState({ unawareApproveShareCount: count });
   };
 
-  _computeNotificationHtml = count => {
-    let html = null;
-    if (count !== null && count !== 0) {
-      html = <span className="text-danger">{` (${count})`}</span>;
-    } else if (count === null) {
-      html = <LoadingIcon text={null} isAnimate={true} />;
-    } else {
-      if (count !== 0) throw Error("Unexpected code path");
-      html = null;
-    }
-    return html;
-  };
-
   render() {
     const {
-      requestOutPostCount,
-      requestFriendCount,
+      friendRequestCount,
+      postRequestCount,
       unawareApproveShareCount
     } = this.state;
-    const { loginUser } = this.props;
-    const outPostNotification = this._computeNotificationHtml(
-      requestOutPostCount
-    );
-    const friendRequestNotification = this._computeNotificationHtml(
-      requestFriendCount
-    );
 
-    const inPostNotification = this._computeNotificationHtml(
+    const connectionNotification = _computeNotificationHtml(friendRequestCount);
+    const outPostNotification = _computeNotificationHtml(postRequestCount);
+    const inPostNotification = _computeNotificationHtml(
       unawareApproveShareCount
     );
+
+    const { loginUser } = this.props;
+
     return (
       <div id="PrivateApp-react">
         <Tabs forceRenderTabPanel={true}>
-          <div className="Tab-selector-list">
+          <div id="TabSelector-react" className="Tab-selector-list">
             <TabList>
               <Tab>
                 <span id="TabSelector_InPost">
@@ -75,7 +60,7 @@ class PrivateApp extends Component {
               <Tab>
                 <span id="TabSelector_Connection">
                   Friend
-                  {friendRequestNotification}
+                  {connectionNotification}
                 </span>
               </Tab>
             </TabList>
@@ -91,7 +76,7 @@ class PrivateApp extends Component {
           <TabPanel>
             <OutPostManagement
               loginUser={loginUser}
-              onOutPostRequestCountChange={this.onOutPostRequestCountChange}
+              onPostRequestCountChange={this.onPostRequestCountChange}
             />
           </TabPanel>
           <TabPanel>
@@ -108,6 +93,19 @@ class PrivateApp extends Component {
 PrivateApp.propTypes = {
   loginUser: PropTypes.object.isRequired
 };
+
+function _computeNotificationHtml(count) {
+  let html = null;
+  if (count !== null && count !== 0) {
+    html = <span className="text-danger">{` (${count})`}</span>;
+  } else if (count === null) {
+    html = <LoadingIcon text={null} isAnimate={true} />;
+  } else {
+    if (count !== 0) throw Error("Unexpected code path");
+    html = null;
+  }
+  return html;
+}
 
 export { PrivateApp };
 

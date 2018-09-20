@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 
 const nullOrRequiredValidator = type => {
-  if (!["array", "string", "object"].includes(type)) {
+  if (!["array", "string", "object", "number"].includes(type)) {
     return Error(`Unexpected ${type}`);
   }
 
@@ -24,6 +24,8 @@ const nullOrRequiredValidator = type => {
       return new Error(`${propName} must be a string`);
     } else if (type === "object" && !_.isObject(data)) {
       return new Error(`${propName} must be an object`);
+    } else if (type === "number" && !_.isNumber(data)) {
+      return new Error(`${propName} must be a string`);
     }
   };
 };

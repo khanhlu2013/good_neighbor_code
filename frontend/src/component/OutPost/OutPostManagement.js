@@ -45,7 +45,7 @@ class OutPostManagement extends Component {
 
   componentDidMount() {
     const requestPostCount = null;
-    this.props.onOutPostRequestCountChange(requestPostCount);
+    this.props.onPostRequestCountChange(requestPostCount);
     (async () => {
       this.setPostsState(await API.outPosts());
     })();
@@ -55,7 +55,7 @@ class OutPostManagement extends Component {
     this.setState({ posts });
     const requestPostCount = OutPostManagement.countRequestPost(posts);
 
-    this.props.onOutPostRequestCountChange(requestPostCount);
+    this.props.onPostRequestCountChange(requestPostCount);
   }
 
   // CRUD START --------------------------------
@@ -250,7 +250,7 @@ class OutPostManagement extends Component {
 }
 OutPostManagement.propType = {
   loginUser: PropTypes.object.isRequired,
-  onOutPostRequestCountChange: PropTypes.func.isRequired
+  onPostRequestCountChange: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

@@ -93,45 +93,30 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . create front end model validation
 . notification when request is approved and borrow is return. 
 . a bit of flashing public_app after login before loading the private app
+. side track: on demo, make a remark how many request in borrow list, so that borrower might consider return it
+. demo: make video to show what is good neightboor look like. 
 
 . TODAY
 . -----
-. the key-values.json file need to be duplicate on the frontend and backend. where the app will read the NODE_ENV and decide what value to use. i can think a step further to build this file automatically from a root folder of backend and frontend. these value only need for dev/test purpose. 
+
 . express-session deprecated undefined resave option; provide resave option
-. also notice a possible improvement is that the frontend port (for test/dev) use a hard code 3002. this 3002 number is hardcode twice in the .env from react-app and the backend key-for-test-dev.js. is it possible to factor this out too the root too?
-. just accept that test env use backend port 3001 and dev use 3000. then i will see how i can factor this number out into the root folder project
 . investigate: when i go to google page and go back, it show incorrect login page instead of login page again
 ---
 demo: show a connection management that undo will cover all senario
 
----
-
-. personally, here are some of my stuff that i dont use all the time. 
-. here might be yours
-. so possibly we can share them, get to know each other hobie, build relationship,  and get access to tons of stuff. 
-. (social media) imagine if sharing physical stuff is as easy as sharing a facebook post
-. well, welcome to good neighbor, a social media app i wrote to let you easily communicate, keep track, and share stuff within your network. 
-. we can get to see the journey and story our stuff created among our love one
-. thank you and happy sharing
 
 
 
 ---
 . i need to make the app say that it is creating an account. this way user wont create duplicated account. 
 
+---
+
 . make sure i test the outer tab/private app/notification
 
+
+. dynamic
+. static
   . make sure have an an id for the whole tab so i can snap it. call it tab-selection-panel,(side track do i have it already and where is it used)
-
   . load data and snap right away and snap with wait. expect notification to show
----
-. sidetrack: make the api more specific: return share, acknowledgeApproved ... not general like updateShare 
-. sidetrack: see if i can share code in the offline-updating of share
-. make video to show what is good neightboor look like. 
-. side track: make a remark how many request in borrow list, so that borrower might consider return it
-
-
-
-
----
 
