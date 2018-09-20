@@ -35,7 +35,7 @@ describe("Outpost share ", () => {
     cy.login(lu.email);
 
     outPostTree.tab.focus();
-    outPostTree.table.snap(
+    outPostTree.snap(
       "table can show post with no request, no approved,no denied info"
     );
 
@@ -46,13 +46,15 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: undefined,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
 
     cy.loadApp();
     outPostTree.tab.focus();
-    outPostTree.table.snap("table can show post with request");
+    outPostTree.snap("table can show post with request");
 
     //approved
     cy.clearShareDb();
@@ -61,13 +63,15 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: true,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
 
     cy.loadApp();
     outPostTree.tab.focus();
-    outPostTree.table.snap("table can show post with approved info");
+    outPostTree.snap("table can show post with approved info");
 
     //denied
     cy.clearShareDb();
@@ -76,13 +80,15 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: false,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
 
     cy.loadApp();
     outPostTree.tab.focus();
-    outPostTree.table.snap("table can show post with denied info");
+    outPostTree.snap("table can show post with denied info");
 
     //return
     cy.clearShareDb();
@@ -91,13 +97,15 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: true,
-        isReturn: true
+        isAwareApprove: true,
+        isReturn: true,
+        isAwareReturn: false
       }
     ]);
 
     cy.loadApp();
     outPostTree.tab.focus();
-    outPostTree.table.snap("table can show post with return info");
+    outPostTree.snap("table can show post with return info");
   });
 
   it("dialog can approve deny and undo share info", () => {

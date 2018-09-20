@@ -183,20 +183,22 @@ class OutPostManagement extends Component {
     let content;
     if (posts) {
       content = (
-        <div className="row">
-          <div className="col-sm">
-            <OutPostTable
-              posts={this.state.posts}
-              onEditPost={this.onOpenCrudDialog_edit}
-              onDecidePost={this.onOpenDecideDialog}
-            />
-          </div>
-          <div className="col-sm">
-            <OutShareReturnTable
-              shares={this.state.returnShares}
-              deletingShareIds={this.state.deletingShareIds}
-              onDeleteShare={this.onDeleteShare}
-            />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
+              <OutPostTable
+                posts={this.state.posts}
+                onEditPost={this.onOpenCrudDialog_edit}
+                onDecidePost={this.onOpenDecideDialog}
+              />
+            </div>
+            <div className="col-sm">
+              <OutShareReturnTable
+                shares={this.state.returnShares}
+                deletingShareIds={this.state.deletingShareIds}
+                onDeleteShare={this.onDeleteShare}
+              />
+            </div>
           </div>
         </div>
       );

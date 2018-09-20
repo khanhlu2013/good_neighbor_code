@@ -57,7 +57,9 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: undefined,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();
@@ -71,26 +73,46 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: false,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
     inPostTree.snap("with denied data");
 
-    //with borrow info
+    //with borrow and no-aware approve info
     cy.clearShareDb();
     cy.insertShares([
       {
         post,
         borrower: lu,
         isApprove: true,
-        isReturn: false
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();
     inPostTree.tab.focus();
-    inPostTree.snap("with borrow data");
+    inPostTree.snap("with borrow and no-aware approve data");
+
+    //with borrow and yes-aware approve info
+    cy.clearShareDb();
+    cy.insertShares([
+      {
+        post,
+        borrower: lu,
+        isApprove: true,
+        isAwareApprove: true,
+        isReturn: false,
+        isAwareReturn: false
+      }
+    ]);
+    cy.loadApp();
+    inPostTree.tab.focus();
+    inPostTree.snap("with borrow and yes-aware approve data");
 
     //with return info
     cy.clearShareDb();
@@ -99,7 +121,9 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: true,
-        isReturn: true
+        isAwareApprove: true,
+        isReturn: true,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();
@@ -107,7 +131,7 @@ describe("InPost", () => {
     inPostTree.snap("with return data");
   });
 
-  it("tables(all, request, borrow, return) has buttons to make, undo, return request", () => {
+  it("tables(all, request, borrow, return) has buttons to make, undo, aware, return request", () => {
     //can make request
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();
@@ -120,6 +144,23 @@ describe("InPost", () => {
     inPostTree.undoRequest(post);
     inPostTree.snap("user can undo request");
 
+    //can aware
+    cy.clearShareDb();
+    cy.insertShares([
+      {
+        post,
+        borrower: lu,
+        isApprove: true,
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
+      }
+    ]);
+    cy.loadApp();
+    inPostTree.tab.focus();
+    inPostTree.awareApprove(post);
+    inPostTree.snap("user can aware approve");
+
     //can return
     cy.clearShareDb();
     cy.insertShares([
@@ -127,7 +168,9 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: true,
-        isReturn: false
+        isAwareApprove: true,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();
@@ -159,14 +202,31 @@ describe("InPost", () => {
     inPostTree.undoRequest(post);
     inPostTree.snapRightAway("request table -> undo request");
 
-    //borrow table
+    //borrow table - aware
+    cy.insertShares([
+      {
+        post: post,
+        borrower: lu,
+        isApprove: true,
+        isAwareApprove: false,
+        isReturn: false,
+        isAwareReturn: false
+      }
+    ]);
+    cy.loadApp();
+    inPostTree.awareApprove(post);
+    inPostTree.snapRightAway("borrow table -> aware");
+
+    //borrow table - return
     cy.clearShareDb();
     cy.insertShares([
       {
         post: post,
         borrower: lu,
         isApprove: true,
-        isReturn: false
+        isAwareApprove: true,
+        isReturn: false,
+        isAwareReturn: false
       }
     ]);
     cy.loadApp();

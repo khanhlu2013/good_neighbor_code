@@ -137,5 +137,7 @@ demo: show a connection management that undo will cover all senario
 . notify approvedRequestCount
 . api.updateOutShare make sure it is correct ( a single return value isApprove)
 
+---
 
-count vs calculateCount
+before i like to tackle the snap shot, minimize it, make it secondary.
+

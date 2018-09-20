@@ -116,7 +116,9 @@ Cypress.Commands.add("insertShares", shares => {
       }
       return `{"post":ObjectId("${s.post.id.toHexString()}"),"borrower":ObjectId("${s.borrower.id.toHexString()}"),"isApprove":${
         s.isApprove
-      },"isReturn":${s.isReturn} ${idStr}}`;
+      },"isReturn":${s.isReturn},"isAwareReturn":${
+        s.isAwareReturn
+      },"isAwareApprove":${s.isAwareApprove} ${idStr}}`;
     })
     .join(",");
   cy.exec(

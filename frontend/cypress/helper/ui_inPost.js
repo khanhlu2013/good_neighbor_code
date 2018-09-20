@@ -39,6 +39,18 @@ const inPostTree = {
     waitForMainPageLoadingFinish();
     cy.get("#InPostManagement-react").snapshot({ name });
   },
+  awareApprove: post => {
+    cy.get("#InShareBorrowTable-react .InShareBorrowTableRow")
+      .then(rows => {
+        const row = Array.from(rows).find(row => {
+          const text = row.textContent;
+          return text.includes(post.title);
+        });
+        return cy.wrap(row);
+      })
+      .find(".InShareBorrowTableRowAwareBtn")
+      .click();
+  },
   returnBorrow: post => {
     cy.get("#InShareBorrowTable-react .InShareBorrowTableRow")
       .then(rows => {

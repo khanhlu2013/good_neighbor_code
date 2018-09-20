@@ -1,6 +1,10 @@
 // const getSearchLoadingIcon = () =>
 //   cy.get("#SearchByEmail-react #LoadingIcon-react");
 
+const waitForLoading = () => {
+  cy.get("#SearchByEmail-react #LoadingIcon-react").should("not.be.visible");
+};
+
 const connectionTree = {
   tab: {
     focus: () => {
@@ -37,12 +41,17 @@ const connectionTree = {
       cy.get("#CrudConnectionControlPanel-react #LoadingIcon-react"),
     getCreateConnectionBtn: () => cy.get("#createConnectionBtn")
   },
-
-  outRequests_deny: rowIndex => {
-    cy.get("#OutFriendTable .ConnectionTableRow")
-      .eq(rowIndex)
-      .find(".ConnectionTableRowDenyBtn")
-      .click();
+  outConnectionTable: {
+    deny: rowIndex => {
+      cy.get("#OutFriendTable .ConnectionTableRow")
+        .eq(rowIndex)
+        .find(".ConnectionTableRowDenyBtn")
+        .click();
+    },
+    snap: name => {
+      waitForLoading();
+      cy.get("#OutFriendTable").snapshot({ name });
+    }
   },
 
   inRequests_approve: rowIndex => {

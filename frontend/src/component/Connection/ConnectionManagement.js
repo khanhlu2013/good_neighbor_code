@@ -16,7 +16,7 @@ class ConnectionManagement extends Component {
     updatingConnectionIds: []
   };
 
-  static calculateFriendRequestCount(connections, loginUserId) {
+  static countFriendRequest(connections, loginUserId) {
     if (connections === null) {
       return null;
     }
@@ -40,7 +40,7 @@ class ConnectionManagement extends Component {
   setConnectionsAndNotifyRequestCount(connections) {
     this.setState({ connections });
     this.props.onFriendRequestCountChange(
-      ConnectionManagement.calculateFriendRequestCount(
+      ConnectionManagement.countFriendRequest(
         connections,
         this.props.loginUser.id
       )
@@ -122,41 +122,43 @@ class ConnectionManagement extends Component {
       );
 
       htmlContent = (
-        <div className="row">
-          <div className="col-sm">
-            <ConnectionFriendTable
-              connections={friends}
-              updatingConnectionIds={updatingConnectionIds}
-              loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
-            />
-            <ConnectionOutTable
-              connections={outFriends}
-              updatingConnectionIds={updatingConnectionIds}
-              loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
-            />
-            <ConnectionDenyTable
-              connections={rejectedFriends}
-              updatingConnectionIds={updatingConnectionIds}
-              loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
-            />
-          </div>
-          <div className="col-sm">
-            <SearchByEmail
-              loginUser={this.props.loginUser}
-              connections={connections}
-              createConnectionCb={this.onCreateConnection}
-              isCreatingConnection={this.state.isCreatingConnection}
-            />
-            <hr />
-            <ConnectionInTable
-              connections={inFriends}
-              updatingConnectionIds={updatingConnectionIds}
-              loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
-            />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
+              <ConnectionFriendTable
+                connections={friends}
+                updatingConnectionIds={updatingConnectionIds}
+                loginUserId={loginUserId}
+                updateConnectionCb={this.onUpdateConnection}
+              />
+              <ConnectionOutTable
+                connections={outFriends}
+                updatingConnectionIds={updatingConnectionIds}
+                loginUserId={loginUserId}
+                updateConnectionCb={this.onUpdateConnection}
+              />
+              <ConnectionDenyTable
+                connections={rejectedFriends}
+                updatingConnectionIds={updatingConnectionIds}
+                loginUserId={loginUserId}
+                updateConnectionCb={this.onUpdateConnection}
+              />
+            </div>
+            <div className="col-sm">
+              <SearchByEmail
+                loginUser={this.props.loginUser}
+                connections={connections}
+                createConnectionCb={this.onCreateConnection}
+                isCreatingConnection={this.state.isCreatingConnection}
+              />
+              <hr />
+              <ConnectionInTable
+                connections={inFriends}
+                updatingConnectionIds={updatingConnectionIds}
+                loginUserId={loginUserId}
+                updateConnectionCb={this.onUpdateConnection}
+              />
+            </div>
           </div>
         </div>
       );
@@ -168,11 +170,7 @@ class ConnectionManagement extends Component {
       );
     }
 
-    return (
-      <div id="ConnectionManagement-react" className="container">
-        {htmlContent}
-      </div>
-    );
+    return <div id="ConnectionManagement-react">{htmlContent}</div>;
   }
 }
 

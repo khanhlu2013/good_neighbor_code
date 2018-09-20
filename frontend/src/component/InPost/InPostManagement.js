@@ -210,29 +210,31 @@ class InPostManagement extends Component {
     let content;
     if (this.state.posts !== null) {
       content = (
-        <div className="row">
-          <div className="col-sm">
-            <InPostTable
-              loginUser={this.props.loginUser}
-              posts={this.state.posts}
-              requestingPostIds={this.state.requestingPostIds}
-              onCreateShare={this.onCreateShare}
-            />
-          </div>
-          <div className="col-sm">
-            <InShareRequestTable
-              shares={this.state.requestShares}
-              deletingShareIds={this.state.deletingShareIds}
-              onDeleteShare={this.onDeleteShare}
-            />
-            <InShareBorrowTable
-              shares={this.state.borrowShares}
-              awaringShareIds={this.state.awaringShareIds}
-              returningShareIds={this.state.returningShareIds}
-              onReturnShare={this.onReturnShare}
-              onAwareShare={this.onAwareShare}
-            />
-            <InShareReturnTable shares={this.state.returnShares} />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
+              <InPostTable
+                loginUser={this.props.loginUser}
+                posts={this.state.posts}
+                requestingPostIds={this.state.requestingPostIds}
+                onCreateShare={this.onCreateShare}
+              />
+            </div>
+            <div className="col-sm">
+              <InShareRequestTable
+                shares={this.state.requestShares}
+                deletingShareIds={this.state.deletingShareIds}
+                onDeleteShare={this.onDeleteShare}
+              />
+              <InShareBorrowTable
+                shares={this.state.borrowShares}
+                awaringShareIds={this.state.awaringShareIds}
+                returningShareIds={this.state.returningShareIds}
+                onReturnShare={this.onReturnShare}
+                onAwareShare={this.onAwareShare}
+              />
+              <InShareReturnTable shares={this.state.returnShares} />
+            </div>
           </div>
         </div>
       );
@@ -244,11 +246,7 @@ class InPostManagement extends Component {
       );
     }
 
-    return (
-      <div id="InPostManagement-react" className="container">
-        {content}
-      </div>
-    );
+    return <div id="InPostManagement-react">{content}</div>;
   }
 }
 InPostManagement.propTypes = {

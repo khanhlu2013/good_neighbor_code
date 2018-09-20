@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const titleClass = "col-4";
+const titleClass = "col-5";
 const fromClass = "col-2";
 const returnClass = "text-center col-1";
 const deniedClass = "text-center col-1";
 const requestClass = "text-center col-1";
 const borrowClass = "text-center col-2";
-const receiveClass = "text-center col-1";
 
 function Table(props) {
   const { shares } = props;
@@ -35,7 +34,6 @@ function Table(props) {
           <th className={borrowClass}>
             <FontAwesomeIcon icon="user-clock" />
           </th>
-          <th className={receiveClass}>ok</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -61,7 +59,6 @@ function TableRow(props) {
       <td className={deniedClass}>{post.denyShares.length}</td>
       <td className={requestClass}>{post.requestShares.length}</td>
       <td className={borrowClass}>{borrower ? borrower.email : ""}</td>
-      <td className={receiveClass}>x</td>
     </tr>
   );
 }

@@ -144,7 +144,7 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     ]);
     cy.loadApp();
     connectionTree.tab.focus();
-    connectionTree.outRequests_deny(0);
+    connectionTree.outConnectionTable.deny(0);
     connectionTree.snap("out-friend table can remove");
 
     //deny table can undo
@@ -223,7 +223,7 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     ]);
     cy.loadApp();
     connectionTree.tab.focus();
-    connectionTree.outRequests_deny(0);
+    connectionTree.outConnectionTable.deny(0);
     connectionTree.snapRightAway("out-friend table can remove");
 
     //deny table can undo

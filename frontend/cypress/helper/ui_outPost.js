@@ -46,13 +46,6 @@ const table = {
       .eq(rowIndex)
       .find(".OutPostTableRowEditBtn")
       .click();
-  },
-  snap: name => {
-    waitForMainPageLoadingFinish();
-    cy.get("#OutPostTable-react").snapshot({ name });
-  },
-  snapRightAway: name => {
-    cy.get("#OutPostTable-react").snapshot({ name });
   }
 };
 
@@ -132,6 +125,13 @@ const outPostTree = {
   decisionDialog,
   createNewPost: () => {
     cy.get("#createPostBtn").click();
+  },
+  snap: name => {
+    waitForMainPageLoadingFinish();
+    cy.get("#OutPostManagement-react").snapshot({ name });
+  },
+  snapRightAway: name => {
+    cy.get("#OutPostManagement-react").snapshot({ name });
   }
 };
 

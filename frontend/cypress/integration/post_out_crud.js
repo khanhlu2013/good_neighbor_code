@@ -16,7 +16,7 @@ describe("OutPost crud", () => {
 
     // app show empty out post
     outPostTree.tab.focus();
-    outPostTree.table.snap("app show empty OutPost");
+    outPostTree.snap("app show empty OutPost");
 
     //user can post
     outPostTree.createNewPost();
@@ -25,7 +25,7 @@ describe("OutPost crud", () => {
     outPostTree.crudDialog.snapRightAway("app show fill out form");
     outPostTree.crudDialog.submit();
     outPostTree.crudDialog.waitForLoadingFinish();
-    outPostTree.table.snap("app's outPostTable show new created post");
+    outPostTree.snap("app's outPostTable show new created post");
 
     outPostTree.table.edit(0);
     outPostTree.crudDialog.snapRightAway(
@@ -34,7 +34,7 @@ describe("OutPost crud", () => {
     outPostTree.crudDialog.fillOut("new me title", "new me description", false);
     outPostTree.crudDialog.submit();
     outPostTree.crudDialog.waitForLoadingFinish();
-    outPostTree.table.snap("app's outPostTable show edited post");
+    outPostTree.snap("app's outPostTable show edited post");
   });
 
   it("LoadingIcon", () => {
