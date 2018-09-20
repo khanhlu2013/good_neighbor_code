@@ -138,10 +138,10 @@ class OutPostManagement extends Component {
     });
   };
 
-  _updateShare = (shareID, isApprove) => {
+  _approveShare = (shareID, isApprove) => {
     this.setState({ isDecidingPost: true });
     (async () => {
-      const decidedIsApprove = await API.updateOutShare(shareID, isApprove);
+      const decidedIsApprove = await API.approveShare(shareID, isApprove);
       const [decidedPost] = this.state.posts.filter(post =>
         post.shares.some(share => share.id === shareID)
       );
@@ -162,11 +162,11 @@ class OutPostManagement extends Component {
   };
 
   onUndoDeniedShare = shareID => {
-    this._updateShare(shareID, undefined);
+    this._approveShare(shareID, undefined);
   };
 
   onUndoApproveShare = shareID => {
-    this._updateShare(shareID, undefined);
+    this._approveShare(shareID, undefined);
   };
 
   onDecideShare = (shareID, isApprove) => {
@@ -174,7 +174,7 @@ class OutPostManagement extends Component {
       throw Error("Unexpected decision");
     }
 
-    this._updateShare(shareID, isApprove);
+    this._approveShare(shareID, isApprove);
   };
   // DECISION END --------------------------
 

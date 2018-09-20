@@ -153,11 +153,7 @@ class InPostManagement extends Component {
         returningShareIds: [...this.state.returningShareIds, shareId]
       });
       (async () => {
-        const isReturn = true;
-        const { resultIsReturnByTo } = await API.updateInShare(
-          shareId,
-          isReturn
-        );
+        const { resultIsReturnByTo } = await API.returnShare(shareId);
 
         const curShare = curPost.shares.find(share => share.id === shareId);
         curShare.isReturn = resultIsReturnByTo;
@@ -184,7 +180,7 @@ class InPostManagement extends Component {
     });
 
     (async () => {
-      const isAwareApprove = await API.awareApprovedInShare(shareId);
+      const isAwareApprove = await API.awareApproveShare(shareId);
       const curPost = this.state.posts.find(post =>
         post.shares.some(share => share.id === shareId)
       );

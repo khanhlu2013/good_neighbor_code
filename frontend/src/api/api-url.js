@@ -34,9 +34,9 @@ const API_NODE = new RouteNode("", "", [
     { name: "share", path: "/share" },
     { name: "createShare", path: "/createShare" },
     { name: "deleteShare", path: "/deleteShare" },
-    { name: "updateOutShare", path: "/updateOutShare" },
-    { name: "updateInShare", path: "/updateInShare" },
-    { name: "awareApprovedInShare", path: "/awareApprovedInShare" }
+    { name: "approveShare", path: "/approveShare" },
+    { name: "returnShare", path: "/returnShare" },
+    { name: "awareApproveShare", path: "/awareApproveShare" }
   ]),
   new RouteNode("auth", "/auth", [
     { name: "google", path: "/google" },

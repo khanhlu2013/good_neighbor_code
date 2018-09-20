@@ -195,13 +195,9 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/updateInShare", authCheck, (req, res, next) => {
+route.post("/returnShare", authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareID, isReturn } = req.body;
-
-  if (isReturn !== true) {
-    throw Error("Unexpected usage of updateInShare");
-  }
+  const { shareID } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(shareID)) {
     throw Error("Invalid shareID");
@@ -217,13 +213,13 @@ route.post("/updateInShare", authCheck, (req, res, next) => {
       throw Error("Unauthorized access");
     }
 
-    share.isReturn = isReturn;
+    share.isReturn = true;
     await share.save();
     res.send(share);
   })().catch(next);
 });
 
-route.post("/awareApprovedInShare", authCheck, (req, res, next) => {
+route.post("/awareApproveShare", authCheck, (req, res, next) => {
   const { user } = req;
   const { shareId } = req.body;
 
@@ -247,7 +243,7 @@ route.post("/awareApprovedInShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/updateOutShare", authCheck, (req, res, next) => {
+route.post("/approveShare", authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID, isApprove } = req.body;
 

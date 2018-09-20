@@ -131,13 +131,7 @@ demo: show a connection management that undo will cover all senario
 . side track: make a remark how many request in borrow list, so that borrower might consider return it
 
 
-.awareApprovedInShare -> awareApproveShare
 
-
-. notify approvedRequestCount
-. api.updateOutShare make sure it is correct ( a single return value isApprove)
 
 ---
-
-before i like to tackle the snap shot, minimize it, make it secondary.
 

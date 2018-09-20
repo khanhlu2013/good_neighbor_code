@@ -130,8 +130,8 @@ const deleteShare = async shareID => {
   await post("profile.deleteShare", { shareID });
 };
 
-const updateOutShare = async (shareID, isApprove) => {
-  const { isApprove: updatedIsApprove } = await post("profile.updateOutShare", {
+const approveShare = async (shareID, isApprove) => {
+  const { isApprove: updatedIsApprove } = await post("profile.approveShare", {
     shareID,
     isApprove
   });
@@ -139,8 +139,8 @@ const updateOutShare = async (shareID, isApprove) => {
   return updatedIsApprove;
 };
 
-const updateInShare = async (shareID, isReturn) => {
-  const { isReturn: resultIsReturnByTo } = await post("profile.updateInShare", {
+const returnShare = async (shareID, isReturn) => {
+  const { isReturn: resultIsReturnByTo } = await post("profile.returnShare", {
     shareID,
     isReturn
   });
@@ -148,8 +148,8 @@ const updateInShare = async (shareID, isReturn) => {
   return { resultIsReturnByTo };
 };
 
-const awareApprovedInShare = async shareId => {
-  const { isAwareApprove } = await post("profile.awareApprovedInShare", {
+const awareApproveShare = async shareId => {
+  const { isAwareApprove } = await post("profile.awareApproveShare", {
     shareId
   });
 
@@ -202,8 +202,8 @@ const API = {
   //shares,
   createShare,
   deleteShare,
-  updateOutShare,
-  updateInShare,
-  awareApprovedInShare
+  approveShare,
+  returnShare,
+  awareApproveShare
 };
 export { API };
