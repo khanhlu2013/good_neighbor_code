@@ -197,9 +197,9 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
 
 route.post("/updateInShare", authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareID, isReturnedByTo } = req.body;
+  const { shareID, isReturn } = req.body;
 
-  if (isReturnedByTo !== true) {
+  if (isReturn !== true) {
     throw Error("Unexpected usage of updateInShare");
   }
 
@@ -217,7 +217,7 @@ route.post("/updateInShare", authCheck, (req, res, next) => {
       throw Error("Unauthorized access");
     }
 
-    share.isReturnedByTo = isReturnedByTo;
+    share.isReturn = isReturn;
     await share.save();
     res.send(share);
   })().catch(next);
@@ -261,7 +261,7 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
       throw Error(`ShareID ${shareID} is not found`);
     }
 
-    if (share.isReturnedByTo === true) {
+    if (share.isReturn === true) {
       throw Error("Share is finalized. Update outShare is not allow");
     }
 

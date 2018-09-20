@@ -5,7 +5,7 @@ class Share {
     dateCreated,
     isApprove,
     isAwareApprove,
-    isReturnedByTo,
+    isReturn,
     isAwareReturn,
     post
   ) {
@@ -15,7 +15,7 @@ class Share {
       dateCreated,
       isApprove,
       isAwareApprove,
-      isReturnedByTo,
+      isReturn,
       isAwareReturn,
       post
     });
@@ -30,11 +30,7 @@ class Share {
   }
 
   get isBorrow() {
-    return this.isApprove === true && this.isReturnedByTo === false;
-  }
-
-  get isReturn() {
-    return this.isApprove === true && this.isReturnedByTo === true;
+    return this.isApprove === true && this.isReturn === false;
   }
 
   get isDenied() {

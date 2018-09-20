@@ -35,7 +35,7 @@ function rawsToPosts(raws) {
         shareRaw.dateCreated,
         shareRaw.isApprove,
         shareRaw.isAwareApprove,
-        shareRaw.isReturnedByTo,
+        shareRaw.isReturn,
         shareRaw.isAwareReturn,
         null //post to be set later
       );

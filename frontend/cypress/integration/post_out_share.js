@@ -46,7 +46,7 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: undefined,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
 
@@ -61,7 +61,7 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: true,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
 
@@ -76,7 +76,7 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: false,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
 
@@ -91,7 +91,7 @@ describe("Outpost share ", () => {
         post,
         borrower: tu,
         isApprove: true,
-        isReturnedByTo: true
+        isReturn: true
       }
     ]);
 
@@ -105,7 +105,7 @@ describe("Outpost share ", () => {
       post,
       borrower: tu,
       isApprove: undefined,
-      isReturnedByTo: false
+      isReturn: false
     };
 
     cy.setupDb([lu, tu], [connection], [post], [share]);
@@ -137,7 +137,7 @@ describe("Outpost share ", () => {
       post,
       borrower: tu,
       isApprove: undefined,
-      isReturnedByTo: false
+      isReturn: false
     };
 
     cy.setupDb([lu, tu], [connection], [post], [share]);

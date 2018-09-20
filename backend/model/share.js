@@ -29,7 +29,7 @@ const ShareSchema = new Schema({
     required: true,
     default: false
   },
-  isReturnedByTo: {
+  isReturn: {
     type: Boolean,
     required: true,
     default: false
@@ -56,7 +56,7 @@ ShareSchema.pre("save", async function() {
     post: postID,
     borrower,
     isApprove,
-    isReturnedByTo,
+    isReturn,
     isNew
   } = this;
   const Share = this.constructor;
@@ -68,7 +68,7 @@ ShareSchema.pre("save", async function() {
   }
 
   if (isNew) {
-    if (isApprove !== undefined || isReturnedByTo === true) {
+    if (isApprove !== undefined || isReturn === true) {
       throw Error("Unexpected initial Share state ");
     }
 
@@ -89,7 +89,7 @@ ShareSchema.pre("save", async function() {
       borrower,
       $or: [
         { isApprove: { $not: { $eq: true } } }, //currently not_borrow <=> aka <=> request_or_deny
-        { isReturnedByTo: false } //currently borrow
+        { isReturn: false } //currently borrow
       ]
     });
     if (verifyingShares) {
@@ -102,7 +102,7 @@ ShareSchema.pre("save", async function() {
         _id: { $not: { $eq: shareID } },
         post: postID,
         isApprove: true,
-        isReturnedByTo: false
+        isReturn: false
       });
       if (verifyingShare) {
         throw Error("Only one borrower at a time");

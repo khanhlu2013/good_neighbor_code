@@ -57,7 +57,7 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: undefined,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
     cy.loadApp();
@@ -71,7 +71,7 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: false,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
     cy.loadApp();
@@ -85,7 +85,7 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: true,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
     cy.loadApp();
@@ -99,7 +99,7 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: true,
-        isReturnedByTo: true
+        isReturn: true
       }
     ]);
     cy.loadApp();
@@ -127,7 +127,7 @@ describe("InPost", () => {
         post,
         borrower: lu,
         isApprove: true,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
     cy.loadApp();
@@ -166,7 +166,7 @@ describe("InPost", () => {
         post: post,
         borrower: lu,
         isApprove: true,
-        isReturnedByTo: false
+        isReturn: false
       }
     ]);
     cy.loadApp();

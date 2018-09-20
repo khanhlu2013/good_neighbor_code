@@ -111,7 +111,7 @@ const createShare = async postID => {
     dateCreated,
     isApprove,
     isAwareApprove,
-    isReturnedByTo,
+    isReturn,
     isAwareReturn
   } = await post("profile.createShare", {
     postID
@@ -121,7 +121,7 @@ const createShare = async postID => {
     dateCreated,
     isApprove,
     isAwareApprove,
-    isReturnedByTo,
+    isReturn,
     isAwareReturn
   };
 };
@@ -139,14 +139,11 @@ const updateOutShare = async (shareID, isApprove) => {
   return updatedIsApprove;
 };
 
-const updateInShare = async (shareID, isReturnedByTo) => {
-  const { isReturnedByTo: resultIsReturnByTo } = await post(
-    "profile.updateInShare",
-    {
-      shareID,
-      isReturnedByTo
-    }
-  );
+const updateInShare = async (shareID, isReturn) => {
+  const { isReturn: resultIsReturnByTo } = await post("profile.updateInShare", {
+    shareID,
+    isReturn
+  });
 
   return { resultIsReturnByTo };
 };

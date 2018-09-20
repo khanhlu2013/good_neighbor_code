@@ -87,7 +87,7 @@ class InPostManagement extends Component {
         dateCreated,
         isApprove,
         isAwareApprove,
-        isReturnedByTo,
+        isReturn,
         isAwareReturn
       } = await API.createShare(postId);
 
@@ -97,7 +97,7 @@ class InPostManagement extends Component {
         dateCreated,
         isApprove,
         isAwareApprove,
-        isReturnedByTo,
+        isReturn,
         isAwareReturn,
         null //post to be set later
       );
@@ -156,14 +156,14 @@ class InPostManagement extends Component {
         returningShareIds: [...this.state.returningShareIds, shareId]
       });
       (async () => {
-        const isReturnedByTo = true;
+        const isReturn = true;
         const { resultIsReturnByTo } = await API.updateInShare(
           shareId,
-          isReturnedByTo
+          isReturn
         );
 
         const curShare = curPost.shares.find(share => share.id === shareId);
-        curShare.isReturnedByTo = resultIsReturnByTo;
+        curShare.isReturn = resultIsReturnByTo;
         curPost.shares = [
           ...curPost.shares.filter(share => share.id !== shareId),
           curShare
