@@ -110,13 +110,3 @@ demo: show a connection management that undo will cover all senario
 ---
 . i need to make the app say that it is creating an account. this way user wont create duplicated account. 
 
----
-
-. make sure i test the outer tab/private app/notification
-
-
-. dynamic
-. static
-  . make sure have an an id for the whole tab so i can snap it. call it tab-selection-panel,(side track do i have it already and where is it used)
-  . load data and snap right away and snap with wait. expect notification to show
-

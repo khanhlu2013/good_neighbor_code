@@ -6,6 +6,13 @@ const inPostTree = {
   tab: {
     focus: () => {
       cy.get("#TabSelector_InPost").click();
+    },
+    snap: name => {
+      cy.get("#TabSelector_InPost #LoadingIcon-react").should("not.be.visible");
+      cy.get("#TabSelector_InPost").snapshot({ name });
+    },
+    snapRightAway: name => {
+      cy.get("#TabSelector_InPost").snapshot({ name });
     }
   },
   undoRequest: post => {

@@ -175,6 +175,7 @@ class InPostManagement extends Component {
   };
 
   onAwareShare = shareId => {
+    this.props.onUnawareApproveShareCountChange(null);
     this.setState({
       awaringShareIds: [...this.state.awaringShareIds, shareId]
     });

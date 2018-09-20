@@ -22,7 +22,10 @@ const tab = {
     cy.get("#TabSelector_OutPost").click();
   },
   snap: name => {
-    waitForMainPageLoadingFinish();
+    cy.get("#TabSelector_OutPost #LoadingIcon-react").should("not.be.visible");
+    cy.get("#TabSelector_OutPost").snapshot({ name });
+  },
+  snapRightAway: name => {
     cy.get("#TabSelector_OutPost").snapshot({ name });
   }
 };

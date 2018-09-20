@@ -105,5 +105,31 @@ module.exports = {
       "deny request ...": "<div id=\"OutPostDecisionDialog-react\">\n  <h1 class=\"ReactModal__title\">Share 'title'</h1>\n  <h1 class=\"text-center\"><span id=\"LoadingIcon-react\">Please wait<b>·..</b></span></h1>\n</div>",
       "undo denied request ...": "<div id=\"OutPostDecisionDialog-react\">\n  <h1 class=\"ReactModal__title\">Share 'title'</h1>\n  <h1 class=\"text-center\"><span id=\"LoadingIcon-react\">Please wait<b>·..</b></span></h1>\n</div>"
     }
+  },
+  "Notification": {
+    "can display static data": {
+      "friend request": "<span id=\"TabSelector_Connection\">Friend<span class=\"text-danger\"> (1)</span></span>",
+      "post request": "<span id=\"TabSelector_OutPost\">My Posts<span class=\"text-danger\"> (1)</span></span>",
+      "unaware approve share": "<span id=\"TabSelector_InPost\">Friend Posts<span class=\"text-danger\"> (1)</span></span>"
+    },
+    "can display notification": {
+      "friend request": "<span id=\"TabSelector_Connection\">Friend<span class=\"text-danger\"> (1)</span></span>",
+      "post request": "<span id=\"TabSelector_OutPost\">My Posts<span class=\"text-danger\"> (1)</span></span>",
+      "unaware approve share": "<span id=\"TabSelector_InPost\">Friend Posts<span class=\"text-danger\"> (1)</span></span>"
+    },
+    "can update friend request ": {
+      "update friend request": "<span id=\"TabSelector_Connection\">Friend</span>"
+    },
+    "can update post request ": {
+      "update post request": "<span id=\"TabSelector_OutPost\">My Posts</span>"
+    },
+    "can update unaware approve share": {
+      "update unaware share": "<span id=\"TabSelector_InPost\">Friend Posts</span>"
+    },
+    "can display": {
+      "friend request": "<span id=\"TabSelector_Connection\">Friend<span class=\"text-danger\"> (1)</span></span>",
+      "post request": "<span id=\"TabSelector_OutPost\">My Posts<span class=\"text-danger\"> (1)</span></span>",
+      "unaware approve share": "<span id=\"TabSelector_InPost\">Friend Posts<span class=\"text-danger\"> (1)</span></span>"
+    }
   }
 }
