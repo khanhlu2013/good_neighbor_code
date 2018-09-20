@@ -241,7 +241,7 @@ route.post("/awareApprovedInShare", authCheck, (req, res, next) => {
       throw Error("Unauthorized access");
     }
 
-    share.isAwareApprovedByFrom = true;
+    share.isAwareApprove = true;
     await share.save();
     res.send(share);
   })().catch(next);

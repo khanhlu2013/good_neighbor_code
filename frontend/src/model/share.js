@@ -4,9 +4,9 @@ class Share {
     borrower,
     dateCreated,
     isApprovedByFrom,
-    isAwareApprovedByFrom,
+    isAwareApprove,
     isReturnedByTo,
-    isAwareReturnedByTo,
+    isAwareReturn,
     post
   ) {
     Object.assign(this, {
@@ -14,9 +14,9 @@ class Share {
       borrower,
       dateCreated,
       isApprovedByFrom,
-      isAwareApprovedByFrom,
+      isAwareApprove,
       isReturnedByTo,
-      isAwareReturnedByTo,
+      isAwareReturn,
       post
     });
   }

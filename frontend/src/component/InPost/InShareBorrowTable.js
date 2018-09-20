@@ -81,7 +81,7 @@ function TableRow(props) {
   };
 
   let awareContent;
-  if (share.isAwareApprovedByFrom) {
+  if (share.isAwareApprove) {
     awareContent = <FontAwesomeIcon icon="check" />;
   } else if (isAwaringShare) {
     awareContent = <LoadingIcon text={null} isAnimate={true} />;
@@ -99,7 +99,7 @@ function TableRow(props) {
   let returnContent;
   if (isReturningShare) {
     returnContent = <LoadingIcon text={null} isAnimate={true} />;
-  } else if (share.isAwareApprovedByFrom) {
+  } else if (share.isAwareApprove) {
     returnContent = (
       <button
         className="InShareBorrowTableRowReturnBtn btn btn-warning"
@@ -116,7 +116,7 @@ function TableRow(props) {
     <tr
       className={className({
         InShareBorrowTableRow: true,
-        "table-warning": !share.isAwareApprovedByFrom
+        "table-warning": !share.isAwareApprove
       })}
     >
       <td className={titleClass}>{post.title}</td>

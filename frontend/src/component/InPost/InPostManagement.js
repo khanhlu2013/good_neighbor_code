@@ -50,7 +50,7 @@ class InPostManagement extends Component {
         share =>
           share.borrower.id === loginUser.id &&
           share.isApprovedByFrom === true &&
-          share.isAwareApprovedByFrom === false
+          share.isAwareApprove === false
       )
     );
     const shares_1D = [].concat(...shares_2D);
@@ -83,21 +83,22 @@ class InPostManagement extends Component {
     });
     (async () => {
       const {
-        createdShareId,
-        createdDateCreated,
-        createdIsApprovedByFrom,
-        createdIsReceivedByTo,
-        createdIsReturnedByTo,
-        createdIsReceivedByFrom
+        id,
+        dateCreated,
+        isApprovedByFrom,
+        isAwareApprove,
+        isReturnedByTo,
+        isAwareReturn
       } = await API.createShare(postId);
+
       const newShare = new Share(
-        createdShareId,
+        id,
         this.props.loginUser,
-        createdDateCreated,
-        createdIsApprovedByFrom,
-        createdIsReceivedByTo,
-        createdIsReturnedByTo,
-        createdIsReceivedByFrom,
+        dateCreated,
+        isApprovedByFrom,
+        isAwareApprove,
+        isReturnedByTo,
+        isAwareReturn,
         null //post to be set later
       );
       const { posts } = this.state;
@@ -186,12 +187,12 @@ class InPostManagement extends Component {
     });
 
     (async () => {
-      const isAwareApprovedByFrom = await API.awareApprovedInShare(shareId);
+      const isAwareApprove = await API.awareApprovedInShare(shareId);
       const curPost = this.state.posts.find(post =>
         post.shares.some(share => share.id === shareId)
       );
       const curShare = curPost.shares.find(share => share.id === shareId);
-      curShare.isAwareApprovedByFrom = isAwareApprovedByFrom;
+      curShare.isAwareApprove = isAwareApprove;
       curPost.shares = [
         ...curPost.shares.filter(share => share.id !== shareId),
         curShare

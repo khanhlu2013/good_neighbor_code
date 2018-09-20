@@ -110,9 +110,9 @@ const createShare = async postID => {
     _id: createdShareId,
     dateCreated: createdDateCreated,
     isApprovedByFrom: createdIsApprovedByFrom,
-    isAwareApprovedByFrom: createdIsAwareApprovedByFrom,
+    isAwareApprove: createdIsAwareApprove,
     isReturnedByTo: createdIsReturnedByTo,
-    isAwareReturnedByTo: createdIsAwareReturnedByTo
+    isAwareReturn: createdIsAwareReturn
   } = await post("profile.createShare", {
     postID
   });
@@ -120,9 +120,9 @@ const createShare = async postID => {
     createdShareId,
     createdDateCreated,
     createdIsApprovedByFrom,
-    createdIsAwareApprovedByFrom,
+    createdIsAwareApprove,
     createdIsReturnedByTo,
-    createdIsAwareReturnedByTo
+    createdIsAwareReturn
   };
 };
 
@@ -155,11 +155,11 @@ const updateInShare = async (shareID, isReturnedByTo) => {
 };
 
 const awareApprovedInShare = async shareId => {
-  const { isAwareApprovedByFrom } = await post("profile.awareApprovedInShare", {
+  const { isAwareApprove } = await post("profile.awareApprovedInShare", {
     shareId
   });
 
-  return isAwareApprovedByFrom;
+  return isAwareApprove;
 };
 
 //- helper ----

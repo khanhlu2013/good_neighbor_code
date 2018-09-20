@@ -131,7 +131,9 @@ demo: show a connection management that undo will cover all senario
 . side track: make a remark how many request in borrow list, so that borrower might consider return it
 
 
+.awareApprovedInShare -> awareApproveShare
+
 
 . notify approvedRequestCount
 
-unaware
+isAwareApprove -> isAwareApprove
