@@ -135,5 +135,4 @@ demo: show a connection management that undo will cover all senario
 
 
 . notify approvedRequestCount
-
-isAwareApprove -> isAwareApprove
+. api.updateOutShare make sure it is correct ( a single return value isApprove)

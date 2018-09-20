@@ -3,7 +3,7 @@ class Share {
     id,
     borrower,
     dateCreated,
-    isApprovedByFrom,
+    isApprove,
     isAwareApprove,
     isReturnedByTo,
     isAwareReturn,
@@ -13,7 +13,7 @@ class Share {
       id,
       borrower,
       dateCreated,
-      isApprovedByFrom,
+      isApprove,
       isAwareApprove,
       isReturnedByTo,
       isAwareReturn,
@@ -26,19 +26,19 @@ class Share {
   }
 
   get isRequest() {
-    return this.isApprovedByFrom === undefined;
+    return this.isApprove === undefined;
   }
 
   get isBorrow() {
-    return this.isApprovedByFrom === true && this.isReturnedByTo === false;
+    return this.isApprove === true && this.isReturnedByTo === false;
   }
 
   get isReturn() {
-    return this.isApprovedByFrom === true && this.isReturnedByTo === true;
+    return this.isApprove === true && this.isReturnedByTo === true;
   }
 
   get isDenied() {
-    return this.isApprovedByFrom === false;
+    return this.isApprove === false;
   }
 }
 

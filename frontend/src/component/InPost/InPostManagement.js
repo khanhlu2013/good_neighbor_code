@@ -49,7 +49,7 @@ class InPostManagement extends Component {
       post.shares.filter(
         share =>
           share.borrower.id === loginUser.id &&
-          share.isApprovedByFrom === true &&
+          share.isApprove === true &&
           share.isAwareApprove === false
       )
     );
@@ -85,7 +85,7 @@ class InPostManagement extends Component {
       const {
         id,
         dateCreated,
-        isApprovedByFrom,
+        isApprove,
         isAwareApprove,
         isReturnedByTo,
         isAwareReturn
@@ -95,7 +95,7 @@ class InPostManagement extends Component {
         id,
         this.props.loginUser,
         dateCreated,
-        isApprovedByFrom,
+        isApprove,
         isAwareApprove,
         isReturnedByTo,
         isAwareReturn,

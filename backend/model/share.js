@@ -19,7 +19,7 @@ const ShareSchema = new Schema({
     default: Date.now,
     required: true
   },
-  isApprovedByFrom: {
+  isApprove: {
     type: Boolean,
     required: false //pending request is undefined
   },
@@ -43,7 +43,7 @@ const ShareSchema = new Schema({
 });
 
 ShareSchema.pre("remove", async function() {
-  if (this.isApprovedByFrom !== undefined) {
+  if (this.isApprove !== undefined) {
     throw Error(
       "Can only remove request share, but not deny, or borrow, or return share"
     );
@@ -55,7 +55,7 @@ ShareSchema.pre("save", async function() {
     _id: shareID,
     post: postID,
     borrower,
-    isApprovedByFrom,
+    isApprove,
     isReturnedByTo,
     isNew
   } = this;
@@ -68,7 +68,7 @@ ShareSchema.pre("save", async function() {
   }
 
   if (isNew) {
-    if (isApprovedByFrom !== undefined || isReturnedByTo === true) {
+    if (isApprove !== undefined || isReturnedByTo === true) {
       throw Error("Unexpected initial Share state ");
     }
 
@@ -88,7 +88,7 @@ ShareSchema.pre("save", async function() {
       post: postID,
       borrower,
       $or: [
-        { isApprovedByFrom: { $not: { $eq: true } } }, //currently not_borrow <=> aka <=> request_or_deny
+        { isApprove: { $not: { $eq: true } } }, //currently not_borrow <=> aka <=> request_or_deny
         { isReturnedByTo: false } //currently borrow
       ]
     });
@@ -97,11 +97,11 @@ ShareSchema.pre("save", async function() {
     }
   } else {
     //edit share
-    if (isApprovedByFrom === true) {
+    if (isApprove === true) {
       const verifyingShare = await Share.findOne({
         _id: { $not: { $eq: shareID } },
         post: postID,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: false
       });
       if (verifyingShare) {

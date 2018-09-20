@@ -33,7 +33,7 @@ function rawsToPosts(raws) {
         shareRaw._id,
         borrower,
         shareRaw.dateCreated,
-        shareRaw.isApprovedByFrom,
+        shareRaw.isApprove,
         shareRaw.isAwareApprove,
         shareRaw.isReturnedByTo,
         shareRaw.isAwareReturn,

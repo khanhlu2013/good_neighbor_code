@@ -269,7 +269,7 @@ route.post("/updateOutShare", authCheck, (req, res, next) => {
       throw Error("Unauthorized access");
     }
 
-    share.isApprovedByFrom = isApprove;
+    share.isApprove = isApprove;
     await share.save();
     res.send(share);
   })().catch(next);

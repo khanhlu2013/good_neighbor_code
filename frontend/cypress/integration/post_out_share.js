@@ -45,7 +45,7 @@ describe("Outpost share ", () => {
       {
         post,
         borrower: tu,
-        isApprovedByFrom: undefined,
+        isApprove: undefined,
         isReturnedByTo: false
       }
     ]);
@@ -60,7 +60,7 @@ describe("Outpost share ", () => {
       {
         post,
         borrower: tu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: false
       }
     ]);
@@ -75,7 +75,7 @@ describe("Outpost share ", () => {
       {
         post,
         borrower: tu,
-        isApprovedByFrom: false,
+        isApprove: false,
         isReturnedByTo: false
       }
     ]);
@@ -90,7 +90,7 @@ describe("Outpost share ", () => {
       {
         post,
         borrower: tu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: true
       }
     ]);
@@ -104,7 +104,7 @@ describe("Outpost share ", () => {
     const share = {
       post,
       borrower: tu,
-      isApprovedByFrom: undefined,
+      isApprove: undefined,
       isReturnedByTo: false
     };
 
@@ -136,7 +136,7 @@ describe("Outpost share ", () => {
     const share = {
       post,
       borrower: tu,
-      isApprovedByFrom: undefined,
+      isApprove: undefined,
       isReturnedByTo: false
     };
 

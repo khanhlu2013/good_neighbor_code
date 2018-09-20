@@ -56,7 +56,7 @@ describe("InPost", () => {
       {
         post,
         borrower: lu,
-        isApprovedByFrom: undefined,
+        isApprove: undefined,
         isReturnedByTo: false
       }
     ]);
@@ -70,7 +70,7 @@ describe("InPost", () => {
       {
         post,
         borrower: lu,
-        isApprovedByFrom: false,
+        isApprove: false,
         isReturnedByTo: false
       }
     ]);
@@ -84,7 +84,7 @@ describe("InPost", () => {
       {
         post,
         borrower: lu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: false
       }
     ]);
@@ -98,7 +98,7 @@ describe("InPost", () => {
       {
         post,
         borrower: lu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: true
       }
     ]);
@@ -126,7 +126,7 @@ describe("InPost", () => {
       {
         post,
         borrower: lu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: false
       }
     ]);
@@ -165,7 +165,7 @@ describe("InPost", () => {
       {
         post: post,
         borrower: lu,
-        isApprovedByFrom: true,
+        isApprove: true,
         isReturnedByTo: false
       }
     ]);

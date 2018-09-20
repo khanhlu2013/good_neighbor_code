@@ -107,22 +107,22 @@ const inPosts = async () => {
 // -  share
 const createShare = async postID => {
   const {
-    _id: createdShareId,
-    dateCreated: createdDateCreated,
-    isApprovedByFrom: createdIsApprovedByFrom,
-    isAwareApprove: createdIsAwareApprove,
-    isReturnedByTo: createdIsReturnedByTo,
-    isAwareReturn: createdIsAwareReturn
+    _id: id,
+    dateCreated,
+    isApprove,
+    isAwareApprove,
+    isReturnedByTo,
+    isAwareReturn
   } = await post("profile.createShare", {
     postID
   });
   return {
-    createdShareId,
-    createdDateCreated,
-    createdIsApprovedByFrom,
-    createdIsAwareApprove,
-    createdIsReturnedByTo,
-    createdIsAwareReturn
+    id,
+    dateCreated,
+    isApprove,
+    isAwareApprove,
+    isReturnedByTo,
+    isAwareReturn
   };
 };
 
@@ -131,15 +131,12 @@ const deleteShare = async shareID => {
 };
 
 const updateOutShare = async (shareID, isApprove) => {
-  const { isApprovedByFrom: decidedIsApprovedByFrom } = await post(
-    "profile.updateOutShare",
-    {
-      shareID,
-      isApprove
-    }
-  );
+  const { isApprove: updatedIsApprove } = await post("profile.updateOutShare", {
+    shareID,
+    isApprove
+  });
 
-  return decidedIsApprovedByFrom;
+  return updatedIsApprove;
 };
 
 const updateInShare = async (shareID, isReturnedByTo) => {

@@ -141,17 +141,14 @@ class OutPostManagement extends Component {
   _updateShare = (shareID, isApprove) => {
     this.setState({ isDecidingPost: true });
     (async () => {
-      const decidedIsApprovedByFrom = await API.updateOutShare(
-        shareID,
-        isApprove
-      );
+      const decidedIsApprove = await API.updateOutShare(shareID, isApprove);
       const [decidedPost] = this.state.posts.filter(post =>
         post.shares.some(share => share.id === shareID)
       );
       const [decidedShare] = decidedPost.shares.filter(
         share => share.id === shareID
       );
-      decidedShare.isApprovedByFrom = decidedIsApprovedByFrom;
+      decidedShare.isApprove = decidedIsApprove;
       decidedPost.shares = [
         ...decidedPost.shares.filter(share => share.id !== shareID),
         decidedShare
