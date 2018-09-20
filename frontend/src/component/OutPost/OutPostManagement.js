@@ -25,7 +25,7 @@ class OutPostManagement extends Component {
     isDecidingPost: false
   };
 
-  static calculateRequestPostCount = posts => {
+  static countRequestPost = posts => {
     if (posts === null) {
       return null;
     }
@@ -45,7 +45,7 @@ class OutPostManagement extends Component {
 
   componentDidMount() {
     const requestPostCount = null;
-    this.props.onNotifyOutPostRequestCount(requestPostCount);
+    this.props.onOutPostRequestCountChange(requestPostCount);
     (async () => {
       this.setPostsState(await API.outPosts());
     })();
@@ -53,9 +53,9 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    const requestPostCount = OutPostManagement.calculateRequestPostCount(posts);
+    const requestPostCount = OutPostManagement.countRequestPost(posts);
 
-    this.props.onNotifyOutPostRequestCount(requestPostCount);
+    this.props.onOutPostRequestCountChange(requestPostCount);
   }
 
   // CRUD START --------------------------------
@@ -248,7 +248,7 @@ class OutPostManagement extends Component {
 }
 OutPostManagement.propType = {
   loginUser: PropTypes.object.isRequired,
-  onNotifyOutPostRequestCount: PropTypes.func.isRequired
+  onOutPostRequestCountChange: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

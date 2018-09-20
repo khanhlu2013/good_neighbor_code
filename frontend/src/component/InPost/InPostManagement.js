@@ -40,7 +40,7 @@ class InPostManagement extends Component {
     };
   }
 
-  static calculateUnawareApprovedShareCount(posts, loginUser) {
+  static countUnawareApproveShare(posts, loginUser) {
     if (posts === null) {
       return null;
     }
@@ -57,13 +57,10 @@ class InPostManagement extends Component {
     return shares_1D.length;
   }
 
-  setPostsStateAndNotifyUnawareApprovedShareCount(posts) {
+  setPostsAndNotifyUnawareApproveShare(posts) {
     this.setState({ posts });
-    this.props.onNotifyUnawareApprovedShareCount(
-      InPostManagement.calculateUnawareApprovedShareCount(
-        posts,
-        this.props.loginUser
-      )
+    this.props.onUnawareApproveShareCountChange(
+      InPostManagement.countUnawareApproveShare(posts, this.props.loginUser)
     );
   }
 
@@ -74,7 +71,7 @@ class InPostManagement extends Component {
         share => share.borrower.id !== this.props.loginUser.id
       )
     );
-    this.setPostsStateAndNotifyUnawareApprovedShareCount(inPostsFilterDeny);
+    this.setPostsAndNotifyUnawareApproveShare(inPostsFilterDeny);
   }
 
   onCreateShare = postId => {
@@ -106,7 +103,7 @@ class InPostManagement extends Component {
       curPost.shares.push(newShare);
       newShare.post = curPost;
 
-      this.setPostsStateAndNotifyUnawareApprovedShareCount([
+      this.setPostsAndNotifyUnawareApproveShare([
         ...posts.filter(post => post.id !== postId),
         curPost
       ]);
@@ -131,7 +128,7 @@ class InPostManagement extends Component {
         post.shares.some(share => share.id === shareId)
       );
       curPost.shares = curPost.shares.filter(share => share.id !== shareId);
-      this.setPostsStateAndNotifyUnawareApprovedShareCount([
+      this.setPostsAndNotifyUnawareApproveShare([
         ...posts.filter(post => post.id !== curPost.id),
         curPost
       ]);
@@ -168,7 +165,7 @@ class InPostManagement extends Component {
           ...curPost.shares.filter(share => share.id !== shareId),
           curShare
         ];
-        this.setPostsStateAndNotifyUnawareApprovedShareCount([
+        this.setPostsAndNotifyUnawareApproveShare([
           ...this.state.posts.filter(post => post.id !== curPost.id),
           curPost
         ]);
@@ -197,7 +194,7 @@ class InPostManagement extends Component {
         ...curPost.shares.filter(share => share.id !== shareId),
         curShare
       ];
-      this.setPostsStateAndNotifyUnawareApprovedShareCount([
+      this.setPostsAndNotifyUnawareApproveShare([
         ...this.state.posts.filter(post => post.id !== curPost.id),
         curPost
       ]);
@@ -256,7 +253,7 @@ class InPostManagement extends Component {
 }
 InPostManagement.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  onNotifyUnawareApprovedShareCount: PropTypes.func.isRequired
+  onUnawareApproveShareCountChange: PropTypes.func.isRequired
 };
 
 export { InPostManagement };

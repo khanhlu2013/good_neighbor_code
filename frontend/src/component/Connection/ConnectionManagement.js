@@ -29,7 +29,7 @@ class ConnectionManagement extends Component {
   }
 
   componentDidMount() {
-    this.props.onNotifyFriendRequestCount(null);
+    this.props.onFriendRequestCountChange(null);
 
     (async () => {
       const connections = await API.connections();
@@ -39,7 +39,7 @@ class ConnectionManagement extends Component {
 
   setConnectionsAndNotifyRequestCount(connections) {
     this.setState({ connections });
-    this.props.onNotifyFriendRequestCount(
+    this.props.onFriendRequestCountChange(
       ConnectionManagement.calculateFriendRequestCount(
         connections,
         this.props.loginUser.id
@@ -48,7 +48,7 @@ class ConnectionManagement extends Component {
   }
 
   onCreateConnection = userIdToAdd => {
-    this.props.onNotifyFriendRequestCount(null);
+    this.props.onFriendRequestCountChange(null);
     this.setState({ isCreatingConnection: true });
     (async () => {
       const newConnection = await API.createConnection(userIdToAdd);
@@ -61,7 +61,7 @@ class ConnectionManagement extends Component {
   };
 
   onUpdateConnection = (connectionId, isApproved) => {
-    this.props.onNotifyFriendRequestCount(null);
+    this.props.onFriendRequestCountChange(null);
     this.setState({
       updatingConnectionIds: [...this.state.updatingConnectionIds, connectionId]
     });
@@ -178,6 +178,6 @@ class ConnectionManagement extends Component {
 
 ConnectionManagement.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  onNotifyFriendRequestCount: PropTypes.func.isRequired
+  onFriendRequestCountChange: PropTypes.func.isRequired
 };
 export { ConnectionManagement };

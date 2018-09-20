@@ -11,18 +11,18 @@ class PrivateApp extends Component {
   state = {
     requestOutPostCount: null,
     requestFriendCount: null,
-    unawareApprovedShareCount: null,
+    unawareApproveShareCount: null,
     selectedTabIndex: null
   };
-  onFriendRequestCountChanged = count => {
+  onFriendRequestCountChange = count => {
     this.setState({ requestFriendCount: count });
   };
-  onOutPostRequestCountChanged = count => {
+  onOutPostRequestCountChange = count => {
     this.setState({ requestOutPostCount: count });
   };
 
-  onUnawareApprovedShareCountChanged = count => {
-    this.setState({ unawareApprovedShareCount: count });
+  onUnawareApproveShareCountChange = count => {
+    this.setState({ unawareApproveShareCount: count });
   };
 
   _computeNotificationHtml = count => {
@@ -42,7 +42,7 @@ class PrivateApp extends Component {
     const {
       requestOutPostCount,
       requestFriendCount,
-      unawareApprovedShareCount
+      unawareApproveShareCount
     } = this.state;
     const { loginUser } = this.props;
     const outPostNotification = this._computeNotificationHtml(
@@ -53,7 +53,7 @@ class PrivateApp extends Component {
     );
 
     const inPostNotification = this._computeNotificationHtml(
-      unawareApprovedShareCount
+      unawareApproveShareCount
     );
     return (
       <div id="PrivateApp-react">
@@ -83,21 +83,21 @@ class PrivateApp extends Component {
           <TabPanel>
             <InPostManagement
               loginUser={this.props.loginUser}
-              onNotifyUnawareApprovedShareCount={
-                this.onUnawareApprovedShareCountChanged
+              onUnawareApproveShareCountChange={
+                this.onUnawareApproveShareCountChange
               }
             />
           </TabPanel>
           <TabPanel>
             <OutPostManagement
               loginUser={loginUser}
-              onNotifyOutPostRequestCount={this.onOutPostRequestCountChanged}
+              onOutPostRequestCountChange={this.onOutPostRequestCountChange}
             />
           </TabPanel>
           <TabPanel>
             <ConnectionManagement
               loginUser={this.props.loginUser}
-              onNotifyFriendRequestCount={this.onFriendRequestCountChanged}
+              onFriendRequestCountChange={this.onFriendRequestCountChange}
             />
           </TabPanel>
         </Tabs>
