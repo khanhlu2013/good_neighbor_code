@@ -61,7 +61,9 @@ function TableRow(props) {
   const onCreateShareClicked = e => {
     onCreateShare(inPost.id);
   };
-  const isMeRequest = inPost.isRequestBy(loginUser.id);
+  const isMeRequest = inPost.requestShares.some(
+    share => share.borrower.id === loginUser.id
+  );
   const borrowShare = inPost.curBorrowShare;
   const borrower = borrowShare ? borrowShare.borrower : null;
   const isMeBorrow = borrower && borrower.id === loginUser.id;

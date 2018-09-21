@@ -86,7 +86,6 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . when connection change, inPost need to refresh (by a key from privateApp)
   . remove react tab, so that i can make the app more perforamnce on lazy loading.  ( i need to find a better library)
   . create notification-dashboard api for dash board notification. this can be delay until i find a better react tab. cause for now, all stuff will load, and will set my dash board for me
-. optimization: utilize backend data when crud api, do not refresh the whole data
 . split out post into 2 stated component: crud and decide (the management code is too big)
 . date sort, for request, borrow, return share: create field for model and create ui feature to default sort and custom sort
 . split outpost component into 2 stated componont: crud and decision
@@ -95,6 +94,11 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . a bit of flashing public_app after login before loading the private app
 . side track: on demo, make a remark how many request in borrow list, so that borrower might consider return it
 . demo: make video to show what is good neightboor look like. 
+. move validation logic out of mongoose and into mongo db. this way, i do not need to use mongoose and still can benefit from default value and some validation logic stuff. 
+. fail attempt: can i use mongoose to embed more logic into the db such as default value
+  . using console, i can insert a new db with the default value
+  . insert a doc and validate that default value is honor. 
+  . this conclude mongoose didn't create db as i want. 
 
 . TODAY
 . -----
@@ -128,12 +132,22 @@ is the current cookie httpOnly? before i continue reading the article, can i use
 ok, so lets say i can verify that the cookie is alive. i just go ahead and load the private app. private app don't need to have loginUser. it will get it by itself. if it fail, then we can just throw error. public app will have option to login. after login, and redirect, the app will know if it is private or public. this all lay the the ability to know if my cookie is valid or not right? lets say fist time the app find out that there is no sesion and load the public app, public app will try to login wtih failed info. is the server will set the cookie or not?
 
 ---
-
 login fail, see what happen
+---
+consider use frontEnd model for test to make sure we have the correct data
+
+
+work on date and sort and filter ...
+  . clean out the model
+  . work on constructor
+  . work on display and sort
+  . work on filtering
+
 
 ---
+. ok, lets see if i need to make a few more date though, lets see what it is. i will figure this out as i go. but lets just sort by the date i already have. display them too
 
-when is my cookie get set by passport? seem like it is only set by passport auth.
-
----
-
+. inPost
+  . display date
+  . sort date
+  . hey how about filter by post title?

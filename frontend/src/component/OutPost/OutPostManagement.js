@@ -108,7 +108,7 @@ class OutPostManagement extends Component {
           createdIsActive,
           createdTitle,
           createdDescription,
-          createdDateCreated,
+          new Date(createdDateCreated),
           []
         );
         this.setState({ posts: [...this.state.posts, newPost] });

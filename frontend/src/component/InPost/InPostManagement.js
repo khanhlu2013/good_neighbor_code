@@ -91,7 +91,7 @@ class InPostManagement extends Component {
       const newShare = new Share(
         id,
         this.props.loginUser,
-        dateCreated,
+        new Date(dateCreated),
         isApprove,
         isAwareApprove,
         isReturn,

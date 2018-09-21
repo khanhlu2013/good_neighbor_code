@@ -1,5 +1,3 @@
-// DB level
-
 Cypress.Commands.add("setupDb", (users, connections, posts, shares) => {
   cy.clearAllDb();
   cy.insertUsers(users);
@@ -95,7 +93,7 @@ Cypress.Commands.add("insertPosts", posts => {
         p.title
       }","description":"${
         p.description
-      }","isActive":${p.isActive.toString()} ${idStr}}`;
+      }","isActive":${p.isActive.toString()}, "dateCreated":new Date() ${idStr}}`;
     })
     .join(",");
 
@@ -118,7 +116,9 @@ Cypress.Commands.add("insertShares", shares => {
         s.isApprove
       },"isReturn":${s.isReturn},"isAwareReturn":${
         s.isAwareReturn
-      },"isAwareApprove":${s.isAwareApprove} ${idStr}}`;
+      },"dateCreated":new Date(), "isAwareApprove":${
+        s.isAwareApprove
+      } ${idStr}}`;
     })
     .join(",");
   cy.exec(

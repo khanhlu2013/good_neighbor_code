@@ -1,3 +1,5 @@
+import _ from "underscore";
+
 class Share {
   constructor(
     id,
@@ -9,6 +11,13 @@ class Share {
     isAwareReturn,
     post
   ) {
+    if (id) {
+      //when id is truthy, it is not being temporary constructed in the front end and need to be validated
+      if (!_.isDate(dateCreated)) {
+        throw Error(`dateCreated '${dateCreated}' is not a Date`);
+      }
+    }
+
     Object.assign(this, {
       id,
       borrower,
