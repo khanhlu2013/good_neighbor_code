@@ -207,7 +207,7 @@ class InPostManagement extends Component {
     let content;
     if (this.state.posts !== null) {
       content = (
-        <div className="container">
+        <div className="container-fluid ">
           <div className="row">
             <div className="col-sm">
               <InPostTable

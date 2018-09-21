@@ -19,7 +19,7 @@ function Table(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={titleClass}>log</th>
+          <th className={titleClass}>return</th>
           <th className={fromClass}>from</th>
           <th className={recycleClass}>
             <FontAwesomeIcon icon="recycle" />

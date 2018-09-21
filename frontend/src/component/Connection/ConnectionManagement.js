@@ -122,7 +122,7 @@ class ConnectionManagement extends Component {
       );
 
       htmlContent = (
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-sm">
               <ConnectionFriendTable

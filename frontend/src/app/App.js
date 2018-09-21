@@ -27,6 +27,7 @@ import {
 import { API_URL } from "../api/api-url";
 import { PublicApp } from "./appPublic";
 import { Login } from "./login";
+import { LoadingIcon } from "../util";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -46,36 +47,49 @@ library.add(
 
 class App extends Component {
   state = {
-    loginUser: null
+    loginUser: undefined
   };
 
-  componentDidMount() {
-    (async () => {
-      const user = await API.profile();
-      if (user) {
-        this.setState({ loginUser: user });
-      }
-    })();
+  async componentDidMount() {
+    this.setState({ loginUser: await API.profile() });
   }
 
   render() {
     const { loginUser } = this.state;
+    let header;
+    if (loginUser === undefined) {
+      header = (
+        <h4>
+          <LoadingIcon text="loading" isAnimate={true} />
+        </h4>
+      );
+    } else if (loginUser === null) {
+      header = <Login />;
+    } else {
+      header = (
+        <h4>
+          {loginUser.name} - {loginUser.email} -
+          <a href={API_URL("profile.logout")}> logout</a>
+        </h4>
+      );
+    }
+
+    let content;
+    if (loginUser === undefined) {
+      content = null;
+    } else if (loginUser === null) {
+      content = <PublicApp />;
+    } else {
+      content = <PrivateApp loginUser={loginUser} />;
+    }
+
     return (
       <div>
         <div className="App-header">
           <h1>Welcome to Good Neighbor</h1>
-          {loginUser ? (
-            <h4>
-              {loginUser.name} - {loginUser.email} -
-              <a href={API_URL("profile.logout")}> logout</a>
-            </h4>
-          ) : (
-            <Login />
-          )}
+          {header}
         </div>
-        <div className="App-body">
-          {loginUser ? <PrivateApp loginUser={loginUser} /> : <PublicApp />}
-        </div>
+        <div className="App-body">{content}</div>
       </div>
     );
   }

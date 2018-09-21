@@ -183,7 +183,7 @@ class OutPostManagement extends Component {
     let content;
     if (posts) {
       content = (
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-sm">
               <OutPostTable
