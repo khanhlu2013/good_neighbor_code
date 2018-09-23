@@ -1,11 +1,11 @@
 import _ from "underscore";
 
 class Post {
-  constructor(id, user, isActive, title, description, dateCreated, shares) {
+  constructor(id, user, isActive, title, description, dateCreate, shares) {
     if (id) {
       //when id is truthy, it is not being temporary constructed in the front end and need to be validated
-      if (id && !_.isDate(dateCreated)) {
-        throw Error(`dateCreated '${dateCreated}' is not a Date`);
+      if (id && !_.isDate(dateCreate)) {
+        throw Error(`dateCreate '${dateCreate}' is not a Date`);
       }
     }
 
@@ -15,7 +15,7 @@ class Post {
       isActive,
       title,
       description,
-      dateCreated,
+      dateCreate,
       shares
     });
   }

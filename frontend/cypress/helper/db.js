@@ -93,7 +93,7 @@ Cypress.Commands.add("insertPosts", posts => {
         p.title
       }","description":"${
         p.description
-      }","isActive":${p.isActive.toString()}, "dateCreated":new Date() ${idStr}}`;
+      }","isActive":${p.isActive.toString()}, "dateCreate":new Date() ${idStr}}`;
     })
     .join(",");
 
@@ -116,7 +116,7 @@ Cypress.Commands.add("insertShares", shares => {
         s.isApprove
       },"isReturn":${s.isReturn},"isAwareReturn":${
         s.isAwareReturn
-      },"dateCreated":new Date(), "isAwareApprove":${
+      },"dateCreate":new Date(), "isAwareApprove":${
         s.isAwareApprove
       } ${idStr}}`;
     })

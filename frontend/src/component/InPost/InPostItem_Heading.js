@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { date2String } from "../../util";
 
 function InPostItemHeading(props) {
-  const { postUser, dateCreated } = props;
+  const { postUser, dateCreate } = props;
   return (
     <div className="in-post-item-heading">
       <div className="container-fluid">
@@ -17,7 +17,7 @@ function InPostItemHeading(props) {
             </span>
           </div>
           <div className="col-sm text-secondary font-weight-light text-right">
-            {`post on: ${date2String(dateCreated)}`}
+            {`post on: ${date2String(dateCreate)}`}
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@ function InPostItemHeading(props) {
 }
 InPostItemHeading.propTypes = {
   postUser: PropTypes.object.isRequired,
-  dateCreated: PropTypes.instanceOf(Date).isRequired
+  dateCreate: PropTypes.instanceOf(Date).isRequired
 };
 
 export { InPostItemHeading };

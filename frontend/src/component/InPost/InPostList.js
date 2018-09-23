@@ -21,7 +21,7 @@ function InPostList(props) {
     content = <p className="text-muted text-center h4">there are no data</p>;
   } else {
     content = posts
-      .sort((p1, p2) => p2.dateCreated - p1.dateCreated)
+      .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
       .map(post => (
         <InPostItem
           key={post.id}

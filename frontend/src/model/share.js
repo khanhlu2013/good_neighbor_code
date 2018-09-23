@@ -4,7 +4,7 @@ class Share {
   constructor(
     id,
     borrower,
-    dateCreated,
+    dateCreate,
     isApprove,
     isAwareApprove,
     isReturn,
@@ -14,15 +14,15 @@ class Share {
   ) {
     if (id) {
       //when id is truthy, it is not being temporary constructed in the front end and need to be validated
-      if (!_.isDate(dateCreated)) {
-        throw Error(`dateCreated '${dateCreated}' is not a Date`);
+      if (!_.isDate(dateCreate)) {
+        throw Error(`dateCreate '${dateCreate}' is not a Date`);
       }
     }
 
     Object.assign(this, {
       id,
       borrower,
-      dateCreated,
+      dateCreate,
       isApprove,
       isAwareApprove,
       isReturn,

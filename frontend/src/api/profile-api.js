@@ -57,7 +57,7 @@ const createPost = async (title, description, isActive) => {
     isActive: createdIsActive,
     title: createdTitle,
     description: createdDescription,
-    dateCreated: createdDateCreated
+    dateCreate: createdDateCreated
   } = await post("profile.createPost", {
     title,
     description,
@@ -106,12 +106,12 @@ const inPosts = async () => {
 
 // -  share
 const createShare = async postID => {
-  const { _id: id, dateCreated } = await post("profile.createShare", {
+  const { _id: id, dateCreate } = await post("profile.createShare", {
     postID
   });
   return {
     id,
-    dateCreated
+    dateCreate
   };
 };
 

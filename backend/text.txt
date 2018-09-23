@@ -100,6 +100,13 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
   . insert a doc and validate that default value is honor. 
   . this conclude mongoose didn't create db as i want. 
 . lets just work on fb style return record for InPost too fuck it
+. can i create a proptype for my own model class? to validate dateReturn it could be nullOrmustbeadate
+
+
+
+
+
+
 
 . TODAY
 . -----
@@ -166,13 +173,11 @@ i don't like curBorrowShare to be undefined.
   . change the InPostItem : const curBorrowShare = post.curBorrowShare | null;
 
 ---
+. show date on decision and sort too?
+
+
 . before i like to add more date into the model, lets deal with the test.
 
-. show date on decision
-. dateCreated -> dateCreate
-
-
-. can i create a proptype for my own model class?
 
 
 

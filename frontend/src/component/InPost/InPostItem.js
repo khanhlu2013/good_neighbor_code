@@ -41,7 +41,7 @@ function InPostItem(props) {
   } = props;
   return (
     <div className="in-post-item bg-white">
-      <InPostItemHeading postUser={post.user} dateCreated={post.dateCreated} />
+      <InPostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
 
       <div className="container">
         <InPostBody title={post.title} description={post.description} />

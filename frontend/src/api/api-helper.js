@@ -32,7 +32,7 @@ function rawsToPosts(raws) {
       return new Share(
         shareRaw._id,
         borrower,
-        new Date(shareRaw.dateCreated),
+        new Date(shareRaw.dateCreate),
         shareRaw.isApprove,
         shareRaw.isAwareApprove,
         shareRaw.isReturn,
@@ -48,7 +48,7 @@ function rawsToPosts(raws) {
       postRaw.isActive,
       postRaw.title,
       postRaw.description,
-      new Date(postRaw.dateCreated),
+      new Date(postRaw.dateCreate),
       shares
     );
     for (const share of post.shares) {

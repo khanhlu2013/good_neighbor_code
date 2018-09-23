@@ -14,7 +14,7 @@ const ShareSchema = new Schema({
     ref: "User",
     required: true
   },
-  dateCreated: {
+  dateCreate: {
     type: Date,
     default: Date.now,
     required: true

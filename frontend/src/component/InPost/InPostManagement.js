@@ -88,12 +88,12 @@ class InPostManagement extends Component {
       requestingPostIds: [...this.state.requestingPostIds, postId]
     });
     (async () => {
-      const { id, dateCreated } = await API.createShare(postId);
+      const { id, dateCreate } = await API.createShare(postId);
 
       const newShare = new Share(
         id,
         this.props.loginUser,
-        new Date(dateCreated),
+        new Date(dateCreate),
         undefined, //isApprove,
         false, //isAwareApprove,
         false, //isReturn,
