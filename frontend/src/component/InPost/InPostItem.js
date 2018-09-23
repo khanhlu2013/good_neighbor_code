@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { InPostItemHeading } from "./InPostItem_Heading";
-import { InPostItemRequestList } from "./InPostItem_RequestList";
-import { InPostItemReturnList } from "./InPostItem_ReturnList";
-import { InPostItemFooting } from "./InPostItem_Footing";
+import { InPostItemHeading } from "./inPostItem_heading";
+import { InPostItemRequestList } from "./inPostItem_requestlist";
+import { InPostItemReturnList } from "./inPostItem_returnList";
+import { InPostItemFooting } from "./inPostItem_footing";
 import { User } from "../../model/user";
 import { nullOrRequiredValidator } from "../../util";
 

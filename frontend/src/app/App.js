@@ -67,10 +67,10 @@ class App extends Component {
       header = <Login />;
     } else {
       header = (
-        <h4>
+        <div>
           {loginUser.name} - {loginUser.email} -
           <a href={API_URL("profile.logout")}> logout</a>
-        </h4>
+        </div>
       );
     }
 
@@ -86,7 +86,7 @@ class App extends Component {
     return (
       <div>
         <div className="App-header">
-          <h1>Welcome to Good Neighbor</h1>
+          <h1>Good Neighbor</h1>
           {header}
         </div>
         <div className="App-body">{content}</div>

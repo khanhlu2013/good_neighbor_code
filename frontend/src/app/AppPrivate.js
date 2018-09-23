@@ -4,8 +4,8 @@ import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
 import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
 import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
-import { InPostManagement } from "../component/InPost/InPostManagement.js";
-import { LoadingIcon } from "../util.js";
+import { InPostManagement } from "../component/inPost/inPostManagement.js";
+import { computeNotificationCountHtml } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
@@ -32,9 +32,11 @@ class PrivateApp extends Component {
       unawareApproveShareCount
     } = this.state;
 
-    const connectionNotification = _computeNotificationHtml(friendRequestCount);
-    const outPostNotification = _computeNotificationHtml(postRequestCount);
-    const inPostNotification = _computeNotificationHtml(
+    const connectionNotification = computeNotificationCountHtml(
+      friendRequestCount
+    );
+    const outPostNotification = computeNotificationCountHtml(postRequestCount);
+    const inPostNotification = computeNotificationCountHtml(
       unawareApproveShareCount
     );
 
@@ -43,23 +45,26 @@ class PrivateApp extends Component {
     return (
       <div id="PrivateApp-react">
         <Tabs forceRenderTabPanel={true}>
-          <div id="TabSelector-react" className="Tab-selector-list">
+          <div
+            id="TabSelector-react"
+            className="tab-selector-list text-center h4 font-weight-light"
+          >
             <TabList>
               <Tab>
                 <span id="TabSelector_InPost">
-                  Friend Posts
+                  friend posts
                   {inPostNotification}
                 </span>
               </Tab>
               <Tab>
                 <span id="TabSelector_OutPost">
-                  My Posts
+                  my posts
                   {outPostNotification}
                 </span>
               </Tab>
               <Tab>
                 <span id="TabSelector_Connection">
-                  Friend
+                  friends
                   {connectionNotification}
                 </span>
               </Tab>
@@ -93,19 +98,6 @@ class PrivateApp extends Component {
 PrivateApp.propTypes = {
   loginUser: PropTypes.object.isRequired
 };
-
-function _computeNotificationHtml(count) {
-  let html = null;
-  if (count !== null && count !== 0) {
-    html = <span className="text-danger">{` (${count})`}</span>;
-  } else if (count === null) {
-    html = <LoadingIcon text={null} isAnimate={true} />;
-  } else {
-    if (count !== 0) throw Error("Unexpected code path");
-    html = null;
-  }
-  return html;
-}
 
 export { PrivateApp };
 

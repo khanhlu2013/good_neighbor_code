@@ -4,6 +4,8 @@ import className from "classnames";
 import { User } from "../../model/user";
 import { nullOrRequiredValidator, LoadingIcon } from "../../util";
 import { Share } from "../../model/share";
+import { InPostItemFootingApprove } from "./inPostItem_footing_approve";
+import { InPostItemFootingRequest } from "./inPostItem_footing_request";
 
 function InPostItemFooting(props) {
   const {
@@ -26,88 +28,28 @@ function InPostItemFooting(props) {
     onCreateShare(postId);
   };
 
-  const onUndoRequestClicked = e => {
-    onDeleteShare(myRequestShare.id);
-  };
-
-  const onAwareShareClicked = e => {
-    onAwareShare(curBorrowShare.id);
-  };
-
-  const onReturnShareClicked = e => {
-    onReturnShare(curBorrowShare.id);
-  };
-
   let content;
 
   if (myRequestShare) {
     content = (
-      <div className="text-success">
-        You are in the waiting list. Please wait for response.
-        <button
-          onClick={onUndoRequestClicked}
-          className={className({
-            btn: true,
-            "btn-warning": !isDeleteingShare,
-            "btn-secondary": isDeleteingShare
-          })}
-        >
-          {isDeleteingShare ? (
-            <LoadingIcon text="undo" isAnimate={true} />
-          ) : (
-            "undo"
-          )}
-        </button>
-      </div>
+      <InPostItemFootingRequest
+        isDeleteingShare={isDeleteingShare}
+        onDeleteShare={onDeleteShare}
+        myRequestShareId={myRequestShare.id}
+      />
     );
   } else if (
     curBorrowShare !== null &&
     curBorrowShare.borrower.id === loginUser.id
   ) {
-    let awareContent = null;
-    if (!curBorrowShare.isAwareApprove) {
-      awareContent = (
-        <button
-          className={className({
-            btn: true,
-            "btn-success": !isAwaringShare,
-            "btn-secondary": isAwaringShare,
-            disabled: isAwaringShare
-          })}
-          onClick={onAwareShareClicked}
-        >
-          {isAwaringShare ? (
-            <LoadingIcon text={null} isAnimate={true} />
-          ) : (
-            "I've received "
-          )}
-        </button>
-      );
-    }
-    const returnContent = (
-      <button
-        className={className({
-          btn: true,
-          "btn-warning": !isReturningShare,
-          "btn-secondary": isReturningShare,
-          disabled: isReturningShare
-        })}
-        onClick={onReturnShareClicked}
-      >
-        {isReturningShare ? (
-          <LoadingIcon text={null} isAnimate={true} />
-        ) : (
-          "return"
-        )}
-      </button>
-    );
-
     content = (
-      <div className="text-success">
-        Your request is approved
-        {awareContent}
-        {returnContent}
-      </div>
+      <InPostItemFootingApprove
+        curBorrowShare={curBorrowShare}
+        isAwaringShare={isAwaringShare}
+        isReturningShare={isReturningShare}
+        onAwareShare={onAwareShare}
+        onReturnShare={onReturnShare}
+      />
     );
   } else if (!isActive) {
     content = <div>Post is no longer active</div>;

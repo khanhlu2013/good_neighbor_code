@@ -165,3 +165,4 @@ i don't like curBorrowShare to be undefined.
   . change the InPostItem : const curBorrowShare = post.curBorrowShare | null;
 
 ---
+. before i like to add more date into the model, lets deal with the test.

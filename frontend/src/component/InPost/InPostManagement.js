@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
-import "./InPost.css";
-import { InShareRequestTable } from "./InShareRequestTable";
-import { InShareBorrowTable } from "./InShareBorrowTable";
-import { InShareReturnTable } from "./InShareReturnTable";
+import "./inPost.css";
+import { InShareReturnTable } from "./inShareReturnTable";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
-import { LoadingIcon } from "../../util";
-import { InPostList } from "./InPostList";
+import { LoadingIcon, computeNotificationCountHtml } from "../../util";
+import { InPostList } from "./inPostList";
 
 class InPostManagement extends Component {
   state = {
     posts: null,
+    unawareApproveShareCount: null,
     requestingPostIds: [],
     deletingShareIds: [],
     awaringShareIds: [],
@@ -23,21 +23,28 @@ class InPostManagement extends Component {
     let requestShares = null;
     let borrowShares = null;
     let returnShares = null;
-
-    if (state.posts) {
-      const myInShares2D = state.posts.map(post =>
+    let unawareApproveShareCount = null;
+    const { posts } = state;
+    const { loginUser } = props;
+    if (posts) {
+      const myInShares2D = posts.map(post =>
         post.shares.filter(share => share.borrower.id === props.loginUser.id)
       );
       const myInShares1D = [].concat(...myInShares2D);
       requestShares = myInShares1D.filter(share => share.isRequest);
       borrowShares = myInShares1D.filter(share => share.isBorrow);
       returnShares = myInShares1D.filter(share => share.isReturn);
+      unawareApproveShareCount = InPostManagement.countUnawareApproveShare(
+        posts,
+        loginUser
+      );
     }
 
     return {
       requestShares,
       borrowShares,
-      returnShares
+      returnShares,
+      unawareApproveShareCount
     };
   }
 
@@ -51,7 +58,8 @@ class InPostManagement extends Component {
         share =>
           share.borrower.id === loginUser.id &&
           share.isApprove === true &&
-          share.isAwareApprove === false
+          share.isAwareApprove === false &&
+          share.isReturn === false
       )
     );
     const shares_1D = [].concat(...shares_2D);
@@ -61,7 +69,7 @@ class InPostManagement extends Component {
   setPostsAndNotifyUnawareApproveShare(posts) {
     this.setState({ posts });
     this.props.onUnawareApproveShareCountChange(
-      InPostManagement.countUnawareApproveShare(posts, this.props.loginUser)
+      this.state.unawareApproveShareCount
     );
   }
 
@@ -204,44 +212,75 @@ class InPostManagement extends Component {
     })();
   };
 
+  _getPostsContent() {
+    const posts = this.state.posts;
+
+    const requestPosts = posts.filter(post =>
+      post.requestShares.some(
+        share => share.borrower.id === this.props.loginUser.id
+      )
+    );
+
+    const borrowPosts = posts.filter(
+      post =>
+        post.curBorrowShare &&
+        post.curBorrowShare.borrower.id === this.props.loginUser.id
+    );
+
+    const generateList = postArray => (
+      <InPostList
+        loginUser={this.props.loginUser}
+        posts={postArray}
+        requestingPostIds={this.state.requestingPostIds}
+        deletingShareIds={this.state.deletingShareIds}
+        awaringShareIds={this.state.awaringShareIds}
+        returningShareIds={this.state.returningShareIds}
+        onCreateShare={this.onCreateShare}
+        onDeleteShare={this.onDeleteShare}
+        onAwareShare={this.onAwareShare}
+        onReturnShare={this.onReturnShare}
+      />
+    );
+
+    return (
+      <div className="container-fluid ">
+        <Tabs forceRenderTabPanel={true}>
+          <div id="TabSelector-InPost-react" className="text-center">
+            <TabList>
+              <Tab>
+                <span id="TabSelector_InPost_all">all</span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_InPost_request">request</span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_InPost_borrow">
+                  borrow
+                  {computeNotificationCountHtml(
+                    this.state.unawareApproveShareCount
+                  )}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_InPost_return">history</span>
+              </Tab>
+            </TabList>
+          </div>
+          <TabPanel>{generateList(posts)}</TabPanel>
+          <TabPanel>{generateList(requestPosts)}</TabPanel>
+          <TabPanel>{generateList(borrowPosts)}</TabPanel>
+          <TabPanel>
+            <InShareReturnTable shares={this.state.returnShares} />
+          </TabPanel>
+        </Tabs>
+      </div>
+    );
+  }
+
   render() {
     let content;
     if (this.state.posts !== null) {
-      content = (
-        <div className="container-fluid ">
-          <div className="row">
-            <div className="col-sm">
-              <InPostList
-                loginUser={this.props.loginUser}
-                posts={this.state.posts}
-                requestingPostIds={this.state.requestingPostIds}
-                deletingShareIds={this.state.deletingShareIds}
-                awaringShareIds={this.state.awaringShareIds}
-                returningShareIds={this.state.returningShareIds}
-                onCreateShare={this.onCreateShare}
-                onDeleteShare={this.onDeleteShare}
-                onAwareShare={this.onAwareShare}
-                onReturnShare={this.onReturnShare}
-              />
-            </div>
-            <div className="col-sm">
-              <InShareRequestTable
-                shares={this.state.requestShares}
-                deletingShareIds={this.state.deletingShareIds}
-                onDeleteShare={this.onDeleteShare}
-              />
-              <InShareBorrowTable
-                shares={this.state.borrowShares}
-                awaringShareIds={this.state.awaringShareIds}
-                returningShareIds={this.state.returningShareIds}
-                onReturnShare={this.onReturnShare}
-                onAwareShare={this.onAwareShare}
-              />
-              <InShareReturnTable shares={this.state.returnShares} />
-            </div>
-          </div>
-        </div>
-      );
+      content = this._getPostsContent();
     } else {
       content = (
         <h1 className="text-center">

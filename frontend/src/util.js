@@ -113,4 +113,22 @@ function date2String(date) {
     day: "2-digit"
   });
 }
-export { nullOrRequiredValidator, LoadingIcon, date2String };
+function computeNotificationCountHtml(count) {
+  let html = null;
+  if (count !== null && count !== 0) {
+    html = <span className="text-danger">{` (${count})`}</span>;
+  } else if (count === null) {
+    html = <LoadingIcon text={null} isAnimate={true} />;
+  } else {
+    if (count !== 0) throw Error("Unexpected code path");
+    html = null;
+  }
+  return html;
+}
+
+export {
+  nullOrRequiredValidator,
+  LoadingIcon,
+  date2String,
+  computeNotificationCountHtml
+};
