@@ -214,6 +214,7 @@ route.post("/returnShare", authCheck, (req, res, next) => {
     }
 
     share.isReturn = true;
+    share.dateReturn = new Date();
     await share.save();
     res.send(share);
   })().catch(next);

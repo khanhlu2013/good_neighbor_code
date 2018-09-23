@@ -4,21 +4,15 @@ import { InPostItemHeading } from "./inPostItem_heading";
 import { InPostItemRequestList } from "./inPostItem_requestlist";
 import { InPostItemReturnList } from "./inPostItem_returnList";
 import { InPostItemFooting } from "./inPostItem_footing";
-import { User } from "../../model/user";
-import { nullOrRequiredValidator } from "../../util";
 
 function InPostBody(props) {
-  const { title, description, borrower } = props;
+  const { title, description } = props;
 
   return (
     <div className="in-post-item-body">
       <div>
         <span className="text-secondary font-weight-light">title: </span>
         {title}
-      </div>
-      <div>
-        <span className="text-secondary font-weight-light">borrower: </span>
-        {borrower ? `${borrower.name} ${borrower.email}` : "none"}
       </div>
       <div>
         <span className="text-secondary font-weight-light">description: </span>
@@ -29,8 +23,7 @@ function InPostBody(props) {
 }
 InPostBody.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  borrower: nullOrRequiredValidator("object", User)
+  description: PropTypes.string.isRequired
 };
 
 function InPostItem(props) {
@@ -46,25 +39,23 @@ function InPostItem(props) {
     onAwareShare,
     onReturnShare
   } = props;
-  const curBorrowShare = post.curBorrowShare || null;
-  const borrower = curBorrowShare ? curBorrowShare.borrower : null;
   return (
     <div className="in-post-item bg-white">
       <InPostItemHeading postUser={post.user} dateCreated={post.dateCreated} />
 
       <div className="container">
-        <InPostBody
-          title={post.title}
-          description={post.description}
-          borrower={borrower}
-        />
-        <InPostItemRequestList shares={post.requestShares} />
-        <InPostItemReturnList shares={post.returnShares} />
+        <InPostBody title={post.title} description={post.description} />
+        {post.requestShares.length !== 0 && (
+          <InPostItemRequestList shares={post.requestShares} />
+        )}
+        {post.returnShares.length !== 0 && (
+          <InPostItemReturnList shares={post.returnShares} />
+        )}
         <InPostItemFooting
           postId={post.id}
           loginUser={loginUser}
           isActive={post.isActive}
-          curBorrowShare={curBorrowShare}
+          curBorrowShare={post.curBorrowShare}
           myRequestShare={
             post.requestShares.find(
               share => share.borrower.id === loginUser.id

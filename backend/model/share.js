@@ -39,6 +39,10 @@ const ShareSchema = new Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  dateReturn: {
+    type: Date,
+    required: false
   }
 });
 

@@ -13,7 +13,7 @@ function InPostItemFootingRequest(props) {
 
   return (
     <div className="text-success">
-      You are in the waiting list. Please wait for response.
+      You're in waiting list. Please wait for response.
       <button
         onClick={onUndoRequestClicked}
         className={className({

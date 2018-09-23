@@ -37,6 +37,7 @@ function rawsToPosts(raws) {
         shareRaw.isAwareApprove,
         shareRaw.isReturn,
         shareRaw.isAwareReturn,
+        shareRaw.dateReturn === null ? null : new Date(shareRaw.dateReturn),
         null //post to be set later
       );
     });

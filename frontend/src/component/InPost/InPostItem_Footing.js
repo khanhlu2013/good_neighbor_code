@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 import { User } from "../../model/user";
-import { nullOrRequiredValidator, LoadingIcon } from "../../util";
+import { nullOrRequiredValidator } from "../../util";
 import { Share } from "../../model/share";
 import { InPostItemFootingApprove } from "./inPostItem_footing_approve";
 import { InPostItemFootingRequest } from "./inPostItem_footing_request";
+import { InPostItemFootingShop } from "./inPostItem_footing_shop";
 
 function InPostItemFooting(props) {
   const {
@@ -23,10 +23,6 @@ function InPostItemFooting(props) {
     onAwareShare,
     onReturnShare
   } = props;
-
-  const onCreateShareClicked = e => {
-    onCreateShare(postId);
-  };
 
   let content;
 
@@ -51,29 +47,34 @@ function InPostItemFooting(props) {
         onReturnShare={onReturnShare}
       />
     );
-  } else if (!isActive) {
-    content = <div>Post is no longer active</div>;
-  } else {
+  } else if (isActive) {
     content = (
-      <button
-        className={className({
-          btn: true,
-          "btn-success": !isRequestingPost,
-          "btn-secondary": isRequestingPost,
-          disabled: isRequestingPost
-        })}
-        onClick={onCreateShareClicked}
-      >
-        {isRequestingPost ? (
-          <LoadingIcon text="requesting" isAnimate={true} />
-        ) : (
-          "request"
-        )}
-      </button>
+      <InPostItemFootingShop
+        postId={postId}
+        isRequestingPost={isRequestingPost}
+        onCreateShare={onCreateShare}
+      />
     );
+  } else {
+    content = <div>Post is no longer active</div>;
   }
 
-  return <div className="text-right">{content}</div>;
+  return (
+    <div>
+      <div className="text-left">
+        {curBorrowShare &&
+          curBorrowShare.borrower.id !== loginUser.id && (
+            <span>
+              <span className="text-muted font-weight-light">
+                currently borrow by:{" "}
+              </span>
+              {curBorrowShare.borrower.getNameAndEmail()}
+            </span>
+          )}
+      </div>
+      <div className="text-right">{content}</div>
+    </div>
+  );
 }
 InPostItemFooting.propTypes = {
   postId: PropTypes.string.isRequired,

@@ -32,7 +32,7 @@ class Post {
     const lst = this.shares.filter(share => share.isBorrow);
     if (lst.length > 1) throw Error("unexpected multiple borrow");
     const [result] = lst;
-    return result;
+    return result || null;
   }
 
   get returnShares() {

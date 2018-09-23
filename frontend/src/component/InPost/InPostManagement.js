@@ -88,23 +88,17 @@ class InPostManagement extends Component {
       requestingPostIds: [...this.state.requestingPostIds, postId]
     });
     (async () => {
-      const {
-        id,
-        dateCreated,
-        isApprove,
-        isAwareApprove,
-        isReturn,
-        isAwareReturn
-      } = await API.createShare(postId);
+      const { id, dateCreated } = await API.createShare(postId);
 
       const newShare = new Share(
         id,
         this.props.loginUser,
         new Date(dateCreated),
-        isApprove,
-        isAwareApprove,
-        isReturn,
-        isAwareReturn,
+        undefined, //isApprove,
+        false, //isAwareApprove,
+        false, //isReturn,
+        false, //isAwareReturn,
+        null, //dateReturn
         null //post to be set later
       );
       const { posts } = this.state;
@@ -251,7 +245,7 @@ class InPostManagement extends Component {
                 <span id="TabSelector_InPost_all">all</span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_request">request</span>
+                <span id="TabSelector_InPost_request">waiting list</span>
               </Tab>
               <Tab>
                 <span id="TabSelector_InPost_borrow">

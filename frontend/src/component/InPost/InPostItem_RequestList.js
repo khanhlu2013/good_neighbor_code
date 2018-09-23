@@ -4,13 +4,15 @@ import { date2String } from "../../util";
 
 function InPostItemRequestList(props) {
   const { shares } = props;
-  const rows = shares.map(share => (
-    <tr key={share.id}>
-      <td>{share.borrower.name}</td>
-      <td>{share.borrower.email}</td>
-      <td>{date2String(share.dateCreated)}</td>
-    </tr>
-  ));
+  const rows = shares
+    .sort((s1, s2) => s1.dateCreated - s2.dateCreated)
+    .map(share => (
+      <tr key={share.id}>
+        <td>{share.borrower.name}</td>
+        <td>{share.borrower.email}</td>
+        <td>{date2String(share.dateCreated)}</td>
+      </tr>
+    ));
 
   return (
     <table className="table table-bordered table-striped">

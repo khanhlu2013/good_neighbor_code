@@ -106,23 +106,12 @@ const inPosts = async () => {
 
 // -  share
 const createShare = async postID => {
-  const {
-    _id: id,
-    dateCreated,
-    isApprove,
-    isAwareApprove,
-    isReturn,
-    isAwareReturn
-  } = await post("profile.createShare", {
+  const { _id: id, dateCreated } = await post("profile.createShare", {
     postID
   });
   return {
     id,
-    dateCreated,
-    isApprove,
-    isAwareApprove,
-    isReturn,
-    isAwareReturn
+    dateCreated
   };
 };
 

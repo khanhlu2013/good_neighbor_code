@@ -9,6 +9,7 @@ class Share {
     isAwareApprove,
     isReturn,
     isAwareReturn,
+    dateReturn,
     post
   ) {
     if (id) {
@@ -26,6 +27,7 @@ class Share {
       isAwareApprove,
       isReturn,
       isAwareReturn,
+      dateReturn,
       post
     });
   }

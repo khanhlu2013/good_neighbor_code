@@ -17,7 +17,7 @@ function InPostItemHeading(props) {
             </span>
           </div>
           <div className="col-sm text-secondary font-weight-light text-right">
-            {date2String(dateCreated)}
+            {`post on: ${date2String(dateCreated)}`}
           </div>
         </div>
       </div>
