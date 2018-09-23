@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { InPostTable } from "./InPostTable";
+import "./InPost.css";
 import { InShareRequestTable } from "./InShareRequestTable";
 import { InShareBorrowTable } from "./InShareBorrowTable";
 import { InShareReturnTable } from "./InShareReturnTable";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { LoadingIcon } from "../../util";
+import { InPostList } from "./InPostList";
 
 class InPostManagement extends Component {
   state = {
     posts: null,
     requestingPostIds: [],
     deletingShareIds: [],
-    returningShareIds: [],
-    awaringShareIds: []
+    awaringShareIds: [],
+    returningShareIds: []
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -210,11 +211,17 @@ class InPostManagement extends Component {
         <div className="container-fluid ">
           <div className="row">
             <div className="col-sm">
-              <InPostTable
+              <InPostList
                 loginUser={this.props.loginUser}
                 posts={this.state.posts}
                 requestingPostIds={this.state.requestingPostIds}
+                deletingShareIds={this.state.deletingShareIds}
+                awaringShareIds={this.state.awaringShareIds}
+                returningShareIds={this.state.returningShareIds}
                 onCreateShare={this.onCreateShare}
+                onDeleteShare={this.onDeleteShare}
+                onAwareShare={this.onAwareShare}
+                onReturnShare={this.onReturnShare}
               />
             </div>
             <div className="col-sm">

@@ -148,6 +148,20 @@ work on date and sort and filter ...
 . ok, lets see if i need to make a few more date though, lets see what it is. i will figure this out as i go. but lets just sort by the date i already have. display them too
 
 . inPost
-  . display date
-  . sort date
-  . hey how about filter by post title?
+  . hey how about filter by post title?, hey should i highlight the filter too? fucking neat
+
+
+---
+remove inPostTable, add filter
+your request is approve. did you recieve the item? for acknowledge
+
+
+
+---
+
+i don't like curBorrowShare to be undefined. 
+  . change the model
+  . test it
+  . change the InPostItem : const curBorrowShare = post.curBorrowShare | null;
+
+---

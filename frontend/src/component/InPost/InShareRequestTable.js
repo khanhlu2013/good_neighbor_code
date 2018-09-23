@@ -25,7 +25,7 @@ function Table(props) {
   return (
     <table
       id="InShareRequestTable-react"
-      className="table table-striped table-bordered"
+      className="table table-sm table-striped table-bordered"
     >
       <thead className="thead-light">
         <tr>

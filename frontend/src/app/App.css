@@ -35,3 +35,8 @@
 .ReactModal__Content--before-close {
   opacity: 0;
 }
+
+.btn {
+  margin-right: 2px;
+  margin-left: 2px;
+}
