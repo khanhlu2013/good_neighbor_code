@@ -174,10 +174,11 @@ i don't like curBorrowShare to be undefined.
 
 ---
 . show date on decision and sort too?
+---
+. make sure app notification perculate into inner tabs
+. make sure i test inner tab for inPost
 
+testing time
 
-. before i like to add more date into the model, lets deal with the test.
-
-
-
+. .InShareBorrowTableRow
 

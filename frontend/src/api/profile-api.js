@@ -129,12 +129,15 @@ const approveShare = async (shareID, isApprove) => {
 };
 
 const returnShare = async (shareID, isReturn) => {
-  const { isReturn: resultIsReturnByTo } = await post("profile.returnShare", {
-    shareID,
-    isReturn
-  });
+  const { isReturn: resultIsReturnByTo, dateReturn } = await post(
+    "profile.returnShare",
+    {
+      shareID,
+      isReturn
+    }
+  );
 
-  return { resultIsReturnByTo };
+  return { resultIsReturnByTo, resultDateReturn: new Date(dateReturn) };
 };
 
 const awareApproveShare = async shareId => {

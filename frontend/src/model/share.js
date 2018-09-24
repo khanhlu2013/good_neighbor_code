@@ -32,6 +32,10 @@ class Share {
     });
   }
 
+  setDateReturn(date) {
+    this.dateReturn = date;
+  }
+
   setPost(post) {
     this.post = post;
   }

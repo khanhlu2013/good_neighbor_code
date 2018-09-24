@@ -156,10 +156,13 @@ class InPostManagement extends Component {
         returningShareIds: [...this.state.returningShareIds, shareId]
       });
       (async () => {
-        const { resultIsReturnByTo } = await API.returnShare(shareId);
+        const { resultIsReturnByTo, resultDateReturn } = await API.returnShare(
+          shareId
+        );
 
         const curShare = curPost.shares.find(share => share.id === shareId);
         curShare.isReturn = resultIsReturnByTo;
+        curShare.setDateReturn(resultDateReturn);
         curPost.shares = [
           ...curPost.shares.filter(share => share.id !== shareId),
           curShare

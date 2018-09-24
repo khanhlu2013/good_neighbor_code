@@ -16,20 +16,6 @@ const waitForMainPageLoadingFinish = () => {
   );
 };
 
-// - TAB
-const tab = {
-  focus: () => {
-    cy.get("#TabSelector_OutPost").click();
-  },
-  snap: name => {
-    cy.get("#TabSelector_OutPost #LoadingIcon-react").should("not.be.visible");
-    cy.get("#TabSelector_OutPost").snapshot({ name });
-  },
-  snapRightAway: name => {
-    cy.get("#TabSelector_OutPost").snapshot({ name });
-  }
-};
-
 //- TABLE
 const table = {
   decide: post => {
@@ -120,8 +106,7 @@ const decisionDialog = {
   waitForLoadingFinish: waitForDecisionDialogLoadingFinish
 };
 
-const outPostTree = {
-  tab,
+const outPostUi = {
   table,
   waitForMainPageLoadingFinish,
   crudDialog,
@@ -138,4 +123,4 @@ const outPostTree = {
   }
 };
 
-export { outPostTree };
+export { outPostUi };

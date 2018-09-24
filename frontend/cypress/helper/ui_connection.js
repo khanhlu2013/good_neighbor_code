@@ -5,21 +5,7 @@ const waitForLoading = () => {
   cy.get("#SearchByEmail-react #LoadingIcon-react").should("not.be.visible");
 };
 
-const connectionTree = {
-  tab: {
-    focus: () => {
-      cy.get("#TabSelector_Connection").click();
-    },
-    snap: name => {
-      cy.get("#TabSelector_Connection #LoadingIcon-react").should(
-        "not.be.visible"
-      );
-      cy.get("#TabSelector_Connection").snapshot({ name });
-    },
-    snapRightAway: name => {
-      cy.get("#TabSelector_Connection").snapshot({ name });
-    }
-  },
+const connectionUi = {
   snap: name => {
     cy.get("#ConnectionManagement-react #LoadingIcon-react").should(
       "not.be.visible"
@@ -92,4 +78,4 @@ const connectionTree = {
   }
 };
 
-export { connectionTree };
+export { connectionUi };
