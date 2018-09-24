@@ -181,3 +181,8 @@ testing time
 . .InShareBorrowTableRow
 
 ---
+remove some of the history clutter
+---
+fix inpost.css share it with out post too.
+---
+after that i will try to do inline approve. 

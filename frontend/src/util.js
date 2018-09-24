@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import _ from "underscore";
+import className from "classnames";
 
 const nullOrRequiredValidator = (typeEnum, objType) => {
   if (!["array", "string", "object", "number"].includes(typeEnum)) {
@@ -113,10 +114,16 @@ function date2String(date) {
     day: "2-digit"
   });
 }
-function computeNotificationCountHtml(count) {
+function computeNotificationCountHtml(count, isImportant = true) {
   let html = null;
   if (count !== null && count !== 0) {
-    html = <span className="text-danger">{` (${count})`}</span>;
+    html = (
+      <span
+        className={className({
+          "text-danger": isImportant
+        })}
+      >{` (${count})`}</span>
+    );
   } else if (count === null) {
     html = <LoadingIcon text={null} isAnimate={true} />;
   } else {

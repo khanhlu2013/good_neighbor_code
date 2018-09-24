@@ -153,7 +153,7 @@ describe("Notification", () => {
     cy.loadApp();
     cy.login(tu.email);
     ui.tab.inPost.focus();
-    ui.inPostUi.awareApprove(post);
+    ui.inPostUi.tab.all.awareApprove(post);
     ui.tab.inPost.snap("update unaware share");
   });
 });

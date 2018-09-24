@@ -1,30 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { InPostItemHeading } from "./inPostItem_heading";
-import { InPostItemRequestList } from "./inPostItem_requestlist";
+import { PostItemRequestList } from "../postItem_requestlist";
 import { InPostItemReturnList } from "./inPostItem_returnList";
 import { InPostItemFooting } from "./inPostItem_footing";
-
-function InPostBody(props) {
-  const { title, description } = props;
-
-  return (
-    <div className="in-post-item-body">
-      <div>
-        <span className="text-secondary font-weight-light">title: </span>
-        {title}
-      </div>
-      <div>
-        <span className="text-secondary font-weight-light">description: </span>
-        {description}
-      </div>
-    </div>
-  );
-}
-InPostBody.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
-};
+import { PostItemBody } from "../postItem_body";
 
 function InPostItem(props) {
   const {
@@ -44,9 +24,9 @@ function InPostItem(props) {
       <InPostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
 
       <div className="container">
-        <InPostBody title={post.title} description={post.description} />
+        <PostItemBody title={post.title} description={post.description} />
         {post.requestShares.length !== 0 && (
-          <InPostItemRequestList shares={post.requestShares} />
+          <PostItemRequestList shares={post.requestShares} />
         )}
         {post.returnShares.length !== 0 && (
           <InPostItemReturnList shares={post.returnShares} />

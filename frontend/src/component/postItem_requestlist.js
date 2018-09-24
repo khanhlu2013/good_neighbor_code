@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { date2String } from "../../util";
+import { date2String } from "../util";
 
-function InPostItemRequestList(props) {
+function PostItemRequestList(props) {
   const { shares } = props;
   const rows = shares
     .sort((s1, s2) => s1.dateCreate - s2.dateCreate)
@@ -27,8 +27,8 @@ function InPostItemRequestList(props) {
     </table>
   );
 }
-InPostItemRequestList.propTypes = {
+PostItemRequestList.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-export { InPostItemRequestList };
+export { PostItemRequestList };

@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { OutPostCrudDialog } from "./crudDialog";
-import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
 import { LoadingIcon } from "../../util";
 import { Post } from "../../model/post";
 import { OutShareReturnTable } from "./OutShareReturnTable";
+import { OutPostList } from "./outPostList";
 
 class OutPostManagement extends Component {
   state = {
@@ -186,11 +186,16 @@ class OutPostManagement extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm">
-              <OutPostTable
+              <OutPostList
                 posts={this.state.posts}
                 onEditPost={this.onOpenCrudDialog_edit}
                 onDecidePost={this.onOpenDecideDialog}
               />
+              {/* <OutPostTable
+                posts={this.state.posts}
+                onEditPost={this.onOpenCrudDialog_edit}
+                onDecidePost={this.onOpenDecideDialog}
+              /> */}
             </div>
             <div className="col-sm">
               <OutShareReturnTable

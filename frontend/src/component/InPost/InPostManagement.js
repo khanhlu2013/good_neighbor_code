@@ -209,19 +209,23 @@ class InPostManagement extends Component {
     })();
   };
 
-  _getPostsContent() {
-    const posts = this.state.posts;
-
+  _getPostsContent(posts) {
     const requestPosts = posts.filter(post =>
       post.requestShares.some(
         share => share.borrower.id === this.props.loginUser.id
       )
     );
-
+    const approvePosts = posts.filter(
+      post =>
+        post.curBorrowShare &&
+        post.curBorrowShare.borrower.id === this.props.loginUser.id &&
+        post.isAwareApprove === false
+    );
     const borrowPosts = posts.filter(
       post =>
         post.curBorrowShare &&
-        post.curBorrowShare.borrower.id === this.props.loginUser.id
+        post.curBorrowShare.borrower.id === this.props.loginUser.id &&
+        post.isAwareApprove === true
     );
 
     const generateList = postArray => (
@@ -245,26 +249,45 @@ class InPostManagement extends Component {
           <div id="TabSelector-InPost-react" className="text-center">
             <TabList>
               <Tab>
-                <span id="TabSelector_InPost_all">all</span>
+                <span id="TabSelector_InPost_all">
+                  all
+                  {computeNotificationCountHtml(posts.length, false)}
+                </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_request">waiting list</span>
+                <span id="TabSelector_InPost_request">
+                  waiting list
+                  {computeNotificationCountHtml(requestPosts.length, false)}
+                </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_borrow">
-                  borrow
+                <span id="TabSelector_InPost_approve">
+                  approve
                   {computeNotificationCountHtml(
                     this.state.unawareApproveShareCount
                   )}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_return">history</span>
+                <span id="TabSelector_InPost_borrow">
+                  borrow
+                  {computeNotificationCountHtml(borrowPosts.length, false)}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_InPost_return">
+                  history
+                  {computeNotificationCountHtml(
+                    this.state.returnShares.length,
+                    false
+                  )}
+                </span>
               </Tab>
             </TabList>
           </div>
           <TabPanel>{generateList(posts)}</TabPanel>
           <TabPanel>{generateList(requestPosts)}</TabPanel>
+          <TabPanel>{generateList(approvePosts)}</TabPanel>
           <TabPanel>{generateList(borrowPosts)}</TabPanel>
           <TabPanel>
             <InShareReturnTable shares={this.state.returnShares} />
@@ -276,8 +299,8 @@ class InPostManagement extends Component {
 
   render() {
     let content;
-    if (this.state.posts !== null) {
-      content = this._getPostsContent();
+    if (this.state.posts) {
+      content = this._getPostsContent(this.state.posts);
     } else {
       content = (
         <h1 className="text-center">
