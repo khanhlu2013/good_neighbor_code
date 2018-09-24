@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
 import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
-import { LoadingIcon } from "../../util";
+import { LoadingIcon, computeNotificationCountHtml } from "../../util";
 import { Post } from "../../model/post";
-import { OutShareReturnTable } from "./OutShareReturnTable";
+import { OutShareHistoryList } from "./outShareHistoryList";
 import { OutPostList } from "./outPostList";
 
 class OutPostManagement extends Component {
   state = {
     posts: null,
+    awaringReturnPostIds: [],
 
     //crud
     curCrudPostSessionID: null,
@@ -29,7 +31,7 @@ class OutPostManagement extends Component {
     if (posts === null) {
       return null;
     }
-    return posts.filter(post => post.isRequestWithNoBorrow).length;
+    return posts.filter(post => post.isNote_requestWithNoBorrow).length;
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -57,6 +59,32 @@ class OutPostManagement extends Component {
 
     this.props.onPostRequestCountChange(requestPostCount);
   }
+
+  onAwareReturnPost = postId => {
+    this.setState({
+      awaringReturnPostIds: [...this.state.awaringReturnPostIds, postId]
+    });
+
+    (async () => {
+      await API.awareReturnPost(postId);
+      const curPost = this.state.posts.find(post => post.id === postId);
+      for (const share of curPost.returnShares) {
+        share.isAwareReturn = true;
+      }
+
+      this.setState({
+        posts: [
+          ...this.state.posts.filter(post => post.id !== curPost.id),
+          curPost
+        ]
+      });
+      this.setState({
+        awaringReturnPostIds: this.state.awaringReturnPostIds.filter(
+          id => id !== postId
+        )
+      });
+    })();
+  };
 
   // CRUD START --------------------------------
   onOpenCrudDialog_create = () => {
@@ -178,35 +206,83 @@ class OutPostManagement extends Component {
   };
   // DECISION END --------------------------
 
+  _getPostsContent(posts) {
+    const generatePostList = posts => (
+      <OutPostList
+        posts={posts}
+        onEditPost={this.onOpenCrudDialog_edit}
+        onDecidePost={this.onOpenDecideDialog}
+        onAwareReturnPost={this.onAwareReturnPost}
+        awaringReturnPostIds={this.state.awaringReturnPostIds}
+      />
+    );
+
+    const requestNotificationPosts = posts.filter(
+      post => post.isNote_requestWithNoBorrow
+    );
+    const borrowPosts = posts.filter(post => post.curBorrowShare);
+    const returnNotificationPosts = posts.filter(
+      post => post.isNote_unawareReturn
+    );
+    return (
+      <div className="container-fluid ">
+        <Tabs forceRenderTabPanel={true}>
+          <div id="TabSelector-outPost-react" className="text-center">
+            <TabList>
+              <Tab>
+                <span id="TabSelector_outPost_all">
+                  all
+                  {computeNotificationCountHtml(posts.length, false)}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_outPost_request">
+                  waiting list
+                  {computeNotificationCountHtml(
+                    requestNotificationPosts.length
+                  )}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_outPost_borrow">
+                  borrow
+                  {computeNotificationCountHtml(borrowPosts.length, false)}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_outPost_returnNotification">
+                  return
+                  {computeNotificationCountHtml(returnNotificationPosts.length)}
+                </span>
+              </Tab>
+              <Tab>
+                <span id="TabSelector_outPost_history">
+                  history
+                  {computeNotificationCountHtml(
+                    this.state.returnShares.length,
+                    false
+                  )}
+                </span>
+              </Tab>
+            </TabList>
+          </div>
+          <TabPanel>{generatePostList(posts)}</TabPanel>
+          <TabPanel>{generatePostList(requestNotificationPosts)}</TabPanel>
+          <TabPanel>{generatePostList(borrowPosts)}</TabPanel>
+          <TabPanel>{generatePostList(returnNotificationPosts)}</TabPanel>
+          <TabPanel>
+            <OutShareHistoryList shares={this.state.returnShares} />
+          </TabPanel>
+        </Tabs>
+      </div>
+    );
+  }
+
   render() {
     const { posts } = this.state;
     let content;
     if (posts) {
-      content = (
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm">
-              <OutPostList
-                posts={this.state.posts}
-                onEditPost={this.onOpenCrudDialog_edit}
-                onDecidePost={this.onOpenDecideDialog}
-              />
-              {/* <OutPostTable
-                posts={this.state.posts}
-                onEditPost={this.onOpenCrudDialog_edit}
-                onDecidePost={this.onOpenDecideDialog}
-              /> */}
-            </div>
-            <div className="col-sm">
-              <OutShareReturnTable
-                shares={this.state.returnShares}
-                deletingShareIds={this.state.deletingShareIds}
-                onDeleteShare={this.onDeleteShare}
-              />
-            </div>
-          </div>
-        </div>
-      );
+      content = this._getPostsContent(posts);
     } else {
       content = (
         <h1 className="text-center">

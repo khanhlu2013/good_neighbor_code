@@ -31,16 +31,28 @@ class Post {
   get curBorrowShare() {
     const lst = this.shares.filter(share => share.isBorrow);
     if (lst.length > 1) throw Error("unexpected multiple borrow");
-    const [result] = lst;
-    return result || null;
+    const [result = null] = lst;
+    return result;
   }
 
   get returnShares() {
     return this.shares.filter(share => share.isReturn);
   }
 
-  get isRequestWithNoBorrow() {
+  get isNote_requestWithNoBorrow() {
     return this.requestShares.length !== 0 && !this.curBorrowShare;
+  }
+
+  get isNote_unawareReturn() {
+    let result = false;
+    let latestUnawareReturn = this.returnShares
+      .sort((s1, s2) => s2.dateReturn - s1.dateReturn)
+      .find(share => share.isReturn === true && share.isAwareReturn === false);
+
+    if (latestUnawareReturn && !this.curBorrowShare) {
+      result = true;
+    }
+    return result;
   }
 
   getValidateError() {

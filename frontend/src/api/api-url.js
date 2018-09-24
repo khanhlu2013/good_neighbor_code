@@ -26,6 +26,7 @@ const API_NODE = new RouteNode("", "", [
     // - post
     { name: "createPost", path: "/createPost" },
     { name: "updatePost", path: "/updatePost" },
+    { name: "awareReturnPost", path: "/awareReturnPost" },
     // - outPosts
     { name: "outPosts", path: "/outPosts" },
     // - inPosts

@@ -136,53 +136,33 @@ lets take a look at the redirect right? lets just take a few meditation, brain d
 sidetrack: what happen when user can't login to google?
 ---
 is the current cookie httpOnly? before i continue reading the article, can i use the current knowledge to optimize this? meaning, when i load the app, how do i know if i should load the public or private app. the private dont need to have the user as the user will be load async for display purpose only. 
-
 ok, so lets say i can verify that the cookie is alive. i just go ahead and load the private app. private app don't need to have loginUser. it will get it by itself. if it fail, then we can just throw error. public app will have option to login. after login, and redirect, the app will know if it is private or public. this all lay the the ability to know if my cookie is valid or not right? lets say fist time the app find out that there is no sesion and load the public app, public app will try to login wtih failed info. is the server will set the cookie or not?
-
 ---
 login fail, see what happen
 ---
 consider use frontEnd model for test to make sure we have the correct data
-
-
 work on date and sort and filter ...
   . clean out the model
   . work on constructor
   . work on display and sort
   . work on filtering
-
-
 ---
-. ok, lets see if i need to make a few more date though, lets see what it is. i will figure this out as i go. but lets just sort by the date i already have. display them too
-
 . inPost
   . hey how about filter by post title?, hey should i highlight the filter too? fucking neat
-
-
 ---
-your request is approve. did you recieve the item? for acknowledge
-
-
 . fix connection background
 ---
-
 i don't like curBorrowShare to be undefined. 
   . change the model
   . test it
   . change the InPostItem : const curBorrowShare = post.curBorrowShare | null;
-
-
 ---
-. make sure app notification perculate into inner tabs
-. make sure i test inner tab for inPost
+.testing
 
-testing time
-
-. .InShareBorrowTableRow
-
----
-remove some of the history clutter
+  . make sure app notification perculate into inner tabs
+  . make sure i test inner tab for inPost
+  . .InShareBorrowTableRow class
 ---
 fix inpost.css share it with out post too.
 ---
-after that i will try to do inline approve. 
+i need to combine notification

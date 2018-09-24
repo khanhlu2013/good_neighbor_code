@@ -138,6 +138,37 @@ route.post("/updatePost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
+route.post("/awareReturnPost", authCheck, (req, res, next) => {
+  const { user } = req;
+  const { postId } = req.body;
+
+  (async () => {
+    if (!postId) {
+      throw Error("post id is null");
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      throw Error("post id is in valid");
+    }
+
+    const post = await Post.findById(postId);
+    if (!post) {
+      throw Error("cant find postId");
+    }
+    if (!post.user.equals(user._id)) {
+      throw Error("unauthorize action");
+    }
+
+    await Share.update(
+      { post: postId, isReturn: true },
+      { isAwareReturn: true },
+      { multi: true }
+    );
+
+    res.send();
+  })().catch(next);
+});
+
 route.get("/outPosts", authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {

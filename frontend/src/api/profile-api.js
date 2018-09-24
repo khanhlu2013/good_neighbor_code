@@ -148,6 +148,12 @@ const awareApproveShare = async shareId => {
   return isAwareApprove;
 };
 
+const awareReturnPost = async postId => {
+  await post("profile.awareReturnPost", {
+    postId
+  });
+};
+
 //- helper ----
 
 async function getJSON(response) {
@@ -189,6 +195,7 @@ const API = {
   //post
   createPost,
   updatePost,
+  awareReturnPost,
   outPosts,
   inPosts,
   //shares,

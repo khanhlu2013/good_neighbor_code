@@ -1,11 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import className from "classnames";
+
 import { PostItemBody } from "../postItem_body";
 import { PostItemRequestList } from "../postItem_requestlist";
 import { OutPostItemHeading } from "./outPostItem_heading";
+import { LoadingIcon } from "../../util";
 
 function OutPostItem(props) {
-  const { post, onEditPost, onDecidePost } = props;
+  const {
+    post,
+    onEditPost,
+    onDecidePost,
+    isAwaringReturn,
+    onAwareReturnPost
+  } = props;
 
   const onEditBtnClicked = e => {
     onEditPost(post);
@@ -14,6 +23,11 @@ function OutPostItem(props) {
   const onDecidePostClick = e => {
     onDecidePost(post);
   };
+
+  const onAwareReturnClick = e => {
+    onAwareReturnPost(post.id);
+  };
+
   const curBorrowShare = post.curBorrowShare;
   const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
@@ -38,6 +52,25 @@ function OutPostItem(props) {
           )}
         </div>
         <div className="text-right">
+          {post.isNote_unawareReturn && (
+            <span>
+              Item is returned
+              <button
+                onClick={onAwareReturnClick}
+                className={className({
+                  btn: true,
+                  "btn-success": !isAwaringReturn,
+                  "btn-secondary": isAwaringReturn
+                })}
+              >
+                {isAwaringReturn ? (
+                  <LoadingIcon text={null} isAnimate={true} />
+                ) : (
+                  "I've received"
+                )}
+              </button>
+            </span>
+          )}
           <button onClick={onEditBtnClicked} className="btn btn-primary">
             edit
           </button>
@@ -54,10 +87,12 @@ function OutPostItem(props) {
   );
 }
 
-OutPostItem.propsType = {
+OutPostItem.propTypes = {
   post: PropTypes.object.isRequired,
   onEditPost: PropTypes.func.isRequired,
-  onDecidePost: PropTypes.func.isRequired
+  onDecidePost: PropTypes.func.isRequired,
+  onAwareReturnPost: PropTypes.func.isRequired,
+  isAwaringReturn: PropTypes.bool.isRequired
 };
 
 export { OutPostItem };

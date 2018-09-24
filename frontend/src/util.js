@@ -128,7 +128,6 @@ function computeNotificationCountHtml(count, isImportant = true) {
     html = <LoadingIcon text={null} isAnimate={true} />;
   } else {
     if (count !== 0) throw Error("Unexpected code path");
-    html = null;
   }
   return html;
 }

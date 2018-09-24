@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
 import "./inPost.css";
-import { InShareReturnTable } from "./inShareReturnTable";
+import { InShareHistoryList } from "./inShareHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { LoadingIcon, computeNotificationCountHtml } from "../../util";
@@ -54,24 +54,6 @@ class InPostManagement extends Component {
       unawareApprovePosts,
       unawareApprovePostCount
     };
-  }
-
-  static countUnawareApproveShare(posts, loginUser) {
-    if (posts === null) {
-      return null;
-    }
-
-    const shares_2D = posts.map(post =>
-      post.shares.filter(
-        share =>
-          share.borrower.id === loginUser.id &&
-          share.isApprove === true &&
-          share.isAwareApprove === false &&
-          share.isReturn === false
-      )
-    );
-    const shares_1D = [].concat(...shares_2D);
-    return shares_1D.length;
   }
 
   setPostsAndNotifyUnawareApproveShare(posts) {
@@ -226,8 +208,7 @@ class InPostManagement extends Component {
     const borrowPosts = posts.filter(
       post =>
         post.curBorrowShare &&
-        post.curBorrowShare.borrower.id === this.props.loginUser.id &&
-        post.curBorrowShare.isAwareApprove === true
+        post.curBorrowShare.borrower.id === this.props.loginUser.id
     );
 
     const generateList = postArray => (
@@ -292,7 +273,7 @@ class InPostManagement extends Component {
           <TabPanel>{generateList(this.state.unawareApprovePosts)}</TabPanel>
           <TabPanel>{generateList(borrowPosts)}</TabPanel>
           <TabPanel>
-            <InShareReturnTable shares={this.state.returnShares} />
+            <InShareHistoryList shares={this.state.returnShares} />
           </TabPanel>
         </Tabs>
       </div>
