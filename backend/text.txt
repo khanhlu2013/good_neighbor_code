@@ -160,11 +160,10 @@ work on date and sort and filter ...
 
 
 ---
-remove inPostTable, add filter
 your request is approve. did you recieve the item? for acknowledge
 
 
-
+. fix connection background
 ---
 
 i don't like curBorrowShare to be undefined. 
@@ -172,8 +171,7 @@ i don't like curBorrowShare to be undefined.
   . test it
   . change the InPostItem : const curBorrowShare = post.curBorrowShare | null;
 
----
-. show date on decision and sort too?
+
 ---
 . make sure app notification perculate into inner tabs
 . make sure i test inner tab for inPost
@@ -182,3 +180,4 @@ testing time
 
 . .InShareBorrowTableRow
 
+---

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { OutPostCrudDialog } from "./OutPostCrudDialog";
+import { OutPostCrudDialog } from "./crudDialog";
 import { OutPostTable } from "./OutPostTable";
 import { API } from "../../api/profile-api";
-import { OutPostDecisionDialog } from "./OutPostDecisionDialog";
+import { OutPostDecisionDialog } from "./decisionDialog";
 import { LoadingIcon } from "../../util";
 import { Post } from "../../model/post";
 import { OutShareReturnTable } from "./OutShareReturnTable";

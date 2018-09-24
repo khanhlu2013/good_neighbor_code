@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LoadingIcon } from "../../util";
+import { LoadingIcon, date2String } from "../../util";
 Modal.setAppElement("#root");
 
 function OutPostDecisionDialog(props) {
@@ -43,13 +43,13 @@ function OutPostDecisionDialog(props) {
 
       <div className="container">
         <div className="row">
-          <div className="col-sm">
+          <div className="col-sm-7">
             <RequestTable
               shares={post.requestShares}
               onDecideShare={onDecideShare}
             />
           </div>
-          <div className="col-sm">
+          <div className="col-sm-5">
             <DeniedTable
               shares={post.denyShares}
               onUndoDeniedShare={onUndoDeniedShare}
@@ -118,7 +118,7 @@ function DeniedTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={denyTableFromClass}>Denial list</th>
+          <th className={denyTableFromClass}>denial list</th>
           <th className={denyTableUndoClass}>undo</th>
         </tr>
       </thead>
@@ -134,7 +134,7 @@ function DeniedTableRow(props) {
   };
   return (
     <tr className="OutShareDeniedTableRow">
-      <td className={denyTableFromClass}>{share.borrower.email}</td>
+      <td className={denyTableFromClass}>{share.borrower.getNameAndEmail()}</td>
       <td className={denyTableUndoClass}>
         <button
           className="btn btn-success OutShareDeniedTableRowUndoBtn"
@@ -155,19 +155,22 @@ DeniedTable.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-const requestTableFromClass = "col-10";
+const requestTableFromClass = "col-8";
+const requestTableDateClass = "col-2";
 const requestTableApproveClass = "text-center col-1";
 const requestTableDenyClass = "text-center col-1";
 
 function RequestTable(props) {
   const { shares, onDecideShare } = props;
-  const rows = shares.map(share => (
-    <RequestTableRow
-      key={share.id}
-      share={share}
-      onDecideShare={onDecideShare}
-    />
-  ));
+  const rows = shares
+    .sort((s1, s2) => s1.dateCreate - s2.dateCreate)
+    .map(share => (
+      <RequestTableRow
+        key={share.id}
+        share={share}
+        onDecideShare={onDecideShare}
+      />
+    ));
   return (
     <table
       className="table table-striped table-bordered"
@@ -175,7 +178,8 @@ function RequestTable(props) {
     >
       <thead className="thead-light">
         <tr>
-          <th className={requestTableFromClass}>Waiting list</th>
+          <th className={requestTableFromClass}>waiting list</th>
+          <th className={requestTableDateClass}>date</th>
           <th className={requestTableApproveClass}>
             <FontAwesomeIcon icon="thumbs-up" />
           </th>
@@ -203,7 +207,11 @@ function RequestTableRow(props) {
   };
   return (
     <tr className="OutShareRequestTableRow">
-      <td className={requestTableFromClass}>{share.borrower.email}</td>
+      <td className={requestTableFromClass}>
+        {share.borrower.getNameAndEmail()}
+      </td>
+      <td className={requestTableDateClass}>{date2String(share.dateCreate)}</td>
+
       <td className={requestTableApproveClass}>
         {!Boolean(share.post.curBorrowShare) && (
           <button
