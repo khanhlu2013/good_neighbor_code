@@ -11,7 +11,7 @@ class PrivateApp extends Component {
   state = {
     postRequestCount: null,
     friendRequestCount: null,
-    unawareApproveShareCount: null,
+    unawareApprovePostCount: null,
     selectedTabIndex: null
   };
   onFriendRequestCountChange = count => {
@@ -21,15 +21,15 @@ class PrivateApp extends Component {
     this.setState({ postRequestCount: count });
   };
 
-  onUnawareApproveShareCountChange = count => {
-    this.setState({ unawareApproveShareCount: count });
+  onUnawareApprovePostCountChange = count => {
+    this.setState({ unawareApprovePostCount: count });
   };
 
   render() {
     const {
       friendRequestCount,
       postRequestCount,
-      unawareApproveShareCount
+      unawareApprovePostCount
     } = this.state;
 
     const connectionNotification = computeNotificationCountHtml(
@@ -37,7 +37,7 @@ class PrivateApp extends Component {
     );
     const outPostNotification = computeNotificationCountHtml(postRequestCount);
     const inPostNotification = computeNotificationCountHtml(
-      unawareApproveShareCount
+      unawareApprovePostCount
     );
 
     const { loginUser } = this.props;
@@ -73,8 +73,8 @@ class PrivateApp extends Component {
           <TabPanel>
             <InPostManagement
               loginUser={this.props.loginUser}
-              onUnawareApproveShareCountChange={
-                this.onUnawareApproveShareCountChange
+              onUnawareApprovePostCountChange={
+                this.onUnawareApprovePostCountChange
               }
             />
           </TabPanel>

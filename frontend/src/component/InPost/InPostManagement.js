@@ -12,7 +12,6 @@ import { InPostList } from "./inPostList";
 class InPostManagement extends Component {
   state = {
     posts: null,
-    unawareApproveShareCount: null,
     requestingPostIds: [],
     deletingShareIds: [],
     awaringShareIds: [],
@@ -23,7 +22,9 @@ class InPostManagement extends Component {
     let requestShares = null;
     let borrowShares = null;
     let returnShares = null;
-    let unawareApproveShareCount = null;
+    let unawareApprovePosts = null;
+    let unawareApprovePostCount = null;
+
     const { posts } = state;
     const { loginUser } = props;
     if (posts) {
@@ -34,17 +35,24 @@ class InPostManagement extends Component {
       requestShares = myInShares1D.filter(share => share.isRequest);
       borrowShares = myInShares1D.filter(share => share.isBorrow);
       returnShares = myInShares1D.filter(share => share.isReturn);
-      unawareApproveShareCount = InPostManagement.countUnawareApproveShare(
-        posts,
-        loginUser
+      unawareApprovePosts = posts.filter(post =>
+        post.shares.some(
+          share =>
+            share.borrower.id === loginUser.id &&
+            share.isApprove === true &&
+            share.isAwareApprove === false &&
+            share.isReturn === false
+        )
       );
+      unawareApprovePostCount = unawareApprovePosts.length;
     }
 
     return {
       requestShares,
       borrowShares,
       returnShares,
-      unawareApproveShareCount
+      unawareApprovePosts,
+      unawareApprovePostCount
     };
   }
 
@@ -68,8 +76,8 @@ class InPostManagement extends Component {
 
   setPostsAndNotifyUnawareApproveShare(posts) {
     this.setState({ posts });
-    this.props.onUnawareApproveShareCountChange(
-      this.state.unawareApproveShareCount
+    this.props.onUnawareApprovePostCountChange(
+      this.state.unawareApprovePostCount
     );
   }
 
@@ -181,7 +189,7 @@ class InPostManagement extends Component {
   };
 
   onAwareShare = shareId => {
-    this.props.onUnawareApproveShareCountChange(null);
+    this.props.onUnawareApprovePostCountChange(null);
     this.setState({
       awaringShareIds: [...this.state.awaringShareIds, shareId]
     });
@@ -215,17 +223,11 @@ class InPostManagement extends Component {
         share => share.borrower.id === this.props.loginUser.id
       )
     );
-    const approvePosts = posts.filter(
-      post =>
-        post.curBorrowShare &&
-        post.curBorrowShare.borrower.id === this.props.loginUser.id &&
-        post.isAwareApprove === false
-    );
     const borrowPosts = posts.filter(
       post =>
         post.curBorrowShare &&
         post.curBorrowShare.borrower.id === this.props.loginUser.id &&
-        post.isAwareApprove === true
+        post.curBorrowShare.isAwareApprove === true
     );
 
     const generateList = postArray => (
@@ -264,7 +266,7 @@ class InPostManagement extends Component {
                 <span id="TabSelector_InPost_approve">
                   approve
                   {computeNotificationCountHtml(
-                    this.state.unawareApproveShareCount
+                    this.state.unawareApprovePostCount
                   )}
                 </span>
               </Tab>
@@ -287,7 +289,7 @@ class InPostManagement extends Component {
           </div>
           <TabPanel>{generateList(posts)}</TabPanel>
           <TabPanel>{generateList(requestPosts)}</TabPanel>
-          <TabPanel>{generateList(approvePosts)}</TabPanel>
+          <TabPanel>{generateList(this.state.unawareApprovePosts)}</TabPanel>
           <TabPanel>{generateList(borrowPosts)}</TabPanel>
           <TabPanel>
             <InShareReturnTable shares={this.state.returnShares} />
@@ -314,7 +316,7 @@ class InPostManagement extends Component {
 }
 InPostManagement.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  onUnawareApproveShareCountChange: PropTypes.func.isRequired
+  onUnawareApprovePostCountChange: PropTypes.func.isRequired
 };
 
 export { InPostManagement };
