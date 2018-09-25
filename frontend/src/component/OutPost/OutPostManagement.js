@@ -43,7 +43,7 @@ class OutPostManagement extends Component {
 
       requestNotePosts = posts.filter(post => post.isNote_requestWithNoBorrow);
       borrowPosts = posts.filter(post => post.curBorrowShare);
-      returnNotePosts = posts.filter(post => post.isNote_unawareReturn);
+      returnNotePosts = posts.filter(post => post.unawareReturnShareLatest);
     }
     return {
       returnShares,

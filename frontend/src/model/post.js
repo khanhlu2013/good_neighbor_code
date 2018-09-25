@@ -43,14 +43,14 @@ class Post {
     return this.requestShares.length !== 0 && !this.curBorrowShare;
   }
 
-  get isNote_unawareReturn() {
-    let result = false;
+  get unawareReturnShareLatest() {
+    let result = null;
     let latestUnawareReturn = this.returnShares
       .sort((s1, s2) => s2.dateReturn - s1.dateReturn)
       .find(share => share.isReturn === true && share.isAwareReturn === false);
 
     if (latestUnawareReturn && !this.curBorrowShare) {
-      result = true;
+      result = latestUnawareReturn;
     }
     return result;
   }

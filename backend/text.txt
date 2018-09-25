@@ -166,7 +166,6 @@ i don't like curBorrowShare to be undefined.
 fix inpost.css share it with out post too.
 ---
 
-item is return by who?
 customize further the outPostList for each task. 
   . make create new post inside all
   . waiting list only have share button.

@@ -52,9 +52,9 @@ function OutPostItem(props) {
           )}
         </div>
         <div className="text-right">
-          {post.isNote_unawareReturn && (
+          {post.unawareReturnShareLatest && (
             <span>
-              Item is returned
+              {`Item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
               <button
                 onClick={onAwareReturnClick}
                 className={className({
