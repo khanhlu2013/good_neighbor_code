@@ -5,7 +5,7 @@ function PostItemBody(props) {
   const { title, description } = props;
 
   return (
-    <div className="in-post-item-body">
+    <div className="post-item-body">
       <div>
         <span className="text-secondary font-weight-light">title: </span>
         {title}

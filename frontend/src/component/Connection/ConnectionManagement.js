@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { SearchByEmail } from "./SearchByEmail.js";
-import { ConnectionFriendTable } from "./ConnectionTable_friend.js";
-import { ConnectionOutTable } from "./ConnectionTable_out.js";
-import { ConnectionDenyTable } from "./ConnectionTable_deny.js";
-import { ConnectionInTable } from "./ConnectionTable_in.js";
+import { SearchByEmail } from "./searchByEmail.js";
+import { ConnectionFriendTable } from "./connectionTable_friend.js";
+import { ConnectionOutTable } from "./connectionTable_out.js";
+import { ConnectionDenyTable } from "./connectionTable_deny.js";
+import { ConnectionInTable } from "./connectionTable_in.js";
 import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util.js";
 

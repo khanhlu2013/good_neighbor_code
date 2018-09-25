@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
-import "./inPost.css";
 import { InShareHistoryList } from "./inShareHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";

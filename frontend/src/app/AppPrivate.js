@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 
-import { ConnectionManagement } from "../component/Connection/ConnectionManagement.js";
-import { OutPostManagement } from "../component/OutPost/OutPostManagement.js";
+import { ConnectionManagement } from "../component/connection/connectionManagement.js";
+import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPostManagement.js";
 import { computeNotificationCountHtml } from "../util.js";
 

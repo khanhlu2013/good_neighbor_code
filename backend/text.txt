@@ -102,12 +102,6 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . lets just work on fb style return record for InPost too fuck it
 . can i create a proptype for my own model class? to validate dateReturn it could be nullOrmustbeadate
 
-
-
-
-
-
-
 . TODAY
 . -----
 
@@ -147,11 +141,6 @@ work on date and sort and filter ...
   . work on display and sort
   . work on filtering
 ---
-. inPost
-  . hey how about filter by post title?, hey should i highlight the filter too? fucking neat
----
-. fix connection background
----
 i don't like curBorrowShare to be undefined. 
   . change the model
   . test it
@@ -163,11 +152,5 @@ i don't like curBorrowShare to be undefined.
   . make sure i test inner tab for inPost
   . .InShareBorrowTableRow class
 ---
-fix inpost.css share it with out post too.
----
 
-customize further the outPostList for each task. 
-  . make create new post inside all
-  . waiting list only have share button.
-  . move edit button somewhere else to make it less clutter
-  . add filter into outPostList
+email and name for connection

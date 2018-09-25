@@ -72,7 +72,9 @@ function TableRow(props) {
 
   return (
     <tr className="ConnectionTableRow d-flex">
-      <td className="col-8">{connection.getTheOtherUser(loginUserId).name}</td>
+      <td className="col-8">
+        {connection.getTheOtherUser(loginUserId).getNameAndEmail()}
+      </td>
 
       <td className={decideColClass}>
         {isUpdatingConnection ? (

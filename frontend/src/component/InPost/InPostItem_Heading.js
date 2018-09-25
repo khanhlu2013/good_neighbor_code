@@ -5,7 +5,7 @@ import { date2String } from "../../util";
 function InPostItemHeading(props) {
   const { postUser, dateCreate } = props;
   return (
-    <div className="in-post-item-heading">
+    <div className="post-item-heading">
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm">
