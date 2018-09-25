@@ -165,4 +165,10 @@ i don't like curBorrowShare to be undefined.
 ---
 fix inpost.css share it with out post too.
 ---
-i need to combine notification
+
+item is return by who?
+customize further the outPostList for each task. 
+  . make create new post inside all
+  . waiting list only have share button.
+  . move edit button somewhere else to make it less clutter
+  . add filter into outPostList

@@ -27,27 +27,34 @@ class OutPostManagement extends Component {
     isDecidingPost: false
   };
 
-  static countRequestPost = posts => {
-    if (posts === null) {
-      return null;
-    }
-    return posts.filter(post => post.isNote_requestWithNoBorrow).length;
-  };
-
   static getDerivedStateFromProps(props, state) {
     let returnShares = null;
-    if (state.posts) {
-      const returnShares2D = state.posts.map(post =>
+    let requestNotePosts = null;
+    let borrowPosts = null;
+    let returnNotePosts = null;
+
+    const { posts } = state;
+
+    if (posts) {
+      const returnShares2D = posts.map(post =>
         post.shares.filter(share => share.isReturn)
       );
       returnShares = [].concat(...returnShares2D);
+
+      requestNotePosts = posts.filter(post => post.isNote_requestWithNoBorrow);
+      borrowPosts = posts.filter(post => post.curBorrowShare);
+      returnNotePosts = posts.filter(post => post.isNote_unawareReturn);
     }
-    return { returnShares };
+    return {
+      returnShares,
+      requestNotePosts,
+      borrowPosts,
+      returnNotePosts
+    };
   }
 
   componentDidMount() {
-    const requestPostCount = null;
-    this.props.onPostRequestCountChange(requestPostCount);
+    this.props.onOutPostNoteCountChange(null);
     (async () => {
       this.setPostsState(await API.outPosts());
     })();
@@ -55,9 +62,13 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    const requestPostCount = OutPostManagement.countRequestPost(posts);
+    const requestPostCount = posts.filter(
+      post => post.isNote_requestWithNoBorrow
+    ).length;
 
-    this.props.onPostRequestCountChange(requestPostCount);
+    this.props.onOutPostNoteCountChange(
+      requestPostCount + this.state.returnNotePosts.length
+    );
   }
 
   onAwareReturnPost = postId => {
@@ -206,24 +217,24 @@ class OutPostManagement extends Component {
   };
   // DECISION END --------------------------
 
-  _getPostsContent(posts) {
-    const generatePostList = posts => (
-      <OutPostList
-        posts={posts}
-        onEditPost={this.onOpenCrudDialog_edit}
-        onDecidePost={this.onOpenDecideDialog}
-        onAwareReturnPost={this.onAwareReturnPost}
-        awaringReturnPostIds={this.state.awaringReturnPostIds}
-      />
-    );
+  _genPostList = posts => (
+    <OutPostList
+      posts={posts}
+      onEditPost={this.onOpenCrudDialog_edit}
+      onDecidePost={this.onOpenDecideDialog}
+      onAwareReturnPost={this.onAwareReturnPost}
+      awaringReturnPostIds={this.state.awaringReturnPostIds}
+    />
+  );
 
-    const requestNotificationPosts = posts.filter(
-      post => post.isNote_requestWithNoBorrow
-    );
-    const borrowPosts = posts.filter(post => post.curBorrowShare);
-    const returnNotificationPosts = posts.filter(
-      post => post.isNote_unawareReturn
-    );
+  _getPostsContent() {
+    const {
+      posts,
+      requestNotePosts,
+      borrowPosts,
+      returnNotePosts
+    } = this.state;
+
     return (
       <div className="container-fluid ">
         <Tabs forceRenderTabPanel={true}>
@@ -238,9 +249,7 @@ class OutPostManagement extends Component {
               <Tab>
                 <span id="TabSelector_outPost_request">
                   waiting list
-                  {computeNotificationCountHtml(
-                    requestNotificationPosts.length
-                  )}
+                  {computeNotificationCountHtml(requestNotePosts.length)}
                 </span>
               </Tab>
               <Tab>
@@ -252,7 +261,7 @@ class OutPostManagement extends Component {
               <Tab>
                 <span id="TabSelector_outPost_returnNotification">
                   return
-                  {computeNotificationCountHtml(returnNotificationPosts.length)}
+                  {computeNotificationCountHtml(returnNotePosts.length)}
                 </span>
               </Tab>
               <Tab>
@@ -266,10 +275,10 @@ class OutPostManagement extends Component {
               </Tab>
             </TabList>
           </div>
-          <TabPanel>{generatePostList(posts)}</TabPanel>
-          <TabPanel>{generatePostList(requestNotificationPosts)}</TabPanel>
-          <TabPanel>{generatePostList(borrowPosts)}</TabPanel>
-          <TabPanel>{generatePostList(returnNotificationPosts)}</TabPanel>
+          <TabPanel>{this._genPostList(posts)}</TabPanel>
+          <TabPanel>{this._genPostList(requestNotePosts)}</TabPanel>
+          <TabPanel>{this._genPostList(borrowPosts)}</TabPanel>
+          <TabPanel>{this._genPostList(returnNotePosts)}</TabPanel>
           <TabPanel>
             <OutShareHistoryList shares={this.state.returnShares} />
           </TabPanel>
@@ -279,10 +288,9 @@ class OutPostManagement extends Component {
   }
 
   render() {
-    const { posts } = this.state;
     let content;
-    if (posts) {
-      content = this._getPostsContent(posts);
+    if (this.state.posts) {
+      content = this._getPostsContent();
     } else {
       content = (
         <h1 className="text-center">
@@ -293,13 +301,15 @@ class OutPostManagement extends Component {
 
     return (
       <div id="OutPostManagement-react">
-        <button
-          className="btn btn-primary"
-          id="createPostBtn"
-          onClick={this.onOpenCrudDialog_create}
-        >
-          new post
-        </button>
+        <div className="text-center">
+          <button
+            className="btn btn-primary"
+            id="createPostBtn"
+            onClick={this.onOpenCrudDialog_create}
+          >
+            new post
+          </button>
+        </div>
 
         {content}
 
@@ -331,7 +341,7 @@ class OutPostManagement extends Component {
 }
 OutPostManagement.propType = {
   loginUser: PropTypes.object.isRequired,
-  onPostRequestCountChange: PropTypes.func.isRequired
+  onOutPostNoteCountChange: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

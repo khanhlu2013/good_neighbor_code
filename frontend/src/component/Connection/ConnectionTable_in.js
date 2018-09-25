@@ -26,7 +26,10 @@ function Table(props) {
 
   return (
     <div className="container-fluid">
-      <table id="InFriendTable" className="table table-striped table-bordered">
+      <table
+        id="InFriendTable"
+        className="table table-sm table-striped table-bordered"
+      >
         <thead className="thead-light">
           <tr className="d-flex">
             <th className={userNameColClass}>Friend requests</th>

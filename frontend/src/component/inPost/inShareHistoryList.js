@@ -15,7 +15,7 @@ function InShareHistoryList(props) {
   return (
     <table
       id="InShareReturnTable-react"
-      className="table table-striped table-bordered"
+      className="table table-sm table-striped table-bordered"
     >
       <thead className="thead-light">
         <tr>

@@ -9,7 +9,7 @@ import { computeNotificationCountHtml } from "../util.js";
 
 class PrivateApp extends Component {
   state = {
-    postRequestCount: null,
+    outPostNoteCount: null,
     friendRequestCount: null,
     unawareApprovePostCount: null,
     selectedTabIndex: null
@@ -17,8 +17,8 @@ class PrivateApp extends Component {
   onFriendRequestCountChange = count => {
     this.setState({ friendRequestCount: count });
   };
-  onPostRequestCountChange = count => {
-    this.setState({ postRequestCount: count });
+  onOutPostNoteCountChange = count => {
+    this.setState({ outPostNoteCount: count });
   };
 
   onUnawareApprovePostCountChange = count => {
@@ -28,14 +28,14 @@ class PrivateApp extends Component {
   render() {
     const {
       friendRequestCount,
-      postRequestCount,
+      outPostNoteCount,
       unawareApprovePostCount
     } = this.state;
 
     const connectionNotification = computeNotificationCountHtml(
       friendRequestCount
     );
-    const outPostNotification = computeNotificationCountHtml(postRequestCount);
+    const outPostNotification = computeNotificationCountHtml(outPostNoteCount);
     const inPostNotification = computeNotificationCountHtml(
       unawareApprovePostCount
     );
@@ -81,7 +81,7 @@ class PrivateApp extends Component {
           <TabPanel>
             <OutPostManagement
               loginUser={loginUser}
-              onPostRequestCountChange={this.onPostRequestCountChange}
+              onOutPostNoteCountChange={this.onOutPostNoteCountChange}
             />
           </TabPanel>
           <TabPanel>
