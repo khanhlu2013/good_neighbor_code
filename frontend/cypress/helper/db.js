@@ -47,7 +47,7 @@ Cypress.Commands.add("insertUsers", users => {
     .map(u => {
       let idStr = "";
       if (u.id) {
-        idStr = `,"_id":ObjectId("${u.id.toHexString()}")`;
+        idStr = `,"_id":ObjectId("${u.id}")`;
       }
       return `{"email":"${u.email}","name":"${u.name}"${idStr}}`;
     })
@@ -66,11 +66,13 @@ Cypress.Commands.add("insertConnections", connections => {
     .map(c => {
       let idStr = "";
       if (c.id) {
-        idStr = `,"_id":ObjectId("${c.id.toHexString()}")`;
+        idStr = `,"_id":ObjectId("${c.id}")`;
       }
-      return `{"from":ObjectId("${c.from.toHexString()}"),"to":ObjectId("${c.to.toHexString()}"),"approvedByTo":${
-        c.approvedByTo
-      },"approvedByFrom":${c.approvedByFrom}${idStr}}`;
+      return `{"from":ObjectId("${c.from.id}"),"to":ObjectId("${
+        c.to.id
+      }"),"approvedByTo":${c.approvedByTo},"approvedByFrom":${
+        c.approvedByFrom
+      }${idStr}}`;
     })
     .join(",");
 

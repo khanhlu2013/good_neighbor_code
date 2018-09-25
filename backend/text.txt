@@ -152,5 +152,3 @@ i don't like curBorrowShare to be undefined.
   . make sure i test inner tab for inPost
   . .InShareBorrowTableRow class
 ---
-
-email and name for connection

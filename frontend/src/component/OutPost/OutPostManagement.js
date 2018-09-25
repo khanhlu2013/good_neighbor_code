@@ -238,34 +238,34 @@ class OutPostManagement extends Component {
     return (
       <div className="container-fluid ">
         <Tabs forceRenderTabPanel={true}>
-          <div id="TabSelector-outPost-react" className="text-center">
+          <div className="text-center">
             <TabList>
               <Tab>
-                <span id="TabSelector_outPost_all">
+                <span id="tabSelector_outPost_all">
                   all
                   {computeNotificationCountHtml(posts.length, false)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_outPost_request">
+                <span id="tabSelector_outPost_waitingList">
                   waiting list
                   {computeNotificationCountHtml(requestNotePosts.length)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_outPost_borrow">
+                <span id="tabSelector_outPost_borrow">
                   borrow
                   {computeNotificationCountHtml(borrowPosts.length, false)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_outPost_returnNotification">
+                <span id="tabSelector_outPost_returnNote">
                   return
                   {computeNotificationCountHtml(returnNotePosts.length)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_outPost_history">
+                <span id="tabSelector_outPost_history">
                   history
                   {computeNotificationCountHtml(
                     this.state.returnShares.length,

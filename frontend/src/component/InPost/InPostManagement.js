@@ -228,22 +228,22 @@ class InPostManagement extends Component {
     return (
       <div className="container-fluid ">
         <Tabs forceRenderTabPanel={true}>
-          <div id="TabSelector-InPost-react" className="text-center">
+          <div className="text-center">
             <TabList>
               <Tab>
-                <span id="TabSelector_InPost_all">
+                <span id="tabSelector_inPost_all">
                   all
                   {computeNotificationCountHtml(posts.length, false)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_request">
+                <span id="tabSelector_inPost_waitingList">
                   waiting list
                   {computeNotificationCountHtml(requestPosts.length, false)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_approve">
+                <span id="tabSelector_inPost_approve">
                   approve
                   {computeNotificationCountHtml(
                     this.state.unawareApprovePostCount
@@ -251,13 +251,13 @@ class InPostManagement extends Component {
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_borrow">
+                <span id="tabSelector_inPost_borrow">
                   borrow
                   {computeNotificationCountHtml(borrowPosts.length, false)}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_InPost_return">
+                <span id="tabSelector_inPost_history">
                   history
                   {computeNotificationCountHtml(
                     this.state.returnShares.length,

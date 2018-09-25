@@ -45,25 +45,22 @@ class PrivateApp extends Component {
     return (
       <div id="PrivateApp-react">
         <Tabs forceRenderTabPanel={true}>
-          <div
-            id="TabSelector-react"
-            className="tab-selector-list text-center h4 font-weight-light"
-          >
+          <div className="text-center h4 font-weight-light">
             <TabList>
               <Tab>
-                <span id="TabSelector_InPost">
+                <span id="tabSelector_inPost">
                   friend posts
                   {inPostNotification}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_OutPost">
+                <span id="tabSelector_outPost">
                   my posts
                   {outPostNotification}
                 </span>
               </Tab>
               <Tab>
-                <span id="TabSelector_Connection">
+                <span id="tabSelector_connection">
                   friends
                   {connectionNotification}
                 </span>
