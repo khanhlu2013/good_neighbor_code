@@ -21,15 +21,15 @@ describe("Fixture Dev 2", () => {
     id: new ObjectID(),
     from: me.id,
     to: friend.id,
-    approvedByTo: true,
-    approvedByFrom: true
+    isApproveByTo: true,
+    isApproveByFrom: true
   };
   const c_friend_stranger = {
     id: new ObjectID(),
     from: stranger.id,
     to: friend.id,
-    approvedByTo: true,
-    approvedByFrom: true
+    isApproveByTo: true,
+    isApproveByFrom: true
   };
 
   beforeEach(() => {

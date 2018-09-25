@@ -38,8 +38,8 @@ const createConnection = async userIdToAdd => {
 
 const updateConnection = async (connectionId, isApproved) => {
   const {
-    approvedByTo: updatedApprovedByTo,
-    approvedByFrom: updatedApprovedByFrom
+    isApproveByTo: updatedApprovedByTo,
+    isApproveByFrom: updatedApprovedByFrom
   } = await post("profile.updateConnection", {
     connectionId,
     isApproved

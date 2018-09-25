@@ -70,8 +70,8 @@ Cypress.Commands.add("insertConnections", connections => {
       }
       return `{"from":ObjectId("${c.from.id}"),"to":ObjectId("${
         c.to.id
-      }"),"approvedByTo":${c.approvedByTo},"approvedByFrom":${
-        c.approvedByFrom
+      }"),"isApproveByTo":${c.isApproveByTo},"isApproveByFrom":${
+        c.isApproveByFrom
       }${idStr}}`;
     })
     .join(",");
@@ -89,13 +89,13 @@ Cypress.Commands.add("insertPosts", posts => {
     .map(p => {
       let idStr = "";
       if (p.id) {
-        idStr = `,"_id":ObjectId("${p.id.toHexString()}")`;
+        idStr = `,"_id":ObjectId("${p.id}")`;
       }
-      return `{"user":ObjectId("${p.user.toHexString()}"),"title":"${
+      return `{"user":ObjectId("${p.user.id}"),"title":"${
         p.title
       }","description":"${
         p.description
-      }","isActive":${p.isActive.toString()}, "dateCreate":new Date() ${idStr}}`;
+      }","isActive":${p.isActive.toString()}, "dateCreate":new Date(${p.dateCreate.getTime()}) ${idStr}}`;
     })
     .join(",");
 
@@ -111,16 +111,20 @@ Cypress.Commands.add("insertShares", shares => {
   const str = shares
     .map(s => {
       let idStr = "";
+      let dateReturnStr = "";
       if (s.id) {
-        idStr = `,"_id":ObjectId("${s.id.toHexString()}")`;
+        idStr = `,"_id":ObjectId("${s.id}")`;
       }
-      return `{"post":ObjectId("${s.post.id.toHexString()}"),"borrower":ObjectId("${s.borrower.id.toHexString()}"),"isApprove":${
-        s.isApprove
-      },"isReturn":${s.isReturn},"isAwareReturn":${
+      if (s.dateReturn) {
+        dateReturnStr = `,"dateReturn": new Date("${s.dateReturn.getTime()}")`;
+      }
+      return `{"post":ObjectId("${s.post.id}"),"borrower":ObjectId("${
+        s.borrower.id
+      }"),"isApprove":${s.isApprove},"isReturn":${s.isReturn},"isAwareReturn":${
         s.isAwareReturn
-      },"dateCreate":new Date(), "isAwareApprove":${
+      },"dateCreate":new Date(${s.dateCreate.getTime()}), "isAwareApprove":${
         s.isAwareApprove
-      } ${idStr}}`;
+      } ${dateReturnStr} ${idStr}}`;
     })
     .join(",");
   cy.exec(

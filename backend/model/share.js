@@ -83,7 +83,11 @@ ShareSchema.pre("save", async function() {
 
     //verify connection
     const connection = await Connection.findOneByUsers(borrower, post.user);
-    if (!connection || !connection.approvedByTo || !connection.approvedByFrom) {
+    if (
+      !connection ||
+      !connection.isApproveByTo ||
+      !connection.isApproveByFrom
+    ) {
       throw Error("Post.user is not connected with borrower.");
     }
 

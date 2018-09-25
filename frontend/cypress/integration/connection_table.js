@@ -22,8 +22,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     const in_connection = {
       from: tu.id,
       to: lu.id,
-      approvedByTo: undefined,
-      approvedByFrom: true
+      isApproveByTo: undefined,
+      isApproveByFrom: true
     };
     cy.insertConnections([in_connection]);
     cy.loadApp();
@@ -36,8 +36,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     const out_connection = {
       from: lu.id,
       to: tu.id,
-      approvedByTo: undefined,
-      approvedByFrom: true
+      isApproveByTo: undefined,
+      isApproveByFrom: true
     };
     cy.insertConnections([out_connection]);
     cy.loadApp();
@@ -49,8 +49,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     const friend_connection = {
       from: lu.id,
       to: tu.id,
-      approvedByTo: true,
-      approvedByFrom: true
+      isApproveByTo: true,
+      isApproveByFrom: true
     };
     cy.insertConnections([friend_connection]);
     cy.loadApp();
@@ -62,8 +62,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     const in_deny_connection = {
       from: lu.id,
       to: tu.id,
-      approvedByTo: false,
-      approvedByFrom: true
+      isApproveByTo: false,
+      isApproveByFrom: true
     };
     cy.insertConnections([in_deny_connection]);
     cy.loadApp();
@@ -75,8 +75,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     const out_deny_connection = {
       from: lu.id,
       to: tu.id,
-      approvedByTo: true,
-      approvedByFrom: false
+      isApproveByTo: true,
+      isApproveByFrom: false
     };
     cy.insertConnections([out_deny_connection]);
     cy.loadApp();
@@ -92,8 +92,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -108,8 +108,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -123,8 +123,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: true,
-        approvedByFrom: true
+        isApproveByTo: true,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -138,8 +138,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: lu.id,
         to: tu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -153,8 +153,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: false,
-        approvedByFrom: true
+        isApproveByTo: false,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -171,8 +171,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -187,8 +187,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -202,8 +202,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: true,
-        approvedByFrom: true
+        isApproveByTo: true,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -217,8 +217,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: lu.id,
         to: tu.id,
-        approvedByTo: undefined,
-        approvedByFrom: true
+        isApproveByTo: undefined,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();
@@ -232,8 +232,8 @@ describe("Connection Tables(friend,in,out,deny)", () => {
       {
         from: tu.id,
         to: lu.id,
-        approvedByTo: false,
-        approvedByFrom: true
+        isApproveByTo: false,
+        isApproveByFrom: true
       }
     ]);
     cy.loadApp();

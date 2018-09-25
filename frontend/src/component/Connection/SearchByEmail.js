@@ -174,19 +174,19 @@ function CrudConnectionControlPanel(props) {
       message = `You invited ${searchedUser.name}. `;
       if (
         /*but you changed your mind*/
-        searchedConnection.approvedByFrom === false
+        searchedConnection.isApproveByFrom === false
       ) {
         message += `But you changed your mind.`;
       } else {
         /*and you havent changed your mind yet*/
         if (
           /*searchedUser haven't responsed you*/
-          searchedConnection.approvedByTo === undefined
+          searchedConnection.isApproveByTo === undefined
         ) {
           message += `Please wait for approval!`;
         } else if (
           /*searchedUser approved you*/
-          searchedConnection.approvedByTo === true
+          searchedConnection.isApproveByTo === true
         ) {
           message += `And you are friends!`;
         } else {
@@ -199,19 +199,19 @@ function CrudConnectionControlPanel(props) {
       message = `${searchedUser.name} invited you. `;
       if (
         /*but searchedUser changed her mind*/
-        searchedConnection.approvedByFrom === false
+        searchedConnection.isApproveByFrom === false
       ) {
         message += `But changed his/her mind. Sorry!`;
       } else {
         /*and searchedUser havent changed her mind yet*/
         if (
           /*you havent responsed searchedUser*/
-          searchedConnection.approvedByTo === undefined
+          searchedConnection.isApproveByTo === undefined
         ) {
           message += `Please response.`;
         } else if (
           /*you approved searchedUser*/
-          searchedConnection.approvedByTo === true
+          searchedConnection.isApproveByTo === true
         ) {
           message += `And you accpected!`;
         } else {

@@ -122,8 +122,8 @@ PostSchema.statics.findInPosts = async function(user) {
   const findUsers = [
     {
       $match: {
-        approvedByTo: true,
-        approvedByFrom: true,
+        isApproveByTo: true,
+        isApproveByFrom: true,
         $or: [{ from: user._id }, { to: user._id }]
       }
     },

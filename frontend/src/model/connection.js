@@ -1,6 +1,6 @@
 class Connection {
-  constructor(id, from, to, approvedByTo, approvedByFrom) {
-    Object.assign(this, { id, from, to, approvedByTo, approvedByFrom });
+  constructor(id, from, to, isApproveByFrom, isApproveByTo) {
+    Object.assign(this, { id, from, to, isApproveByFrom, isApproveByTo });
   }
 
   getTheOtherUser(userId) {

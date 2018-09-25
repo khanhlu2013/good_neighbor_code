@@ -8,13 +8,13 @@ const rawToConnection = raw => {
     _id: id,
     from: { _id: fromID, email: fromEmail, name: fromName },
     to: { _id: toID, email: toEmail, name: toName },
-    approvedByTo,
-    approvedByFrom
+    isApproveByTo,
+    isApproveByFrom
   } = raw;
 
   const from = new User(fromID, fromEmail, fromName);
   const to = new User(toID, toEmail, toName);
-  return new Connection(id, from, to, approvedByTo, approvedByFrom);
+  return new Connection(id, from, to, isApproveByFrom, isApproveByTo);
 };
 
 const rawsToConnections = raws => {

@@ -15,8 +15,8 @@ const tu = {
 const connection = {
   from: lu.id,
   to: tu.id,
-  approvedByTo: true,
-  approvedByFrom: true
+  isApproveByTo: true,
+  isApproveByFrom: true
 };
 
 const post = {

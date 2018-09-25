@@ -12,11 +12,11 @@ const ConnectionSchema = new Schema({
     ref: "User",
     required: true
   },
-  approvedByTo: {
+  isApproveByTo: {
     type: Boolean, //only 'to' can change this field
     required: false //3 value allow: undefined/pending, true, false
   },
-  approvedByFrom: {
+  isApproveByFrom: {
     type: Boolean, //only 'from' can change this field
     required: true,
     default: true

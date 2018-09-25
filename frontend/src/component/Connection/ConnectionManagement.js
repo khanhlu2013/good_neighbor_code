@@ -23,8 +23,8 @@ class ConnectionManagement extends Component {
     return connections.filter(
       connection =>
         connection.to.id === loginUserId &&
-        connection.approvedByFrom &&
-        connection.approvedByTo === undefined
+        connection.isApproveByFrom &&
+        connection.isApproveByTo === undefined
     ).length;
   }
 
@@ -74,8 +74,8 @@ class ConnectionManagement extends Component {
       const curConnection = this.state.connections.find(
         connection => connection.id === connectionId
       );
-      curConnection.approvedByFrom = updatedApprovedByFrom;
-      curConnection.approvedByTo = updatedApprovedByTo;
+      curConnection.isApproveByFrom = updatedApprovedByFrom;
+      curConnection.isApproveByTo = updatedApprovedByTo;
       this.setConnectionsAndNotifyRequestCount([
         ...this.state.connections.filter(
           connection => connection.id !== curConnection.id
@@ -99,26 +99,26 @@ class ConnectionManagement extends Component {
 
     if (connections !== null) {
       const friends = connections.filter(
-        connection => connection.approvedByFrom && connection.approvedByTo
+        connection => connection.isApproveByFrom && connection.isApproveByTo
       );
       const inFriends = connections.filter(
         connection =>
           connection.to.id === loginUserId &&
-          connection.approvedByFrom &&
-          connection.approvedByTo === undefined
+          connection.isApproveByFrom &&
+          connection.isApproveByTo === undefined
       );
       const outFriends = connections.filter(
         connection =>
           connection.from.id === loginUserId &&
-          connection.approvedByFrom &&
-          connection.approvedByTo === undefined
+          connection.isApproveByFrom &&
+          connection.isApproveByTo === undefined
       );
       const rejectedFriends = connections.filter(
         connection =>
           (connection.to.id === loginUserId &&
-            connection.approvedByTo === false) ||
+            connection.isApproveByTo === false) ||
           (connection.from.id === loginUserId &&
-            connection.approvedByFrom === false)
+            connection.isApproveByFrom === false)
       );
 
       htmlContent = (

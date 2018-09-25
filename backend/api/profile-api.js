@@ -87,9 +87,9 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
   (async () => {
     const connection = await Connection.findById(connectionId);
     if (connection.from.equals(user._id)) {
-      connection.approvedByFrom = isApproved;
+      connection.isApproveByFrom = isApproved;
     } else {
-      connection.approvedByTo = isApproved;
+      connection.isApproveByTo = isApproved;
     }
     return res.send(await connection.save());
   })().catch(next);
