@@ -66,7 +66,7 @@ function InPostItemFooting(props) {
           curBorrowShare.borrower.id !== loginUser.id && (
             <span>
               <span className="text-muted font-weight-light">
-                currently borrow by:{" "}
+                currently borrow by:
               </span>
               {curBorrowShare.borrower.getNameAndEmail()}
             </span>

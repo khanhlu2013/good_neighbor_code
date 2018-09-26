@@ -64,55 +64,6 @@ const list = {
 };
 
 const inPostUi = {
-  // undoRequest: post => {
-  //   cy.get("#InShareRequestTable-react .InShareRequestTableRow")
-  //     .then(rows => {
-  //       const row = Array.from(rows).find(row => {
-  //         const text = row.textContent;
-  //         return text.includes(post.title);
-  //       });
-  //       return cy.wrap(row);
-  //     })
-  //     .find(".InShareRequestTableRowUndoBtn")
-  //     .click();
-  // },
-  // request: post => {
-  //   cy.get("#InPostTable-react .InPostTableRow")
-  //     .then(rows => {
-  //       const row = Array.from(rows).find(row => {
-  //         const text = row.textContent;
-  //         return text.includes(post.title);
-  //       });
-  //       return cy.wrap(row);
-  //     })
-  //     .find(".InPostTableRowBorrowBtn")
-  //     .click();
-  // },
-
-  // awareApprove: post => {
-  //   cy.get("#InShareBorrowTable-react .InShareBorrowTableRow")
-  //     .then(rows => {
-  //       const row = Array.from(rows).find(row => {
-  //         const text = row.textContent;
-  //         return text.includes(post.title);
-  //       });
-  //       return cy.wrap(row);
-  //     })
-  //     .find(".InShareBorrowTableRowAwareBtn")
-  //     .click();
-  // },
-  // returnBorrow: post => {
-  //   cy.get("#InShareBorrowTable-react .InShareBorrowTableRow")
-  //     .then(rows => {
-  //       const row = Array.from(rows).find(row => {
-  //         const text = row.textContent;
-  //         return text.includes(post.title);
-  //       });
-  //       return cy.wrap(row);
-  //     })
-  //     .find(".InShareBorrowTableRowReturnBtn")
-  //     .click();
-  // },
   list,
   waitForMainPageLoadingFinish,
   snapRightAway: name => {

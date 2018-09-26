@@ -2,22 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
-import { nullOrRequiredValidator, LoadingIcon } from "../../util";
+import { LoadingIcon } from "../../util";
 import { Share } from "../../model/share";
 
 function InPostItemFootingApprove(props) {
   const {
-    // postId,
-    // loginUser,
-    // isActive,
     curBorrowShare,
-    // myRequestShare,
-    // isRequestingPost,
-    // isDeleteingShare,
     isAwaringShare,
     isReturningShare,
-    // onCreateShare,
-    // onDeleteShare,
     onAwareShare,
     onReturnShare
   } = props;
@@ -81,17 +73,9 @@ function InPostItemFootingApprove(props) {
 }
 
 InPostItemFootingApprove.propTypes = {
-  // postId: PropTypes.string.isRequired,
-  // loginUser: PropTypes.instanceOf(User).isRequired,
-  // isActive: PropTypes.bool.isRequired,
-  curBorrowShare: nullOrRequiredValidator("object", Share),
-  // myRequestShare: nullOrRequiredValidator("object", Share),
-  // isRequestingPost: PropTypes.bool.isRequired,
-  // isDeleteingShare: PropTypes.bool.isRequired,
+  curBorrowShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  // onCreateShare: PropTypes.func.isRequired,
-  // onDeleteShare: PropTypes.func.isRequired,
   onAwareShare: PropTypes.func.isRequired,
   onReturnShare: PropTypes.func.isRequired
 };
