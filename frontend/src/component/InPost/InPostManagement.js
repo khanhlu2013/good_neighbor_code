@@ -21,7 +21,7 @@ class InPostManagement extends Component {
     let requestShares = null;
     let borrowShares = null;
     let returnShares = null;
-    let unawareApprovePosts = null;
+    let approveNotePosts = null;
     let unawareApprovePostCount = null;
 
     const { posts } = state;
@@ -34,7 +34,7 @@ class InPostManagement extends Component {
       requestShares = myInShares1D.filter(share => share.isRequest);
       borrowShares = myInShares1D.filter(share => share.isBorrow);
       returnShares = myInShares1D.filter(share => share.isReturn);
-      unawareApprovePosts = posts.filter(post =>
+      approveNotePosts = posts.filter(post =>
         post.shares.some(
           share =>
             share.borrower.id === loginUser.id &&
@@ -43,14 +43,14 @@ class InPostManagement extends Component {
             share.isReturn === false
         )
       );
-      unawareApprovePostCount = unawareApprovePosts.length;
+      unawareApprovePostCount = approveNotePosts.length;
     }
 
     return {
       requestShares,
       borrowShares,
       returnShares,
-      unawareApprovePosts,
+      approveNotePosts,
       unawareApprovePostCount
     };
   }
@@ -210,8 +210,9 @@ class InPostManagement extends Component {
         post.curBorrowShare.borrower.id === this.props.loginUser.id
     );
 
-    const generateList = postArray => (
+    const generateList = (listId, postArray) => (
       <InPostList
+        listId={listId}
         loginUser={this.props.loginUser}
         posts={postArray}
         requestingPostIds={this.state.requestingPostIds}
@@ -267,10 +268,19 @@ class InPostManagement extends Component {
               </Tab>
             </TabList>
           </div>
-          <TabPanel>{generateList(posts)}</TabPanel>
-          <TabPanel>{generateList(requestPosts)}</TabPanel>
-          <TabPanel>{generateList(this.state.unawareApprovePosts)}</TabPanel>
-          <TabPanel>{generateList(borrowPosts)}</TabPanel>
+          <TabPanel>{generateList("inPostList-all-react", posts)}</TabPanel>
+          <TabPanel>
+            {generateList("inPostList-request-react", requestPosts)}
+          </TabPanel>
+          <TabPanel>
+            {generateList(
+              "inPostList-approveNote-react",
+              this.state.approveNotePosts
+            )}
+          </TabPanel>
+          <TabPanel>
+            {generateList("inPostList-borrow-react", borrowPosts)}
+          </TabPanel>
           <TabPanel>
             <InShareHistoryList shares={this.state.returnShares} />
           </TabPanel>

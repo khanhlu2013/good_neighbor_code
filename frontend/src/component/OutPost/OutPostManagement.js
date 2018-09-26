@@ -72,6 +72,7 @@ class OutPostManagement extends Component {
   }
 
   onAwareReturnPost = postId => {
+    this.props.onOutPostNoteCountChange(null);
     this.setState({
       awaringReturnPostIds: [...this.state.awaringReturnPostIds, postId]
     });
@@ -83,12 +84,10 @@ class OutPostManagement extends Component {
         share.isAwareReturn = true;
       }
 
-      this.setState({
-        posts: [
-          ...this.state.posts.filter(post => post.id !== curPost.id),
-          curPost
-        ]
-      });
+      this.setPostsState([
+        ...this.state.posts.filter(post => post.id !== curPost.id),
+        curPost
+      ]);
       this.setState({
         awaringReturnPostIds: this.state.awaringReturnPostIds.filter(
           id => id !== postId
@@ -217,8 +216,9 @@ class OutPostManagement extends Component {
   };
   // DECISION END --------------------------
 
-  _genPostList = posts => (
+  _genPostList = (listId, posts) => (
     <OutPostList
+      listId={listId}
       posts={posts}
       onEditPost={this.onOpenCrudDialog_edit}
       onDecidePost={this.onOpenDecideDialog}
@@ -275,10 +275,21 @@ class OutPostManagement extends Component {
               </Tab>
             </TabList>
           </div>
-          <TabPanel>{this._genPostList(posts)}</TabPanel>
-          <TabPanel>{this._genPostList(requestNotePosts)}</TabPanel>
-          <TabPanel>{this._genPostList(borrowPosts)}</TabPanel>
-          <TabPanel>{this._genPostList(returnNotePosts)}</TabPanel>
+          <TabPanel>
+            {this._genPostList("outPostList-all-react", posts)}
+          </TabPanel>
+          <TabPanel>
+            {this._genPostList(
+              "outPostList-requestNote-react",
+              requestNotePosts
+            )}
+          </TabPanel>
+          <TabPanel>
+            {this._genPostList("outPostList-borrow-react", borrowPosts)}
+          </TabPanel>
+          <TabPanel>
+            {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
+          </TabPanel>
           <TabPanel>
             <OutShareHistoryList shares={this.state.returnShares} />
           </TabPanel>

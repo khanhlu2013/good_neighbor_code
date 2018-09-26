@@ -16,26 +16,48 @@ const waitForMainPageLoadingFinish = () => {
   );
 };
 
-//- TABLE
-const table = {
+const _genList = listId => ({
   decide: post => {
-    cy.get("#OutPostTable-react .OutPostTableRow")
-      .then(rows => {
-        const row = Array.from(rows).find(row => {
-          const text = row.textContent;
-          return text.includes(post.title);
-        });
-        return cy.wrap(row);
+    cy.get(`#${listId} #outPost-item-react`)
+      .then(items => {
+        const item = Array.from(items).find(item =>
+          item.textContent.includes(`title: ${post.title}`)
+        );
+        return cy.wrap(item);
       })
-      .find(".OutPostTableRowDecideBtn")
+      .find("#outPostItem-decisionBtn-react")
       .click();
   },
-  edit: rowIndex => {
-    cy.get("#OutPostTable-react .OutPostTableRow")
-      .eq(rowIndex)
-      .find(".OutPostTableRowEditBtn")
+  awareReturn: post => {
+    cy.get(`#${listId} #outPost-item-react`)
+      .then(items => {
+        const item = Array.from(items).find(item =>
+          item.textContent.includes(`title: ${post.title}`)
+        );
+        return cy.wrap(item);
+      })
+      .find("#outPostItem-awareReturnBtn-react")
+      .click();
+  },
+
+  edit: post => {
+    cy.get(`#${listId} #outPost-item-react`)
+      .then(items => {
+        const item = Array.from(items).find(item =>
+          item.textContent.includes(`title: ${post.title}`)
+        );
+        return cy.wrap(item);
+      })
+      .find("#outPostItem-editBtn-react")
       .click();
   }
+});
+
+const list = {
+  all: _genList("outPostList-all-react"),
+  requestNote: _genList("outPostList-requestNote-react"),
+  borrow: _genList("outPostList-borrow-react"),
+  returnNote: _genList("outPostList-returnNote-react")
 };
 
 //- CRUD-DIALOG
@@ -107,13 +129,13 @@ const decisionDialog = {
 };
 
 const outPostUi = {
-  table,
-  waitForMainPageLoadingFinish,
   crudDialog,
   decisionDialog,
   createNewPost: () => {
     cy.get("#createPostBtn").click();
   },
+  list,
+  waitForMainPageLoadingFinish,
   snap: name => {
     waitForMainPageLoadingFinish();
     cy.get("#OutPostManagement-react").snapshot({ name });

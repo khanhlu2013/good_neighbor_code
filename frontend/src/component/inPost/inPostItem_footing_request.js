@@ -15,6 +15,7 @@ function InPostItemFootingRequest(props) {
     <div className="text-success">
       You're in waiting list. Please wait for response.
       <button
+        id="outPostItem-undoRequestBtn-react"
         onClick={onUndoRequestClicked}
         className={className({
           btn: true,

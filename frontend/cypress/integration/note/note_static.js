@@ -1,4 +1,3 @@
-import { ObjectID } from "mongodb";
 import { tab } from "../../helper/ui.js";
 import {
   createUser,
@@ -24,7 +23,7 @@ describe("notification static display ui", () => {
     });
   });
 
-  describe("my post", () => {
+  describe("out post", () => {
     it("can show request", () => {
       const connection = createConnection(tu, lu, true, true);
       const post = createPost(lu, "title", "description");
@@ -33,7 +32,7 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("master");
+      tab.outPost.snapRightAway("master");
       tab.outPost.waitingList.snapRightAway("request");
     });
     it("can show unaware return", () => {
@@ -57,7 +56,7 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("master");
+      tab.outPost.snapRightAway("master");
       tab.outPost.return.snapRightAway("return");
     });
     it("can show combine request and unaware return", () => {
@@ -94,7 +93,7 @@ describe("notification static display ui", () => {
     });
   });
 
-  describe("friend post", () => {
+  describe("in post", () => {
     it("can show approve post", () => {
       const connection = createConnection(tu, lu, true, true);
       const post = createPost(tu, "title", "description");
@@ -118,7 +117,7 @@ describe("notification static display ui", () => {
       cy.login(lu.email);
 
       tab.inPost.focus();
-      tab.inPost.snap("master");
+      tab.inPost.snapRightAway("master");
       tab.inPost.approve.snapRightAway("approve");
     });
   });

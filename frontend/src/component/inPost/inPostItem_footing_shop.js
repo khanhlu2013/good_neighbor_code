@@ -13,6 +13,7 @@ function InPostItemFootingShop(props) {
 
   return (
     <button
+      id="outPostItem-requestBtn-react"
       className={className({
         btn: true,
         "btn-success": !isRequestingPost,

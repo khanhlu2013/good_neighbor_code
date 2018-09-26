@@ -1,36 +1,11 @@
-const mongodb = require("mongodb");
-const { ObjectID } = mongodb;
+import { createUser, createConnection } from "../helper/model";
 
 describe("Fixture Dev 2", () => {
-  const friend = {
-    id: new ObjectID(),
-    email: "my@friend.com",
-    name: "My Friend"
-  };
-  const stranger = {
-    id: new ObjectID(),
-    email: "stranger@person.com",
-    name: "Stranger Person"
-  };
-  const me = {
-    id: new ObjectID(),
-    email: "me@me.com",
-    name: "Me Here"
-  };
-  const c_me_friend = {
-    id: new ObjectID(),
-    from: me.id,
-    to: friend.id,
-    isApproveByTo: true,
-    isApproveByFrom: true
-  };
-  const c_friend_stranger = {
-    id: new ObjectID(),
-    from: stranger.id,
-    to: friend.id,
-    isApproveByTo: true,
-    isApproveByFrom: true
-  };
+  const friend = createUser("My Friend", "my@friend.com");
+  const stranger = createUser("Stranger Person", "stranger@person.com");
+  const me = createUser("I Myself Me", "me@me.com");
+  const c_me_friend = createConnection(me, friend, true, true);
+  const c_friend_stranger = createConnection(friend, stranger, true, true);
 
   beforeEach(() => {
     cy.setupDb([friend, stranger, me], [c_me_friend, c_friend_stranger]);

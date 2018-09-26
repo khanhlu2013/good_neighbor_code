@@ -4,6 +4,7 @@ import { OutPostItem } from "./outPostItem";
 
 function OutPostList(props) {
   const {
+    listId,
     posts,
     onEditPost,
     onDecidePost,
@@ -28,9 +29,10 @@ function OutPostList(props) {
       ));
   }
 
-  return <div id="OutPostList-react">{content}</div>;
+  return <div id={listId}>{content}</div>;
 }
 OutPostList.propTypes = {
+  listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   onEditPost: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired,

@@ -4,6 +4,7 @@ import { InPostItem } from "./inPostItem";
 
 function InPostList(props) {
   const {
+    listId,
     posts,
     requestingPostIds,
     deletingShareIds,
@@ -45,9 +46,10 @@ function InPostList(props) {
       ));
   }
 
-  return <div id="InPostList-react">{content}</div>;
+  return <div id={listId}>{content}</div>;
 }
 InPostList.propTypes = {
+  listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   requestingPostIds: PropTypes.array.isRequired,
   deletingShareIds: PropTypes.array.isRequired,

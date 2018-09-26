@@ -32,7 +32,7 @@ function OutPostItem(props) {
   const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
   return (
-    <div className="post-item">
+    <div id="outPost-item-react" className="post-item">
       <OutPostItemHeading dateCreate={post.dateCreate} />
 
       <div className="container">
@@ -56,6 +56,7 @@ function OutPostItem(props) {
             <span>
               {`Item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
               <button
+                id="outPostItem-awareReturnBtn-react"
                 onClick={onAwareReturnClick}
                 className={className({
                   btn: true,
@@ -71,13 +72,21 @@ function OutPostItem(props) {
               </button>
             </span>
           )}
-          <button onClick={onEditBtnClicked} className="btn btn-primary">
+          <button
+            id="outPostItem-editBtn-react"
+            onClick={onEditBtnClicked}
+            className="btn btn-primary"
+          >
             edit
           </button>
           {(post.denyShares.length !== 0 ||
             post.requestShares.length !== 0 ||
             curBorrowShare) && (
-            <button onClick={onDecidePostClick} className="btn btn-success">
+            <button
+              id="outPostItem-decisionBtn-react"
+              onClick={onDecidePostClick}
+              className="btn btn-success"
+            >
               share
             </button>
           )}

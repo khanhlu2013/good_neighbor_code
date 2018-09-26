@@ -33,6 +33,7 @@ function InPostItemFootingApprove(props) {
   if (!curBorrowShare.isAwareApprove) {
     awareContent = (
       <button
+        id="outPostItem-awareApproveBtn-react"
         className={className({
           btn: true,
           "btn-success": !isAwaringShare,
@@ -53,6 +54,7 @@ function InPostItemFootingApprove(props) {
   }
   const returnContent = (
     <button
+      id="outPostItem-returnBtn-react"
       className={className({
         btn: true,
         "btn-warning": !isReturningShare,

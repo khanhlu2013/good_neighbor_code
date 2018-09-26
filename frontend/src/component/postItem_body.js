@@ -6,7 +6,7 @@ function PostItemBody(props) {
 
   return (
     <div className="post-item-body">
-      <div>
+      <div id="post-item-body-title-react">
         <span className="text-secondary font-weight-light">title: </span>
         {title}
       </div>
