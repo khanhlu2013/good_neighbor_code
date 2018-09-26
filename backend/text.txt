@@ -134,6 +134,10 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 ---
 login fail, see what happen
 ---
+. why decide post doesn't make LoadingIcon appear on outpost tab?
+. genList within the ui_helper can factor to reduce DRY 
+. verify all the snapshot
+---
 consider use frontEnd model for test to make sure we have the correct data
 work on date and sort and filter ...
   . clean out the model

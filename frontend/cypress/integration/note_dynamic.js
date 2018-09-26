@@ -1,12 +1,12 @@
-import { tab, ui } from "../../helper/ui";
+import { tab, ui } from "../helper/ui";
 import {
   createConnection,
   createUser,
   createPost,
   createShare
-} from "../../helper/model";
+} from "../helper/model";
 
-describe("notification dynamic update ui LoadingIcon", () => {
+describe("notification dynamic update ui", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 
@@ -19,27 +19,28 @@ describe("notification dynamic update ui LoadingIcon", () => {
       tab.connection.focus();
       tab.connection.snap("before");
       ui.connection.inRequests_approve(0);
-      tab.connection.snapRightAway("after");
+      tab.connection.snap("after");
     });
   });
 
   describe("outPost", () => {
-    // it("can update request", () => {
-    //   const connection = createConnection(tu, lu, true, true);
-    //   const post = createPost(lu, "ttt", "ddd");
-    //   const share = createShare(post, tu);
-    //   cy.setupDb([lu, tu], [connection], [post], [share]);
-    //   cy.loadApp();
-    //   cy.login(lu.email);
-    //   tab.outPost.focus();
-    //   tab.outPost.snap("before");
+    it("can update request", () => {
+      const connection = createConnection(tu, lu, true, true);
+      const post = createPost(lu, "ttt", "ddd");
+      const share = createShare(post, tu);
+      cy.setupDb([lu, tu], [connection], [post], [share]);
+      cy.loadApp();
+      cy.login(lu.email);
+      tab.outPost.focus();
+      tab.outPost.snap("before");
 
-    //   tab.outPost.waitingList.focus();
-    //   ui.outPost.list.requestNote.decide(post);
-    //   ui.outPost.decisionDialog.decide(tu, true);
-    //   tab.outPost.snapRightAway("after");
-    //   ui.outPost.decisionDialog.exit();
-    // });
+      tab.outPost.waitingList.focus();
+      ui.outPost.list.requestNote.decide(post);
+      ui.outPost.decisionDialog.decide(tu, true);
+      ui.outPost.decisionDialog.exit();
+
+      tab.outPost.snap("after");
+    });
 
     it("can update unaware return", () => {
       const connection = createConnection(tu, lu, true, true);
@@ -66,7 +67,7 @@ describe("notification dynamic update ui LoadingIcon", () => {
 
       tab.outPost.return.focus();
       ui.outPost.list.returnNote.awareReturn(post);
-      tab.outPost.snapRightAway("after");
+      tab.outPost.snap("after");
     });
   });
 
@@ -94,7 +95,7 @@ describe("notification dynamic update ui LoadingIcon", () => {
       tab.inPost.approve.focus();
       tab.inPost.snapRightAway("before");
       ui.inPost.list.approveNote.awareApprove(post);
-      tab.inPost.snapRightAway("after");
+      tab.inPost.snap("after");
     });
   });
 });

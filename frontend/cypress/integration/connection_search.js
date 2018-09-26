@@ -1,19 +1,9 @@
-const mongodb = require("mongodb");
-const { ObjectID } = mongodb;
-
-const { connectionTree } = require("../helper/ui_connection");
+import { ui, tab } from "../helper/ui";
+import { createUser, createConnection } from "../helper/model";
 
 describe("Connection SearchByEmail", () => {
-  const lu = {
-    id: new ObjectID(),
-    email: "lu@us.com",
-    name: "Lu Tran"
-  };
-  const tu = {
-    id: new ObjectID(),
-    email: "tu@pr.com",
-    name: "Tu Nguyen"
-  };
+  const lu = createUser("Lu Tran", "lu@us.com");
+  const tu = createUser("Tu Nguyen", "tu@pr.com");
 
   const notFoundEmail = "abc@efg.com";
 
@@ -23,7 +13,8 @@ describe("Connection SearchByEmail", () => {
     cy.loadApp();
     cy.login(lu.email);
 
-    connectionTree.tab.focus();
+    tab.connection.focus();
+
     searchAndSnap("empty email", "");
     searchAndSnap("invalid email", "xyz");
     searchAndSnap("self search email", lu.email);
@@ -34,7 +25,7 @@ describe("Connection SearchByEmail", () => {
     cy.loadApp();
     cy.login(lu.email);
 
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Show search not found", notFoundEmail);
     searchAndSnap("Show found search result", tu.email);
   });
@@ -43,68 +34,43 @@ describe("Connection SearchByEmail", () => {
     cy.setupDb([lu, tu]);
 
     //in user
-    const in_connection = {
-      from: tu.id,
-      to: lu.id,
-      isApproveByTo: undefined,
-      isApproveByFrom: true
-    };
+    const in_connection = createConnection(tu, lu, true, undefined);
     cy.insertConnections([in_connection]);
     cy.loadApp();
     cy.login(lu.email);
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Can search in connection", tu.email);
 
     //out user
     cy.clearConnectionDb();
-    const out_connection = {
-      from: lu.id,
-      to: tu.id,
-      isApproveByTo: undefined,
-      isApproveByFrom: true
-    };
+    const out_connection = createConnection(lu, tu, true, undefined);
     cy.insertConnections([out_connection]);
     cy.loadApp();
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Can search out connection", tu.email);
 
     //friend user
     cy.clearConnectionDb();
-    const friend_connection = {
-      from: lu.id,
-      to: tu.id,
-      isApproveByTo: true,
-      isApproveByFrom: true
-    };
+    const friend_connection = createConnection(lu, tu, true, true);
     cy.insertConnections([friend_connection]);
     cy.loadApp();
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Can search friend connection", tu.email);
 
     //in-deny user
     cy.clearConnectionDb();
-    const in_deny_connection = {
-      from: lu.id,
-      to: tu.id,
-      isApproveByTo: false,
-      isApproveByFrom: true
-    };
+    const in_deny_connection = createConnection(lu, tu, true, false);
     cy.insertConnections([in_deny_connection]);
     cy.loadApp();
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Can search in-deny connection", tu.email);
 
     //out-deny user
     cy.clearConnectionDb();
-    const out_deny_connection = {
-      from: lu.id,
-      to: tu.id,
-      isApproveByTo: true,
-      isApproveByFrom: false
-    };
+    const out_deny_connection = createConnection(lu, tu, false, true);
     cy.insertConnections([out_deny_connection]);
     cy.loadApp();
-    connectionTree.tab.focus();
+    tab.connection.focus();
     searchAndSnap("Can search out-deny connection", tu.email);
   });
 
@@ -114,10 +80,10 @@ describe("Connection SearchByEmail", () => {
     cy.login(lu.email);
 
     //create connection
-    connectionTree.tab.focus();
-    connectionTree.search.exe(tu.email);
-    connectionTree.search.getCreateConnectionBtn().click();
-    connectionTree.search.snap("can invite user");
+    tab.connection.focus();
+    ui.connection.search.exe(tu.email);
+    ui.connection.search.getCreateConnectionBtn().click();
+    ui.connection.search.snap("can invite user");
   });
 
   it("LoadingIcon (search/invite)", () => {
@@ -125,18 +91,18 @@ describe("Connection SearchByEmail", () => {
     cy.loadApp();
     cy.login(lu.email);
 
-    connectionTree.tab.focus();
-    connectionTree.search.exe(tu.email);
-    connectionTree.search.getSearchBtnLoadingIcon().should("be.visible");
-    connectionTree.search.snapRightAway("Show loadingIcon during search user");
+    tab.connection.focus();
+    ui.connection.search.exe(tu.email);
+    ui.connection.search.getSearchBtnLoadingIcon().should("be.visible");
+    ui.connection.search.snapRightAway("Show loadingIcon during search user");
 
-    connectionTree.search.getCreateConnectionBtn().click();
-    connectionTree.search.getInviteBtnLoadingIcon().should("be.visible");
-    connectionTree.search.snapRightAway("Show loadingIcon during invite user");
+    ui.connection.search.getCreateConnectionBtn().click();
+    ui.connection.search.getInviteBtnLoadingIcon().should("be.visible");
+    ui.connection.search.snapRightAway("Show loadingIcon during invite user");
   });
 });
 
 function searchAndSnap(snapshotName, email) {
-  connectionTree.search.exe(email);
-  connectionTree.search.snap(snapshotName);
+  ui.connection.search.exe(email);
+  ui.connection.search.snap(snapshotName);
 }

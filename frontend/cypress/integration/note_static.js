@@ -1,10 +1,10 @@
-import { tab } from "../../helper/ui.js";
+import { tab } from "../helper/ui.js";
 import {
   createUser,
   createConnection,
   createPost,
   createShare
-} from "../../helper/model.js";
+} from "../helper/model.js";
 
 describe("notification static display ui", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
