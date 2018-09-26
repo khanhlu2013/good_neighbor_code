@@ -1,12 +1,7 @@
-const mongodb = require("mongodb");
-const { ObjectID } = mongodb;
-const { outPostTree } = require("../helper/ui_outPost");
+import { ui, tab } from "../helper/ui";
+import { createUser, createPost } from "../helper/model";
 
-const me = {
-  id: new ObjectID(),
-  email: "me@me.com",
-  name: "Me Here"
-};
+const me = createUser("Me Here", "me@me.com");
 
 describe("OutPost crud", () => {
   it("can create and edit post", () => {
@@ -14,50 +9,57 @@ describe("OutPost crud", () => {
     cy.loadApp();
     cy.login(me.email);
 
+    let post = createPost(me, "me title", "me description");
+    let editPost = createPost(me, "new me title", "new me description", false);
+
     // app show empty out post
-    outPostTree.tab.focus();
-    outPostTree.snap("app show empty OutPost");
+    tab.outPost.focus();
+    ui.outPost.list.all.snap("app show empty OutPost");
 
     //user can post
-    outPostTree.createNewPost();
-    outPostTree.crudDialog.snapRightAway("app show empty post form");
-    outPostTree.crudDialog.fillOut("me title", "me description", true);
-    outPostTree.crudDialog.snapRightAway("app show fill out form");
-    outPostTree.crudDialog.submit();
-    outPostTree.crudDialog.waitForLoadingFinish();
-    outPostTree.snap("app's outPostTable show new created post");
+    ui.outPost.createNewPost();
+    ui.outPost.crudDialog.snapRightAway("app show empty post form");
+    ui.outPost.crudDialog.fillOut(post);
+    ui.outPost.crudDialog.snapRightAway("app show fill out form");
+    ui.outPost.crudDialog.submit();
+    ui.outPost.crudDialog.waitForLoadingFinish();
+    ui.outPost.list.all.snap("app's outPostTable show new created post");
 
-    outPostTree.table.edit(0);
-    outPostTree.crudDialog.snapRightAway(
+    //user can edit post
+    ui.outPost.list.all.edit(post);
+    ui.outPost.crudDialog.snapRightAway(
       "app show pre-filled post form with edit"
     );
-    outPostTree.crudDialog.fillOut("new me title", "new me description", false);
-    outPostTree.crudDialog.submit();
-    outPostTree.crudDialog.waitForLoadingFinish();
-    outPostTree.snap("app's outPostTable show edited post");
+    ui.outPost.crudDialog.fillOut(editPost);
+    ui.outPost.crudDialog.submit();
+    ui.outPost.crudDialog.waitForLoadingFinish();
+    ui.outPost.list.all.snap("app's outPostTable show edited post");
   });
 
   it("LoadingIcon", () => {
     cy.setupDb([me]);
     cy.loadApp();
     cy.login(me.email);
-    outPostTree.tab.focus();
-    outPostTree.waitForMainPageLoadingFinish();
+    tab.outPost.focus();
+    ui.outPost.waitForMainPageLoadingFinish();
+
+    let post = createPost(me, "me title", "me description");
+    let editPost = createPost(me, "new me title", "new me description", false);
 
     //loading icon when create new
-    outPostTree.createNewPost();
-    outPostTree.crudDialog.fillOut("me title", "me description", true);
-    outPostTree.crudDialog.submit();
-    outPostTree.crudDialog.snapRightAway(
+    ui.outPost.createNewPost();
+    ui.outPost.crudDialog.fillOut(post);
+    ui.outPost.crudDialog.submit();
+    ui.outPost.crudDialog.snapRightAway(
       "crud dialog show loading icon when create new post"
     );
-    outPostTree.crudDialog.waitForLoadingFinish();
+    ui.outPost.crudDialog.waitForLoadingFinish();
 
     //loading icon when edit
-    outPostTree.table.edit(0);
-    outPostTree.crudDialog.fillOut("new me title", "new me description", false);
-    outPostTree.crudDialog.submit();
-    outPostTree.crudDialog.snapRightAway(
+    ui.outPost.list.all.edit(post);
+    ui.outPost.crudDialog.fillOut(editPost);
+    ui.outPost.crudDialog.submit();
+    ui.outPost.crudDialog.snapRightAway(
       "crud dialog show loading icon when edit post"
     );
   });

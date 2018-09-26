@@ -1,17 +1,17 @@
 const waitForCrudDialogLoadingFinish = () => {
-  cy.get("#OutPostCrudDialogForm-react #LoadingIcon-react").should(
+  cy.get("#outPostCrudDialogForm-react #LoadingIcon-react").should(
     "not.be.visible"
   );
 };
 
 const waitForDecisionDialogLoadingFinish = () => {
-  cy.get("#OutPostDecisionDialog-react #LoadingIcon-react").should(
+  cy.get("#outPostDecisionDialog-react #LoadingIcon-react").should(
     "not.be.visible"
   );
 };
 
 const waitForMainPageLoadingFinish = () => {
-  cy.get("#OutPostManagement-react #LoadingIcon-react").should(
+  cy.get("#outPostManagement-react #LoadingIcon-react").should(
     "not.be.visible"
   );
 };
@@ -28,6 +28,7 @@ const _genList = listId => ({
       .find("#outPostItem-decisionBtn-react")
       .click();
   },
+
   awareReturn: post => {
     cy.get(`#${listId} #outPost-item-react`)
       .then(items => {
@@ -50,6 +51,14 @@ const _genList = listId => ({
       })
       .find("#outPostItem-editBtn-react")
       .click();
+  },
+
+  snapRightAway: name => {
+    cy.get(`#${listId}`).snapshot({ name });
+  },
+  snap: name => {
+    waitForMainPageLoadingFinish();
+    cy.get(`#${listId}`).snapshot({ name });
   }
 });
 
@@ -63,24 +72,24 @@ const list = {
 //- CRUD-DIALOG
 const crudDialog = {
   snapRightAway: name => {
-    cy.get("#OutPostCrudDialogForm-react").snapshot({ name });
+    cy.get("#outPostCrudDialogForm-react").snapshot({ name });
   },
-  fillOut: (title, description, isActive) => {
-    cy.get("#OutPostCrudDialogForm-react :text")
+  fillOut: post => {
+    cy.get("#outPostCrudDialogForm-react :text")
       .clear()
-      .type(`${title}`);
-    cy.get("#OutPostCrudDialogForm-react textarea")
+      .type(`${post.title}`);
+    cy.get("#outPostCrudDialogForm-react textarea")
       .clear()
-      .type(`${description}`);
-    const isActiveCheckBox = cy.get("#OutPostCrudDialogForm-react :checkbox");
-    if (isActive) {
+      .type(`${post.description}`);
+    const isActiveCheckBox = cy.get("#outPostCrudDialogForm-react :checkbox");
+    if (post.isActive) {
       isActiveCheckBox.check();
     } else {
       isActiveCheckBox.uncheck();
     }
   },
   submit: () => {
-    cy.get("#OutPostCrudDialogForm-react :submit").click();
+    cy.get("#outPostCrudDialogForm-react :submit").click();
   },
   waitForLoadingFinish: waitForCrudDialogLoadingFinish
 };
@@ -117,10 +126,10 @@ const decisionDialog = {
   },
   snap: name => {
     waitForDecisionDialogLoadingFinish();
-    cy.get("#OutPostDecisionDialog-react").snapshot({ name });
+    cy.get("#outPostDecisionDialog-react").snapshot({ name });
   },
   snapRightAway: name => {
-    cy.get("#OutPostDecisionDialog-react").snapshot({ name });
+    cy.get("#outPostDecisionDialog-react").snapshot({ name });
   },
   exit: () => {
     cy.get("#OutPostDecisionDialogExitBtn").click();
@@ -138,10 +147,10 @@ const outPostUi = {
   waitForMainPageLoadingFinish,
   snap: name => {
     waitForMainPageLoadingFinish();
-    cy.get("#OutPostManagement-react").snapshot({ name });
+    cy.get("#outPostManagement-react").snapshot({ name });
   },
   snapRightAway: name => {
-    cy.get("#OutPostManagement-react").snapshot({ name });
+    cy.get("#outPostManagement-react").snapshot({ name });
   }
 };
 

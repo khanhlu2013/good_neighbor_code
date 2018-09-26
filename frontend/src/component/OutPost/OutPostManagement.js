@@ -311,7 +311,7 @@ class OutPostManagement extends Component {
     }
 
     return (
-      <div id="OutPostManagement-react">
+      <div id="outPostManagement-react">
         <div className="text-center">
           <button
             className="btn btn-primary"

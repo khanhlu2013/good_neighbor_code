@@ -137,6 +137,8 @@ login fail, see what happen
 . why decide post doesn't make LoadingIcon appear on outpost tab?
 . genList within the ui_helper can factor to reduce DRY 
 . verify all the snapshot
+. update inPost test to show other tab
+. update button having LoadingIcon, show the text show that it doesn't get cut with just ...
 ---
 consider use frontEnd model for test to make sure we have the correct data
 work on date and sort and filter ...
@@ -156,3 +158,5 @@ i don't like curBorrowShare to be undefined.
   . make sure i test inner tab for inPost
   . .InShareBorrowTableRow class
 ---
+
+continue to test post_out_crud.js

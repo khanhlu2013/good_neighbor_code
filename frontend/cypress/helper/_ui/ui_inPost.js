@@ -46,6 +46,13 @@ const _genList = listId => ({
       })
       .find("#outPostItem-returnBtn-react")
       .click();
+  },
+  snapRightAway: name => {
+    cy.get(`#${listId}`).snapshot({ name });
+  },
+  snap: name => {
+    waitForMainPageLoadingFinish();
+    cy.get(`#${listId}`).snapshot({ name });
   }
 });
 

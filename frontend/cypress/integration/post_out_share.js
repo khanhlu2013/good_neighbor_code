@@ -1,31 +1,15 @@
-const mongodb = require("mongodb");
-const { ObjectID } = mongodb;
-const { outPostTree } = require("../helper/ui_outPost");
+import { ui, tab } from "../helper/ui";
+import {
+  createUser,
+  createPost,
+  createConnection,
+  createShare
+} from "../helper/model";
 
-const lu = {
-  id: new ObjectID(),
-  email: "lu@us.com",
-  name: "Lu Tran"
-};
-const tu = {
-  id: new ObjectID(),
-  email: "tu@pr.com",
-  name: "Tu Nguyen"
-};
-const connection = {
-  from: lu.id,
-  to: tu.id,
-  isApproveByTo: true,
-  isApproveByFrom: true
-};
-
-const post = {
-  id: new ObjectID(),
-  user: lu.id,
-  title: "title",
-  description: "description",
-  isActive: true
-};
+const lu = createUser("Lu Tran", "lu@us.com");
+const tu = createUser("Tu Nguyen", "tu@pr.com");
+const connection = createConnection(lu, tu, true, true);
+const post = createPost(lu, "p title", "p description");
 
 describe("Outpost share ", () => {
   it("table can display request,borrow,deny,return info", () => {
@@ -34,141 +18,97 @@ describe("Outpost share ", () => {
     cy.loadApp();
     cy.login(lu.email);
 
-    outPostTree.tab.focus();
-    outPostTree.snap(
+    tab.outPost.focus();
+    ui.outPost.list.all.snap(
       "table can show post with no request, no approved,no denied info"
     );
 
     //request
     cy.clearShareDb();
-    cy.insertShares([
-      {
-        post,
-        borrower: tu,
-        isApprove: undefined,
-        isAwareApprove: false,
-        isReturn: false,
-        isAwareReturn: false
-      }
-    ]);
+    let share = createShare(post, tu);
+    cy.insertShares([share]);
 
     cy.loadApp();
-    outPostTree.tab.focus();
-    outPostTree.snap("table can show post with request");
+    tab.outPost.focus();
+    ui.outPost.list.all.snap("table can show post with request");
 
     //approved
     cy.clearShareDb();
-    cy.insertShares([
-      {
-        post,
-        borrower: tu,
-        isApprove: true,
-        isAwareApprove: false,
-        isReturn: false,
-        isAwareReturn: false
-      }
-    ]);
+    share = createShare(post, tu, true);
+    cy.insertShares([share]);
 
     cy.loadApp();
-    outPostTree.tab.focus();
-    outPostTree.snap("table can show post with approved info");
+    tab.outPost.focus();
+    ui.outPost.list.all.snap("table can show post with approved info");
 
     //denied
     cy.clearShareDb();
-    cy.insertShares([
-      {
-        post,
-        borrower: tu,
-        isApprove: false,
-        isAwareApprove: false,
-        isReturn: false,
-        isAwareReturn: false
-      }
-    ]);
+    share = createShare(post, tu, false);
+    cy.insertShares([share]);
 
     cy.loadApp();
-    outPostTree.tab.focus();
-    outPostTree.snap("table can show post with denied info");
+    tab.outPost.focus();
+    ui.outPost.list.all.snap("table can show post with denied info");
 
     //return
     cy.clearShareDb();
-    cy.insertShares([
-      {
-        post,
-        borrower: tu,
-        isApprove: true,
-        isAwareApprove: true,
-        isReturn: true,
-        isAwareReturn: false
-      }
-    ]);
+    share = createShare(post, tu, true, true, true, true, new Date());
+    cy.insertShares([share]);
 
     cy.loadApp();
-    outPostTree.tab.focus();
-    outPostTree.snap("table can show post with return info");
+    tab.outPost.focus();
+    ui.outPost.list.all.snap("table can show post with return info");
   });
 
   it("dialog can approve deny and undo share info", () => {
-    const share = {
-      post,
-      borrower: tu,
-      isApprove: undefined,
-      isReturn: false
-    };
-
+    const share = createShare(post, tu);
     cy.setupDb([lu, tu], [connection], [post], [share]);
     cy.loadApp();
     cy.login(lu.email);
 
-    outPostTree.tab.focus();
-    outPostTree.table.decide(post);
+    tab.outPost.focus();
+    ui.outPost.list.all.decide(post);
 
     //approve request
-    outPostTree.decisionDialog.decide(tu, true);
-    outPostTree.decisionDialog.snap("Dialog can approve request");
+    ui.outPost.decisionDialog.decide(tu, true);
+    ui.outPost.decisionDialog.snap("Dialog can approve request");
 
     //undo approve
-    outPostTree.decisionDialog.undoApprove();
-    outPostTree.decisionDialog.snap("Dialog can undo approved");
+    ui.outPost.decisionDialog.undoApprove();
+    ui.outPost.decisionDialog.snap("Dialog can undo approved");
 
     //deny request
-    outPostTree.decisionDialog.decide(tu, false);
-    outPostTree.decisionDialog.snap("Dialog can deny request");
+    ui.outPost.decisionDialog.decide(tu, false);
+    ui.outPost.decisionDialog.snap("Dialog can deny request");
 
     //undo denied
-    outPostTree.decisionDialog.undoDenied(tu);
-    outPostTree.decisionDialog.snap("Dialog can undo denied request");
+    ui.outPost.decisionDialog.undoDenied(tu);
+    ui.outPost.decisionDialog.snap("Dialog can undo denied request");
   });
 
   it("LoadingIcon", () => {
-    const share = {
-      post,
-      borrower: tu,
-      isApprove: undefined,
-      isReturn: false
-    };
-
+    const share = createShare(post, tu);
     cy.setupDb([lu, tu], [connection], [post], [share]);
     cy.loadApp();
     cy.login(lu.email);
-    outPostTree.tab.focus();
-    outPostTree.waitForMainPageLoadingFinish();
-    outPostTree.table.decide(post);
+    tab.outPost.focus();
+    ui.outPost.waitForMainPageLoadingFinish();
+    ui.outPost.list.all.decide(post);
 
     //approve request
-    outPostTree.decisionDialog.decide(tu, true);
-    outPostTree.decisionDialog.snapRightAway("approving ...");
+    ui.outPost.decisionDialog.decide(tu, true);
+    ui.outPost.decisionDialog.snapRightAway("approving ...");
 
     //undo approve
-    outPostTree.decisionDialog.undoApprove();
-    outPostTree.decisionDialog.snapRightAway("undo approved ...");
+    ui.outPost.decisionDialog.undoApprove();
+    ui.outPost.decisionDialog.snapRightAway("undo approved ...");
 
     //deny request
-    outPostTree.decisionDialog.decide(tu, false);
-    outPostTree.decisionDialog.snapRightAway("deny request ...");
+    ui.outPost.decisionDialog.decide(tu, false);
+    ui.outPost.decisionDialog.snapRightAway("deny request ...");
 
     //undo denied
-    outPostTree.decisionDialog.undoDenied(tu);
-    outPostTree.decisionDialog.snapRightAway("undo denied request ...");
+    ui.outPost.decisionDialog.undoDenied(tu);
+    ui.outPost.decisionDialog.snapRightAway("undo denied request ...");
   });
 });

@@ -75,7 +75,7 @@ function OutPostDecisionDialog(props) {
       shouldCloseOnOverlayClick={false}
       shouldCloseOnEsc={false}
     >
-      <div id="OutPostDecisionDialog-react">
+      <div id="outPostDecisionDialog-react">
         <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
         {isDecidingPost ? (
           <h1 className="text-center">

@@ -110,7 +110,7 @@ class OutPostCrudDialog extends Component {
           shouldCloseOnEsc={false}
         >
           <h1 className="ReactModal__title">{dialogTitle}</h1>
-          <form id="OutPostCrudDialogForm-react" onSubmit={this.onSubmitPost}>
+          <form id="outPostCrudDialogForm-react" onSubmit={this.onSubmitPost}>
             <div className="form-group row">
               <label
                 htmlFor="outpostCrudDialogFormTitle"
