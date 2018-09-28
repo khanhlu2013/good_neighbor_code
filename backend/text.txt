@@ -101,6 +101,23 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
   . this conclude mongoose didn't create db as i want. 
 . lets just work on fb style return record for InPost too fuck it
 . can i create a proptype for my own model class? to validate dateReturn it could be nullOrmustbeadate
+. understand passport,  {proxy: true} http vs https
+. understand api-url frontend: REACT_APP_NODE_ENV, BACKEND_BASE_URL
+. d-flex is what i want for row class, fix all the col-sm ...
+. clean up isActive. how do i show it?
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 . TODAY
 . -----
@@ -136,7 +153,18 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . genList within the ui_helper can factor to reduce DRY 
 . verify all the snapshot
 . update inPost test to show other tab
+
+
+
 . update button having LoadingIcon, show the text show that it doesn't get cut with just ...
 
+
+disable loadingicon button
+
 ---
-login fail, see what happen
+. make sure that changing connection changing inpost
+. lower case footer
+. kill isAnimate
+
+. change backend to reflect gn
+. see if the front end url refect gn.

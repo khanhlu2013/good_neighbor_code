@@ -13,13 +13,6 @@ import {
   faThumbsDown, //deny
   faTrashAlt, //remove
   faUndoAlt,
-  faShareAlt, //decision
-  faPencilAlt, //edit
-  faQuestion, //request
-  faCheck, //is active, accept approval and borrow
-  faLocationArrow, //return
-  faRecycle, //return
-  faUserClock, //borrow
   faPlay, //play youtube video
   faPause, //pause youtube video
   faClock //youtube video duration
@@ -33,13 +26,6 @@ library.add(
   faThumbsDown,
   faTrashAlt,
   faUndoAlt,
-  faShareAlt,
-  faPencilAlt,
-  faQuestion,
-  faCheck,
-  faLocationArrow,
-  faRecycle,
-  faUserClock,
   faPlay,
   faPause,
   faClock
@@ -79,6 +65,7 @@ class App extends Component {
       content = null;
     } else if (loginUser === null) {
       content = <PublicApp />;
+      // content = <h1 className="text-center">App Public</h1>;
     } else {
       content = <PrivateApp loginUser={loginUser} />;
     }

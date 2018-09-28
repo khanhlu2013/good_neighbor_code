@@ -20,7 +20,7 @@ if (mode !== "production") {
 const keys = {
   SESSION_SECRET: process.env.SESSION_SECRET,
   FRONTEND_URL: process.env.FRONTEND_URL, //for auth redirect purpose
-  BACKEND_PORT: process.env.BACKEND_PORT,
+  PORT: process.env.PORT,
   MONGODB_URI: process.env.MONGODB_URI,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,

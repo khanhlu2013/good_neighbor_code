@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { LoadingIcon } from "../../util";
 
@@ -11,24 +10,21 @@ function InPostItemFootingShop(props) {
     onCreateShare(postId);
   };
 
-  return (
-    <button
-      id="outPostItem-requestBtn-react"
-      className={className({
-        btn: true,
-        "btn-success": !isRequestingPost,
-        "btn-secondary": isRequestingPost,
-        disabled: isRequestingPost
-      })}
-      onClick={onCreateShareClicked}
-    >
-      {isRequestingPost ? (
-        <LoadingIcon text="requesting" isAnimate={true} />
-      ) : (
-        "request"
-      )}
-    </button>
-  );
+  let content;
+  if (isRequestingPost) {
+    content = <LoadingIcon text="requesting" isAnimate={true} />;
+  } else {
+    content = (
+      <button
+        id="outPostItem-requestBtn-react"
+        className="btn btn-success"
+        onClick={onCreateShareClicked}
+      >
+        request
+      </button>
+    );
+  }
+  return content;
 }
 
 InPostItemFootingShop.propTypes = {

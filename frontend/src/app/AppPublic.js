@@ -3,31 +3,26 @@ import PropType from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import YouTube from "react-youtube";
 import className from "classnames";
+import "./appPublic.css";
 
-// class Video {
-//   constructor(title, duration, id) {
-//     Object.assign(this, { title, duration, id });
-//   }
-// }
-
-function PublicApp(props) {
-  // const data = [
-  //   ["Good Neighbor: what & why", "1:04", "OUaq9xb8qeE"],
-  //   ["Sign Up / Login: less is more", "1:02", "xprWVgeTLLk"]
-  // ];
-  // const videos = data.map(data => new Video(...data));
-  // return <div id="PublicApp-react">{<PlayList videos={videos} />}</div>;
-
-  return (
-    <div id="PublicApp-react">
-      <h1 className="text-center">Public App</h1>
-    </div>
-  );
+class Video {
+  constructor(title, duration, id) {
+    Object.assign(this, { title, duration, id });
+  }
 }
 
-const videoTitleClass = "col-9";
+function PublicApp(props) {
+  const data = [
+    ["Good Neighbor: what & why", "1:04", "OUaq9xb8qeE"],
+    ["Sign Up / Login: less is more", "1:02", "xprWVgeTLLk"]
+  ];
+  const videos = data.map(data => new Video(...data));
+  return <div id="publicApp-react">{<PlayList videos={videos} />}</div>;
+}
+
+const videoTitleClass = "col-8";
 const videoDurationClass = "col-2 text-center";
-const videoPlayClass = "col-1 text-center";
+const videoPlayClass = "col-2 text-center";
 
 class PlayList extends Component {
   state = {
@@ -84,10 +79,10 @@ class PlayList extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-4">
-            <table className="table table-striped table-bordered">
+          <div className="col-sm-5">
+            <table className="table table-sm table-striped table-bordered">
               <thead className="thead-light">
-                <tr>
+                <tr className="d-flex">
                   <th className={videoTitleClass}>Manual Videos</th>
                   <th className={videoDurationClass}>
                     <FontAwesomeIcon icon="clock" />
@@ -98,11 +93,11 @@ class PlayList extends Component {
               <tbody>{rows}</tbody>
             </table>
           </div>
-          <div className="col-sm-8">
+          <div className="col-sm-7">
             <YouTube
               videoId={this.state.curVideo.id}
               opts={{
-                height: "450",
+                height: "400",
                 width: "700",
                 playerVars: {
                   // https://developers.google.com/youtube/player_parameters
@@ -127,7 +122,7 @@ function PlayListRow(props) {
 
   const onPlayClick = e => onToogleVideoCb(video);
   return (
-    <tr>
+    <tr className="d-flex">
       <td className={videoTitleClass}>{video.title}</td>
       <td className={videoDurationClass}>{video.duration}</td>
       <td className={videoPlayClass}>

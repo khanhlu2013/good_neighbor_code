@@ -1,5 +1,8 @@
+.DS_Store
+
 /backend/node_modules
 /backend/configs/keys-local-for-test-and-dev.js
+/backend/.DS_Store
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 

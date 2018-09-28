@@ -1,19 +1,22 @@
 import RouteNode from "route-node";
 
 const { NODE_ENV } = process.env;
+let BACKEND_BASE_URL;
 let BACKEND_PORT;
 
 if (NODE_ENV === "production") {
-  throw Error("UNDER CONSTRUCTION");
+  BACKEND_BASE_URL = "https://goodneighbor-backend-test.herokuapp.com";
+  BACKEND_PORT = "";
 } else {
+  BACKEND_BASE_URL = "http://localhost";
   if (process.env.REACT_APP_NODE_ENV === "test") {
-    BACKEND_PORT = "3001";
+    BACKEND_PORT = ":3001";
   } else {
-    BACKEND_PORT = "3000";
+    BACKEND_PORT = ":3000";
   }
 }
 
-const BACKEND_URL = `http://localhost:${BACKEND_PORT}`;
+const BACKEND_URL = `${BACKEND_BASE_URL}${BACKEND_PORT}`;
 
 const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [

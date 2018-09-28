@@ -22,7 +22,7 @@ const {
 } = keys;
 passport.use(
   new GoogleStrategy(
-    { clientID, clientSecret, callbackURL },
+    { clientID, clientSecret, callbackURL, proxy: true },
     (accessToken, refreshToken, profile, done) => {
       (async () => {
         const email = profile.emails[0].value;

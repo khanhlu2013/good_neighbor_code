@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { LoadingIcon } from "../../util";
 
@@ -11,24 +10,25 @@ function InPostItemFootingRequest(props) {
     onDeleteShare(myRequestShareId);
   };
 
-  return (
-    <div className="text-success">
-      You're in waiting list. Please wait for response.
+  let content;
+  if (isDeleteingShare) {
+    content = <LoadingIcon text="undo" isAnimate={true} />;
+  } else {
+    content = (
       <button
         id="outPostItem-undoRequestBtn-react"
         onClick={onUndoRequestClicked}
-        className={className({
-          btn: true,
-          "btn-warning": !isDeleteingShare,
-          "btn-secondary": isDeleteingShare
-        })}
+        className="btn btn-warning"
       >
-        {isDeleteingShare ? (
-          <LoadingIcon text="undo" isAnimate={true} />
-        ) : (
-          "undo"
-        )}
+        undo
       </button>
+    );
+  }
+
+  return (
+    <div className="text-success">
+      you're in waiting list, please wait for response.
+      {content}
     </div>
   );
 }

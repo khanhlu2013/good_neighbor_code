@@ -3,6 +3,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require("cors");
+const url = require("url");
 
 const keys = require("./configs/keys");
 
@@ -16,14 +17,12 @@ if (process.env.NODE_ENV === "test") {
   app.use(function(req, res, next) {
     setTimeout(next, 70); //this allow test to pass
     //setTimeout(next, 100); //this allow test to pass
-    //setTimeout(next, 500); //this allow test to pass
-    //setTimeout(next, 1000); //this allow test to pass
   });
 }
 
 app.use(
   cors({
-    origin: [keys.FRONTEND_URL],
+    origin: [new url.URL(keys.FRONTEND_URL).origin],
     credentials: true
   })
 );
@@ -51,8 +50,8 @@ app.use(function logError(err, req, res, next) {
 });
 
 //start app
-app.listen(keys.BACKEND_PORT, () => {
-  console.log(`app is listening on port ${keys.BACKEND_PORT}`);
+app.listen(keys.PORT, () => {
+  console.log(`app is listening on port ${keys.PORT}`);
 });
 
 module.exports = app;

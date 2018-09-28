@@ -2,12 +2,15 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://khanhlu2013.github.io/good_neighbor_test",
   "scripts": {
     "start:frontend:testenv": "REACT_APP_NODE_ENV=test react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@cypress/snapshot": "^2.0.1",
     "cypress": "^3.1.0",
+    "gh-pages": "^2.0.0",
     "mongodb": "^3.1.4",
     "react-test-renderer": "^16.4.2"
   }

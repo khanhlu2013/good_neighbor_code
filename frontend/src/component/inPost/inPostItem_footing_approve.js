@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { LoadingIcon } from "../../util";
 import { Share } from "../../model/share";
@@ -23,49 +22,39 @@ function InPostItemFootingApprove(props) {
 
   let awareContent;
   if (!curBorrowShare.isAwareApprove) {
-    awareContent = (
-      <button
-        id="outPostItem-awareApproveBtn-react"
-        className={className({
-          btn: true,
-          "btn-success": !isAwaringShare,
-          "btn-secondary": isAwaringShare,
-          disabled: isAwaringShare
-        })}
-        onClick={onAwareShareClicked}
-      >
-        {isAwaringShare ? (
-          <LoadingIcon text={null} isAnimate={true} />
-        ) : (
-          "You've received. "
-        )}
-      </button>
-    );
+    if (isAwaringShare) {
+      awareContent = <LoadingIcon text={"receiving"} isAnimate={true} />;
+    } else {
+      awareContent = (
+        <button
+          id="outPostItem-awareApproveBtn-react"
+          className="btn btn-success"
+          onClick={onAwareShareClicked}
+        >
+          confirm received
+        </button>
+      );
+    }
   } else {
     awareContent = <span>You've received.</span>;
   }
-  const returnContent = (
-    <button
-      id="outPostItem-returnBtn-react"
-      className={className({
-        btn: true,
-        "btn-warning": !isReturningShare,
-        "btn-secondary": isReturningShare,
-        disabled: isReturningShare
-      })}
-      onClick={onReturnShareClicked}
-    >
-      {isReturningShare ? (
-        <LoadingIcon text={null} isAnimate={true} />
-      ) : (
-        "return"
-      )}
-    </button>
-  );
-
+  let returnContent;
+  if (isReturningShare) {
+    returnContent = <LoadingIcon text={"returning"} isAnimate={true} />;
+  } else {
+    returnContent = (
+      <button
+        id="outPostItem-returnBtn-react"
+        className="btn btn-warning"
+        onClick={onReturnShareClicked}
+      >
+        return
+      </button>
+    );
+  }
   return (
     <div className="text-success">
-      {"Your request is approved. "}
+      {"your request is approved."}
       {awareContent}
       {returnContent}
     </div>

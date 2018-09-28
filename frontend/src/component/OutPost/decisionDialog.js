@@ -79,7 +79,7 @@ function OutPostDecisionDialog(props) {
         <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
         {isDecidingPost ? (
           <h1 className="text-center">
-            <LoadingIcon text="Please wait" isAnimate={true} />
+            <LoadingIcon text="please wait" isAnimate={true} />
           </h1>
         ) : (
           content

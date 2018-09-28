@@ -3,13 +3,13 @@ import { User } from "../model/user";
 import { rawsToConnections, rawToConnection, rawsToPosts } from "./api-helper";
 
 const profile = async () => {
-  const request = await fetch(API_URL("profile"), {
+  const response = await fetch(API_URL("profile"), {
     credentials: "include"
   });
-  if (request.status === 401) {
+  if (response.status === 401) {
     return null;
   }
-  const { _id: id, email, name } = await request.json();
+  const { _id: id, email, name } = await response.json();
   return new User(id, email, name);
 };
 

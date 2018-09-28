@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { PostItemBody } from "../postItem_body";
 import { PostItemRequestList } from "../postItem_requestlist";
@@ -54,22 +53,18 @@ function OutPostItem(props) {
         <div className="text-right">
           {post.unawareReturnShareLatest && (
             <span>
-              {`Item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
-              <button
-                id="outPostItem-awareReturnBtn-react"
-                onClick={onAwareReturnClick}
-                className={className({
-                  btn: true,
-                  "btn-success": !isAwaringReturn,
-                  "btn-secondary": isAwaringReturn
-                })}
-              >
-                {isAwaringReturn ? (
-                  <LoadingIcon text={null} isAnimate={true} />
-                ) : (
-                  "I've received"
-                )}
-              </button>
+              {`item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
+              {isAwaringReturn ? (
+                <LoadingIcon text={"receiving"} isAnimate={true} />
+              ) : (
+                <button
+                  id="outPostItem-awareReturnBtn-react"
+                  onClick={onAwareReturnClick}
+                  className="btn btn-success"
+                >
+                  confirm returned
+                </button>
+              )}
             </span>
           )}
           <button
