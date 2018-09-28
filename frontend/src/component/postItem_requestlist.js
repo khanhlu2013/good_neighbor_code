@@ -15,7 +15,7 @@ function PostItemRequestList(props) {
     ));
 
   return (
-    <table className="table table-bordered table-striped">
+    <table className="table table-sm table-bordered table-striped">
       <thead className="thead-light">
         <tr className="thead-">
           <th>waiting list</th>

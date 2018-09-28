@@ -60,10 +60,7 @@ class OutPostCrudDialog extends Component {
     if (this.props.isCrudingPost) {
       resultHtml = (
         <h1>
-          <LoadingIcon
-            text={this.props.post ? "Editing" : "Creating"}
-            isAnimate={true}
-          />
+          <LoadingIcon text={this.props.post ? "Editing" : "Creating"} />
         </h1>
       );
     } else {

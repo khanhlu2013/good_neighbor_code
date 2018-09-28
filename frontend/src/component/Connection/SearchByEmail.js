@@ -102,7 +102,7 @@ class SearchByEmail extends Component {
             onChange={this.onSearchChange}
           />
           {this.state.isSearching ? (
-            <LoadingIcon text="searching" isAnimate={true} />
+            <LoadingIcon text="searching" />
           ) : (
             <input className="btn btn-primary" type="submit" value="search" />
           )}
@@ -151,9 +151,7 @@ function CrudConnectionControlPanel(props) {
     searchedConnection === null
   ) {
     if (isCreatingConnection) {
-      action = (
-        <LoadingIcon text={`Inviting ${searchedUser.name}`} isAnimate={true} />
-      );
+      action = <LoadingIcon text={`Inviting ${searchedUser.name}`} />;
     } else {
       action = (
         <button

@@ -12,7 +12,7 @@ function InPostItemFootingShop(props) {
 
   let content;
   if (isRequestingPost) {
-    content = <LoadingIcon text="requesting" isAnimate={true} />;
+    content = <LoadingIcon text="requesting" />;
   } else {
     content = (
       <button

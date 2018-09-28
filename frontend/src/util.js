@@ -48,9 +48,7 @@ class LoadingIcon extends Component {
     return 3;
   }
   componentDidMount() {
-    if (this.props.isAnimate) {
-      this.startAnimate();
-    }
+    this.startAnimate();
   }
 
   componentWillUnmount() {
@@ -73,10 +71,6 @@ class LoadingIcon extends Component {
   }
 
   getAnimateString() {
-    if (!this.props.isAnimate) {
-      return null;
-    }
-
     const { curAnimateDotCount } = this.state;
     let array = new Array(LoadingIcon.animateDotCountMax);
     for (let index of array.keys()) {
@@ -96,15 +90,14 @@ class LoadingIcon extends Component {
     return (
       <span id="LoadingIcon-react">
         {text !== null && text}
-        {animateString !== null && <b>{animateString}</b>}
+        <b>{animateString}</b>
       </span>
     );
   }
 }
 
 LoadingIcon.propTypes = {
-  text: nullOrRequiredValidator("string"),
-  isAnimate: PropTypes.bool.isRequired
+  text: nullOrRequiredValidator("string")
 };
 
 function date2String(date) {
@@ -125,7 +118,7 @@ function computeNotificationCountHtml(count, isImportant = true) {
       >{` (${count})`}</span>
     );
   } else if (count === null) {
-    html = <LoadingIcon text={null} isAnimate={true} />;
+    html = <LoadingIcon text={null} />;
   } else {
     if (count !== 0) throw Error("Unexpected code path");
   }

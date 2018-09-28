@@ -98,7 +98,7 @@ class PlayList extends Component {
               videoId={this.state.curVideo.id}
               opts={{
                 height: "400",
-                width: "700",
+                width: "640",
                 playerVars: {
                   // https://developers.google.com/youtube/player_parameters
                   autoplay: 0

@@ -305,7 +305,7 @@ class OutPostManagement extends Component {
     } else {
       content = (
         <h1 className="text-center">
-          <LoadingIcon text="loading" isAnimate={true} />
+          <LoadingIcon text="loading" />
         </h1>
       );
     }

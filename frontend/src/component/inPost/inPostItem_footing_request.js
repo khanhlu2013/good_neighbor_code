@@ -12,7 +12,7 @@ function InPostItemFootingRequest(props) {
 
   let content;
   if (isDeleteingShare) {
-    content = <LoadingIcon text="undo" isAnimate={true} />;
+    content = <LoadingIcon text="undo" />;
   } else {
     content = (
       <button

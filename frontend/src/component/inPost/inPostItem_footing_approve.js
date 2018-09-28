@@ -23,7 +23,7 @@ function InPostItemFootingApprove(props) {
   let awareContent;
   if (!curBorrowShare.isAwareApprove) {
     if (isAwaringShare) {
-      awareContent = <LoadingIcon text={"receiving"} isAnimate={true} />;
+      awareContent = <LoadingIcon text={"receiving"} />;
     } else {
       awareContent = (
         <button
@@ -40,7 +40,7 @@ function InPostItemFootingApprove(props) {
   }
   let returnContent;
   if (isReturningShare) {
-    returnContent = <LoadingIcon text={"returning"} isAnimate={true} />;
+    returnContent = <LoadingIcon text={"returning"} />;
   } else {
     returnContent = (
       <button

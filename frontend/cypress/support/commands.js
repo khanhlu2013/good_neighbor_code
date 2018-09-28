@@ -32,7 +32,7 @@ Cypress.Commands.add("loadApp", () => {
 
 Cypress.Commands.add("login", email => {
   cy.get("#dummy_login_email").type(`${email}{enter}`);
-  cy.get("#PrivateApp-react").should("be.visible"); //wait for login
+  cy.get("#privateApp-react").should("be.visible"); //wait for login
 });
 
 Cypress.Commands.add("logout", () => {

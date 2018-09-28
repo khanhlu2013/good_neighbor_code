@@ -55,7 +55,7 @@ function OutPostItem(props) {
             <span>
               {`item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
               {isAwaringReturn ? (
-                <LoadingIcon text={"receiving"} isAnimate={true} />
+                <LoadingIcon text={"receiving"} />
               ) : (
                 <button
                   id="outPostItem-awareReturnBtn-react"

@@ -166,5 +166,3 @@ disable loadingicon button
 . lower case footer
 . kill isAnimate
 
-. change backend to reflect gn
-. see if the front end url refect gn.

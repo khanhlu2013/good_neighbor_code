@@ -69,7 +69,7 @@ function TableRow(props) {
       </td>
       <td className={removeColClass}>
         {isUpdatingConnection ? (
-          <LoadingIcon text={null} isAnimate={true} />
+          <LoadingIcon text={null} />
         ) : (
           <button
             className="ConnectionTableRowDenyBtn btn btn-warning"

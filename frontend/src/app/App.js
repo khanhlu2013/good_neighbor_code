@@ -46,7 +46,7 @@ class App extends Component {
     if (loginUser === undefined) {
       header = (
         <h4>
-          <LoadingIcon text="loading" isAnimate={true} />
+          <LoadingIcon text="loading" />
         </h4>
       );
     } else if (loginUser === null) {
@@ -72,11 +72,11 @@ class App extends Component {
 
     return (
       <div>
-        <div className="App-header">
+        <div className="app-header">
           <h1>Good Neighbor</h1>
           {header}
         </div>
-        <div className="App-body">{content}</div>
+        <div>{content}</div>
       </div>
     );
   }

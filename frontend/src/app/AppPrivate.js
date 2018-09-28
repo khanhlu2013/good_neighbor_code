@@ -6,6 +6,7 @@ import { ConnectionManagement } from "../component/connection/connectionManageme
 import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPostManagement.js";
 import { computeNotificationCountHtml } from "../util.js";
+import "./appPrivate.css";
 
 class PrivateApp extends Component {
   state = {
@@ -43,7 +44,7 @@ class PrivateApp extends Component {
     const { loginUser } = this.props;
 
     return (
-      <div id="PrivateApp-react">
+      <div id="privateApp-react">
         <Tabs forceRenderTabPanel={true}>
           <div className="text-center h4 font-weight-light">
             <TabList>
