@@ -177,3 +177,5 @@ ready to work on dummy test purpose.
 . how is the failure of not providing name is right now: expect it will be a can't parse 
 
 i want to see how react is doing when we have a 500 like that? i am not expect this to happen, but it does, what is it look like then? i need to show a decent message or just let it fail. 
+
+xx
