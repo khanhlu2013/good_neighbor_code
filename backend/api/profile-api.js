@@ -8,25 +8,18 @@ const Share = require("../model/share");
 const keys = require("../configs/keys");
 
 // - auth ----
-const authCheck = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).send();
-  }
-  next();
-};
-
-route.get("/logout", authCheck, (req, res) => {
+route.get("/logout", _authCheck, (req, res) => {
   req.logout();
   res.redirect(keys.FRONTEND_URL);
 });
 
-route.get("/", authCheck, (req, res) => {
+route.get("/authCheck", _authCheck, (req, res) => {
   res.header("Cache-Control", "no-cache, no-store");
   res.send(req.user);
 });
 
 // - user ----
-route.get("/searchEmail", authCheck, (req, res, next) => {
+route.get("/searchEmail", _authCheck, (req, res, next) => {
   const { email } = req.query;
   const { user } = req;
 
@@ -44,7 +37,7 @@ route.get("/searchEmail", authCheck, (req, res, next) => {
 });
 
 // - connection ----
-route.get("/connections", authCheck, (req, res, next) => {
+route.get("/connections", _authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
     const connections = await Connection.findMyConnections(user);
@@ -52,7 +45,7 @@ route.get("/connections", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/createConnection", authCheck, (req, res, next) => {
+route.post("/createConnection", _authCheck, (req, res, next) => {
   const { user } = req;
   const { userIdToAdd } = req.body;
 
@@ -74,7 +67,7 @@ route.post("/createConnection", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/updateConnection", authCheck, (req, res, next) => {
+route.post("/updateConnection", _authCheck, (req, res, next) => {
   const { user } = req;
   const { connectionId, isApproved } = req.body;
 
@@ -97,7 +90,7 @@ route.post("/updateConnection", authCheck, (req, res, next) => {
 });
 
 // - post ----
-route.post("/createPost", authCheck, (req, res, next) => {
+route.post("/createPost", _authCheck, (req, res, next) => {
   const { user } = req;
   const { title, description, isActive } = req.body;
   (async () => {
@@ -112,7 +105,7 @@ route.post("/createPost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/updatePost", authCheck, (req, res, next) => {
+route.post("/updatePost", _authCheck, (req, res, next) => {
   const { user } = req;
   const { postID, title, description, isActive } = req.body;
 
@@ -139,7 +132,7 @@ route.post("/updatePost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/awareReturnPost", authCheck, (req, res, next) => {
+route.post("/awareReturnPost", _authCheck, (req, res, next) => {
   const { user } = req;
   const { postId } = req.body;
 
@@ -170,7 +163,7 @@ route.post("/awareReturnPost", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.get("/outPosts", authCheck, (req, res, next) => {
+route.get("/outPosts", _authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
     const posts = await Post.findOutPosts(user);
@@ -178,7 +171,7 @@ route.get("/outPosts", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.get("/inPosts", authCheck, (req, res, next) => {
+route.get("/inPosts", _authCheck, (req, res, next) => {
   const { user } = req;
   (async () => {
     const inPosts = await Post.findInPosts(user);
@@ -186,7 +179,7 @@ route.get("/inPosts", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/createShare", authCheck, (req, res, next) => {
+route.post("/createShare", _authCheck, (req, res, next) => {
   const { user } = req;
   const { postID } = req.body;
 
@@ -204,7 +197,7 @@ route.post("/createShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/deleteShare", authCheck, (req, res, next) => {
+route.post("/deleteShare", _authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID } = req.body;
 
@@ -227,7 +220,7 @@ route.post("/deleteShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/returnShare", authCheck, (req, res, next) => {
+route.post("/returnShare", _authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID } = req.body;
 
@@ -252,7 +245,7 @@ route.post("/returnShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/awareApproveShare", authCheck, (req, res, next) => {
+route.post("/awareApproveShare", _authCheck, (req, res, next) => {
   const { user } = req;
   const { shareId } = req.body;
 
@@ -276,7 +269,7 @@ route.post("/awareApproveShare", authCheck, (req, res, next) => {
   })().catch(next);
 });
 
-route.post("/approveShare", authCheck, (req, res, next) => {
+route.post("/approveShare", _authCheck, (req, res, next) => {
   const { user } = req;
   const { shareID, isApprove } = req.body;
 
@@ -303,5 +296,13 @@ route.post("/approveShare", authCheck, (req, res, next) => {
     res.send(share);
   })().catch(next);
 });
+
+// helper
+function _authCheck(req, res, next) {
+  if (!req.user) {
+    return res.status(401).send();
+  }
+  next();
+}
 
 module.exports = route;

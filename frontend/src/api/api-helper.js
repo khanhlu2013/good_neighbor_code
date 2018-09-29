@@ -58,4 +58,9 @@ function rawsToPosts(raws) {
   });
 }
 
-export { rawsToConnections, rawToConnection, rawsToPosts };
+function rawToUser(raw) {
+  const { _id: id, email, name } = raw;
+  return new User(id, email, name);
+}
+
+export { rawsToConnections, rawToConnection, rawsToPosts, rawToUser };

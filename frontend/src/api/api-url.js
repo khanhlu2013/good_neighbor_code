@@ -20,6 +20,7 @@ const BACKEND_URL = `${BACKEND_BASE_URL}${BACKEND_PORT}`;
 
 const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [
+    { name: "authCheck", path: "/authCheck" },
     { name: "logout", path: "/logout" },
     { name: "searchEmail", path: "/searchEmail?:email" },
     // - connection

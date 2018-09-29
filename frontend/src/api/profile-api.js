@@ -1,29 +1,38 @@
 import { API_URL } from "./api-url";
-import { User } from "../model/user";
-import { rawsToConnections, rawToConnection, rawsToPosts } from "./api-helper";
+import {
+  rawsToConnections,
+  rawToConnection,
+  rawsToPosts,
+  rawToUser
+} from "./api-helper";
 
-const profile = async () => {
-  const response = await fetch(API_URL("profile"), {
+// - auth
+const authCheck = async () => {
+  const response = await fetch(API_URL("profile.authCheck"), {
     credentials: "include"
   });
   if (response.status === 401) {
     return null;
   }
-  const { _id: id, email, name } = await response.json();
-  return new User(id, email, name);
+  const raw = await response.json();
+  return rawToUser(raw);
 };
 
-const searchEmail = async searchedEmail => {
-  const json = await get("profile.searchEmail", {
-    email: searchedEmail
-  });
-  if (!json) return null;
-
-  const { _id: id, email, name } = json;
-  return new User(id, email, name);
+const backDoorAccess = async (email, name) => {
+  const raw = await post("auth.login_for_test_dev", { email, name });
+  return rawToUser(raw);
 };
 
 // - connection
+const searchEmail = async searchedEmail => {
+  const raw = await get("profile.searchEmail", {
+    email: searchedEmail
+  });
+  if (!raw) return null;
+
+  return rawToUser(raw);
+};
+
 const connections = async () => {
   const raws = await get("profile.connections", {});
   return rawsToConnections(raws);
@@ -156,12 +165,13 @@ const awareReturnPost = async postId => {
 
 //- helper ----
 
-async function getJSON(response) {
-  const text = await response.text();
-  if (!text) {
-    return null;
+async function get(dottedPath, params) {
+  const url = API_URL(dottedPath, params);
+  const response = await fetch(url, { credentials: "include" });
+  if (response.status === 500) {
+    throw new Error("internal server error");
   }
-  return JSON.parse(text);
+  return await _getJSON(response);
 }
 
 async function post(dottedPath, params) {
@@ -173,22 +183,27 @@ async function post(dottedPath, params) {
     body: JSON.stringify(params),
     credentials: "include"
   });
-
-  return await getJSON(response);
+  if (response.status === 500) {
+    throw new Error("internal server error");
+  }
+  return await _getJSON(response);
 }
 
-async function get(dottedPath, params) {
-  const url = API_URL(dottedPath, params);
-  const response = await fetch(url, { credentials: "include" });
-  return await getJSON(response);
+async function _getJSON(response) {
+  const text = await response.text();
+  if (!text) {
+    return null;
+  }
+  return JSON.parse(text);
 }
 
 //-------------
 
 const API = {
-  profile,
-  searchEmail,
+  authCheck,
+  backDoorAccess,
   //connection
+  searchEmail,
   connections,
   createConnection,
   updateConnection,

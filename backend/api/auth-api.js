@@ -28,16 +28,16 @@ route.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 //   });
 // }
 
-route.get("/login_for_test_dev", (req, res, next) => {
+route.post("/login_for_test_dev", (req, res, next) => {
   const User = require("../model/user");
-  const { email, name } = req.query;
+  const { email, name } = req.body;
   (async () => {
     const user = await User.findOneOrCreate(email, name);
     req.login(user, err => {
       if (err) {
         throw err;
       } else {
-        return res.redirect(keys.FRONTEND_URL);
+        res.send(user);
       }
     });
   })().catch(next);

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { API_URL } from "../api/api-url";
+import PropTypes from "prop-types";
+
+import "./backDoorAccess.css";
+import { API } from "../api/profile-api";
 
 class DummyLoginForTestPurpose extends Component {
   state = {
@@ -18,17 +21,23 @@ class DummyLoginForTestPurpose extends Component {
   };
 
   onSubmit = evt => {
-    const url = API_URL("auth.login_for_test_dev", {
-      email: this.state.email,
-      name: this.state.name
-    });
-    window.location.href = url;
+    (async () => {
+      const user = await API.backDoorAccess(this.state.email, this.state.name);
+      this.props.onLoginUserChange(user);
+    })();
+
     evt.preventDefault();
   };
 
   render() {
     return (
-      <div>
+      <div id="backDoorAccess-react">
+        <p>
+          Good Neighbor is in testing phase. Thus, you can use{" "}
+          <b>back door access</b> to by pass Google. <b>Note</b>: name field is
+          optional unless you want to create a new account.
+        </p>
+
         <form onSubmit={this.onSubmit}>
           <input
             id="dummy_login_email"
@@ -46,11 +55,18 @@ class DummyLoginForTestPurpose extends Component {
             placeholder="name"
           />
 
-          <input type="submit" value="Dummy Login" />
+          <input
+            type="submit"
+            className="btn btn-success"
+            value="back door access"
+          />
         </form>
       </div>
     );
   }
 }
+DummyLoginForTestPurpose.propTypes = {
+  onLoginUserChange: PropTypes.func.isRequired
+};
 
 export default DummyLoginForTestPurpose;

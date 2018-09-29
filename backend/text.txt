@@ -165,3 +165,15 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . i like to let people play with the app easily. that mean i will let them access the back door. i need to have better messages. 
 
 i guess it will be just ajax stuff. no redirect. fist just a single text box, and then if we need name, it will also ask for name. i guess name can be disable at first. uppon, enter, it will ask if i need a name. 
+
+.factor app_header out. make it more maintainable.
+. hey, i haven't solve the snap shot date problem right?
+. change dummy into backdoor, auth.login_for_test_dev into backdoor too; ;login_for_test_dev change to backDoorAccess ; "auth.login_for_test_dev"
+--
+
+ready to work on dummy test purpose. 
+. provide css to disable button, and letting pepeople know that email is invalid
+. provide message that name is require. 
+. how is the failure of not providing name is right now: expect it will be a can't parse 
+
+i want to see how react is doing when we have a 500 like that? i am not expect this to happen, but it does, what is it look like then? i need to show a decent message or just let it fail. 

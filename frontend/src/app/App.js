@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./app.css";
 import "react-tabs/style/react-tabs.css";
@@ -21,6 +21,7 @@ import { API_URL } from "../api/api-url";
 import { PublicApp } from "./appPublic";
 import { Login } from "./login";
 import { LoadingIcon } from "../util";
+import DummyLoginForTestPurpose from "./dummyLoginForTestPurpose.react";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -36,8 +37,12 @@ class App extends Component {
     loginUser: undefined
   };
 
+  onLoginUserChange = loginUser => {
+    this.setState({ loginUser });
+  };
+
   async componentDidMount() {
-    this.setState({ loginUser: await API.profile() });
+    this.setState({ loginUser: await API.authCheck() });
   }
 
   render() {
@@ -50,7 +55,14 @@ class App extends Component {
         </h4>
       );
     } else if (loginUser === null) {
-      header = <Login />;
+      header = (
+        <Fragment>
+          <Login />
+          <DummyLoginForTestPurpose
+            onLoginUserChange={this.onLoginUserChange}
+          />
+        </Fragment>
+      );
     } else {
       header = (
         <div>
@@ -64,8 +76,8 @@ class App extends Component {
     if (loginUser === undefined) {
       content = null;
     } else if (loginUser === null) {
-      content = <PublicApp />;
-      // content = <h1 className="text-center">App Public</h1>;
+      // content = <PublicApp />;
+      content = <h1 className="text-center">App Public</h1>;
     } else {
       content = <PrivateApp loginUser={loginUser} />;
     }
