@@ -248,7 +248,7 @@ class OutPostManagement extends Component {
               </Tab>
               <Tab>
                 <span id="tabSelector_outPost_waitingList">
-                  waiting list
+                  request
                   {computeNotificationCountHtml(requestNotePosts.length)}
                 </span>
               </Tab>

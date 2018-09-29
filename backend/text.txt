@@ -155,14 +155,15 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . update inPost test to show other tab
 
 
-
 . update button having LoadingIcon, show the text show that it doesn't get cut with just ...
-
-
-disable loadingicon button
-
 ---
 . make sure that changing connection changing inpost
 . lower case footer
-. kill isAnimate
 
+--
+. i like to let people play with the app easily. that mean i will let them access the back door. i need to have better messages. 
+
+---
+. back button
+etag, cache-control, Connection: keep-alive, ...
+so why does my api profile is served from disk cache? 

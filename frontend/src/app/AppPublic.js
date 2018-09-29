@@ -13,8 +13,8 @@ class Video {
 
 function PublicApp(props) {
   const data = [
-    ["Good Neighbor: what & why", "1:04", "OUaq9xb8qeE"],
-    ["Sign Up / Login: less is more", "1:02", "xprWVgeTLLk"]
+    ["Good Neighbor: what & why", "1:22", "CkHOh7GKXpk"],
+    ["login / sign up: single entry point", "1:06", "0c7WFkINi6E"]
   ];
   const videos = data.map(data => new Video(...data));
   return <div id="publicApp-react">{<PlayList videos={videos} />}</div>;
@@ -83,7 +83,7 @@ class PlayList extends Component {
             <table className="table table-sm table-striped table-bordered">
               <thead className="thead-light">
                 <tr className="d-flex">
-                  <th className={videoTitleClass}>Manual Videos</th>
+                  <th className={videoTitleClass}>manual videos</th>
                   <th className={videoDurationClass}>
                     <FontAwesomeIcon icon="clock" />
                   </th>
