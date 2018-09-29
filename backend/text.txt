@@ -155,7 +155,8 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . update inPost test to show other tab
 
 
-. update button having LoadingIcon, show the text show that it doesn't get cut with just ...
+. loadingicon for the login button
+. for logout, do not use achor tag. fetch is enough. so logout can set the outter app loginuser to make it show the login component.
 ---
 . make sure that changing connection changing inpost
 . lower case footer
@@ -163,7 +164,4 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 --
 . i like to let people play with the app easily. that mean i will let them access the back door. i need to have better messages. 
 
----
-. back button
-etag, cache-control, Connection: keep-alive, ...
-so why does my api profile is served from disk cache? 
+i guess it will be just ajax stuff. no redirect. fist just a single text box, and then if we need name, it will also ask for name. i guess name can be disable at first. uppon, enter, it will ask if i need a name. 

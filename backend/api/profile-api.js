@@ -21,6 +21,7 @@ route.get("/logout", authCheck, (req, res) => {
 });
 
 route.get("/", authCheck, (req, res) => {
+  res.header("Cache-Control", "no-cache, no-store");
   res.send(req.user);
 });
 
