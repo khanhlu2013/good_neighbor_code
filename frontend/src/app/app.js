@@ -76,8 +76,8 @@ class App extends Component {
     if (loginUser === undefined) {
       content = null;
     } else if (loginUser === null) {
-      // content = <PublicApp />;
-      content = <h1 className="text-center">App Public</h1>;
+      content = <PublicApp />;
+      // content = <h1 className="text-center">App Public</h1>;
     } else {
       content = <PrivateApp loginUser={loginUser} />;
     }

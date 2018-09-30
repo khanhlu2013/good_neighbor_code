@@ -14,7 +14,8 @@ class Video {
 function PublicApp(props) {
   const data = [
     ["Good Neighbor: what & why", "1:22", "CkHOh7GKXpk"],
-    ["login / sign up: single entry point", "1:06", "0c7WFkINi6E"]
+    ["login / sign up: single entry point", "1:06", "0c7WFkINi6E"],
+    ["testing phase: back door access", "1:35", "WTXBSnovQhs"]
   ];
   const videos = data.map(data => new Video(...data));
   return <div id="publicApp-react">{<PlayList videos={videos} />}</div>;

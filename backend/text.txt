@@ -171,11 +171,3 @@ i guess it will be just ajax stuff. no redirect. fist just a single text box, an
 . change dummy into backdoor, auth.login_for_test_dev into backdoor too; ;login_for_test_dev change to backDoorAccess ; "auth.login_for_test_dev"
 --
 
-ready to work on dummy test purpose. 
-. provide css to disable button, and letting pepeople know that email is invalid
-. provide message that name is require. 
-. how is the failure of not providing name is right now: expect it will be a can't parse 
-
-i want to see how react is doing when we have a 500 like that? i am not expect this to happen, but it does, what is it look like then? i need to show a decent message or just let it fail. 
-
-ok, somehow my local git said that lower case is what tracked. but my remote is out of sync. 
