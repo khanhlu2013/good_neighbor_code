@@ -66,11 +66,10 @@ class DummyLoginForTestPurpose extends Component {
       <div id="backDoorAccess-react">
         <h2>back door access</h2>
         <p>
-          Good Neighbor is in <b>testing</b> phase. To make playing around with
-          the app easier, you can use <b>back door access</b> to by pass Google
-          login. <b>Note</b>: name field is optional unless you want to create a
-          new account. Check out 'testing phase: back door access' video for
-          more info.
+          This is Good Neighbor <b>testing</b> site. To make testing easy, you
+          can use <b>back door access</b> to by pass Google login. <b>Note</b>:
+          name field is optional unless you want to create a new account. Check
+          out 'testing site: back door access' video for more info.
         </p>
 
         <p>
