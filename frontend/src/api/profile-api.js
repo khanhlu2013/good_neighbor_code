@@ -18,8 +18,8 @@ const authCheck = async () => {
   return rawToUser(raw);
 };
 
-const backDoorAccess = async (email, name) => {
-  const raw = await post("auth.backdoorAccess", { email, name });
+const backDoorLogin = async (email, name) => {
+  const raw = await post("auth.backdoorLogin", { email, name });
   return rawToUser(raw);
 };
 
@@ -207,7 +207,7 @@ const API = {
   //auth
   authCheck,
   logout,
-  backDoorAccess,
+  backDoorLogin,
   //connection
   searchEmail,
   connections,

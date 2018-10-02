@@ -170,6 +170,4 @@ i guess it will be just ajax stuff. no redirect. fist just a single text box, an
 . hey, i haven't solve the snap shot date problem right?
 --
 .factor app_header out. make it more maintainable.
-. backdoor access into backdoor login
 ---
-. let logout an ajax

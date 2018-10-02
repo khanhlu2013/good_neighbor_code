@@ -21,7 +21,7 @@ import { PublicApp } from "./appPublic";
 import { Login } from "./login";
 import { LoadingIcon } from "../util";
 
-import BackdoorAccess from "./backdoorAccess";
+import BackdoorLogin from "./backdoorLogin";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -67,7 +67,7 @@ class App extends Component {
       header = (
         <Fragment>
           <Login />
-          <BackdoorAccess onLoginUserChange={this.onLoginUserChange} />
+          <BackdoorLogin onLoginUserChange={this.onLoginUserChange} />
         </Fragment>
       );
     } else {

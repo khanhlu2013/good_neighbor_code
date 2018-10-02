@@ -46,8 +46,8 @@ const API_NODE = new RouteNode("", "", [
   new RouteNode("auth", "/auth", [
     { name: "google", path: "/google" },
     {
-      name: "backdoorAccess",
-      path: "/backdoorAccess?:email?:name"
+      name: "backdoorLogin",
+      path: "/backdoorLogin?:email?:name"
     }
   ])
 ]);

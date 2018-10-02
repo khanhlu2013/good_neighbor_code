@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import validator from "validator";
 import className from "classnames";
 
-import "./backdoorAccess.css";
+import "./backdoorLogin.css";
 import { API } from "../api/profile-api";
 import { LoadingIcon } from "../util";
 
-class BackdoorAccess extends Component {
+class BackdoorLogin extends Component {
   state = {
     email: "",
     name: "",
@@ -39,10 +39,7 @@ class BackdoorAccess extends Component {
     if (this.state.isEmailValid) {
       this.setState({ isAjaxing: true });
       (async () => {
-        const user = await API.backDoorAccess(
-          this.state.email,
-          this.state.name
-        );
+        const user = await API.backDoorLogin(this.state.email, this.state.name);
 
         this.setState({ isSubmitClicked: false });
         this.props.onLoginUserChange(user);
@@ -63,13 +60,13 @@ class BackdoorAccess extends Component {
     } = this.state;
 
     return (
-      <div id="backDoorAccess-react">
-        <h2>back door access</h2>
+      <div id="backDoorLogin-react">
+        <h2>back door login</h2>
         <p>
           This is Good Neighbor <b>testing</b> site. To make testing easy, you
-          can use <b>back door access</b> to by pass Google login. <b>Note</b>:
+          can use <b>back door login</b> to by pass Google login. <b>Note</b>:
           name field is optional unless you want to create a new account. Check
-          out 'testing site: back door access' video for more info.
+          out 'testing site: back door login' video for more info.
         </p>
 
         <p>
@@ -83,7 +80,7 @@ class BackdoorAccess extends Component {
             <div className="col-sm-4">
               <div className="input-group">
                 <input
-                  id="backdoorAccessEmail-react"
+                  id="backdoorLoginEmail-react"
                   type="text"
                   className={className({
                     "form-control": true,
@@ -129,7 +126,7 @@ class BackdoorAccess extends Component {
                     "btn-warning": isEmailWarning,
                     "btn-danger": isNameRequire && nameIsEmpty
                   })}
-                  value="back door access"
+                  value="back door login"
                 />
               )}
             </div>
@@ -139,8 +136,8 @@ class BackdoorAccess extends Component {
     );
   }
 }
-BackdoorAccess.propTypes = {
+BackdoorLogin.propTypes = {
   onLoginUserChange: PropTypes.func.isRequired
 };
 
-export default BackdoorAccess;
+export default BackdoorLogin;

@@ -12,7 +12,7 @@ route.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 });
 
 // if (keys.NODE_ENV !== "production") {
-//   route.get("/backdoorAccess", (req, res, next) => {
+//   route.get("/backdoorLogin", (req, res, next) => {
 //     const User = require("../model/user");
 //     const { email, name } = req.query;
 //     (async () => {
@@ -28,7 +28,7 @@ route.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 //   });
 // }
 
-route.post("/backdoorAccess", (req, res, next) => {
+route.post("/backdoorLogin", (req, res, next) => {
   const User = require("../model/user");
   const { email, name } = req.body;
   (async () => {
