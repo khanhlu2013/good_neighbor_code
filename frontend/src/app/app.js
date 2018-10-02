@@ -17,7 +17,6 @@ import {
   faPause, //pause youtube video
   faClock //youtube video duration
 } from "@fortawesome/free-solid-svg-icons";
-import { API_URL } from "../api/api-url";
 import { PublicApp } from "./appPublic";
 import { Login } from "./login";
 import { LoadingIcon } from "../util";
@@ -35,7 +34,8 @@ library.add(
 
 class App extends Component {
   state = {
-    loginUser: undefined
+    loginUser: undefined,
+    logingOut: false
   };
 
   onLoginUserChange = loginUser => {
@@ -45,6 +45,14 @@ class App extends Component {
   async componentDidMount() {
     this.setState({ loginUser: await API.authCheck() });
   }
+
+  onLogoutClicked = e => {
+    this.setState({ logingOut: true });
+    (async () => {
+      await API.logout();
+      this.setState({ logingOut: false, loginUser: null });
+    })();
+  };
 
   render() {
     const { loginUser } = this.state;
@@ -65,8 +73,19 @@ class App extends Component {
     } else {
       header = (
         <div>
-          {loginUser.name} - {loginUser.email} -
-          <a href={API_URL("profile.logout")}> logout</a>
+          {loginUser.getNameAndEmail()}
+          <span className="mx-1">
+            {this.state.logingOut ? (
+              <LoadingIcon text="logout" />
+            ) : (
+              <button
+                onClick={this.onLogoutClicked}
+                className="btn btn-sm btn-warning"
+              >
+                logout
+              </button>
+            )}
+          </span>
         </div>
       );
     }

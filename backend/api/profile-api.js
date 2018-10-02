@@ -8,9 +8,9 @@ const Share = require("../model/share");
 const keys = require("../configs/keys");
 
 // - auth ----
-route.get("/logout", _authCheck, (req, res) => {
+route.post("/logout", _authCheck, (req, res) => {
   req.logout();
-  res.redirect(keys.FRONTEND_URL);
+  res.send();
 });
 
 route.get("/authCheck", _authCheck, (req, res) => {

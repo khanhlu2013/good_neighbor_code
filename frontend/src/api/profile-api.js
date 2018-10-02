@@ -23,6 +23,10 @@ const backDoorAccess = async (email, name) => {
   return rawToUser(raw);
 };
 
+const logout = async () => {
+  await post("profile.logout");
+};
+
 // - connection
 const searchEmail = async searchedEmail => {
   const raw = await get("profile.searchEmail", {
@@ -200,7 +204,9 @@ async function _getJSON(response) {
 //-------------
 
 const API = {
+  //auth
   authCheck,
+  logout,
   backDoorAccess,
   //connection
   searchEmail,
