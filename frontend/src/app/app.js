@@ -21,7 +21,8 @@ import { API_URL } from "../api/api-url";
 import { PublicApp } from "./appPublic";
 import { Login } from "./login";
 import { LoadingIcon } from "../util";
-import DummyLoginForTestPurpose from "./dummyLoginForTestPurpose.react";
+
+import BackdoorAccess from "./backdoorAccess";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -58,9 +59,7 @@ class App extends Component {
       header = (
         <Fragment>
           <Login />
-          <DummyLoginForTestPurpose
-            onLoginUserChange={this.onLoginUserChange}
-          />
+          <BackdoorAccess onLoginUserChange={this.onLoginUserChange} />
         </Fragment>
       );
     } else {
@@ -85,7 +84,7 @@ class App extends Component {
     return (
       <div>
         <div className="app-header">
-          <h1>Good Neighbor</h1>
+          <div className="app h2 font-weight-light">Good Neighbor</div>
           {header}
         </div>
         <div>{content}</div>

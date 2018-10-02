@@ -19,7 +19,7 @@ const authCheck = async () => {
 };
 
 const backDoorAccess = async (email, name) => {
-  const raw = await post("auth.login_for_test_dev", { email, name });
+  const raw = await post("auth.backdoorAccess", { email, name });
   return rawToUser(raw);
 };
 

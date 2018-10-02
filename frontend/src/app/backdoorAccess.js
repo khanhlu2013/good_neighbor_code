@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import validator from "validator";
 import className from "classnames";
 
-import "./backDoorAccess.css";
+import "./backdoorAccess.css";
 import { API } from "../api/profile-api";
 import { LoadingIcon } from "../util";
 
-class DummyLoginForTestPurpose extends Component {
+class BackdoorAccess extends Component {
   state = {
     email: "",
     name: "",
@@ -83,7 +83,7 @@ class DummyLoginForTestPurpose extends Component {
             <div className="col-sm-4">
               <div className="input-group">
                 <input
-                  id="dummy_login_email"
+                  id="backdoorAccessEmail-react"
                   type="text"
                   className={className({
                     "form-control": true,
@@ -100,7 +100,6 @@ class DummyLoginForTestPurpose extends Component {
             <div className="col-sm-4">
               <div className="input-group">
                 <input
-                  id="dummy_login_name"
                   type="text"
                   className={className({
                     "form-control": true,
@@ -140,8 +139,8 @@ class DummyLoginForTestPurpose extends Component {
     );
   }
 }
-DummyLoginForTestPurpose.propTypes = {
+BackdoorAccess.propTypes = {
   onLoginUserChange: PropTypes.func.isRequired
 };
 
-export default DummyLoginForTestPurpose;
+export default BackdoorAccess;

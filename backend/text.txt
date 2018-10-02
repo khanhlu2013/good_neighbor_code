@@ -166,8 +166,10 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 
 i guess it will be just ajax stuff. no redirect. fist just a single text box, and then if we need name, it will also ask for name. i guess name can be disable at first. uppon, enter, it will ask if i need a name. 
 
-.factor app_header out. make it more maintainable.
-. hey, i haven't solve the snap shot date problem right?
-. change dummy into backdoor, auth.login_for_test_dev into backdoor too; ;login_for_test_dev change to backDoorAccess ; "auth.login_for_test_dev"
---
 
+. hey, i haven't solve the snap shot date problem right?
+--
+.factor app_header out. make it more maintainable.
+
+---
+. let logout an ajax

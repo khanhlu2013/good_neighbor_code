@@ -31,7 +31,7 @@ Cypress.Commands.add("loadApp", () => {
 });
 
 Cypress.Commands.add("login", email => {
-  cy.get("#dummy_login_email").type(`${email}{enter}`);
+  cy.get("#backdoorAccessEmail-react").type(`${email}{enter}`);
   cy.get("#privateApp-react").should("be.visible"); //wait for login
 });
 

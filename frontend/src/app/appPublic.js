@@ -17,7 +17,7 @@ function PublicApp(props) {
     ["login / sign up: single entry point", "1:35", "gUSjHwJ7uN4"],
     ["testing site: back door access", "1:35", "WTXBSnovQhs"],
     ["networking", "1:15", "Zc4sCEe7TRs"],
-    ["post request approve return", "5:00", "KuGMl_EW55A"]
+    ["post, request, approve, return", "5:00", "KuGMl_EW55A"]
   ];
   const videos = data.map(data => new Video(...data));
   return <div id="publicApp-react">{<PlayList videos={videos} />}</div>;
