@@ -46,7 +46,7 @@ class PrivateApp extends Component {
     return (
       <div id="privateApp-react">
         <Tabs forceRenderTabPanel={true}>
-          <div className="text-center h4 font-weight-light">
+          <div className="h4 font-weight-light">
             <TabList>
               <Tab>
                 <span id="tabSelector_inPost">

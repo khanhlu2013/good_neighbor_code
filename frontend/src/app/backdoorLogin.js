@@ -59,7 +59,7 @@ class BackdoorLogin extends Component {
       nameIsEmpty
     } = this.state;
 
-    const content = (
+    return (
       <div id="backDoorLogin-react">
         <h2>back door login</h2>
         <p>
@@ -133,14 +133,6 @@ class BackdoorLogin extends Component {
             </div>
           </div>
         </form>
-      </div>
-    );
-
-    return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-9">{content}</div>
-        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./app.css";
-import "react-tabs/style/react-tabs.css";
+import "./reactTab.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { PrivateApp } from "./appPrivate";

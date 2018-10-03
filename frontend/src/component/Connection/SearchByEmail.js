@@ -52,8 +52,10 @@ class SearchByEmail extends Component {
   onSearchSubmit = event => {
     this.setState({
       searchSubmited: true,
-      searchedUser: null
+      searchedUser: null,
+      email: this.state.email.trim()
     });
+
     if (this.state.emailValid && !this.state.selfSearch) {
       this.setState({ isSearching: true });
       (async () => {

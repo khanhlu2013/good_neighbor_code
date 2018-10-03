@@ -178,3 +178,5 @@ deal with the date transient for snapshot testing.
 . react native : flex model. bootstrap.
 ---
 
+ok, a project of making my site responsive. 
+---

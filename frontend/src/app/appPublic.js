@@ -23,7 +23,7 @@ function PublicApp(props) {
   return <div id="publicApp-react">{<PlayList videos={videos} />}</div>;
 }
 
-const videoTitleClass = "col-8";
+const videoTitleClass = "col";
 const videoDurationClass = "col-2 text-center";
 const videoPlayClass = "col-2 text-center";
 
@@ -86,11 +86,15 @@ class PlayList extends Component {
             <table className="table table-sm table-striped table-bordered">
               <thead className="thead-light">
                 <tr className="d-flex">
-                  <th className={videoTitleClass}>manual videos</th>
-                  <th className={videoDurationClass}>
+                  <th scope="col" className={videoTitleClass}>
+                    manual videos
+                  </th>
+                  <th scope="col" className={videoDurationClass}>
                     <FontAwesomeIcon icon="clock" />
                   </th>
-                  <th className={videoPlayClass}>play</th>
+                  <th scope="col" className={videoPlayClass}>
+                    play
+                  </th>
                 </tr>
               </thead>
               <tbody>{rows}</tbody>
