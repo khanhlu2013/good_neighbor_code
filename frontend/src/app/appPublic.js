@@ -82,7 +82,7 @@ class PlayList extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-5">
+          <div className="col-5">
             <table className="table table-sm table-striped table-bordered">
               <thead className="thead-light">
                 <tr className="d-flex">
@@ -96,21 +96,23 @@ class PlayList extends Component {
               <tbody>{rows}</tbody>
             </table>
           </div>
-          <div className="col-sm-7">
-            <YouTube
-              videoId={this.state.curVideo.id}
-              opts={{
-                height: "400",
-                width: "640",
-                playerVars: {
-                  // https://developers.google.com/youtube/player_parameters
-                  autoplay: 0,
-                  rel: 0
-                }
-              }}
-              onReady={this.onPlayerLoaded}
-              onStateChange={this.onPlayerStateChange}
-            />
+          <div className="col-7">
+            <div className="videoWrapper">
+              <YouTube
+                videoId={this.state.curVideo.id}
+                opts={{
+                  // height: "400",
+                  // width: "640",
+                  playerVars: {
+                    // https://developers.google.com/youtube/player_parameters
+                    autoplay: 0,
+                    rel: 0
+                  }
+                }}
+                onReady={this.onPlayerLoaded}
+                onStateChange={this.onPlayerStateChange}
+              />
+            </div>
           </div>
         </div>
       </div>

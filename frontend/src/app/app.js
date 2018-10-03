@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import "./app.css";
 import "react-tabs/style/react-tabs.css";
@@ -18,10 +18,7 @@ import {
   faClock //youtube video duration
 } from "@fortawesome/free-solid-svg-icons";
 import { PublicApp } from "./appPublic";
-import { Login } from "./login";
-import { LoadingIcon } from "../util";
-
-import BackdoorLogin from "./backdoorLogin";
+import { AppHeader } from "./appHeader";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -46,49 +43,8 @@ class App extends Component {
     this.setState({ loginUser: await API.authCheck() });
   }
 
-  onLogoutClicked = e => {
-    this.setState({ logingOut: true });
-    (async () => {
-      await API.logout();
-      this.setState({ logingOut: false, loginUser: null });
-    })();
-  };
-
   render() {
     const { loginUser } = this.state;
-    let header;
-    if (loginUser === undefined) {
-      header = (
-        <h4>
-          <LoadingIcon text="loading" />
-        </h4>
-      );
-    } else if (loginUser === null) {
-      header = (
-        <Fragment>
-          <Login />
-          <BackdoorLogin onLoginUserChange={this.onLoginUserChange} />
-        </Fragment>
-      );
-    } else {
-      header = (
-        <div>
-          {loginUser.getNameAndEmail()}
-          <span className="mx-1">
-            {this.state.logingOut ? (
-              <LoadingIcon text="logout" />
-            ) : (
-              <button
-                onClick={this.onLogoutClicked}
-                className="btn btn-sm btn-warning"
-              >
-                logout
-              </button>
-            )}
-          </span>
-        </div>
-      );
-    }
 
     let content;
     if (loginUser === undefined) {
@@ -102,10 +58,10 @@ class App extends Component {
 
     return (
       <div>
-        <div className="app-header">
-          <div className="app h2 font-weight-light">Good Neighbor</div>
-          {header}
-        </div>
+        <AppHeader
+          loginUser={loginUser}
+          onLoginUserChange={this.onLoginUserChange}
+        />
         <div>{content}</div>
       </div>
     );

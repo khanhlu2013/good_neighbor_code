@@ -59,7 +59,7 @@ class BackdoorLogin extends Component {
       nameIsEmpty
     } = this.state;
 
-    return (
+    const content = (
       <div id="backDoorLogin-react">
         <h2>back door login</h2>
         <p>
@@ -77,7 +77,7 @@ class BackdoorLogin extends Component {
         </p>
         <form onSubmit={this.onSubmit}>
           <div className="form-row">
-            <div className="col-sm-4">
+            <div className="col-sm">
               <div className="input-group">
                 <input
                   id="backdoorLoginEmail-react"
@@ -94,7 +94,7 @@ class BackdoorLogin extends Component {
                 <div className="invalid-feedback">please enter valid email</div>
               </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm">
               <div className="input-group">
                 <input
                   type="text"
@@ -111,7 +111,7 @@ class BackdoorLogin extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm">
               {this.state.isAjaxing ? (
                 <LoadingIcon text="please wait" />
               ) : (
@@ -119,6 +119,7 @@ class BackdoorLogin extends Component {
                   type="submit"
                   className={className({
                     btn: true,
+                    "btn-block": true,
                     "btn-success":
                       isEmailValid &&
                       (!isNameRequire || (isNameRequire && !nameIsEmpty)),
@@ -132,6 +133,14 @@ class BackdoorLogin extends Component {
             </div>
           </div>
         </form>
+      </div>
+    );
+
+    return (
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-9">{content}</div>
+        </div>
       </div>
     );
   }

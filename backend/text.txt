@@ -105,7 +105,7 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . understand api-url frontend: REACT_APP_NODE_ENV, BACKEND_BASE_URL
 . d-flex is what i want for row class, fix all the col-sm ...
 . clean up isActive. how do i show it?
-
+. loadingicon for the login button: this is a href, i am not sure how to do it
 
 
 
@@ -153,21 +153,28 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . genList within the ui_helper can factor to reduce DRY 
 . verify all the snapshot
 . update inPost test to show other tab
-
-
-. loadingicon for the login button
-. for logout, do not use achor tag. fetch is enough. so logout can set the outter app loginuser to make it show the login component.
 ---
-. make sure that changing connection changing inpost
-. lower case footer
-
+. do i test login and logout?
 --
-. i like to let people play with the app easily. that mean i will let them access the back door. i need to have better messages. 
-
-i guess it will be just ajax stuff. no redirect. fist just a single text box, and then if we need name, it will also ask for name. i guess name can be disable at first. uppon, enter, it will ask if i need a name. 
-
-
-. hey, i haven't solve the snap shot date problem right?
+deal with the date transient for snapshot testing.
 --
-.factor app_header out. make it more maintainable.
+. make sure that changing connection changing inpost, i guess this is a good time to actually controling the loading... from the outer app. make the tab a control one. 
+. can i use open id connect instead of oauth. also, invite friend from face book and google? authorization of reading contact. 
+. wish list
+. picture
+
 ---
+. cover letter
+. confirm approve
+. abundant minimalist
+. lets spend some times again on algorithm, green book. 
+. some job search: 
+  . ngoc
+  . ask vi's boyfriend
+. slack
+
+---
+
+. react native : flex model. bootstrap.
+---
+
