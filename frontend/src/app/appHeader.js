@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { User } from "../model/user";
 import { GoogleLogin } from "./googleLogin";
 import { LoadingIcon } from "../util";
-import BackdoorLogin from "./backdoorLogin";
 import { API } from "../api/profile-api";
 import "./appHeader.css";
 
@@ -36,7 +35,9 @@ class AppHeader extends Component {
     } else {
       content = (
         <div>
-          {loginUser.name}
+          <span className="app-header-login-user-name">
+            {loginUser.getNameAndEmail()}
+          </span>
           <span className="ml-2">
             {this.state.logingOut ? (
               <LoadingIcon text="logout" />
@@ -53,17 +54,12 @@ class AppHeader extends Component {
       );
     }
     return (
-      <Fragment>
-        <div className="bg-primary">
-          <div className="app-header app-container">
-            <div className="app-header-text-icon">Good Neighbor</div>
-            {content}
-          </div>
+      <div className="bg-primary">
+        <div className="app-header app-container">
+          <div className="app-header-text-icon">Good Neighbor</div>
+          {content}
         </div>
-        {loginUser === null && (
-          <BackdoorLogin onLoginUserChange={this.props.onLoginUserChange} />
-        )}
-      </Fragment>
+      </div>
     );
   }
 }

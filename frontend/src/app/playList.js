@@ -9,12 +9,30 @@ const videoTitleClass = "col";
 const videoDurationClass = "col-2 text-center";
 const videoPlayClass = "col-2 text-center";
 
+const DATAs = [
+  ["Good Neighbor: what & why", "1:22", "CkHOh7GKXpk"],
+  ["login/signup: single entry point", "1:35", "gUSjHwJ7uN4"],
+  ["testing site: back door login", "1:35", "WTXBSnovQhs"],
+  ["networking", "1:15", "Zc4sCEe7TRs"],
+  ["post, request, approve, return", "5:00", "KuGMl_EW55A"]
+];
+
+class Video {
+  constructor(title, duration, id) {
+    Object.assign(this, { title, duration, id });
+  }
+}
+
 class PlayList extends Component {
   state = {
-    curVideo: this.props.videos[0],
+    curVideo: PlayList.VIDEOS[0],
     player: null,
     isPlayerPlaying: false
   };
+
+  static get VIDEOS() {
+    return DATAs.map(data => new Video(...data));
+  }
 
   onToogleVideoCb = video => {
     const { player } = this.state;
@@ -49,10 +67,9 @@ class PlayList extends Component {
   };
 
   render() {
-    const { videos } = this.props;
     const { curVideo, isPlayerPlaying } = this.state;
 
-    const rows = videos.map(video => (
+    const rows = PlayList.VIDEOS.map(video => (
       <PlayListRow
         key={video.id}
         video={video}
@@ -62,52 +79,47 @@ class PlayList extends Component {
     ));
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-5">
-            <table className="table table-sm table-striped table-bordered">
-              <thead className="thead-light">
-                <tr className="d-flex">
-                  <th scope="col" className={videoTitleClass}>
-                    manual videos
-                  </th>
-                  <th scope="col" className={videoDurationClass}>
-                    <FontAwesomeIcon icon="clock" />
-                  </th>
-                  <th scope="col" className={videoPlayClass}>
-                    play
-                  </th>
-                </tr>
-              </thead>
-              <tbody>{rows}</tbody>
-            </table>
-          </div>
-          <div className="col-7">
-            <div className="videoWrapper">
-              <YouTube
-                videoId={this.state.curVideo.id}
-                opts={{
-                  // height: "400",
-                  // width: "640",
-                  playerVars: {
-                    // https://developers.google.com/youtube/player_parameters
-                    autoplay: 0,
-                    rel: 0
-                  }
-                }}
-                onReady={this.onPlayerLoaded}
-                onStateChange={this.onPlayerStateChange}
-              />
-            </div>
+      <div className="videoPlayList">
+        <div className="videoList">
+          <table className="table table-sm table-striped table-bordered">
+            <thead className="thead-light">
+              <tr className="d-flex">
+                <th scope="col" className={videoTitleClass}>
+                  manual videos
+                </th>
+                <th scope="col" className={videoDurationClass}>
+                  <FontAwesomeIcon icon="clock" />
+                </th>
+                <th scope="col" className={videoPlayClass}>
+                  play
+                </th>
+              </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
+        <div className="youtube-player">
+          <div className="player-wrapper">
+            <YouTube
+              videoId={this.state.curVideo.id}
+              opts={{
+                // height: "400",
+                // width: "640",
+                playerVars: {
+                  // https://developers.google.com/youtube/player_parameters
+                  autoplay: 0,
+                  rel: 0
+                }
+              }}
+              onReady={this.onPlayerLoaded}
+              onStateChange={this.onPlayerStateChange}
+            />
           </div>
         </div>
       </div>
     );
   }
 }
-PlayList.propType = {
-  videos: PropType.array.isRequired
-};
 
 function PlayListRow(props) {
   const { video, isPlaying, onToogleVideoCb } = props;
@@ -122,6 +134,7 @@ function PlayListRow(props) {
           onClick={onPlayClick}
           className={className({
             btn: true,
+            "btn-sm": true,
             "btn-warning": isPlaying,
             "btn-success": !isPlaying
           })}

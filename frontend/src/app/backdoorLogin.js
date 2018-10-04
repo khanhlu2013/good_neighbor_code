@@ -60,83 +60,79 @@ class BackdoorLogin extends Component {
     } = this.state;
 
     return (
-      <div className="app-container">
-        <div id="backDoorLogin-react">
-          <h2>back door login</h2>
-          <p>
-            This is Good Neighbor <b>testing</b> site. To make testing easy, you
-            can use <b>back door login</b> to by pass Google login. <b>Note</b>:
-            name field is optional unless you want to create a new account.
-            Check out 'testing site: back door login' video for more info.
-          </p>
+      <div className="backDoorLogin">
+        <h2>back door login</h2>
+        <p>
+          This is Good Neighbor <b>testing</b> site. To make testing easy, you
+          can use <b>back door login</b> to by pass Google login. <b>Note</b>:
+          name field is optional unless you want to create a new account. Check
+          out 'testing site: back door login' video for more info.
+        </p>
 
-          <p>
-            <mark>
-              <b>WARNING: </b>
-              expect your testing data to be wiped out.
-            </mark>
-          </p>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-row">
-              <div className="col-sm">
-                <div className="input-group">
-                  <input
-                    id="backdoorLoginEmail-react"
-                    type="text"
-                    className={className({
-                      "form-control": true,
-                      "is-invalid": isEmailWarning,
-                      "is-valid": isEmailValid
-                    })}
-                    onChange={this.onEmailChange}
-                    value={this.state.email}
-                    placeholder="email"
-                  />
-                  <div className="invalid-feedback">
-                    please enter valid email
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className={className({
-                      "form-control": true,
-                      "is-invalid": isNameRequire
-                    })}
-                    onChange={this.onNameChange}
-                    value={this.state.name}
-                    placeholder="name"
-                  />
-                  <div className="invalid-feedback">
-                    email is not found. Name is require to create new account
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm">
-                {this.state.isAjaxing ? (
-                  <LoadingIcon text="please wait" />
-                ) : (
-                  <input
-                    type="submit"
-                    className={className({
-                      btn: true,
-                      "btn-block": true,
-                      "btn-success":
-                        isEmailValid &&
-                        (!isNameRequire || (isNameRequire && !nameIsEmpty)),
-                      "btn-secondary": !isEmailValid,
-                      "btn-warning": isEmailWarning,
-                      "btn-danger": isNameRequire && nameIsEmpty
-                    })}
-                    value="back door login"
-                  />
-                )}
+        <p>
+          <mark>
+            <b>WARNING: </b>
+            expect your testing data to be wiped out.
+          </mark>
+        </p>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-row">
+            <div className="col-sm">
+              <div className="input-group">
+                <input
+                  id="backdoorLoginEmail-react"
+                  type="text"
+                  className={className({
+                    "form-control": true,
+                    "is-invalid": isEmailWarning,
+                    "is-valid": isEmailValid
+                  })}
+                  onChange={this.onEmailChange}
+                  value={this.state.email}
+                  placeholder="email"
+                />
+                <div className="invalid-feedback">please enter valid email</div>
               </div>
             </div>
-          </form>
-        </div>
+            <div className="col-sm">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className={className({
+                    "form-control": true,
+                    "is-invalid": isNameRequire
+                  })}
+                  onChange={this.onNameChange}
+                  value={this.state.name}
+                  placeholder="name"
+                />
+                <div className="invalid-feedback">
+                  email is not found. Name is require to create new account
+                </div>
+              </div>
+            </div>
+            <div className="col-sm">
+              {this.state.isAjaxing ? (
+                <LoadingIcon text="please wait" />
+              ) : (
+                <input
+                  type="submit"
+                  className={className({
+                    btn: true,
+                    "btn-block": true,
+                    "btn-success":
+                      isEmailValid &&
+                      (!isNameRequire || (isNameRequire && !nameIsEmpty)),
+                    "btn-secondary": !isEmailValid,
+                    "btn-warning": isEmailWarning,
+                    "btn-danger": isNameRequire && nameIsEmpty
+                  })}
+                  value="back door login"
+                />
+              )}
+            </div>
+          </div>
+        </form>
       </div>
     );
   }
@@ -145,4 +141,4 @@ BackdoorLogin.propTypes = {
   onLoginUserChange: PropTypes.func.isRequired
 };
 
-export default BackdoorLogin;
+export { BackdoorLogin };

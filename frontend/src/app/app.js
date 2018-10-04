@@ -1,12 +1,5 @@
 import React, { Component, Fragment } from "react";
-
-import "./app.css";
-import "./reactTab.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { PrivateApp } from "./appPrivate";
-import { API } from "../api/profile-api";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faThumbsUp, //approve
@@ -17,8 +10,14 @@ import {
   faPause, //pause youtube video
   faClock //youtube video duration
 } from "@fortawesome/free-solid-svg-icons";
+
 import { PublicApp } from "./appPublic";
 import { AppHeader } from "./appHeader";
+import "./app.css";
+import "./reactTab.css";
+import { PrivateApp } from "./appPrivate";
+import { API } from "../api/profile-api";
+import { BackdoorLogin } from "./backdoorLogin";
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -28,7 +27,6 @@ library.add(
   faPause,
   faClock
 );
-
 class App extends Component {
   state = {
     loginUser: undefined,
@@ -62,7 +60,12 @@ class App extends Component {
           loginUser={loginUser}
           onLoginUserChange={this.onLoginUserChange}
         />
-        <div className="app-container">{appContent}</div>
+        <div className="app-container">
+          {loginUser === null && (
+            <BackdoorLogin onLoginUserChange={this.onLoginUserChange} />
+          )}
+          {appContent}
+        </div>
       </Fragment>
     );
   }
