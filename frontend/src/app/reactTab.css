@@ -1,17 +1,19 @@
 .react-tabs__tab-list {
+  display: flex;
+  justify-content: center;
   background-color: antiquewhite;
-  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .react-tabs__tab {
-  display: inline-block;
   padding: 6px 15px;
   cursor: pointer;
 }
 
 .react-tabs__tab--selected {
   background: #fff;
-  box-shadow: 0 0 10px hsl(208, 99%, 50%);
 }
 
 .react-tabs__tab--disabled {

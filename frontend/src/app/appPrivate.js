@@ -43,30 +43,28 @@ class PrivateApp extends Component {
     const { loginUser } = this.props;
 
     return (
-      <div id="privateApp-react" className="app">
+      <div id="privateApp-react">
         <Tabs forceRenderTabPanel={true}>
-          <div className="h4 font-weight-light">
-            <TabList>
-              <Tab>
-                <span id="tabSelector_inPost">
-                  friend posts
-                  {inPostNotification}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_outPost">
-                  my posts
-                  {outPostNotification}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_connection">
-                  friends
-                  {connectionNotification}
-                </span>
-              </Tab>
-            </TabList>
-          </div>
+          <TabList>
+            <Tab>
+              <span id="tabSelector_inPost">
+                friend posts
+                {inPostNotification}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_outPost">
+                my posts
+                {outPostNotification}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_connection">
+                friends
+                {connectionNotification}
+              </span>
+            </Tab>
+          </TabList>
           <TabPanel>
             <InPostManagement
               loginUser={this.props.loginUser}

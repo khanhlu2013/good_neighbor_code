@@ -46,14 +46,14 @@ class App extends Component {
   render() {
     const { loginUser } = this.state;
 
-    let content;
+    let appContent;
     if (loginUser === undefined) {
-      content = null;
+      appContent = null;
     } else if (loginUser === null) {
-      content = <PublicApp />;
-      // content = <h1 className="text-center">App Public</h1>;
+      appContent = <PublicApp />;
+      // appContent = <h1 className="text-center">App Public</h1>;
     } else {
-      content = <PrivateApp loginUser={loginUser} />;
+      appContent = <PrivateApp loginUser={loginUser} />;
     }
 
     return (
@@ -62,7 +62,7 @@ class App extends Component {
           loginUser={loginUser}
           onLoginUserChange={this.onLoginUserChange}
         />
-        {content}
+        <div className="app-container">{appContent}</div>
       </Fragment>
     );
   }

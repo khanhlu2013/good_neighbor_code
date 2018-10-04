@@ -227,65 +227,63 @@ class InPostManagement extends Component {
     );
 
     return (
-      <div className="container-fluid ">
-        <Tabs forceRenderTabPanel={true}>
-          <div className="text-center">
-            <TabList>
-              <Tab>
-                <span id="tabSelector_inPost_all">
-                  all
-                  {computeNotificationCountHtml(posts.length, false)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_inPost_waitingList">
-                  waiting list
-                  {computeNotificationCountHtml(requestPosts.length, false)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_inPost_approve">
-                  approve
-                  {computeNotificationCountHtml(
-                    this.state.unawareApprovePostCount
-                  )}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_inPost_borrow">
-                  borrow
-                  {computeNotificationCountHtml(borrowPosts.length, false)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_inPost_history">
-                  history
-                  {computeNotificationCountHtml(
-                    this.state.returnShares.length,
-                    false
-                  )}
-                </span>
-              </Tab>
-            </TabList>
-          </div>
-          <TabPanel>{generateList("inPostList-all-react", posts)}</TabPanel>
-          <TabPanel>
-            {generateList("inPostList-request-react", requestPosts)}
-          </TabPanel>
-          <TabPanel>
-            {generateList(
-              "inPostList-approveNote-react",
-              this.state.approveNotePosts
-            )}
-          </TabPanel>
-          <TabPanel>
-            {generateList("inPostList-borrow-react", borrowPosts)}
-          </TabPanel>
-          <TabPanel>
-            <InShareHistoryList shares={this.state.returnShares} />
-          </TabPanel>
-        </Tabs>
-      </div>
+      <Tabs forceRenderTabPanel={true}>
+        <div className="text-center">
+          <TabList>
+            <Tab>
+              <span id="tabSelector_inPost_all">
+                all
+                {computeNotificationCountHtml(posts.length, false)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_inPost_waitingList">
+                waiting list
+                {computeNotificationCountHtml(requestPosts.length, false)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_inPost_approve">
+                approve
+                {computeNotificationCountHtml(
+                  this.state.unawareApprovePostCount
+                )}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_inPost_borrow">
+                borrow
+                {computeNotificationCountHtml(borrowPosts.length, false)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_inPost_history">
+                history
+                {computeNotificationCountHtml(
+                  this.state.returnShares.length,
+                  false
+                )}
+              </span>
+            </Tab>
+          </TabList>
+        </div>
+        <TabPanel>{generateList("inPostList-all-react", posts)}</TabPanel>
+        <TabPanel>
+          {generateList("inPostList-request-react", requestPosts)}
+        </TabPanel>
+        <TabPanel>
+          {generateList(
+            "inPostList-approveNote-react",
+            this.state.approveNotePosts
+          )}
+        </TabPanel>
+        <TabPanel>
+          {generateList("inPostList-borrow-react", borrowPosts)}
+        </TabPanel>
+        <TabPanel>
+          <InShareHistoryList shares={this.state.returnShares} />
+        </TabPanel>
+      </Tabs>
     );
   }
 

@@ -236,71 +236,64 @@ class OutPostManagement extends Component {
     } = this.state;
 
     return (
-      <div className="container-fluid ">
-        <Tabs forceRenderTabPanel={true}>
-          <TabList>
-            <button
-              id="createPostBtn"
-              onClick={this.onOpenCrudDialog_create}
-              className="btn btn-sm btn-primary mr-4"
-            >
-              new post
-            </button>
-            <Tab>
-              <span id="tabSelector_outPost_all">
-                all
-                {computeNotificationCountHtml(posts.length, false)}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_outPost_waitingList">
-                request
-                {computeNotificationCountHtml(requestNotePosts.length)}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_outPost_borrow">
-                borrow
-                {computeNotificationCountHtml(borrowPosts.length, false)}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_outPost_returnNote">
-                return
-                {computeNotificationCountHtml(returnNotePosts.length)}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_outPost_history">
-                history
-                {computeNotificationCountHtml(
-                  this.state.returnShares.length,
-                  false
-                )}
-              </span>
-            </Tab>
-          </TabList>
+      <Tabs forceRenderTabPanel={true}>
+        <TabList>
+          <button
+            id="createPostBtn"
+            onClick={this.onOpenCrudDialog_create}
+            className="btn btn-sm btn-success mr-4"
+          >
+            new post
+          </button>
+          <Tab>
+            <span id="tabSelector_outPost_all">
+              all
+              {computeNotificationCountHtml(posts.length, false)}
+            </span>
+          </Tab>
+          <Tab>
+            <span id="tabSelector_outPost_waitingList">
+              request
+              {computeNotificationCountHtml(requestNotePosts.length)}
+            </span>
+          </Tab>
+          <Tab>
+            <span id="tabSelector_outPost_borrow">
+              borrow
+              {computeNotificationCountHtml(borrowPosts.length, false)}
+            </span>
+          </Tab>
+          <Tab>
+            <span id="tabSelector_outPost_returnNote">
+              return
+              {computeNotificationCountHtml(returnNotePosts.length)}
+            </span>
+          </Tab>
+          <Tab>
+            <span id="tabSelector_outPost_history">
+              history
+              {computeNotificationCountHtml(
+                this.state.returnShares.length,
+                false
+              )}
+            </span>
+          </Tab>
+        </TabList>
 
-          <TabPanel>
-            {this._genPostList("outPostList-all-react", posts)}
-          </TabPanel>
-          <TabPanel>
-            {this._genPostList(
-              "outPostList-requestNote-react",
-              requestNotePosts
-            )}
-          </TabPanel>
-          <TabPanel>
-            {this._genPostList("outPostList-borrow-react", borrowPosts)}
-          </TabPanel>
-          <TabPanel>
-            {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
-          </TabPanel>
-          <TabPanel>
-            <OutShareHistoryList shares={this.state.returnShares} />
-          </TabPanel>
-        </Tabs>
-      </div>
+        <TabPanel>{this._genPostList("outPostList-all-react", posts)}</TabPanel>
+        <TabPanel>
+          {this._genPostList("outPostList-requestNote-react", requestNotePosts)}
+        </TabPanel>
+        <TabPanel>
+          {this._genPostList("outPostList-borrow-react", borrowPosts)}
+        </TabPanel>
+        <TabPanel>
+          {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
+        </TabPanel>
+        <TabPanel>
+          <OutShareHistoryList shares={this.state.returnShares} />
+        </TabPanel>
+      </Tabs>
     );
   }
 

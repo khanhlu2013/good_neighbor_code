@@ -180,3 +180,15 @@ deal with the date transient for snapshot testing.
 
 ok, a project of making my site responsive. 
 ---
+. goal: be a good front end developer. if i can think it, i can do it? how can i achieve this?
+  . remove slowly the library that i have right? eventually i need to understand the freaking react tab right?because it is quite limited. it is a very painful process. lets just master the web first then. 
+
+
+. deal with the break point inside the post.
+. understand z-index;position:relative
+
+---
+. fix backdoor login
+. how can i factor out the app width
+  . width = 700
+  . there is a margin of something. and the rest is in the center. 

@@ -1,8 +1,5 @@
 #backDoorLogin-react {
-  margin: 0 auto;
-  width: 70%;
-  margin-top: 30px;
-  padding: 10px;
-
   background-color: rgb(247, 208, 177);
+  padding: 10px;
+  text-align: center;
 }

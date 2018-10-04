@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { User } from "../model/user";
-import { Login } from "./login";
+import { GoogleLogin } from "./googleLogin";
 import { LoadingIcon } from "../util";
 import BackdoorLogin from "./backdoorLogin";
 import { API } from "../api/profile-api";
@@ -32,17 +32,12 @@ class AppHeader extends Component {
         </h4>
       );
     } else if (loginUser === null) {
-      content = (
-        <Fragment>
-          <Login />
-          <BackdoorLogin onLoginUserChange={this.props.onLoginUserChange} />
-        </Fragment>
-      );
+      content = <GoogleLogin />;
     } else {
       content = (
         <div>
           {loginUser.name}
-          <span className="mx-1">
+          <span className="ml-2">
             {this.state.logingOut ? (
               <LoadingIcon text="logout" />
             ) : (
@@ -58,12 +53,17 @@ class AppHeader extends Component {
       );
     }
     return (
-      <div className="app-header-container">
-        <div className="app-header">
-          <div className="app-header-text-icon">Good Neighbor</div>
-          {content}
+      <Fragment>
+        <div className="bg-primary">
+          <div className="app-header app-container">
+            <div className="app-header-text-icon">Good Neighbor</div>
+            {content}
+          </div>
         </div>
-      </div>
+        {loginUser === null && (
+          <BackdoorLogin onLoginUserChange={this.props.onLoginUserChange} />
+        )}
+      </Fragment>
     );
   }
 }
