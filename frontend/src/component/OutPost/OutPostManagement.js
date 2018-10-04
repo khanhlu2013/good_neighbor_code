@@ -238,43 +238,49 @@ class OutPostManagement extends Component {
     return (
       <div className="container-fluid ">
         <Tabs forceRenderTabPanel={true}>
-          <div className="text-center">
-            <TabList>
-              <Tab>
-                <span id="tabSelector_outPost_all">
-                  all
-                  {computeNotificationCountHtml(posts.length, false)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_outPost_waitingList">
-                  request
-                  {computeNotificationCountHtml(requestNotePosts.length)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_outPost_borrow">
-                  borrow
-                  {computeNotificationCountHtml(borrowPosts.length, false)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_outPost_returnNote">
-                  return
-                  {computeNotificationCountHtml(returnNotePosts.length)}
-                </span>
-              </Tab>
-              <Tab>
-                <span id="tabSelector_outPost_history">
-                  history
-                  {computeNotificationCountHtml(
-                    this.state.returnShares.length,
-                    false
-                  )}
-                </span>
-              </Tab>
-            </TabList>
-          </div>
+          <TabList>
+            <button
+              id="createPostBtn"
+              onClick={this.onOpenCrudDialog_create}
+              className="btn btn-sm btn-primary mr-4"
+            >
+              new post
+            </button>
+            <Tab>
+              <span id="tabSelector_outPost_all">
+                all
+                {computeNotificationCountHtml(posts.length, false)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_outPost_waitingList">
+                request
+                {computeNotificationCountHtml(requestNotePosts.length)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_outPost_borrow">
+                borrow
+                {computeNotificationCountHtml(borrowPosts.length, false)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_outPost_returnNote">
+                return
+                {computeNotificationCountHtml(returnNotePosts.length)}
+              </span>
+            </Tab>
+            <Tab>
+              <span id="tabSelector_outPost_history">
+                history
+                {computeNotificationCountHtml(
+                  this.state.returnShares.length,
+                  false
+                )}
+              </span>
+            </Tab>
+          </TabList>
+
           <TabPanel>
             {this._genPostList("outPostList-all-react", posts)}
           </TabPanel>
@@ -312,16 +318,6 @@ class OutPostManagement extends Component {
 
     return (
       <div id="outPostManagement-react">
-        <div className="text-center">
-          <button
-            className="btn btn-primary"
-            id="createPostBtn"
-            onClick={this.onOpenCrudDialog_create}
-          >
-            new post
-          </button>
-        </div>
-
         {content}
 
         {this.state.curCrudPostSessionID && (
