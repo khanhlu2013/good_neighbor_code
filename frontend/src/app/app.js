@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./app.css";
 import "./reactTab.css";
@@ -57,13 +57,13 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <Fragment>
         <AppHeader
           loginUser={loginUser}
           onLoginUserChange={this.onLoginUserChange}
         />
-        <div>{content}</div>
-      </div>
+        {content}
+      </Fragment>
     );
   }
 }

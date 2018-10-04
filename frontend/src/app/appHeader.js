@@ -5,6 +5,7 @@ import { Login } from "./login";
 import { LoadingIcon } from "../util";
 import BackdoorLogin from "./backdoorLogin";
 import { API } from "../api/profile-api";
+import "./appHeader.css";
 
 class AppHeader extends Component {
   state = {
@@ -40,7 +41,7 @@ class AppHeader extends Component {
     } else {
       content = (
         <div>
-          {loginUser.getNameAndEmail()}
+          {loginUser.name}
           <span className="mx-1">
             {this.state.logingOut ? (
               <LoadingIcon text="logout" />
@@ -57,9 +58,11 @@ class AppHeader extends Component {
       );
     }
     return (
-      <div className="app-header">
-        <div className="app h2 font-weight-light">Good Neighbor</div>
-        {content}
+      <div className="app-header-container">
+        <div className="app-header">
+          <div className="app-header-text-icon">Good Neighbor</div>
+          {content}
+        </div>
       </div>
     );
   }

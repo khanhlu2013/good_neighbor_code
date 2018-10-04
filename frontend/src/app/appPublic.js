@@ -80,42 +80,44 @@ class PlayList extends Component {
     ));
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-5">
-            <table className="table table-sm table-striped table-bordered">
-              <thead className="thead-light">
-                <tr className="d-flex">
-                  <th scope="col" className={videoTitleClass}>
-                    manual videos
-                  </th>
-                  <th scope="col" className={videoDurationClass}>
-                    <FontAwesomeIcon icon="clock" />
-                  </th>
-                  <th scope="col" className={videoPlayClass}>
-                    play
-                  </th>
-                </tr>
-              </thead>
-              <tbody>{rows}</tbody>
-            </table>
-          </div>
-          <div className="col-7">
-            <div className="videoWrapper">
-              <YouTube
-                videoId={this.state.curVideo.id}
-                opts={{
-                  // height: "400",
-                  // width: "640",
-                  playerVars: {
-                    // https://developers.google.com/youtube/player_parameters
-                    autoplay: 0,
-                    rel: 0
-                  }
-                }}
-                onReady={this.onPlayerLoaded}
-                onStateChange={this.onPlayerStateChange}
-              />
+      <div className="app">
+        <div className="container">
+          <div className="row">
+            <div className="col-5">
+              <table className="table table-sm table-striped table-bordered">
+                <thead className="thead-light">
+                  <tr className="d-flex">
+                    <th scope="col" className={videoTitleClass}>
+                      manual videos
+                    </th>
+                    <th scope="col" className={videoDurationClass}>
+                      <FontAwesomeIcon icon="clock" />
+                    </th>
+                    <th scope="col" className={videoPlayClass}>
+                      play
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+              </table>
+            </div>
+            <div className="col-7">
+              <div className="videoWrapper">
+                <YouTube
+                  videoId={this.state.curVideo.id}
+                  opts={{
+                    // height: "400",
+                    // width: "640",
+                    playerVars: {
+                      // https://developers.google.com/youtube/player_parameters
+                      autoplay: 0,
+                      rel: 0
+                    }
+                  }}
+                  onReady={this.onPlayerLoaded}
+                  onStateChange={this.onPlayerStateChange}
+                />
+              </div>
             </div>
           </div>
         </div>

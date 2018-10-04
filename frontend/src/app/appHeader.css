@@ -1,0 +1,19 @@
+.app-header-container {
+  background-color: rgb(24, 168, 27);
+}
+
+.app-header {
+  /* padding-bottom: 20px; */
+  display: flex;
+  width: 700px;
+  height: 42px;
+  margin: auto;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header-text-icon {
+  font-weight: lighter;
+  font-size: 1.3em;
+}
