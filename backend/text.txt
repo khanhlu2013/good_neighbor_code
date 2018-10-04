@@ -192,3 +192,5 @@ ok, a project of making my site responsive.
 . how can i factor out the app width
   . width = 700
   . there is a margin of something. and the rest is in the center. 
+
+
