@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PublicApp } from "./appPublic";
-import { AppHeader } from "./appHeader";
+import { AppHeader } from "./header/appHeader";
 import "./app.css";
 import "./reactTab.css";
 import { PrivateApp } from "./appPrivate";
@@ -33,6 +33,9 @@ class App extends Component {
     logingOut: false
   };
 
+  onLogOut = () => {
+    this.onLoginUserChange(null);
+  };
   onLoginUserChange = loginUser => {
     this.setState({ loginUser });
   };
@@ -56,10 +59,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <AppHeader
-          loginUser={loginUser}
-          onLoginUserChange={this.onLoginUserChange}
-        />
+        <AppHeader loginUser={loginUser} onLogOut={this.onLogOut} />
         <div className="app-container">
           {loginUser === null && (
             <BackdoorLogin onLoginUserChange={this.onLoginUserChange} />

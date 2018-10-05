@@ -188,13 +188,14 @@ ok, a project of making my site responsive.
 . understand z-index;position:relative
 
 ---
-
-. kick up a not in the ui department: profile image, make the me smaller. i need a tooltip. 
+. tooltip
+. understand css
+. text font look big. 
+. move my tab. design it. make it linked in status
 
 ---
+. make a nav protion from header
+. that will communicate out when a tab is clicked. 
+. then i will start dealing with the tab, probably just going to kill it right?
 
-Thanks for having a conversation with my colleague Recruiter Aman and please feel free to reach out to him at 415-763-6048 or email at amansharma@granitesolutionsgroupe.com.
-
-Ben Cook
----
 
