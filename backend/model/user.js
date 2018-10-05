@@ -17,6 +17,14 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     minlength: 1
+  },
+  profileImageUrl: {
+    type: String,
+    required: false,
+    validate: {
+      validator: validator.isURL,
+      message: "{VALUE} is not a profile image url"
+    }
   }
 });
 
@@ -29,7 +37,11 @@ UserSchema.toJSON = function() {
     name: user.name
   };
 };
-UserSchema.statics.findOneOrCreate = function(emailFind, nameCreate) {
+UserSchema.statics.findOneOrCreate = function(
+  emailFind,
+  nameCreate,
+  profileImageUrl
+) {
   const User = this;
   return (async () => {
     let user = await User.findOne({ email: emailFind });
@@ -39,7 +51,8 @@ UserSchema.statics.findOneOrCreate = function(emailFind, nameCreate) {
 
     user = await new User({
       email: emailFind,
-      name: nameCreate
+      name: nameCreate,
+      profileImageUrl
     }).save();
     return user;
   })();

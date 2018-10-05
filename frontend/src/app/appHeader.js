@@ -36,7 +36,13 @@ class AppHeader extends Component {
       content = (
         <div>
           <span className="app-header-login-user-name">
-            {loginUser.getNameAndEmail()}
+            <img
+              src={loginUser.profileImageUrl}
+              alt="profile image"
+              width="42"
+              height="42"
+              title={loginUser.getNameAndEmail()}
+            />
           </span>
           <span className="ml-2">
             {this.state.logingOut ? (

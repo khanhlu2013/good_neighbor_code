@@ -106,7 +106,7 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . d-flex is what i want for row class, fix all the col-sm ...
 . clean up isActive. how do i show it?
 . loadingicon for the login button: this is a href, i am not sure how to do it
-
+. how do i make the image profile image a live one, instead of a dead url. it could change. do not store the url on the backend, always get it from google. 
 
 
 
@@ -188,9 +188,13 @@ ok, a project of making my site responsive.
 . understand z-index;position:relative
 
 ---
-. fix backdoor login
-. how can i factor out the app width
-  . width = 700
-  . there is a margin of something. and the rest is in the center. 
 
+. kick up a not in the ui department: profile image, make the me smaller. i need a tooltip. 
+
+---
+
+Thanks for having a conversation with my colleague Recruiter Aman and please feel free to reach out to him at 415-763-6048 or email at amansharma@granitesolutionsgroupe.com.
+
+Ben Cook
+---
 

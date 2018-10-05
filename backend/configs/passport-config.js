@@ -27,8 +27,9 @@ passport.use(
       (async () => {
         const email = profile.emails[0].value;
         const name = profile.displayName;
+        const [{ value: profileImageUrl }] = profile.photos;
 
-        const user = await User.findOneOrCreate(email, name);
+        const user = await User.findOneOrCreate(email, name, profileImageUrl);
         done(null, user);
       })().catch(err => {
         done(err);

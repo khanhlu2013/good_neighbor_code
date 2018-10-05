@@ -1,6 +1,6 @@
 class User {
-  constructor(id, email, name) {
-    Object.assign(this, { id, email, name });
+  constructor(id, email, name, profileImageUrl) {
+    Object.assign(this, { id, email, name, profileImageUrl });
   }
 
   getNameAndEmail() {

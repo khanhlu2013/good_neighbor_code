@@ -5,7 +5,7 @@ import { Post } from "../../src/model/post";
 import { Share } from "../../src/model/share";
 
 const createUser = (name, email) =>
-  new User(new ObjectID().toHexString(), email, name);
+  new User(new ObjectID().toHexString(), email, name, null /*profileImageUrl*/);
 
 const createConnection = (from, to, isApproveByFrom, isApproveByTo) =>
   new Connection(
