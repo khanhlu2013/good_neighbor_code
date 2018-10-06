@@ -6,18 +6,34 @@ import { GoogleLogin } from "../googleLogin";
 import { AppHeaderProfile } from "./appHeaderProfile";
 import { LoadingIcon } from "../../util";
 import "./appHeader.css";
+import { AppHeaderNav } from "./appHeaderNav";
 
 class AppHeader extends Component {
   render() {
-    const { loginUser, onLogOut } = this.props;
-    let content;
+    const {
+      loginUser,
+      onLogOut,
+      onInPostNav,
+      onOutPostNav,
+      onConnectionNav
+    } = this.props;
 
+    let content;
     if (loginUser === undefined) {
       content = <LoadingIcon text="loading" />;
     } else if (loginUser === null) {
       content = <GoogleLogin />;
     } else {
-      content = <AppHeaderProfile loginUser={loginUser} onLogOut={onLogOut} />;
+      content = (
+        <div className="app-header-right-side">
+          <AppHeaderNav
+            onInPostNav={onInPostNav}
+            onOutPostNav={onOutPostNav}
+            onConnectionNav={onConnectionNav}
+          />
+          <AppHeaderProfile loginUser={loginUser} onLogOut={onLogOut} />
+        </div>
+      );
     }
     return (
       <div className="bg-primary">
@@ -31,7 +47,10 @@ class AppHeader extends Component {
 }
 AppHeader.propTypes = {
   loginUser: PropTypes.instanceOf(User),
-  onLogOut: PropTypes.func.isRequired
+  onLogOut: PropTypes.func.isRequired,
+  onInPostNav: PropTypes.func.isRequired,
+  onOutPostNav: PropTypes.func.isRequired,
+  onConnectionNav: PropTypes.func.isRequired
 };
 
 export { AppHeader };

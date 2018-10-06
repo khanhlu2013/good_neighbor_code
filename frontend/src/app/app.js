@@ -40,6 +40,18 @@ class App extends Component {
     this.setState({ loginUser });
   };
 
+  onInPostNav = () => {
+    console.log("in post nav");
+  };
+
+  onOutPostNav = () => {
+    console.log("out post nav");
+  };
+
+  onConnectionNav = () => {
+    console.log("connection nav");
+  };
+
   async componentDidMount() {
     this.setState({ loginUser: await API.authCheck() });
   }
@@ -59,7 +71,13 @@ class App extends Component {
 
     return (
       <Fragment>
-        <AppHeader loginUser={loginUser} onLogOut={this.onLogOut} />
+        <AppHeader
+          loginUser={loginUser}
+          onLogOut={this.onLogOut}
+          onInPostNav={this.onInPostNav}
+          onOutPostNav={this.onOutPostNav}
+          onConnectionNav={this.onConnectionNav}
+        />
         <div className="app-container">
           {loginUser === null && (
             <BackdoorLogin onLoginUserChange={this.onLoginUserChange} />

@@ -10,3 +10,8 @@
   font-weight: lighter;
   font-size: 1.3em;
 }
+
+.app-header-right-side {
+  display: flex;
+  align-items: center;
+}

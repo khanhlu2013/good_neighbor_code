@@ -194,8 +194,13 @@ ok, a project of making my site responsive.
 . move my tab. design it. make it linked in status
 
 ---
-. make a nav protion from header
+. AppHeaderProfile have a <span> and <div> can i eliminate some?
 . that will communicate out when a tab is clicked. 
 . then i will start dealing with the tab, probably just going to kill it right?
+
+---
+.remove the react tab
+. they will be render right away
+. they will have one that is active, the other will be display none. 
 
 
