@@ -112,9 +112,12 @@ function computeNotificationCountHtml(count, isImportant = true) {
     html = (
       <span
         className={className({
-          "text-danger": isImportant
+          "text-white": isImportant,
+          "bg-danger": isImportant,
+          "text-dark": !isImportant
+          // "bg-light": !isImportant
         })}
-      >{` (${count})`}</span>
+      >{`(${count})`}</span>
     );
   } else if (count === null) {
     html = <LoadingIcon text={null} />;

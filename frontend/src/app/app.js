@@ -15,6 +15,7 @@ import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";
 import "./app.css";
 import "./reactTab.css";
+import "../component/postItem.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
@@ -30,7 +31,11 @@ library.add(
 class App extends Component {
   state = {
     loginUser: undefined,
-    logingOut: false
+    logingOut: false,
+    isInOutCon1BaseIndexTabVisible: 1,
+    inPostNoteCount: null,
+    outPostNoteCount: null,
+    connectionNoteCount: null
   };
 
   onLogOut = () => {
@@ -41,15 +46,25 @@ class App extends Component {
   };
 
   onInPostNav = () => {
-    console.log("in post nav");
+    this.setState({ isInOutCon1BaseIndexTabVisible: 1 });
   };
 
   onOutPostNav = () => {
-    console.log("out post nav");
+    this.setState({ isInOutCon1BaseIndexTabVisible: 2 });
   };
 
   onConnectionNav = () => {
-    console.log("connection nav");
+    this.setState({ isInOutCon1BaseIndexTabVisible: 3 });
+  };
+
+  onInPostNotify = count => {
+    this.setState({ inPostNoteCount: count });
+  };
+  onOutPostNotify = count => {
+    this.setState({ outPostNoteCount: count });
+  };
+  onConnectionNotify = count => {
+    this.setState({ connectionNoteCount: count });
   };
 
   async componentDidMount() {
@@ -57,7 +72,13 @@ class App extends Component {
   }
 
   render() {
-    const { loginUser } = this.state;
+    const {
+      loginUser,
+      isInOutCon1BaseIndexTabVisible,
+      inPostNoteCount,
+      outPostNoteCount,
+      connectionNoteCount
+    } = this.state;
 
     let appContent;
     if (loginUser === undefined) {
@@ -66,7 +87,15 @@ class App extends Component {
       appContent = <PublicApp />;
       // appContent = <h1 className="text-center">App Public</h1>;
     } else {
-      appContent = <PrivateApp loginUser={loginUser} />;
+      appContent = (
+        <PrivateApp
+          loginUser={loginUser}
+          isInOutCon1BaseIndexTabVisible={isInOutCon1BaseIndexTabVisible}
+          onConnectionNotify={this.onConnectionNotify}
+          onInPostNotify={this.onInPostNotify}
+          onOutPostNotify={this.onOutPostNotify}
+        />
+      );
     }
 
     return (
@@ -77,6 +106,12 @@ class App extends Component {
           onInPostNav={this.onInPostNav}
           onOutPostNav={this.onOutPostNav}
           onConnectionNav={this.onConnectionNav}
+          isInOutCon1BaseIndexTabVisible={
+            this.state.isInOutCon1BaseIndexTabVisible
+          }
+          inPostNoteCount={inPostNoteCount}
+          outPostNoteCount={outPostNoteCount}
+          connectionNoteCount={connectionNoteCount}
         />
         <div className="app-container">
           {loginUser === null && (

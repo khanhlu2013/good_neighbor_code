@@ -1,0 +1,15 @@
+.post-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+}
+
+.post-item-heading {
+  margin-bottom: 10px;
+}
+
+.post-item-body {
+  margin-bottom: 10px;
+}

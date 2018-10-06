@@ -28,3 +28,7 @@
 .react-tabs__tab-panel--selected {
   display: block;
 }
+
+.tab-pannel-hide {
+  display: none;
+}

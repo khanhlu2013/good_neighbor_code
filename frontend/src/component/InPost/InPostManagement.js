@@ -57,9 +57,7 @@ class InPostManagement extends Component {
 
   setPostsAndNotifyUnawareApproveShare(posts) {
     this.setState({ posts });
-    this.props.onUnawareApprovePostCountChange(
-      this.state.unawareApprovePostCount
-    );
+    this.props.onInPostNotify(this.state.unawareApprovePostCount);
   }
 
   async componentDidMount() {
@@ -170,7 +168,7 @@ class InPostManagement extends Component {
   };
 
   onAwareShare = shareId => {
-    this.props.onUnawareApprovePostCountChange(null);
+    this.props.onInPostNotify(null);
     this.setState({
       awaringShareIds: [...this.state.awaringShareIds, shareId]
     });
@@ -232,19 +230,18 @@ class InPostManagement extends Component {
           <TabList>
             <Tab>
               <span id="tabSelector_inPost_all">
-                all
-                {computeNotificationCountHtml(posts.length, false)}
+                all {computeNotificationCountHtml(posts.length, false)}
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_waitingList">
-                waiting list
+                waiting list{" "}
                 {computeNotificationCountHtml(requestPosts.length, false)}
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_approve">
-                approve
+                approve{" "}
                 {computeNotificationCountHtml(
                   this.state.unawareApprovePostCount
                 )}
@@ -252,13 +249,12 @@ class InPostManagement extends Component {
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_borrow">
-                borrow
-                {computeNotificationCountHtml(borrowPosts.length, false)}
+                borrow {computeNotificationCountHtml(borrowPosts.length, false)}
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_history">
-                history
+                history{" "}
                 {computeNotificationCountHtml(
                   this.state.returnShares.length,
                   false
@@ -304,7 +300,7 @@ class InPostManagement extends Component {
 }
 InPostManagement.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  onUnawareApprovePostCountChange: PropTypes.func.isRequired
+  onInPostNotify: PropTypes.func.isRequired
 };
 
 export { InPostManagement };

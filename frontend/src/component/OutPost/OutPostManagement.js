@@ -54,7 +54,7 @@ class OutPostManagement extends Component {
   }
 
   componentDidMount() {
-    this.props.onOutPostNoteCountChange(null);
+    this.props.onOutPostNotify(null);
     (async () => {
       this.setPostsState(await API.outPosts());
     })();
@@ -66,13 +66,13 @@ class OutPostManagement extends Component {
       post => post.isNote_requestWithNoBorrow
     ).length;
 
-    this.props.onOutPostNoteCountChange(
+    this.props.onOutPostNotify(
       requestPostCount + this.state.returnNotePosts.length
     );
   }
 
   onAwareReturnPost = postId => {
-    this.props.onOutPostNoteCountChange(null);
+    this.props.onOutPostNotify(null);
     this.setState({
       awaringReturnPostIds: [...this.state.awaringReturnPostIds, postId]
     });
@@ -247,31 +247,27 @@ class OutPostManagement extends Component {
           </button>
           <Tab>
             <span id="tabSelector_outPost_all">
-              all
-              {computeNotificationCountHtml(posts.length, false)}
+              all {computeNotificationCountHtml(posts.length, false)}
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_waitingList">
-              request
-              {computeNotificationCountHtml(requestNotePosts.length)}
+              request {computeNotificationCountHtml(requestNotePosts.length)}
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_borrow">
-              borrow
-              {computeNotificationCountHtml(borrowPosts.length, false)}
+              borrow {computeNotificationCountHtml(borrowPosts.length, false)}
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_returnNote">
-              return
-              {computeNotificationCountHtml(returnNotePosts.length)}
+              return {computeNotificationCountHtml(returnNotePosts.length)}
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_history">
-              history
+              history{" "}
               {computeNotificationCountHtml(
                 this.state.returnShares.length,
                 false
@@ -341,7 +337,7 @@ class OutPostManagement extends Component {
 }
 OutPostManagement.propType = {
   loginUser: PropTypes.object.isRequired,
-  onOutPostNoteCountChange: PropTypes.func.isRequired
+  onOutPostNotify: PropTypes.func.isRequired
 };
 
 export { OutPostManagement };

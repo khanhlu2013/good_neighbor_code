@@ -1,97 +1,64 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import className from "classnames";
 
 import { ConnectionManagement } from "../component/connection/connectionManagement.js";
 import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPostManagement.js";
-import { computeNotificationCountHtml } from "../util.js";
+import { User } from "../model/user.js";
 
-class PrivateApp extends Component {
-  state = {
-    outPostNoteCount: null,
-    friendRequestCount: null,
-    unawareApprovePostCount: null,
-    selectedTabIndex: null
-  };
-  onFriendRequestCountChange = count => {
-    this.setState({ friendRequestCount: count });
-  };
-  onOutPostNoteCountChange = count => {
-    this.setState({ outPostNoteCount: count });
-  };
+function PrivateApp(props) {
+  const {
+    loginUser,
+    isInOutCon1BaseIndexTabVisible,
+    onConnectionNotify,
+    onInPostNotify,
+    onOutPostNotify
+  } = props;
 
-  onUnawareApprovePostCountChange = count => {
-    this.setState({ unawareApprovePostCount: count });
-  };
-
-  render() {
-    const {
-      friendRequestCount,
-      outPostNoteCount,
-      unawareApprovePostCount
-    } = this.state;
-
-    const connectionNotification = computeNotificationCountHtml(
-      friendRequestCount
-    );
-    const outPostNotification = computeNotificationCountHtml(outPostNoteCount);
-    const inPostNotification = computeNotificationCountHtml(
-      unawareApprovePostCount
-    );
-
-    const { loginUser } = this.props;
-
-    return (
-      <div id="privateApp-react">
-        <Tabs forceRenderTabPanel={true}>
-          <TabList>
-            <Tab>
-              <span id="tabSelector_inPost">
-                friend posts
-                {inPostNotification}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_outPost">
-                my posts
-                {outPostNotification}
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_connection">
-                friends
-                {connectionNotification}
-              </span>
-            </Tab>
-          </TabList>
-          <TabPanel>
-            <InPostManagement
-              loginUser={this.props.loginUser}
-              onUnawareApprovePostCountChange={
-                this.onUnawareApprovePostCountChange
-              }
-            />
-          </TabPanel>
-          <TabPanel>
-            <OutPostManagement
-              loginUser={loginUser}
-              onOutPostNoteCountChange={this.onOutPostNoteCountChange}
-            />
-          </TabPanel>
-          <TabPanel>
-            <ConnectionManagement
-              loginUser={this.props.loginUser}
-              onFriendRequestCountChange={this.onFriendRequestCountChange}
-            />
-          </TabPanel>
-        </Tabs>
+  return (
+    <div id="privateApp-react">
+      <div
+        className={className({
+          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 1
+        })}
+      >
+        <InPostManagement
+          loginUser={loginUser}
+          onInPostNotify={onInPostNotify}
+        />
       </div>
-    );
-  }
+
+      <div
+        className={className({
+          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 2
+        })}
+      >
+        <OutPostManagement
+          loginUser={loginUser}
+          onOutPostNotify={onOutPostNotify}
+        />
+      </div>
+      <div
+        className={className({
+          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 3
+        })}
+      >
+        <ConnectionManagement
+          loginUser={loginUser}
+          onConnectionNotify={onConnectionNotify}
+        />
+      </div>
+    </div>
+  );
 }
+
 PrivateApp.propTypes = {
-  loginUser: PropTypes.object.isRequired
+  loginUser: PropTypes.instanceOf(User).isRequired,
+  isInOutCon1BaseIndexTabVisible: PropTypes.number.isRequired,
+  onConnectionNotify: PropTypes.func.isRequired,
+  onInPostNotify: PropTypes.func.isRequired,
+  onOutPostNotify: PropTypes.func.isRequired
 };
 
 export { PrivateApp };
