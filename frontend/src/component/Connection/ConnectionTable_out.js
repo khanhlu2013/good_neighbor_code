@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LoadingIcon } from "../../util";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 const removeColClass = "col-3 text-center";
 const userNameColClass = "col-9";

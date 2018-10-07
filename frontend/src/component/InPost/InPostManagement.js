@@ -5,8 +5,9 @@ import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 import { InShareHistoryList } from "./inShareHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
-import { LoadingIcon, computeNotificationCountHtml } from "../../util";
 import { InPostList } from "./inPostList";
+import { NotificationItem } from "../../util/notificationItem";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 class InPostManagement extends Component {
   state = {
@@ -230,35 +231,41 @@ class InPostManagement extends Component {
           <TabList>
             <Tab>
               <span id="tabSelector_inPost_all">
-                all {computeNotificationCountHtml(posts.length, false)}
+                all
+                <NotificationItem count={posts.length} isImportant={false} />
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_waitingList">
-                waiting list{" "}
-                {computeNotificationCountHtml(requestPosts.length, false)}
+                waiting list
+                <NotificationItem
+                  count={requestPosts.length}
+                  isImportant={false}
+                />
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_approve">
-                approve{" "}
-                {computeNotificationCountHtml(
-                  this.state.unawareApprovePostCount
-                )}
+                approve
+                <NotificationItem count={this.state.unawareApprovePostCount} />
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_borrow">
-                borrow {computeNotificationCountHtml(borrowPosts.length, false)}
+                borrow
+                <NotificationItem
+                  count={borrowPosts.length}
+                  isImportant={false}
+                />
               </span>
             </Tab>
             <Tab>
               <span id="tabSelector_inPost_history">
-                history{" "}
-                {computeNotificationCountHtml(
-                  this.state.returnShares.length,
-                  false
-                )}
+                history
+                <NotificationItem
+                  count={this.state.returnShares.length}
+                  isImportant={false}
+                />
               </span>
             </Tab>
           </TabList>

@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { AppHeaderProfile } from "./appHeaderProfile";
-import { LoadingIcon, nullOrRequiredValidator } from "../../util";
+import { nullOrRequiredValidator } from "../../util";
 import "./appHeader.css";
 import { AppHeaderNav } from "./appHeaderNav";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 class AppHeader extends Component {
   render() {
@@ -44,8 +45,8 @@ class AppHeader extends Component {
       );
     }
     return (
-      <div className="bg-primary">
-        <div className="app-header app-container">
+      <div className="app-header-container">
+        <div className="app-header">
           <div className="app-header-text-icon">Good Neighbor</div>
           {content}
         </div>

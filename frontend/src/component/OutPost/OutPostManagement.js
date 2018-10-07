@@ -5,10 +5,11 @@ import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
 import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
-import { LoadingIcon, computeNotificationCountHtml } from "../../util";
 import { Post } from "../../model/post";
 import { OutShareHistoryList } from "./outShareHistoryList";
 import { OutPostList } from "./outPostList";
+import { NotificationItem } from "../../util/notificationItem";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 class OutPostManagement extends Component {
   state = {
@@ -247,31 +248,44 @@ class OutPostManagement extends Component {
           </button>
           <Tab>
             <span id="tabSelector_outPost_all">
-              all {computeNotificationCountHtml(posts.length, false)}
+              all
+              <NotificationItem count={posts.length} isImportant={false} />
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_waitingList">
-              request {computeNotificationCountHtml(requestNotePosts.length)}
+              request
+              <NotificationItem
+                count={requestNotePosts.length}
+                isImportant={true}
+              />
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_borrow">
-              borrow {computeNotificationCountHtml(borrowPosts.length, false)}
+              borrow
+              <NotificationItem
+                count={borrowPosts.length}
+                isImportant={false}
+              />
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_returnNote">
-              return {computeNotificationCountHtml(returnNotePosts.length)}
+              return
+              <NotificationItem
+                count={returnNotePosts.length}
+                isImportant={false}
+              />
             </span>
           </Tab>
           <Tab>
             <span id="tabSelector_outPost_history">
-              history{" "}
-              {computeNotificationCountHtml(
-                this.state.returnShares.length,
-                false
-              )}
+              history
+              <NotificationItem
+                count={this.state.returnShares.length}
+                isImportant={false}
+              />
             </span>
           </Tab>
         </TabList>

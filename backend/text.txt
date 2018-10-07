@@ -202,11 +202,23 @@ ok, a project of making my site responsive.
 .remove the react tab
 . they will be render right away
 . they will have one that is active, the other will be display none. 
-
+. fix post break point
 ---
 . i need to fix the id for the tab.
+. i like to test things with jest and enzym stuff
+. is there a way i can do enum in js?
+  .     onInPostNav,
+    onOutPostNav,
+    onConnectionNav,
+  . i can change this into a single method onNavChange.
 
-. move the notification inside the nav bar
-. i need a class name to hide and display tab. 
-. i need to communicate outside the notification. 
+---
+. i like to break it with media query so that i can change the way my icon look right?
+  . before i break it, lets see how do i like my icon to look first right?
+  . i am going to make it a div right now i guess right?
+    . when css change it will change its width and stuff. ok great
+    . 
 
+
+--
+. rethink the notification right? something is fishy here. 

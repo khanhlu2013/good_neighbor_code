@@ -1,9 +1,19 @@
+.app-header-container {
+  width: 100%;
+  background-color: rgb(36, 54, 65);
+}
+
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   height: 42px;
+
+  max-width: 700px;
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 0 30px;
 }
 
 .app-header-text-icon {

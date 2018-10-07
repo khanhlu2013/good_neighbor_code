@@ -5,7 +5,7 @@ import className from "classnames";
 
 import "./backdoorLogin.css";
 import { API } from "../api/profile-api";
-import { LoadingIcon } from "../util";
+import { LoadingIcon } from "../util/loadingIcon";
 
 class BackdoorLogin extends Component {
   state = {

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { LoadingIcon } from "../../util";
 import { Share } from "../../model/share";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 function InPostItemFootingApprove(props) {
   const {

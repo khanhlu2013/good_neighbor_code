@@ -1,0 +1,15 @@
+.app-header-nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  font-size: 0.7em;
+  font-weight: 300;
+}
+
+.app-header-nav-item-icon-with-notification {
+  display: flex;
+  align-items: center;
+  height: 16px;
+}

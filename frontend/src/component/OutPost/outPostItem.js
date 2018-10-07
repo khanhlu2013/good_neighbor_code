@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { PostItemBody } from "../postItem_body";
 import { PostItemRequestList } from "../postItem_requestlist";
 import { OutPostItemHeading } from "./outPostItem_heading";
-import { LoadingIcon } from "../../util";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 function OutPostItem(props) {
   const {

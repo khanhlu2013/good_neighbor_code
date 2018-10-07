@@ -7,7 +7,7 @@ import { ConnectionOutTable } from "./connectionTable_out.js";
 import { ConnectionDenyTable } from "./connectionTable_deny.js";
 import { ConnectionInTable } from "./connectionTable_in.js";
 import { API } from "../../api/profile-api.js";
-import { LoadingIcon } from "../../util.js";
+import { LoadingIcon } from "../../util/loadingIcon.js";
 
 class ConnectionManagement extends Component {
   state = {

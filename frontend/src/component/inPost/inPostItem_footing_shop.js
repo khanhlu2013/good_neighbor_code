@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import { LoadingIcon } from "../../util";
+import { LoadingIcon } from "../../util/loadingIcon";
 
 function InPostItemFootingShop(props) {
   const { postId, isRequestingPost, onCreateShare } = props;
