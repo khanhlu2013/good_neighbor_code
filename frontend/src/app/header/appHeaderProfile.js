@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { User } from "../../model/user";
 import { API } from "../../api/profile-api";
 import { LoadingIcon } from "../../util/loadingIcon";
+import { AppHeaderProfileImage } from "./appHeaderProfileImage";
+import "./appHeaderProfile.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class AppHeaderProfile extends Component {
   state = {
@@ -19,27 +22,14 @@ class AppHeaderProfile extends Component {
     })();
   };
 
-  onfallbackProfileImage = ev => {
-    console.log("xx");
-    //ev.target.src = "noProfileImage.svg";
-  };
-
   render() {
     const { loginUser } = this.props;
 
     return (
-      <div>
-        <span>
-          <img
-            src={loginUser.profileImageUrl || "noProfileImage.svg"}
-            alt="profile"
-            title={loginUser.getNameAndEmail()}
-            width="42"
-            height="42"
-            onError={this.onfallbackProfileImage}
-          />
-        </span>
-        <span className="ml-2">
+      <div className="app-header-profile">
+        <AppHeaderProfileImage loginUser={loginUser} />
+
+        <div className="ml-2">
           {this.state.logingOut ? (
             <LoadingIcon text="logout" />
           ) : (
@@ -47,10 +37,10 @@ class AppHeaderProfile extends Component {
               onClick={this.onLogoutClicked}
               className="btn btn-sm btn-warning"
             >
-              logout
+              <FontAwesomeIcon icon="power-off" size="lg" />
             </button>
           )}
-        </span>
+        </div>
       </div>
     );
   }

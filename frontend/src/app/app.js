@@ -8,7 +8,12 @@ import {
   faUndoAlt,
   faPlay, //play youtube video
   faPause, //pause youtube video
-  faClock //youtube video duration
+  faClock, //youtube video duration
+  faBriefcase, //my post
+  faUser, //profile image replacer
+  faGlobe, //in posts
+  faUserFriends, //friends or my networks
+  faPowerOff //logout
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PublicApp } from "./appPublic";
@@ -26,8 +31,14 @@ library.add(
   faUndoAlt,
   faPlay,
   faPause,
-  faClock
+  faClock,
+  faBriefcase,
+  faUser,
+  faGlobe,
+  faUserFriends,
+  faPowerOff
 );
+
 class App extends Component {
   state = {
     loginUser: undefined,

@@ -15,10 +15,12 @@ function AppHeaderNavItem(props) {
   return (
     <div className="app-header-nav-item" onClick={onItemClick}>
       <div className="app-header-nav-item-icon-with-notification">
-        <FontAwesomeIcon icon={iconName} />
-        <NotificationItem count={noteCount} />
+        <FontAwesomeIcon icon={iconName} size="lg" />
+        <span className="app-header-nav-item-notification">
+          <NotificationItem count={noteCount} />
+        </span>
       </div>
-      <div>{caption}</div>
+      <div className="app-header-nav-item-caption">{caption}</div>
     </div>
   );
 }

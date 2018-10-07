@@ -21,7 +21,7 @@ function AppHeaderNav(props) {
       <AppHeaderNavItem
         isSelect={isInOutCon1BaseIndexTabVisible === 1}
         caption="friend posts"
-        iconName="pause"
+        iconName="globe"
         onSelect={onInPostNav}
         noteCount={inPostNoteCount}
       />
@@ -29,7 +29,7 @@ function AppHeaderNav(props) {
       <AppHeaderNavItem
         isSelect={isInOutCon1BaseIndexTabVisible === 2}
         caption="my posts"
-        iconName="play"
+        iconName="briefcase"
         onSelect={onOutPostNav}
         noteCount={outPostNoteCount}
       />
@@ -37,7 +37,7 @@ function AppHeaderNav(props) {
       <AppHeaderNavItem
         isSelect={isInOutCon1BaseIndexTabVisible === 3}
         caption="friends"
-        iconName="clock"
+        iconName="user-friends"
         onSelect={onConnectionNav}
         noteCount={connectionNoteCount}
       />

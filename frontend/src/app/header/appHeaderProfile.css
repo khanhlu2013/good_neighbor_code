@@ -1,0 +1,18 @@
+.app-header-profile {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.app-header-profile-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header-profile-image-caption {
+  font-weight: 100;
+  font-size: 0.8em;
+  height: 12px;
+}

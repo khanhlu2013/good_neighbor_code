@@ -223,3 +223,6 @@ ok, a project of making my site responsive.
 --
 . rethink the notification right? something is fishy here. 
 ..
+
+---
+why line-height affect div?

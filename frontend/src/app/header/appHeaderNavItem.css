@@ -4,12 +4,20 @@
   justify-content: center;
   align-items: center;
   margin: 0 5px;
-  font-size: 0.7em;
-  font-weight: 300;
 }
 
 .app-header-nav-item-icon-with-notification {
   display: flex;
   align-items: center;
-  height: 16px;
+}
+
+.app-header-nav-item-notification {
+  font-weight: 100;
+  font-size: 0.9em;
+}
+
+.app-header-nav-item-caption {
+  font-weight: 100;
+  font-size: 0.8em;
+  height: 12px;
 }
