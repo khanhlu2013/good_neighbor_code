@@ -4,6 +4,15 @@
   justify-content: center;
   align-items: center;
   margin: 0 5px;
+  color: rgb(192, 203, 211);
+}
+
+.app-header-nav-item:hover {
+  color: white;
+}
+
+.app-header-nav-item-select {
+  color: white;
 }
 
 .app-header-nav-item-icon-with-notification {
@@ -19,5 +28,5 @@
 .app-header-nav-item-caption {
   font-weight: 100;
   font-size: 0.8em;
-  height: 12px;
+  height: 13px;
 }
