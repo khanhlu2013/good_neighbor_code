@@ -28,7 +28,7 @@ function AppHeaderNavItem(props) {
             <NotificationItem count={noteCount} />
           </span>
         </div>
-        <div className="app-header-nav-item-caption">{caption}</div>
+        <span className="app-header-nav-item-caption">{caption}</span>
       </div>
       <div
         className={className({

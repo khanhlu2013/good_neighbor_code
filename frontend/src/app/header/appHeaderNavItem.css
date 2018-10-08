@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 0px;
 }
 
 .app-header-nav-item-underline {
@@ -45,7 +46,8 @@
 }
 
 .app-header-nav-item-caption {
+  margin-top: 5px;
   font-weight: 100;
   font-size: 0.8em;
-  height: 11px;
+  line-height: 100%;
 }
