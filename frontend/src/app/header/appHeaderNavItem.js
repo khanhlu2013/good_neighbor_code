@@ -21,13 +21,21 @@ function AppHeaderNavItem(props) {
       })}
       onClick={onItemClick}
     >
-      <div className="app-header-nav-item-icon-with-notification">
-        <FontAwesomeIcon icon={iconName} size="lg" />
-        <span className="app-header-nav-item-notification">
-          <NotificationItem count={noteCount} />
-        </span>
+      <div class="app-header-nav-item-main">
+        <div className="app-header-nav-item-icon-with-notification">
+          <FontAwesomeIcon icon={iconName} size="lg" />
+          <span className="app-header-nav-item-notification">
+            <NotificationItem count={noteCount} />
+          </span>
+        </div>
+        <div className="app-header-nav-item-caption">{caption}</div>
       </div>
-      <div className="app-header-nav-item-caption">{caption}</div>
+      <div
+        className={className({
+          "app-header-nav-item-underline": true,
+          "app-header-nav-item-underline-select": isSelect
+        })}
+      />
     </div>
   );
 }

@@ -1,10 +1,29 @@
 .app-header-nav-item {
+  height: 53px;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 8px;
+  color: rgb(192, 203, 211);
+}
+
+.app-header-nav-item-main {
+  display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
-  color: rgb(192, 203, 211);
+}
+
+.app-header-nav-item-underline {
+  height: 2px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.app-header-nav-item-underline-select {
+  background-color: white;
 }
 
 .app-header-nav-item:hover {
@@ -28,5 +47,5 @@
 .app-header-nav-item-caption {
   font-weight: 100;
   font-size: 0.8em;
-  height: 13px;
+  height: 11px;
 }

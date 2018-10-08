@@ -225,4 +225,3 @@ ok, a project of making my site responsive.
 ..
 
 ---
-why line-height affect div?
