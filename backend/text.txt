@@ -219,18 +219,13 @@ ok, a project of making my site responsive.
     . when css change it will change its width and stuff. ok great
     . 
 
-
+---
+. profile include the logout button is cumber some and not useable
 --
 . rethink the notification right? something is fishy here. 
 
 ---
 . i am trying to do mobile resonsive design
 
-
-. how do i factor out the padding, 
-  . why do i use padding and not margin? pro vs con?
-
 ---
-
-i have the width right now fix at 700px, what do i want to do about this?
-  . lets see if min width will work. also max width as well. just like the header
+work on the tab now, kill the react tab. 

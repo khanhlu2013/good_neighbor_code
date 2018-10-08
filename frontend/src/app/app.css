@@ -1,12 +1,8 @@
 .app-container {
-  /* max-width: 700px;
+  max-width: 700px;
   min-width: 460px;
   margin: 0 auto;
-  padding: 0 30px; */
-
-  width: 700px;
-  margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 15px;
 }
 
 .ReactModal__title {

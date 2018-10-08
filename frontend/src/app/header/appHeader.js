@@ -46,7 +46,7 @@ class AppHeader extends Component {
     }
     return (
       <div className="app-header-container">
-        <div className="app-header">
+        <div className="app-header app-container">
           <div className="app-header-text-icon">Good Neighbor</div>
           {content}
         </div>
