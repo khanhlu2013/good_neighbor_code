@@ -4,11 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
 import "./appHeaderNavItem.css";
-import { NotificationItem } from "../../util/notificationItem";
-import { nullOrRequiredValidator } from "../../util";
 
 function AppHeaderNavItem(props) {
-  const { isSelect, caption, iconName, onSelect, noteCount } = props;
+  const { isSelect, caption, iconName, onSelect, notificationItem } = props;
   const onItemClick = e => {
     onSelect();
   };
@@ -24,9 +22,7 @@ function AppHeaderNavItem(props) {
       <div className="app-header-nav-item-main">
         <div className="app-header-nav-item-icon-with-notification">
           <FontAwesomeIcon icon={iconName} size="lg" />
-          <span>
-            <NotificationItem count={noteCount} isImportant={true} />
-          </span>
+          {notificationItem}
         </div>
         <span className="app-header-nav-item-caption">{caption}</span>
       </div>
@@ -45,8 +41,7 @@ AppHeaderNavItem.propTypes = {
   caption: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-  noteCount: nullOrRequiredValidator("number")
-  // notificationItem : PropTypes.element.isRequired
+  notificationItem: PropTypes.element.isRequired
 };
 
 export { AppHeaderNavItem };

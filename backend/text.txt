@@ -220,6 +220,8 @@ ok, a project of making my site responsive.
     . 
 
 ---
+. i like to experience with reset local git. working on a experimental branch. commit a few good and a few bad. i like to take out the bad one. reset hard. 
+---
 . profile include the logout button is cumber some and not useable
 --
 . rethink the notification right? something is fishy here. or is it fishy?
@@ -235,9 +237,7 @@ work on the tab now, kill the react tab.
 . i am facing a decision that i could just use the nav item all together. damn react reuseability.
 
 ---
-. consider changing the header-nav-item into nav-item
-. can nav item take in the whole notification?
+. consider changing the header-nav-item into nav-item, 
+. lets see if i can just use the app-header-nav-item first, if i can then i can simply rename it. 
 
 
----
-let give it a try to pass the whole notification comp into a comp. 

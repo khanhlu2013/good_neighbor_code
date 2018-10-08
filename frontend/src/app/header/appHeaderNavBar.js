@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./appHeaderNavBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderNavItem } from "./appHeaderNavItem";
+import { NotificationItem } from "../../util/notificationItem";
 
 function AppHeaderNavBar(props) {
   const {
@@ -23,7 +24,9 @@ function AppHeaderNavBar(props) {
         caption="friend posts"
         iconName="globe"
         onSelect={onInPostNav}
-        noteCount={inPostNoteCount}
+        notificationItem={
+          <NotificationItem count={inPostNoteCount} isImportant={true} />
+        }
       />
 
       <AppHeaderNavItem
@@ -31,7 +34,9 @@ function AppHeaderNavBar(props) {
         caption="my posts"
         iconName="briefcase"
         onSelect={onOutPostNav}
-        noteCount={outPostNoteCount}
+        notificationItem={
+          <NotificationItem count={outPostNoteCount} isImportant={true} />
+        }
       />
 
       <AppHeaderNavItem
@@ -39,7 +44,9 @@ function AppHeaderNavBar(props) {
         caption="friends"
         iconName="user-friends"
         onSelect={onConnectionNav}
-        noteCount={connectionNoteCount}
+        notificationItem={
+          <NotificationItem count={connectionNoteCount} isImportant={true} />
+        }
       />
     </div>
   );
