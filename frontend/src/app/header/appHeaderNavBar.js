@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./appHeaderNav.css";
+import "./appHeaderNavBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderNavItem } from "./appHeaderNavItem";
 
-function AppHeaderNav(props) {
+function AppHeaderNavBar(props) {
   const {
     onInPostNav,
     onOutPostNav,
@@ -17,7 +17,7 @@ function AppHeaderNav(props) {
   } = props;
 
   return (
-    <div className="app-header-nav">
+    <div className="app-header-nav-bar">
       <AppHeaderNavItem
         isSelect={isInOutCon1BaseIndexTabVisible === 1}
         caption="friend posts"
@@ -45,7 +45,7 @@ function AppHeaderNav(props) {
   );
 }
 
-AppHeaderNav.propTypes = {
+AppHeaderNavBar.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
@@ -55,4 +55,4 @@ AppHeaderNav.propTypes = {
   connectionNoteCount: nullOrRequiredValidator("number")
 };
 
-export { AppHeaderNav };
+export { AppHeaderNavBar };
