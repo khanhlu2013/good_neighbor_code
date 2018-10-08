@@ -19,6 +19,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
   margin: 0 12px;
   color: rgb(192, 203, 211);
 }
@@ -53,11 +55,6 @@
 .app-header-nav-item-icon-with-notification {
   display: flex;
   align-items: center;
-}
-
-.app-header-nav-item-notification {
-  font-weight: 100;
-  font-size: 0.9em;
 }
 
 .app-header-nav-item-caption {

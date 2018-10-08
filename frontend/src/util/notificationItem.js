@@ -12,21 +12,21 @@ function NotificationItem(props) {
   let html = null;
   if (count !== null && count !== 0) {
     html = (
-      <span
+      <div
         className={className({
-          "text-white": isImportant,
-          "bg-danger": isImportant,
-          "text-dark": !isImportant
-          // "bg-light": !isImportant
+          "notification-item": true,
+          "notification-item-important": isImportant
         })}
-      >{`(${count})`}</span>
+      >
+        {count}
+      </div>
     );
   } else if (count === null) {
     html = <LoadingIcon text={null} />;
   } else {
     if (count !== 0) throw Error("Unexpected code path");
   }
-  return <div className="notification-item">{html}</div>;
+  return <div className="notification-item-container">{html}</div>;
 }
 NotificationItem.propTypes = {
   count: nullOrRequiredValidator("number"),
