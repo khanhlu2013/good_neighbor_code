@@ -6,11 +6,13 @@ import { ConnectionManagement } from "../component/connection/connectionManageme
 import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPostManagement.js";
 import { User } from "../model/user.js";
+import "../util/tab.css";
+import { AppTabEnum } from "./appTabEnum.js";
 
 function PrivateApp(props) {
   const {
     loginUser,
-    isInOutCon1BaseIndexTabVisible,
+    selectTab,
     onConnectionNotify,
     onInPostNotify,
     onOutPostNotify
@@ -20,7 +22,8 @@ function PrivateApp(props) {
     <div id="privateApp-react">
       <div
         className={className({
-          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 1
+          "tab-panel": true,
+          "tab-pannel-select": selectTab === AppTabEnum.INPOST
         })}
       >
         <InPostManagement
@@ -31,7 +34,8 @@ function PrivateApp(props) {
 
       <div
         className={className({
-          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 2
+          "tab-panel": true,
+          "tab-pannel-select": selectTab === AppTabEnum.OUTPOST
         })}
       >
         <OutPostManagement
@@ -41,7 +45,8 @@ function PrivateApp(props) {
       </div>
       <div
         className={className({
-          "tab-pannel-hide": isInOutCon1BaseIndexTabVisible !== 3
+          "tab-panel": true,
+          "tab-pannel-select": selectTab === AppTabEnum.CONNECTION
         })}
       >
         <ConnectionManagement
@@ -55,7 +60,7 @@ function PrivateApp(props) {
 
 PrivateApp.propTypes = {
   loginUser: PropTypes.instanceOf(User).isRequired,
-  isInOutCon1BaseIndexTabVisible: PropTypes.number.isRequired,
+  selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   onConnectionNotify: PropTypes.func.isRequired,
   onInPostNotify: PropTypes.func.isRequired,
   onOutPostNotify: PropTypes.func.isRequired

@@ -24,6 +24,8 @@ import "../component/postItem.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
+import { AppTabEnum } from "./appTabEnum";
+
 library.add(
   faThumbsUp,
   faThumbsDown,
@@ -43,7 +45,7 @@ class App extends Component {
   state = {
     loginUser: undefined,
     logingOut: false,
-    isInOutCon1BaseIndexTabVisible: 1,
+    selectTab: AppTabEnum.INPOST,
     inPostNoteCount: null,
     outPostNoteCount: null,
     connectionNoteCount: null
@@ -57,15 +59,15 @@ class App extends Component {
   };
 
   onInPostNav = () => {
-    this.setState({ isInOutCon1BaseIndexTabVisible: 1 });
+    this.setState({ selectTab: AppTabEnum.INPOST });
   };
 
   onOutPostNav = () => {
-    this.setState({ isInOutCon1BaseIndexTabVisible: 2 });
+    this.setState({ selectTab: AppTabEnum.OUTPOST });
   };
 
   onConnectionNav = () => {
-    this.setState({ isInOutCon1BaseIndexTabVisible: 3 });
+    this.setState({ selectTab: AppTabEnum.CONNECTION });
   };
 
   onInPostNotify = count => {
@@ -85,7 +87,7 @@ class App extends Component {
   render() {
     const {
       loginUser,
-      isInOutCon1BaseIndexTabVisible,
+      selectTab,
       inPostNoteCount,
       outPostNoteCount,
       connectionNoteCount
@@ -101,14 +103,13 @@ class App extends Component {
       appContent = (
         <PrivateApp
           loginUser={loginUser}
-          isInOutCon1BaseIndexTabVisible={isInOutCon1BaseIndexTabVisible}
+          selectTab={selectTab}
           onConnectionNotify={this.onConnectionNotify}
           onInPostNotify={this.onInPostNotify}
           onOutPostNotify={this.onOutPostNotify}
         />
       );
     }
-
     return (
       <Fragment>
         <AppHeader
@@ -117,9 +118,7 @@ class App extends Component {
           onInPostNav={this.onInPostNav}
           onOutPostNav={this.onOutPostNav}
           onConnectionNav={this.onConnectionNav}
-          isInOutCon1BaseIndexTabVisible={
-            this.state.isInOutCon1BaseIndexTabVisible
-          }
+          selectTab={selectTab}
           inPostNoteCount={inPostNoteCount}
           outPostNoteCount={outPostNoteCount}
           connectionNoteCount={connectionNoteCount}
@@ -135,4 +134,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export { App };

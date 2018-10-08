@@ -8,6 +8,7 @@ import { nullOrRequiredValidator } from "../../util";
 import "./appHeader.css";
 import { AppHeaderNavBar } from "./appHeaderNavBar";
 import { LoadingIcon } from "../../util/loadingIcon";
+import { AppTabEnum } from "../appTabEnum";
 
 class AppHeader extends Component {
   render() {
@@ -17,7 +18,7 @@ class AppHeader extends Component {
       onInPostNav,
       onOutPostNav,
       onConnectionNav,
-      isInOutCon1BaseIndexTabVisible,
+      selectTab,
       inPostNoteCount,
       outPostNoteCount,
       connectionNoteCount
@@ -35,7 +36,7 @@ class AppHeader extends Component {
             onInPostNav={onInPostNav}
             onOutPostNav={onOutPostNav}
             onConnectionNav={onConnectionNav}
-            isInOutCon1BaseIndexTabVisible={isInOutCon1BaseIndexTabVisible}
+            selectTab={selectTab}
             inPostNoteCount={inPostNoteCount}
             outPostNoteCount={outPostNoteCount}
             connectionNoteCount={connectionNoteCount}
@@ -60,7 +61,7 @@ AppHeader.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
-  isInOutCon1BaseIndexTabVisible: PropTypes.number.isRequired,
+  selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),
   connectionNoteCount: nullOrRequiredValidator("number")

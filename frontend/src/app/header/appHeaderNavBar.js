@@ -5,13 +5,14 @@ import "./appHeaderNavBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderNavItem } from "./appHeaderNavItem";
 import { NotificationItem } from "../../util/notificationItem";
+import { AppTabEnum } from "../appTabEnum";
 
 function AppHeaderNavBar(props) {
   const {
     onInPostNav,
     onOutPostNav,
     onConnectionNav,
-    isInOutCon1BaseIndexTabVisible,
+    selectTab,
     inPostNoteCount,
     outPostNoteCount,
     connectionNoteCount
@@ -20,7 +21,7 @@ function AppHeaderNavBar(props) {
   return (
     <div className="app-header-nav-bar">
       <AppHeaderNavItem
-        isSelect={isInOutCon1BaseIndexTabVisible === 1}
+        isSelect={selectTab === AppTabEnum.INPOST}
         caption="friend posts"
         iconName="globe"
         onSelect={onInPostNav}
@@ -30,7 +31,7 @@ function AppHeaderNavBar(props) {
       />
 
       <AppHeaderNavItem
-        isSelect={isInOutCon1BaseIndexTabVisible === 2}
+        isSelect={selectTab === AppTabEnum.OUTPOST}
         caption="my posts"
         iconName="briefcase"
         onSelect={onOutPostNav}
@@ -40,7 +41,7 @@ function AppHeaderNavBar(props) {
       />
 
       <AppHeaderNavItem
-        isSelect={isInOutCon1BaseIndexTabVisible === 3}
+        isSelect={selectTab === AppTabEnum.CONNECTION}
         caption="friends"
         iconName="user-friends"
         onSelect={onConnectionNav}
@@ -56,7 +57,7 @@ AppHeaderNavBar.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
-  isInOutCon1BaseIndexTabVisible: PropTypes.number.isRequired,
+  selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),
   connectionNoteCount: nullOrRequiredValidator("number")
