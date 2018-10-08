@@ -12,7 +12,8 @@
 }
 
 .app-header-profile-image-caption {
+  margin-top: 3px;
   font-weight: 100;
   font-size: 0.8em;
-  height: 13px;
+  line-height: 100%;
 }

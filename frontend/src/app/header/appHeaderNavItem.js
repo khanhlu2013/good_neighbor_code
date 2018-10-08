@@ -21,7 +21,7 @@ function AppHeaderNavItem(props) {
       })}
       onClick={onItemClick}
     >
-      <div class="app-header-nav-item-main">
+      <div className="app-header-nav-item-main">
         <div className="app-header-nav-item-icon-with-notification">
           <FontAwesomeIcon icon={iconName} size="lg" />
           <span className="app-header-nav-item-notification">
