@@ -247,7 +247,10 @@ class InPostManagement extends Component {
             <Tab>
               <span id="tabSelector_inPost_approve">
                 approve
-                <NotificationItem count={this.state.unawareApprovePostCount} />
+                <NotificationItem
+                  count={this.state.unawareApprovePostCount}
+                  isImportant={true}
+                />
               </span>
             </Tab>
             <Tab>

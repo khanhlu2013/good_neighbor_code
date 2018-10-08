@@ -25,7 +25,7 @@ function AppHeaderNavItem(props) {
         <div className="app-header-nav-item-icon-with-notification">
           <FontAwesomeIcon icon={iconName} size="lg" />
           <span>
-            <NotificationItem count={noteCount} />
+            <NotificationItem count={noteCount} isImportant={true} />
           </span>
         </div>
         <span className="app-header-nav-item-caption">{caption}</span>
@@ -46,6 +46,7 @@ AppHeaderNavItem.propTypes = {
   iconName: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
   noteCount: nullOrRequiredValidator("number")
+  // notificationItem : PropTypes.element.isRequired
 };
 
 export { AppHeaderNavItem };

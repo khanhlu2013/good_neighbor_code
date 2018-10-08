@@ -30,7 +30,7 @@ function NotificationItem(props) {
 }
 NotificationItem.propTypes = {
   count: nullOrRequiredValidator("number"),
-  isImportant: PropTypes.bool
+  isImportant: PropTypes.bool.isRequired
 };
 
 export { NotificationItem };

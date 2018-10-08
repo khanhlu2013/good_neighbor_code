@@ -222,10 +222,22 @@ ok, a project of making my site responsive.
 ---
 . profile include the logout button is cumber some and not useable
 --
-. rethink the notification right? something is fishy here. 
+. rethink the notification right? something is fishy here. or is it fishy?
 
 ---
 . i am trying to do mobile resonsive design
 
 ---
 work on the tab now, kill the react tab. 
+
+. how do i share the nav-item with tab-item, eventually, they are quite similar. 
+. i need to create a react comp, for this tab item. 
+. i am facing a decision that i could just use the nav item all together. damn react reuseability.
+
+---
+. consider changing the header-nav-item into nav-item
+. can nav item take in the whole notification?
+
+
+---
+let give it a try to pass the whole notification comp into a comp. 
