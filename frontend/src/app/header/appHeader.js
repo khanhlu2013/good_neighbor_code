@@ -6,7 +6,7 @@ import { GoogleLogin } from "../googleLogin";
 import { AppHeaderProfile } from "./appHeaderProfile";
 import { nullOrRequiredValidator } from "../../util";
 import "./appHeader.css";
-import { AppHeaderNavBar } from "./appHeaderNavBar";
+import { AppHeaderTabBar } from "./appHeaderTabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
 
@@ -32,7 +32,7 @@ class AppHeader extends Component {
     } else {
       content = (
         <div className="app-header-right-side">
-          <AppHeaderNavBar
+          <AppHeaderTabBar
             onInPostNav={onInPostNav}
             onOutPostNav={onOutPostNav}
             onConnectionNav={onConnectionNav}

@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./appHeaderNavBar.css";
+import "./appHeaderTabBar.css";
 import "./appHeaderTabItem.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
 import { TabItem } from "../../util/tabItem";
 
-function AppHeaderNavBar(props) {
+function AppHeaderTabBar(props) {
   const {
     onInPostNav,
     onOutPostNav,
@@ -66,7 +66,7 @@ function _generateTabItem(isSelect, caption, iconName, onSelect, noteCount) {
     />
   );
 }
-AppHeaderNavBar.propTypes = {
+AppHeaderTabBar.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
@@ -76,4 +76,4 @@ AppHeaderNavBar.propTypes = {
   connectionNoteCount: nullOrRequiredValidator("number")
 };
 
-export { AppHeaderNavBar };
+export { AppHeaderTabBar };

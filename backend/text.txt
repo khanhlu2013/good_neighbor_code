@@ -254,10 +254,10 @@ work on the tab now, kill the react tab.
   . app-tab.css vs inPostTab.css
 
 ---
+create my post tab baar
+---
 app-header-tab-item -> app-tab-item
 ---
-. quest to generate the tab bar. 
-. factor out the tab item and tab bar. 
 
----
+
 
