@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./inPostTabBar.css";
 import "../postTabItem.css";
-import { AppHeaderNavItem } from "../../util/appHeaderNavItem";
+import { TabItem } from "../../util/tabItem";
 import { InPostTabEnum } from "./inPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
@@ -100,7 +100,7 @@ function _generateTabItem(
   isResponsiveCaption
 ) {
   return (
-    <AppHeaderNavItem
+    <TabItem
       isSelect={isSelect}
       caption={caption}
       iconName={iconName}

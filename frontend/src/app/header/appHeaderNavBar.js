@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./appHeaderNavBar.css";
+import "./appHeaderTabItem.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
-import { AppHeaderNavItem } from "../../util/appHeaderNavItem";
+import { TabItem } from "../../util/tabItem";
 
 function AppHeaderNavBar(props) {
   const {
@@ -49,7 +50,7 @@ function AppHeaderNavBar(props) {
 
 function _generateTabItem(isSelect, caption, iconName, onSelect, noteCount) {
   return (
-    <AppHeaderNavItem
+    <TabItem
       isSelect={isSelect}
       caption={caption}
       iconName={iconName}

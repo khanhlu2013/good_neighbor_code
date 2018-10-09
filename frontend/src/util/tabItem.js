@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
-import "./appHeaderNavItem.css";
+import "./tabItem.css";
 import { nullOrRequiredValidator } from "../util";
 
-function AppHeaderNavItem(props) {
+function TabItem(props) {
   const {
     isSelect,
     caption,
@@ -60,7 +60,7 @@ function AppHeaderNavItem(props) {
   );
 }
 
-AppHeaderNavItem.propTypes = {
+TabItem.propTypes = {
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
   iconName: nullOrRequiredValidator("string"),
@@ -73,4 +73,4 @@ AppHeaderNavItem.propTypes = {
   isResponsiveCaption: PropTypes.bool.isRequired
 };
 
-export { AppHeaderNavItem };
+export { TabItem };
