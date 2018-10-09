@@ -20,6 +20,7 @@ import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";
 import "./app.css";
 import "./reactTab.css";
+import "../css/boxShadow.css";
 import "../component/postItem.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";

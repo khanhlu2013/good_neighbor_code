@@ -37,7 +37,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <div className="in-post-tab-bar">
+    <div className="in-post-tab-bar box-shadow">
       <div className="in-post-tab-bar-left-group">
         <FontAwesomeIcon icon="play" />
       </div>
