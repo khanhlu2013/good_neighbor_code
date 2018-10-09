@@ -20,9 +20,12 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  cursor: pointer;
   user-select: none;
   margin: 0 12px;
+}
+
+.tab-item-pointer-cursor {
+  cursor: pointer;
 }
 
 .tab-item-icon-notification-caption {

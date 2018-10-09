@@ -38,9 +38,17 @@ function InPostTabBar(props) {
 
   return (
     <div className="in-post-tab-bar box-shadow">
-      <div className="in-post-tab-bar-left-group">
-        <FontAwesomeIcon icon="play" />
-      </div>
+      <AppHeaderNavItem
+        isSelect={true}
+        caption="friend posts"
+        iconName="globe"
+        onSelect={null}
+        notificationItem={<NotificationItem count={0} isImportant={false} />}
+        selectCssClass="post-tab-item-select"
+        unSelectCssClass="post-tab-item-unSelect"
+        hoverCssClass="post-tab-item-hover"
+        underlineSelectCssClass={null}
+      />
       <div className="in-post-tab-bar-right-group">
         {_generateTabItem(
           selectTab === InPostTabEnum.ALL,

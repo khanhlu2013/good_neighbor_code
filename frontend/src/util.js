@@ -1,7 +1,7 @@
 import _ from "underscore";
 
 const nullOrRequiredValidator = (typeEnum, objType) => {
-  if (!["array", "string", "object", "number"].includes(typeEnum)) {
+  if (!["array", "string", "object", "number", "func"].includes(typeEnum)) {
     return Error(`Unexpected ${typeEnum}`);
   }
 
@@ -32,6 +32,8 @@ const nullOrRequiredValidator = (typeEnum, objType) => {
       }
     } else if (typeEnum === "number" && !_.isNumber(data)) {
       return new Error(`${propName} must be a string`);
+    } else if (typeEnum === "func" && !_.isFunction(data)) {
+      return new Error(`${propName} must be a function`);
     }
   };
 };

@@ -18,14 +18,18 @@ function AppHeaderNavItem(props) {
     hoverCssClass,
     underlineSelectCssClass
   } = props;
+
   const onItemClick = e => {
-    onSelect();
+    if (onSelect) {
+      onSelect();
+    }
   };
 
   return (
     <div
       className={className({
         "tab-item": true,
+        "tab-item-pointer-cursor": onSelect !== null,
         [hoverCssClass]: true,
         [selectCssClass]: isSelect,
         [unSelectCssClass]: !isSelect
@@ -42,7 +46,9 @@ function AppHeaderNavItem(props) {
       <div
         className={className({
           "tab-item-underline": true,
-          [underlineSelectCssClass]: isSelect
+          ...(underlineSelectCssClass !== null && {
+            [underlineSelectCssClass]: isSelect
+          })
         })}
       />
     </div>
@@ -53,12 +59,12 @@ AppHeaderNavItem.propTypes = {
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
   iconName: nullOrRequiredValidator("string"),
-  onSelect: PropTypes.func.isRequired,
+  onSelect: nullOrRequiredValidator("func"),
   notificationItem: PropTypes.element.isRequired,
   selectCssClass: PropTypes.string.isRequired,
   unSelectCssClass: PropTypes.string.isRequired,
   hoverCssClass: PropTypes.string.isRequired,
-  underlineSelectCssClass: PropTypes.string.isRequired
+  underlineSelectCssClass: nullOrRequiredValidator("string")
 };
 
 export { AppHeaderNavItem };
