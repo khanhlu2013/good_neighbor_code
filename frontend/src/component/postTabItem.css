@@ -1,0 +1,14 @@
+/* custom */
+.post-tab-item-select {
+  color: maroon;
+}
+.post-tab-item-unSelect {
+  color: rgb(214, 174, 139);
+}
+.post-tab-item-hover:hover {
+  color: maroon;
+}
+
+.post-tab-item-underline-select {
+  background-color: maroon;
+}

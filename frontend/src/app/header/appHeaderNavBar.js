@@ -20,39 +20,50 @@ function AppHeaderNavBar(props) {
 
   return (
     <div className="app-header-nav-bar">
-      <AppHeaderNavItem
-        isSelect={selectTab === AppTabEnum.INPOST}
-        caption="friend posts"
-        iconName="globe"
-        onSelect={onInPostNav}
-        notificationItem={
-          <NotificationItem count={inPostNoteCount} isImportant={true} />
-        }
-      />
+      {_generateTabItem(
+        selectTab === AppTabEnum.INPOST,
+        "friend posts",
+        "globe",
+        onInPostNav,
+        inPostNoteCount
+      )}
 
-      <AppHeaderNavItem
-        isSelect={selectTab === AppTabEnum.OUTPOST}
-        caption="my posts"
-        iconName="briefcase"
-        onSelect={onOutPostNav}
-        notificationItem={
-          <NotificationItem count={outPostNoteCount} isImportant={true} />
-        }
-      />
+      {_generateTabItem(
+        selectTab === AppTabEnum.OUTPOST,
+        "my posts",
+        "briefcase",
+        onOutPostNav,
+        outPostNoteCount
+      )}
 
-      <AppHeaderNavItem
-        isSelect={selectTab === AppTabEnum.CONNECTION}
-        caption="friends"
-        iconName="user-friends"
-        onSelect={onConnectionNav}
-        notificationItem={
-          <NotificationItem count={connectionNoteCount} isImportant={true} />
-        }
-      />
+      {_generateTabItem(
+        selectTab === AppTabEnum.CONNECTION,
+        "friends",
+        "user-friends",
+        onConnectionNav,
+        connectionNoteCount
+      )}
     </div>
   );
 }
 
+function _generateTabItem(isSelect, caption, iconName, onSelect, noteCount) {
+  return (
+    <AppHeaderNavItem
+      isSelect={isSelect}
+      caption={caption}
+      iconName={iconName}
+      onSelect={onSelect}
+      notificationItem={
+        <NotificationItem count={noteCount} isImportant={true} />
+      }
+      selectCssClass="app-header-tab-item-select"
+      unSelectCssClass="app-header-tab-item-unSelect"
+      hoverCssClass="app-header-tab-item-hover"
+      underlineSelectCssClass="app-header-tab-item-underline-select"
+    />
+  );
+}
 AppHeaderNavBar.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,

@@ -23,7 +23,7 @@ function PrivateApp(props) {
       <div
         className={className({
           "tab-panel": true,
-          "tab-pannel-select": selectTab === AppTabEnum.INPOST
+          "tab-panel-hide": selectTab !== AppTabEnum.INPOST
         })}
       >
         <InPostManagement
@@ -35,7 +35,7 @@ function PrivateApp(props) {
       <div
         className={className({
           "tab-panel": true,
-          "tab-pannel-select": selectTab === AppTabEnum.OUTPOST
+          "tab-panel-hide": selectTab !== AppTabEnum.OUTPOST
         })}
       >
         <OutPostManagement
@@ -46,7 +46,7 @@ function PrivateApp(props) {
       <div
         className={className({
           "tab-panel": true,
-          "tab-pannel-select": selectTab === AppTabEnum.CONNECTION
+          "tab-panel-hide": selectTab !== AppTabEnum.CONNECTION
         })}
       >
         <ConnectionManagement

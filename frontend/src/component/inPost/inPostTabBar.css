@@ -1,0 +1,17 @@
+.in-post-tab-bar {
+  display: flex;
+  align-items: center;
+  background-color: antiquewhite;
+  padding-top: 5px;
+  padding-left: 5px;
+  box-shadow: 1px 2px 3px grey;
+}
+
+.in-post-tab-bar-left-group {
+  flex-grow: 1;
+}
+
+.in-post-tab-bar-right-group {
+  display: flex;
+  align-items: center;
+}

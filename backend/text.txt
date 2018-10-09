@@ -235,9 +235,25 @@ work on the tab now, kill the react tab.
 . how do i share the nav-item with tab-item, eventually, they are quite similar. 
 . i need to create a react comp, for this tab item. 
 . i am facing a decision that i could just use the nav item all together. damn react reuseability.
-
 ---
+. can i share the tab bar css too?
+---
+. factor the tab height
+---
+. organize impost folder
+---
+. remove reactTab.css eventually
+---
+. rename the whole thing into tab then. fuck the nav. just pick one. any is fine. it is the same freaking thing. 
+
 . consider changing the header-nav-item into nav-item, 
 . lets see if i can just use the app-header-nav-item first, if i can then i can simply rename it. 
+---
+. so i like to make it conform into naming as tab.
+. because it is the same shit right? but i need to make the css separate so i can make it different color stuff. 
+  . app-tab.css vs inPostTab.css
 
-
+---
+app-header-tab-item -> app-tab-item
+---
+  . plan to separate css. 

@@ -4,9 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
 import "./appHeaderNavItem.css";
+import { nullOrRequiredValidator } from "../../util";
 
 function AppHeaderNavItem(props) {
-  const { isSelect, caption, iconName, onSelect, notificationItem } = props;
+  const {
+    isSelect,
+    caption,
+    iconName,
+    onSelect,
+    notificationItem,
+    selectCssClass,
+    unSelectCssClass,
+    hoverCssClass,
+    underlineSelectCssClass
+  } = props;
   const onItemClick = e => {
     onSelect();
   };
@@ -14,22 +25,24 @@ function AppHeaderNavItem(props) {
   return (
     <div
       className={className({
-        "app-header-nav-item": true,
-        "app-header-nav-item-select": isSelect
+        "tab-item": true,
+        [hoverCssClass]: true,
+        [selectCssClass]: isSelect,
+        [unSelectCssClass]: !isSelect
       })}
       onClick={onItemClick}
     >
-      <div className="app-header-nav-item-main">
-        <div className="app-header-nav-item-icon-with-notification">
-          <FontAwesomeIcon icon={iconName} size="lg" />
+      <div className="tab-item-icon-notification-caption">
+        <div className="tab-item-icon-notification">
+          {iconName && <FontAwesomeIcon icon={iconName} size="lg" />}
           {notificationItem}
         </div>
-        <span className="app-header-nav-item-caption">{caption}</span>
+        <span className="tab-item-caption">{caption}</span>
       </div>
       <div
         className={className({
-          "app-header-nav-item-underline": true,
-          "app-header-nav-item-underline-select": isSelect
+          "tab-item-underline": true,
+          [underlineSelectCssClass]: isSelect
         })}
       />
     </div>
@@ -39,9 +52,13 @@ function AppHeaderNavItem(props) {
 AppHeaderNavItem.propTypes = {
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
-  iconName: PropTypes.string.isRequired,
+  iconName: nullOrRequiredValidator("string"),
   onSelect: PropTypes.func.isRequired,
-  notificationItem: PropTypes.element.isRequired
+  notificationItem: PropTypes.element.isRequired,
+  selectCssClass: PropTypes.string.isRequired,
+  unSelectCssClass: PropTypes.string.isRequired,
+  hoverCssClass: PropTypes.string.isRequired,
+  underlineSelectCssClass: PropTypes.string.isRequired
 };
 
 export { AppHeaderNavItem };

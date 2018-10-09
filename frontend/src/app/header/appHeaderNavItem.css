@@ -1,5 +1,6 @@
+/* share */
 @media screen and (min-width: 530px) {
-  .app-header-nav-item-caption {
+  .tab-item-caption {
     margin-top: 5px;
     font-weight: 100;
     font-size: 0.8em;
@@ -8,12 +9,12 @@
 }
 
 @media screen and (max-width: 530px) {
-  .app-header-nav-item-caption {
+  .tab-item-caption {
     display: none;
   }
 }
 
-.app-header-nav-item {
+.tab-item {
   height: 53px;
   display: flex;
   flex-direction: column;
@@ -22,10 +23,9 @@
   cursor: pointer;
   user-select: none;
   margin: 0 12px;
-  color: rgb(192, 203, 211);
 }
 
-.app-header-nav-item-main {
+.tab-item-icon-notification-caption {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -34,32 +34,35 @@
   padding-top: 0px;
 }
 
-.app-header-nav-item-underline {
+.tab-item-icon-notification {
+  display: flex;
+  align-items: center;
+}
+
+.tab-item-caption {
+  margin-top: 5px;
+  font-weight: 100;
+  font-size: 0.8em;
+  line-height: 100%;
+}
+
+.tab-item-underline {
   height: 2px;
   width: 100%;
   background-color: transparent;
 }
 
-.app-header-nav-item-underline-select {
+/* custom */
+.app-header-tab-item-select {
+  color: white;
+}
+.app-header-tab-item-unSelect {
+  color: rgb(192, 203, 211);
+}
+.app-header-tab-item-hover:hover {
+  color: white;
+}
+
+.app-header-tab-item-underline-select {
   background-color: white;
-}
-
-.app-header-nav-item:hover {
-  color: white;
-}
-
-.app-header-nav-item-select {
-  color: white;
-}
-
-.app-header-nav-item-icon-with-notification {
-  display: flex;
-  align-items: center;
-}
-
-.app-header-nav-item-caption {
-  margin-top: 5px;
-  font-weight: 100;
-  font-size: 0.8em;
-  line-height: 100%;
 }

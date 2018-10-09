@@ -1,7 +1,7 @@
 .tab-panel {
-  display: none;
+  display: block;
 }
 
-.tab-pannel-select {
-  display: initial;
+.tab-panel-hide {
+  display: none;
 }

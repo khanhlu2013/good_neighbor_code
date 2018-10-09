@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import className from "classnames";
 
 import { InShareHistoryList } from "./inShareHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";
-import { NotificationItem } from "../../util/notificationItem";
 import { LoadingIcon } from "../../util/loadingIcon";
+import { InPostTabBar } from "./inPostTabBar";
+import { InPostTabEnum } from "./inPostTabEnum";
+import "../../util/tab.css";
 
 class InPostManagement extends Component {
   state = {
@@ -15,7 +17,8 @@ class InPostManagement extends Component {
     requestingPostIds: [],
     deletingShareIds: [],
     awaringShareIds: [],
-    returningShareIds: []
+    returningShareIds: [],
+    selectTab: InPostTabEnum.ALL
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -70,6 +73,10 @@ class InPostManagement extends Component {
     );
     this.setPostsAndNotifyUnawareApproveShare(inPostsFilterDeny);
   }
+
+  onTabChange = selectTab => {
+    this.setState({ selectTab });
+  };
 
   onCreateShare = postId => {
     this.setState({
@@ -198,6 +205,8 @@ class InPostManagement extends Component {
   };
 
   _getPostsContent(posts) {
+    const { selectTab } = this.state;
+
     const requestPosts = posts.filter(post =>
       post.requestShares.some(
         share => share.borrower.id === this.props.loginUser.id
@@ -226,70 +235,60 @@ class InPostManagement extends Component {
     );
 
     return (
-      <Tabs forceRenderTabPanel={true}>
-        <div className="text-center">
-          <TabList>
-            <Tab>
-              <span id="tabSelector_inPost_all">
-                all
-                <NotificationItem count={posts.length} isImportant={false} />
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_inPost_waitingList">
-                waiting list
-                <NotificationItem
-                  count={requestPosts.length}
-                  isImportant={false}
-                />
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_inPost_approve">
-                approve
-                <NotificationItem
-                  count={this.state.unawareApprovePostCount}
-                  isImportant={true}
-                />
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_inPost_borrow">
-                borrow
-                <NotificationItem
-                  count={borrowPosts.length}
-                  isImportant={false}
-                />
-              </span>
-            </Tab>
-            <Tab>
-              <span id="tabSelector_inPost_history">
-                history
-                <NotificationItem
-                  count={this.state.returnShares.length}
-                  isImportant={false}
-                />
-              </span>
-            </Tab>
-          </TabList>
+      <div>
+        <InPostTabBar
+          selectTab={selectTab}
+          onTabChange={this.onTabChange}
+          allCount={posts.length}
+          requestCount={requestPosts.length}
+          approveCount={this.state.unawareApprovePostCount}
+          borrowCount={borrowPosts.length}
+          historyCount={this.state.returnShares.length}
+        />
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== InPostTabEnum.ALL
+          })}
+        >
+          {generateList("inPostList-all-react", posts)}
         </div>
-        <TabPanel>{generateList("inPostList-all-react", posts)}</TabPanel>
-        <TabPanel>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== InPostTabEnum.REQUEST
+          })}
+        >
           {generateList("inPostList-request-react", requestPosts)}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== InPostTabEnum.APPROVE
+          })}
+        >
           {generateList(
             "inPostList-approveNote-react",
             this.state.approveNotePosts
           )}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== InPostTabEnum.BORROW
+          })}
+        >
           {generateList("inPostList-borrow-react", borrowPosts)}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== InPostTabEnum.HISTORY
+          })}
+        >
           <InShareHistoryList shares={this.state.returnShares} />
-        </TabPanel>
-      </Tabs>
+        </div>
+      </div>
     );
   }
 
