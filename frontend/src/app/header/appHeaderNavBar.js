@@ -61,6 +61,7 @@ function _generateTabItem(isSelect, caption, iconName, onSelect, noteCount) {
       unSelectCssClass="app-header-tab-item-unSelect"
       hoverCssClass="app-header-tab-item-hover"
       underlineSelectCssClass="app-header-tab-item-underline-select"
+      isResponsiveCaption={true}
     />
   );
 }

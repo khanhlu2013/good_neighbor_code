@@ -7,7 +7,6 @@ import { AppHeaderNavItem } from "../../app/header/appHeaderNavItem";
 import { InPostTabEnum } from "./inPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function InPostTabBar(props) {
   const {
@@ -48,6 +47,7 @@ function InPostTabBar(props) {
         unSelectCssClass="post-tab-item-unSelect"
         hoverCssClass="post-tab-item-hover"
         underlineSelectCssClass={null}
+        isResponsiveCaption={false}
       />
       <div className="in-post-tab-bar-right-group">
         {_generateTabItem(
@@ -120,6 +120,7 @@ function _generateTabItem(
       unSelectCssClass="post-tab-item-unSelect"
       hoverCssClass="post-tab-item-hover"
       underlineSelectCssClass="post-tab-item-underline-select"
+      isResponsiveCaption={true}
     />
   );
 }

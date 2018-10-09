@@ -16,7 +16,8 @@ function AppHeaderNavItem(props) {
     selectCssClass,
     unSelectCssClass,
     hoverCssClass,
-    underlineSelectCssClass
+    underlineSelectCssClass,
+    isResponsiveCaption
   } = props;
 
   const onItemClick = e => {
@@ -41,7 +42,14 @@ function AppHeaderNavItem(props) {
           {iconName && <FontAwesomeIcon icon={iconName} size="lg" />}
           {notificationItem}
         </div>
-        <span className="tab-item-caption">{caption}</span>
+        <span
+          className={className({
+            "tab-item-caption": true,
+            "tab-item-caption-responsive": isResponsiveCaption
+          })}
+        >
+          {caption}
+        </span>
       </div>
       <div
         className={className({
@@ -64,7 +72,8 @@ AppHeaderNavItem.propTypes = {
   selectCssClass: PropTypes.string.isRequired,
   unSelectCssClass: PropTypes.string.isRequired,
   hoverCssClass: PropTypes.string.isRequired,
-  underlineSelectCssClass: nullOrRequiredValidator("string")
+  underlineSelectCssClass: nullOrRequiredValidator("string"),
+  isResponsiveCaption: PropTypes.bool.isRequired
 };
 
 export { AppHeaderNavItem };

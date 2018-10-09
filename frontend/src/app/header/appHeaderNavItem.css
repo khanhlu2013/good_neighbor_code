@@ -1,17 +1,16 @@
 /* share */
-@media screen and (min-width: 530px) {
-  .tab-item-caption {
-    margin-top: 5px;
-    font-weight: 100;
-    font-size: 0.8em;
-    line-height: 100%;
+
+@media screen and (max-width: 530px) {
+  .tab-item-caption-responsive {
+    display: none;
   }
 }
 
-@media screen and (max-width: 530px) {
-  .tab-item-caption {
-    display: none;
-  }
+.tab-item-caption {
+  margin-top: 5px;
+  font-weight: 100;
+  font-size: 0.8em;
+  line-height: 100%;
 }
 
 .tab-item {
@@ -40,13 +39,6 @@
 .tab-item-icon-notification {
   display: flex;
   align-items: center;
-}
-
-.tab-item-caption {
-  margin-top: 5px;
-  font-weight: 100;
-  font-size: 0.8em;
-  line-height: 100%;
 }
 
 .tab-item-underline {
