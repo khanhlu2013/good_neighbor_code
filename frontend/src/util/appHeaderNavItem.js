@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
 
 import "./appHeaderNavItem.css";
-import { nullOrRequiredValidator } from "../../util";
+import { nullOrRequiredValidator } from "../util";
 
 function AppHeaderNavItem(props) {
   const {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./inPostTabBar.css";
 import "../postTabItem.css";
-import { AppHeaderNavItem } from "../../app/header/appHeaderNavItem";
+import { AppHeaderNavItem } from "../../util/appHeaderNavItem";
 import { InPostTabEnum } from "./inPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";

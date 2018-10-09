@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import "./appHeaderNavBar.css";
 import { nullOrRequiredValidator } from "../../util";
-import { AppHeaderNavItem } from "./appHeaderNavItem";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
+import { AppHeaderNavItem } from "../../util/appHeaderNavItem";
 
 function AppHeaderNavBar(props) {
   const {
