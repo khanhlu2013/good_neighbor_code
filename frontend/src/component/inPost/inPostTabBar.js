@@ -37,64 +37,55 @@ function InPostTabBar(props) {
 
   return (
     <div className="in-post-tab-bar box-shadow">
-      <AppHeaderNavItem
-        isSelect={true}
-        caption="friend posts"
-        iconName="globe"
-        onSelect={null}
-        notificationItem={<NotificationItem count={0} isImportant={false} />}
-        selectCssClass="post-tab-item-select"
-        unSelectCssClass="post-tab-item-unSelect"
-        hoverCssClass="post-tab-item-hover"
-        underlineSelectCssClass={null}
-        isResponsiveCaption={false}
-      />
-      <div className="in-post-tab-bar-right-group">
-        {_generateTabItem(
-          selectTab === InPostTabEnum.ALL,
-          "all",
-          "play",
-          onSelectAll,
-          allCount,
-          false
-        )}
+      {_generateTabItem(
+        selectTab === InPostTabEnum.ALL,
+        "friend posts",
+        "globe",
+        onSelectAll,
+        allCount,
+        false,
+        false
+      )}
 
-        {_generateTabItem(
-          selectTab === InPostTabEnum.REQUEST,
-          "request",
-          "play",
-          onSelectRequest,
-          requestCount,
-          false
-        )}
+      {_generateTabItem(
+        selectTab === InPostTabEnum.REQUEST,
+        "request",
+        "question",
+        onSelectRequest,
+        requestCount,
+        false,
+        true
+      )}
 
-        {_generateTabItem(
-          selectTab === InPostTabEnum.APPROVE,
-          "approve",
-          "play",
-          onSelectApprove,
-          approveCount,
-          true
-        )}
+      {_generateTabItem(
+        selectTab === InPostTabEnum.APPROVE,
+        "approve",
+        "check",
+        onSelectApprove,
+        approveCount,
+        true,
+        true
+      )}
 
-        {_generateTabItem(
-          selectTab === InPostTabEnum.BORROW,
-          "borrow",
-          "play",
-          onSelectBorrow,
-          borrowCount,
-          false
-        )}
+      {_generateTabItem(
+        selectTab === InPostTabEnum.BORROW,
+        "borrow",
+        "hand-holding-heart",
+        onSelectBorrow,
+        borrowCount,
+        false,
+        true
+      )}
 
-        {_generateTabItem(
-          selectTab === InPostTabEnum.HISTORY,
-          "history",
-          "play",
-          onSelectHistory,
-          historyCount,
-          false
-        )}
-      </div>
+      {_generateTabItem(
+        selectTab === InPostTabEnum.HISTORY,
+        "history",
+        "history",
+        onSelectHistory,
+        historyCount,
+        false,
+        true
+      )}
     </div>
   );
 }
@@ -105,7 +96,8 @@ function _generateTabItem(
   iconName,
   onSelect,
   noteCount,
-  isImportant
+  isImportant,
+  isResponsiveCaption
 ) {
   return (
     <AppHeaderNavItem
@@ -120,7 +112,7 @@ function _generateTabItem(
       unSelectCssClass="post-tab-item-unSelect"
       hoverCssClass="post-tab-item-hover"
       underlineSelectCssClass="post-tab-item-underline-select"
-      isResponsiveCaption={true}
+      isResponsiveCaption={isResponsiveCaption}
     />
   );
 }

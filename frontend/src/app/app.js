@@ -13,7 +13,11 @@ import {
   faUser, //profile image replacer
   faGlobe, //in posts
   faUserFriends, //friends or my networks
-  faPowerOff //logout
+  faPowerOff, //logout
+  faHandHoldingHeart, //borrow (work both for in and out post)
+  faHistory,
+  faCheck, //approve : when request is being approve, could also use for isActivePost.
+  faQuestion //request: making a request from inPost
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PublicApp } from "./appPublic";
@@ -39,7 +43,11 @@ library.add(
   faUser,
   faGlobe,
   faUserFriends,
-  faPowerOff
+  faPowerOff,
+  faHandHoldingHeart,
+  faHistory,
+  faCheck,
+  faQuestion
 );
 
 class App extends Component {

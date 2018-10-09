@@ -20,11 +20,8 @@
   justify-content: flex-end;
   align-items: center;
   user-select: none;
-  margin: 0 12px;
-}
-
-.tab-item-pointer-cursor {
   cursor: pointer;
+  margin: 0 12px;
 }
 
 .tab-item-icon-notification-caption {

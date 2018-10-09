@@ -21,16 +21,13 @@ function AppHeaderNavItem(props) {
   } = props;
 
   const onItemClick = e => {
-    if (onSelect) {
-      onSelect();
-    }
+    onSelect();
   };
 
   return (
     <div
       className={className({
         "tab-item": true,
-        "tab-item-pointer-cursor": onSelect !== null,
         [hoverCssClass]: true,
         [selectCssClass]: isSelect,
         [unSelectCssClass]: !isSelect
@@ -67,12 +64,12 @@ AppHeaderNavItem.propTypes = {
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
   iconName: nullOrRequiredValidator("string"),
-  onSelect: nullOrRequiredValidator("func"),
+  onSelect: PropTypes.func.isRequired,
   notificationItem: PropTypes.element.isRequired,
   selectCssClass: PropTypes.string.isRequired,
   unSelectCssClass: PropTypes.string.isRequired,
   hoverCssClass: PropTypes.string.isRequired,
-  underlineSelectCssClass: nullOrRequiredValidator("string"),
+  underlineSelectCssClass: nullOrRequiredValidator("string"), //if null underline is transparent
   isResponsiveCaption: PropTypes.bool.isRequired
 };
 

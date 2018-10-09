@@ -4,12 +4,5 @@
   background-color: antiquewhite;
   margin-top: 2px;
   padding-top: 4px;
-  padding-left: 5px;
-}
-
-.in-post-tab-bar-right-group {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
 }
