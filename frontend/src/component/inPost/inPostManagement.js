@@ -9,7 +9,6 @@ import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPostTabBar";
 import { InPostTabEnum } from "./inPostTabEnum";
-import "../../util/tab.css";
 
 class InPostManagement extends Component {
   state = {

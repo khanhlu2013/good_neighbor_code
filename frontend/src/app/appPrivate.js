@@ -6,7 +6,6 @@ import { ConnectionManagement } from "../component/connection/connectionManageme
 import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPostManagement.js";
 import { User } from "../model/user.js";
-import "../util/tab.css";
 import { AppTabEnum } from "./appTabEnum.js";
 
 function PrivateApp(props) {
