@@ -17,7 +17,8 @@ import {
   faHandHoldingHeart, //borrow (work both for in and out post)
   faHistory,
   faCheck, //approve : when request is being approve, could also use for isActivePost.
-  faQuestion //request: making a request from inPost
+  faQuestion, //request: making a request from inPost
+  faRetweet
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PublicApp } from "./appPublic";
@@ -48,7 +49,8 @@ library.add(
   faHandHoldingHeart,
   faHistory,
   faCheck,
-  faQuestion
+  faQuestion,
+  faRetweet
 );
 
 class App extends Component {

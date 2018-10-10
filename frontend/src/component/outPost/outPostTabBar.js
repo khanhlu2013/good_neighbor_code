@@ -63,8 +63,8 @@ function OutPostTabBar(props) {
 
       {_generateTabItem(
         selectTab === OutPostTabEnum.BORROW,
-        "approve",
-        "check",
+        "borrow",
+        "hand-holding-heart",
         onSelectBorrow,
         borrowCount,
         false,
@@ -73,8 +73,8 @@ function OutPostTabBar(props) {
 
       {_generateTabItem(
         selectTab === OutPostTabEnum.RETURN,
-        "borrow",
-        "hand-holding-heart",
+        "return",
+        "retweet",
         onSelectReturn,
         returnCount,
         true,
