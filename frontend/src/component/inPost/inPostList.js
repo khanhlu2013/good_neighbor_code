@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { InPostItem } from "./inPostItem";
-import "../postList.css";
+import { PostListNoData } from "../postListNoData";
 
 function InPostList(props) {
   const {
@@ -20,7 +20,7 @@ function InPostList(props) {
 
   let content;
   if (posts.length === 0) {
-    content = <p className="post-list-no-data-message">there are no data</p>;
+    content = <PostListNoData />;
   } else {
     content = posts
       .sort((p1, p2) => p2.dateCreate - p1.dateCreate)

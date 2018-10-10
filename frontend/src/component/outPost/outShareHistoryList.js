@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { date2String } from "../../util";
 import "../shareHistoryList.css";
+import { PostListNoData } from "../postListNoData";
 
 function OutShareHistoryList(props) {
   const { shares } = props;
   const rows = shares.map(share => <TableRow key={share.id} share={share} />);
   if (shares.length === 0) {
-    return <p className="text-muted text-center h4">there are no data</p>;
+    return <PostListNoData />;
   }
 
   return (
