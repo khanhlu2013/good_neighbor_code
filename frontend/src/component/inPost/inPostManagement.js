@@ -21,8 +21,6 @@ class InPostManagement extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    let requestShares = null;
-    let borrowShares = null;
     let returnShares = null;
     let approveNotePosts = null;
     let approveNotePostCount = null;
@@ -34,8 +32,6 @@ class InPostManagement extends Component {
         post.shares.filter(share => share.borrower.id === props.loginUser.id)
       );
       const myInShares1D = [].concat(...myInShares2D);
-      requestShares = myInShares1D.filter(share => share.isRequest);
-      borrowShares = myInShares1D.filter(share => share.isBorrow);
       returnShares = myInShares1D.filter(share => share.isReturn);
       approveNotePosts = posts.filter(post =>
         post.shares.some(
@@ -50,8 +46,6 @@ class InPostManagement extends Component {
     }
 
     return {
-      requestShares,
-      borrowShares,
       returnShares,
       approveNotePosts,
       approveNotePostCount
