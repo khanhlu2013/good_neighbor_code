@@ -19,7 +19,7 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
 
-      tab.connection.snapRightAway();
+      tab.connection.snap();
     });
   });
 
@@ -32,8 +32,8 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snapRightAway("master");
-      tab.outPost.waitingList.snapRightAway("request");
+      tab.outPost.snap("master");
+      tab.outPost.waitingList.snap("request");
     });
     it("can show unaware return", () => {
       const connection = createConnection(tu, lu, true, true);
@@ -56,8 +56,8 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snapRightAway("master");
-      tab.outPost.return.snapRightAway("return");
+      tab.outPost.snap("master");
+      tab.outPost.return.snap("return");
     });
     it("can show combine request and unaware return", () => {
       const connection = createConnection(tu, lu, true, true);
@@ -87,9 +87,9 @@ describe("notification static display ui", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snapRightAway("master");
-      tab.outPost.waitingList.snapRightAway("request");
-      tab.outPost.return.snapRightAway("return");
+      tab.outPost.snap("master");
+      tab.outPost.waitingList.snap("request");
+      tab.outPost.return.snap("return");
     });
   });
 
@@ -117,8 +117,8 @@ describe("notification static display ui", () => {
       cy.login(lu.email);
 
       tab.inPost.focus();
-      tab.inPost.snapRightAway("master");
-      tab.inPost.approve.snapRightAway("approve");
+      tab.inPost.snap("master");
+      tab.inPost.approve.snap("approve");
     });
   });
 });

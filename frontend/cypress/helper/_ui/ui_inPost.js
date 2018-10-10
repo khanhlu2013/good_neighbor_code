@@ -1,5 +1,5 @@
 const waitForMainPageLoadingFinish = () => {
-  cy.get("#InPostManagement-react #LoadingIcon-react").should("not.be.visible");
+  cy.get("#inPostManagement-react #LoadingIcon-react").should("not.be.visible");
 };
 
 const _genList = listId => ({
@@ -67,11 +67,11 @@ const inPostUi = {
   list,
   waitForMainPageLoadingFinish,
   snapRightAway: name => {
-    cy.get("#InPostManagement-react").snapshot({ name });
+    cy.get("#inPostManagement-react").snapshot({ name });
   },
   snap: name => {
     waitForMainPageLoadingFinish();
-    cy.get("#InPostManagement-react").snapshot({ name });
+    cy.get("#inPostManagement-react").snapshot({ name });
   }
 };
 

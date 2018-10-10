@@ -25,7 +25,7 @@ class InPostManagement extends Component {
     let borrowShares = null;
     let returnShares = null;
     let approveNotePosts = null;
-    let unawareApprovePostCount = null;
+    let approveNotePostCount = null;
 
     const { posts } = state;
     const { loginUser } = props;
@@ -46,7 +46,7 @@ class InPostManagement extends Component {
             share.isReturn === false
         )
       );
-      unawareApprovePostCount = approveNotePosts.length;
+      approveNotePostCount = approveNotePosts.length;
     }
 
     return {
@@ -54,13 +54,13 @@ class InPostManagement extends Component {
       borrowShares,
       returnShares,
       approveNotePosts,
-      unawareApprovePostCount
+      approveNotePostCount
     };
   }
 
   setPostsAndNotifyUnawareApproveShare(posts) {
     this.setState({ posts });
-    this.props.onInPostNotify(this.state.unawareApprovePostCount);
+    this.props.onInPostNotify(this.state.approveNotePostCount);
   }
 
   async componentDidMount() {
@@ -240,7 +240,7 @@ class InPostManagement extends Component {
           onTabChange={this.onTabChange}
           allCount={posts.length}
           requestCount={requestPosts.length}
-          approveCount={this.state.unawareApprovePostCount}
+          approveCount={this.state.approveNotePostCount}
           borrowCount={borrowPosts.length}
           historyCount={this.state.returnShares.length}
         />
@@ -303,7 +303,7 @@ class InPostManagement extends Component {
       );
     }
 
-    return <div id="InPostManagement-react">{content}</div>;
+    return <div id="inPostManagement-react">{content}</div>;
   }
 }
 InPostManagement.propTypes = {

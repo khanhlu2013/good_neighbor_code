@@ -22,6 +22,7 @@ function AppHeaderTabBar(props) {
   return (
     <div className="app-header-nav-bar">
       {_generateTabItem(
+        "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
         "friend posts",
         "globe",
@@ -30,6 +31,7 @@ function AppHeaderTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-outPost-react",
         selectTab === AppTabEnum.OUTPOST,
         "my posts",
         "briefcase",
@@ -38,6 +40,7 @@ function AppHeaderTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-connection-react",
         selectTab === AppTabEnum.CONNECTION,
         "friends",
         "user-friends",
@@ -48,9 +51,17 @@ function AppHeaderTabBar(props) {
   );
 }
 
-function _generateTabItem(isSelect, caption, iconName, onSelect, noteCount) {
+function _generateTabItem(
+  id,
+  isSelect,
+  caption,
+  iconName,
+  onSelect,
+  noteCount
+) {
   return (
     <TabItem
+      id={id}
       isSelect={isSelect}
       caption={caption}
       iconName={iconName}

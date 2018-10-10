@@ -42,6 +42,7 @@ function OutPostTabBar(props) {
   return (
     <div className="post-tab-bar shadow-box">
       {_generateTabItem(
+        "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
         "all my posts",
         "briefcase",
@@ -52,6 +53,7 @@ function OutPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-outPost-request-react",
         selectTab === OutPostTabEnum.REQUEST,
         "request",
         "question",
@@ -62,6 +64,7 @@ function OutPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-outPost-borrow-react",
         selectTab === OutPostTabEnum.BORROW,
         "borrow",
         "hand-holding-heart",
@@ -72,6 +75,7 @@ function OutPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-outPost-return-react",
         selectTab === OutPostTabEnum.RETURN,
         "return",
         "retweet",
@@ -82,6 +86,7 @@ function OutPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-outPost-history-react",
         selectTab === OutPostTabEnum.HISTORY,
         "history",
         "history",
@@ -91,7 +96,11 @@ function OutPostTabBar(props) {
         true
       )}
 
-      <button onClick={onNewPostClicked} className="btn btn-sm btn-success">
+      <button
+        id="createPostBtn-react"
+        onClick={onNewPostClicked}
+        className="btn btn-sm btn-success"
+      >
         new
       </button>
     </div>
@@ -99,6 +108,7 @@ function OutPostTabBar(props) {
 }
 
 function _generateTabItem(
+  id,
   isSelect,
   caption,
   iconName,
@@ -109,6 +119,7 @@ function _generateTabItem(
 ) {
   return (
     <TabItem
+      id={id}
       isSelect={isSelect}
       caption={caption}
       iconName={iconName}

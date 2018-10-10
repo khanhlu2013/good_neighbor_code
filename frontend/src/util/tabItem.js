@@ -8,6 +8,7 @@ import { nullOrRequiredValidator } from "../util";
 
 function TabItem(props) {
   const {
+    id,
     isSelect,
     caption,
     iconName,
@@ -26,6 +27,7 @@ function TabItem(props) {
 
   return (
     <div
+      id={id}
       className={className({
         "tab-item": true,
         [hoverCssClass]: true,
@@ -61,6 +63,7 @@ function TabItem(props) {
 }
 
 TabItem.propTypes = {
+  id: PropTypes.string.isRequired,
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
   iconName: nullOrRequiredValidator("string"),

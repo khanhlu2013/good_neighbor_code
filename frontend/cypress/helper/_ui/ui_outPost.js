@@ -141,7 +141,7 @@ const outPostUi = {
   crudDialog,
   decisionDialog,
   createNewPost: () => {
-    cy.get("#createPostBtn").click();
+    cy.get("#createPostBtn-react").click();
   },
   list,
   waitForMainPageLoadingFinish,

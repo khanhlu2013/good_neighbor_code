@@ -38,6 +38,7 @@ function InPostTabBar(props) {
   return (
     <div className="post-tab-bar shadow-box">
       {_generateTabItem(
+        "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,
         "all friend posts",
         "globe",
@@ -48,6 +49,7 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-inPost-request-react",
         selectTab === InPostTabEnum.REQUEST,
         "request",
         "question",
@@ -58,6 +60,7 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-inPost-approve-react",
         selectTab === InPostTabEnum.APPROVE,
         "approve",
         "check",
@@ -68,6 +71,7 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-inPost-borrow-react",
         selectTab === InPostTabEnum.BORROW,
         "borrow",
         "hand-holding-heart",
@@ -78,6 +82,7 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
+        "tabSelector-inPost-history-react",
         selectTab === InPostTabEnum.HISTORY,
         "history",
         "history",
@@ -91,6 +96,7 @@ function InPostTabBar(props) {
 }
 
 function _generateTabItem(
+  id,
   isSelect,
   caption,
   iconName,
@@ -101,6 +107,7 @@ function _generateTabItem(
 ) {
   return (
     <TabItem
+      id={id}
       isSelect={isSelect}
       caption={caption}
       iconName={iconName}

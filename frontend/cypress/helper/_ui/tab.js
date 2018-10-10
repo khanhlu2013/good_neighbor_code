@@ -14,27 +14,27 @@ const tab_generator = id => ({
 });
 
 const InPostTab = {
-  ...tab_generator("tabSelector_inPost"),
-  all: { ...tab_generator("tabSelector_inPost_all") },
-  waitingList: { ...tab_generator("tabSelector_inPost_waitingList") },
-  approve: { ...tab_generator("tabSelector_inPost_approve") },
-  borrow: { ...tab_generator("tabSelector_inPost_borrow") },
-  history: { ...tab_generator("tabSelector_inPost_history") }
+  ...tab_generator("tabSelector-inPost-react"),
+  all: { ...tab_generator("tabSelector-inPost-all-react") },
+  waitingList: { ...tab_generator("tabSelector-inPost-request-react") },
+  approve: { ...tab_generator("tabSelector-inPost-approve-react") },
+  borrow: { ...tab_generator("tabSelector-inPost-borrow-react") },
+  history: { ...tab_generator("tabSelector-inPost-history-react") }
 };
 
 const OutPostTab = {
-  ...tab_generator("tabSelector_outPost"),
-  all: { ...tab_generator("tabSelector_outPost_all") },
-  waitingList: { ...tab_generator("tabSelector_outPost_waitingList") },
-  borrow: { ...tab_generator("tabSelector_outPost_borrow") },
-  return: { ...tab_generator("tabSelector_outPost_returnNote") },
-  history: { ...tab_generator("tabSelector_outPost_history") }
+  ...tab_generator("tabSelector-outPost-react"),
+  all: { ...tab_generator("tabSelector-outPost-all-react") },
+  waitingList: { ...tab_generator("tabSelector-outPost-request-react") },
+  borrow: { ...tab_generator("tabSelector-outPost-borrow-react") },
+  return: { ...tab_generator("tabSelector-outPost-return-react") },
+  history: { ...tab_generator("tabSelector-outPost-history-react") }
 };
 
 const tab = {
   inPost: InPostTab,
   outPost: OutPostTab,
-  connection: { ...tab_generator("tabSelector_connection") }
+  connection: { ...tab_generator("tabSelector-connection-react") }
 };
 
 export { tab };
