@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { date2String } from "../../util";
 
-import "./inShareHistoryList.css";
+import "../shareHistoryList.css";
 
 function InShareHistoryList(props) {
   const { shares } = props;
@@ -17,7 +17,7 @@ function InShareHistoryList(props) {
   return (
     <table
       id="InShareReturnTable-react"
-      className="table table-sm table-striped table-bordered in-share-history-list shadow-box"
+      className="table table-sm table-striped table-bordered share-history-list shadow-box"
     >
       <thead className="thead-light">
         <tr>

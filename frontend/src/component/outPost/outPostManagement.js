@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
+import className from "classnames";
 
 import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
@@ -8,8 +8,9 @@ import { OutPostDecisionDialog } from "./decisionDialog";
 import { Post } from "../../model/post";
 import { OutShareHistoryList } from "./outShareHistoryList";
 import { OutPostList } from "./outPostList";
-import { NotificationItem } from "../../util/notificationItem";
 import { LoadingIcon } from "../../util/loadingIcon";
+import { OutPostTabBar } from "./outPostTabBar";
+import { OutPostTabEnum } from "./outPostTabEnum";
 
 class OutPostManagement extends Component {
   state = {
@@ -25,7 +26,9 @@ class OutPostManagement extends Component {
     //decision
     isOpenDecisionDialog: false,
     curDecidePost: null,
-    isDecidingPost: false
+    isDecidingPost: false,
+
+    selectTab: OutPostTabEnum.ALL
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -95,6 +98,10 @@ class OutPostManagement extends Component {
         )
       });
     })();
+  };
+
+  onTabChange = selectTab => {
+    this.setState({ selectTab });
   };
 
   // CRUD START --------------------------------
@@ -233,77 +240,64 @@ class OutPostManagement extends Component {
       posts,
       requestNotePosts,
       borrowPosts,
-      returnNotePosts
+      returnNotePosts,
+      selectTab
     } = this.state;
 
     return (
-      <Tabs forceRenderTabPanel={true}>
-        <TabList>
-          <button
-            id="createPostBtn"
-            onClick={this.onOpenCrudDialog_create}
-            className="btn btn-sm btn-success mr-4"
-          >
-            new post
-          </button>
-          <Tab>
-            <span id="tabSelector_outPost_all">
-              all
-              <NotificationItem count={posts.length} isImportant={false} />
-            </span>
-          </Tab>
-          <Tab>
-            <span id="tabSelector_outPost_waitingList">
-              request
-              <NotificationItem
-                count={requestNotePosts.length}
-                isImportant={true}
-              />
-            </span>
-          </Tab>
-          <Tab>
-            <span id="tabSelector_outPost_borrow">
-              borrow
-              <NotificationItem
-                count={borrowPosts.length}
-                isImportant={false}
-              />
-            </span>
-          </Tab>
-          <Tab>
-            <span id="tabSelector_outPost_returnNote">
-              return
-              <NotificationItem
-                count={returnNotePosts.length}
-                isImportant={false}
-              />
-            </span>
-          </Tab>
-          <Tab>
-            <span id="tabSelector_outPost_history">
-              history
-              <NotificationItem
-                count={this.state.returnShares.length}
-                isImportant={false}
-              />
-            </span>
-          </Tab>
-        </TabList>
+      <div>
+        <OutPostTabBar
+          selectTab={selectTab}
+          onTabChange={this.onTabChange}
+          onCreateNewPost={this.onOpenCrudDialog_create}
+          allCount={posts.length}
+          requestCount={requestNotePosts.length}
+          borrowCount={borrowPosts.length}
+          returnCount={returnNotePosts.length}
+          historyCount={this.state.returnShares.length}
+        />
 
-        <TabPanel>{this._genPostList("outPostList-all-react", posts)}</TabPanel>
-        <TabPanel>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== OutPostTabEnum.ALL
+          })}
+        >
+          {this._genPostList("outPostList-all-react", posts)}
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== OutPostTabEnum.REQUEST
+          })}
+        >
           {this._genPostList("outPostList-requestNote-react", requestNotePosts)}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== OutPostTabEnum.BORROW
+          })}
+        >
           {this._genPostList("outPostList-borrow-react", borrowPosts)}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== OutPostTabEnum.RETURN
+          })}
+        >
           {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
-        </TabPanel>
-        <TabPanel>
+        </div>
+        <div
+          className={className({
+            "tab-panel": true,
+            "tab-panel-hide": selectTab !== OutPostTabEnum.HISTORY
+          })}
+        >
           <OutShareHistoryList shares={this.state.returnShares} />
-        </TabPanel>
-      </Tabs>
+        </div>
+      </div>
     );
   }
 

@@ -254,10 +254,6 @@ work on the tab now, kill the react tab.
   . app-tab.css vs inPostTab.css
 
 ---
+confirm receive change into confirm approve
+---
 create my post tab baar
----
-app-header-tab-item -> app-tab-item
----
-
-
-

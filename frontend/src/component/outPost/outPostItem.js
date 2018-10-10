@@ -31,7 +31,7 @@ function OutPostItem(props) {
   const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
   return (
-    <div id="outPost-item-react" className="post-item">
+    <div id="outPost-item-react" className="post-item shadow-box">
       <OutPostItemHeading dateCreate={post.dateCreate} />
 
       <div className="container">

@@ -13,8 +13,6 @@
 .ReactModal__Content {
   margin: 0 auto;
   width: 80%;
-  max-width: 800px;
-  min-width: 700px;
   opacity: 0;
 }
 

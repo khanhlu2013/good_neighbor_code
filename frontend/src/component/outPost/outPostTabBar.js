@@ -4,43 +4,47 @@ import PropTypes from "prop-types";
 import "../postTabBar.css";
 import "../postTabItem.css";
 import { TabItem } from "../../util/tabItem";
-import { InPostTabEnum } from "./inPostTabEnum";
+import { OutPostTabEnum } from "./outPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
 
-function InPostTabBar(props) {
+function OutPostTabBar(props) {
   const {
     selectTab,
     onTabChange,
+    onCreateNewPost,
     allCount,
     requestCount,
-    approveCount,
     borrowCount,
+    returnCount,
     historyCount
   } = props;
 
   const onSelectAll = e => {
-    onTabChange(InPostTabEnum.ALL);
+    onTabChange(OutPostTabEnum.ALL);
   };
   const onSelectRequest = e => {
-    onTabChange(InPostTabEnum.REQUEST);
-  };
-  const onSelectApprove = e => {
-    onTabChange(InPostTabEnum.APPROVE);
+    onTabChange(OutPostTabEnum.REQUEST);
   };
   const onSelectBorrow = e => {
-    onTabChange(InPostTabEnum.BORROW);
+    onTabChange(OutPostTabEnum.BORROW);
+  };
+  const onSelectReturn = e => {
+    onTabChange(OutPostTabEnum.RETURN);
   };
   const onSelectHistory = e => {
-    onTabChange(InPostTabEnum.HISTORY);
+    onTabChange(OutPostTabEnum.HISTORY);
+  };
+  const onNewPostClicked = e => {
+    onCreateNewPost();
   };
 
   return (
     <div className="post-tab-bar shadow-box">
       {_generateTabItem(
-        selectTab === InPostTabEnum.ALL,
-        "all friend posts",
-        "globe",
+        selectTab === OutPostTabEnum.ALL,
+        "all my posts",
+        "briefcase",
         onSelectAll,
         allCount,
         false,
@@ -48,29 +52,19 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
-        selectTab === InPostTabEnum.REQUEST,
+        selectTab === OutPostTabEnum.REQUEST,
         "request",
         "question",
         onSelectRequest,
         requestCount,
-        false,
-        true
-      )}
-
-      {_generateTabItem(
-        selectTab === InPostTabEnum.APPROVE,
-        "approve",
-        "check",
-        onSelectApprove,
-        approveCount,
         true,
         true
       )}
 
       {_generateTabItem(
-        selectTab === InPostTabEnum.BORROW,
-        "borrow",
-        "hand-holding-heart",
+        selectTab === OutPostTabEnum.BORROW,
+        "approve",
+        "check",
         onSelectBorrow,
         borrowCount,
         false,
@@ -78,7 +72,17 @@ function InPostTabBar(props) {
       )}
 
       {_generateTabItem(
-        selectTab === InPostTabEnum.HISTORY,
+        selectTab === OutPostTabEnum.RETURN,
+        "borrow",
+        "hand-holding-heart",
+        onSelectReturn,
+        returnCount,
+        true,
+        true
+      )}
+
+      {_generateTabItem(
+        selectTab === OutPostTabEnum.HISTORY,
         "history",
         "history",
         onSelectHistory,
@@ -86,6 +90,10 @@ function InPostTabBar(props) {
         false,
         true
       )}
+
+      <button onClick={onNewPostClicked} className="btn btn-sm btn-success">
+        new
+      </button>
     </div>
   );
 }
@@ -117,14 +125,15 @@ function _generateTabItem(
   );
 }
 
-InPostTabBar.propTypes = {
-  selectTab: PropTypes.instanceOf(InPostTabEnum).isRequired,
+OutPostTabBar.propTypes = {
+  selectTab: PropTypes.instanceOf(OutPostTabEnum).isRequired,
   onTabChange: PropTypes.func.isRequired,
+  onCreateNewPost: PropTypes.func.isRequired,
   allCount: nullOrRequiredValidator("number"),
   requestCount: nullOrRequiredValidator("number"),
-  approveCount: nullOrRequiredValidator("number"),
   borrowCount: nullOrRequiredValidator("number"),
+  returnCount: nullOrRequiredValidator("number"),
   historyCount: nullOrRequiredValidator("number")
 };
 
-export { InPostTabBar };
+export { OutPostTabBar };
