@@ -36,7 +36,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <div className="in-post-tab-bar box-shadow">
+    <div className="in-post-tab-bar shadow-box">
       {_generateTabItem(
         selectTab === InPostTabEnum.ALL,
         "friend posts",

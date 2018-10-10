@@ -24,7 +24,7 @@ import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";
 import "./app.css";
 import "./reactTab.css";
-import "../css/boxShadow.css";
+import "../css/shadowBox.css";
 import "../component/postItem.css";
 import "../css/tab.css";
 import { PrivateApp } from "./appPrivate";

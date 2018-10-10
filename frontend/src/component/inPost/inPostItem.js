@@ -20,7 +20,7 @@ function InPostItem(props) {
     onReturnShare
   } = props;
   return (
-    <div id="inPost-item-react" className="post-item box-shadow">
+    <div id="inPost-item-react" className="post-item shadow-box">
       <InPostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
 
       <div className="container">
