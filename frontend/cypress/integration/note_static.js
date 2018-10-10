@@ -6,7 +6,7 @@ import {
   createShare
 } from "../helper/model.js";
 
-describe("notification static display ui", () => {
+describe("notification static", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 

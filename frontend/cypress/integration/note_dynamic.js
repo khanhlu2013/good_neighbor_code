@@ -6,7 +6,7 @@ import {
   createShare
 } from "../helper/model";
 
-describe("notification dynamic update ui", () => {
+describe("notification dynamic", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 

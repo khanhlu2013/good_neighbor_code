@@ -109,7 +109,12 @@ class App extends Component {
     if (loginUser === undefined) {
       appContent = null;
     } else if (loginUser === null) {
-      appContent = <PublicApp />;
+      if (process.env.NODE_ENV === "production") {
+        appContent = <PublicApp />;
+      } else {
+        appContent = <h1 className="text-center">App Public</h1>;
+      }
+      // appContent = <PublicApp />;
       // appContent = <h1 className="text-center">App Public</h1>;
     } else {
       appContent = (

@@ -260,6 +260,4 @@ css for post item
 code review refactoring for post management
 ---
 cypress helper/ui.js vs helper/_ui/
----
-cypress testing
 

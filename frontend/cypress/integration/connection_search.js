@@ -1,7 +1,7 @@
 import { ui, tab } from "../helper/ui";
 import { createUser, createConnection } from "../helper/model";
 
-describe("Connection SearchByEmail", () => {
+describe("Connection search", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 
