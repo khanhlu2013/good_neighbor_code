@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { PostItemBody } from "../post/postItemBody";
-import { PostItemRequestList } from "../post/postItemRequestlist";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostItemHead } from "./outPostItemHead";
 

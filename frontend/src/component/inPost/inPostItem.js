@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PostItemRequestList } from "../post/postItemRequestlist";
-import { InPostItemReturnList } from "../post/postItemHistoryList";
 import { InPostItemFooting } from "./inPostItem_footing";
 import { PostItemBody } from "../post/postItemBody";
 import { InPostItemHead } from "./inPostItemHead";

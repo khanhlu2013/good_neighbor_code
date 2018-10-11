@@ -28,6 +28,7 @@ import "./reactTab.css";
 import "../css/shadowBox.css";
 import "../component/post/postItem.css";
 import "../css/tab.css";
+import "../css/myBootstrap.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";

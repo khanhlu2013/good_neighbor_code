@@ -10,18 +10,16 @@ function PostItemRequestList(props) {
     .sort((s1, s2) => s1.dateCreate - s2.dateCreate)
     .map(share => (
       <tr key={share.id}>
-        <td>{share.borrower.name}</td>
-        <td>{share.borrower.email}</td>
+        <td>{share.borrower.getNameAndEmail()}</td>
         <td>{date2String(share.dateCreate)}</td>
       </tr>
     ));
 
   return (
-    <table className="table table-sm table-bordered table-striped shadow-box post-item-request-list">
+    <table className="my-table table-sm table-bordered table-striped post-item-request-list">
       <thead className="thead-light">
         <tr className="thead-">
-          <th>waiting list</th>
-          <th>email</th>
+          <th>request</th>
           <th>date</th>
         </tr>
       </thead>
