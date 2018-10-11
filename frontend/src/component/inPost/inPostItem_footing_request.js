@@ -26,7 +26,7 @@ function InPostItemFootingRequest(props) {
 
   return (
     <div className="text-success">
-      you're in waiting list, please wait for response.
+      <span className="mr-1">you're in the waiting list.</span>
       {content}
     </div>
   );

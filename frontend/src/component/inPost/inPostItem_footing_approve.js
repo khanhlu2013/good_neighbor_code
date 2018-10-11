@@ -28,10 +28,10 @@ function InPostItemFootingApprove(props) {
       awareContent = (
         <button
           id="outPostItem-awareApproveBtn-react"
-          className="btn btn-success"
+          className="btn btn-sm btn-success"
           onClick={onAwareShareClicked}
         >
-          confirm received
+          confirm approved
         </button>
       );
     }
@@ -45,7 +45,7 @@ function InPostItemFootingApprove(props) {
     returnContent = (
       <button
         id="outPostItem-returnBtn-react"
-        className="btn btn-warning"
+        className="btn btn-sm btn-warning ml-1"
         onClick={onReturnShareClicked}
       >
         return
@@ -54,8 +54,8 @@ function InPostItemFootingApprove(props) {
   }
   return (
     <div className="text-success">
-      {"your request is approved."}
-      {awareContent}
+      {"request approved."}
+      <span className="ml-1">{awareContent}</span>
       {returnContent}
     </div>
   );

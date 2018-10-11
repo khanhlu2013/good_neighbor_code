@@ -25,6 +25,10 @@ class AppHeader extends Component {
       connectionNoteCount
     } = this.props;
 
+    const onLogoutClicked = e => {
+      onLogOut();
+    };
+
     let content;
     if (loginUser === undefined) {
       content = <LoadingIcon text="loading" />;
@@ -42,9 +46,9 @@ class AppHeader extends Component {
             outPostNoteCount={outPostNoteCount}
             connectionNoteCount={connectionNoteCount}
           />
-          <AppHeaderProfileImageMe loginUser={loginUser} onLogOut={onLogOut} />
+          <AppHeaderProfileImageMe loginUser={loginUser} />
           <button
-            onClick={this.onLogoutClicked}
+            onClick={onLogoutClicked}
             className="btn btn-sm btn-warning app-header-logout-btn"
           >
             <FontAwesomeIcon icon="power-off" size="lg" />

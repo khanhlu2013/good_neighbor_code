@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     trim: true,
+    lowercase: true,
     unique: true,
     validate: {
       validator: validator.isEmail,
@@ -20,11 +21,11 @@ const UserSchema = new Schema({
   },
   profileImageUrl: {
     type: String,
-    required: false,
-    validate: {
-      validator: validator.isURL,
-      message: "{VALUE} is not a profile image url"
-    }
+    required: false
+    // validate: {
+    //   validator: validator.isURL,
+    //   message: "{VALUE} is not a profile image url"
+    // }
   }
 });
 

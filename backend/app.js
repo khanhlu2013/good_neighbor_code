@@ -44,8 +44,12 @@ app.use("/profile", require("./api/profile-api"));
 
 //log error
 app.use(function logError(err, req, res, next) {
-  console.error("There is Error");
+  console.error("There is Error ----------");
+  console.error("STACK--------------------");
   console.error(err.stack);
+  console.error("FULL ERROR---------------");
+  console.error(JSON.stringify(err, null, 4));
+  console.error("-------------------------");
   next(err);
 });
 

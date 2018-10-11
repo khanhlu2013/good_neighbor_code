@@ -107,8 +107,8 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . clean up isActive. how do i show it?
 . loadingicon for the login button: this is a href, i am not sure how to do it
 . how do i make the image profile image a live one, instead of a dead url. it could change. do not store the url on the backend, always get it from google. 
-
-
+. code review refactoring for post management 
+. better validate url profile image, isnullorrequire. but i like to use a live url not a dead one right?
 
 
 
@@ -256,29 +256,15 @@ work on the tab now, kill the react tab.
 ---
 confirm receive change into confirm approve
 ---
+. back end validate: null or require image url
 
-code review refactoring for post management
----
+
 
 
 css for post item
+. joining waiting list and history list. 
+. make each tab specific to each task at hand. move edit universal some where. ah, i know. edit is replacing the godamn name. 
 
-factoring out postItemHeader.
 
----
- remove
 
- .post-item-heading {
-  margin-bottom: 10px;
-}
 
-from postItem.css
----
-
-making the icon image icon sharable. 
-
----
-fix AppHeaderProfile
-
-. move that into the util. 
-. use it to create what i already have. 

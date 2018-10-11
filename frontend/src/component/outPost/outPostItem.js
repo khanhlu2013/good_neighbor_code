@@ -52,16 +52,15 @@ function OutPostItem(props) {
       <div className="text-right">
         {post.unawareReturnShareLatest && (
           <span>
-            {`item is returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
             {isAwaringReturn ? (
-              <LoadingIcon text={"receiving"} />
+              <LoadingIcon text={"confirming"} />
             ) : (
               <button
                 id="outPostItem-awareReturnBtn-react"
                 onClick={onAwareReturnClick}
-                className="btn btn-success"
+                className="btn btn-sm btn-success"
               >
-                confirm returned
+                {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
               </button>
             )}
           </span>
@@ -69,7 +68,7 @@ function OutPostItem(props) {
         <button
           id="outPostItem-editBtn-react"
           onClick={onEditBtnClicked}
-          className="btn btn-primary"
+          className="btn btn-sm btn-primary ml-1"
         >
           edit
         </button>
@@ -79,7 +78,7 @@ function OutPostItem(props) {
           <button
             id="outPostItem-decisionBtn-react"
             onClick={onDecidePostClick}
-            className="btn btn-success"
+            className="btn btn-sm btn-success ml-1"
           >
             share
           </button>
