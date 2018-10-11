@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { PostItemBody } from "../post/postItem_body";
-import { PostItemRequestList } from "../post/postItem_requestlist";
+import { PostItemBody } from "../post/postItemBody";
+import { PostItemRequestList } from "../post/postItemRequestlist";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostItemHead } from "./outPostItemHead";
 
@@ -36,12 +36,7 @@ function OutPostItem(props) {
         onEditPost={onEditBtnClicked}
         dateCreate={post.dateCreate}
       />
-
-      <PostItemBody title={post.title} description={post.description} />
-      {post.requestShares.length !== 0 && (
-        <PostItemRequestList shares={post.requestShares} />
-      )}
-
+      <PostItemBody post={post} />
       <div className="text-left">
         {borrower && (
           <span>

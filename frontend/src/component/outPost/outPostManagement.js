@@ -6,7 +6,7 @@ import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
 import { Post } from "../../model/post";
-import { OutShareHistoryList } from "./outShareHistoryList";
+import { OutPostAllHistoryList } from "./outPostAllHistoryList";
 import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPostTabBar";
@@ -295,7 +295,7 @@ class OutPostManagement extends Component {
             "tab-panel-hide": selectTab !== OutPostTabEnum.HISTORY
           })}
         >
-          <OutShareHistoryList shares={this.state.returnShares} />
+          <OutPostAllHistoryList shares={this.state.returnShares} />
         </div>
       </div>
     );

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
-import { InShareHistoryList } from "./inShareHistoryList";
+import { InPostAllHistoryList } from "./inPostAllHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";
@@ -279,7 +279,7 @@ class InPostManagement extends Component {
             "tab-panel-hide": selectTab !== InPostTabEnum.HISTORY
           })}
         >
-          <InShareHistoryList shares={this.state.returnShares} />
+          <InPostAllHistoryList shares={this.state.returnShares} />
         </div>
       </div>
     );

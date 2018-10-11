@@ -1,30 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { date2String } from "../../util";
-
-import "../post/shareHistoryList.css";
 import { PostListNoData } from "../post/postListNoData";
+import "../post/postAllHistoryList.css";
 
-function InShareHistoryList(props) {
+function OutPostAllHistoryList(props) {
   const { shares } = props;
+  const rows = shares.map(share => <TableRow key={share.id} share={share} />);
   if (shares.length === 0) {
     return <PostListNoData />;
   }
 
-  const rows = shares
-    .sort((s1, s2) => s2.dateReturn - s1.dateReturn)
-    .map(share => <TableRow key={share.id} share={share} />);
-
   return (
     <table
-      id="InShareReturnTable-react"
-      className="table table-sm table-striped table-bordered share-history-list shadow-box"
+      id="OutShareReturnTable-react"
+      className="table table-sm table-striped table-bordered shadow-box post-all-history-list"
     >
       <thead className="thead-light">
         <tr>
           <th>date</th>
           <th>post</th>
-          <th>lender</th>
+          <th>borrower</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
@@ -32,7 +29,7 @@ function InShareHistoryList(props) {
   );
 }
 
-InShareHistoryList.propTypes = {
+OutPostAllHistoryList.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
@@ -41,10 +38,10 @@ function TableRow(props) {
   const { post } = share;
 
   return (
-    <tr className="InShareReturnTableRow">
+    <tr className="OutShareReturnTableRow">
       <td>{date2String(share.dateReturn)}</td>
       <td>{post.title}</td>
-      <td>{post.user.getNameAndEmail()}</td>
+      <td>{share.borrower.getNameAndEmail()}</td>
     </tr>
   );
 }
@@ -52,4 +49,4 @@ TableRow.propTypes = {
   share: PropTypes.object.isRequired
 };
 
-export { InShareHistoryList };
+export { OutPostAllHistoryList };
