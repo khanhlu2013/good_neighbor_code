@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { InPostItemHeading } from "./inPostItem_heading";
 import { PostItemRequestList } from "../post/postItem_requestlist";
 import { InPostItemReturnList } from "./inPostItem_returnList";
 import { InPostItemFooting } from "./inPostItem_footing";
 import { PostItemBody } from "../post/postItem_body";
+import { PostItemHeading } from "../post/postItemHeading";
 
 function InPostItem(props) {
   const {
@@ -21,36 +21,33 @@ function InPostItem(props) {
   } = props;
   return (
     <div id="inPost-item-react" className="post-item shadow-box">
-      <InPostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
-
-      <div className="container">
-        <PostItemBody title={post.title} description={post.description} />
-        {post.requestShares.length !== 0 && (
-          <PostItemRequestList shares={post.requestShares} />
-        )}
-        {post.returnShares.length !== 0 && (
-          <InPostItemReturnList shares={post.returnShares} />
-        )}
-        <InPostItemFooting
-          postId={post.id}
-          loginUser={loginUser}
-          isActive={post.isActive}
-          curBorrowShare={post.curBorrowShare}
-          myRequestShare={
-            post.requestShares.find(
-              share => share.borrower.id === loginUser.id
-            ) || null
-          }
-          isRequestingPost={isRequestingPost}
-          isDeleteingShare={isDeleteingShare}
-          isAwaringShare={isAwaringShare}
-          isReturningShare={isReturningShare}
-          onCreateShare={onCreateShare}
-          onDeleteShare={onDeleteShare}
-          onAwareShare={onAwareShare}
-          onReturnShare={onReturnShare}
-        />
-      </div>
+      <PostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
+      <PostItemBody title={post.title} description={post.description} />
+      {post.requestShares.length !== 0 && (
+        <PostItemRequestList shares={post.requestShares} />
+      )}
+      {post.returnShares.length !== 0 && (
+        <InPostItemReturnList shares={post.returnShares} />
+      )}
+      <InPostItemFooting
+        postId={post.id}
+        loginUser={loginUser}
+        isActive={post.isActive}
+        curBorrowShare={post.curBorrowShare}
+        myRequestShare={
+          post.requestShares.find(
+            share => share.borrower.id === loginUser.id
+          ) || null
+        }
+        isRequestingPost={isRequestingPost}
+        isDeleteingShare={isDeleteingShare}
+        isAwaringShare={isAwaringShare}
+        isReturningShare={isReturningShare}
+        onCreateShare={onCreateShare}
+        onDeleteShare={onDeleteShare}
+        onAwareShare={onAwareShare}
+        onReturnShare={onReturnShare}
+      />
     </div>
   );
 }

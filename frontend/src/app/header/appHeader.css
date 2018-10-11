@@ -1,17 +1,17 @@
-.app-header-container {
+.app-header-banner {
   width: 100%;
   background-color: rgb(36, 54, 65);
 }
 
 .app-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: white;
   height: 53px;
 }
 
-.app-header-text-icon {
+.app-header-left-side {
+  flex-grow: 1;
   font-weight: lighter;
   font-size: 1.3em;
   user-select: none;
@@ -20,4 +20,8 @@
 .app-header-right-side {
   display: flex;
   align-items: center;
+}
+
+.app-header-logout-btn {
+  margin-left: 5px;
 }

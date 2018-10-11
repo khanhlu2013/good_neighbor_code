@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
-import { AppHeaderProfile } from "./appHeaderProfile";
 import { nullOrRequiredValidator } from "../../util";
-import "./appHeader.css";
 import { AppHeaderTabBar } from "./appHeaderTabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
+import { AppHeaderProfileImageMe } from "./appHeaderProfileImageMe";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./appHeader.css";
 
 class AppHeader extends Component {
   render() {
@@ -41,14 +42,20 @@ class AppHeader extends Component {
             outPostNoteCount={outPostNoteCount}
             connectionNoteCount={connectionNoteCount}
           />
-          <AppHeaderProfile loginUser={loginUser} onLogOut={onLogOut} />
+          <AppHeaderProfileImageMe loginUser={loginUser} onLogOut={onLogOut} />
+          <button
+            onClick={this.onLogoutClicked}
+            className="btn btn-sm btn-warning app-header-logout-btn"
+          >
+            <FontAwesomeIcon icon="power-off" size="lg" />
+          </button>
         </div>
       );
     }
     return (
-      <div className="app-header-container">
+      <div className="app-header-banner">
         <div className="app-header app-container">
-          <div className="app-header-text-icon">Good Neighbor</div>
+          <div className="app-header-left-side">Good Neighbor</div>
           {content}
         </div>
       </div>

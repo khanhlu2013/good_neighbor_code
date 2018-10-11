@@ -264,3 +264,21 @@ code review refactoring for post management
 css for post item
 
 factoring out postItemHeader.
+
+---
+ remove
+
+ .post-item-heading {
+  margin-bottom: 10px;
+}
+
+from postItem.css
+---
+
+making the icon image icon sharable. 
+
+---
+fix AppHeaderProfile
+
+. move that into the util. 
+. use it to create what i already have. 
