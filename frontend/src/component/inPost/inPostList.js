@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { InPostItem } from "./inPostItem";
-import { PostListNoData } from "../postListNoData";
+import { PostListNoData } from "../post/postListNoData";
 
 function InPostList(props) {
   const {

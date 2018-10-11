@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { InPostItemHeading } from "./inPostItem_heading";
-import { PostItemRequestList } from "../postItem_requestlist";
+import { PostItemRequestList } from "../post/postItem_requestlist";
 import { InPostItemReturnList } from "./inPostItem_returnList";
 import { InPostItemFooting } from "./inPostItem_footing";
-import { PostItemBody } from "../postItem_body";
+import { PostItemBody } from "../post/postItem_body";
 
 function InPostItem(props) {
   const {

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "../postTabBar.css";
-import "../postTabItem.css";
+import "../post/postTabBar.css";
+import "../post/postTabItem.css";
 import { TabItem } from "../../util/tabItem";
 import { OutPostTabEnum } from "./outPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";

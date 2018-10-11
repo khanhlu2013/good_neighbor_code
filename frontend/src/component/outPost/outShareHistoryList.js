@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { date2String } from "../../util";
-import "../shareHistoryList.css";
-import { PostListNoData } from "../postListNoData";
+import "../post/shareHistoryList.css";
+import { PostListNoData } from "../post/postListNoData";
 
 function OutShareHistoryList(props) {
   const { shares } = props;

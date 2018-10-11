@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { PostItemBody } from "../postItem_body";
-import { PostItemRequestList } from "../postItem_requestlist";
+import { PostItemBody } from "../post/postItem_body";
+import { PostItemRequestList } from "../post/postItem_requestlist";
 import { OutPostItemHeading } from "./outPostItem_heading";
 import { LoadingIcon } from "../../util/loadingIcon";
 

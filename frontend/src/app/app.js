@@ -26,7 +26,7 @@ import { AppHeader } from "./header/appHeader";
 import "./app.css";
 import "./reactTab.css";
 import "../css/shadowBox.css";
-import "../component/postItem.css";
+import "../component/post/postItem.css";
 import "../css/tab.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";

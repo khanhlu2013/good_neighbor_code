@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { date2String } from "../util";
+import { date2String } from "../../util";
 
 function PostItemRequestList(props) {
   const { shares } = props;
