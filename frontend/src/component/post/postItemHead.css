@@ -1,0 +1,14 @@
+.post-item-head {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.post-item-head-date {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.post-item-head-left-side {
+  flex-grow: 1;
+}

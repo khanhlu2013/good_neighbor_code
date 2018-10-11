@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { PostItemBody } from "../post/postItem_body";
 import { PostItemRequestList } from "../post/postItem_requestlist";
 import { LoadingIcon } from "../../util/loadingIcon";
-import { PostItemHeading } from "../post/postItemHeading";
+import { OutPostItemHead } from "./outPostItemHead";
 
 function OutPostItem(props) {
   const {
@@ -32,7 +32,10 @@ function OutPostItem(props) {
 
   return (
     <div id="outPost-item-react" className="post-item shadow-box">
-      <PostItemHeading postUser={null} dateCreate={post.dateCreate} />
+      <OutPostItemHead
+        onEditPost={onEditBtnClicked}
+        dateCreate={post.dateCreate}
+      />
 
       <PostItemBody title={post.title} description={post.description} />
       {post.requestShares.length !== 0 && (
@@ -65,13 +68,6 @@ function OutPostItem(props) {
             )}
           </span>
         )}
-        <button
-          id="outPostItem-editBtn-react"
-          onClick={onEditBtnClicked}
-          className="btn btn-sm btn-primary ml-1"
-        >
-          edit
-        </button>
         {(post.denyShares.length !== 0 ||
           post.requestShares.length !== 0 ||
           curBorrowShare) && (

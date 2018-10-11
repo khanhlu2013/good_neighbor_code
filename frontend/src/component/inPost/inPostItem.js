@@ -4,7 +4,7 @@ import { PostItemRequestList } from "../post/postItem_requestlist";
 import { InPostItemReturnList } from "./inPostItem_returnList";
 import { InPostItemFooting } from "./inPostItem_footing";
 import { PostItemBody } from "../post/postItem_body";
-import { PostItemHeading } from "../post/postItemHeading";
+import { InPostItemHead } from "./inPostItemHead";
 
 function InPostItem(props) {
   const {
@@ -21,7 +21,7 @@ function InPostItem(props) {
   } = props;
   return (
     <div id="inPost-item-react" className="post-item shadow-box">
-      <PostItemHeading postUser={post.user} dateCreate={post.dateCreate} />
+      <InPostItemHead postUser={post.user} dateCreate={post.dateCreate} />
       <PostItemBody title={post.title} description={post.description} />
       {post.requestShares.length !== 0 && (
         <PostItemRequestList shares={post.requestShares} />

@@ -262,9 +262,10 @@ confirm receive change into confirm approve
 
 
 css for post item
-. joining waiting list and history list. 
 . make each tab specific to each task at hand. move edit universal some where. ah, i know. edit is replacing the godamn name. 
+. joining waiting list and history list. 
 
+---
+separate out the header
 
-
-
+---
