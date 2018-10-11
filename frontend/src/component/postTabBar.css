@@ -1,8 +1,6 @@
 .post-tab-bar {
-  display: flex;
-  align-items: center;
   background-color: antiquewhite;
   margin-top: 2px;
-  padding-top: 4px;
+  padding-top: 3px;
   justify-content: space-around;
 }

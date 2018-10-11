@@ -256,8 +256,11 @@ work on the tab now, kill the react tab.
 ---
 confirm receive change into confirm approve
 ---
-css for post item
+
 code review refactoring for post management
 ---
-cypress helper/ui.js vs helper/_ui/
 
+
+css for post item
+
+factoring out postItemHeader.

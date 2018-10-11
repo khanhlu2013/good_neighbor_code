@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./appHeaderTabBar.css";
 import "./appHeaderTabItem.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
@@ -20,7 +19,7 @@ function AppHeaderTabBar(props) {
   } = props;
 
   return (
-    <div className="app-header-nav-bar">
+    <div className="tab-bar">
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
@@ -73,7 +72,7 @@ function _generateTabItem(
       unSelectCssClass="app-header-tab-item-unSelect"
       hoverCssClass="app-header-tab-item-hover"
       underlineSelectCssClass="app-header-tab-item-underline-select"
-      isResponsiveCaption={true}
+      isCssResponsive={true}
     />
   );
 }

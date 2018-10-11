@@ -1,13 +1,17 @@
 /* share */
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 480px) {
   .tab-item-caption-responsive {
     display: none;
+  }
+
+  .tab-item-icon-responsive {
+    font-size: 1.7em !important;
   }
 }
 
 .tab-item-caption {
-  margin-top: 5px;
+  margin-top: 2px;
   font-weight: 100;
   font-size: 0.8em;
   line-height: 100%;
@@ -22,6 +26,10 @@
   user-select: none;
   cursor: pointer;
   margin: 0 12px;
+}
+
+.tab-item-icon {
+  font-size: 1.5em;
 }
 
 .tab-item-icon-notification-caption {

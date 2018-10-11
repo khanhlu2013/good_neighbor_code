@@ -40,7 +40,7 @@ function OutPostTabBar(props) {
   };
 
   return (
-    <div className="post-tab-bar shadow-box">
+    <div className="tab-bar post-tab-bar shadow-box">
       {_generateTabItem(
         "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
@@ -115,7 +115,7 @@ function _generateTabItem(
   onSelect,
   noteCount,
   isImportant,
-  isResponsiveCaption
+  isCssResponsive
 ) {
   return (
     <TabItem
@@ -131,7 +131,7 @@ function _generateTabItem(
       unSelectCssClass="post-tab-item-unSelect"
       hoverCssClass="post-tab-item-hover"
       underlineSelectCssClass="post-tab-item-underline-select"
-      isResponsiveCaption={isResponsiveCaption}
+      isCssResponsive={isCssResponsive}
     />
   );
 }

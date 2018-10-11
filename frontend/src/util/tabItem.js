@@ -18,7 +18,7 @@ function TabItem(props) {
     unSelectCssClass,
     hoverCssClass,
     underlineSelectCssClass,
-    isResponsiveCaption
+    isCssResponsive
   } = props;
 
   const onItemClick = e => {
@@ -30,6 +30,7 @@ function TabItem(props) {
       id={id}
       className={className({
         "tab-item": true,
+        "tab-item-responsive": isCssResponsive,
         [hoverCssClass]: true,
         [selectCssClass]: isSelect,
         [unSelectCssClass]: !isSelect
@@ -38,13 +39,20 @@ function TabItem(props) {
     >
       <div className="tab-item-icon-notification-caption">
         <div className="tab-item-icon-notification">
-          {iconName && <FontAwesomeIcon icon={iconName} size="lg" />}
+          <div
+            className={className({
+              "tab-item-icon": true,
+              "tab-item-icon-responsive": isCssResponsive
+            })}
+          >
+            {iconName && <FontAwesomeIcon icon={iconName} />}
+          </div>
           {notificationItem}
         </div>
         <span
           className={className({
             "tab-item-caption": true,
-            "tab-item-caption-responsive": isResponsiveCaption
+            "tab-item-caption-responsive": isCssResponsive
           })}
         >
           {caption}
@@ -73,7 +81,7 @@ TabItem.propTypes = {
   unSelectCssClass: PropTypes.string.isRequired,
   hoverCssClass: PropTypes.string.isRequired,
   underlineSelectCssClass: nullOrRequiredValidator("string"), //if null underline is transparent
-  isResponsiveCaption: PropTypes.bool.isRequired
+  isCssResponsive: PropTypes.bool.isRequired
 };
 
 export { TabItem };
