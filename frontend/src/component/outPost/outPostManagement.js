@@ -6,7 +6,7 @@ import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
 import { Post } from "../../model/post";
-import { OutPostAllHistoryList } from "./outPostAllHistoryList";
+import { OutPostAllHistoryList } from "./outPost_allHistoryList";
 import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPostTabBar";

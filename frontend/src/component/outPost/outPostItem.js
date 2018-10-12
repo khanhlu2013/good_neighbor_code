@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { PostItemBody } from "../post/postItemBody";
+import { PostItemBody } from "../post/postItem_body";
 import { LoadingIcon } from "../../util/loadingIcon";
-import { OutPostItemHead } from "./outPostItemHead";
+import { OutPostItemHead } from "./outPostItem_head";
 
 function OutPostItem(props) {
   const {

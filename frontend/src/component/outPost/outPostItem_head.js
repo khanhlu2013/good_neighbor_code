@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { date2String } from "../../util";
-import "../post/postItemHead.css";
+import "../post/postItem_head.css";
 
 function OutPostItemHead(props) {
   const { dateCreate, onEditPost } = props;

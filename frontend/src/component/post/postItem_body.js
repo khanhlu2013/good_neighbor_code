@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Post } from "../../model/post";
-import { PostItemHistoryList } from "./postItemHistoryList";
-import { PostItemRequestList } from "./postItemRequestlist";
-import "./postItemBody.css";
+import { PostItemHistoryList } from "./postItem_historyList";
+import { PostItemRequestList } from "./postItem_requestlist";
+import "./postItem_body.css";
 
 function PostItemBody(props) {
   const { post } = props;

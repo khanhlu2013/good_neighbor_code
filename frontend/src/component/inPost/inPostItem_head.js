@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { date2String } from "../../util";
 import { User } from "../../model/user";
-import "../post/postItemHead.css";
+import "../post/postItem_head.css";
 
 function InPostItemHead(props) {
   const { postUser, dateCreate } = props;

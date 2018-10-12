@@ -2,7 +2,7 @@ import React from "react";
 import "./postListNoData.css";
 
 function PostListNoData(props) {
-  return <p className="post-list-no-data">there are no data</p>;
+  return <div className="post-list-no-data shadow-box">there are no data</div>;
 }
 
 export { PostListNoData };
