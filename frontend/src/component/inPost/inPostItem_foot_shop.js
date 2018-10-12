@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { LoadingIcon } from "../../util/loadingIcon";
 
-function InPostItemFootingShop(props) {
+function InPostItemFootShop(props) {
   const { postId, isRequestingPost, onCreateShare } = props;
 
   const onCreateShareClicked = e => {
@@ -26,9 +26,9 @@ function InPostItemFootingShop(props) {
   return content;
 }
 
-InPostItemFootingShop.propTypes = {
+InPostItemFootShop.propTypes = {
   postId: PropTypes.string.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
   onCreateShare: PropTypes.func.isRequired
 };
-export { InPostItemFootingShop };
+export { InPostItemFootShop };

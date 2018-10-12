@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { InPostItemFooting } from "./inPostItem_footing";
+import { InPostItemFoot } from "./inPostItem_foot";
 import { PostItemBody } from "../post/postItem_body";
 import { InPostItemHead } from "./inPostItem_head";
 
@@ -21,7 +21,7 @@ function InPostItem(props) {
     <div id="inPost-item-react" className="post-item shadow-box">
       <InPostItemHead postUser={post.user} dateCreate={post.dateCreate} />
       <PostItemBody post={post} />
-      <InPostItemFooting
+      <InPostItemFoot
         postId={post.id}
         loginUser={loginUser}
         isActive={post.isActive}

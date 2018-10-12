@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { LoadingIcon } from "../../util/loadingIcon";
 
-function InPostItemFootingRequest(props) {
+function InPostItemFootRequest(props) {
   const { myRequestShareId, isDeleteingShare, onDeleteShare } = props;
 
   const onUndoRequestClicked = e => {
@@ -32,9 +32,9 @@ function InPostItemFootingRequest(props) {
   );
 }
 
-InPostItemFootingRequest.propTypes = {
+InPostItemFootRequest.propTypes = {
   myRequestShareId: PropTypes.string.isRequired,
   isDeleteingShare: PropTypes.bool.isRequired,
   onDeleteShare: PropTypes.func.isRequired
 };
-export { InPostItemFootingRequest };
+export { InPostItemFootRequest };

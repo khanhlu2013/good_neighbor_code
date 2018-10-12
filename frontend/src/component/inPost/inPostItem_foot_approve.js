@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Share } from "../../model/share";
 import { LoadingIcon } from "../../util/loadingIcon";
 
-function InPostItemFootingApprove(props) {
+function InPostItemFootApprove(props) {
   const {
     curBorrowShare,
     isAwaringShare,
@@ -61,11 +61,11 @@ function InPostItemFootingApprove(props) {
   );
 }
 
-InPostItemFootingApprove.propTypes = {
+InPostItemFootApprove.propTypes = {
   curBorrowShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
   onAwareShare: PropTypes.func.isRequired,
   onReturnShare: PropTypes.func.isRequired
 };
-export { InPostItemFootingApprove };
+export { InPostItemFootApprove };

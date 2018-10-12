@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { User } from "../../model/user";
 import { nullOrRequiredValidator } from "../../util";
 import { Share } from "../../model/share";
-import { InPostItemFootingApprove } from "./inPostItem_footing_approve";
-import { InPostItemFootingRequest } from "./inPostItem_footing_request";
-import { InPostItemFootingShop } from "./inPostItem_footing_shop";
+import { InPostItemFootApprove } from "./inPostItem_foot_approve";
+import { InPostItemFootRequest } from "./inPostItem_foot_request";
+import { InPostItemFootShop } from "./inPostItem_foot_shop";
 
-function InPostItemFooting(props) {
+function InPostItemFoot(props) {
   const {
     postId,
     loginUser,
@@ -28,7 +28,7 @@ function InPostItemFooting(props) {
 
   if (myRequestShare) {
     content = (
-      <InPostItemFootingRequest
+      <InPostItemFootRequest
         isDeleteingShare={isDeleteingShare}
         onDeleteShare={onDeleteShare}
         myRequestShareId={myRequestShare.id}
@@ -39,7 +39,7 @@ function InPostItemFooting(props) {
     curBorrowShare.borrower.id === loginUser.id
   ) {
     content = (
-      <InPostItemFootingApprove
+      <InPostItemFootApprove
         curBorrowShare={curBorrowShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
@@ -49,7 +49,7 @@ function InPostItemFooting(props) {
     );
   } else if (isActive) {
     content = (
-      <InPostItemFootingShop
+      <InPostItemFootShop
         postId={postId}
         isRequestingPost={isRequestingPost}
         onCreateShare={onCreateShare}
@@ -61,7 +61,7 @@ function InPostItemFooting(props) {
 
   return <div className="post-item-foot">{content}</div>;
 }
-InPostItemFooting.propTypes = {
+InPostItemFoot.propTypes = {
   postId: PropTypes.string.isRequired,
   loginUser: PropTypes.instanceOf(User).isRequired,
   isActive: PropTypes.bool.isRequired,
@@ -77,4 +77,4 @@ InPostItemFooting.propTypes = {
   onReturnShare: PropTypes.func.isRequired
 };
 
-export { InPostItemFooting };
+export { InPostItemFoot };
