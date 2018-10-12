@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { API } from "../../api/profile-api";
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { nullOrRequiredValidator } from "../../util";
@@ -12,10 +13,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./appHeader.css";
 
 class AppHeader extends Component {
+  state = {
+    logingOut: false
+  };
+
+  onLogoutClicked = e => {
+    this.setState({ logingOut: true });
+    (async () => {
+      await API.logout();
+      this.setState({ logingOut: false });
+      this.props.onUserLogOut();
+    })();
+  };
+
   render() {
     const {
       loginUser,
-      onLogOut,
       onInPostNav,
       onOutPostNav,
       onConnectionNav,
@@ -24,10 +37,6 @@ class AppHeader extends Component {
       outPostNoteCount,
       connectionNoteCount
     } = this.props;
-
-    const onLogoutClicked = e => {
-      onLogOut();
-    };
 
     let content;
     if (loginUser === undefined) {
@@ -47,12 +56,17 @@ class AppHeader extends Component {
             connectionNoteCount={connectionNoteCount}
           />
           <AppHeaderProfileImageMe loginUser={loginUser} />
-          <button
-            onClick={onLogoutClicked}
-            className="btn btn-sm btn-warning app-header-logout-btn"
-          >
-            <FontAwesomeIcon icon="power-off" size="lg" />
-          </button>
+
+          {this.state.logingOut ? (
+            <LoadingIcon text="logout" />
+          ) : (
+            <button
+              onClick={this.onLogoutClicked}
+              className="btn btn-sm btn-warning app-header-logout-btn"
+            >
+              <FontAwesomeIcon icon="power-off" size="lg" />
+            </button>
+          )}
         </div>
       );
     }
@@ -68,7 +82,7 @@ class AppHeader extends Component {
 }
 AppHeader.propTypes = {
   loginUser: PropTypes.instanceOf(User),
-  onLogOut: PropTypes.func.isRequired,
+  onUserLogOut: PropTypes.func.isRequired,
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import {
   rawToConnection,
   rawsToPosts,
   rawToUser
-} from "./api-helper";
+} from "./_private_api_helper";
 
 // - auth
 const authCheck = async () => {

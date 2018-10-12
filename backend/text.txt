@@ -265,3 +265,7 @@ css for post item
 . make each tab specific to each task at hand. move edit universal some where. ah, i know. edit is replacing the godamn name. 
 . joining waiting list and history list. 
 
+---
+
+logout 
+
