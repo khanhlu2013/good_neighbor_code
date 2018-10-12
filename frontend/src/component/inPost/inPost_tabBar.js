@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import "../post/postTabBar.css";
 import "../post/postTabItem.css";
 import { TabItem } from "../../util/tabItem";
-import { InPostTabEnum } from "./inPostTabEnum";
+import { InPostTabEnum } from "./inPost_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
 

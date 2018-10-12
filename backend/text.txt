@@ -269,3 +269,9 @@ work on the tab now, kill the react tab.
   margin: 0 auto;
   padding: 0 15px;
 }
+---
+how do i log my bug? into a file?
+----
+understand my css and make master tab bigger. kill the logout button. confusing. 
+---
+make my bottom gap a little bigger

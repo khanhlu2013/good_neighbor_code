@@ -4,7 +4,7 @@ import className from "classnames";
 
 import { ConnectionManagement } from "../component/connection/connectionManagement.js";
 import { OutPostManagement } from "../component/outPost/outPostManagement.js";
-import { InPostManagement } from "../component/inPost/inPostManagement.js";
+import { InPostManagement } from "../component/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
 

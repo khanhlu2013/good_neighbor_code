@@ -7,8 +7,8 @@ import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
-import { InPostTabBar } from "./inPostTabBar";
-import { InPostTabEnum } from "./inPostTabEnum";
+import { InPostTabBar } from "./inPost_tabBar";
+import { InPostTabEnum } from "./inPost_tabEnum";
 
 class InPostManagement extends Component {
   state = {
