@@ -10,8 +10,6 @@ const keys = require("../configs/keys");
 // - auth ----
 route.post("/logout", _authCheck, (req, res) => {
   req.logout();
-  const { user } = req;
-  console.log("xxx", user);
   res.send();
 });
 
