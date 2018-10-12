@@ -48,7 +48,7 @@ function InPostItemFootApprove(props) {
         className="btn btn-sm btn-warning ml-1"
         onClick={onReturnShareClicked}
       >
-        return
+        return item
       </button>
     );
   }

@@ -254,17 +254,18 @@ work on the tab now, kill the react tab.
   . app-tab.css vs inPostTab.css
 
 ---
-confirm receive change into confirm approve
----
 . back end validate: null or require image url
 
 
+.app-header-banner {
+  width: 100%;
+  min-width: 460px;
+  background-color: rgb(36, 54, 65);
+}
 
-
-css for post item
-. make each tab specific to each task at hand. move edit universal some where. ah, i know. edit is replacing the godamn name. 
----
-the underscore isn't too bad of an idea
-change footing into foot
-
----
+.app-container {
+  max-width: 700px;
+  min-width: 460px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
