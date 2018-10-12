@@ -4,7 +4,7 @@ import { ui } from "../helper/ui";
 describe("auth", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
 
-  it("allow user to login", () => {
+  it("allow user to login and stay login after refresh", () => {
     //login
     cy.setupDb([lu]);
     cy.loadApp();
@@ -15,7 +15,7 @@ describe("auth", () => {
     ui.app.snap("after refresh");
   });
 
-  it("allow user to logout", () => {
+  it("allow user to logout and stay logout after refresh", () => {
     //login
     cy.setupDb([lu]);
     cy.loadApp();
