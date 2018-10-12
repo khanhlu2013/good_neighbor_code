@@ -265,6 +265,9 @@ css for post item
 . make each tab specific to each task at hand. move edit universal some where. ah, i know. edit is replacing the godamn name. 
 . joining waiting list and history list. 
 
----
 
-add an auth test. 
+---
+the underscore isn't too bad of an idea
+change footing into foot
+
+---

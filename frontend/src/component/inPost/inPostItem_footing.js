@@ -59,22 +59,7 @@ function InPostItemFooting(props) {
     content = <div>Post is no longer active</div>;
   }
 
-  return (
-    <div>
-      <div className="text-left">
-        {curBorrowShare &&
-          curBorrowShare.borrower.id !== loginUser.id && (
-            <span>
-              <span className="text-muted font-weight-light">
-                currently borrow by:
-              </span>
-              {curBorrowShare.borrower.getNameAndEmail()}
-            </span>
-          )}
-      </div>
-      <div className="text-right">{content}</div>
-    </div>
-  );
+  return <div className="post-item-foot">{content}</div>;
 }
 InPostItemFooting.propTypes = {
   postId: PropTypes.string.isRequired,

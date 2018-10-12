@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
-import { InPostAllHistoryList } from "./inPostAllHistoryList";
+import { InPostAllHistoryList } from "./inPost_allHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";

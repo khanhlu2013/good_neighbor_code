@@ -27,7 +27,6 @@ function OutPostItem(props) {
   };
 
   const curBorrowShare = post.curBorrowShare;
-  const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
   return (
     <div id="outPost-item-react" className="post-item shadow-box">
@@ -36,17 +35,7 @@ function OutPostItem(props) {
         dateCreate={post.dateCreate}
       />
       <PostItemBody post={post} />
-      <div className="text-left">
-        {borrower && (
-          <span>
-            <span className="text-muted font-weight-light">
-              currently borrow by:{" "}
-            </span>
-            {borrower.getNameAndEmail()}
-          </span>
-        )}
-      </div>
-      <div className="text-right">
+      <div className="post-item-foot">
         {post.unawareReturnShareLatest && (
           <span>
             {isAwaringReturn ? (

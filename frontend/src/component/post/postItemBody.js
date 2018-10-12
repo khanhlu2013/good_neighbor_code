@@ -9,6 +9,8 @@ import "./postItemBody.css";
 function PostItemBody(props) {
   const { post } = props;
   const { title, description } = post;
+  const curBorrowShare = post.curBorrowShare;
+  const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
   return (
     <div className="post-item-body">
@@ -20,6 +22,16 @@ function PostItemBody(props) {
         <span className="text-secondary font-weight-light">description: </span>
         {description}
       </div>
+      {borrower && (
+        <div className="text-left mt-1">
+          <mark>
+            <span className="text-muted font-weight-light">
+              currently borrow by:{" "}
+            </span>
+            {borrower.getNameAndEmail()}
+          </mark>
+        </div>
+      )}
       {post.requestShares.length !== 0 && (
         <PostItemRequestList shares={post.requestShares} />
       )}

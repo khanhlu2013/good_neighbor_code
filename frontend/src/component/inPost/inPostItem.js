@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { InPostItemFooting } from "./inPostItem_footing";
 import { PostItemBody } from "../post/postItemBody";
-import { InPostItemHead } from "./inPostItemHead";
+import { InPostItemHead } from "./inPostItem_head";
 
 function InPostItem(props) {
   const {
