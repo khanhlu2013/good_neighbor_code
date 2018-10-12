@@ -14,7 +14,11 @@ function OutPostItemHead(props) {
   return (
     <div className="post-item-head">
       <div className="post-item-head-left-side">
-        <button onClick={onEditPostClicked} className="btn btn-sm btn-primary">
+        <button
+          id="outPostItem-editBtn-react"
+          onClick={onEditPostClicked}
+          className="btn btn-sm btn-primary"
+        >
           edit post
         </button>
       </div>

@@ -267,5 +267,4 @@ css for post item
 
 ---
 
-logout 
-
+add an auth test. 

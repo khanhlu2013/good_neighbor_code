@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -114,7 +114,11 @@ class App extends Component {
       if (process.env.NODE_ENV === "production") {
         appContent = <PublicApp />;
       } else {
-        appContent = <h1 className="text-center">App Public</h1>;
+        appContent = (
+          <h1 id="appPublic-react" className="text-center">
+            App Public
+          </h1>
+        );
       }
       // appContent = <PublicApp />;
       // appContent = <h1 className="text-center">App Public</h1>;
@@ -130,7 +134,7 @@ class App extends Component {
       );
     }
     return (
-      <Fragment>
+      <div id="app-react">
         <AppHeader
           loginUser={loginUser}
           onUserLogOut={this.onUserLogOut}
@@ -148,7 +152,7 @@ class App extends Component {
           )}
           {appContent}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

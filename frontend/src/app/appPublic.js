@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import { PlayList } from "./playList";
 
 function PublicApp() {
   return (
-    <Fragment>
+    <div id="appPublic-react">
       <PlayList />
-    </Fragment>
+    </div>
   );
 }
 

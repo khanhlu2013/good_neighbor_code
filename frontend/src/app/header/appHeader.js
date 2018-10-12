@@ -61,6 +61,7 @@ class AppHeader extends Component {
             <LoadingIcon text="logout" />
           ) : (
             <button
+              id="appLogOutBtn-react"
               onClick={this.onLogoutClicked}
               className="btn btn-sm btn-warning app-header-logout-btn"
             >
