@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "../post/postTabBar.css";
-import "../post/postTabItem.css";
+import "../post/post_tabItem_customize.css";
 import { TabItem } from "../../util/tabItem";
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
@@ -36,7 +36,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <div className="tab-bar post-tab-bar">
+    <div className="tab-bar">
       {_generateTabItem(
         "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,

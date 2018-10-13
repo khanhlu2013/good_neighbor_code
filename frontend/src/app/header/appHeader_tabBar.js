@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./appHeader_tabItem.css";
+import "./appHeader_tabItem_customize.css";
 import "./appHeader_tabBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";

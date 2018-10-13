@@ -38,7 +38,7 @@ function AppHeader(props) {
   return (
     <div className="app-header-banner">
       <div className="app-header app-container">
-        <div className="appHeader-appIcon tab-bar-height">Good Neighbor</div>
+        <div className="appHeader-appIcon">Good Neighbor</div>
         {content}
       </div>
     </div>

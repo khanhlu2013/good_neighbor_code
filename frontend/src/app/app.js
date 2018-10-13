@@ -26,7 +26,7 @@ import "./app.css";
 import "./reactTab.css";
 import "../css/shadowBox.css";
 import "../component/post/postItem.css";
-import "../util/tabBar.css";
+import "./tabBar.css";
 import "../util/tabPanel.css";
 import "../css/myBootstrap.css";
 import { PrivateApp } from "./appPrivate";
