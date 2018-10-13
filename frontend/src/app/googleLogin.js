@@ -7,11 +7,11 @@ function GoogleLogin(props) {
   };
 
   return (
-    <Fragment>
-      <button onClick={onLoginClicked} className="btn btn-sm btn-success">
+    <div className="appHeader-googleLogIn">
+      <button onClick={onLoginClicked} className="btn btn-success">
         Google login
       </button>
-    </Fragment>
+    </div>
   );
 }
 

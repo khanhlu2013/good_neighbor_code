@@ -37,7 +37,7 @@ class ProfileManagement extends Component {
               <button
                 id="appLogOutBtn-react"
                 onClick={this.onLogoutClicked}
-                className="btn btn-warning app-header-logout-btn"
+                className="btn btn-warning"
               >
                 logout
               </button>

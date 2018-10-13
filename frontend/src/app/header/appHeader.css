@@ -3,28 +3,22 @@
   background-color: rgb(36, 54, 65);
 }
 
-.app-header-height {
-  height: 60px;
-}
-
 .app-header {
   display: flex;
-  align-items: flex-end;
   color: white;
 }
 
-.appHeader-appIconContainer-leftSide {
+.appHeader-appIcon {
   display: flex;
   flex-grow: 1;
   align-items: center;
-}
 
-.appHeader-appIcon {
   font-weight: lighter;
   font-size: 1.3em;
   user-select: none;
 }
 
-.app-header-logout-btn {
-  margin-left: 5px;
+.appHeader-googleLogIn {
+  display: flex;
+  align-items: center;
 }

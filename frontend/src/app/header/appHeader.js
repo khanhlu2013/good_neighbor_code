@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { nullOrRequiredValidator } from "../../util";
-import { AppHeaderTabBar } from "./appHeaderTabBar";
+import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
 import "./appHeader.css";
@@ -36,11 +36,9 @@ function AppHeader(props) {
     );
   }
   return (
-    <div className="app-header-banner app-header-height">
+    <div className="app-header-banner">
       <div className="app-header app-container">
-        <div className="appHeader-appIconContainer-leftSide app-header-height">
-          <div className="appHeader-appIcon">Good Neighbor</div>
-        </div>
+        <div className="appHeader-appIcon tab-bar-height">Good Neighbor</div>
         {content}
       </div>
     </div>

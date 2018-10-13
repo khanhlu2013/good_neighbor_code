@@ -62,7 +62,8 @@ function TabItem(props) {
         className={className({
           "tab-item-underline": true,
           ...(underlineSelectCssClass !== null && {
-            [underlineSelectCssClass]: isSelect
+            [underlineSelectCssClass]: isSelect,
+            "tab-item-underline-responsive": isCssResponsive
           })
         })}
       />
