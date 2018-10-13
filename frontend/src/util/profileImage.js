@@ -18,8 +18,8 @@ class ProfileImage extends Component {
       <img
         src={profileImageUrl}
         alt={loginUser.getNameAndEmail()}
-        width="22"
-        height="22"
+        width="33"
+        height="33"
         onError={this.onImageError}
         title={loginUser.getNameAndEmail()}
       />

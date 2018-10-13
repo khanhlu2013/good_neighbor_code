@@ -9,15 +9,25 @@ import { TabItem } from "../../util/tabItem";
 
 function AppHeaderTabBar(props) {
   const {
-    onInPostNav,
-    onOutPostNav,
-    onConnectionNav,
-    onProfileNav,
+    onAppTabChange,
     selectTab,
     inPostNoteCount,
     outPostNoteCount,
     connectionNoteCount
   } = props;
+
+  const onInPostNav = e => {
+    onAppTabChange(AppTabEnum.INPOST);
+  };
+  const onOutPostNav = e => {
+    onAppTabChange(AppTabEnum.OUTPOST);
+  };
+  const onConnectionNav = e => {
+    onAppTabChange(AppTabEnum.CONNECTION);
+  };
+  const onProfileNav = e => {
+    onAppTabChange(AppTabEnum.PROFILE);
+  };
 
   return (
     <div className="tab-bar">
@@ -51,7 +61,7 @@ function AppHeaderTabBar(props) {
         "tabSelector-profile-react",
         selectTab === AppTabEnum.PROFILE,
         "me",
-        "user-friends",
+        "user",
         onProfileNav,
         0
       )}
@@ -86,10 +96,7 @@ function _generateTabItem(
   );
 }
 AppHeaderTabBar.propTypes = {
-  onInPostNav: PropTypes.func.isRequired,
-  onOutPostNav: PropTypes.func.isRequired,
-  onConnectionNav: PropTypes.func.isRequired,
-  onProfileNav: PropTypes.func.isRequired,
+  onAppTabChange: PropTypes.func.isRequired,
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),

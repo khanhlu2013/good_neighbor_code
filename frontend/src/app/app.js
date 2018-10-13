@@ -71,20 +71,8 @@ class App extends Component {
     this.setState({ loginUser });
   };
 
-  onInPostNav = () => {
-    this.setState({ selectTab: AppTabEnum.INPOST });
-  };
-
-  onOutPostNav = () => {
-    this.setState({ selectTab: AppTabEnum.OUTPOST });
-  };
-
-  onConnectionNav = () => {
-    this.setState({ selectTab: AppTabEnum.CONNECTION });
-  };
-
-  onProfileNav = () => {
-    this.setState({ selectTab: AppTabEnum.PROFILE });
+  onAppTabChange = selectTab => {
+    this.setState({ selectTab });
   };
 
   onInPostNotify = count => {
@@ -142,10 +130,7 @@ class App extends Component {
         <AppHeader
           loginUser={loginUser}
           onUserDidLogOut={this.onUserDidLogOut}
-          onInPostNav={this.onInPostNav}
-          onOutPostNav={this.onOutPostNav}
-          onConnectionNav={this.onConnectionNav}
-          onProfileNav={this.onProfileNav}
+          onAppTabChange={this.onAppTabChange}
           selectTab={selectTab}
           inPostNoteCount={inPostNoteCount}
           outPostNoteCount={outPostNoteCount}
