@@ -8,8 +8,6 @@ import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderTabBar } from "./appHeaderTabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
-import { AppHeaderProfileImageMe } from "./appHeaderProfileImageMe";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./appHeader.css";
 
 class AppHeader extends Component {
@@ -32,6 +30,7 @@ class AppHeader extends Component {
       onInPostNav,
       onOutPostNav,
       onConnectionNav,
+      onProfileNav,
       selectTab,
       inPostNoteCount,
       outPostNoteCount,
@@ -45,30 +44,16 @@ class AppHeader extends Component {
       content = <GoogleLogin />;
     } else {
       content = (
-        <div className="app-header-right-side">
-          <AppHeaderTabBar
-            onInPostNav={onInPostNav}
-            onOutPostNav={onOutPostNav}
-            onConnectionNav={onConnectionNav}
-            selectTab={selectTab}
-            inPostNoteCount={inPostNoteCount}
-            outPostNoteCount={outPostNoteCount}
-            connectionNoteCount={connectionNoteCount}
-          />
-          <AppHeaderProfileImageMe loginUser={loginUser} />
-
-          {this.state.logingOut ? (
-            <LoadingIcon text="logout" />
-          ) : (
-            <button
-              id="appLogOutBtn-react"
-              onClick={this.onLogoutClicked}
-              className="btn btn-sm btn-warning app-header-logout-btn"
-            >
-              <FontAwesomeIcon icon="power-off" size="lg" />
-            </button>
-          )}
-        </div>
+        <AppHeaderTabBar
+          onInPostNav={onInPostNav}
+          onOutPostNav={onOutPostNav}
+          onConnectionNav={onConnectionNav}
+          onProfileNav={onProfileNav}
+          selectTab={selectTab}
+          inPostNoteCount={inPostNoteCount}
+          outPostNoteCount={outPostNoteCount}
+          connectionNoteCount={connectionNoteCount}
+        />
       );
     }
     return (
@@ -89,6 +74,7 @@ AppHeader.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
+  onProfileNav: PropTypes.func.isRequired,
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),

@@ -12,6 +12,7 @@ function AppHeaderTabBar(props) {
     onInPostNav,
     onOutPostNav,
     onConnectionNav,
+    onProfileNav,
     selectTab,
     inPostNoteCount,
     outPostNoteCount,
@@ -45,6 +46,14 @@ function AppHeaderTabBar(props) {
         "user-friends",
         onConnectionNav,
         connectionNoteCount
+      )}
+      {_generateTabItem(
+        "tabSelector-profile-react",
+        selectTab === AppTabEnum.PROFILE,
+        "me",
+        "user-friends",
+        onProfileNav,
+        0
       )}
     </div>
   );
@@ -80,6 +89,7 @@ AppHeaderTabBar.propTypes = {
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
+  onProfileNav: PropTypes.func.isRequired,
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),

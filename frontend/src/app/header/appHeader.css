@@ -25,11 +25,6 @@
   user-select: none;
 }
 
-.app-header-right-side {
-  display: flex;
-  align-items: flex-end;
-}
-
 .app-header-logout-btn {
   margin-left: 5px;
 }

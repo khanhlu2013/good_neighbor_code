@@ -13,7 +13,6 @@ import {
   faUser, //profile image replacer
   faGlobe, //in posts
   faUserFriends, //friends or my networks
-  faPowerOff, //logout
   faHandHoldingHeart, //borrow (work both for in and out post)
   faHistory,
   faCheck, //approve : when request is being approve, could also use for isActivePost.
@@ -47,7 +46,6 @@ library.add(
   faUser,
   faGlobe,
   faUserFriends,
-  faPowerOff,
   faHandHoldingHeart,
   faHistory,
   faCheck,
@@ -83,6 +81,10 @@ class App extends Component {
 
   onConnectionNav = () => {
     this.setState({ selectTab: AppTabEnum.CONNECTION });
+  };
+
+  onProfileNav = () => {
+    this.setState({ selectTab: AppTabEnum.PROFILE });
   };
 
   onInPostNotify = count => {
@@ -131,6 +133,7 @@ class App extends Component {
           onConnectionNotify={this.onConnectionNotify}
           onInPostNotify={this.onInPostNotify}
           onOutPostNotify={this.onOutPostNotify}
+          onUserDidLogOut={this.onUserDidLogOut}
         />
       );
     }
@@ -142,6 +145,7 @@ class App extends Component {
           onInPostNav={this.onInPostNav}
           onOutPostNav={this.onOutPostNav}
           onConnectionNav={this.onConnectionNav}
+          onProfileNav={this.onProfileNav}
           selectTab={selectTab}
           inPostNoteCount={inPostNoteCount}
           outPostNoteCount={outPostNoteCount}

@@ -7,6 +7,7 @@ import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
+import { ProfileManagement } from "../component/profile/profile_management";
 
 function PrivateApp(props) {
   const {
@@ -14,7 +15,8 @@ function PrivateApp(props) {
     selectTab,
     onConnectionNotify,
     onInPostNotify,
-    onOutPostNotify
+    onOutPostNotify,
+    onUserDidLogOut
   } = props;
 
   return (
@@ -53,6 +55,17 @@ function PrivateApp(props) {
           onConnectionNotify={onConnectionNotify}
         />
       </div>
+      <div
+        className={className({
+          "tab-panel": true,
+          "tab-panel-hide": selectTab !== AppTabEnum.PROFILE
+        })}
+      >
+        <ProfileManagement
+          loginUser={loginUser}
+          onUserDidLogOut={onUserDidLogOut}
+        />
+      </div>
     </div>
   );
 }
@@ -62,7 +75,8 @@ PrivateApp.propTypes = {
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   onConnectionNotify: PropTypes.func.isRequired,
   onInPostNotify: PropTypes.func.isRequired,
-  onOutPostNotify: PropTypes.func.isRequired
+  onOutPostNotify: PropTypes.func.isRequired,
+  onUserDidLogOut: PropTypes.func.isRequired
 };
 
 export { PrivateApp };
