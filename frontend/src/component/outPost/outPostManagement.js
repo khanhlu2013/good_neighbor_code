@@ -246,56 +246,65 @@ class OutPostManagement extends Component {
 
     return (
       <div>
-        <OutPostTabBar
-          selectTab={selectTab}
-          onTabChange={this.onTabChange}
-          onCreateNewPost={this.onOpenCrudDialog_create}
-          allCount={posts.length}
-          requestCount={requestNotePosts.length}
-          borrowCount={borrowPosts.length}
-          returnCount={returnNotePosts.length}
-          historyCount={this.state.returnShares.length}
-        />
+        <div className="post-tabBar-banner">
+          <div className="app-container">
+            <OutPostTabBar
+              selectTab={selectTab}
+              onTabChange={this.onTabChange}
+              onCreateNewPost={this.onOpenCrudDialog_create}
+              allCount={posts.length}
+              requestCount={requestNotePosts.length}
+              borrowCount={borrowPosts.length}
+              returnCount={returnNotePosts.length}
+              historyCount={this.state.returnShares.length}
+            />
+          </div>
+        </div>
 
-        <div
-          className={className({
-            "tab-panel": true,
-            "tab-panel-hide": selectTab !== OutPostTabEnum.ALL
-          })}
-        >
-          {this._genPostList("outPostList-all-react", posts)}
-        </div>
-        <div
-          className={className({
-            "tab-panel": true,
-            "tab-panel-hide": selectTab !== OutPostTabEnum.REQUEST
-          })}
-        >
-          {this._genPostList("outPostList-requestNote-react", requestNotePosts)}
-        </div>
-        <div
-          className={className({
-            "tab-panel": true,
-            "tab-panel-hide": selectTab !== OutPostTabEnum.BORROW
-          })}
-        >
-          {this._genPostList("outPostList-borrow-react", borrowPosts)}
-        </div>
-        <div
-          className={className({
-            "tab-panel": true,
-            "tab-panel-hide": selectTab !== OutPostTabEnum.RETURN
-          })}
-        >
-          {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
-        </div>
-        <div
-          className={className({
-            "tab-panel": true,
-            "tab-panel-hide": selectTab !== OutPostTabEnum.HISTORY
-          })}
-        >
-          <OutPostAllHistoryList shares={this.state.returnShares} />
+        <div className="app-container">
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== OutPostTabEnum.ALL
+            })}
+          >
+            {this._genPostList("outPostList-all-react", posts)}
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== OutPostTabEnum.REQUEST
+            })}
+          >
+            {this._genPostList(
+              "outPostList-requestNote-react",
+              requestNotePosts
+            )}
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== OutPostTabEnum.BORROW
+            })}
+          >
+            {this._genPostList("outPostList-borrow-react", borrowPosts)}
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== OutPostTabEnum.RETURN
+            })}
+          >
+            {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== OutPostTabEnum.HISTORY
+            })}
+          >
+            <OutPostAllHistoryList shares={this.state.returnShares} />
+          </div>
         </div>
       </div>
     );

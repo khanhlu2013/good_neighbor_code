@@ -277,5 +277,7 @@ understand my css and make master tab bigger. kill the logout button. confusing.
 align item vs align content flex. my god
 ---
 less sass tab-bar-height inheritance 52px
+min-width: 460px;
+class app-container : this is such a bad name. this should be a center-with padding. 
 ---
 make my bottom gap a little bigger

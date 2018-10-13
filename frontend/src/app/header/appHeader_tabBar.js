@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./appHeader_tabItem.css";
+import "./appHeader_tabBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
@@ -30,7 +31,7 @@ function AppHeaderTabBar(props) {
   };
 
   return (
-    <div className="tab-bar">
+    <div className="tab-bar appHeader-tabBar">
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
@@ -78,21 +79,23 @@ function _generateTabItem(
   noteCount
 ) {
   return (
-    <TabItem
-      id={id}
-      isSelect={isSelect}
-      caption={caption}
-      iconName={iconName}
-      onSelect={onSelect}
-      notificationItem={
-        <NotificationItem count={noteCount} isImportant={true} />
-      }
-      selectCssClass="app-header-tab-item-select"
-      unSelectCssClass="app-header-tab-item-unSelect"
-      hoverCssClass="app-header-tab-item-hover"
-      underlineSelectCssClass="app-header-tab-item-underline-select"
-      isCssResponsive={true}
-    />
+    <div className="app-header-tab-item-container">
+      <TabItem
+        id={id}
+        isSelect={isSelect}
+        caption={caption}
+        iconName={iconName}
+        onSelect={onSelect}
+        notificationItem={
+          <NotificationItem count={noteCount} isImportant={true} />
+        }
+        selectCssClass="app-header-tab-item-select"
+        unSelectCssClass="app-header-tab-item-unSelect"
+        hoverCssClass="app-header-tab-item-hover"
+        underlineSelectCssClass="app-header-tab-item-underline-select"
+        isCssResponsive={true}
+      />
+    </div>
   );
 }
 AppHeaderTabBar.propTypes = {

@@ -36,7 +36,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <div className="tab-bar post-tab-bar shadow-box">
+    <div className="tab-bar post-tab-bar">
       {_generateTabItem(
         "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,

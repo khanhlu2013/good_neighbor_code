@@ -140,8 +140,8 @@ class App extends Component {
           {loginUser === null && (
             <BackdoorLogin onUserDidLogIn={this.onUserDidLogIn} />
           )}
-          {appContent}
         </div>
+        {appContent}
       </div>
     );
   }

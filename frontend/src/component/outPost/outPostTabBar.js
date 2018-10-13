@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import "../post/postTabBar.css";
 import "../post/postTabItem.css";
+import "./outPostTabBar.css";
 import { TabItem } from "../../util/tabItem";
 import { OutPostTabEnum } from "./outPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
@@ -40,7 +41,7 @@ function OutPostTabBar(props) {
   };
 
   return (
-    <div className="tab-bar post-tab-bar shadow-box">
+    <div className="tab-bar post-tab-bar">
       {_generateTabItem(
         "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
@@ -99,7 +100,7 @@ function OutPostTabBar(props) {
       <button
         id="createPostBtn-react"
         onClick={onNewPostClicked}
-        className="btn btn-sm btn-success"
+        className="btn btn-success new-post-btn"
       >
         new
       </button>

@@ -1,5 +1,8 @@
-.post-tab-bar {
+.post-tabBar-banner {
   background-color: antiquewhite;
-  margin-top: 2px;
-  padding-top: 3px;
+  min-width: 460px;
+}
+
+.post-tab-bar {
+  padding-top: 5px;
 }
