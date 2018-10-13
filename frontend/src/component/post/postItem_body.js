@@ -25,9 +25,7 @@ function PostItemBody(props) {
       {borrower && (
         <div className="text-left mt-1">
           <mark>
-            <span className="text-muted font-weight-light">
-              currently borrow by:{" "}
-            </span>
+            <span className="text-muted font-weight-light">borrowing by: </span>
             {borrower.getNameAndEmail()}
           </mark>
         </div>

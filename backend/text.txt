@@ -274,4 +274,8 @@ how do i log my bug? into a file?
 ----
 understand my css and make master tab bigger. kill the logout button. confusing. 
 ---
+align item vs align content flex. my god
+---
+app-header-right-side kill this. this will be just the tab bar. 
+---
 make my bottom gap a little bigger

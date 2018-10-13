@@ -72,9 +72,11 @@ class AppHeader extends Component {
       );
     }
     return (
-      <div className="app-header-banner">
+      <div className="app-header-banner app-header-height">
         <div className="app-header app-container">
-          <div className="app-header-left-side">Good Neighbor</div>
+          <div className="appHeader-appIconContainer-leftSide app-header-height">
+            <div className="appHeader-appIcon">Good Neighbor</div>
+          </div>
           {content}
         </div>
       </div>
