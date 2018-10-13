@@ -65,11 +65,11 @@ class App extends Component {
     connectionNoteCount: null
   };
 
-  onUserLogOut = () => {
+  onUserDidLogOut = () => {
     this.setState({ loginUser: null });
   };
 
-  onUserLogIn = loginUser => {
+  onUserDidLogIn = loginUser => {
     this.setState({ loginUser });
   };
 
@@ -138,7 +138,7 @@ class App extends Component {
       <div id="app-react">
         <AppHeader
           loginUser={loginUser}
-          onUserLogOut={this.onUserLogOut}
+          onUserDidLogOut={this.onUserDidLogOut}
           onInPostNav={this.onInPostNav}
           onOutPostNav={this.onOutPostNav}
           onConnectionNav={this.onConnectionNav}
@@ -149,7 +149,7 @@ class App extends Component {
         />
         <div className="app-container">
           {loginUser === null && (
-            <BackdoorLogin onUserLogIn={this.onUserLogIn} />
+            <BackdoorLogin onUserDidLogIn={this.onUserDidLogIn} />
           )}
           {appContent}
         </div>

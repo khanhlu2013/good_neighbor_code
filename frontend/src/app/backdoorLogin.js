@@ -42,7 +42,7 @@ class BackdoorLogin extends Component {
         const user = await API.backDoorLogin(this.state.email, this.state.name);
 
         this.setState({ isSubmitClicked: false });
-        this.props.onUserLogIn(user);
+        this.props.onUserDidLogIn(user);
       })().catch(e => {
         this.setState({ isAjaxing: false, isNameRequire: true });
       });
@@ -138,7 +138,7 @@ class BackdoorLogin extends Component {
   }
 }
 BackdoorLogin.propTypes = {
-  onUserLogIn: PropTypes.func.isRequired
+  onUserDidLogIn: PropTypes.func.isRequired
 };
 
 export { BackdoorLogin };

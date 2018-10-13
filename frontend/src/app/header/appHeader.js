@@ -22,7 +22,7 @@ class AppHeader extends Component {
     (async () => {
       await API.logout();
       this.setState({ logingOut: false });
-      this.props.onUserLogOut();
+      this.props.onUserDidLogOut();
     })();
   };
 
@@ -85,7 +85,7 @@ class AppHeader extends Component {
 }
 AppHeader.propTypes = {
   loginUser: PropTypes.instanceOf(User),
-  onUserLogOut: PropTypes.func.isRequired,
+  onUserDidLogOut: PropTypes.func.isRequired,
   onInPostNav: PropTypes.func.isRequired,
   onOutPostNav: PropTypes.func.isRequired,
   onConnectionNav: PropTypes.func.isRequired,
