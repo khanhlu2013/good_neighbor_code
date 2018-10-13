@@ -105,13 +105,14 @@ class App extends Component {
         appContent = <PublicApp />;
       } else {
         appContent = (
-          <h1 id="appPublic-react" className="text-center">
+          <h1 id="appPublic-react" className="text-center app-container">
             App Public
           </h1>
         );
       }
-      // appContent = <PublicApp />;
-      // appContent = <h1 className="text-center">App Public</h1>;
+
+      appContent = <PublicApp />;
+      // appContent = <h1 id="appPublic-react" className="text-center app-container">App Public</h1>;
     } else {
       appContent = (
         <PrivateApp

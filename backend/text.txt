@@ -253,28 +253,36 @@ work on the tab now, kill the react tab.
 
 ---
 . back end validate: null or require image url
-
-
-.app-header-banner {
-  width: 100%;
-  min-width: 460px;
-  background-color: rgb(36, 54, 65);
-}
-
-.app-container {
-  max-width: 700px;
-  min-width: 460px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
 ---
 how do i log my bug? into a file?
+---
+how do i catch 401 error ?
 ----
 understand my css and make master tab bigger. kill the logout button. confusing. 
 ---
 align item vs align content flex. my god
 ---
-less sass tab-bar-height inheritance 52px
-min-width: 460px;
-class app-container : this is such a bad name. this should be a center-with padding. 
----
+
+less sass css inheritance
+
+  height: 57px
+    .tab-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 57px;
+    }
+    .appHeader-appIcon {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+
+      font-weight: lighter;
+      font-size: 1.3em;
+      user-select: none;
+      height: 57px;
+    }
+
+  min-width: 460px;
+
+  ---

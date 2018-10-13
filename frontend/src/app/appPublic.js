@@ -4,7 +4,7 @@ import { PlayList } from "./playList";
 
 function PublicApp() {
   return (
-    <div id="appPublic-react">
+    <div id="appPublic-react" className="app-container">
       <PlayList />
     </div>
   );

@@ -171,7 +171,10 @@ class ConnectionManagement extends Component {
     }
 
     return (
-      <div id="ConnectionManagement-react" className="bg-white">
+      <div
+        id="ConnectionManagement-react"
+        className="app-container shadow-box bg-white"
+      >
         {htmlContent}
       </div>
     );

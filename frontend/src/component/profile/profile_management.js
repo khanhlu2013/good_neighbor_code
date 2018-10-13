@@ -23,7 +23,7 @@ class ProfileManagement extends Component {
   render() {
     const { loginUser } = this.props;
     return (
-      <div>
+      <div className="app-container">
         <div className="text-center mt-4 p-2 shadow-box">
           <div>
             <ProfileImage loginUser={loginUser} />
