@@ -242,8 +242,6 @@ work on the tab now, kill the react tab.
 ---
 . organize impost folder
 ---
-. remove reactTab.css eventually
----
 . rename the whole thing into tab then. fuck the nav. just pick one. any is fine. it is the same freaking thing. 
 
 . consider changing the header-nav-item into nav-item, 

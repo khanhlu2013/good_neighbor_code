@@ -23,7 +23,6 @@ import {
 import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";
 import "./app.css";
-import "./reactTab.css";
 import "../css/shadowBox.css";
 import "../component/post/postItem.css";
 import "./tabBar.css";
