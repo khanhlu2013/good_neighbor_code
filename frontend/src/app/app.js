@@ -10,7 +10,7 @@ import {
   faPause, //pause youtube video
   faClock, //youtube video duration
   faBriefcase, //my post
-  faUser, //profile image replacer
+  faUserCog, //profile image replacer
   faGlobe, //in posts
   faUserFriends, //friends or my networks
   faHandHoldingHeart, //borrow (work both for in and out post)
@@ -42,7 +42,7 @@ library.add(
   faPause,
   faClock,
   faBriefcase,
-  faUser,
+  faUserCog,
   faGlobe,
   faUserFriends,
   faHandHoldingHeart,

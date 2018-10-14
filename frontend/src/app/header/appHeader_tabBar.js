@@ -62,7 +62,7 @@ function AppHeaderTabBar(props) {
         "tabSelector-profile-react",
         selectTab === AppTabEnum.PROFILE,
         "me",
-        "user",
+        "user-cog",
         onProfileNav,
         0
       )}
