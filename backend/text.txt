@@ -272,3 +272,5 @@ less sass css inheritance
   min-width: 460px;
 
   ---
+
+  customize for tab-ite of post should be share for connection too

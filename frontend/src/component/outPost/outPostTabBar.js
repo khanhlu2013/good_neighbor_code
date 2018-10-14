@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "../post/postTabBar.css";
 import "../post/post_tabItem_customize.css";
 import "./outPostTabBar.css";
 import { TabItem } from "../../util/tabItem";

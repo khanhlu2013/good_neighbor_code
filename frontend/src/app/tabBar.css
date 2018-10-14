@@ -4,3 +4,8 @@
   justify-content: space-between;
   height: 57px;
 }
+
+.tabBar-banner {
+  background-color: antiquewhite;
+  min-width: 460px;
+}

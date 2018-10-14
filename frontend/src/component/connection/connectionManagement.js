@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import className from "classnames";
 
 import { SearchByEmail } from "./searchByEmail.js";
 import { ConnectionFriendTable } from "./connectionTable_friend.js";
@@ -8,12 +9,15 @@ import { ConnectionDenyTable } from "./connectionTable_deny.js";
 import { ConnectionInTable } from "./connectionTable_in.js";
 import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util/loadingIcon.js";
+import { ConnectionTabEnum } from "./connection_tabEnum.js";
+import { ConnectionTabBar } from "./connection_tabBar.js";
 
 class ConnectionManagement extends Component {
   state = {
     connections: null,
     isCreatingConnection: false,
-    updatingConnectionIds: []
+    updatingConnectionIds: [],
+    selectTab: ConnectionTabEnum.FRIEND
   };
 
   static countFriendRequest(connections, loginUserId) {
@@ -91,93 +95,136 @@ class ConnectionManagement extends Component {
     })();
   };
 
-  render() {
+  onTabChange = selectTab => {
+    this.setState({ selectTab });
+  };
+
+  _getConnectionContent = connections => {
     let loginUserId = this.props.loginUser.id;
-    let { connections, updatingConnectionIds } = this.state;
+    let { updatingConnectionIds, selectTab } = this.state;
 
-    let htmlContent;
+    const friends = connections.filter(
+      connection => connection.isApproveByFrom && connection.isApproveByTo
+    );
+    const inFriends = connections.filter(
+      connection =>
+        connection.to.id === loginUserId &&
+        connection.isApproveByFrom &&
+        connection.isApproveByTo === undefined
+    );
+    const outFriends = connections.filter(
+      connection =>
+        connection.from.id === loginUserId &&
+        connection.isApproveByFrom &&
+        connection.isApproveByTo === undefined
+    );
+    const rejectedFriends = connections.filter(
+      connection =>
+        (connection.to.id === loginUserId &&
+          connection.isApproveByTo === false) ||
+        (connection.from.id === loginUserId &&
+          connection.isApproveByFrom === false)
+    );
 
-    if (connections !== null) {
-      const friends = connections.filter(
-        connection => connection.isApproveByFrom && connection.isApproveByTo
-      );
-      const inFriends = connections.filter(
-        connection =>
-          connection.to.id === loginUserId &&
-          connection.isApproveByFrom &&
-          connection.isApproveByTo === undefined
-      );
-      const outFriends = connections.filter(
-        connection =>
-          connection.from.id === loginUserId &&
-          connection.isApproveByFrom &&
-          connection.isApproveByTo === undefined
-      );
-      const rejectedFriends = connections.filter(
-        connection =>
-          (connection.to.id === loginUserId &&
-            connection.isApproveByTo === false) ||
-          (connection.from.id === loginUserId &&
-            connection.isApproveByFrom === false)
-      );
-
-      htmlContent = (
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm">
-              <ConnectionFriendTable
-                connections={friends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-              <ConnectionOutTable
-                connections={outFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-              <ConnectionDenyTable
-                connections={rejectedFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </div>
-            <div className="col-sm">
-              <SearchByEmail
-                loginUser={this.props.loginUser}
-                connections={connections}
-                createConnectionCb={this.onCreateConnection}
-                isCreatingConnection={this.state.isCreatingConnection}
-              />
-              <hr />
-              <ConnectionInTable
-                connections={inFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </div>
+    return (
+      <div>
+        <div className="tabBar-banner">
+          <div className="app-container">
+            <ConnectionTabBar
+              selectTab={selectTab}
+              onTabChange={this.onTabChange}
+            />
           </div>
         </div>
-      );
+
+        <div className="app-container">
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.FRIEND
+            })}
+          >
+            <ConnectionFriendTable
+              connections={friends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.FRIENDREQUEST
+            })}
+          >
+            <ConnectionInTable
+              connections={inFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </div>
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.MYREQUEST
+            })}
+          >
+            <ConnectionOutTable
+              connections={outFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </div>
+
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.DENY
+            })}
+          >
+            <ConnectionDenyTable
+              connections={rejectedFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </div>
+
+          <div
+            className={className({
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.SEARCH
+            })}
+          >
+            <SearchByEmail
+              loginUser={this.props.loginUser}
+              connections={connections}
+              createConnectionCb={this.onCreateConnection}
+              isCreatingConnection={this.state.isCreatingConnection}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  render() {
+    let { connections } = this.state;
+    let content;
+
+    if (connections !== null) {
+      content = this._getConnectionContent(connections);
     } else {
-      htmlContent = (
+      content = (
         <h1 className="text-center">
           <LoadingIcon text="loading" />
         </h1>
       );
     }
 
-    return (
-      <div
-        id="ConnectionManagement-react"
-        className="app-container shadow-box bg-white"
-      >
-        {htmlContent}
-      </div>
-    );
+    return <div id="ConnectionManagement-react">{content}</div>;
   }
 }
 

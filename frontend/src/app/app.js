@@ -17,7 +17,11 @@ import {
   faHistory,
   faCheck, //approve : when request is being approve, could also use for isActivePost.
   faQuestion, //request: making a request from inPost
-  faRetweet
+  faRetweet,
+  faSignOutAlt, //connection - my request
+  faSignInAlt, //connection - friend request
+  faSearch,
+  faUserSlash //deny user list
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PublicApp } from "./appPublic";
@@ -49,7 +53,11 @@ library.add(
   faHistory,
   faCheck,
   faQuestion,
-  faRetweet
+  faRetweet,
+  faSignOutAlt,
+  faSignInAlt,
+  faSearch,
+  faUserSlash
 );
 
 class App extends Component {
