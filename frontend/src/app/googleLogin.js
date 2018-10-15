@@ -7,11 +7,9 @@ function GoogleLogin(props) {
   };
 
   return (
-    <div className="appHeader-googleLogIn">
-      <button onClick={onLoginClicked} className="btn btn-success">
-        Google login
-      </button>
-    </div>
+    <button onClick={onLoginClicked} className="btn btn-success">
+      Google login
+    </button>
   );
 }
 

@@ -23,3 +23,8 @@
   display: flex;
   align-items: center;
 }
+
+.appHeader-authCheck {
+  display: flex;
+  align-items: center;
+}

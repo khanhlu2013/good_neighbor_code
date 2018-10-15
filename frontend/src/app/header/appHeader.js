@@ -21,9 +21,17 @@ function AppHeader(props) {
 
   let content;
   if (loginUser === undefined) {
-    content = <LoadingIcon text="loading" />;
+    content = (
+      <div className="appHeader-authCheck">
+        <LoadingIcon text="loading" />
+      </div>
+    );
   } else if (loginUser === null) {
-    content = <GoogleLogin />;
+    content = (
+      <div className="appHeader-googleLogIn">
+        <GoogleLogin />
+      </div>
+    );
   } else {
     content = (
       <AppHeaderTabBar
