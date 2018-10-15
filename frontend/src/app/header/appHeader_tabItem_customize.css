@@ -12,7 +12,12 @@
 .app-header-tab-item-underline-select {
   background-color: white;
 }
-
-.app-header-tab-item-container {
+.app-header-tab-item-container-first {
+  margin-right: 20px;
+}
+.app-header-tab-item-container-last {
+  margin-left: 20px;
+}
+.app-header-tab-item-container-middle {
   margin: 0 20px;
 }

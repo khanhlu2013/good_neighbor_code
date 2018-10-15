@@ -1,6 +1,6 @@
 /* share */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .tab-item-caption-responsive {
     display: none;
   }
@@ -27,7 +27,6 @@
   align-items: center;
   user-select: none;
   cursor: pointer;
-  /* margin: 0 15px; */
 }
 
 .tab-item-icon {

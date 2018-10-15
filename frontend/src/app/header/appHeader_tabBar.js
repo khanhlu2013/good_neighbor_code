@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./appHeader_tabItem_customize.css";
-import "./appHeader_tabBar.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
@@ -31,14 +30,15 @@ function AppHeaderTabBar(props) {
   };
 
   return (
-    <div className="tab-bar appHeader-tabBar">
+    <div className="tab-bar">
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
         "friend posts",
         "globe",
         onInPostNav,
-        inPostNoteCount
+        inPostNoteCount,
+        "app-header-tab-item-container-first"
       )}
 
       {_generateTabItem(
@@ -47,7 +47,8 @@ function AppHeaderTabBar(props) {
         "my posts",
         "briefcase",
         onOutPostNav,
-        outPostNoteCount
+        outPostNoteCount,
+        "app-header-tab-item-container-middle"
       )}
 
       {_generateTabItem(
@@ -56,15 +57,18 @@ function AppHeaderTabBar(props) {
         "friends",
         "user-friends",
         onConnectionNav,
-        connectionNoteCount
+        connectionNoteCount,
+        "app-header-tab-item-container-middle"
       )}
+
       {_generateTabItem(
         "tabSelector-profile-react",
         selectTab === AppTabEnum.PROFILE,
         "me",
         "user-cog",
         onProfileNav,
-        0
+        0,
+        "app-header-tab-item-container-last"
       )}
     </div>
   );
@@ -76,10 +80,11 @@ function _generateTabItem(
   caption,
   iconName,
   onSelect,
-  noteCount
+  noteCount,
+  tabItemContainerClass
 ) {
   return (
-    <div className="app-header-tab-item-container">
+    <div className={tabItemContainerClass}>
       <TabItem
         id={id}
         isSelect={isSelect}

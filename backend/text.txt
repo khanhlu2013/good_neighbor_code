@@ -125,14 +125,7 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . express-session deprecated undefined resave option; provide resave option
 . investigate: when i go to google page and go back, it show incorrect login page instead of login page again
 ---
-demo: show a connection management that undo will cover all senario
-
-
-
-loading icon for notification: static and dynamic
----
 . i need to make the app say that it is creating an account. this way user wont create duplicated account. 
-
 ---
 loading icon for login
   . when i click login, show loading icon
@@ -199,46 +192,11 @@ ok, a project of making my site responsive.
 . then i will start dealing with the tab, probably just going to kill it right?
 . uniform the notification var name, just make it generics. the outter just dont need to know exactly what is the notification is.
 ---
-.remove the react tab
-. they will be render right away
-. they will have one that is active, the other will be display none. 
-. fix post break point
----
-. i need to fix the id for the tab.
 . i like to test things with jest and enzym stuff
-. is there a way i can do enum in js?
-  .     onInPostNav,
-    onOutPostNav,
-    onConnectionNav,
-  . i can change this into a single method onNavChange.
-
----
-. i like to break it with media query so that i can change the way my icon look right?
-  . before i break it, lets see how do i like my icon to look first right?
-  . i am going to make it a div right now i guess right?
-    . when css change it will change its width and stuff. ok great
-    . 
-
 ---
 . i like to experience with reset local git. working on a experimental branch. commit a few good and a few bad. i like to take out the bad one. reset hard. 
----
-. profile include the logout button is cumber some and not useable
 --
 . rethink the notification right? something is fishy here. or is it fishy?
-
----
-. i am trying to do mobile resonsive design
-
----
-work on the tab now, kill the react tab. 
-
-. how do i share the nav-item with tab-item, eventually, they are quite similar. 
-. i need to create a react comp, for this tab item. 
-. i am facing a decision that i could just use the nav item all together. damn react reuseability.
----
-. can i share the tab bar css too?
----
-. factor the tab height
 ---
 . organize impost folder
 ---
