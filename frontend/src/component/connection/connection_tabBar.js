@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "../post/post_tabItem_customize.css";
 import { TabItem } from "../../util/tabItem";
 import { ConnectionTabEnum } from "./connection_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
-import { nullOrRequiredValidator } from "../../util";
 
 function ConnectionTabBar(props) {
   const { selectTab, onTabChange } = props;
@@ -106,10 +104,10 @@ function _generateTabItem(
       notificationItem={
         <NotificationItem count={noteCount} isImportant={isImportant} />
       }
-      selectCssClass="post-tab-item-select"
-      unSelectCssClass="post-tab-item-unSelect"
-      hoverCssClass="post-tab-item-hover"
-      underlineSelectCssClass="post-tab-item-underline-select"
+      selectCssClass="appComponent-tab-item-select"
+      unSelectCssClass="appComponent-tab-item-unSelect"
+      hoverCssClass="appComponent-tab-item-hover"
+      underlineSelectCssClass="appComponent-tab-item-underline-select"
       isCssResponsive={isCssResponsive}
     />
   );

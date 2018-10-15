@@ -24,14 +24,15 @@ import {
   faUserSlash //deny user list
 } from "@fortawesome/free-solid-svg-icons";
 
+import "../util/css/tabPanel.css";
+import "../util/css/myBootstrap.css";
+import "./css/tabBar.css";
+import "./css/appComponent_tabItem_customize.css";
+import "./app.css";
+import "../component/post/postItem.css";
+
 import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";
-import "./app.css";
-import "../css/shadowBox.css";
-import "../component/post/postItem.css";
-import "./tabBar.css";
-import "../util/tabPanel.css";
-import "../css/myBootstrap.css";
 import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
