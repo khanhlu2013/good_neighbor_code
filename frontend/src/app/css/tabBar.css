@@ -1,11 +1,14 @@
 .tab-bar {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
-  height: 57px;
 }
 
 .tabBar-banner {
   background-color: antiquewhite;
   min-width: 420px;
+}
+
+.xxx {
+  display: flex;
+  flex: 1;
 }

@@ -44,7 +44,7 @@ function AppHeader(props) {
     );
   }
   return (
-    <div className="app-header-banner">
+    <div className="app-header-banner banner">
       <div className="app-header app-container">
         <div className="appHeader-appIcon">Good Neighbor</div>
         {content}

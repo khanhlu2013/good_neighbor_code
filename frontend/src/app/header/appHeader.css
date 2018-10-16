@@ -4,19 +4,19 @@
 }
 
 .app-header {
+  flex: 1;
   display: flex;
   color: white;
 }
 
 .appHeader-appIcon {
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   align-items: center;
 
   font-weight: lighter;
   font-size: 1.3em;
   user-select: none;
-  height: 57px;
 }
 
 .appHeader-googleLogIn {

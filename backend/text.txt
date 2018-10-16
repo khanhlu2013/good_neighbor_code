@@ -229,3 +229,29 @@ less sass css inheritance
 
   min-width: 460px;
 
+xxx 4 hour xxx 
+
+---
+
+. btw, move app.css into css folder
+---
+. create a master banner-height. this is part of the app so app/css
+. use it for 2 places. the appheaderTabBar. and the appComponentTabBar.
+
+---
+flex-grow: 1;
+flex-shrink: 1;
+flex-basis: auto;
+
+flex 1
+
+---
+tabBar-banner -> appComponentBanner put this into its own file.
+---
+.tab-bar {
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-end;
+}
+ note: tab-bar should not concern how it should align. it is the job of the container to do so.
+ ---

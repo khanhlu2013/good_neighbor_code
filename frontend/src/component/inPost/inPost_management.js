@@ -229,8 +229,8 @@ class InPostManagement extends Component {
 
     return (
       <div>
-        <div className="tabBar-banner">
-          <div className="app-container">
+        <div className="tabBar-banner banner">
+          <div className="app-container xxx">
             <InPostTabBar
               selectTab={selectTab}
               onTabChange={this.onTabChange}

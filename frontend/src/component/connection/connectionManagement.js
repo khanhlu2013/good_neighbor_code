@@ -128,7 +128,7 @@ class ConnectionManagement extends Component {
 
     return (
       <div>
-        <div className="tabBar-banner">
+        <div className="tabBar-banner banner">
           <div className="app-container">
             <ConnectionTabBar
               selectTab={selectTab}

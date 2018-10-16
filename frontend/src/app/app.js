@@ -27,6 +27,7 @@ import {
 import "../util/css/tabPanel.css";
 import "../util/css/myBootstrap.css";
 import "./css/tabBar.css";
+import "./css/banner.css";
 import "./css/appComponent_tabItem_customize.css";
 import "./app.css";
 import "../component/post/postItem.css";
