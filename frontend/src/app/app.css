@@ -24,3 +24,7 @@
 .ReactModal__Content--before-close {
   opacity: 0;
 }
+
+.xxx {
+  flex-grow: 1;
+}

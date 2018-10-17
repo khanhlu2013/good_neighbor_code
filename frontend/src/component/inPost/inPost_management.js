@@ -229,17 +229,19 @@ class InPostManagement extends Component {
 
     return (
       <div>
-        <div className="tabBar-banner banner">
-          <div className="app-container xxx">
-            <InPostTabBar
-              selectTab={selectTab}
-              onTabChange={this.onTabChange}
-              allCount={posts.length}
-              requestCount={requestPosts.length}
-              approveCount={this.state.approveNotePostCount}
-              borrowCount={borrowPosts.length}
-              historyCount={this.state.returnShares.length}
-            />
+        <div className="appComponent-banner banner">
+          <div className="app-container">
+            <div className="appComponent-tabBar-container">
+              <InPostTabBar
+                selectTab={selectTab}
+                onTabChange={this.onTabChange}
+                allCount={posts.length}
+                requestCount={requestPosts.length}
+                approveCount={this.state.approveNotePostCount}
+                borrowCount={borrowPosts.length}
+                historyCount={this.state.returnShares.length}
+              />
+            </div>
           </div>
         </div>
         <div className="app-container">

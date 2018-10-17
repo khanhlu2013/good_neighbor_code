@@ -2,13 +2,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.tabBar-banner {
-  background-color: antiquewhite;
-  min-width: 420px;
-}
-
-.xxx {
-  display: flex;
-  flex: 1;
-}

@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./appHeader.css";
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
-import "./appHeader.css";
+import { AppHeaderAppIcon } from "./appHeader_appIcon";
 
 function AppHeader(props) {
   const {
@@ -22,31 +23,35 @@ function AppHeader(props) {
   let content;
   if (loginUser === undefined) {
     content = (
-      <div className="appHeader-authCheck">
+      <div className="appHeader-authCheck-container">
         <LoadingIcon text="loading" />
       </div>
     );
   } else if (loginUser === null) {
     content = (
-      <div className="appHeader-googleLogIn">
+      <div className="appHeader-googleLogIn-container">
         <GoogleLogin />
       </div>
     );
   } else {
     content = (
-      <AppHeaderTabBar
-        onAppTabChange={onAppTabChange}
-        selectTab={selectTab}
-        inPostNoteCount={inPostNoteCount}
-        outPostNoteCount={outPostNoteCount}
-        connectionNoteCount={connectionNoteCount}
-      />
+      <div className="appHeader-tabBar-container">
+        <AppHeaderTabBar
+          onAppTabChange={onAppTabChange}
+          selectTab={selectTab}
+          inPostNoteCount={inPostNoteCount}
+          outPostNoteCount={outPostNoteCount}
+          connectionNoteCount={connectionNoteCount}
+        />
+      </div>
     );
   }
   return (
     <div className="app-header-banner banner">
       <div className="app-header app-container">
-        <div className="appHeader-appIcon">Good Neighbor</div>
+        <div className="appHeader-appIcon-container">
+          <AppHeaderAppIcon />
+        </div>
         {content}
       </div>
     </div>

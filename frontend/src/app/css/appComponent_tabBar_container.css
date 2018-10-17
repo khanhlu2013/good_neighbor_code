@@ -1,0 +1,5 @@
+.appComponent-tabBar-container {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}

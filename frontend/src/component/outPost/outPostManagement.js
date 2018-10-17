@@ -246,7 +246,7 @@ class OutPostManagement extends Component {
 
     return (
       <div>
-        <div className="tabBar-banner banner">
+        <div className="appComponent-banner banner">
           <div className="app-container">
             <OutPostTabBar
               selectTab={selectTab}
