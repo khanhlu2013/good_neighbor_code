@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
@@ -11,6 +11,7 @@ import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPostTabBar";
 import { OutPostTabEnum } from "./outPostTabEnum";
+import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
 
 class OutPostManagement extends Component {
   state = {
@@ -245,21 +246,19 @@ class OutPostManagement extends Component {
     } = this.state;
 
     return (
-      <div>
-        <div className="appComponent-banner banner">
-          <div className="app-container">
-            <OutPostTabBar
-              selectTab={selectTab}
-              onTabChange={this.onTabChange}
-              onCreateNewPost={this.onOpenCrudDialog_create}
-              allCount={posts.length}
-              requestCount={requestNotePosts.length}
-              borrowCount={borrowPosts.length}
-              returnCount={returnNotePosts.length}
-              historyCount={this.state.returnShares.length}
-            />
-          </div>
-        </div>
+      <Fragment>
+        <AppComponentTabBarContainer>
+          <OutPostTabBar
+            selectTab={selectTab}
+            onTabChange={this.onTabChange}
+            onCreateNewPost={this.onOpenCrudDialog_create}
+            allCount={posts.length}
+            requestCount={requestNotePosts.length}
+            borrowCount={borrowPosts.length}
+            returnCount={returnNotePosts.length}
+            historyCount={this.state.returnShares.length}
+          />
+        </AppComponentTabBarContainer>
 
         <div className="app-container">
           <div
@@ -306,7 +305,7 @@ class OutPostManagement extends Component {
             <OutPostAllHistoryList shares={this.state.returnShares} />
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 

@@ -1,5 +1,6 @@
 .appComponent-tabBar-container {
+  background-color: antiquewhite;
+  min-width: 420px;
   display: flex;
   align-items: flex-end;
-  height: 100%;
 }

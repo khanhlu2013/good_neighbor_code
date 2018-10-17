@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
@@ -11,6 +11,7 @@ import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util/loadingIcon.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
+import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
 
 class ConnectionManagement extends Component {
   state = {
@@ -127,15 +128,13 @@ class ConnectionManagement extends Component {
     );
 
     return (
-      <div>
-        <div className="appComponent-banner banner">
-          <div className="app-container">
-            <ConnectionTabBar
-              selectTab={selectTab}
-              onTabChange={this.onTabChange}
-            />
-          </div>
-        </div>
+      <Fragment>
+        <AppComponentTabBarContainer>
+          <ConnectionTabBar
+            selectTab={selectTab}
+            onTabChange={this.onTabChange}
+          />
+        </AppComponentTabBarContainer>
 
         <div className="app-container">
           <div
@@ -206,7 +205,7 @@ class ConnectionManagement extends Component {
             />
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   };
 

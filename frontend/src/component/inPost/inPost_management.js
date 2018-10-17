@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
@@ -9,6 +9,7 @@ import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
+import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
 
 class InPostManagement extends Component {
   state = {
@@ -228,22 +229,19 @@ class InPostManagement extends Component {
     );
 
     return (
-      <div>
-        <div className="appComponent-banner banner">
-          <div className="app-container">
-            <div className="appComponent-tabBar-container">
-              <InPostTabBar
-                selectTab={selectTab}
-                onTabChange={this.onTabChange}
-                allCount={posts.length}
-                requestCount={requestPosts.length}
-                approveCount={this.state.approveNotePostCount}
-                borrowCount={borrowPosts.length}
-                historyCount={this.state.returnShares.length}
-              />
-            </div>
-          </div>
-        </div>
+      <Fragment>
+        <AppComponentTabBarContainer>
+          <InPostTabBar
+            selectTab={selectTab}
+            onTabChange={this.onTabChange}
+            allCount={posts.length}
+            requestCount={requestPosts.length}
+            approveCount={this.state.approveNotePostCount}
+            borrowCount={borrowPosts.length}
+            historyCount={this.state.returnShares.length}
+          />
+        </AppComponentTabBarContainer>
+
         <div className="app-container">
           <div
             className={className({
@@ -289,7 +287,7 @@ class InPostManagement extends Component {
             <InPostAllHistoryList shares={this.state.returnShares} />
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 
