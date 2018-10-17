@@ -208,26 +208,7 @@ how do i catch 401 error ?
 ---
 
 less sass css inheritance
-
-  height: 57px
-    .tab-bar {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      height: 57px;
-    }
-    .appHeader-appIcon {
-      display: flex;
-      flex-grow: 1;
-      align-items: center;
-
-      font-weight: lighter;
-      font-size: 1.3em;
-      user-select: none;
-      height: 57px;
-    }
-
-  min-width: 460px;
+  min-width: 420px;
 
 
 ---
