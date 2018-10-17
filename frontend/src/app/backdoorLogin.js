@@ -18,7 +18,7 @@ class BackdoorLogin extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const { name, email, isSubmitClicked } = state;
-    const isEmailValid = validator.isEmail(email);
+    const isEmailValid = validator.isEmail(email.trim());
     const isEmailWarning = isSubmitClicked && !isEmailValid;
     const nameIsEmpty = name.length === 0;
     return { isEmailWarning, isEmailValid, nameIsEmpty };
@@ -35,7 +35,7 @@ class BackdoorLogin extends Component {
   };
 
   onSubmit = evt => {
-    this.setState({ isSubmitClicked: true });
+    this.setState({ isSubmitClicked: true, email: this.state.email.trim() });
     if (this.state.isEmailValid) {
       this.setState({ isAjaxing: true });
       (async () => {
