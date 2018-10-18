@@ -9,6 +9,7 @@ import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
 import { AppHeaderAppIcon } from "./appHeader_appIcon";
+import { AppHeaderBanner } from "./appHeader_banner";
 
 function AppHeader(props) {
   const {
@@ -47,14 +48,14 @@ function AppHeader(props) {
     );
   }
   return (
-    <div className="app-header-banner banner">
+    <AppHeaderBanner>
       <div className="app-header app-container">
         <div className="appHeader-appIcon-container">
           <AppHeaderAppIcon />
         </div>
         {content}
       </div>
-    </div>
+    </AppHeaderBanner>
   );
 }
 

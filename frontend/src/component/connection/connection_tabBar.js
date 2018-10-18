@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TabItem } from "../../util/tabItem";
 import { ConnectionTabEnum } from "./connection_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
-import { TabBarContainer } from "../../componentShare/tabBar";
+import { TabBar } from "../../componentShare/tabBar";
 
 function ConnectionTabBar(props) {
   const { selectTab, onTabChange } = props;
@@ -26,7 +26,7 @@ function ConnectionTabBar(props) {
   };
 
   return (
-    <TabBarContainer>
+    <TabBar>
       {_generateTabItem(
         "tabSelector-connection-friend-react",
         selectTab === ConnectionTabEnum.FRIEND,
@@ -81,7 +81,7 @@ function ConnectionTabBar(props) {
         false,
         true
       )}
-    </TabBarContainer>
+    </TabBar>
   );
 }
 

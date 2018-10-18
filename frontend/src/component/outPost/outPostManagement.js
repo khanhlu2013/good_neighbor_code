@@ -11,7 +11,7 @@ import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPostTabBar";
 import { OutPostTabEnum } from "./outPostTabEnum";
-import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
+import { AppComponentBanner } from "../../componentShare/appComponent_banner";
 
 class OutPostManagement extends Component {
   state = {
@@ -247,7 +247,7 @@ class OutPostManagement extends Component {
 
     return (
       <Fragment>
-        <AppComponentTabBarContainer>
+        <AppComponentBanner>
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -258,7 +258,7 @@ class OutPostManagement extends Component {
             returnCount={returnNotePosts.length}
             historyCount={this.state.returnShares.length}
           />
-        </AppComponentTabBarContainer>
+        </AppComponentBanner>
 
         <div className="app-container">
           <div

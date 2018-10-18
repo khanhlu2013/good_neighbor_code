@@ -11,7 +11,7 @@ import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util/loadingIcon.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
-import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
+import { AppComponentBanner } from "../../componentShare/appComponent_banner";
 
 class ConnectionManagement extends Component {
   state = {
@@ -129,12 +129,12 @@ class ConnectionManagement extends Component {
 
     return (
       <Fragment>
-        <AppComponentTabBarContainer>
+        <AppComponentBanner>
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
           />
-        </AppComponentTabBarContainer>
+        </AppComponentBanner>
 
         <div className="app-container">
           <div

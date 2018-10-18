@@ -6,7 +6,7 @@ import { TabItem } from "../../util/tabItem";
 import { OutPostTabEnum } from "./outPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
-import { TabBarContainer } from "../../componentShare/tabBar";
+import { TabBar } from "../../componentShare/tabBar";
 
 function OutPostTabBar(props) {
   const {
@@ -40,7 +40,7 @@ function OutPostTabBar(props) {
   };
 
   return (
-    <TabBarContainer>
+    <TabBar>
       {_generateTabItem(
         "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
@@ -103,7 +103,7 @@ function OutPostTabBar(props) {
       >
         new
       </button>
-    </TabBarContainer>
+    </TabBar>
   );
 }
 

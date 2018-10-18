@@ -9,7 +9,7 @@ import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
-import { AppComponentTabBarContainer } from "../../app/appComponent_tabBar_container";
+import { AppComponentBanner } from "../../componentShare/appComponent_banner";
 
 class InPostManagement extends Component {
   state = {
@@ -230,7 +230,7 @@ class InPostManagement extends Component {
 
     return (
       <Fragment>
-        <AppComponentTabBarContainer>
+        <AppComponentBanner>
           <InPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -240,7 +240,7 @@ class InPostManagement extends Component {
             borrowCount={borrowPosts.length}
             historyCount={this.state.returnShares.length}
           />
-        </AppComponentTabBarContainer>
+        </AppComponentBanner>
 
         <div className="app-container">
           <div
