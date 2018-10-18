@@ -28,6 +28,7 @@
     "react-spinners": "^0.4.4",
     "react-youtube": "^7.6.0",
     "route-node": "^3.4.0",
+    "styled-components": "^4.0.2",
     "underscore": "^1.9.1",
     "validator": "^10.5.0"
   },

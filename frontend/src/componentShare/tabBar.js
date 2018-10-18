@@ -1,8 +1,8 @@
-import React from "react";
-import "./tabBar.css";
+import styled from "styled-components";
 
-function TabBar(props) {
-  return <div className="tabBar">{props.children}</div>;
-}
+const TabBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export { TabBar };

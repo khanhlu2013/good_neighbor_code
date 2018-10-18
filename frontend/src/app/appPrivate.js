@@ -7,7 +7,7 @@ import { OutPostManagement } from "../component/outPost/outPostManagement.js";
 import { InPostManagement } from "../component/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
-import { ProfileManagement } from "../component/profile/profile_management";
+import { ProfileManagement } from "../component/profile_management";
 
 function PrivateApp(props) {
   const {

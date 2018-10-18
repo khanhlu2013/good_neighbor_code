@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { LoadingIcon } from "../../util/loadingIcon";
-import { User } from "../../model/user";
-import { API } from "../../api/profile-api";
-import { ProfileImage } from "../../util/profileImage";
+import { LoadingIcon } from "../util/loadingIcon";
+import { User } from "../model/user";
+import { API } from "../api/profile-api";
+import { ProfileImage } from "../util/profileImage";
+import { AppShrinkWrap } from "../componentShare/appShrinkWrap";
 
 class ProfileManagement extends Component {
   state = {
@@ -23,7 +24,7 @@ class ProfileManagement extends Component {
   render() {
     const { loginUser } = this.props;
     return (
-      <div className="app-container">
+      <AppShrinkWrap>
         <div className="text-center mt-4 p-2 shadow-box">
           <div>
             <ProfileImage loginUser={loginUser} />
@@ -44,7 +45,7 @@ class ProfileManagement extends Component {
             )}
           </div>
         </div>
-      </div>
+      </AppShrinkWrap>
     );
   }
 }

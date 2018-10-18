@@ -11,7 +11,8 @@ import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util/loadingIcon.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
-import { AppComponentBanner } from "../../componentShare/appComponent_banner";
+import { AppBodyBanner } from "../../componentShare/appBodyBanner.js";
+import { AppShrinkWrap } from "../../componentShare/appShrinkWrap.js";
 
 class ConnectionManagement extends Component {
   state = {
@@ -129,14 +130,14 @@ class ConnectionManagement extends Component {
 
     return (
       <Fragment>
-        <AppComponentBanner>
+        <AppBodyBanner>
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
           />
-        </AppComponentBanner>
+        </AppBodyBanner>
 
-        <div className="app-container">
+        <AppShrinkWrap>
           <div
             className={className({
               "tab-panel": true,
@@ -204,7 +205,7 @@ class ConnectionManagement extends Component {
               isCreatingConnection={this.state.isCreatingConnection}
             />
           </div>
-        </div>
+        </AppShrinkWrap>
       </Fragment>
     );
   };

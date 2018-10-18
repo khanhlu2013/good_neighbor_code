@@ -9,7 +9,8 @@ import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
-import { AppComponentBanner } from "../../componentShare/appComponent_banner";
+import { AppBodyBanner } from "../../componentShare/appBodyBanner";
+import { AppShrinkWrap } from "../../componentShare/appShrinkWrap";
 
 class InPostManagement extends Component {
   state = {
@@ -230,7 +231,7 @@ class InPostManagement extends Component {
 
     return (
       <Fragment>
-        <AppComponentBanner>
+        <AppBodyBanner>
           <InPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -240,9 +241,9 @@ class InPostManagement extends Component {
             borrowCount={borrowPosts.length}
             historyCount={this.state.returnShares.length}
           />
-        </AppComponentBanner>
+        </AppBodyBanner>
 
-        <div className="app-container">
+        <AppShrinkWrap>
           <div
             className={className({
               "tab-panel": true,
@@ -286,7 +287,7 @@ class InPostManagement extends Component {
           >
             <InPostAllHistoryList shares={this.state.returnShares} />
           </div>
-        </div>
+        </AppShrinkWrap>
       </Fragment>
     );
   }
