@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TabItem } from "../../util/tabItem";
 import { ConnectionTabEnum } from "./connection_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
-import { TabBarContainer } from "../../util/tabBarContainer";
+import { TabBarContainer } from "../../componentShare/tabBar";
 
 function ConnectionTabBar(props) {
   const { selectTab, onTabChange } = props;

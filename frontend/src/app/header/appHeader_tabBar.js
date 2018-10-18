@@ -6,7 +6,7 @@ import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
 import { TabItem } from "../../util/tabItem";
-import { TabBarContainer } from "../../util/tabBarContainer";
+import { TabBarContainer } from "../../componentShare/tabBar";
 
 function AppHeaderTabBar(props) {
   const {

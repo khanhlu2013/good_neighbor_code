@@ -175,3 +175,8 @@ how do i catch 401 error ?
 ---
 less sass css inheritance
   min-width: 420px;
+---
+
+remove file tabBar.css
+
+remove class ref tab-bar

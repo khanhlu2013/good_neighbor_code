@@ -6,7 +6,7 @@ import { TabItem } from "../../util/tabItem";
 import { OutPostTabEnum } from "./outPostTabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
-import { TabBarContainer } from "../../util/tabBarContainer";
+import { TabBarContainer } from "../../componentShare/tabBar";
 
 function OutPostTabBar(props) {
   const {

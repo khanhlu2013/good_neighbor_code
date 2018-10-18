@@ -1,5 +1,5 @@
 import React from "react";
-import "./tabBarContainer.css";
+import "./tabBar.css";
 
 function TabBarContainer(props) {
   return <div className="tabBarContainer">{props.children}</div>;

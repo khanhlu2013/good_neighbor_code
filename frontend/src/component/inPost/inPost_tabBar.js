@@ -5,7 +5,7 @@ import { TabItem } from "../../util/tabItem";
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
-import { TabBarContainer } from "../../util/tabBarContainer";
+import { TabBarContainer } from "../../componentShare/tabBar";
 
 function InPostTabBar(props) {
   const {
