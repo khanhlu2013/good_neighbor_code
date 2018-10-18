@@ -179,3 +179,4 @@ less sass css inheritance
   min-width: 420px;
 ---
 
+AppHeaderAppIcon -> AppIcon
