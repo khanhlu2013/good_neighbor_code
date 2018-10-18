@@ -5,6 +5,7 @@ import { TabItem } from "../../util/tabItem";
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
+import { TabBarContainer } from "../../util/tabBarContainer";
 
 function InPostTabBar(props) {
   const {
@@ -34,7 +35,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <div className="tab-bar">
+    <TabBarContainer>
       {_generateTabItem(
         "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,
@@ -89,7 +90,7 @@ function InPostTabBar(props) {
         false,
         true
       )}
-    </div>
+    </TabBarContainer>
   );
 }
 

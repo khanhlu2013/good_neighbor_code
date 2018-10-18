@@ -146,51 +146,18 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . genList within the ui_helper can factor to reduce DRY 
 . verify all the snapshot
 . update inPost test to show other tab
----
-. do i test login and logout?
---
-deal with the date transient for snapshot testing.
 --
 . make sure that changing connection changing inpost, i guess this is a good time to actually controling the loading... from the outer app. make the tab a control one. 
 . can i use open id connect instead of oauth. also, invite friend from face book and google? authorization of reading contact. 
 . wish list
 . picture
-
 ---
 . cover letter
-. confirm approve
-. abundant minimalist
 . lets spend some times again on algorithm, green book. 
 . some job search: 
   . ngoc
   . ask vi's boyfriend
 . slack
-
----
-
-. react native : flex model. bootstrap.
----
-
-ok, a project of making my site responsive. 
----
-. goal: be a good front end developer. if i can think it, i can do it? how can i achieve this?
-  . remove slowly the library that i have right? eventually i need to understand the freaking react tab right?because it is quite limited. it is a very painful process. lets just master the web first then. 
-
-
-. deal with the break point inside the post.
-. understand z-index;position:relative
-
----
-. tooltip
-. understand css
-. text font look big. 
-. move my tab. design it. make it linked in status
-
----
-. AppHeaderProfile have a <span> and <div> can i eliminate some?
-. that will communicate out when a tab is clicked. 
-. then i will start dealing with the tab, probably just going to kill it right?
-. uniform the notification var name, just make it generics. the outter just dont need to know exactly what is the notification is.
 ---
 . i like to test things with jest and enzym stuff
 ---
@@ -206,11 +173,5 @@ how do i log my bug? into a file?
 ---
 how do i catch 401 error ?
 ---
-
 less sass css inheritance
   min-width: 420px;
-
-
----
-
-. btw, move app.css into css folder

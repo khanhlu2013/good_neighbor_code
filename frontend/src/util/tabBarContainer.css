@@ -1,4 +1,4 @@
-.tab-bar {
+.tabBarContainer {
   display: flex;
   justify-content: space-between;
 }

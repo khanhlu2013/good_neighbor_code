@@ -6,6 +6,7 @@ import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
 import { TabItem } from "../../util/tabItem";
+import { TabBarContainer } from "../../util/tabBarContainer";
 
 function AppHeaderTabBar(props) {
   const {
@@ -30,7 +31,7 @@ function AppHeaderTabBar(props) {
   };
 
   return (
-    <div className="tab-bar">
+    <TabBarContainer>
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
@@ -70,7 +71,7 @@ function AppHeaderTabBar(props) {
         0,
         "app-header-tab-item-container-last"
       )}
-    </div>
+    </TabBarContainer>
   );
 }
 
