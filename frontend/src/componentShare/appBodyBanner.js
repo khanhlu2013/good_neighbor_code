@@ -3,19 +3,18 @@ import styled from "styled-components";
 
 import { AppShrinkWrap } from "./appShrinkWrap";
 
-const AppBodyBannerContainer = styled.div`
+const AppBodyBannerBackground = styled.div`
   background-color: antiquewhite;
   min-width: 420px;
   display: flex;
-  align-items: flex-end;
   height: 57px;
 `;
 
 function AppBodyBanner(props) {
   return (
-    <AppBodyBannerContainer>
+    <AppBodyBannerBackground>
       <AppShrinkWrap>{props.children}</AppShrinkWrap>
-    </AppBodyBannerContainer>
+    </AppBodyBannerBackground>
   );
 }
 export { AppBodyBanner };

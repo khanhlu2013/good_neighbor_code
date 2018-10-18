@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import "./appHeader.css";
 import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
-import { AppHeaderAppIcon } from "./appHeader_appIcon";
-import { AppHeaderBanner } from "./appHeader_banner";
 
 function AppHeader(props) {
   const {
@@ -21,22 +19,55 @@ function AppHeader(props) {
     connectionNoteCount
   } = props;
 
+  const BannerBackground = styled.div`
+    height: 57px;
+    background-color: rgb(36, 54, 65);
+    color: white;
+    min-width: 420px;
+    display: flex;
+  `;
+  const HeaderWrap = styled.div`
+    display: flex;
+    max-width: 700px;
+    min-width: 420px;
+    margin: 0 auto;
+    padding: 0 10px;
+    flex-grow: 1;
+  `;
+  const AppIconWrap = styled.div`
+    align-self: center;
+    flex-grow: 1;
+
+    font-weight: lighter;
+    font-size: 1.3em;
+    user-select: none;
+  `;
+  const TabBarWrap = styled.div`
+    align-self: flex-end;
+  `;
+  const AuthCheckWrap = styled.div`
+    align-self: center;
+  `;
+  const GoogleLoginWrap = styled.div`
+    align-self: center;
+  `;
+
   let content;
   if (loginUser === undefined) {
     content = (
-      <div className="appHeader-authCheck-container">
+      <AuthCheckWrap>
         <LoadingIcon text="loading" />
-      </div>
+      </AuthCheckWrap>
     );
   } else if (loginUser === null) {
     content = (
-      <div className="appHeader-googleLogIn-container">
+      <GoogleLoginWrap>
         <GoogleLogin />
-      </div>
+      </GoogleLoginWrap>
     );
   } else {
     content = (
-      <div className="appHeader-tabBar-container">
+      <TabBarWrap>
         <AppHeaderTabBar
           onAppTabChange={onAppTabChange}
           selectTab={selectTab}
@@ -44,18 +75,18 @@ function AppHeader(props) {
           outPostNoteCount={outPostNoteCount}
           connectionNoteCount={connectionNoteCount}
         />
-      </div>
+      </TabBarWrap>
     );
   }
+
   return (
-    <AppHeaderBanner>
-      <div className="app-header app-container">
-        <div className="appHeader-appIcon-container">
-          <AppHeaderAppIcon />
-        </div>
+    <BannerBackground>
+      <HeaderWrap>
+        <AppIconWrap>Good Neighbor</AppIconWrap>
+
         {content}
-      </div>
-    </AppHeaderBanner>
+      </HeaderWrap>
+    </BannerBackground>
   );
 }
 
