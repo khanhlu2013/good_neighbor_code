@@ -27,7 +27,6 @@ import {
 import "../util/css/tabPanel.css";
 import "../util/css/myBootstrap.css";
 import "../css/appComponent_tabItem_customize.css";
-import "../css/app.css";
 import "../css/reactModal.css";
 import "../component/post/postItem.css";
 
@@ -37,6 +36,7 @@ import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
 import { AppTabEnum } from "./appTabEnum";
+import { AppShrinkWrap } from "../componentShare/appShrinkWrap";
 
 library.add(
   faThumbsUp,
@@ -110,18 +110,11 @@ class App extends Component {
     if (loginUser === undefined) {
       appContent = null;
     } else if (loginUser === null) {
-      if (process.env.NODE_ENV === "production") {
-        appContent = <PublicApp />;
-      } else {
-        appContent = (
-          <h1 id="appPublic-react" className="text-center app-container">
-            App Public
-          </h1>
-        );
-      }
-
-      appContent = <PublicApp />;
-      // appContent = <h1 id="appPublic-react" className="text-center app-container">App Public</h1>;
+      appContent = (
+        <AppShrinkWrap>
+          <PublicApp />
+        </AppShrinkWrap>
+      );
     } else {
       appContent = (
         <PrivateApp
@@ -145,11 +138,11 @@ class App extends Component {
           outPostNoteCount={outPostNoteCount}
           connectionNoteCount={connectionNoteCount}
         />
-        <div className="app-container">
-          {loginUser === null && (
+        {loginUser === null && (
+          <AppShrinkWrap>
             <BackdoorLogin onUserDidLogIn={this.onUserDidLogIn} />
-          )}
-        </div>
+          </AppShrinkWrap>
+        )}
         {appContent}
       </div>
     );

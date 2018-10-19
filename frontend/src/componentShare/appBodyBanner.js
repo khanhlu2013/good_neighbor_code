@@ -1,20 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-import { AppShrinkWrap } from "./appShrinkWrap";
-
-const AppBodyBannerBackground = styled.div`
+const BannerBackground = styled.div`
+  height: 57px;
   background-color: antiquewhite;
   min-width: 420px;
   display: flex;
-  height: 57px;
+`;
+
+const BannerWrap = styled.div`
+  align-self: flex-end;
+  max-width: 700px;
+  min-width: 420px;
+  margin: 0 auto;
+  padding: 0 10px;
+  flex-grow: 1;
 `;
 
 function AppBodyBanner(props) {
   return (
-    <AppBodyBannerBackground>
-      <AppShrinkWrap>{props.children}</AppShrinkWrap>
-    </AppBodyBannerBackground>
+    <BannerBackground>
+      <BannerWrap>{props.children}</BannerWrap>
+    </BannerBackground>
   );
 }
 export { AppBodyBanner };

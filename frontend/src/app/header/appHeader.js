@@ -26,7 +26,7 @@ function AppHeader(props) {
     min-width: 420px;
     display: flex;
   `;
-  const HeaderWrap = styled.div`
+  const BannerWrap = styled.div`
     display: flex;
     max-width: 700px;
     min-width: 420px;
@@ -81,11 +81,11 @@ function AppHeader(props) {
 
   return (
     <BannerBackground>
-      <HeaderWrap>
+      <BannerWrap>
         <AppIconWrap>Good Neighbor</AppIconWrap>
 
         {content}
-      </HeaderWrap>
+      </BannerWrap>
     </BannerBackground>
   );
 }

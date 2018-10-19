@@ -34,13 +34,9 @@ class ConnectionManagement extends Component {
     ).length;
   }
 
-  componentDidMount() {
-    this.props.onConnectionNotify(null);
-
-    (async () => {
-      const connections = await API.connections();
-      this.setConnectionsAndNotifyRequestCount(connections);
-    })();
+  async componentDidMount() {
+    const connections = await API.connections();
+    this.setConnectionsAndNotifyRequestCount(connections);
   }
 
   setConnectionsAndNotifyRequestCount(connections) {

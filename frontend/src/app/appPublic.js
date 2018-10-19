@@ -1,14 +1,16 @@
 import React from "react";
 
 import { PlayList } from "./playList";
-import { AppShrinkWrap } from "../componentShare/appShrinkWrap";
 
 function PublicApp() {
   return (
     <div id="appPublic-react">
-      <AppShrinkWrap>
+      {process.env.NODE_ENV === "production" ? (
         <PlayList />
-      </AppShrinkWrap>
+      ) : (
+        <h1 className="text-center">App Public</h1>
+      )}
+      {/* <PlayList /> */}
     </div>
   );
 }

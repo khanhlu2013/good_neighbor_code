@@ -59,11 +59,8 @@ class OutPostManagement extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.onOutPostNotify(null);
-    (async () => {
-      this.setPostsState(await API.outPosts());
-    })();
+  async componentDidMount() {
+    this.setPostsState(await API.outPosts());
   }
 
   setPostsState(posts) {
