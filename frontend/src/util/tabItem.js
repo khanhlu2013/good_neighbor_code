@@ -14,10 +14,12 @@ function TabItem(props) {
     iconName,
     onSelect,
     notificationItem,
+
     selectCssClass,
     unSelectCssClass,
     hoverCssClass,
     underlineSelectCssClass,
+
     isCssResponsive
   } = props;
 
@@ -61,10 +63,8 @@ function TabItem(props) {
       <div
         className={className({
           "tab-item-underline": true,
-          ...(underlineSelectCssClass !== null && {
-            [underlineSelectCssClass]: isSelect,
-            "tab-item-underline-responsive": isCssResponsive
-          })
+          "tab-item-underline-responsive": isCssResponsive,
+          [underlineSelectCssClass]: isSelect
         })}
       />
     </div>
@@ -81,7 +81,7 @@ TabItem.propTypes = {
   selectCssClass: PropTypes.string.isRequired,
   unSelectCssClass: PropTypes.string.isRequired,
   hoverCssClass: PropTypes.string.isRequired,
-  underlineSelectCssClass: nullOrRequiredValidator("string"), //if null underline is transparent
+  underlineSelectCssClass: PropTypes.string.isRequired,
   isCssResponsive: PropTypes.bool.isRequired
 };
 
