@@ -1,27 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 
-const BannerBackground = styled.div`
+const Background = styled.div`
   height: 57px;
   background-color: antiquewhite;
   min-width: 420px;
-  display: flex;
 `;
-
-const BannerWrap = styled.div`
-  align-self: flex-end;
+const CenterWrap = styled.div`
+  height: 100%;
   max-width: 700px;
   min-width: 420px;
   margin: 0 auto;
   padding: 0 10px;
-  flex-grow: 1;
 `;
+const Gravity = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+`;
+const Room = styled.div`
+  flex-grow: 1;
+`; //since gravity have align-items:flex-end, it must be display of flex which squeeze items, i need a room that have flex-grow to contain stuff in it.
 
 function AppBodyBanner(props) {
   return (
-    <BannerBackground>
-      <BannerWrap>{props.children}</BannerWrap>
-    </BannerBackground>
+    <Background>
+      <CenterWrap>
+        <Gravity>
+          <Room>{props.children}</Room>
+        </Gravity>
+      </CenterWrap>
+    </Background>
   );
 }
 export { AppBodyBanner };

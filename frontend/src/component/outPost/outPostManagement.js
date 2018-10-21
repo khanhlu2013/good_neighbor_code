@@ -9,8 +9,8 @@ import { Post } from "../../model/post";
 import { OutPostAllHistoryList } from "./outPost_allHistoryList";
 import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
-import { OutPostTabBar } from "./outPostTabBar";
-import { OutPostTabEnum } from "./outPostTabEnum";
+import { OutPostTabBar } from "./outPost_tabBar";
+import { OutPostTabEnum } from "./outPost_tabEnum";
 import { AppBodyBanner } from "../../componentShare/appBodyBanner";
 import { AppShrinkWrap } from "../../componentShare/appShrinkWrap";
 

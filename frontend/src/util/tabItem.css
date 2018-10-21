@@ -8,10 +8,6 @@
   .tab-item-icon-responsive {
     font-size: 1.8em !important;
   }
-
-  .tab-item-underline-responsive {
-    margin-top: 9px !important;
-  }
 }
 
 .tab-item-caption {
@@ -21,14 +17,6 @@
   line-height: 100%;
 }
 
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  user-select: none;
-  cursor: pointer;
-}
-
 .tab-item-icon {
   font-size: 1.5em;
   line-height: 100%;
@@ -36,20 +24,11 @@
 
 .tab-item-icon-notification-caption {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding-top: 0px;
 }
 
 .tab-item-icon-notification {
   display: flex;
   align-items: center;
-}
-
-.tab-item-underline {
-  margin-top: 3px;
-  height: 3px;
-  width: 100%;
 }

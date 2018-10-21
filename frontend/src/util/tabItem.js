@@ -2,9 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import className from "classnames";
+import styled from "styled-components";
 
 import "./tabItem.css";
 import { nullOrRequiredValidator } from "../util";
+
+const Wrap = styled.div`
+  user-select: none;
+  cursor: pointer;
+  color: ${props => (props.isSelect ? props.selectColor : props.unSelectColor)};
+  :hover {
+    color: ${props => props.hoverColor};
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Underline = styled.div`
+  margin-top: 3px;
+  height: 3px;
+  width: 100%;
+  background-color: ${props => props.isSelect && props.selectColor};
+  ${props =>
+    props.isResponsive &&
+    "@media screen and (max-width: 500px) { margin-top: 9px !important;}"};
+`;
 
 function TabItem(props) {
   const {
@@ -14,13 +38,11 @@ function TabItem(props) {
     iconName,
     onSelect,
     notificationItem,
-
-    selectCssClass,
-    unSelectCssClass,
-    hoverCssClass,
-    underlineSelectCssClass,
-
-    isCssResponsive
+    selectColor,
+    unSelectColor,
+    hoverColor,
+    undelineColor,
+    isResponsive
   } = props;
 
   const onItemClick = e => {
@@ -28,23 +50,21 @@ function TabItem(props) {
   };
 
   return (
-    <div
+    <Wrap
       id={id}
-      className={className({
-        "tab-item": true,
-        "tab-item-responsive": isCssResponsive,
-        [hoverCssClass]: true,
-        [selectCssClass]: isSelect,
-        [unSelectCssClass]: !isSelect
-      })}
       onClick={onItemClick}
+      selectColor={selectColor}
+      unSelectColor={unSelectColor}
+      hoverColor={hoverColor}
+      undelineColor={undelineColor}
+      isSelect={isSelect}
     >
       <div className="tab-item-icon-notification-caption">
         <div className="tab-item-icon-notification">
           <div
             className={className({
               "tab-item-icon": true,
-              "tab-item-icon-responsive": isCssResponsive
+              "tab-item-icon-responsive": isResponsive
             })}
           >
             {iconName && <FontAwesomeIcon icon={iconName} />}
@@ -54,20 +74,18 @@ function TabItem(props) {
         <span
           className={className({
             "tab-item-caption": true,
-            "tab-item-caption-responsive": isCssResponsive
+            "tab-item-caption-responsive": isResponsive
           })}
         >
           {caption}
         </span>
       </div>
-      <div
-        className={className({
-          "tab-item-underline": true,
-          "tab-item-underline-responsive": isCssResponsive,
-          [underlineSelectCssClass]: isSelect
-        })}
+      <Underline
+        selectColor={selectColor}
+        isSelect={isSelect}
+        isResponsive={isResponsive}
       />
-    </div>
+    </Wrap>
   );
 }
 
@@ -78,11 +96,11 @@ TabItem.propTypes = {
   iconName: nullOrRequiredValidator("string"),
   onSelect: PropTypes.func.isRequired,
   notificationItem: PropTypes.element.isRequired,
-  selectCssClass: PropTypes.string.isRequired,
-  unSelectCssClass: PropTypes.string.isRequired,
-  hoverCssClass: PropTypes.string.isRequired,
-  underlineSelectCssClass: PropTypes.string.isRequired,
-  isCssResponsive: PropTypes.bool.isRequired
+  selectColor: PropTypes.string.isRequired,
+  unSelectColor: PropTypes.string.isRequired,
+  hoverColor: PropTypes.string.isRequired,
+  undelineColor: PropTypes.string.isRequired,
+  isResponsive: PropTypes.bool.isRequired
 };
 
 export { TabItem };

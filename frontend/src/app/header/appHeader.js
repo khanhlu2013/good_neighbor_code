@@ -19,31 +19,31 @@ function AppHeader(props) {
     connectionNoteCount
   } = props;
 
-  const BannerBackground = styled.div`
+  const Background = styled.div`
     height: 57px;
     background-color: rgb(36, 54, 65);
-    color: white;
     min-width: 420px;
-    display: flex;
   `;
-  const BannerWrap = styled.div`
-    display: flex;
+  const CenterWrap = styled.div`
+    height: 100%;
     max-width: 700px;
     min-width: 420px;
     margin: 0 auto;
     padding: 0 10px;
-    flex-grow: 1;
   `;
+  const HorizontalLayout = styled.div`
+    height: 100%;
+    display: flex;
+  `;
+
   const AppIconWrap = styled.div`
     align-self: center;
     flex-grow: 1;
 
+    color: white;
     font-weight: lighter;
     font-size: 1.3em;
     user-select: none;
-  `;
-  const TabBarWrap = styled.div`
-    align-self: flex-end;
   `;
   const AuthCheckWrap = styled.div`
     align-self: center;
@@ -67,26 +67,25 @@ function AppHeader(props) {
     );
   } else {
     content = (
-      <TabBarWrap>
-        <AppHeaderTabBar
-          onAppTabChange={onAppTabChange}
-          selectTab={selectTab}
-          inPostNoteCount={inPostNoteCount}
-          outPostNoteCount={outPostNoteCount}
-          connectionNoteCount={connectionNoteCount}
-        />
-      </TabBarWrap>
+      <AppHeaderTabBar
+        onAppTabChange={onAppTabChange}
+        selectTab={selectTab}
+        inPostNoteCount={inPostNoteCount}
+        outPostNoteCount={outPostNoteCount}
+        connectionNoteCount={connectionNoteCount}
+      />
     );
   }
 
   return (
-    <BannerBackground>
-      <BannerWrap>
-        <AppIconWrap>Good Neighbor</AppIconWrap>
-
-        {content}
-      </BannerWrap>
-    </BannerBackground>
+    <Background>
+      <CenterWrap>
+        <HorizontalLayout>
+          <AppIconWrap>Good Neighbor</AppIconWrap>
+          {content}
+        </HorizontalLayout>
+      </CenterWrap>
+    </Background>
   );
 }
 

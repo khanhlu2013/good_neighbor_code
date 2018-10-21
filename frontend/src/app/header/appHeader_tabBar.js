@@ -1,12 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import "./appHeader_tabItem_customize.css";
 import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
 import { TabItem } from "../../util/tabItem";
 import { TabBar } from "../../componentShare/tabBar";
+
+const TabItemContainerStart = styled.div`
+  margin-right: 20px;
+`;
+const TabItemContainerEnd = styled.div`
+  margin-left: 20px;
+`;
+const TabItemContainerMiddle = styled.div`
+  margin: 0 20px;
+`;
 
 function AppHeaderTabBar(props) {
   const {
@@ -39,7 +49,7 @@ function AppHeaderTabBar(props) {
         "globe",
         onInPostNav,
         inPostNoteCount,
-        "app-header-tab-item-container-first"
+        TabItemContainerStart
       )}
 
       {_generateTabItem(
@@ -49,7 +59,7 @@ function AppHeaderTabBar(props) {
         "briefcase",
         onOutPostNav,
         outPostNoteCount,
-        "app-header-tab-item-container-middle"
+        TabItemContainerMiddle
       )}
 
       {_generateTabItem(
@@ -59,7 +69,7 @@ function AppHeaderTabBar(props) {
         "user-friends",
         onConnectionNav,
         connectionNoteCount,
-        "app-header-tab-item-container-middle"
+        TabItemContainerMiddle
       )}
 
       {_generateTabItem(
@@ -69,7 +79,7 @@ function AppHeaderTabBar(props) {
         "user-cog",
         onProfileNav,
         0,
-        "app-header-tab-item-container-last"
+        TabItemContainerEnd
       )}
     </TabBar>
   );
@@ -82,10 +92,10 @@ function _generateTabItem(
   iconName,
   onSelect,
   noteCount,
-  tabItemContainerClass
+  Container
 ) {
   return (
-    <div className={tabItemContainerClass}>
+    <Container>
       <TabItem
         id={id}
         isSelect={isSelect}
@@ -95,13 +105,13 @@ function _generateTabItem(
         notificationItem={
           <NotificationItem count={noteCount} isImportant={true} />
         }
-        selectCssClass="app-header-tab-item-select"
-        unSelectCssClass="app-header-tab-item-unSelect"
-        hoverCssClass="app-header-tab-item-hover"
-        underlineSelectCssClass="app-header-tab-item-underline-select"
-        isCssResponsive={true}
+        selectColor="white"
+        unSelectColor="rgb(192, 203, 211)"
+        hoverColor="white"
+        undelineColor="white"
+        isResponsive={true}
       />
-    </div>
+    </Container>
   );
 }
 AppHeaderTabBar.propTypes = {

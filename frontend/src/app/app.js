@@ -26,7 +26,6 @@ import {
 
 import "../util/css/tabPanel.css";
 import "../util/css/myBootstrap.css";
-import "../css/appComponent_tabItem_customize.css";
 import "../css/reactModal.css";
 import "../component/post/postItem.css";
 
