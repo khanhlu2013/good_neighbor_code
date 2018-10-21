@@ -25,21 +25,19 @@ function Table(props) {
   ));
 
   return (
-    <div className="container-fluid">
-      <table
-        id="OutFriendTable"
-        className="table table-sm table-striped table-bordered"
-      >
-        <thead className="thead-light">
-          <tr className="d-flex">
-            <th className={userNameColClass}>Waiting for friend response</th>
-            <th className={removeColClass}>remove</th>
-          </tr>
-        </thead>
+    <table
+      id="OutFriendTable"
+      className="table table-sm table-striped table-bordered"
+    >
+      <thead className="thead-light">
+        <tr className="d-flex">
+          <th className={userNameColClass}>Waiting for friend response</th>
+          <th className={removeColClass}>remove</th>
+        </tr>
+      </thead>
 
-        <tbody>{rows}</tbody>
-      </table>
-    </div>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 

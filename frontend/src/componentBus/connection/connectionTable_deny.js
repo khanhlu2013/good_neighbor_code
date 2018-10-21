@@ -25,21 +25,19 @@ function Table(props) {
   ));
 
   return (
-    <div className="container-fluid">
-      <table
-        id="DenyFriendTable"
-        className="table table-sm table-striped table-bordered"
-      >
-        <thead className="thead-light">
-          <tr className="d-flex">
-            <th className={userNameColClass}>Denal list</th>
-            <th className={removeColClass}>undo</th>
-          </tr>
-        </thead>
+    <table
+      id="DenyFriendTable"
+      className="table table-sm table-striped table-bordered"
+    >
+      <thead className="thead-light">
+        <tr className="d-flex">
+          <th className={userNameColClass}>Denal list</th>
+          <th className={removeColClass}>undo</th>
+        </tr>
+      </thead>
 
-        <tbody>{rows}</tbody>
-      </table>
-    </div>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 
