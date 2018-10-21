@@ -183,8 +183,3 @@ less sass css inheritance
 ---
 with the current min-width, tab bar header can't contain if there is notification
 &:hover what is that?
-move id and onClick into the wrap of TabItem
-kill the css for customize stuff
-
-
-dry fro the appBodyTabBar: there are 3 plaes that duplicate

@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import className from "classnames";
 import styled from "styled-components";
 
-import "./tabItem.css";
 import { nullOrRequiredValidator } from "../util";
+const responsiveBreakPoint = "500px";
 
 const Wrap = styled.div`
   user-select: none;
@@ -14,19 +13,42 @@ const Wrap = styled.div`
   :hover {
     color: ${props => props.hoverColor};
   }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
+const IconAndNotificationWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const IconWrap = styled.div`
+  font-size: 1.5em;
+  line-height: 100%;
+  ${props =>
+    props.isResponsive &&
+    `@media screen and (max-width: ${responsiveBreakPoint}) { font-size: 1.8em !important;}`};
+`;
+
+const CaptionWrap = styled.div`
+  margin-top: 6px;
+  font-weight: 100;
+  font-size: 0.8em;
+  line-height: 100%;
+  ${props =>
+    props.isResponsive &&
+    `@media screen and (max-width: ${responsiveBreakPoint}) { display: none;}`};
 `;
 
 const Underline = styled.div`
   margin-top: 3px;
   height: 3px;
+  width: 100%;
   background-color: ${props => props.isSelect && props.selectColor};
   ${props =>
     props.isResponsive &&
-    "@media screen and (max-width: 500px) { margin-top: 9px !important;}"};
+    `@media screen and (max-width: ${responsiveBreakPoint}) { margin-top: 9px !important;}`};
 `;
 
 function TabItem(props) {
@@ -58,27 +80,15 @@ function TabItem(props) {
       undelineColor={undelineColor}
       isSelect={isSelect}
     >
-      <div className="tab-item-icon-notification-caption">
-        <div className="tab-item-icon-notification">
-          <div
-            className={className({
-              "tab-item-icon": true,
-              "tab-item-icon-responsive": isResponsive
-            })}
-          >
-            {iconName && <FontAwesomeIcon icon={iconName} />}
-          </div>
-          {notificationItem}
-        </div>
-        <span
-          className={className({
-            "tab-item-caption": true,
-            "tab-item-caption-responsive": isResponsive
-          })}
-        >
-          {caption}
-        </span>
-      </div>
+      <IconAndNotificationWrap>
+        {iconName && (
+          <IconWrap isResponsive={isResponsive}>
+            <FontAwesomeIcon icon={iconName} />
+          </IconWrap>
+        )}
+        {notificationItem}
+      </IconAndNotificationWrap>
+      <CaptionWrap isResponsive={isResponsive}>{caption}</CaptionWrap>
       <Underline
         selectColor={selectColor}
         isSelect={isSelect}
