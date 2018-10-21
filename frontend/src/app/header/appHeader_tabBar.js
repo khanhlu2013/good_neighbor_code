@@ -6,7 +6,7 @@ import { nullOrRequiredValidator } from "../../util";
 import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
 import { TabItem } from "../../util/tabItem";
-import { TabBar } from "../../componentShare/tabBar";
+import { TabBar } from "../../componentUi/tabBar";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;

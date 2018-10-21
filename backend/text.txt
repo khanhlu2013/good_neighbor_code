@@ -183,3 +183,5 @@ less sass css inheritance
 ---
 with the current min-width, tab bar header can't contain if there is notification
 &:hover what is that?
+---
+compBus postItem css

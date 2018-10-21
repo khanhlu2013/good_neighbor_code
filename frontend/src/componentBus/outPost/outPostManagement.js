@@ -11,8 +11,8 @@ import { OutPostList } from "./outPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPost_tabBar";
 import { OutPostTabEnum } from "./outPost_tabEnum";
-import { AppBodyBanner } from "../../componentShare/appBodyBanner";
-import { AppShrinkWrap } from "../../componentShare/appShrinkWrap";
+import { AppBodyBanner } from "../../componentUi/appBodyBanner";
+import { AppShrinkWrap } from "../../componentUi/appShrinkWrap";
 
 class OutPostManagement extends Component {
   state = {

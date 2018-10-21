@@ -9,8 +9,8 @@ import { InPostList } from "./inPostList";
 import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
-import { AppBodyBanner } from "../../componentShare/appBodyBanner";
-import { AppShrinkWrap } from "../../componentShare/appShrinkWrap";
+import { AppBodyBanner } from "../../componentUi/appBodyBanner";
+import { AppShrinkWrap } from "../../componentUi/appShrinkWrap";
 
 class InPostManagement extends Component {
   state = {

@@ -11,8 +11,8 @@ import { API } from "../../api/profile-api.js";
 import { LoadingIcon } from "../../util/loadingIcon.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
-import { AppBodyBanner } from "../../componentShare/appBodyBanner.js";
-import { AppShrinkWrap } from "../../componentShare/appShrinkWrap.js";
+import { AppBodyBanner } from "../../componentUi/appBodyBanner.js";
+import { AppShrinkWrap } from "../../componentUi/appShrinkWrap.js";
 
 class ConnectionManagement extends Component {
   state = {

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import { ConnectionTabEnum } from "./connection_tabEnum";
 import { NotificationItem } from "../../util/notificationItem";
-import { TabBar } from "../../componentShare/tabBar";
-import { AppBodyTabItem } from "../../componentShare/appBodyTabItem";
+import { TabBar } from "../../componentUi/tabBar";
+import { AppBodyTabItem } from "../../componentUi/appBodyTabItem";
 
 function ConnectionTabBar(props) {
   const { selectTab, onTabChange } = props;

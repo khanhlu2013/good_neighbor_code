@@ -35,7 +35,7 @@ import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
 import { AppTabEnum } from "./appTabEnum";
-import { AppShrinkWrap } from "../componentShare/appShrinkWrap";
+import { AppShrinkWrap } from "../componentUi/appShrinkWrap";
 
 library.add(
   faThumbsUp,
