@@ -6,11 +6,11 @@ import { InPostAllHistoryList } from "./inPost_allHistoryList";
 import { API } from "../../api/profile-api";
 import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";
-import { LoadingIcon } from "../../util/loadingIcon";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { AppBodyBanner } from "../../componentUi/appBodyBanner";
 import { AppShrinkWrap } from "../../componentUi/appShrinkWrap";
+import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 class InPostManagement extends Component {
   state = {

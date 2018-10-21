@@ -6,8 +6,8 @@ import { User } from "../../model/user";
 import { GoogleLogin } from "../googleLogin";
 import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderTabBar } from "./appHeader_tabBar";
-import { LoadingIcon } from "../../util/loadingIcon";
 import { AppTabEnum } from "../appTabEnum";
+import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 function AppHeader(props) {
   const {

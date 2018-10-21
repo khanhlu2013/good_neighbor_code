@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { PostItemBody } from "../post/postItem_body";
-import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostItemHead } from "./outPostItem_head";
+import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 function OutPostItem(props) {
   const {

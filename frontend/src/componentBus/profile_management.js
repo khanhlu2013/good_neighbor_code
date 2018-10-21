@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { LoadingIcon } from "../util/loadingIcon";
 import { User } from "../model/user";
 import { API } from "../api/profile-api";
-import { ProfileImage } from "../util/profileImage";
 import { AppShrinkWrap } from "../componentUi/appShrinkWrap";
+import { LoadingIcon } from "../componentUi/loadingIcon";
+import { ProfileImage } from "../componentUi/profileImage";
 
 class ProfileManagement extends Component {
   state = {

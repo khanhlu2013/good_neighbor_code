@@ -6,7 +6,7 @@ import _ from "lodash";
 
 import { Post } from "../../model/post";
 import { nullOrRequiredValidator } from "../../util";
-import { LoadingIcon } from "../../util/loadingIcon";
+import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 Modal.setAppElement("#root");
 

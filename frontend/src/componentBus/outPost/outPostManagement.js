@@ -8,11 +8,11 @@ import { OutPostDecisionDialog } from "./decisionDialog";
 import { Post } from "../../model/post";
 import { OutPostAllHistoryList } from "./outPost_allHistoryList";
 import { OutPostList } from "./outPostList";
-import { LoadingIcon } from "../../util/loadingIcon";
 import { OutPostTabBar } from "./outPost_tabBar";
 import { OutPostTabEnum } from "./outPost_tabEnum";
 import { AppBodyBanner } from "../../componentUi/appBodyBanner";
 import { AppShrinkWrap } from "../../componentUi/appShrinkWrap";
+import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 class OutPostManagement extends Component {
   state = {

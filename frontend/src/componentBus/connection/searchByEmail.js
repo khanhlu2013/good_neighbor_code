@@ -3,7 +3,7 @@ import validator from "validator";
 import PropTypes from "prop-types";
 
 import { API } from "../../api/profile-api.js";
-import { LoadingIcon } from "../../util/loadingIcon.js";
+import { LoadingIcon } from "../../componentUi/loadingIcon.js";
 
 class SearchByEmail extends Component {
   /**

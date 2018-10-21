@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { InPostTabEnum } from "./inPost_tabEnum";
-import { NotificationItem } from "../../util/notificationItem";
 import { nullOrRequiredValidator } from "../../util";
 import { TabBar } from "../../componentUi/tabBar";
 import { AppBodyTabItem } from "../../componentUi/appBodyTabItem";
+import { NotificationItem } from "../../componentUi/notificationItem";
 
 function InPostTabBar(props) {
   const {

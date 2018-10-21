@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { nullOrRequiredValidator } from "../../util";
-import { NotificationItem } from "../../util/notificationItem";
 import { AppTabEnum } from "../appTabEnum";
-import { TabItem } from "../../util/tabItem";
 import { TabBar } from "../../componentUi/tabBar";
+import { TabItem } from "../../componentUi/tabItem";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;
@@ -103,7 +102,7 @@ function _generateTabItem(
         iconName={iconName}
         onSelect={onSelect}
         notificationItem={
-          <NotificationItem count={noteCount} isImportant={true} />
+          <notificationItem count={noteCount} isImportant={true} />
         }
         selectColor="white"
         unSelectColor="rgb(192, 203, 211)"
