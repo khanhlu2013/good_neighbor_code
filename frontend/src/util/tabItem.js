@@ -15,15 +15,14 @@ const Wrap = styled.div`
     color: ${props => props.hoverColor};
   }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 `;
 
 const Underline = styled.div`
   margin-top: 3px;
   height: 3px;
-  width: 100%;
   background-color: ${props => props.isSelect && props.selectColor};
   ${props =>
     props.isResponsive &&
