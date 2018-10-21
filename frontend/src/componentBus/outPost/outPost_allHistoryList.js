@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { date2String } from "../../util";
 import { PostListNoData } from "../post/postListNoData";
-import "../post/post_allHistoryList.css";
+import { PostAllHistoryListStyle } from "../post/style/postAll_historyList_style";
 
 function OutPostAllHistoryList(props) {
   const { shares } = props;
@@ -13,19 +13,21 @@ function OutPostAllHistoryList(props) {
   }
 
   return (
-    <table
-      id="OutShareReturnTable-react"
-      className="table table-sm table-striped table-bordered shadow-box post-all-history-list"
-    >
-      <thead className="thead-light">
-        <tr>
-          <th>date</th>
-          <th>post</th>
-          <th>borrower</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <PostAllHistoryListStyle>
+      <table
+        id="OutShareReturnTable-react"
+        className="table table-sm table-striped table-bordered"
+      >
+        <thead className="thead-light">
+          <tr>
+            <th>date</th>
+            <th>post</th>
+            <th>borrower</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </PostAllHistoryListStyle>
   );
 }
 

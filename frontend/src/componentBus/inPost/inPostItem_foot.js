@@ -6,6 +6,7 @@ import { Share } from "../../model/share";
 import { InPostItemFootApprove } from "./inPostItem_foot_approve";
 import { InPostItemFootRequest } from "./inPostItem_foot_request";
 import { InPostItemFootShop } from "./inPostItem_foot_shop";
+import { PostItemFootStyle } from "../post/style/postItem_foot_style";
 
 function InPostItemFoot(props) {
   const {
@@ -59,7 +60,7 @@ function InPostItemFoot(props) {
     content = <div>Post is no longer active</div>;
   }
 
-  return <div className="post-item-foot">{content}</div>;
+  return <PostItemFootStyle>{content}</PostItemFootStyle>;
 }
 InPostItemFoot.propTypes = {
   postId: PropTypes.string.isRequired,

@@ -27,7 +27,6 @@ import {
 import "../util/css/tabPanel.css";
 import "../util/css/myBootstrap.css";
 import "./reactModal.css";
-import "../componentBus/post/postItem.css";
 
 import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";

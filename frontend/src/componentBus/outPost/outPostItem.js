@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { PostItemBody } from "../post/postItem_body";
 import { OutPostItemHead } from "./outPostItem_head";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
+import { PostItemStyle } from "../post/style/postItem_style";
+import { PostItemFootStyle } from "../post/style/postItem_foot_style";
 
 function OutPostItem(props) {
   const {
@@ -29,13 +31,13 @@ function OutPostItem(props) {
   const curBorrowShare = post.curBorrowShare;
 
   return (
-    <div id="outPost-item-react" className="post-item shadow-box">
+    <PostItemStyle id="outPost-item-react">
       <OutPostItemHead
         onEditPost={onEditBtnClicked}
         dateCreate={post.dateCreate}
       />
       <PostItemBody post={post} />
-      <div className="post-item-foot">
+      <PostItemFootStyle>
         {post.unawareReturnShareLatest && (
           <span>
             {isAwaringReturn ? (
@@ -62,8 +64,8 @@ function OutPostItem(props) {
             share
           </button>
         )}
-      </div>
-    </div>
+      </PostItemFootStyle>
+    </PostItemStyle>
   );
 }
 

@@ -185,6 +185,10 @@ with the current min-width, tab bar header can't contain if there is notificatio
 &:hover what is that?
 ---
 make sure styled is not created in render
+---
+weird right? why dont i 
+              "tab-panel": true,
+              "tab-panel-hide": selectTab !== ConnectionTabEnum.SEARCH
 
 ---
 compBus postItem css

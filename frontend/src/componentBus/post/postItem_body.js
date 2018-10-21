@@ -1,10 +1,16 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { Post } from "../../model/post";
 import { PostItemHistoryList } from "./postItem_historyList";
 import { PostItemRequestList } from "./postItem_requestlist";
-import "./postItem_body.css";
+
+const Style = styled.div`
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+`;
 
 function PostItemBody(props) {
   const { post } = props;
@@ -13,7 +19,7 @@ function PostItemBody(props) {
   const borrower = curBorrowShare ? curBorrowShare.borrower : null;
 
   return (
-    <div className="post-item-body">
+    <Style>
       <div>
         <span className="text-secondary font-weight-light">title: </span>
         {title}
@@ -36,7 +42,7 @@ function PostItemBody(props) {
       {post.returnShares.length !== 0 && (
         <PostItemHistoryList shares={post.returnShares} />
       )}
-    </div>
+    </Style>
   );
 }
 PostItemBody.propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { date2String } from "../../util";
 import { PostListNoData } from "../post/postListNoData";
-import "../post/post_allHistoryList.css";
+import { PostAllHistoryListStyle } from "../post/style/postAll_historyList_style";
 
 function InPostAllHistoryList(props) {
   const { shares } = props;
@@ -16,19 +16,21 @@ function InPostAllHistoryList(props) {
     .map(share => <TableRow key={share.id} share={share} />);
 
   return (
-    <table
-      id="InShareReturnTable-react"
-      className="table table-sm table-striped table-bordered shadow-box post-all-history-list"
-    >
-      <thead className="thead-light">
-        <tr>
-          <th>date</th>
-          <th>post</th>
-          <th>lender</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <PostAllHistoryListStyle>
+      <table
+        id="InShareReturnTable-react"
+        className="table table-sm table-striped table-bordered"
+      >
+        <thead className="thead-light">
+          <tr>
+            <th>date</th>
+            <th>post</th>
+            <th>lender</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>{" "}
+    </PostAllHistoryListStyle>
   );
 }
 

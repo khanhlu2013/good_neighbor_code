@@ -1,8 +1,20 @@
 import React from "react";
-import "./postListNoData.css";
+import styled from "styled-components";
+import { ShadowBoxMixin } from "../../componentUi/mixin";
+
+const Style = styled.div`
+  font-size: 1.5em;
+  font-weight: 500;
+  color: darkgrey;
+  text-align: center;
+  margin-top: 10px;
+  background-color: white;
+  padding: 10px;
+  ${ShadowBoxMixin};
+`;
 
 function PostListNoData(props) {
-  return <div className="post-list-no-data shadow-box">there are no data</div>;
+  return <Style>there are no data</Style>;
 }
 
 export { PostListNoData };

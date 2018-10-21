@@ -1,8 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { date2String } from "../../util";
-import "./postItem_historyList.css";
+
+const Style = styled.div`
+  margin-top: 10px;
+`;
 
 function PostItemHistoryList(props) {
   const { shares } = props;
@@ -16,15 +20,17 @@ function PostItemHistoryList(props) {
     ));
 
   return (
-    <table className="my-table table-sm table-bordered table-striped post-item-history-list">
-      <thead className="thead-light">
-        <tr>
-          <th>history</th>
-          <th>date</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <Style>
+      <table className="my-table table-sm table-bordered table-striped">
+        <thead className="thead-light">
+          <tr>
+            <th>history</th>
+            <th>date</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </Style>
   );
 }
 PostItemHistoryList.propTypes = {

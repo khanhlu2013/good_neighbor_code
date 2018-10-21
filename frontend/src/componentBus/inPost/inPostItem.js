@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { InPostItemFoot } from "./inPostItem_foot";
 import { PostItemBody } from "../post/postItem_body";
 import { InPostItemHead } from "./inPostItem_head";
+import { PostItemStyle } from "../post/style/postItem_style";
 
 function InPostItem(props) {
   const {
@@ -18,7 +20,7 @@ function InPostItem(props) {
     onReturnShare
   } = props;
   return (
-    <div id="inPost-item-react" className="post-item shadow-box">
+    <PostItemStyle id="inPost-item-react">
       <InPostItemHead postUser={post.user} dateCreate={post.dateCreate} />
       <PostItemBody post={post} />
       <InPostItemFoot
@@ -40,7 +42,7 @@ function InPostItem(props) {
         onAwareShare={onAwareShare}
         onReturnShare={onReturnShare}
       />
-    </div>
+    </PostItemStyle>
   );
 }
 InPostItem.propTypes = {
