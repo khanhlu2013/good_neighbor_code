@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import className from "classnames";
 
-import { ConnectionManagement } from "../component/connection/connectionManagement.js";
-import { OutPostManagement } from "../component/outPost/outPostManagement.js";
-import { InPostManagement } from "../component/inPost/inPost_management.js";
+import { ConnectionManagement } from "../componentBus/connection/connectionManagement.js";
+import { OutPostManagement } from "../componentBus/outPost/outPostManagement.js";
+import { InPostManagement } from "../componentBus/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
-import { ProfileManagement } from "../component/profile_management";
+import { ProfileManagement } from "../componentBus/profile_management";
 
 function PrivateApp(props) {
   const {
