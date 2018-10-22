@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { ConnectionManagement } from "../componentBus/connection/connectionManagement.js";
 import { OutPostManagement } from "../componentBus/outPost/outPostManagement.js";
@@ -8,6 +7,7 @@ import { InPostManagement } from "../componentBus/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
 import { ProfileManagement } from "../componentBus/profile_management";
+import { TabPanelStyle } from "../componentUi/style/tabPanel_style.js";
 
 function PrivateApp(props) {
   const {
@@ -21,51 +21,32 @@ function PrivateApp(props) {
 
   return (
     <div id="privateApp-react">
-      <div
-        className={className({
-          "tab-panel": true,
-          "tab-panel-hide": selectTab !== AppTabEnum.INPOST
-        })}
-      >
+      <TabPanelStyle show={selectTab === AppTabEnum.INPOST}>
         <InPostManagement
           loginUser={loginUser}
           onInPostNotify={onInPostNotify}
         />
-      </div>
+      </TabPanelStyle>
 
-      <div
-        className={className({
-          "tab-panel": true,
-          "tab-panel-hide": selectTab !== AppTabEnum.OUTPOST
-        })}
-      >
+      <TabPanelStyle show={selectTab === AppTabEnum.OUTPOST}>
         <OutPostManagement
           loginUser={loginUser}
           onOutPostNotify={onOutPostNotify}
         />
-      </div>
-      <div
-        className={className({
-          "tab-panel": true,
-          "tab-panel-hide": selectTab !== AppTabEnum.CONNECTION
-        })}
-      >
+      </TabPanelStyle>
+
+      <TabPanelStyle show={selectTab === AppTabEnum.CONNECTION}>
         <ConnectionManagement
           loginUser={loginUser}
           onConnectionNotify={onConnectionNotify}
         />
-      </div>
-      <div
-        className={className({
-          "tab-panel": true,
-          "tab-panel-hide": selectTab !== AppTabEnum.PROFILE
-        })}
-      >
+      </TabPanelStyle>
+      <TabPanelStyle show={selectTab === AppTabEnum.PROFILE}>
         <ProfileManagement
           loginUser={loginUser}
           onUserDidLogOut={onUserDidLogOut}
         />
-      </div>
+      </TabPanelStyle>
     </div>
   );
 }

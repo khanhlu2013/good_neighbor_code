@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 import styled from "styled-components";
 
 import { SearchByEmail } from "./searchByEmail.js";
@@ -14,6 +13,7 @@ import { ConnectionTabBar } from "./connection_tabBar.js";
 import { LoadingIcon } from "../../componentUi/loadingIcon.js";
 import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style.js";
 import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style.js";
+import { TabPanelStyle } from "../../componentUi/style/tabPanel_style.js";
 
 const TopMarginWrap = styled.div`
   margin-top: 10px;
@@ -140,73 +140,46 @@ class ConnectionManagement extends Component {
 
         <AppCenterWrapStyle>
           <TopMarginWrap>
-            <div
-              className={className({
-                "tab-panel": true,
-                "tab-panel-hide": selectTab !== ConnectionTabEnum.FRIEND
-              })}
-            >
+            <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIEND}>
               <ConnectionFriendTable
                 connections={friends}
                 updatingConnectionIds={updatingConnectionIds}
                 loginUserId={loginUserId}
                 updateConnectionCb={this.onUpdateConnection}
               />
-            </div>
-            <div
-              className={className({
-                "tab-panel": true,
-                "tab-panel-hide": selectTab !== ConnectionTabEnum.FRIENDREQUEST
-              })}
-            >
+            </TabPanelStyle>
+            <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
               <ConnectionInTable
                 connections={inFriends}
                 updatingConnectionIds={updatingConnectionIds}
                 loginUserId={loginUserId}
                 updateConnectionCb={this.onUpdateConnection}
               />
-            </div>
-            <div
-              className={className({
-                "tab-panel": true,
-                "tab-panel-hide": selectTab !== ConnectionTabEnum.MYREQUEST
-              })}
-            >
+            </TabPanelStyle>
+            <TabPanelStyle show={selectTab === ConnectionTabEnum.MYREQUEST}>
               <ConnectionOutTable
                 connections={outFriends}
                 updatingConnectionIds={updatingConnectionIds}
                 loginUserId={loginUserId}
                 updateConnectionCb={this.onUpdateConnection}
               />
-            </div>
-
-            <div
-              className={className({
-                "tab-panel": true,
-                "tab-panel-hide": selectTab !== ConnectionTabEnum.DENY
-              })}
-            >
+            </TabPanelStyle>
+            <TabPanelStyle show={selectTab === ConnectionTabEnum.DENY}>
               <ConnectionDenyTable
                 connections={rejectedFriends}
                 updatingConnectionIds={updatingConnectionIds}
                 loginUserId={loginUserId}
                 updateConnectionCb={this.onUpdateConnection}
               />
-            </div>
-
-            <div
-              className={className({
-                "tab-panel": true,
-                "tab-panel-hide": selectTab !== ConnectionTabEnum.SEARCH
-              })}
-            >
+            </TabPanelStyle>
+            <TabPanelStyle show={selectTab === ConnectionTabEnum.SEARCH}>
               <SearchByEmail
                 loginUser={this.props.loginUser}
                 connections={connections}
                 createConnectionCb={this.onCreateConnection}
                 isCreatingConnection={this.state.isCreatingConnection}
               />
-            </div>
+            </TabPanelStyle>
           </TopMarginWrap>
         </AppCenterWrapStyle>
       </Fragment>

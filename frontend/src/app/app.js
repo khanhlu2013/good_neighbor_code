@@ -24,9 +24,8 @@ import {
   faUserSlash //deny user list
 } from "@fortawesome/free-solid-svg-icons";
 
-import "../util/css/tabPanel.css";
-import "../util/css/myBootstrap.css";
-import "./reactModal.css";
+import "../css/myBootstrap.css";
+import "../css/reactModal.css";
 
 import { PublicApp } from "./appPublic";
 import { AppHeader } from "./header/appHeader";

@@ -190,7 +190,4 @@ weird right? why dont i
               "tab-panel": true,
               "tab-panel-hide": selectTab !== ConnectionTabEnum.SEARCH
 
----
-compBus postItem css
-
 

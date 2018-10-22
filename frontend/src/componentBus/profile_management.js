@@ -6,6 +6,7 @@ import { API } from "../api/profile-api";
 import { LoadingIcon } from "../componentUi/loadingIcon";
 import { ProfileImage } from "../componentUi/profileImage";
 import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
+import { ShadowBoxStyle } from "../componentUi/style/shadowBox_style";
 
 class ProfileManagement extends Component {
   state = {
@@ -25,7 +26,7 @@ class ProfileManagement extends Component {
     const { loginUser } = this.props;
     return (
       <AppCenterWrapStyle>
-        <div className="text-center mt-4 p-2 shadow-box">
+        <ShadowBoxStyle className="text-center mt-4 p-2">
           <div>
             <ProfileImage loginUser={loginUser} />
             <span className="ml-2">{loginUser.getNameAndEmail()}</span>
@@ -44,7 +45,7 @@ class ProfileManagement extends Component {
               </button>
             )}
           </div>
-        </div>
+        </ShadowBoxStyle>
       </AppCenterWrapStyle>
     );
   }

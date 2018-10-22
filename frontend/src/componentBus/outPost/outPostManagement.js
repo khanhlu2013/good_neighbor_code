@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { OutPostCrudDialog } from "./crudDialog";
 import { API } from "../../api/profile-api";
@@ -13,6 +12,7 @@ import { OutPostTabEnum } from "./outPost_tabEnum";
 import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
 import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
+import { TabPanelStyle } from "../../componentUi/style/tabPanel_style";
 
 class OutPostManagement extends Component {
   state = {
@@ -259,49 +259,24 @@ class OutPostManagement extends Component {
         </AppBodyBannerStyle>
 
         <AppCenterWrapStyle>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== OutPostTabEnum.ALL
-            })}
-          >
+          <TabPanelStyle show={selectTab === OutPostTabEnum.ALL}>
             {this._genPostList("outPostList-all-react", posts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== OutPostTabEnum.REQUEST
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === OutPostTabEnum.REQUEST}>
             {this._genPostList(
               "outPostList-requestNote-react",
               requestNotePosts
             )}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== OutPostTabEnum.BORROW
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === OutPostTabEnum.BORROW}>
             {this._genPostList("outPostList-borrow-react", borrowPosts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== OutPostTabEnum.RETURN
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === OutPostTabEnum.RETURN}>
             {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== OutPostTabEnum.HISTORY
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === OutPostTabEnum.HISTORY}>
             <OutPostAllHistoryList shares={this.state.returnShares} />
-          </div>
+          </TabPanelStyle>
         </AppCenterWrapStyle>
       </Fragment>
     );

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import className from "classnames";
 
 import { InPostAllHistoryList } from "./inPost_allHistoryList";
 import { API } from "../../api/profile-api";
@@ -11,6 +10,7 @@ import { InPostTabEnum } from "./inPost_tabEnum";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
 import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style";
 import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
+import { TabPanelStyle } from "../../componentUi/style/tabPanel_style";
 
 class InPostManagement extends Component {
   state = {
@@ -244,49 +244,24 @@ class InPostManagement extends Component {
         </AppBodyBannerStyle>
 
         <AppCenterWrapStyle>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== InPostTabEnum.ALL
-            })}
-          >
+          <TabPanelStyle show={selectTab === InPostTabEnum.ALL}>
             {generateList("inPostList-all-react", posts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== InPostTabEnum.REQUEST
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === InPostTabEnum.REQUEST}>
             {generateList("inPostList-request-react", requestPosts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== InPostTabEnum.APPROVE
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === InPostTabEnum.APPROVE}>
             {generateList(
               "inPostList-approveNote-react",
               this.state.approveNotePosts
             )}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== InPostTabEnum.BORROW
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === InPostTabEnum.BORROW}>
             {generateList("inPostList-borrow-react", borrowPosts)}
-          </div>
-          <div
-            className={className({
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== InPostTabEnum.HISTORY
-            })}
-          >
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === InPostTabEnum.HISTORY}>
             <InPostAllHistoryList shares={this.state.returnShares} />
-          </div>
+          </TabPanelStyle>
         </AppCenterWrapStyle>
       </Fragment>
     );
