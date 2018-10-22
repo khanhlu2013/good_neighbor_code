@@ -183,11 +183,6 @@ less sass css inheritance
 ---
 with the current min-width, tab bar header can't contain if there is notification
 &:hover what is that?
----
-make sure styled is not created in render
----
-weird right? why dont i 
-              "tab-panel": true,
-              "tab-panel-hide": selectTab !== ConnectionTabEnum.SEARCH
 
-
+---
+really need to get back into my test. auth check loading 
