@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { User } from "../model/user";
@@ -6,7 +7,12 @@ import { API } from "../api/profile-api";
 import { LoadingIcon } from "../componentUi/loadingIcon";
 import { ProfileImage } from "../componentUi/profileImage";
 import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
-import { ShadowBoxStyle } from "../componentUi/style/shadowBox_style";
+import { ShadowBoxMixin } from "../componentUi/style/shadowBox_style";
+
+const Style = styled.div`
+  ${ShadowBoxMixin} margin-top:10px;
+  text-align: center;
+`;
 
 class ProfileManagement extends Component {
   state = {
@@ -26,7 +32,7 @@ class ProfileManagement extends Component {
     const { loginUser } = this.props;
     return (
       <AppCenterWrapStyle>
-        <ShadowBoxStyle className="text-center mt-4 p-2">
+        <Style>
           <div>
             <ProfileImage loginUser={loginUser} />
             <span className="ml-2">{loginUser.getNameAndEmail()}</span>
@@ -45,7 +51,7 @@ class ProfileManagement extends Component {
               </button>
             )}
           </div>
-        </ShadowBoxStyle>
+        </Style>
       </AppCenterWrapStyle>
     );
   }

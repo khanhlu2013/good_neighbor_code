@@ -181,10 +181,9 @@ less sass css inheritance
   min-width: 420px;
 
 ---
+. do somehting about the table background color css
+---
 . deal with the banner style there are 2 of them. possible to pass in prop for theme
 . deal with min-width 420 inside both places of the banner and app wrap. consider prop type validation. 
 
 
-
-. connection management can inherit the css plus the 10px marign top
-. check the profile too
