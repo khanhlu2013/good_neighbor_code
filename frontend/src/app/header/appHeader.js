@@ -9,12 +9,10 @@ import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { AppTabEnum } from "../appTabEnum";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
 import { AppCenterWrapMixin } from "../../componentUi/style/appCenterWrap_style";
+import { BannerMixin } from "../../componentUi/style/banner_mixin";
 
-const Background = styled.div`
-  height: 57px;
-  background-color: rgb(36, 54, 65);
-  min-width: 420px;
-  color: white;
+const Banner = styled.div`
+  ${BannerMixin} background-color: rgb(36, 54, 65);
 `;
 const CenterWrap = styled.div`
   ${AppCenterWrapMixin} height: 100%;
@@ -74,12 +72,12 @@ function AppHeader(props) {
   }
 
   return (
-    <Background>
+    <Banner>
       <CenterWrap>
         <AppIconWrap>Good Neighbor</AppIconWrap>
         {content}
       </CenterWrap>
-    </Background>
+    </Banner>
   );
 }
 

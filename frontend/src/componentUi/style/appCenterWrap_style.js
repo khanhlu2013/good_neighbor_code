@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
+import { AppMinWidthMixin, AppMaxWidthMixin } from "./app_mixin";
 
 const AppCenterWrapMixin = css`
-  max-width: 700px;
-  min-width: 420px;
+  ${AppMinWidthMixin} ${AppMaxWidthMixin}
   margin: 0 auto;
   padding: 0 10px;
 `;

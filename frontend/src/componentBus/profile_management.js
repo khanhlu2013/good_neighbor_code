@@ -11,6 +11,7 @@ import { ShadowBoxMixin } from "../componentUi/style/shadowBox_style";
 
 const Style = styled.div`
   ${ShadowBoxMixin} margin-top:10px;
+  padding: 10px;
   text-align: center;
 `;
 

@@ -184,6 +184,7 @@ less sass css inheritance
 . do somehting about the table background color css
 ---
 . deal with the banner style there are 2 of them. possible to pass in prop for theme
+
 . deal with min-width 420 inside both places of the banner and app wrap. consider prop type validation. 
 
-
+AppMinWidth -> AppMinWidthMixin
