@@ -1,11 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const AppCenterWrapStyle = styled.div`
+const AppCenterWrapMixin = css`
   max-width: 700px;
   min-width: 420px;
   margin: 0 auto;
   padding: 0 10px;
-  flex-grow: 1;
 `;
 
-export { AppCenterWrapStyle };
+const AppCenterWrapStyle = styled.div`
+  ${AppCenterWrapMixin};
+`;
+
+export { AppCenterWrapStyle, AppCenterWrapMixin };

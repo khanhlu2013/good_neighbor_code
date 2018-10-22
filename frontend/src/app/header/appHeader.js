@@ -8,6 +8,7 @@ import { nullOrRequiredValidator } from "../../util";
 import { AppHeaderTabBar } from "./appHeader_tabBar";
 import { AppTabEnum } from "../appTabEnum";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
+import { AppCenterWrapMixin } from "../../componentUi/style/appCenterWrap_style";
 
 const Background = styled.div`
   height: 57px;
@@ -16,14 +17,7 @@ const Background = styled.div`
   color: white;
 `;
 const CenterWrap = styled.div`
-  height: 100%;
-  max-width: 700px;
-  min-width: 420px;
-  margin: 0 auto;
-  padding: 0 10px;
-`;
-const HorizontalLayout = styled.div`
-  height: 100%;
+  ${AppCenterWrapMixin} height: 100%;
   display: flex;
 `;
 
@@ -82,10 +76,8 @@ function AppHeader(props) {
   return (
     <Background>
       <CenterWrap>
-        <HorizontalLayout>
-          <AppIconWrap>Good Neighbor</AppIconWrap>
-          {content}
-        </HorizontalLayout>
+        <AppIconWrap>Good Neighbor</AppIconWrap>
+        {content}
       </CenterWrap>
     </Background>
   );

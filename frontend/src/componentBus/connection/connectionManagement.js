@@ -12,10 +12,11 @@ import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
 import { LoadingIcon } from "../../componentUi/loadingIcon.js";
 import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style.js";
-import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style.js";
+import { AppCenterWrapMixin } from "../../componentUi/style/appCenterWrap_style.js";
 import { TabPanelStyle } from "../../componentUi/style/tabPanel_style.js";
 
-const TopMarginWrap = styled.div`
+const Style = styled.div`
+  ${AppCenterWrapMixin};
   margin-top: 10px;
 `;
 
@@ -138,50 +139,48 @@ class ConnectionManagement extends Component {
           />
         </AppBodyBannerStyle>
 
-        <AppCenterWrapStyle>
-          <TopMarginWrap>
-            <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIEND}>
-              <ConnectionFriendTable
-                connections={friends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </TabPanelStyle>
-            <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
-              <ConnectionInTable
-                connections={inFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </TabPanelStyle>
-            <TabPanelStyle show={selectTab === ConnectionTabEnum.MYREQUEST}>
-              <ConnectionOutTable
-                connections={outFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </TabPanelStyle>
-            <TabPanelStyle show={selectTab === ConnectionTabEnum.DENY}>
-              <ConnectionDenyTable
-                connections={rejectedFriends}
-                updatingConnectionIds={updatingConnectionIds}
-                loginUserId={loginUserId}
-                updateConnectionCb={this.onUpdateConnection}
-              />
-            </TabPanelStyle>
-            <TabPanelStyle show={selectTab === ConnectionTabEnum.SEARCH}>
-              <SearchByEmail
-                loginUser={this.props.loginUser}
-                connections={connections}
-                createConnectionCb={this.onCreateConnection}
-                isCreatingConnection={this.state.isCreatingConnection}
-              />
-            </TabPanelStyle>
-          </TopMarginWrap>
-        </AppCenterWrapStyle>
+        <Style>
+          <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIEND}>
+            <ConnectionFriendTable
+              connections={friends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
+            <ConnectionInTable
+              connections={inFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === ConnectionTabEnum.MYREQUEST}>
+            <ConnectionOutTable
+              connections={outFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === ConnectionTabEnum.DENY}>
+            <ConnectionDenyTable
+              connections={rejectedFriends}
+              updatingConnectionIds={updatingConnectionIds}
+              loginUserId={loginUserId}
+              updateConnectionCb={this.onUpdateConnection}
+            />
+          </TabPanelStyle>
+          <TabPanelStyle show={selectTab === ConnectionTabEnum.SEARCH}>
+            <SearchByEmail
+              loginUser={this.props.loginUser}
+              connections={connections}
+              createConnectionCb={this.onCreateConnection}
+              isCreatingConnection={this.state.isCreatingConnection}
+            />
+          </TabPanelStyle>
+        </Style>
       </Fragment>
     );
   };

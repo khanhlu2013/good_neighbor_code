@@ -109,8 +109,8 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . how do i make the image profile image a live one, instead of a dead url. it could change. do not store the url on the backend, always get it from google. 
 . code review refactoring for post management 
 . better validate url profile image, isnullorrequire. but i like to use a live url not a dead one right?
-
-
+. &:hover what is that?
+. with the current min-width, tab bar header can't contain if there is notification
 
 
 
@@ -181,8 +181,10 @@ less sass css inheritance
   min-width: 420px;
 
 ---
-with the current min-width, tab bar header can't contain if there is notification
-&:hover what is that?
+. deal with the banner style there are 2 of them. possible to pass in prop for theme
+. deal with min-width 420 inside both places of the banner and app wrap. consider prop type validation. 
 
----
-really need to get back into my test. auth check loading 
+
+
+. connection management can inherit the css plus the 10px marign top
+. check the profile too
