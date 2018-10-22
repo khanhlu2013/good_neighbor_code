@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AppShrinkWrap = styled.div`
+const AppCenterWrapStyle = styled.div`
   max-width: 700px;
   min-width: 420px;
   margin: 0 auto;
@@ -8,4 +8,4 @@ const AppShrinkWrap = styled.div`
   flex-grow: 1;
 `;
 
-export { AppShrinkWrap };
+export { AppCenterWrapStyle };

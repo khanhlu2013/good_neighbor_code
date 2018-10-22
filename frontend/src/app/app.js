@@ -34,7 +34,7 @@ import { PrivateApp } from "./appPrivate";
 import { API } from "../api/profile-api";
 import { BackdoorLogin } from "./backdoorLogin";
 import { AppTabEnum } from "./appTabEnum";
-import { AppShrinkWrap } from "../componentUi/appShrinkWrap";
+import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
 
 library.add(
   faThumbsUp,
@@ -109,9 +109,9 @@ class App extends Component {
       appContent = null;
     } else if (loginUser === null) {
       appContent = (
-        <AppShrinkWrap>
+        <AppCenterWrapStyle>
           <PublicApp />
-        </AppShrinkWrap>
+        </AppCenterWrapStyle>
       );
     } else {
       appContent = (
@@ -137,9 +137,9 @@ class App extends Component {
           connectionNoteCount={connectionNoteCount}
         />
         {loginUser === null && (
-          <AppShrinkWrap>
+          <AppCenterWrapStyle>
             <BackdoorLogin onUserDidLogIn={this.onUserDidLogIn} />
-          </AppShrinkWrap>
+          </AppCenterWrapStyle>
         )}
         {appContent}
       </div>

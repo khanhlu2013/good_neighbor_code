@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import { User } from "../model/user";
 import { API } from "../api/profile-api";
-import { AppShrinkWrap } from "../componentUi/appShrinkWrap";
 import { LoadingIcon } from "../componentUi/loadingIcon";
 import { ProfileImage } from "../componentUi/profileImage";
+import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
 
 class ProfileManagement extends Component {
   state = {
@@ -24,7 +24,7 @@ class ProfileManagement extends Component {
   render() {
     const { loginUser } = this.props;
     return (
-      <AppShrinkWrap>
+      <AppCenterWrapStyle>
         <div className="text-center mt-4 p-2 shadow-box">
           <div>
             <ProfileImage loginUser={loginUser} />
@@ -45,7 +45,7 @@ class ProfileManagement extends Component {
             )}
           </div>
         </div>
-      </AppShrinkWrap>
+      </AppCenterWrapStyle>
     );
   }
 }

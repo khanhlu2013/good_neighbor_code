@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { nullOrRequiredValidator } from "../../util";
-import { TabBar } from "../../componentUi/tabBar";
+import { AppBodyTabBarStyle } from "../../componentUi/style/tabBar_style";
 import { AppBodyTabItem } from "../../componentUi/appBodyTabItem";
 import { NotificationItem } from "../../componentUi/notificationItem";
 
@@ -35,7 +35,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <TabBar>
+    <AppBodyTabBarStyle>
       {_generateTabItem(
         "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,
@@ -90,7 +90,7 @@ function InPostTabBar(props) {
         false,
         true
       )}
-    </TabBar>
+    </AppBodyTabBarStyle>
   );
 }
 

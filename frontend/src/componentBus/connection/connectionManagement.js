@@ -11,9 +11,9 @@ import { ConnectionInTable } from "./connectionTable_in.js";
 import { API } from "../../api/profile-api.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
-import { AppBodyBanner } from "../../componentUi/appBodyBanner.js";
-import { AppShrinkWrap } from "../../componentUi/appShrinkWrap.js";
 import { LoadingIcon } from "../../componentUi/loadingIcon.js";
+import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style.js";
+import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style.js";
 
 const TopMarginWrap = styled.div`
   margin-top: 10px;
@@ -131,14 +131,14 @@ class ConnectionManagement extends Component {
 
     return (
       <Fragment>
-        <AppBodyBanner>
+        <AppBodyBannerStyle>
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
           />
-        </AppBodyBanner>
+        </AppBodyBannerStyle>
 
-        <AppShrinkWrap margin-top="10px">
+        <AppCenterWrapStyle>
           <TopMarginWrap>
             <div
               className={className({
@@ -208,7 +208,7 @@ class ConnectionManagement extends Component {
               />
             </div>
           </TopMarginWrap>
-        </AppShrinkWrap>
+        </AppCenterWrapStyle>
       </Fragment>
     );
   };

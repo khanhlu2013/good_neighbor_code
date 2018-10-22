@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { nullOrRequiredValidator } from "../../util";
 import { AppTabEnum } from "../appTabEnum";
-import { TabBar } from "../../componentUi/tabBar";
+import { AppHeaderTabBarStyle } from "../../componentUi/style/tabBar_style";
 import { TabItem } from "../../componentUi/tabItem";
 import { NotificationItem } from "../../componentUi/notificationItem";
 
@@ -41,7 +41,7 @@ function AppHeaderTabBar(props) {
   };
 
   return (
-    <TabBar>
+    <AppHeaderTabBarStyle>
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectTab === AppTabEnum.INPOST,
@@ -81,7 +81,7 @@ function AppHeaderTabBar(props) {
         0,
         TabItemContainerEnd
       )}
-    </TabBar>
+    </AppHeaderTabBarStyle>
   );
 }
 

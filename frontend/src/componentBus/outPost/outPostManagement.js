@@ -10,9 +10,9 @@ import { OutPostAllHistoryList } from "./outPost_allHistoryList";
 import { OutPostList } from "./outPostList";
 import { OutPostTabBar } from "./outPost_tabBar";
 import { OutPostTabEnum } from "./outPost_tabEnum";
-import { AppBodyBanner } from "../../componentUi/appBodyBanner";
-import { AppShrinkWrap } from "../../componentUi/appShrinkWrap";
+import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
+import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
 
 class OutPostManagement extends Component {
   state = {
@@ -245,7 +245,7 @@ class OutPostManagement extends Component {
 
     return (
       <Fragment>
-        <AppBodyBanner>
+        <AppBodyBannerStyle>
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -256,9 +256,9 @@ class OutPostManagement extends Component {
             returnCount={returnNotePosts.length}
             historyCount={this.state.returnShares.length}
           />
-        </AppBodyBanner>
+        </AppBodyBannerStyle>
 
-        <AppShrinkWrap>
+        <AppCenterWrapStyle>
           <div
             className={className({
               "tab-panel": true,
@@ -302,7 +302,7 @@ class OutPostManagement extends Component {
           >
             <OutPostAllHistoryList shares={this.state.returnShares} />
           </div>
-        </AppShrinkWrap>
+        </AppCenterWrapStyle>
       </Fragment>
     );
   }

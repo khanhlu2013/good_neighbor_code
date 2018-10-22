@@ -1,12 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import "./outPostTabBar.css";
 import { OutPostTabEnum } from "./outPost_tabEnum";
 import { nullOrRequiredValidator } from "../../util";
-import { TabBar } from "../../componentUi/tabBar";
+import { AppBodyTabBarStyle } from "../../componentUi/style/tabBar_style";
 import { AppBodyTabItem } from "../../componentUi/appBodyTabItem";
 import { NotificationItem } from "../../componentUi/notificationItem";
+
+const NewPostButtonStyle = styled.div`
+  display: flex;
+  align-self: center;
+`;
 
 function OutPostTabBar(props) {
   const {
@@ -40,7 +46,7 @@ function OutPostTabBar(props) {
   };
 
   return (
-    <TabBar>
+    <AppBodyTabBarStyle>
       {_generateTabItem(
         "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
@@ -96,14 +102,16 @@ function OutPostTabBar(props) {
         true
       )}
 
-      <button
-        id="createPostBtn-react"
-        onClick={onNewPostClicked}
-        className="btn btn-success new-post-btn"
-      >
-        new
-      </button>
-    </TabBar>
+      <NewPostButtonStyle>
+        <button
+          id="createPostBtn-react"
+          onClick={onNewPostClicked}
+          className="btn btn-success"
+        >
+          new
+        </button>
+      </NewPostButtonStyle>
+    </AppBodyTabBarStyle>
   );
 }
 
