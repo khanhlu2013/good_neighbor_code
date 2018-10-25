@@ -188,3 +188,15 @@ less sass css inheritance
 . deal with min-width 420 inside both places of the banner and app wrap. consider prop type validation. 
 
 AppMinWidth -> AppMinWidthMixin
+
+
+
+---
+
+. authCheck
+. fetch data connection data. 
+. derived state to make the notification for connection.
+
+connection
+  . list
+  . selectTab
