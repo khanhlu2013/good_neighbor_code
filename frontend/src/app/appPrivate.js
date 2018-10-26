@@ -6,7 +6,7 @@ import { OutPostManagement } from "../componentBus/outPost/outPostManagement.js"
 import { InPostManagement } from "../componentBus/inPost/inPost_management.js";
 import { User } from "../model/user.js";
 import { AppTabEnum } from "./appTabEnum.js";
-import { ProfileManagement } from "../componentBus/profile_management";
+import ProfileManagementContainer from "../container/profile_management";
 import { TabPanelStyle } from "../componentUi/style/tabPanel_style.js";
 
 function PrivateApp(props) {
@@ -15,8 +15,7 @@ function PrivateApp(props) {
     selectTab,
     onConnectionNotify,
     onInPostNotify,
-    onOutPostNotify,
-    onUserDidLogOut
+    onOutPostNotify
   } = props;
 
   return (
@@ -42,10 +41,7 @@ function PrivateApp(props) {
         />
       </TabPanelStyle>
       <TabPanelStyle show={selectTab === AppTabEnum.PROFILE}>
-        <ProfileManagement
-          loginUser={loginUser}
-          onUserDidLogOut={onUserDidLogOut}
-        />
+        <ProfileManagementContainer />
       </TabPanelStyle>
     </div>
   );
@@ -56,8 +52,7 @@ PrivateApp.propTypes = {
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   onConnectionNotify: PropTypes.func.isRequired,
   onInPostNotify: PropTypes.func.isRequired,
-  onOutPostNotify: PropTypes.func.isRequired,
-  onUserDidLogOut: PropTypes.func.isRequired
+  onOutPostNotify: PropTypes.func.isRequired
 };
 
 export { PrivateApp };

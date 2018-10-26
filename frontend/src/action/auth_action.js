@@ -2,7 +2,7 @@ import { API } from "../api/profile-api";
 
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";
 export const INFORM_CHECKED_AUTH = "INFORM_CHECKED_AUTH";
-export const INFORM_LOGGIN_OUT = "INFORM_LOGGIN_OUT";
+export const INFORM_LOGGING_OUT = "INFORM_LOGGING_OUT";
 export const INFORM_LOGGED_OUT = "INFORM_LOGGED_OUT";
 
 export const STORE_LOGIN_USER = "STORE_LOGIN_USER";
@@ -14,7 +14,7 @@ export const informCheckedAuth = () => ({
   type: INFORM_CHECKED_AUTH
 });
 export const informLoggingOut = () => ({
-  type: INFORM_LOGGIN_OUT
+  type: INFORM_LOGGING_OUT
 });
 export const informLoggedOut = () => ({
   type: INFORM_LOGGED_OUT

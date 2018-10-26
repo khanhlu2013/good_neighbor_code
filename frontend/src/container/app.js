@@ -120,7 +120,6 @@ class AppComponent extends Component {
           onConnectionNotify={this.onConnectionNotify}
           onInPostNotify={this.onInPostNotify}
           onOutPostNotify={this.onOutPostNotify}
-          onUserDidLogOut={this.onUserDidLogOut}
         />
       );
     }
