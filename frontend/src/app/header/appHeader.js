@@ -29,6 +29,7 @@ const AppIconWrap = styled.div`
   user-select: none;
 `;
 const AuthCheckWrap = styled.div`
+  color: white;
   align-self: center;
 `;
 const GoogleLoginWrap = styled.div`
@@ -38,6 +39,7 @@ const GoogleLoginWrap = styled.div`
 function AppHeader(props) {
   const {
     loginUser,
+    isCheckingAuth,
     onAppTabChange,
     selectTab,
     inPostNoteCount,
@@ -47,12 +49,14 @@ function AppHeader(props) {
 
   let content;
 
-  if (loginUser === undefined) {
+  if (isCheckingAuth) {
     content = (
       <AuthCheckWrap>
         <LoadingIcon text="loading" />
       </AuthCheckWrap>
     );
+  } else if (loginUser === undefined) {
+    content = null;
   } else if (loginUser === null) {
     content = (
       <GoogleLoginWrap>
@@ -83,7 +87,7 @@ function AppHeader(props) {
 
 AppHeader.propTypes = {
   loginUser: PropTypes.instanceOf(User),
-  onUserDidLogOut: PropTypes.func.isRequired,
+  isCheckingAuth: PropTypes.bool.isRequired,
   onAppTabChange: PropTypes.func.isRequired,
   selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),

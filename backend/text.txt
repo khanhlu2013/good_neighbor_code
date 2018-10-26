@@ -193,10 +193,14 @@ AppMinWidth -> AppMinWidthMixin
 
 ---
 
-. authCheck
-. fetch data connection data. 
-. derived state to make the notification for connection.
+auth
+  loginUser.value
+  isCheckingAuth
 
-connection
-  . list
-  . selectTab
+  isLogginOut
+
+
+---
+
+
+

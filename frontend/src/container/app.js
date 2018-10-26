@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -27,13 +29,14 @@ import {
 import "../css/myBootstrap.css";
 import "../css/reactModal.css";
 
-import { PublicApp } from "./appPublic";
-import { AppHeader } from "./header/appHeader";
-import { PrivateApp } from "./appPrivate";
-import { API } from "../api/profile-api";
-import { BackdoorLogin } from "./backdoorLogin";
-import { AppTabEnum } from "./appTabEnum";
+import { PublicApp } from "../app/appPublic";
+import { AppHeader } from "../app/header/appHeader";
+import { PrivateApp } from "../app/appPrivate";
+import { AppTabEnum } from "../app/appTabEnum";
 import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
+import { User } from "../model/user";
+import { checkAuth } from "../action/auth_action";
+import BackdoorLoginContainer from "./backdoorLogin";
 
 library.add(
   faThumbsUp,
@@ -58,22 +61,18 @@ library.add(
   faUserSlash
 );
 
-class App extends Component {
+class AppComponent extends Component {
+  static propTypes = {
+    loginUser: PropTypes.instanceOf(User),
+    isCheckingAuth: PropTypes.bool.isRequired
+  };
+
   state = {
-    loginUser: undefined,
     logingOut: false,
     selectTab: AppTabEnum.INPOST,
     inPostNoteCount: null,
     outPostNoteCount: null,
     connectionNoteCount: null
-  };
-
-  onUserDidLogOut = () => {
-    this.setState({ loginUser: null });
-  };
-
-  onUserDidLogIn = loginUser => {
-    this.setState({ loginUser });
   };
 
   onAppTabChange = selectTab => {
@@ -91,12 +90,13 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ loginUser: await API.authCheck() });
+    const { dispatch } = this.props;
+    dispatch(checkAuth());
   }
 
   render() {
+    const { loginUser, isCheckingAuth } = this.props;
     const {
-      loginUser,
       selectTab,
       inPostNoteCount,
       outPostNoteCount,
@@ -128,7 +128,7 @@ class App extends Component {
       <div id="app-react">
         <AppHeader
           loginUser={loginUser}
-          onUserDidLogOut={this.onUserDidLogOut}
+          isCheckingAuth={isCheckingAuth}
           onAppTabChange={this.onAppTabChange}
           selectTab={selectTab}
           inPostNoteCount={inPostNoteCount}
@@ -137,7 +137,7 @@ class App extends Component {
         />
         {loginUser === null && (
           <AppCenterWrapStyle>
-            <BackdoorLogin onUserDidLogIn={this.onUserDidLogIn} />
+            <BackdoorLoginContainer />
           </AppCenterWrapStyle>
         )}
         {appContent}
@@ -146,4 +146,15 @@ class App extends Component {
   }
 }
 
-export { App };
+const mapStateToProps = state => {
+  const loginUser = state.loginUser.value;
+  const { isCheckingAuth } = state;
+
+  return {
+    loginUser,
+    isCheckingAuth
+  };
+};
+
+const AppContainer = connect(mapStateToProps)(AppComponent);
+export default AppContainer;

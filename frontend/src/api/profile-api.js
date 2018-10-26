@@ -19,8 +19,24 @@ const authCheck = async () => {
 };
 
 const backDoorLogin = async (email, name) => {
-  const raw = await post("auth.backdoorLogin", { email, name });
-  return rawToUser(raw);
+  /*
+    PRECONDITION: email is valid. Since this is just a feature for testing purpose, i dont need 
+    to be so elaborate with this API. Thus, i will pass the responsibility of checking email
+    valid to the caller. If email is valid, and server response with an error, i will assume
+    the error to be caused from email not found (but it could be network error or invalid email)
+    The assumtion above also comming from making this API very minimal since it is only lasting
+    during development and testing
+
+    RETURN: the user with the provided email or null if email is not found. Again a known issue
+    of this implementation is that if the network error, it also return null. but i will live 
+    with it to make this API minimal for testing only
+  */
+  try {
+    const raw = await post("auth.backdoorLogin", { email, name });
+    return rawToUser(raw);
+  } catch (e) {
+    return null;
+  }
 };
 
 const logout = async () => {

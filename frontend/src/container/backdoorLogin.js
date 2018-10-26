@@ -1,51 +1,60 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import styled from "styled-components";
 import validator from "validator";
 import className from "classnames";
+import { connect } from "react-redux";
 
-import "./backdoorLogin.css";
 import { API } from "../api/profile-api";
 import { LoadingIcon } from "../componentUi/loadingIcon";
+import { storeLoginUser } from "../action/auth_action";
 
-class BackdoorLogin extends Component {
+const Style = styled.div`
+  margin-top: 10px;
+  background-color: rgb(247, 208, 177);
+  padding: 10px;
+  text-align: center;
+`;
+
+class BackdoorLoginComponent extends Component {
   state = {
     email: "",
     name: "",
-    isSubmitClicked: false,
+    isSubmitForm: false,
     isAjaxing: false,
     isNameRequire: false
   };
 
   static getDerivedStateFromProps(props, state) {
-    const { name, email, isSubmitClicked } = state;
+    const { name, email, isSubmitForm } = state;
     const isEmailValid = validator.isEmail(email.trim());
-    const isEmailWarning = isSubmitClicked && !isEmailValid;
+    const isEmailWarning = isSubmitForm && !isEmailValid;
     const nameIsEmpty = name.length === 0;
     return { isEmailWarning, isEmailValid, nameIsEmpty };
   }
 
   onEmailChange = evt => {
     const email = evt.target.value;
-    this.setState({ email, isSubmitClicked: false });
+    this.setState({ email, isSubmitForm: false });
   };
 
   onNameChange = evt => {
     const name = evt.target.value;
-    this.setState({ name, isSubmitClicked: false });
+    this.setState({ name, isSubmitForm: false });
   };
 
   onSubmit = evt => {
-    this.setState({ isSubmitClicked: true, email: this.state.email.trim() });
+    this.setState({ isSubmitForm: true, email: this.state.email.trim() });
     if (this.state.isEmailValid) {
       this.setState({ isAjaxing: true });
       (async () => {
         const user = await API.backDoorLogin(this.state.email, this.state.name);
-
-        this.setState({ isSubmitClicked: false });
-        this.props.onUserDidLogIn(user);
-      })().catch(e => {
-        this.setState({ isAjaxing: false, isNameRequire: true });
-      });
+        this.setState({
+          isSubmitForm: false,
+          isAjaxing: false,
+          isNameRequire: user === null
+        });
+        this.props.dispatch(storeLoginUser(user));
+      })();
     }
 
     evt.preventDefault();
@@ -60,7 +69,7 @@ class BackdoorLogin extends Component {
     } = this.state;
 
     return (
-      <div className="backDoorLogin">
+      <Style>
         <h2>back door login</h2>
         <p>
           This is Good Neighbor <b>testing</b> site. To make testing easy, you
@@ -133,12 +142,11 @@ class BackdoorLogin extends Component {
             </div>
           </div>
         </form>
-      </div>
+      </Style>
     );
   }
 }
-BackdoorLogin.propTypes = {
-  onUserDidLogIn: PropTypes.func.isRequired
-};
 
-export { BackdoorLogin };
+const BackdoorLoginContainer = connect()(BackdoorLoginComponent);
+
+export default BackdoorLoginContainer;
