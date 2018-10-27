@@ -191,16 +191,17 @@ AppMinWidth -> AppMinWidthMixin
 
 
 
----
+. create an action fetchConnections
+. create an action for informFetchingConnection and informFetchedConnection
 
-auth
-  loginUser.value
-  isCheckingAuth
-
-  isLogginOut
-
+. create a reducer for informFetchingConnection and informFetchedConnection
 
 ---
+. kill inform checked_auth
+. rename receive_auth_check_result
 
 
-
+. inform checking auth
+. receive auth check result
+. inform logging out
+. receive logged out signal

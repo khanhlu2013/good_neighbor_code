@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { API } from "../api/profile-api";
 import { LoadingIcon } from "../componentUi/loadingIcon";
-import { storeLoginUser } from "../action/auth_action";
+import { storeBackdoorLoginUser } from "../action/auth_action";
 
 const Style = styled.div`
   margin-top: 10px;
@@ -53,7 +53,7 @@ class BackdoorLoginComponent extends Component {
           isAjaxing: false,
           isNameRequire: user === null
         });
-        this.props.dispatch(storeLoginUser(user));
+        this.props.dispatch(storeBackdoorLoginUser(user));
       })();
     }
 

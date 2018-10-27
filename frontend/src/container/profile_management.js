@@ -53,7 +53,7 @@ ProfileManagementComponent.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
   isLoggingOut: state.isLoggingOut,
-  loginUser: state.loginUser.value
+  loginUser: state.loginUser
 });
 const mapDispatchToProp = (dispatch, ownProps) => ({
   onLogOutClick: () => dispatch(logOut())

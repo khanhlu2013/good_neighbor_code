@@ -68,7 +68,6 @@ class AppComponent extends Component {
   };
 
   state = {
-    logingOut: false,
     selectTab: AppTabEnum.INPOST,
     inPostNoteCount: null,
     outPostNoteCount: null,
@@ -146,7 +145,7 @@ class AppComponent extends Component {
 }
 
 const mapStateToProps = state => {
-  const loginUser = state.loginUser.value;
+  const loginUser = state.loginUser;
   const { isCheckingAuth } = state;
 
   return {

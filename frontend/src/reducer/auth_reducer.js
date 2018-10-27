@@ -1,49 +1,47 @@
-import { combineReducers } from "redux";
-
 import {
+  //- auth check
   INFORM_CHECKING_AUTH,
-  INFORM_CHECKED_AUTH,
+  RECEIVE_AUTH_CHECK_RESULT,
+
+  //- logout
   INFORM_LOGGING_OUT,
-  INFORM_LOGGED_OUT,
-  STORE_LOGIN_USER
+  RECEIVE_LOGGED_OUT_SUCCESS,
+
+  //- backdoor login
+  STORE_BACKDOOR_LOGIN_USER
 } from "../action/auth_action";
 
-const isCheckingAuth = (state = false, action) => {
+const defaultAuthState = {
+  loginUser: undefined,
+  isCheckingAuth: false,
+  isLoggingOut: false
+};
+const authReducer = (state = defaultAuthState, action) => {
   switch (action.type) {
     case INFORM_CHECKING_AUTH:
-      return true;
-    case INFORM_CHECKED_AUTH:
-      return false;
-    default:
-      return state;
-  }
-};
+      return { ...state, isCheckingAuth: true };
 
-const isLoggingOut = (state = false, action) => {
-  switch (action.type) {
+    case RECEIVE_AUTH_CHECK_RESULT:
+      return {
+        ...state,
+        loginUser: action.authenticatedUser,
+        isCheckingAuth: false
+      };
+
     case INFORM_LOGGING_OUT:
-      return true;
-    case INFORM_LOGGED_OUT:
-      return false;
+      return { ...state, isLoggingOut: true };
+
+    case RECEIVE_LOGGED_OUT_SUCCESS:
+      return { ...state, loginUser: null, isLoggingOut: false };
+
+    case STORE_BACKDOOR_LOGIN_USER:
+      return { ...state, loginUser: action.backdoorLoginUser };
+
     default:
       return state;
   }
 };
 
-const loginUser = (state = { value: undefined }, action) => {
-  switch (action.type) {
-    case STORE_LOGIN_USER:
-      return { value: action.loginUser };
-    default:
-      return state;
-  }
-};
-
-const authReducer = combineReducers({
-  isCheckingAuth,
-  isLoggingOut,
-  loginUser
-});
 export default authReducer;
 
 /*
@@ -51,7 +49,7 @@ export default authReducer;
   authReducer = {
     isCheckingAuth : boolean,
     isLoggingOut: boolean,
-    loginUser.value : instanceof User; value = (undefined | null | User)
+    loginUser : instanceof User; value = (undefined | null | User)
   }
 
 */
