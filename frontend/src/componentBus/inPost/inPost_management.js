@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { InPostAllHistoryList } from "./inPost_allHistoryList";
-import { API } from "../../api/profile-api";
-import { Share } from "../../model/share";
 import { InPostList } from "./inPostList";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
@@ -11,192 +9,47 @@ import { LoadingIcon } from "../../componentUi/loadingIcon";
 import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style";
 import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
 import { TabPanelStyle } from "../../componentUi/style/tabPanel_style";
+import {
+  fetchInPosts,
+  requestInPost,
+  unRequestInPost
+} from "../../action/inPost_action";
+import { connect } from "react-redux";
+import { filterInPostApproveAlert } from "../../reducer/inPost_reducer";
 
-class InPostManagement extends Component {
+class InPostManagementComponent extends Component {
+  static propTypes = {
+    loginUser: PropTypes.object.isRequired,
+    posts: PropTypes.array.isRequired,
+    isFetchingPosts: PropTypes.bool.isRequired,
+    isInitPosts: PropTypes.bool.isRequired,
+    approveAlertPosts: PropTypes.array.isRequired,
+    approveAlertPostCount: PropTypes.number.isRequired,
+    returnShares: PropTypes.array.isRequired,
+    requestingPostIds: PropTypes.array.isRequired,
+    onRequestPost: PropTypes.func.isRequired,
+    deletingShareIds: PropTypes.array.isRequired,
+    onUnRequestPost: PropTypes.func.isRequired
+  };
+
   state = {
-    posts: null,
-    requestingPostIds: [],
-    deletingShareIds: [],
-    awaringShareIds: [],
-    returningShareIds: [],
     selectTab: InPostTabEnum.ALL
   };
 
-  static getDerivedStateFromProps(props, state) {
-    let returnShares = null;
-    let approveNotePosts = null;
-    let approveNotePostCount = null;
-
-    const { posts } = state;
-    const { loginUser } = props;
-    if (posts) {
-      const myInShares2D = posts.map(post =>
-        post.shares.filter(share => share.borrower.id === props.loginUser.id)
-      );
-      const myInShares1D = [].concat(...myInShares2D);
-      returnShares = myInShares1D.filter(share => share.isReturn);
-      approveNotePosts = posts.filter(post =>
-        post.shares.some(
-          share =>
-            share.borrower.id === loginUser.id &&
-            share.isApprove === true &&
-            share.isAwareApprove === false &&
-            share.isReturn === false
-        )
-      );
-      approveNotePostCount = approveNotePosts.length;
-    }
-
-    return {
-      returnShares,
-      approveNotePosts,
-      approveNotePostCount
-    };
-  }
-
-  setPostsAndNotifyUnawareApproveShare(posts) {
-    this.setState({ posts });
-    this.props.onInPostNotify(this.state.approveNotePostCount);
-  }
-
-  async componentDidMount() {
-    const posts = await API.inPosts();
-    const inPostsFilterDeny = posts.filter(inPost =>
-      inPost.denyShares.every(
-        share => share.borrower.id !== this.props.loginUser.id
-      )
-    );
-    this.setPostsAndNotifyUnawareApproveShare(inPostsFilterDeny);
+  componentDidMount() {
+    this.props.dispatch(fetchInPosts());
   }
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
   };
 
-  onCreateShare = postId => {
-    this.setState({
-      requestingPostIds: [...this.state.requestingPostIds, postId]
-    });
-    (async () => {
-      const { id, dateCreate } = await API.createShare(postId);
-
-      const newShare = new Share(
-        id,
-        this.props.loginUser,
-        new Date(dateCreate),
-        undefined, //isApprove,
-        false, //isAwareApprove,
-        false, //isReturn,
-        false, //isAwareReturn,
-        null, //dateReturn
-        null //post to be set later
-      );
-      const { posts } = this.state;
-      const curPost = posts.find(post => post.id === postId);
-      curPost.shares.push(newShare);
-      newShare.post = curPost;
-
-      this.setPostsAndNotifyUnawareApproveShare([
-        ...posts.filter(post => post.id !== postId),
-        curPost
-      ]);
-      this.setState({
-        requestingPostIds: this.state.requestingPostIds.filter(
-          id => id !== postId
-        )
-      });
-    })();
-  };
-
-  onDeleteShare = shareId => {
-    this.setState({
-      deletingShareIds: [...this.state.deletingShareIds, shareId]
-    });
-
-    (async () => {
-      await API.deleteShare(shareId);
-
-      const { posts } = this.state;
-      const curPost = posts.find(post =>
-        post.shares.some(share => share.id === shareId)
-      );
-      curPost.shares = curPost.shares.filter(share => share.id !== shareId);
-      this.setPostsAndNotifyUnawareApproveShare([
-        ...posts.filter(post => post.id !== curPost.id),
-        curPost
-      ]);
-      this.setState({
-        deletingShareIds: [
-          ...this.state.deletingShareIds.filter(id => id !== shareId)
-        ]
-      });
-    })();
-  };
-
   onReturnShare = shareId => {
-    const curPost = this.state.posts.find(post =>
-      post.shares.some(share => share.id === shareId)
-    );
-    if (
-      window.confirm(
-        `You are returning '${curPost.title}'. This can not be undo!`
-      )
-    ) {
-      this.setState({
-        returningShareIds: [...this.state.returningShareIds, shareId]
-      });
-      (async () => {
-        const { resultIsReturnByTo, resultDateReturn } = await API.returnShare(
-          shareId
-        );
-
-        const curShare = curPost.shares.find(share => share.id === shareId);
-        curShare.isReturn = resultIsReturnByTo;
-        curShare.setDateReturn(resultDateReturn);
-        curPost.shares = [
-          ...curPost.shares.filter(share => share.id !== shareId),
-          curShare
-        ];
-        this.setPostsAndNotifyUnawareApproveShare([
-          ...this.state.posts.filter(post => post.id !== curPost.id),
-          curPost
-        ]);
-        this.setState({
-          returningShareIds: [
-            ...this.state.returningShareIds.filter(id => id !== shareId)
-          ]
-        });
-      })();
-    }
+    console.log("on return share clicked");
   };
 
   onAwareShare = shareId => {
-    this.props.onInPostNotify(null);
-    this.setState({
-      awaringShareIds: [...this.state.awaringShareIds, shareId]
-    });
-
-    (async () => {
-      const isAwareApprove = await API.awareApproveShare(shareId);
-      const curPost = this.state.posts.find(post =>
-        post.shares.some(share => share.id === shareId)
-      );
-      const curShare = curPost.shares.find(share => share.id === shareId);
-      curShare.isAwareApprove = isAwareApprove;
-      curPost.shares = [
-        ...curPost.shares.filter(share => share.id !== shareId),
-        curShare
-      ];
-      this.setPostsAndNotifyUnawareApproveShare([
-        ...this.state.posts.filter(post => post.id !== curPost.id),
-        curPost
-      ]);
-      this.setState({
-        returningShareIds: [
-          ...this.state.returningShareIds.filter(id => id !== shareId)
-        ]
-      });
-    })();
+    console.log("on aware share clicked");
   };
 
   _getPostsContent(posts) {
@@ -218,12 +71,12 @@ class InPostManagement extends Component {
         listId={listId}
         loginUser={this.props.loginUser}
         posts={postArray}
-        requestingPostIds={this.state.requestingPostIds}
-        deletingShareIds={this.state.deletingShareIds}
-        awaringShareIds={this.state.awaringShareIds}
-        returningShareIds={this.state.returningShareIds}
-        onCreateShare={this.onCreateShare}
-        onDeleteShare={this.onDeleteShare}
+        requestingPostIds={this.props.requestingPostIds}
+        deletingShareIds={this.props.deletingShareIds}
+        awaringShareIds={[]}
+        returningShareIds={[]}
+        onRequestPost={this.props.onRequestPost}
+        onUnRequestPost={this.props.onUnRequestPost}
         onAwareShare={this.onAwareShare}
         onReturnShare={this.onReturnShare}
       />
@@ -237,9 +90,9 @@ class InPostManagement extends Component {
             onTabChange={this.onTabChange}
             allCount={posts.length}
             requestCount={requestPosts.length}
-            approveCount={this.state.approveNotePostCount}
+            approveCount={this.props.approveAlertPostCount}
             borrowCount={borrowPosts.length}
-            historyCount={this.state.returnShares.length}
+            historyCount={this.props.returnShares.length}
           />
         </AppBodyBannerStyle>
 
@@ -253,14 +106,14 @@ class InPostManagement extends Component {
           <TabPanelStyle show={selectTab === InPostTabEnum.APPROVE}>
             {generateList(
               "inPostList-approveNote-react",
-              this.state.approveNotePosts
+              this.props.approveAlertPosts
             )}
           </TabPanelStyle>
           <TabPanelStyle show={selectTab === InPostTabEnum.BORROW}>
             {generateList("inPostList-borrow-react", borrowPosts)}
           </TabPanelStyle>
           <TabPanelStyle show={selectTab === InPostTabEnum.HISTORY}>
-            <InPostAllHistoryList shares={this.state.returnShares} />
+            <InPostAllHistoryList shares={this.props.returnShares} />
           </TabPanelStyle>
         </AppCenterWrapStyle>
       </Fragment>
@@ -269,8 +122,8 @@ class InPostManagement extends Component {
 
   render() {
     let content;
-    if (this.state.posts) {
-      content = this._getPostsContent(this.state.posts);
+    if (this.props.isInitPosts) {
+      content = this._getPostsContent(this.props.posts);
     } else {
       content = (
         <h1 className="text-center">
@@ -282,9 +135,40 @@ class InPostManagement extends Component {
     return <div id="inPostManagement-react">{content}</div>;
   }
 }
-InPostManagement.propTypes = {
-  loginUser: PropTypes.object.isRequired,
-  onInPostNotify: PropTypes.func.isRequired
+
+const mapStateToProps = (state, ownProps) => {
+  const loginUser = state.auth.loginUser;
+  const posts = state.inPost.posts;
+  const approveAlertPosts = filterInPostApproveAlert(posts, loginUser.id);
+
+  const myInShares2D = posts.map(post =>
+    post.shares.filter(share => share.borrower.id === loginUser.id)
+  );
+  const myInShares1D = [].concat(...myInShares2D);
+  const returnShares = myInShares1D.filter(share => share.isReturn);
+
+  return {
+    loginUser,
+    posts,
+    isFetchingPosts: state.inPost.isFetchingPosts,
+    isInitPosts: state.inPost.isInitPosts,
+    approveAlertPosts,
+    approveAlertPostCount: approveAlertPosts.length,
+    returnShares,
+    requestingPostIds: state.inPost.requestingPostIds,
+    deletingShareIds: state.inPost.deletingShareIds
+  };
 };
 
-export { InPostManagement };
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onRequestPost: postId => dispatch(requestInPost(postId)),
+  onUnRequestPost: shareId => dispatch(unRequestInPost(shareId)),
+  dispatch
+});
+
+const InPostManagementContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InPostManagementComponent);
+
+export default InPostManagementContainer;

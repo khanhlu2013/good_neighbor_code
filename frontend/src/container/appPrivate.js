@@ -3,59 +3,59 @@ import PropTypes from "prop-types";
 
 import { ConnectionManagement } from "../componentBus/connection/connectionManagement.js";
 import { OutPostManagement } from "../componentBus/outPost/outPostManagement.js";
-import { InPostManagement } from "../componentBus/inPost/inPost_management.js";
+import InPostManagementContainer from "../componentBus/inPost/inPost_management.js";
 import { User } from "../model/user.js";
-import { AppTabEnum } from "./appTabEnum.js";
-import ProfileManagementContainer from "../container/profile_management";
+import AppTabEnum from "../component/appTabEnum.js";
+import ProfileManagementContainer from "./profile_management";
 import { TabPanelStyle } from "../componentUi/style/tabPanel_style.js";
+import { connect } from "react-redux";
 
-function PrivateApp(props) {
+function PrivateAppComponent(props) {
   const {
     loginUser,
-    selectTab,
+    selectAppTab,
     onConnectionNotify,
-    onInPostNotify,
     onOutPostNotify
   } = props;
 
   return (
     <div id="privateApp-react">
-      <TabPanelStyle show={selectTab === AppTabEnum.INPOST}>
-        <InPostManagement
-          loginUser={loginUser}
-          onInPostNotify={onInPostNotify}
-        />
+      <TabPanelStyle show={selectAppTab === AppTabEnum.INPOST}>
+        <InPostManagementContainer />
       </TabPanelStyle>
 
-      <TabPanelStyle show={selectTab === AppTabEnum.OUTPOST}>
+      <TabPanelStyle show={selectAppTab === AppTabEnum.OUTPOST}>
         <OutPostManagement
           loginUser={loginUser}
           onOutPostNotify={onOutPostNotify}
         />
       </TabPanelStyle>
 
-      <TabPanelStyle show={selectTab === AppTabEnum.CONNECTION}>
+      <TabPanelStyle show={selectAppTab === AppTabEnum.CONNECTION}>
         <ConnectionManagement
           loginUser={loginUser}
           onConnectionNotify={onConnectionNotify}
         />
       </TabPanelStyle>
-      <TabPanelStyle show={selectTab === AppTabEnum.PROFILE}>
+      <TabPanelStyle show={selectAppTab === AppTabEnum.PROFILE}>
         <ProfileManagementContainer />
       </TabPanelStyle>
     </div>
   );
 }
 
-PrivateApp.propTypes = {
+PrivateAppComponent.propTypes = {
   loginUser: PropTypes.instanceOf(User).isRequired,
-  selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
-  onConnectionNotify: PropTypes.func.isRequired,
-  onInPostNotify: PropTypes.func.isRequired,
-  onOutPostNotify: PropTypes.func.isRequired
+  selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired
 };
+const mapStateToProps = (state, ownProps) => ({
+  loginUser: state.auth.loginUser,
+  selectAppTab: state.selectAppTab
+});
 
-export { PrivateApp };
+const PrivateAppContainer = connect(mapStateToProps)(PrivateAppComponent);
+
+export default PrivateAppContainer;
 
 // uploadWidget = () => {
 //   window.cloudinary.openUploadWidget(

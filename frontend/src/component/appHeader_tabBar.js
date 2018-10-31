@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { nullOrRequiredValidator } from "../../util";
-import { AppTabEnum } from "../appTabEnum";
-import { AppHeaderTabBarStyle } from "../../componentUi/style/tabBar_style";
-import { TabItem } from "../../componentUi/tabItem";
-import { NotificationItem } from "../../componentUi/notificationItem";
+import { nullOrRequiredValidator } from "../util";
+import AppTabEnum from "./appTabEnum";
+import { AppHeaderTabBarStyle } from "../componentUi/style/tabBar_style";
+import { TabItem } from "../componentUi/tabItem";
+import { NotificationItem } from "../componentUi/notificationItem";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;
@@ -21,7 +21,7 @@ const TabItemContainerMiddle = styled.div`
 function AppHeaderTabBar(props) {
   const {
     onAppTabChange,
-    selectTab,
+    selectAppTab,
     inPostNoteCount,
     outPostNoteCount,
     connectionNoteCount
@@ -44,7 +44,7 @@ function AppHeaderTabBar(props) {
     <AppHeaderTabBarStyle>
       {_generateTabItem(
         "tabSelector-inPost-react",
-        selectTab === AppTabEnum.INPOST,
+        selectAppTab === AppTabEnum.INPOST,
         "friend posts",
         "globe",
         onInPostNav,
@@ -54,7 +54,7 @@ function AppHeaderTabBar(props) {
 
       {_generateTabItem(
         "tabSelector-outPost-react",
-        selectTab === AppTabEnum.OUTPOST,
+        selectAppTab === AppTabEnum.OUTPOST,
         "my posts",
         "briefcase",
         onOutPostNav,
@@ -64,7 +64,7 @@ function AppHeaderTabBar(props) {
 
       {_generateTabItem(
         "tabSelector-connection-react",
-        selectTab === AppTabEnum.CONNECTION,
+        selectAppTab === AppTabEnum.CONNECTION,
         "friends",
         "user-friends",
         onConnectionNav,
@@ -74,7 +74,7 @@ function AppHeaderTabBar(props) {
 
       {_generateTabItem(
         "tabSelector-profile-react",
-        selectTab === AppTabEnum.PROFILE,
+        selectAppTab === AppTabEnum.PROFILE,
         "me",
         "user-cog",
         onProfileNav,
@@ -116,10 +116,10 @@ function _generateTabItem(
 }
 AppHeaderTabBar.propTypes = {
   onAppTabChange: PropTypes.func.isRequired,
-  selectTab: PropTypes.instanceOf(AppTabEnum).isRequired,
+  selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostNoteCount: nullOrRequiredValidator("number"),
   outPostNoteCount: nullOrRequiredValidator("number"),
   connectionNoteCount: nullOrRequiredValidator("number")
 };
 
-export { AppHeaderTabBar };
+export default AppHeaderTabBar;

@@ -30,13 +30,12 @@ import "../css/myBootstrap.css";
 import "../css/reactModal.css";
 
 import { PublicApp } from "../app/appPublic";
-import { AppHeader } from "../app/header/appHeader";
-import { PrivateApp } from "../app/appPrivate";
-import { AppTabEnum } from "../app/appTabEnum";
+import PrivateAppContainer from "./appPrivate";
 import { AppCenterWrapStyle } from "../componentUi/style/appCenterWrap_style";
 import { User } from "../model/user";
 import { checkAuth } from "../action/auth_action";
 import BackdoorLoginContainer from "./backdoorLogin";
+import AppHeaderContainer from "./appHeader";
 
 library.add(
   faThumbsUp,
@@ -63,29 +62,7 @@ library.add(
 
 class AppComponent extends Component {
   static propTypes = {
-    loginUser: PropTypes.instanceOf(User),
-    isCheckingAuth: PropTypes.bool.isRequired
-  };
-
-  state = {
-    selectTab: AppTabEnum.INPOST,
-    inPostNoteCount: null,
-    outPostNoteCount: null,
-    connectionNoteCount: null
-  };
-
-  onAppTabChange = selectTab => {
-    this.setState({ selectTab });
-  };
-
-  onInPostNotify = count => {
-    this.setState({ inPostNoteCount: count });
-  };
-  onOutPostNotify = count => {
-    this.setState({ outPostNoteCount: count });
-  };
-  onConnectionNotify = count => {
-    this.setState({ connectionNoteCount: count });
+    loginUser: PropTypes.instanceOf(User)
   };
 
   async componentDidMount() {
@@ -94,13 +71,7 @@ class AppComponent extends Component {
   }
 
   render() {
-    const { loginUser, isCheckingAuth } = this.props;
-    const {
-      selectTab,
-      inPostNoteCount,
-      outPostNoteCount,
-      connectionNoteCount
-    } = this.state;
+    const { loginUser } = this.props;
 
     let appContent;
     if (loginUser === undefined) {
@@ -112,27 +83,11 @@ class AppComponent extends Component {
         </AppCenterWrapStyle>
       );
     } else {
-      appContent = (
-        <PrivateApp
-          loginUser={loginUser}
-          selectTab={selectTab}
-          onConnectionNotify={this.onConnectionNotify}
-          onInPostNotify={this.onInPostNotify}
-          onOutPostNotify={this.onOutPostNotify}
-        />
-      );
+      appContent = <PrivateAppContainer />;
     }
     return (
       <div id="app-react">
-        <AppHeader
-          loginUser={loginUser}
-          isCheckingAuth={isCheckingAuth}
-          onAppTabChange={this.onAppTabChange}
-          selectTab={selectTab}
-          inPostNoteCount={inPostNoteCount}
-          outPostNoteCount={outPostNoteCount}
-          connectionNoteCount={connectionNoteCount}
-        />
+        <AppHeaderContainer />
         {loginUser === null && (
           <AppCenterWrapStyle>
             <BackdoorLoginContainer />
@@ -145,12 +100,10 @@ class AppComponent extends Component {
 }
 
 const mapStateToProps = state => {
-  const loginUser = state.loginUser;
-  const { isCheckingAuth } = state;
+  const { loginUser } = state.auth;
 
   return {
-    loginUser,
-    isCheckingAuth
+    loginUser
   };
 };
 

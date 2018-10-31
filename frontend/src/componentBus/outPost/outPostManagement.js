@@ -65,13 +65,6 @@ class OutPostManagement extends Component {
 
   setPostsState(posts) {
     this.setState({ posts });
-    const requestPostCount = posts.filter(
-      post => post.isNote_requestWithNoBorrow
-    ).length;
-
-    this.props.onOutPostNotify(
-      requestPostCount + this.state.returnNotePosts.length
-    );
   }
 
   onAwareReturnPost = postId => {
@@ -325,8 +318,7 @@ class OutPostManagement extends Component {
   }
 }
 OutPostManagement.propType = {
-  loginUser: PropTypes.object.isRequired,
-  onOutPostNotify: PropTypes.func.isRequired
+  loginUser: PropTypes.object.isRequired
 };
 
 export { OutPostManagement };

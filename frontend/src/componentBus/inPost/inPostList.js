@@ -11,8 +11,8 @@ function InPostList(props) {
     deletingShareIds,
     awaringShareIds,
     returningShareIds,
-    onCreateShare,
-    onDeleteShare,
+    onRequestPost,
+    onUnRequestPost,
     onAwareShare,
     onReturnShare,
     loginUser
@@ -29,8 +29,8 @@ function InPostList(props) {
           key={post.id}
           loginUser={loginUser}
           post={post}
-          onCreateShare={onCreateShare}
-          onDeleteShare={onDeleteShare}
+          onRequestPost={onRequestPost}
+          onUnRequestPost={onUnRequestPost}
           onAwareShare={onAwareShare}
           onReturnShare={onReturnShare}
           isRequestingPost={requestingPostIds.includes(post.id)}
@@ -56,8 +56,8 @@ InPostList.propTypes = {
   deletingShareIds: PropTypes.array.isRequired,
   awaringShareIds: PropTypes.array.isRequired,
   returningShareIds: PropTypes.array.isRequired,
-  onCreateShare: PropTypes.func.isRequired,
-  onDeleteShare: PropTypes.func.isRequired,
+  onRequestPost: PropTypes.func.isRequired,
+  onUnRequestPost: PropTypes.func.isRequired,
   onAwareShare: PropTypes.func.isRequired,
   onReturnShare: PropTypes.func.isRequired,
   loginUser: PropTypes.object.isRequired

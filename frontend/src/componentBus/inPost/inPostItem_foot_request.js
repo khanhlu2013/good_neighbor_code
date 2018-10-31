@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { LoadingIcon } from "../../componentUi/loadingIcon";
 
 function InPostItemFootRequest(props) {
-  const { myRequestShareId, isDeleteingShare, onDeleteShare } = props;
+  const { myRequestShareId, isDeleteingShare, onUnRequestPost } = props;
 
   const onUndoRequestClicked = e => {
-    onDeleteShare(myRequestShareId);
+    onUnRequestPost(myRequestShareId);
   };
 
   let content;
@@ -35,6 +35,6 @@ function InPostItemFootRequest(props) {
 InPostItemFootRequest.propTypes = {
   myRequestShareId: PropTypes.string.isRequired,
   isDeleteingShare: PropTypes.bool.isRequired,
-  onDeleteShare: PropTypes.func.isRequired
+  onUnRequestPost: PropTypes.func.isRequired
 };
 export { InPostItemFootRequest };

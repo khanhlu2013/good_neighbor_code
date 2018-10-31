@@ -19,8 +19,8 @@ function InPostItemFoot(props) {
     isDeleteingShare,
     isAwaringShare,
     isReturningShare,
-    onCreateShare,
-    onDeleteShare,
+    onRequestPost,
+    onUnRequestPost,
     onAwareShare,
     onReturnShare
   } = props;
@@ -31,7 +31,7 @@ function InPostItemFoot(props) {
     content = (
       <InPostItemFootRequest
         isDeleteingShare={isDeleteingShare}
-        onDeleteShare={onDeleteShare}
+        onUnRequestPost={onUnRequestPost}
         myRequestShareId={myRequestShare.id}
       />
     );
@@ -53,7 +53,7 @@ function InPostItemFoot(props) {
       <InPostItemFootShop
         postId={postId}
         isRequestingPost={isRequestingPost}
-        onCreateShare={onCreateShare}
+        onRequestPost={onRequestPost}
       />
     );
   } else {
@@ -72,8 +72,8 @@ InPostItemFoot.propTypes = {
   isDeleteingShare: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onCreateShare: PropTypes.func.isRequired,
-  onDeleteShare: PropTypes.func.isRequired,
+  onRequestPost: PropTypes.func.isRequired,
+  onUnRequestPost: PropTypes.func.isRequired,
   onAwareShare: PropTypes.func.isRequired,
   onReturnShare: PropTypes.func.isRequired
 };

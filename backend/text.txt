@@ -111,7 +111,7 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . better validate url profile image, isnullorrequire. but i like to use a live url not a dead one right?
 . &:hover what is that?
 . with the current min-width, tab bar header can't contain if there is notification
-
+. LEARNING: investigate when race condition of ajax(search for 'a' and 'ab') and our-of-sync return result?
 
 
 
@@ -189,19 +189,93 @@ less sass css inheritance
 
 AppMinWidth -> AppMinWidthMixin
 
+---
+. kill (inside appComponent)
+      inPostNoteCount,
+      outPostNoteCount,
+      connectionNoteCount
+
+. kill (insideAppPrivate)
+    onConnectionNotify,
+    onInPostNotify,
+    onOutPostNotify
 
 
-. create an action fetchConnections
-. create an action for informFetchingConnection and informFetchedConnection
+. kill the pass down function from app
+. kill the pass down function from connection_management
+. make the notification a prop for component. 
+. make header taking a prop for connection note.
+. create a header container to give it the note prop
+. isCheckingAuth pass down to header
+. create appPrivateContainer to take in selectTab?
+. i need a selectTab reducer
+---
+clean up this : isNote_requestWithNoBorrow
+---
+calculateInPostNotification
+calculateOutPostNotification
 
-. create a reducer for informFetchingConnection and informFetchedConnection
+make sure import is correct into the appHeader
+---
+unawareReturnShareLatest
+---
+create action for this now
+onAppTabChange
+---
+i remember deep copy an object once. why do i need it since i just touch the topic of immutability.
+---
+inPost -> post in the action and reducer of inPost. we dont need the in because of the context. 
+---
+TabPanelStyle -> TabPanel
+---
+inPost: approveNotePosts -> approveAlertPosts
+---
+immutability: inPost_action.js -> requestInPost()
+    curPost.shares.push(newShare);
+---    
+requestingPostIds
+---
+inPostManagement: change this into onRequestPost, onUnRequestPost, ...
+        onCreateShare={this.onCreateShare}
+        onDeleteShare={this.onDeleteShare}
+        onAwareShare={this.onAwareShare}
+        onReturnShare={this.onReturnShare}
 
 ---
-. kill inform checked_auth
-. rename receive_auth_check_result
+  state = {
+    inPostNoteCount: null,
+    outPostNoteCount: null,
+    connectionNoteCount: null
+  };
+
+  onInPostNotify = count => {
+    this.setState({ inPostNoteCount: count });
+  };
+  onOutPostNotify = count => {
+    this.setState({ outPostNoteCount: count });
+  };
+  onConnectionNotify = count => {
+    this.setState({ connectionNoteCount: count });
+  };
+
+  ---
+
+. there is 2 concern: top level notification. 
+. change notification into alert. 
+
+. inPostApproveAlert
+. outPostReturnAlert
+. outPostRequestAlert
+. outPostRequestReturnAlert: kill this one. i will combine it inside. the app header. 
+
+. now i am working on inPost. lets change InPostNotification into approveAlert. 
+
+----
+i am overwhelm of work. it will take me a very long time to work on this project. but lets do it. One step at a time. ok. let just start cleaning up what i have with redux. make it as solid as i can before moving on. starting with folder srtucture. lets vistualize it a bit
 
 
-. inform checking auth
-. receive auth check result
-. inform logging out
-. receive logged out signal
+. bus
+. api
+. app
+. model
+. index.js

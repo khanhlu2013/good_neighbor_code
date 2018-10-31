@@ -14,8 +14,8 @@ function InPostItem(props) {
     isDeleteingShare,
     isAwaringShare,
     isReturningShare,
-    onCreateShare,
-    onDeleteShare,
+    onRequestPost,
+    onUnRequestPost,
     onAwareShare,
     onReturnShare
   } = props;
@@ -37,8 +37,8 @@ function InPostItem(props) {
         isDeleteingShare={isDeleteingShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
-        onCreateShare={onCreateShare}
-        onDeleteShare={onDeleteShare}
+        onRequestPost={onRequestPost}
+        onUnRequestPost={onUnRequestPost}
         onAwareShare={onAwareShare}
         onReturnShare={onReturnShare}
       />
@@ -52,8 +52,8 @@ InPostItem.propTypes = {
   isDeleteingShare: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onCreateShare: PropTypes.func.isRequired,
-  onDeleteShare: PropTypes.func.isRequired,
+  onRequestPost: PropTypes.func.isRequired,
+  onUnRequestPost: PropTypes.func.isRequired,
   onAwareShare: PropTypes.func.isRequired,
   onReturnShare: PropTypes.func.isRequired
 };
