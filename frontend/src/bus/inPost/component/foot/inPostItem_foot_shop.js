@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { LoadingIcon } from "../../../componentUi/loadingIcon";
+import { LoadingIcon } from "../../../../componentUi/loadingIcon";
 
 function InPostItemFootShop(props) {
   const { postId, isRequestingPost, onRequestPost } = props;

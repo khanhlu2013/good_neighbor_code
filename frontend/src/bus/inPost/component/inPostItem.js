@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostItemBody from "../../postComponent/postItem_body";
-import InPostItemFoot from "./inPostItem_foot";
+import InPostItemFoot from "./foot/inPostItem_foot";
 import PostItemStyle from "../../postComponent/style/postItem_style";
 import InPostItemHead from "./inPostItem_head";
 
