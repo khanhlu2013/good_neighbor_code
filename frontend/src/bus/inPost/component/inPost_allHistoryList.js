@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { date2String } from "../../../util";
 import PostListNoData from "../../postComponent/postListNoData";
 import PostAllHistoryListStyle from "../../postComponent/style/postAll_historyList_style";
+import { date2String } from "../../../share/util";
 
 function InPostAllHistoryList(props) {
   const { shares } = props;

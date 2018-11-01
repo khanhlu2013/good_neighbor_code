@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import User from "../../../../model/user";
-import { nullOrRequiredValidator } from "../../../../util";
 import { Share } from "../../../../model/share";
 import PostItemFootStyle from "../../../postComponent/style/postItem_foot_style";
 import InPostItemFootApprove from "./inPostItem_foot_approve";
 import InPostItemFootShop from "./inPostItem_foot_shop";
 import InPostItemFootRequest from "./inPostItem_foot_request";
+import { nullOrRequiredValidator } from "../../../../share/util";
 
 function InPostItemFoot(props) {
   const {

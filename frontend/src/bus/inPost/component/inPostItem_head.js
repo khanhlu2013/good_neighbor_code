@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { date2String } from "../../../util";
 import User from "../../../model/user";
 import {
   PostItemHeadStyle,
   PostItemHeadLeftStyle
 } from "../../postComponent/style/postItem_head_style";
+import { date2String } from "../../../share/util";
 
 function InPostItemHead(props) {
   const { postUser, dateCreate } = props;

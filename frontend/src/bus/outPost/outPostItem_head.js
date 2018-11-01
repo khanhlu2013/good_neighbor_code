@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { date2String } from "../../util";
 import {
   PostItemHeadStyle,
   PostItemHeadLeftStyle
 } from "../postComponent/style/postItem_head_style";
+import { date2String } from "../../share/util";
 
 function OutPostItemHead(props) {
   const { dateCreate, onEditPost } = props;

@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import { nullOrRequiredValidator } from "./util";
 
-import { nullOrRequiredValidator } from "../util";
 const responsiveBreakPoint = "500px";
 
 const Wrap = styled.div`

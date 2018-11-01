@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { nullOrRequiredValidator } from "../util";
 import LoadingIcon from "./loadingIcon";
+import { nullOrRequiredValidator } from "./util";
 
 const Wrap = styled.div`
   margin-left: 2px;
@@ -37,4 +37,4 @@ NotificationItem.propTypes = {
   isImportant: PropTypes.bool.isRequired
 };
 
-export { NotificationItem };
+export default NotificationItem;

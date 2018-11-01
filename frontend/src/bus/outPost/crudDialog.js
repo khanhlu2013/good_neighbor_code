@@ -5,8 +5,8 @@ import classNames from "classnames";
 import _ from "lodash";
 
 import { Post } from "../../model/post";
-import { nullOrRequiredValidator } from "../../util";
 import LoadingIcon from "../../share/loadingIcon";
+import { nullOrRequiredValidator } from "../../share/util";
 
 Modal.setAppElement("#root");
 

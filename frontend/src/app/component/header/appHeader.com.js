@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 import User from "../../../model/user";
 import { GoogleLogin } from "../../googleLogin";
-import { nullOrRequiredValidator } from "../../../util";
 import AppTabEnum from "../../appTabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar.com";
+import { nullOrRequiredValidator } from "../../../share/util";
 
 const Banner = styled.div`
   ${BannerMixin} background-color: rgb(36, 54, 65);

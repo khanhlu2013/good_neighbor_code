@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TabItem } from "./tabItem";
-
-import { nullOrRequiredValidator } from "../util";
+import { nullOrRequiredValidator } from "./util";
 
 function AppBodyTabItem(props) {
   const {
@@ -42,4 +41,4 @@ AppBodyTabItem.propTypes = {
   isResponsive: PropTypes.bool.isRequired
 };
 
-export { AppBodyTabItem };
+export default AppBodyTabItem;

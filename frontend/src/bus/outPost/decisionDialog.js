@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { date2String } from "../../util";
 import LoadingIcon from "../../share/loadingIcon";
+import { date2String } from "../../share/util";
 
 Modal.setAppElement("#root");
 

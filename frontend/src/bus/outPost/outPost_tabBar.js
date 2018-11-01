@@ -3,10 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { OutPostTabEnum } from "./outPost_tabEnum";
-import { nullOrRequiredValidator } from "../../util";
 import { AppBodyTabBarStyle } from "../../share/style/tabBar_style";
-import { AppBodyTabItem } from "../../share/appBodyTabItem";
-import { NotificationItem } from "../../share/notificationItem";
+import AppBodyTabItem from "../../share/appBodyTabItem";
+import NotificationItem from "../../share/notificationItem";
+import { nullOrRequiredValidator } from "../../share/util";
 
 const NewPostButtonStyle = styled.div`
   display: flex;

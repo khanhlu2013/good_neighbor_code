@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { nullOrRequiredValidator } from "../../../util";
 import AppTabEnum from "../../appTabEnum";
 import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
 import { TabItem } from "../../../share/tabItem";
-import { NotificationItem } from "../../../share/notificationItem";
+import NotificationItem from "../../../share/notificationItem";
+import { nullOrRequiredValidator } from "../../../share/util";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;

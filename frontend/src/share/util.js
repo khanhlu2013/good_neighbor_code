@@ -1,6 +1,6 @@
 import _ from "underscore";
 
-const nullOrRequiredValidator = (typeEnum, objType) => {
+export const nullOrRequiredValidator = (typeEnum, objType) => {
   if (!["array", "string", "object", "number", "func"].includes(typeEnum)) {
     return Error(`Unexpected ${typeEnum}`);
   }
@@ -38,7 +38,7 @@ const nullOrRequiredValidator = (typeEnum, objType) => {
   };
 };
 
-function date2String(date) {
+export const date2String = date => {
   if (process.env.NODE_ENV !== "production") {
     /* this make cypress integration test pass for changing date value*/
     return "xx/xx/xx";
@@ -49,6 +49,4 @@ function date2String(date) {
       day: "2-digit"
     });
   }
-}
-
-export { nullOrRequiredValidator, date2String };
+};
