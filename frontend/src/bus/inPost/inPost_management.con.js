@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import InPostManagementComponent from "./component/inPost_management.com";
+import InPostManagementComponent from "./component/inPost_management";
 import {
   fetchInPosts,
   requestInPost,
