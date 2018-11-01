@@ -6,7 +6,7 @@ export const RECEIVE_AUTH_CHECK_RESULT = "RECEIVE_AUTH_CHECK_RESULT";
 
 export const checkAuth = () => (dispatch, getState) => {
   dispatch(_informCheckingAuth());
-  API.authCheck().then(authenticatedUser => {
+  return API.authCheck().then(authenticatedUser => {
     dispatch(_receiveAuthCheckResult(authenticatedUser));
   });
 };

@@ -1,22 +1,15 @@
-Share story
-    /*
-      1. i see that there are 2 posts from friend, i borrow one, undo and borrow again
-      2. stranger see that i am requesting, so she request too
-      3. friend login:
-        . (notification show request)
-        . approve stranger
-        . undo stranger
-        . approve me
-        . (notification doesn't show request and table doesn't cause tention)
-
-      4. stranger see that i am borrowing it, color shoud change
-      5. i see that i am borrowing and return it.
-      6. stranger can see it is available again
-      7. friend can see available color again to decide: deny it
-      8. stranger just dont see that item anymore
-      . friend undo deny
-      . stranger see it is requesting again
-    */
+// uploadWidget = () => {
+//   window.cloudinary.openUploadWidget(
+//     {
+//       cloud_name: "goodneighboors",
+//       upload_preset: "postimage",
+//       public_id: "abcd1234"
+//     },
+//     function(error, result) {
+//       console.log(result);
+//     }
+//   );
+// };
 ---
 
 With good neighboor, There is a single entry point to access the app using using a google account. On your first time using good neighboor, the app will create an account for you in the background. 
@@ -279,3 +272,7 @@ i am overwhelm of work. it will take me a very long time to work on this project
 . app
 . model
 . index.js
+----
+. js css html react
+
+
