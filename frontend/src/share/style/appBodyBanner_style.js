@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AppCenterWrapMixin } from "./appCenterWrap_style";
-import { BannerMixin } from "./banner_mixin";
+import BannerMixin from "./banner_mixin";
 
 const Banner = styled.div`
   ${BannerMixin} background-color: antiquewhite;
@@ -19,4 +19,4 @@ function AppBodyBannerStyle(props) {
     </Banner>
   );
 }
-export { AppBodyBannerStyle };
+export default AppBodyBannerStyle;

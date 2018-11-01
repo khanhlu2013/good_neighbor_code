@@ -1,5 +1,5 @@
 import { Connection } from "../model/connection";
-import { User } from "../model/user";
+import User from "../model/user";
 import { Post } from "../model/post";
 import { Share } from "../model/share";
 

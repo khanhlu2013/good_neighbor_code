@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ShadowBoxMixin } from "../../../componentUi/style/shadowBox_style";
+import { ShadowBoxMixin } from "../../../share/style/shadowBox_style";
 
 const PostItemStyle = styled.div`
   margin-top: 10px;

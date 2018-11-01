@@ -9,10 +9,10 @@ import { OutPostAllHistoryList } from "./outPost_allHistoryList";
 import { OutPostList } from "./outPostList";
 import { OutPostTabBar } from "./outPost_tabBar";
 import { OutPostTabEnum } from "./outPost_tabEnum";
-import { AppBodyBannerStyle } from "../../componentUi/style/appBodyBanner_style";
-import { LoadingIcon } from "../../componentUi/loadingIcon";
-import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
-import { TabPanelStyle } from "../../componentUi/style/tabPanel_style";
+import AppBodyBannerStyle from "../../share/style/appBodyBanner_style";
+import LoadingIcon from "../../share/loadingIcon";
+import TabPanel from "../../share/style/tabPanel_style";
+import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
 
 class OutPostManagement extends Component {
   state = {
@@ -252,24 +252,24 @@ class OutPostManagement extends Component {
         </AppBodyBannerStyle>
 
         <AppCenterWrapStyle>
-          <TabPanelStyle show={selectTab === OutPostTabEnum.ALL}>
+          <TabPanel show={selectTab === OutPostTabEnum.ALL}>
             {this._genPostList("outPostList-all-react", posts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === OutPostTabEnum.REQUEST}>
+          </TabPanel>
+          <TabPanel show={selectTab === OutPostTabEnum.REQUEST}>
             {this._genPostList(
               "outPostList-requestNote-react",
               requestNotePosts
             )}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === OutPostTabEnum.BORROW}>
+          </TabPanel>
+          <TabPanel show={selectTab === OutPostTabEnum.BORROW}>
             {this._genPostList("outPostList-borrow-react", borrowPosts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === OutPostTabEnum.RETURN}>
+          </TabPanel>
+          <TabPanel show={selectTab === OutPostTabEnum.RETURN}>
             {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === OutPostTabEnum.HISTORY}>
+          </TabPanel>
+          <TabPanel show={selectTab === OutPostTabEnum.HISTORY}>
             <OutPostAllHistoryList shares={this.state.returnShares} />
-          </TabPanelStyle>
+          </TabPanel>
         </AppCenterWrapStyle>
       </Fragment>
     );

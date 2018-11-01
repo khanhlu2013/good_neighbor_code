@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { nullOrRequiredValidator } from "../util";
-import { LoadingIcon } from "./loadingIcon";
+import LoadingIcon from "./loadingIcon";
 
 const Wrap = styled.div`
   margin-left: 2px;

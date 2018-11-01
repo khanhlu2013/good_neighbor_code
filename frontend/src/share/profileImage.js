@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { User } from "../model/user";
+import User from "../model/user";
 
 const noProfileImageFileName = "no_profile_image.png";
 
@@ -31,4 +31,4 @@ ProfileImage.propTypes = {
   loginUser: PropTypes.instanceOf(User).isRequired
 };
 
-export { ProfileImage };
+export default ProfileImage;

@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { User } from "../../../model/user";
+import User from "../../../model/user";
 import { GoogleLogin } from "../../googleLogin";
 import { nullOrRequiredValidator } from "../../../util";
 import AppTabEnum from "../../appTabEnum";
-import { LoadingIcon } from "../../../componentUi/loadingIcon";
-import { AppCenterWrapMixin } from "../../../componentUi/style/appCenterWrap_style";
-import { BannerMixin } from "../../../componentUi/style/banner_mixin";
+import LoadingIcon from "../../../share/loadingIcon";
+import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
+import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar.com";
 
 const Banner = styled.div`

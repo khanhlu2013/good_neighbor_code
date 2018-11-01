@@ -62,4 +62,4 @@ LoadingIcon.propTypes = {
   text: nullOrRequiredValidator("string")
 };
 
-export { LoadingIcon };
+export default LoadingIcon;

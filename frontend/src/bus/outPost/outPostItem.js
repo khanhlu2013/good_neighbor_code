@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { LoadingIcon } from "../../componentUi/loadingIcon";
+import LoadingIcon from "../../share/loadingIcon";
 import PostItemBody from "../postComponent/postItem_body";
 import PostItemFootStyle from "../postComponent/style/postItem_foot_style";
 import PostItemStyle from "../postComponent/style/postItem_style";

@@ -5,10 +5,10 @@ import { InPostAllHistoryList } from "./inPost_allHistoryList";
 import { InPostList } from "./inPostList";
 import { InPostTabBar } from "./inPost_tabBar";
 import { InPostTabEnum } from "./inPost_tabEnum";
-import { LoadingIcon } from "../../../componentUi/loadingIcon";
-import { AppBodyBannerStyle } from "../../../componentUi/style/appBodyBanner_style";
-import { AppCenterWrapStyle } from "../../../componentUi/style/appCenterWrap_style";
-import { TabPanelStyle } from "../../../componentUi/style/tabPanel_style";
+import LoadingIcon from "../../../share/loadingIcon";
+import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
+import TabPanel from "../../../share/style/tabPanel_style";
+import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 
 class InPostManagementComponent extends Component {
   static propTypes = {
@@ -91,24 +91,24 @@ class InPostManagementComponent extends Component {
         </AppBodyBannerStyle>
 
         <AppCenterWrapStyle>
-          <TabPanelStyle show={selectTab === InPostTabEnum.ALL}>
+          <TabPanel show={selectTab === InPostTabEnum.ALL}>
             {generateList("inPostList-all-react", posts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === InPostTabEnum.REQUEST}>
+          </TabPanel>
+          <TabPanel show={selectTab === InPostTabEnum.REQUEST}>
             {generateList("inPostList-request-react", requestPosts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === InPostTabEnum.APPROVE}>
+          </TabPanel>
+          <TabPanel show={selectTab === InPostTabEnum.APPROVE}>
             {generateList(
               "inPostList-approveNote-react",
               this.props.approveAlertPosts
             )}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === InPostTabEnum.BORROW}>
+          </TabPanel>
+          <TabPanel show={selectTab === InPostTabEnum.BORROW}>
             {generateList("inPostList-borrow-react", borrowPosts)}
-          </TabPanelStyle>
-          <TabPanelStyle show={selectTab === InPostTabEnum.HISTORY}>
+          </TabPanel>
+          <TabPanel show={selectTab === InPostTabEnum.HISTORY}>
             <InPostAllHistoryList shares={this.props.returnShares} />
-          </TabPanelStyle>
+          </TabPanel>
         </AppCenterWrapStyle>
       </Fragment>
     );

@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { User } from "../../model/user";
-import { LoadingIcon } from "../../componentUi/loadingIcon";
-import { ProfileImage } from "../../componentUi/profileImage";
-import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
-import { ShadowBoxMixin } from "../../componentUi/style/shadowBox_style";
+import User from "../../model/user";
+import LoadingIcon from "../../share/loadingIcon";
+import { ShadowBoxMixin } from "../../share/style/shadowBox_style";
+import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
+import ProfileImage from "../../share/profileImage";
 
 const Style = styled.div`
   ${ShadowBoxMixin} margin-top:10px;

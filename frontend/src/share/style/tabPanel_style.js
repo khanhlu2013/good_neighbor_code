@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const TabPanelStyle = styled.div`
+const TabPanel = styled.div`
   display: ${props => (props.show ? "block" : "none")};
 `;
 
-export { TabPanelStyle };
+export default TabPanel;

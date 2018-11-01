@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import PrivateAppContainer from "../container/appPrivate.con";
-import { AppCenterWrapStyle } from "../../componentUi/style/appCenterWrap_style";
-import { User } from "../../model/user";
+import User from "../../model/user";
 import BackdoorLoginContainer from "../container/backdoorLogin.con";
 import AppHeaderContainer from "../container/appHeader.con";
 import PublicAppComponent from "./appPublic.com";
+import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
 
 class AppComponent extends Component {
   static propTypes = {

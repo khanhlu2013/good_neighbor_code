@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { nullOrRequiredValidator } from "../../../util";
-import { AppBodyTabBarStyle } from "../../../componentUi/style/tabBar_style";
-import { AppBodyTabItem } from "../../../componentUi/appBodyTabItem";
-import { NotificationItem } from "../../../componentUi/notificationItem";
+import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
+import { AppBodyTabItem } from "../../../share/appBodyTabItem";
+import { NotificationItem } from "../../../share/notificationItem";
 
 function InPostTabBar(props) {
   const {

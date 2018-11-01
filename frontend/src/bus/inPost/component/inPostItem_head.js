@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { date2String } from "../../../util";
-import { User } from "../../../model/user";
+import User from "../../../model/user";
 import {
   PostItemHeadStyle,
   PostItemHeadLeftStyle

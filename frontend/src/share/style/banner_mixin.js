@@ -6,4 +6,4 @@ const BannerMixin = css`
   height: 57px;
 `;
 
-export { BannerMixin };
+export default BannerMixin;

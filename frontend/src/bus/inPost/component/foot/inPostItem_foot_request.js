@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { LoadingIcon } from "../../../../componentUi/loadingIcon";
+import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootRequest(props) {
   const { myRequestShareId, isDeleteingShare, onUnRequestPost } = props;

@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 import { nullOrRequiredValidator } from "../../../util";
 import AppTabEnum from "../../appTabEnum";
-import { AppHeaderTabBarStyle } from "../../../componentUi/style/tabBar_style";
-import { TabItem } from "../../../componentUi/tabItem";
-import { NotificationItem } from "../../../componentUi/notificationItem";
+import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
+import { TabItem } from "../../../share/tabItem";
+import { NotificationItem } from "../../../share/notificationItem";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;

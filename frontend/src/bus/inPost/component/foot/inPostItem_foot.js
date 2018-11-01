@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { User } from "../../../../model/user";
+import User from "../../../../model/user";
 import { nullOrRequiredValidator } from "../../../../util";
 import { Share } from "../../../../model/share";
 import PostItemFootStyle from "../../../postComponent/style/postItem_foot_style";

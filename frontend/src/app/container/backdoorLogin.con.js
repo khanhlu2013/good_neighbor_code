@@ -5,7 +5,7 @@ import className from "classnames";
 import { connect } from "react-redux";
 
 import { API } from "../../api/profile-api";
-import { LoadingIcon } from "../../componentUi/loadingIcon";
+import LoadingIcon from "../../share/loadingIcon";
 import { storeBackdoorLoginUser } from "../../action/auth_action";
 
 const Style = styled.div`
