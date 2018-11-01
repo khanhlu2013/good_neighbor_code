@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import PrivateAppComponent from "../component/appPrivate.com.js";
+import PrivateAppComponent from "../component/appPrivate.js";
 
 const mapStateToProps = (state, ownProps) => ({
   loginUser: state.auth.loginUser,

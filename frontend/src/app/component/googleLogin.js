@@ -1,5 +1,5 @@
 import React from "react";
-import { API_URL } from "../api/api-url";
+import API_URL from "../../api/api-url";
 
 function GoogleLogin(props) {
   const onLoginClicked = e => {
@@ -13,4 +13,4 @@ function GoogleLogin(props) {
   );
 }
 
-export { GoogleLogin };
+export default GoogleLogin;

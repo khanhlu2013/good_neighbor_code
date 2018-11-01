@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Share } from "../../../../model/share";
+import Share from "../../../../model/share";
 import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootApprove(props) {

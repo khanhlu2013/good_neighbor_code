@@ -61,4 +61,4 @@ const API_URL = (dottedPath, params) => {
   return BACKEND_URL + path;
 };
 
-export { API_URL };
+export default API_URL;

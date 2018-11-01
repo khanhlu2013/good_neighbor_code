@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
-import InPostManagementComponent from "./component/inPost_management";
-import {
-  fetchInPosts,
-  requestInPost,
-  unRequestInPost
-} from "../../action/inPost_action";
-import { filterInPostApproveAlert } from "../../reducer/inPost_reducer";
+import InPostManagementComponent from "../component/inPost_management";
+import requestInPost from "../action/requestInPost.action";
+import { filterInPostApproveAlert } from "../reducer/inPost.reducer";
+import unRequestInPost from "../action/unRequestInPost.action";
+import fetchInPosts from "../action/fetchInPosts.action";
 
 const mapStateToProps = (state, ownProps) => {
   const loginUser = state.auth.loginUser;

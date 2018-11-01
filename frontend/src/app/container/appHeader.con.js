@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 
 import { calculateConnectionNotification } from "../../reducer/connection_reducer";
-import { filterInPostApproveAlert } from "../../reducer/inPost_reducer";
 import { calculateOutPostNotification } from "../../reducer/outPost_reducer";
-import { changeAppTab } from "../../action/selectAppTab_action";
-import AppHeaderComponent from "../component/header/appHeader.com";
+import { changeAppTab } from "../action/selectAppTab.action";
+import AppHeaderComponent from "../component/header/appHeader";
+import { filterInPostApproveAlert } from "../../bus/inPost/reducer/inPost.reducer";
 
 const mapStateToProps = (state, ownProps) => {
   const { loginUser, isCheckingAuth } = state.auth;

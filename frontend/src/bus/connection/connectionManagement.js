@@ -7,7 +7,7 @@ import { ConnectionFriendTable } from "./connectionTable_friend.js";
 import { ConnectionOutTable } from "./connectionTable_out.js";
 import { ConnectionDenyTable } from "./connectionTable_deny.js";
 import { ConnectionInTable } from "./connectionTable_in.js";
-import { API } from "../../api/profile-api.js";
+import API from "../../api/profile-api.js";
 import { ConnectionTabEnum } from "./connection_tabEnum.js";
 import { ConnectionTabBar } from "./connection_tabBar.js";
 import LoadingIcon from "../../share/loadingIcon.js";

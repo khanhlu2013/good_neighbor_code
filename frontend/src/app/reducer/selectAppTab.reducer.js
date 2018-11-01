@@ -1,5 +1,5 @@
-import { CHANGE_APP_TAB } from "../action/selectAppTab_action";
-import AppTabEnum from "../app/appTabEnum";
+import { CHANGE_APP_TAB } from "../action/selectAppTab.action";
+import AppTabEnum from "../component/appTabEnum";
 
 const selectAppTabReducer = (state = AppTabEnum.INPOST, action) => {
   switch (action.type) {

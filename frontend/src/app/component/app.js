@@ -5,7 +5,7 @@ import PrivateAppContainer from "../container/appPrivate.con";
 import User from "../../model/user";
 import BackdoorLoginContainer from "../container/backdoorLogin.con";
 import AppHeaderContainer from "../container/appHeader.con";
-import PublicAppComponent from "./appPublic.com";
+import PublicAppComponent from "./public/appPublic";
 import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
 
 class AppComponent extends Component {

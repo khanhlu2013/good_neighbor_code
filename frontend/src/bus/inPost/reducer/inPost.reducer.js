@@ -1,14 +1,18 @@
 import update from "immutability-helper";
 
+import Share from "../../../model/share";
+import {
+  INFORM_REQUESTING_INPOST,
+  RECEIVE_REQUESTED_INPOST
+} from "../action/requestInPost.action";
+import {
+  RECEIVE_UNREQUEST_INPOST,
+  INFORM_UNREQUEST_INPOST
+} from "../action/unRequestInPost.action";
 import {
   INFORM_FETCHING_INPOSTS,
-  RECEIVE_FETCHED_INPOSTS,
-  INFORM_REQUESTING_INPOST,
-  RECEIVE_REQUESTED_INPOST,
-  INFORM_UNREQUEST_INPOST,
-  RECEIVE_UNREQUEST_INPOST
-} from "../action/inPost_action";
-import { Share } from "../model/share";
+  RECEIVE_FETCHED_INPOSTS
+} from "../action/fetchInPosts.action";
 
 export const filterInPostApproveAlert = (posts, loginUserId) => {
   if (!loginUserId) {

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { OutPostCrudDialog } from "./crudDialog";
-import { API } from "../../api/profile-api";
+import API from "../../api/profile-api";
 import { OutPostDecisionDialog } from "./decisionDialog";
 import { Post } from "../../model/post";
 import { OutPostAllHistoryList } from "./outPost_allHistoryList";

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PlayList } from "../playList";
+import { PlayList } from "./playList";
 
 function PublicAppComponent() {
   return (

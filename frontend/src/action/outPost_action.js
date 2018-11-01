@@ -1,4 +1,4 @@
-import { API } from "../api/profile-api";
+import API from "../api/profile-api";
 
 export const INFORM_FETCHING_OUTPOSTS = "INFORM_FETCHING_OUTPOSTS";
 export const RECEIVE_FETCHED_OUTPOSTS = "RECEIVE_FETCHED_OUTPOSTS";

@@ -1,4 +1,4 @@
-import { API_URL } from "./api-url";
+import API_URL from "./api-url";
 import {
   rawsToConnections,
   rawToConnection,
@@ -242,4 +242,4 @@ const API = {
   returnShare,
   awareApproveShare
 };
-export { API };
+export default API;

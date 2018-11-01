@@ -264,15 +264,5 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
 . now i am working on inPost. lets change InPostNotification into approveAlert. 
 
 ----
-i am overwhelm of work. it will take me a very long time to work on this project. but lets do it. One step at a time. ok. let just start cleaning up what i have with redux. make it as solid as i can before moving on. starting with folder srtucture. lets vistualize it a bit
 
-
-. bus
-. api
-. app
-. model
-. index.js
-----
-. js css html react
-
-
+. move selectAppTab into the app folder
