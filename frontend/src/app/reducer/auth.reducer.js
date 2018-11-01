@@ -9,7 +9,7 @@ import {
 
   //- backdoor login
   STORE_BACKDOOR_LOGIN_USER
-} from "../action/auth_action";
+} from "../action/auth.action";
 
 const defaultAuthState = {
   loginUser: undefined,

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import authReducer from "./auth_reducer";
+import authReducer from "../app/reducer/auth.reducer";
 import connectionReducer from "./connection_reducer";
 import outPostReducer from "./outPost_reducer";
 import inPostReducer from "../bus/inPost/reducer/inPost.reducer";

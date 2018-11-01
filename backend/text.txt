@@ -265,4 +265,4 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
 
 ----
 
-. move selectAppTab into the app folder
+filterInPostApproveAlert is not part of the reducer, alert util

@@ -1,15 +1,15 @@
 import API from "../../../api/profile-api";
 
-export const INFORM_FETCHING_INPOSTS = "INFORM_FETCHING_INPOSTS";
-export const RECEIVE_FETCHED_INPOSTS = "RECEIVE_FETCHED_INPOSTS";
+export const INFORM_FETCH_INPOSTS = "INFORM_FETCH_INPOSTS";
+export const RECEIVE_FETCH_INPOSTS = "RECEIVE_FETCH_INPOSTS";
 
 const fetchInPosts = () => (dispatch, getState) => {
   dispatch({
-    type: INFORM_FETCHING_INPOSTS
+    type: INFORM_FETCH_INPOSTS
   });
   API.inPosts().then(posts =>
     dispatch({
-      type: RECEIVE_FETCHED_INPOSTS,
+      type: RECEIVE_FETCH_INPOSTS,
       posts
     })
   );

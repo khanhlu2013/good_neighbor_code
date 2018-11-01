@@ -4,7 +4,7 @@ import { calculateConnectionNotification } from "../../reducer/connection_reduce
 import { calculateOutPostNotification } from "../../reducer/outPost_reducer";
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import { filterInPostApproveAlert } from "../../bus/inPost/reducer/inPost.reducer";
+import filterInPostApproveAlert from "../../bus/inPost/alert/filterInPostApproveAlert";
 
 const mapStateToProps = (state, ownProps) => {
   const { loginUser, isCheckingAuth } = state.auth;

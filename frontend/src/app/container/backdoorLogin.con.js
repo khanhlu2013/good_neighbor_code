@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import API from "../../api/profile-api";
 import LoadingIcon from "../../share/loadingIcon";
-import { storeBackdoorLoginUser } from "../../action/auth_action";
+import { storeBackdoorLoginUser } from "../action/auth.action";
 
 const Style = styled.div`
   margin-top: 10px;
