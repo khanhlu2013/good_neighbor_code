@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PostListNoData from "../postComponent/postListNoData";
-import PostAllHistoryListStyle from "../postComponent/style/postAll_historyList_style";
+import PostListNoData from "../post/component/postListNoData";
+import PostAllHistoryListStyle from "../post/component/style/postAll_historyList_style";
 import { date2String } from "../../share/util";
 
 function OutPostAllHistoryList(props) {

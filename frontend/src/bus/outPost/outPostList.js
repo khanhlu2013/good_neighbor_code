@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { OutPostItem } from "./outPostItem";
-import PostListNoData from "../postComponent/postListNoData";
+import PostListNoData from "../post/component/postListNoData";
 
 function OutPostList(props) {
   const {

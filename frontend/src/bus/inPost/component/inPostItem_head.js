@@ -5,7 +5,7 @@ import User from "../../../model/user";
 import {
   PostItemHeadStyle,
   PostItemHeadLeftStyle
-} from "../../postComponent/style/postItem_head_style";
+} from "../../post/component/style/postItem_head_style";
 import { date2String } from "../../../share/util";
 
 function InPostItemHead(props) {

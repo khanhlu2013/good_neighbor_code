@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ShadowBoxMixin } from "../../share/style/shadowBox_style";
+import { ShadowBoxMixin } from "../../../share/style/shadowBox_style";
 
 const Style = styled.div`
   font-size: 1.5em;

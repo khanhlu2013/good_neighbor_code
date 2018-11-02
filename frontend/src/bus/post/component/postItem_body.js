@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { Post } from "../../model/post";
 import PostItemHistoryList from "./postItem_historyList";
 import PostItemRequestList from "./postItem_requestlist";
+import Post from "../../../model/post";
 
 const Style = styled.div`
   margin-top: 10px;

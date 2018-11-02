@@ -264,5 +264,4 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
 . now i am working on inPost. lets change InPostNotification into approveAlert. 
 
 ----
-
-filterInPostApproveAlert is not part of the reducer, alert util
+. alert for outPost

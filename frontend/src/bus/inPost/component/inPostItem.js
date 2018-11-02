@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PostItemBody from "../../postComponent/postItem_body";
+import PostItemBody from "../../post/component/postItem_body";
 import InPostItemFoot from "./foot/inPostItem_foot";
-import PostItemStyle from "../../postComponent/style/postItem_style";
+import PostItemStyle from "../../post/component/style/postItem_style";
 import InPostItemHead from "./inPostItem_head";
 
 function InPostItem(props) {

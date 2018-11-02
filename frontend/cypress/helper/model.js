@@ -1,7 +1,7 @@
 import { ObjectID } from "mongodb";
 import User from "../../src/model/user";
-import { Connection } from "../../src/model/connection";
-import { Post } from "../../src/model/post";
+import Connection from "../../src/model/connection";
+import Post from "../../src/model/post";
 import Share from "../../src/model/share";
 
 const createUser = (name, email) =>

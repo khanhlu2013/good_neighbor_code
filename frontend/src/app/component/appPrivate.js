@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import User from "../../model/user.js";
-import ProfileManagementContainer from "../../bus/profile/profile_management.con";
+import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
 import ConnectionManagement from "../../bus/connection/connectionManagement.js";
 import OutPostManagement from "../../bus/outPost/outPostManagement.js";

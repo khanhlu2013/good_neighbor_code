@@ -17,4 +17,4 @@ class Connection {
   }
 }
 
-export { Connection };
+export default Connection;
