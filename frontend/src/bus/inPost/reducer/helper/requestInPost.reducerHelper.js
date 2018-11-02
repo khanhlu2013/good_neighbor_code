@@ -1,7 +1,13 @@
 import update from "immutability-helper";
+
 import Share from "../../../../model/share";
 
-const recieveRequetedInPostReducerHelper = (
+export const informRequestInPost_reducerHelper = (state, postId) => ({
+  ...state,
+  requestingPostIds: [state.requestingPostIds, postId]
+});
+
+export const recieveRequestInPost_reducerHelper = (
   state,
   postId,
   shareId,
@@ -33,5 +39,3 @@ const recieveRequetedInPostReducerHelper = (
     requestingPostIds: state.requestingPostIds.filter(id => id !== postId)
   };
 };
-
-export default recieveRequetedInPostReducerHelper;

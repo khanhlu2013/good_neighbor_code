@@ -144,25 +144,24 @@ const createShare = async postID => {
   };
 };
 
-const deleteShare = async shareID => {
-  await post("profile.deleteShare", { shareID });
+const deleteShare = async shareId => {
+  await post("profile.deleteShare", { shareId });
 };
 
-const approveShare = async (shareID, isApprove) => {
+const approveShare = async (shareId, isApprove) => {
   const { isApprove: updatedIsApprove } = await post("profile.approveShare", {
-    shareID,
+    shareId,
     isApprove
   });
 
   return updatedIsApprove;
 };
 
-const returnShare = async (shareID, isReturn) => {
+const returnShare = async shareId => {
   const { isReturn: resultIsReturnByTo, dateReturn } = await post(
     "profile.returnShare",
     {
-      shareID,
-      isReturn
+      shareId
     }
   );
 

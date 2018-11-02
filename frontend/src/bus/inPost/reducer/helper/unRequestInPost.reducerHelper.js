@@ -1,6 +1,11 @@
 import update from "immutability-helper";
 
-const recieveUnRequetedInPostReducerHelper = (state, shareId) => {
+export const informUnRequestInPost_reducerHelper = (state, shareId) => ({
+  ...state,
+  deletingShareIds: [...state.deletingShareIds, shareId]
+});
+
+export const recieveUnRequetedInPost_reducerHelper = (state, shareId) => {
   const { posts } = state;
   const unRequestPost = posts.find(post =>
     post.shares.some(share => share.id === shareId)
@@ -23,5 +28,3 @@ const recieveUnRequetedInPostReducerHelper = (state, shareId) => {
     posts: updatePosts
   };
 };
-
-export default recieveUnRequetedInPostReducerHelper;

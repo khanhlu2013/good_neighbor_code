@@ -10,18 +10,43 @@ import {
   INFORM_FETCH_INPOSTS,
   RECEIVE_FETCH_INPOSTS
 } from "../action/fetchInPosts.action";
-import recieveRequetedInPostReducerHelper from "./helper/receiveRequestInPost.reducerHelper";
-import recieveUnRequetedInPostReducerHelper from "./helper/receiveUnRequestInPost.reducerHelper";
+import {
+  informRequestInPost_reducerHelper,
+  recieveRequestInPost_reducerHelper
+} from "./helper/requestInPost.reducerHelper";
+import {
+  RECEIVE_AWARE_APPROVE_INPOST,
+  INFORM_AWARE_APPROVE_INPOST
+} from "../action/awareApproveInPost.action";
+import {
+  receiveAwareApproveInPost_reducerHelper,
+  informAwareApproveInPost_reducerHelper
+} from "./helper/awareApproveInPost.reducerHelper";
+import {
+  recieveUnRequetedInPost_reducerHelper,
+  informUnRequestInPost_reducerHelper
+} from "./helper/unRequestInPost.reducerHelper";
+import {
+  INFORM_RETURN_INPOST,
+  RECEIVE_RETURN_INPOST
+} from "../action/returnInPost.action";
+import {
+  informReturnInPost,
+  receiveReturnInPost
+} from "./helper/returnInPost.reducerHelper";
 
 const defaultInPostState = {
   posts: [],
+  isFetchingPosts: false,
+  isInitPosts: false,
   requestingPostIds: [],
   deletingShareIds: [],
-  isFetchingPosts: false,
-  isInitPosts: false
+  awaringShareIds: [],
+  returningShareIds: []
 };
 const inPostReducer = (state = defaultInPostState, action) => {
   switch (action.type) {
+    //FETCH
     case INFORM_FETCH_INPOSTS:
       return { ...state, isFetchingPosts: true };
 
@@ -39,20 +64,11 @@ const inPostReducer = (state = defaultInPostState, action) => {
         posts: filterDenyPosts
       };
 
+    //REQUEST
     case INFORM_REQUEST_INPOST:
-      return {
-        ...state,
-        requestingPostIds: [...state.requestingPostIds, action.postId]
-      };
-
-    case INFORM_UNREQUEST_INPOST:
-      return {
-        ...state,
-        deletingShareIds: [...state.deletingShareIds, action.shareId]
-      };
-
+      return informRequestInPost_reducerHelper(state, action.postId);
     case RECEIVE_REQUEST_INPOST:
-      return recieveRequetedInPostReducerHelper(
+      return recieveRequestInPost_reducerHelper(
         state,
         action.postId,
         action.shareId,
@@ -60,8 +76,32 @@ const inPostReducer = (state = defaultInPostState, action) => {
         action.loginUser
       );
 
+    //UNREQUEST
+    case INFORM_UNREQUEST_INPOST:
+      return informUnRequestInPost_reducerHelper(state, action.shareId);
     case RECEIVE_UNREQUEST_INPOST:
-      return recieveUnRequetedInPostReducerHelper(state, action.shareId);
+      return recieveUnRequetedInPost_reducerHelper(state, action.shareId);
+
+    //AWARE
+    case INFORM_AWARE_APPROVE_INPOST:
+      return informAwareApproveInPost_reducerHelper(state, action.shareId);
+    case RECEIVE_AWARE_APPROVE_INPOST:
+      return receiveAwareApproveInPost_reducerHelper(
+        state,
+        action.shareId,
+        action.isAwareApprove
+      );
+
+    //RETURN
+    case INFORM_RETURN_INPOST:
+      return informReturnInPost(state, action.shareId);
+    case RECEIVE_RETURN_INPOST:
+      return receiveReturnInPost(
+        state,
+        action.shareId,
+        action.resultIsReturnByTo,
+        action.resultDateReturn
+      );
 
     default:
       return state;

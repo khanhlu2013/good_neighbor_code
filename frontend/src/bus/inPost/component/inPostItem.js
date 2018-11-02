@@ -16,8 +16,8 @@ function InPostItem(props) {
     isReturningShare,
     onRequestPost,
     onUnRequestPost,
-    onAwareShare,
-    onReturnShare
+    onAwareApprovePost,
+    onReturnPost
   } = props;
   return (
     <PostItemStyle id="inPost-item-react">
@@ -39,8 +39,8 @@ function InPostItem(props) {
         isReturningShare={isReturningShare}
         onRequestPost={onRequestPost}
         onUnRequestPost={onUnRequestPost}
-        onAwareShare={onAwareShare}
-        onReturnShare={onReturnShare}
+        onAwareApprovePost={onAwareApprovePost}
+        onReturnPost={onReturnPost}
       />
     </PostItemStyle>
   );
@@ -54,8 +54,8 @@ InPostItem.propTypes = {
   isReturningShare: PropTypes.bool.isRequired,
   onRequestPost: PropTypes.func.isRequired,
   onUnRequestPost: PropTypes.func.isRequired,
-  onAwareShare: PropTypes.func.isRequired,
-  onReturnShare: PropTypes.func.isRequired
+  onAwareApprovePost: PropTypes.func.isRequired,
+  onReturnPost: PropTypes.func.isRequired
 };
 
 export { InPostItem };

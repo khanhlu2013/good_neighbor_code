@@ -21,8 +21,8 @@ function InPostItemFoot(props) {
     isReturningShare,
     onRequestPost,
     onUnRequestPost,
-    onAwareShare,
-    onReturnShare
+    onAwareApprovePost,
+    onReturnPost
   } = props;
 
   let content;
@@ -44,8 +44,8 @@ function InPostItemFoot(props) {
         curBorrowShare={curBorrowShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
-        onAwareShare={onAwareShare}
-        onReturnShare={onReturnShare}
+        onAwareApprovePost={onAwareApprovePost}
+        onReturnPost={onReturnPost}
       />
     );
   } else if (isActive) {
@@ -74,8 +74,8 @@ InPostItemFoot.propTypes = {
   isReturningShare: PropTypes.bool.isRequired,
   onRequestPost: PropTypes.func.isRequired,
   onUnRequestPost: PropTypes.func.isRequired,
-  onAwareShare: PropTypes.func.isRequired,
-  onReturnShare: PropTypes.func.isRequired
+  onAwareApprovePost: PropTypes.func.isRequired,
+  onReturnPost: PropTypes.func.isRequired
 };
 
 export default InPostItemFoot;

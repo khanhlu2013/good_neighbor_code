@@ -9,15 +9,15 @@ function InPostItemFootApprove(props) {
     curBorrowShare,
     isAwaringShare,
     isReturningShare,
-    onAwareShare,
-    onReturnShare
+    onAwareApprovePost,
+    onReturnPost
   } = props;
 
   const onAwareShareClicked = e => {
-    onAwareShare(curBorrowShare.id);
+    onAwareApprovePost(curBorrowShare.id);
   };
   const onReturnShareClicked = e => {
-    onReturnShare(curBorrowShare.id);
+    onReturnPost(curBorrowShare.id);
   };
 
   let awareContent;
@@ -65,7 +65,7 @@ InPostItemFootApprove.propTypes = {
   curBorrowShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onAwareShare: PropTypes.func.isRequired,
-  onReturnShare: PropTypes.func.isRequired
+  onAwareApprovePost: PropTypes.func.isRequired,
+  onReturnPost: PropTypes.func.isRequired
 };
 export default InPostItemFootApprove;

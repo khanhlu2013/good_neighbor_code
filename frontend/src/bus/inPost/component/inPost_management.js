@@ -13,17 +13,25 @@ import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 class InPostManagementComponent extends Component {
   static propTypes = {
     loginUser: PropTypes.object.isRequired,
+    //init data
     fetchInPosts: PropTypes.func.isRequired,
+    //data
     posts: PropTypes.array.isRequired,
     isFetchingPosts: PropTypes.bool.isRequired,
     isInitPosts: PropTypes.bool.isRequired,
     approveAlertPosts: PropTypes.array.isRequired,
     approveAlertPostCount: PropTypes.number.isRequired,
     returnShares: PropTypes.array.isRequired,
+    //pending action
     requestingPostIds: PropTypes.array.isRequired,
-    onRequestPost: PropTypes.func.isRequired,
     deletingShareIds: PropTypes.array.isRequired,
-    onUnRequestPost: PropTypes.func.isRequired
+    awaringShareIds: PropTypes.array.isRequired,
+    returningShareIds: PropTypes.array.isRequired,
+    //action handler
+    onRequestPost: PropTypes.func.isRequired,
+    onUnRequestPost: PropTypes.func.isRequired,
+    onAwareApprovePost: PropTypes.func.isRequired,
+    onReturnPost: PropTypes.func.isRequired
   };
 
   state = {
@@ -36,14 +44,6 @@ class InPostManagementComponent extends Component {
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
-  };
-
-  onReturnShare = shareId => {
-    console.log("on return share clicked");
-  };
-
-  onAwareShare = shareId => {
-    console.log("on aware share clicked");
   };
 
   _getPostsContent(posts) {
@@ -67,12 +67,12 @@ class InPostManagementComponent extends Component {
         posts={postArray}
         requestingPostIds={this.props.requestingPostIds}
         deletingShareIds={this.props.deletingShareIds}
-        awaringShareIds={[]}
-        returningShareIds={[]}
+        awaringShareIds={this.props.awaringShareIds}
+        returningShareIds={this.props.returningShareIds}
         onRequestPost={this.props.onRequestPost}
         onUnRequestPost={this.props.onUnRequestPost}
-        onAwareShare={this.onAwareShare}
-        onReturnShare={this.onReturnShare}
+        onAwareApprovePost={this.props.onAwareApprovePost}
+        onReturnPost={this.props.onReturnPost}
       />
     );
 

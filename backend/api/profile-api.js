@@ -199,14 +199,14 @@ route.post("/createShare", _authCheck, (req, res, next) => {
 
 route.post("/deleteShare", _authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareID } = req.body;
+  const { shareId } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareID)) {
+  if (!mongoose.Types.ObjectId.isValid(shareId)) {
     return res.status(400).send();
   }
 
   (async () => {
-    const share = await Share.findById(shareID);
+    const share = await Share.findById(shareId);
     if (!share) {
       return res.status(400).send();
     }
@@ -222,14 +222,14 @@ route.post("/deleteShare", _authCheck, (req, res, next) => {
 
 route.post("/returnShare", _authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareID } = req.body;
+  const { shareId } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareID)) {
-    throw Error("Invalid shareID");
+  if (!mongoose.Types.ObjectId.isValid(shareId)) {
+    throw Error("Invalid shareId");
   }
 
   (async () => {
-    const share = await Share.findById(shareID);
+    const share = await Share.findById(shareId);
     if (!share) {
       throw Error("Can not find ShareID");
     }
@@ -271,16 +271,16 @@ route.post("/awareApproveShare", _authCheck, (req, res, next) => {
 
 route.post("/approveShare", _authCheck, (req, res, next) => {
   const { user } = req;
-  const { shareID, isApprove } = req.body;
+  const { shareId, isApprove } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(shareID)) {
+  if (!mongoose.Types.ObjectId.isValid(shareId)) {
     throw Error("ShareID is not valid");
   }
 
   (async () => {
-    const share = await Share.findById(shareID).populate("post");
+    const share = await Share.findById(shareId).populate("post");
     if (!share) {
-      throw Error(`ShareID ${shareID} is not found`);
+      throw Error(`ShareID ${shareId} is not found`);
     }
 
     if (share.isReturn === true) {

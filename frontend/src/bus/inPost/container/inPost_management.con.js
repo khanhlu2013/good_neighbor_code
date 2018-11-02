@@ -4,6 +4,8 @@ import requestInPost from "../action/requestInPost.action";
 import unRequestInPost from "../action/unRequestInPost.action";
 import fetchInPosts from "../action/fetchInPosts.action";
 import filterInPostApproveAlert from "../alert/filterInPostApproveAlert";
+import awareApproveInPost from "../action/awareApproveInPost.action";
+import returnInPost from "../action/returnInPost.action";
 
 const mapStateToProps = (state, ownProps) => {
   const loginUser = state.auth.loginUser;
@@ -24,15 +26,20 @@ const mapStateToProps = (state, ownProps) => {
     approveAlertPosts,
     approveAlertPostCount: approveAlertPosts.length,
     returnShares,
+    //pending work
     requestingPostIds: state.inPost.requestingPostIds,
-    deletingShareIds: state.inPost.deletingShareIds
+    deletingShareIds: state.inPost.deletingShareIds,
+    awaringShareIds: state.inPost.awaringShareIds,
+    returningShareIds: state.inPost.returningShareIds
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchInPosts: () => dispatch(fetchInPosts()),
   onRequestPost: postId => dispatch(requestInPost(postId)),
   onUnRequestPost: shareId => dispatch(unRequestInPost(shareId)),
-  fetchInPosts: () => dispatch(fetchInPosts())
+  onAwareApprovePost: shareId => dispatch(awareApproveInPost(shareId)),
+  onReturnPost: shareId => dispatch(returnInPost(shareId))
 });
 
 const InPostManagementContainer = connect(

@@ -13,8 +13,8 @@ function InPostList(props) {
     returningShareIds,
     onRequestPost,
     onUnRequestPost,
-    onAwareShare,
-    onReturnShare,
+    onAwareApprovePost,
+    onReturnPost,
     loginUser
   } = props;
 
@@ -31,8 +31,8 @@ function InPostList(props) {
           post={post}
           onRequestPost={onRequestPost}
           onUnRequestPost={onUnRequestPost}
-          onAwareShare={onAwareShare}
-          onReturnShare={onReturnShare}
+          onAwareApprovePost={onAwareApprovePost}
+          onReturnPost={onReturnPost}
           isRequestingPost={requestingPostIds.includes(post.id)}
           isDeleteingShare={post.shares.some(share =>
             deletingShareIds.includes(share.id)
@@ -58,8 +58,8 @@ InPostList.propTypes = {
   returningShareIds: PropTypes.array.isRequired,
   onRequestPost: PropTypes.func.isRequired,
   onUnRequestPost: PropTypes.func.isRequired,
-  onAwareShare: PropTypes.func.isRequired,
-  onReturnShare: PropTypes.func.isRequired,
+  onAwareApprovePost: PropTypes.func.isRequired,
+  onReturnPost: PropTypes.func.isRequired,
   loginUser: PropTypes.object.isRequired
 };
 
