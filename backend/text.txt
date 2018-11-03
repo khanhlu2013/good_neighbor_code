@@ -256,5 +256,17 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
 ----
 . how componentDidMount trigger the fetchOutPosts
 . NotificationItem -> alert item
+. make container
+---
+{ OutPostCrudDialog }
+---
+. move action
 . move reducer
-. move component
+  . posts
+  . isInitPosts
+  . isFetchingPosts
+  . awaringReturnPostIds
+  => create match state to props
+
+  . findOutWhere is the crud Post take place, move it into action
+  . find out where is the decide post, move it into action.
