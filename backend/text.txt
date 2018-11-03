@@ -241,16 +241,6 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
     connectionNoteCount: null
   };
 
-  onInPostNotify = count => {
-    this.setState({ inPostNoteCount: count });
-  };
-  onOutPostNotify = count => {
-    this.setState({ outPostNoteCount: count });
-  };
-  onConnectionNotify = count => {
-    this.setState({ connectionNoteCount: count });
-  };
-
   ---
 
 . there is 2 concern: top level notification. 
@@ -264,4 +254,7 @@ inPostManagement: change this into onRequestPost, onUnRequestPost, ...
 . now i am working on inPost. lets change InPostNotification into approveAlert. 
 
 ----
-. alert for outPost
+. how componentDidMount trigger the fetchOutPosts
+. NotificationItem -> alert item
+. move reducer
+. move component

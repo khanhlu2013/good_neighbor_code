@@ -8,7 +8,6 @@ import AppTabEnum from "../appTabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
-import { nullOrRequiredValidator } from "../../../share/util";
 import AppHeaderTabBar from "./appHeader_tabBar";
 
 const Banner = styled.div`
@@ -42,9 +41,9 @@ function AppHeaderComponent(props) {
     isCheckingAuth,
     onAppTabChange,
     selectAppTab,
-    inPostNoteCount,
-    outPostNoteCount,
-    connectionNoteCount
+    inPostAlertCount,
+    outPostAlertCount,
+    connectionAlertCount
   } = props;
 
   let content;
@@ -68,9 +67,9 @@ function AppHeaderComponent(props) {
       <AppHeaderTabBar
         onAppTabChange={onAppTabChange}
         selectAppTab={selectAppTab}
-        inPostNoteCount={inPostNoteCount}
-        outPostNoteCount={outPostNoteCount}
-        connectionNoteCount={connectionNoteCount}
+        inPostAlertCount={inPostAlertCount}
+        outPostAlertCount={outPostAlertCount}
+        connectionAlertCount={connectionAlertCount}
       />
     );
   }
@@ -90,9 +89,9 @@ AppHeaderComponent.propTypes = {
   isCheckingAuth: PropTypes.bool.isRequired,
   onAppTabChange: PropTypes.func.isRequired,
   selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired,
-  inPostNoteCount: nullOrRequiredValidator("number"),
-  outPostNoteCount: nullOrRequiredValidator("number"),
-  connectionNoteCount: nullOrRequiredValidator("number")
+  inPostAlertCount: PropTypes.number.isRequired,
+  outPostAlertCount: PropTypes.number.isRequired,
+  connectionAlertCount: PropTypes.number.isRequired
 };
 
 export default AppHeaderComponent;

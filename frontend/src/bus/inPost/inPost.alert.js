@@ -1,4 +1,4 @@
-const filterInPostApproveAlert = (posts, loginUserId) => {
+export const filterInPostApproveAlert = (posts, loginUserId) => {
   if (!loginUserId) {
     return [];
   }
@@ -13,5 +13,3 @@ const filterInPostApproveAlert = (posts, loginUserId) => {
     )
   );
 };
-
-export default filterInPostApproveAlert;

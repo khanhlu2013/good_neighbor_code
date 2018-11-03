@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
 import { TabItem } from "../../../share/tabItem";
 import NotificationItem from "../../../share/notificationItem";
-import { nullOrRequiredValidator } from "../../../share/util";
 import AppTabEnum from "../appTabEnum";
 
 const TabItemContainerStart = styled.div`
@@ -22,9 +21,9 @@ function AppHeaderTabBar(props) {
   const {
     onAppTabChange,
     selectAppTab,
-    inPostNoteCount,
-    outPostNoteCount,
-    connectionNoteCount
+    inPostAlertCount,
+    outPostAlertCount,
+    connectionAlertCount
   } = props;
 
   const onInPostNav = e => {
@@ -48,7 +47,7 @@ function AppHeaderTabBar(props) {
         "friend posts",
         "globe",
         onInPostNav,
-        inPostNoteCount,
+        inPostAlertCount,
         TabItemContainerStart
       )}
 
@@ -58,7 +57,7 @@ function AppHeaderTabBar(props) {
         "my posts",
         "briefcase",
         onOutPostNav,
-        outPostNoteCount,
+        outPostAlertCount,
         TabItemContainerMiddle
       )}
 
@@ -68,7 +67,7 @@ function AppHeaderTabBar(props) {
         "friends",
         "user-friends",
         onConnectionNav,
-        connectionNoteCount,
+        connectionAlertCount,
         TabItemContainerMiddle
       )}
 
@@ -117,9 +116,9 @@ function _generateTabItem(
 AppHeaderTabBar.propTypes = {
   onAppTabChange: PropTypes.func.isRequired,
   selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired,
-  inPostNoteCount: nullOrRequiredValidator("number"),
-  outPostNoteCount: nullOrRequiredValidator("number"),
-  connectionNoteCount: nullOrRequiredValidator("number")
+  inPostAlertCount: PropTypes.number.isRequired,
+  outPostAlertCount: PropTypes.number.isRequired,
+  connectionAlertCount: PropTypes.number.isRequired
 };
 
 export default AppHeaderTabBar;

@@ -62,7 +62,6 @@ class ConnectionManagement extends Component {
   };
 
   onUpdateConnection = (connectionId, isApproved) => {
-    this.props.onConnectionNotify(null);
     this.setState({
       updatingConnectionIds: [...this.state.updatingConnectionIds, connectionId]
     });

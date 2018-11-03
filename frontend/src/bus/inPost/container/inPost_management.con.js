@@ -3,7 +3,7 @@ import InPostManagementComponent from "../component/inPost_management";
 import requestInPost from "../action/requestInPost.action";
 import unRequestInPost from "../action/unRequestInPost.action";
 import fetchInPosts from "../action/fetchInPosts.action";
-import filterInPostApproveAlert from "../alert/filterInPostApproveAlert";
+import { filterInPostApproveAlert } from "../inPost.alert";
 import awareApproveInPost from "../action/awareApproveInPost.action";
 import returnInPost from "../action/returnInPost.action";
 

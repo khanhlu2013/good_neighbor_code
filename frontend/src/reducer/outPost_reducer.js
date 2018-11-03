@@ -3,20 +3,12 @@ import {
   RECEIVE_FETCHED_OUTPOSTS
 } from "../action/outPost_action";
 
-export const calculateOutPostRequestNotification = posts =>
-  posts.filter(post => post.isNote_requestWithNoBorrow).length;
-
-export const calculateOutPostUnAwareReturnNotification = posts =>
-  posts.filter(post => post.unawareReturnShareLatest).length;
-
-export const calculateOutPostNotification = posts =>
-  calculateOutPostUnAwareReturnNotification(posts) +
-  calculateOutPostRequestNotification(posts);
-
-const outPostReducer = (
-  state = { posts: [], isFetchingPosts: false },
-  action
-) => {
+const defaultState = {
+  posts: [],
+  isInitPosts: false,
+  isFetchingPosts: false
+};
+const outPostReducer = (state = defaultState, action) => {
   switch (action.type) {
     case INFORM_FETCHING_OUTPOSTS:
       return { ...state, isFetchingPosts: true };
@@ -24,6 +16,7 @@ const outPostReducer = (
     case RECEIVE_FETCHED_OUTPOSTS:
       return {
         ...state,
+        isInitPosts: true,
         posts: action.posts
       };
 
@@ -32,12 +25,3 @@ const outPostReducer = (
   }
 };
 export default outPostReducer;
-
-/*
-
-  inPost = {
-    posts : array
-    isFetchingPosts : boolean
-  }
-
-*/

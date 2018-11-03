@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PostListNoData from "../post/component/postListNoData";
-import PostAllHistoryListStyle from "../post/component/style/postAll_historyList_style";
-import { date2String } from "../../share/util";
+import PostListNoData from "../../post/component/postListNoData";
+import PostAllHistoryListStyle from "../../post/component/style/postAll_historyList_style";
+import { date2String } from "../../../share/util";
 
 function OutPostAllHistoryList(props) {
   const { shares } = props;
@@ -51,4 +51,4 @@ TableRow.propTypes = {
   share: PropTypes.object.isRequired
 };
 
-export { OutPostAllHistoryList };
+export default OutPostAllHistoryList;

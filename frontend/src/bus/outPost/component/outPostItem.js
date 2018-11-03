@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import LoadingIcon from "../../share/loadingIcon";
-import PostItemBody from "../post/component/postItem_body";
-import PostItemFootStyle from "../post/component/style/postItem_foot_style";
-import PostItemStyle from "../post/component/style/postItem_style";
+import PostItemBody from "../../post/component/postItem_body";
+import PostItemStyle from "../../post/component/style/postItem_style";
 import OutPostItemHead from "./outPostItem_head";
+import LoadingIcon from "../../../share/loadingIcon";
+import PostItemFootStyle from "../../post/component/style/postItem_foot_style";
 
 function OutPostItem(props) {
   const {
@@ -77,4 +77,4 @@ OutPostItem.propTypes = {
   isAwaringReturn: PropTypes.bool.isRequired
 };
 
-export { OutPostItem };
+export default OutPostItem;

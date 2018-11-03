@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { OutPostItem } from "./outPostItem";
-import PostListNoData from "../post/component/postListNoData";
+import OutPostItem from "./outPostItem";
+import PostListNoData from "../../post/component/postListNoData";
 
 function OutPostList(props) {
   const {
@@ -41,4 +41,4 @@ OutPostList.propTypes = {
   awaringReturnPostIds: PropTypes.array.isRequired
 };
 
-export { OutPostList };
+export default OutPostList;

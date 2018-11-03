@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { OutPostTabEnum } from "./outPost_tabEnum";
-import { AppBodyTabBarStyle } from "../../share/style/tabBar_style";
-import AppBodyTabItem from "../../share/appBodyTabItem";
-import NotificationItem from "../../share/notificationItem";
-import { nullOrRequiredValidator } from "../../share/util";
+import OutPostTabEnum from "./outPost_tabEnum";
+import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
+import AppBodyTabItem from "../../../share/appBodyTabItem";
+import NotificationItem from "../../../share/notificationItem";
+import { nullOrRequiredValidator } from "../../../share/util";
 
 const NewPostButtonStyle = styled.div`
   display: flex;
@@ -150,4 +150,4 @@ OutPostTabBar.propTypes = {
   historyCount: nullOrRequiredValidator("number")
 };
 
-export { OutPostTabBar };
+export default OutPostTabBar;

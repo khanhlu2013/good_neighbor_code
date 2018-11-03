@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { OutPostCrudDialog } from "./crudDialog";
+import { OutPostCrudDialog } from "./component/crudDialog";
 import API from "../../api/profile-api";
-import { OutPostDecisionDialog } from "./decisionDialog";
 import Post from "../../model/post";
-import { OutPostAllHistoryList } from "./outPost_allHistoryList";
-import { OutPostList } from "./outPostList";
-import { OutPostTabBar } from "./outPost_tabBar";
-import { OutPostTabEnum } from "./outPost_tabEnum";
+import OutPostTabBar from "./component/outPost_tabBar";
+import OutPostTabEnum from "./component/outPost_tabEnum";
 import AppBodyBannerStyle from "../../share/style/appBodyBanner_style";
 import LoadingIcon from "../../share/loadingIcon";
 import TabPanel from "../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
+import OutPostDecisionDialog from "./component/decisionDialog";
+import OutPostList from "./component/outPostList";
+import OutPostAllHistoryList from "./component/outPost_allHistoryList";
 
 class OutPostManagement extends Component {
   state = {
@@ -68,7 +68,6 @@ class OutPostManagement extends Component {
   }
 
   onAwareReturnPost = postId => {
-    this.props.onOutPostNotify(null);
     this.setState({
       awaringReturnPostIds: [...this.state.awaringReturnPostIds, postId]
     });

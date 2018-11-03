@@ -4,9 +4,9 @@ import Modal from "react-modal";
 import classNames from "classnames";
 import _ from "lodash";
 
-import Post from "../../model/post";
-import LoadingIcon from "../../share/loadingIcon";
-import { nullOrRequiredValidator } from "../../share/util";
+import Post from "../../../model/post";
+import LoadingIcon from "../../../share/loadingIcon";
+import { nullOrRequiredValidator } from "../../../share/util";
 
 Modal.setAppElement("#root");
 

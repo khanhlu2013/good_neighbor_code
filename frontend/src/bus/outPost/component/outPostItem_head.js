@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import {
   PostItemHeadStyle,
   PostItemHeadLeftStyle
-} from "../post/component/style/postItem_head_style";
-import { date2String } from "../../share/util";
+} from "../../post/component/style/postItem_head_style";
+import { date2String } from "../../../share/util";
 
 function OutPostItemHead(props) {
   const { dateCreate, onEditPost } = props;

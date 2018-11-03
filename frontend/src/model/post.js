@@ -39,10 +39,6 @@ class Post {
     return this.shares.filter(share => share.isReturn);
   }
 
-  get isNote_requestWithNoBorrow() {
-    return this.requestShares.length !== 0 && !this.curBorrowShare;
-  }
-
   get unawareReturnShareLatest() {
     let result = null;
     let latestUnawareReturn = this.returnShares

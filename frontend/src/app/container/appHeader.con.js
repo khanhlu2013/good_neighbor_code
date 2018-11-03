@@ -1,27 +1,42 @@
 import { connect } from "react-redux";
 
-import { calculateConnectionNotification } from "../../reducer/connection_reducer";
-import { calculateOutPostNotification } from "../../reducer/outPost_reducer";
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import filterInPostApproveAlert from "../../bus/inPost/alert/filterInPostApproveAlert";
+import { filterInPostApproveAlert } from "../../bus/inPost/inPost.alert";
+import {
+  filterOutPostRequestAlert,
+  filterOutPostReturnAlert
+} from "../../bus/outPost/outPost.alert";
+import { filterConnectionRequestAlert } from "../../bus/connection/connection.alert";
 
 const mapStateToProps = (state, ownProps) => {
   const { loginUser, isCheckingAuth } = state.auth;
   const loginUserId = loginUser && loginUser.id;
+
+  //inPost
+  const inPostAlertCount = filterInPostApproveAlert(
+    state.inPost.posts,
+    loginUserId
+  ).length;
+
+  //outpost
+  const outPosts = state.outPost.posts;
+  const requestAlert_outPosts = filterOutPostRequestAlert(outPosts);
+  const returnAlert_outPosts = filterOutPostReturnAlert(outPosts);
+  const outPost_alertCount =
+    requestAlert_outPosts.length + returnAlert_outPosts.length;
+
+  //connection
+  const connectionAlertCount = filterConnectionRequestAlert(
+    state.connection.connections
+  );
   return {
     loginUser,
     isCheckingAuth,
     selectAppTab: state.selectAppTab,
-    inPostNoteCount: filterInPostApproveAlert(state.inPost.posts, loginUserId)
-      .length,
-    outPostNoteCount: calculateOutPostNotification(
-      state.outPost.posts,
-      loginUserId
-    ),
-    connectionNoteCount: calculateConnectionNotification(
-      state.connection.connections
-    )
+    inPostAlertCount,
+    outPost_alertCount,
+    connectionAlertCount
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({

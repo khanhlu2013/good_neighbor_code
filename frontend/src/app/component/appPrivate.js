@@ -10,12 +10,7 @@ import InPostManagementContainer from "../../bus/inPost/container/inPost_managem
 import AppTabEnum from "./appTabEnum.js";
 
 function PrivateAppComponent(props) {
-  const {
-    loginUser,
-    selectAppTab,
-    onConnectionNotify,
-    onOutPostNotify
-  } = props;
+  const { loginUser, selectAppTab } = props;
 
   return (
     <div id="privateApp-react">
@@ -24,17 +19,11 @@ function PrivateAppComponent(props) {
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.OUTPOST}>
-        <OutPostManagement
-          loginUser={loginUser}
-          onOutPostNotify={onOutPostNotify}
-        />
+        <OutPostManagement loginUser={loginUser} />
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.CONNECTION}>
-        <ConnectionManagement
-          loginUser={loginUser}
-          onConnectionNotify={onConnectionNotify}
-        />
+        <ConnectionManagement loginUser={loginUser} />
       </TabPanel>
       <TabPanel show={selectAppTab === AppTabEnum.PROFILE}>
         <ProfileManagementContainer />
