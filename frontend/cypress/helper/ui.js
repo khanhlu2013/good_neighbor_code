@@ -13,6 +13,7 @@ const ui = {
       cy.get("#app-react").snapshot({ name: snapName });
     },
     logout: () => {
+      cy.get("#tabSelector-profile-react").click();
       cy.get("#appLogOutBtn-react").click();
       cy.get("#appPublic-react").should("be.visible");
     }

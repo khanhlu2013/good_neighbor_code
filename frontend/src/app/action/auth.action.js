@@ -1,6 +1,4 @@
 import API from "../../api/profile-api";
-import AppTabEnum from "../component/appTabEnum";
-import { changeAppTab } from "./selectAppTab.action";
 
 //AUTH CHECK
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";
@@ -30,7 +28,6 @@ export const logOut = () => (dispatch, getState) => {
     dispatch({
       type: RECEIVE_LOGGED_OUT_SUCCESS
     });
-    dispatch(changeAppTab(AppTabEnum.INPOST));
   });
 };
 

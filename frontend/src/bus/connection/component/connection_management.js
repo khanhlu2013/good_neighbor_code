@@ -2,29 +2,38 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { SearchByEmail } from "./searchByEmail.js";
-import { ConnectionFriendTable } from "./connectionTable_friend.js";
-import { ConnectionOutTable } from "./connectionTable_out.js";
-import { ConnectionDenyTable } from "./connectionTable_deny.js";
-import { ConnectionInTable } from "./connectionTable_in.js";
-import API from "../../api/profile-api.js";
-import { ConnectionTabEnum } from "./connection_tabEnum.js";
-import { ConnectionTabBar } from "./connection_tabBar.js";
-import LoadingIcon from "../../share/loadingIcon.js";
-import AppBodyBannerStyle from "../../share/style/appBodyBanner_style.js";
-import { AppCenterWrapMixin } from "../../share/style/appCenterWrap_style.js";
-import TabPanel from "../../share/style/tabPanel_style.js";
+import LoadingIcon from "../../../share/loadingIcon.js";
+import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style.js";
+import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style.js";
+import TabPanel from "../../../share/style/tabPanel_style.js";
+import SearchByEmail from "./searchByEmail.js";
+import ConnectionFriendTable from "./connectionTable_friend.js";
+import ConnectionOutTable from "./connectionTable_out.js";
+import ConnectionDenyTable from "./connectionTable_deny.js";
+import ConnectionTabEnum from "./connection_tabEnum.js";
+import ConnectionTabBar from "./connection_tabBar.js";
+import ConnectionInTable from "./connectionTable_in.js";
+import User from "../../../model/user.js";
 
 const Style = styled.div`
   ${AppCenterWrapMixin};
   margin-top: 10px;
 `;
 
-class ConnectionManagement extends Component {
+class ConnectionManagementComponent extends Component {
+  static propTypes = {
+    loginUser: PropTypes.instanceOf(User).isRequired,
+    fetchConnections: PropTypes.func.isRequired,
+    isFetchingConnections: PropTypes.bool.isRequired,
+    isInitConnections: PropTypes.bool.isRequired,
+    connections: PropTypes.array.isRequired,
+    isCreatingConnection: PropTypes.bool.isRequired,
+    onCreateConnection: PropTypes.func.isRequired,
+    updatingConnectionIds: PropTypes.array.isRequired,
+    onUpdateConnection: PropTypes.func.isRequired
+  };
+
   state = {
-    connections: null,
-    isCreatingConnection: false,
-    updatingConnectionIds: [],
     selectTab: ConnectionTabEnum.FRIEND
   };
 
@@ -40,56 +49,9 @@ class ConnectionManagement extends Component {
     ).length;
   }
 
-  async componentDidMount() {
-    const connections = await API.connections();
-    this.setConnectionsAndNotifyRequestCount(connections);
+  componentDidMount() {
+    this.props.fetchConnections();
   }
-
-  setConnectionsAndNotifyRequestCount(connections) {
-    this.setState({ connections });
-  }
-
-  onCreateConnection = userIdToAdd => {
-    this.setState({ isCreatingConnection: true });
-    (async () => {
-      const newConnection = await API.createConnection(userIdToAdd);
-      this.setConnectionsAndNotifyRequestCount([
-        ...this.state.connections,
-        newConnection
-      ]);
-      this.setState({ isCreatingConnection: false });
-    })();
-  };
-
-  onUpdateConnection = (connectionId, isApproved) => {
-    this.setState({
-      updatingConnectionIds: [...this.state.updatingConnectionIds, connectionId]
-    });
-    (async () => {
-      const {
-        updatedApprovedByTo,
-        updatedApprovedByFrom
-      } = await API.updateConnection(connectionId, isApproved);
-
-      const curConnection = this.state.connections.find(
-        connection => connection.id === connectionId
-      );
-      curConnection.isApproveByFrom = updatedApprovedByFrom;
-      curConnection.isApproveByTo = updatedApprovedByTo;
-      this.setConnectionsAndNotifyRequestCount([
-        ...this.state.connections.filter(
-          connection => connection.id !== curConnection.id
-        ),
-        curConnection
-      ]);
-
-      this.setState({
-        updatingConnectionIds: this.state.updatingConnectionIds.filter(
-          id => id !== connectionId
-        )
-      });
-    })();
-  };
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
@@ -97,7 +59,8 @@ class ConnectionManagement extends Component {
 
   _getConnectionContent = connections => {
     let loginUserId = this.props.loginUser.id;
-    let { updatingConnectionIds, selectTab } = this.state;
+    let { selectTab } = this.state;
+    const { updatingConnectionIds, isCreatingConnection } = this.props;
 
     const friends = connections.filter(
       connection => connection.isApproveByFrom && connection.isApproveByTo
@@ -137,7 +100,7 @@ class ConnectionManagement extends Component {
               connections={friends}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
+              onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
@@ -145,7 +108,7 @@ class ConnectionManagement extends Component {
               connections={inFriends}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
+              onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.MYREQUEST}>
@@ -153,7 +116,7 @@ class ConnectionManagement extends Component {
               connections={outFriends}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
+              onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.DENY}>
@@ -161,15 +124,15 @@ class ConnectionManagement extends Component {
               connections={rejectedFriends}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              updateConnectionCb={this.onUpdateConnection}
+              onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.SEARCH}>
             <SearchByEmail
               loginUser={this.props.loginUser}
               connections={connections}
-              createConnectionCb={this.onCreateConnection}
-              isCreatingConnection={this.state.isCreatingConnection}
+              onCreateConnectionClick={this.props.onCreateConnection}
+              isCreatingConnection={isCreatingConnection}
             />
           </TabPanel>
         </Style>
@@ -178,10 +141,10 @@ class ConnectionManagement extends Component {
   };
 
   render() {
-    let { connections } = this.state;
+    let { connections, isInitConnections } = this.props;
     let content;
 
-    if (connections !== null) {
+    if (isInitConnections) {
       content = this._getConnectionContent(connections);
     } else {
       content = (
@@ -195,7 +158,4 @@ class ConnectionManagement extends Component {
   }
 }
 
-ConnectionManagement.propTypes = {
-  loginUser: PropTypes.object.isRequired
-};
-export default ConnectionManagement;
+export default ConnectionManagementComponent;

@@ -30,6 +30,7 @@ import {
   INFORM_FETCH_OUTPOSTS,
   RECEIVE_FETCH_OUTPOSTS
 } from "../action/fetchOutPosts.action";
+import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
 
 const defaultState = {
   posts: [],
@@ -139,6 +140,10 @@ const outPostReducer = (state = defaultState, action) => {
           post => post.id !== action.postId
         )
       };
+
+    case RECEIVE_LOGGED_OUT_SUCCESS:
+      return defaultState;
+
     default:
       return state;
   }

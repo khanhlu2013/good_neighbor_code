@@ -1,39 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoadingIcon from "../../../share/loadingIcon";
 
-import LoadingIcon from "../../share/loadingIcon";
-
-const userNameColClass = "col-9";
 const removeColClass = "col-3 text-center";
+const userNameColClass = "col-9";
 
-function Table(props) {
+function ConnectionOutTable(props) {
   const {
     connections,
     loginUserId,
-    updateConnectionCb,
+    onUpdateConnectionClick,
     updatingConnectionIds
   } = props;
 
-  const friendCount = connections.length;
   const rows = connections.map(connection => (
     <TableRow
       key={connection.id}
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
       loginUserId={loginUserId}
-      updateConnectionCb={updateConnectionCb}
+      onUpdateConnectionClick={onUpdateConnectionClick}
     />
   ));
 
   return (
     <table
-      id="FriendTable"
+      id="OutFriendTable"
       className="table table-sm table-striped table-bordered"
     >
       <thead className="thead-light">
         <tr className="d-flex">
-          <th className={userNameColClass}>{`Friends: ${friendCount}`}</th>
+          <th className={userNameColClass}>Waiting for friend response</th>
           <th className={removeColClass}>remove</th>
         </tr>
       </thead>
@@ -43,22 +41,23 @@ function Table(props) {
   );
 }
 
-Table.propTypes = {
+ConnectionOutTable.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  updateConnectionCb: PropTypes.func.isRequired
+  onUpdateConnectionClick: PropTypes.func.isRequired
 };
 
 function TableRow(props) {
   const {
     connection,
     loginUserId,
-    updateConnectionCb,
+    onUpdateConnectionClick,
     isUpdatingConnection
   } = props;
-  const denyClick = () => {
-    updateConnectionCb(connection.id, false);
+
+  const onRemoveClick = () => {
+    onUpdateConnectionClick(connection.id, false);
   };
 
   return (
@@ -72,7 +71,7 @@ function TableRow(props) {
         ) : (
           <button
             className="ConnectionTableRowDenyBtn btn btn-warning"
-            onClick={denyClick}
+            onClick={onRemoveClick}
           >
             <FontAwesomeIcon icon="trash-alt" />
           </button>
@@ -86,7 +85,7 @@ TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  updateConnectionCb: PropTypes.func.isRequired
+  onUpdateConnectionClick: PropTypes.func.isRequired
 };
 
-export { Table as ConnectionFriendTable };
+export default ConnectionOutTable;

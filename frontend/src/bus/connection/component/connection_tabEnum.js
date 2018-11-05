@@ -9,4 +9,4 @@ ConnectionTabEnum.initEnum([
   "DENY"
 ]);
 
-export { ConnectionTabEnum };
+export default ConnectionTabEnum;

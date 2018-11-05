@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import validator from "validator";
 import PropTypes from "prop-types";
 
-import API from "../../api/profile-api.js";
-import LoadingIcon from "../../share/loadingIcon.js";
+import LoadingIcon from "../../../share/loadingIcon.js";
+import API from "../../../api/profile-api.js";
 
 class SearchByEmail extends Component {
   /**
@@ -117,7 +117,7 @@ class SearchByEmail extends Component {
             searchedUser={this.state.searchedUser}
             searchedConnection={this.state.searchedConnection}
             isCreatingConnection={this.props.isCreatingConnection}
-            createConnectionCb={this.props.createConnectionCb}
+            onCreateConnectionClick={this.props.onCreateConnectionClick}
           />
         )}
       </div>
@@ -129,7 +129,7 @@ SearchByEmail.propTypes = {
   loginUser: PropTypes.object.isRequired,
   connections: PropTypes.array.isRequired,
   isCreatingConnection: PropTypes.bool.isRequired,
-  createConnectionCb: PropTypes.func.isRequired
+  onCreateConnectionClick: PropTypes.func.isRequired
 };
 
 function CrudConnectionControlPanel(props) {
@@ -138,11 +138,11 @@ function CrudConnectionControlPanel(props) {
     searchedUser,
     searchedConnection,
     isCreatingConnection,
-    createConnectionCb
+    onCreateConnectionClick
   } = props;
 
-  const onCreateConnection = evt => {
-    createConnectionCb(searchedUser.id);
+  const _onCreateConnectionClick = evt => {
+    onCreateConnectionClick(searchedUser.id);
   };
 
   let message = "";
@@ -159,7 +159,7 @@ function CrudConnectionControlPanel(props) {
         <button
           className="btn btn-success"
           id="createConnectionBtn"
-          onClick={onCreateConnection}
+          onClick={_onCreateConnectionClick}
         >
           Invite {searchedUser.name}
         </button>
@@ -235,7 +235,7 @@ CrudConnectionControlPanel.propTypes = {
   searchedUser: PropTypes.object.isRequired,
   searchedConnection: PropTypes.object, //if null we can create connection
   isCreatingConnection: PropTypes.bool.isRequired,
-  createConnectionCb: PropTypes.func.isRequired
+  onCreateConnectionClick: PropTypes.func.isRequired
 };
 
-export { SearchByEmail };
+export default SearchByEmail;

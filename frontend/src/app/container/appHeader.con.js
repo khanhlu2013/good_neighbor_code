@@ -7,7 +7,7 @@ import {
   filterOutPostRequestAlert,
   filterOutPostReturnAlert
 } from "../../bus/outPost/outPost.alert";
-import { filterConnectionRequestAlert } from "../../bus/connection/connection.alert";
+import { filterConnectionRequestAlert } from "../../bus/connection/component/connection.alert";
 
 const mapStateToProps = (state, ownProps) => {
   const { loginUser, isCheckingAuth } = state.auth;

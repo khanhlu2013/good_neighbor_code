@@ -34,6 +34,7 @@ import {
   informReturnInPost,
   receiveReturnInPost
 } from "./helper/returnInPost.reducerHelper";
+import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
 
 const defaultInPostState = {
   posts: [],
@@ -102,6 +103,10 @@ const inPostReducer = (state = defaultInPostState, action) => {
         action.resultIsReturnByTo,
         action.resultDateReturn
       );
+
+    //LOGOUT
+    case RECEIVE_LOGGED_OUT_SUCCESS:
+      return defaultInPostState;
 
     default:
       return state;

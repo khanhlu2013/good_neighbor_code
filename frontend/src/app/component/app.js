@@ -20,7 +20,6 @@ class AppComponent extends Component {
 
   render() {
     const { loginUser } = this.props;
-
     let appContent;
     if (loginUser === undefined) {
       appContent = null;

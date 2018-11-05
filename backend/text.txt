@@ -144,4 +144,7 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . update inPost test to show other tab
 --
 . make sure that changing connection changing inpost, i guess this is a good time to actually controling the loading... from the outer app. make the tab a control one. 
-
+---
+isInitPost and isFetchingPost think about these 2
+---
+ok, i have gone far with redux. lets just continue with connection , make the testing solid. 
