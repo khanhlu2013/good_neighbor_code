@@ -7,9 +7,9 @@ function OutPostList(props) {
   const {
     listId,
     posts,
-    onEditPost,
+    onUpdatePost,
     onDecidePost,
-    onAwareReturnPost,
+    onAwareReturnPostClick,
     awaringReturnPostIds
   } = props;
   let content;
@@ -22,9 +22,9 @@ function OutPostList(props) {
         <OutPostItem
           key={post.id}
           post={post}
-          onEditPost={onEditPost}
+          onUpdatePost={onUpdatePost}
           onDecidePost={onDecidePost}
-          onAwareReturnPost={onAwareReturnPost}
+          onAwareReturnPostClick={onAwareReturnPostClick}
           isAwaringReturn={awaringReturnPostIds.includes(post.id)}
         />
       ));
@@ -35,9 +35,9 @@ function OutPostList(props) {
 OutPostList.propTypes = {
   listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
-  onEditPost: PropTypes.func.isRequired,
+  onUpdatePost: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired,
-  onAwareReturnPost: PropTypes.func.isRequired,
+  onAwareReturnPostClick: PropTypes.func.isRequired,
   awaringReturnPostIds: PropTypes.array.isRequired
 };
 

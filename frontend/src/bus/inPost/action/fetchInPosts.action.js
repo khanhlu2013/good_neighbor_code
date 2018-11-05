@@ -10,7 +10,8 @@ const fetchInPosts = () => (dispatch, getState) => {
   API.inPosts().then(posts =>
     dispatch({
       type: RECEIVE_FETCH_INPOSTS,
-      posts
+      posts,
+      loginUserId: getState().auth.loginUser.id
     })
   );
 };

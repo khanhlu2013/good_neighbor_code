@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
   const outPosts = state.outPost.posts;
   const requestAlert_outPosts = filterOutPostRequestAlert(outPosts);
   const returnAlert_outPosts = filterOutPostReturnAlert(outPosts);
-  const outPost_alertCount =
+  const outPostAlertCount =
     requestAlert_outPosts.length + returnAlert_outPosts.length;
 
   //connection
@@ -35,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
     isCheckingAuth,
     selectAppTab: state.selectAppTab,
     inPostAlertCount,
-    outPost_alertCount,
+    outPostAlertCount,
     connectionAlertCount
   };
 };

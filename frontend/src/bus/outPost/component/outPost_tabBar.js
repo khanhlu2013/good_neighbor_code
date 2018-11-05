@@ -17,7 +17,7 @@ function OutPostTabBar(props) {
   const {
     selectTab,
     onTabChange,
-    onCreateNewPost,
+    onCreateNewPostClick,
     allCount,
     requestCount,
     borrowCount,
@@ -39,9 +39,6 @@ function OutPostTabBar(props) {
   };
   const onSelectHistory = e => {
     onTabChange(OutPostTabEnum.HISTORY);
-  };
-  const onNewPostClicked = e => {
-    onCreateNewPost();
   };
 
   return (
@@ -104,7 +101,7 @@ function OutPostTabBar(props) {
       <NewPostButtonStyle>
         <button
           id="createPostBtn-react"
-          onClick={onNewPostClicked}
+          onClick={onCreateNewPostClick}
           className="btn btn-success"
         >
           new
@@ -142,7 +139,7 @@ function _generateTabItem(
 OutPostTabBar.propTypes = {
   selectTab: PropTypes.instanceOf(OutPostTabEnum).isRequired,
   onTabChange: PropTypes.func.isRequired,
-  onCreateNewPost: PropTypes.func.isRequired,
+  onCreateNewPostClick: PropTypes.func.isRequired,
   allCount: nullOrRequiredValidator("number"),
   requestCount: nullOrRequiredValidator("number"),
   borrowCount: nullOrRequiredValidator("number"),

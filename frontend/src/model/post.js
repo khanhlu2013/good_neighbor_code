@@ -50,25 +50,6 @@ class Post {
     }
     return result;
   }
-
-  getValidateError() {
-    let title = undefined;
-    let description = undefined;
-
-    if (!this.title.trim()) {
-      title = "title is required";
-    }
-
-    if (!this.description.trim()) {
-      description = "description is required";
-    }
-
-    if (!title && !description) {
-      return null;
-    } else {
-      return { title, description };
-    }
-  }
 }
 
 export default Post;

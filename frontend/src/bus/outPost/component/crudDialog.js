@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import classNames from "classnames";
 import _ from "lodash";
+import update from "immutability-helper";
 
 import Post from "../../../model/post";
 import LoadingIcon from "../../../share/loadingIcon";
@@ -13,38 +14,52 @@ Modal.setAppElement("#root");
 class OutPostCrudDialog extends Component {
   constructor(props) {
     super(props);
-    let post = props.post;
-    if (!post) {
+    let post;
+
+    if (!props.post) {
       post = new Post(null, null, true, "", "", null, null);
+    } else {
+      post = _.cloneDeep(props.post);
     }
-    this.state = { post, initPost: post };
+    this.state = { post };
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { post, initPost } = state;
+    const { post } = state;
 
-    const isPostChanged =
-      post.title !== initPost.title ||
-      post.description !== initPost.description ||
-      post.isActive !== initPost.isActive;
-    return { isPostChanged };
+    const { post: initPost } = props;
+    let isPostChanged;
+    if (initPost) {
+      isPostChanged =
+        post.title !== initPost.title ||
+        post.description !== initPost.description ||
+        post.isActive !== initPost.isActive;
+    } else {
+      isPostChanged =
+        post.title !== "" || post.description !== "" || post.isActive !== true;
+    }
+
+    const isValidTitle = Boolean(post.title.trim());
+    const isValidDescription = Boolean(post.description.trim());
+    return { isPostChanged, isValidTitle, isValidDescription };
   }
 
   onTitleChange = e => {
-    const post = _.cloneDeep(this.state.post);
-    post.title = e.target.value;
+    const post = update(this.state.post, { title: { $set: e.target.value } });
     this.setState({ post });
   };
 
   onDescriptionChange = e => {
-    const post = _.cloneDeep(this.state.post);
-    post.description = e.target.value;
+    const post = update(this.state.post, {
+      description: { $set: e.target.value }
+    });
     this.setState({ post });
   };
 
   onIsActiveChange = e => {
-    const post = _.cloneDeep(this.state.post);
-    post.isActive = e.target.checked;
+    const post = update(this.state.post, {
+      isActive: { $set: e.target.checked }
+    });
     this.setState({ post });
   };
 
@@ -57,6 +72,7 @@ class OutPostCrudDialog extends Component {
 
   getOkCancelHtml = () => {
     let resultHtml;
+    const { isValidTitle, isValidDescription } = this.state;
 
     if (this.props.isCrudingPost) {
       resultHtml = (
@@ -69,7 +85,7 @@ class OutPostCrudDialog extends Component {
         <Fragment>
           <button
             disabled={
-              !this.state.isPostChanged || this.state.post.getValidateError()
+              !this.state.isPostChanged || !isValidTitle || !isValidDescription
             }
             type="submit"
             className="btn btn-lg btn-primary"
@@ -92,9 +108,7 @@ class OutPostCrudDialog extends Component {
 
   render() {
     const { post } = this.state;
-    const error = post.getValidateError();
-    const validTitle = !error || !error.title;
-    const validDescription = !error || !error.description;
+    const { isValidTitle, isValidDescription } = this.state;
 
     const dialogTitle = this.props.post
       ? `Edit '${this.props.post.title}' post`
@@ -122,8 +136,8 @@ class OutPostCrudDialog extends Component {
                   type="text"
                   className={classNames({
                     "form-control": true,
-                    "is-valid": validTitle,
-                    "is-invalid": !validTitle
+                    "is-valid": isValidTitle,
+                    "is-invalid": !isValidTitle
                   })}
                   aria-describedby="post title"
                   onChange={this.onTitleChange}
@@ -147,8 +161,8 @@ class OutPostCrudDialog extends Component {
                   type="text"
                   className={classNames({
                     "form-control": true,
-                    "is-valid": validDescription,
-                    "is-invalid": !validDescription
+                    "is-valid": isValidDescription,
+                    "is-invalid": !isValidDescription
                   })}
                   aria-describedby="post description"
                   onChange={this.onDescriptionChange}
@@ -196,4 +210,4 @@ OutPostCrudDialog.propTypes = {
   onCancel: PropTypes.func.isRequired
 };
 
-export { OutPostCrudDialog };
+export default OutPostCrudDialog;

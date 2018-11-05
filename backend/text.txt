@@ -105,9 +105,12 @@ Usually, an app provide a few option to sign up and login. But may be, less is m
 . &:hover what is that?
 . with the current min-width, tab bar header can't contain if there is notification
 . LEARNING: investigate when race condition of ajax(search for 'a' and 'ab') and our-of-sync return result?
-
-
-
+. how do i catch 401 error as cross concern task
+. sentra : log bug
+. GN: maintainance: back end validate: null or require image url
+. LEARNING GIT: . i like to experience with reset local git. working on a experimental branch. commit a few good and a few bad. i like to take out the bad one. reset hard. 
+. LEARNING TESTING: . i like to test things with jest and enzym stuff
+. GN: feature: picture, wish list, oauth: invite friend from google and facebook.
 
 
 
@@ -141,132 +144,4 @@ ok, so lets say i can verify that the cookie is alive. i just go ahead and load 
 . update inPost test to show other tab
 --
 . make sure that changing connection changing inpost, i guess this is a good time to actually controling the loading... from the outer app. make the tab a control one. 
-. can i use open id connect instead of oauth. also, invite friend from face book and google? authorization of reading contact. 
-. wish list
-. picture
----
-. cover letter
-. lets spend some times again on algorithm, green book. 
-. some job search: 
-  . ngoc
-  . ask vi's boyfriend
-. slack
----
-. i like to test things with jest and enzym stuff
----
-. i like to experience with reset local git. working on a experimental branch. commit a few good and a few bad. i like to take out the bad one. reset hard. 
---
-. rethink the notification right? something is fishy here. or is it fishy?
----
-. organize impost folder
----
-. back end validate: null or require image url
----
-how do i log my bug? into a file?
----
-how do i catch 401 error ?
----
-section vs div
----
-create a container
----
-less sass css inheritance
-  min-width: 420px;
 
----
-. do somehting about the table background color css
----
-. deal with the banner style there are 2 of them. possible to pass in prop for theme
-
-. deal with min-width 420 inside both places of the banner and app wrap. consider prop type validation. 
-
-AppMinWidth -> AppMinWidthMixin
-
----
-. kill (inside appComponent)
-      inPostNoteCount,
-      outPostNoteCount,
-      connectionNoteCount
-
-. kill (insideAppPrivate)
-    onConnectionNotify,
-    onInPostNotify,
-    onOutPostNotify
-
-
-. kill the pass down function from app
-. kill the pass down function from connection_management
-. make the notification a prop for component. 
-. make header taking a prop for connection note.
-. create a header container to give it the note prop
-. isCheckingAuth pass down to header
-. create appPrivateContainer to take in selectTab?
-. i need a selectTab reducer
----
-clean up this : isNote_requestWithNoBorrow
----
-calculateInPostNotification
-calculateOutPostNotification
-
-make sure import is correct into the appHeader
----
-unawareReturnShareLatest
----
-create action for this now
-onAppTabChange
----
-i remember deep copy an object once. why do i need it since i just touch the topic of immutability.
----
-inPost -> post in the action and reducer of inPost. we dont need the in because of the context. 
----
-TabPanelStyle -> TabPanel
----
-inPost: approveNotePosts -> approveAlertPosts
----
-immutability: inPost_action.js -> requestInPost()
-    curPost.shares.push(newShare);
----    
-requestingPostIds
----
-inPostManagement: change this into onRequestPost, onUnRequestPost, ...
-        onCreateShare={this.onCreateShare}
-        onDeleteShare={this.onDeleteShare}
-        onAwareShare={this.onAwareShare}
-        onReturnShare={this.onReturnShare}
-
----
-  state = {
-    inPostNoteCount: null,
-    outPostNoteCount: null,
-    connectionNoteCount: null
-  };
-
-  ---
-
-. there is 2 concern: top level notification. 
-. change notification into alert. 
-
-. inPostApproveAlert
-. outPostReturnAlert
-. outPostRequestAlert
-. outPostRequestReturnAlert: kill this one. i will combine it inside. the app header. 
-
-. now i am working on inPost. lets change InPostNotification into approveAlert. 
-
-----
-. how componentDidMount trigger the fetchOutPosts
-. NotificationItem -> alert item
-. make container
----
-{ OutPostCrudDialog }
----
-. move action
-. move reducer
-  . posts
-  . isInitPosts
-  . isFetchingPosts
-  . awaringReturnPostIds
-  => create match state to props
-
-  . findOutWhere is the crud Post take place, move it into action
-  . find out where is the decide post, move it into action.

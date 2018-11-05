@@ -54,7 +54,7 @@ const inPostReducer = (state = defaultInPostState, action) => {
       const { posts: allPosts } = action;
       const filterDenyPosts = allPosts.filter(inPost =>
         inPost.denyShares.every(
-          share => share.borrower.id !== this.props.loginUser.id
+          share => share.borrower.id !== action.loginUserId
         )
       );
       return {

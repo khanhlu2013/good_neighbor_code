@@ -24,7 +24,6 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingPosts: state.inPost.isFetchingPosts,
     isInitPosts: state.inPost.isInitPosts,
     approveAlertPosts,
-    approveAlertPostCount: approveAlertPosts.length,
     returnShares,
     //pending work
     requestingPostIds: state.inPost.requestingPostIds,

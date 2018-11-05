@@ -20,7 +20,6 @@ class InPostManagementComponent extends Component {
     isFetchingPosts: PropTypes.bool.isRequired,
     isInitPosts: PropTypes.bool.isRequired,
     approveAlertPosts: PropTypes.array.isRequired,
-    approveAlertPostCount: PropTypes.number.isRequired,
     returnShares: PropTypes.array.isRequired,
     //pending action
     requestingPostIds: PropTypes.array.isRequired,
@@ -84,7 +83,7 @@ class InPostManagementComponent extends Component {
             onTabChange={this.onTabChange}
             allCount={posts.length}
             requestCount={requestPosts.length}
-            approveCount={this.props.approveAlertPostCount}
+            approveCount={this.props.approveAlertPosts.length}
             borrowCount={borrowPosts.length}
             historyCount={this.props.returnShares.length}
           />

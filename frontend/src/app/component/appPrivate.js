@@ -5,9 +5,9 @@ import User from "../../model/user.js";
 import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
 import ConnectionManagement from "../../bus/connection/connectionManagement.js";
-import OutPostManagement from "../../bus/outPost/outPostManagement.js";
 import InPostManagementContainer from "../../bus/inPost/container/inPost_management.con.js";
 import AppTabEnum from "./appTabEnum.js";
+import OutPostManagementContainer from "../../bus/outPost/container/outPost_management.con.js";
 
 function PrivateAppComponent(props) {
   const { loginUser, selectAppTab } = props;
@@ -19,7 +19,7 @@ function PrivateAppComponent(props) {
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.OUTPOST}>
-        <OutPostManagement loginUser={loginUser} />
+        <OutPostManagementContainer />
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.CONNECTION}>

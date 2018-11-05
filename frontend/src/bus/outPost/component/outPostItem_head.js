@@ -8,10 +8,10 @@ import {
 import { date2String } from "../../../share/util";
 
 function OutPostItemHead(props) {
-  const { dateCreate, onEditPost } = props;
+  const { dateCreate, onUpdatePost } = props;
 
-  const onEditPostClicked = e => {
-    onEditPost();
+  const onUpdatePostClicked = e => {
+    onUpdatePost();
   };
 
   return (
@@ -19,7 +19,7 @@ function OutPostItemHead(props) {
       <PostItemHeadLeftStyle>
         <button
           id="outPostItem-editBtn-react"
-          onClick={onEditPostClicked}
+          onClick={onUpdatePostClicked}
           className="btn btn-sm btn-primary"
         >
           edit post
@@ -34,7 +34,7 @@ function OutPostItemHead(props) {
 }
 
 OutPostItemHead.propTypes = {
-  onEditPost: PropTypes.func.isRequired,
+  onUpdatePost: PropTypes.func.isRequired,
   dateCreate: PropTypes.instanceOf(Date).isRequired
 };
 

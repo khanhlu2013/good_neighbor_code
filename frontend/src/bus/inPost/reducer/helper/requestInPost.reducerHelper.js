@@ -4,7 +4,7 @@ import Share from "../../../../model/share";
 
 export const informRequestInPost_reducerHelper = (state, postId) => ({
   ...state,
-  requestingPostIds: [state.requestingPostIds, postId]
+  requestingPostIds: [...state.requestingPostIds, postId]
 });
 
 export const recieveRequestInPost_reducerHelper = (

@@ -1,33 +1,51 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { OutPostCrudDialog } from "./component/crudDialog";
-import API from "../../api/profile-api";
-import Post from "../../model/post";
-import OutPostTabBar from "./component/outPost_tabBar";
-import OutPostTabEnum from "./component/outPost_tabEnum";
-import AppBodyBannerStyle from "../../share/style/appBodyBanner_style";
-import LoadingIcon from "../../share/loadingIcon";
-import TabPanel from "../../share/style/tabPanel_style";
-import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
-import OutPostDecisionDialog from "./component/decisionDialog";
-import OutPostList from "./component/outPostList";
-import OutPostAllHistoryList from "./component/outPost_allHistoryList";
+import { nullOrRequiredValidator } from "../../../share/util";
+import Post from "../../../model/post";
+import LoadingIcon from "../../../share/loadingIcon";
+import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
+import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
+import TabPanel from "../../../share/style/tabPanel_style";
+import OutPostCrudDialog from "./crudDialog";
+import OutPostDecisionDialog from "./decisionDialog";
+import OutPostList from "./outPostList";
+import OutPostAllHistoryList from "./outPost_allHistoryList";
+import OutPostTabBar from "./outPost_tabBar";
+import OutPostTabEnum from "./outPost_tabEnum";
 
 class OutPostManagementComponent extends Component {
   static propTypes = {
+    //data
+    fetchPosts: PropTypes.func.isRequired,
     posts: PropTypes.array.isRequired,
     isInitPosts: PropTypes.bool.isRequired,
     isFetchingPosts: PropTypes.bool.isRequired,
 
+    //derived data
+    returnShares: PropTypes.array.isRequired,
+    requestAlertPosts: PropTypes.array.isRequired,
+    borrowPosts: PropTypes.array.isRequired,
+    returnAlertPosts: PropTypes.array.isRequired,
+
     //crud post
-    onCreatePost: PropTypes.func.isRequired,
-    onUpdatePost: PropTypes.func.isRequired,
+    crudPostDialogPrefill: nullOrRequiredValidator("object", Post),
+    isCrudingPost: PropTypes.bool.isRequired,
+    onOpenUpdatePostDialog: PropTypes.func.isRequired,
+    onOpenCreatePostDialog: PropTypes.func.isRequired,
+    onCrudDialogOk: PropTypes.func.isRequired,
+    onCrudDialogCancel: PropTypes.func.isRequired,
+    isOpenCrudDialog: PropTypes.bool.isRequired,
 
     //decide post
+    curDecidePost: nullOrRequiredValidator("object", Post),
+    isDecidingPost: PropTypes.bool.isRequired,
     onDecideShare: PropTypes.func.isRequired,
-    onUndoDeniedShare: PropTypes.func.isRequired,
+    onUndoDenyShare: PropTypes.func.isRequired,
     onUndoApproveShare: PropTypes.func.isRequired,
+    isOpenDecisionDialog: PropTypes.bool.isRequired,
+    onOpenDecideDialog: PropTypes.func.isRequired,
+    onExitDecisionDialog: PropTypes.func.isRequired,
 
     //aware return post
     onAwareReturnPost: PropTypes.func.isRequired,
@@ -35,234 +53,52 @@ class OutPostManagementComponent extends Component {
   };
 
   state = {
-    //crud
-    curCrudPostSessionID: null,
-    isOpenCrudDialog: false,
-    curEditPost: null,
-    isCrudingPost: false,
-
-    //decision
-    isOpenDecisionDialog: false,
-    curDecidePost: null,
-    isDecidingPost: false,
-
     selectTab: OutPostTabEnum.ALL
   };
 
-  static getDerivedStateFromProps(props, state) {
-    let returnShares = null;
-    let requestNotePosts = null;
-    let borrowPosts = null;
-    let returnNotePosts = null;
-
-    const { posts } = state;
-
-    if (posts) {
-      const returnShares2D = posts.map(post =>
-        post.shares.filter(share => share.isReturn)
-      );
-      returnShares = [].concat(...returnShares2D);
-
-      requestNotePosts = posts.filter(post => post.isNote_requestWithNoBorrow);
-      borrowPosts = posts.filter(post => post.curBorrowShare);
-      returnNotePosts = posts.filter(post => post.unawareReturnShareLatest);
-    }
-    return {
-      returnShares,
-      requestNotePosts,
-      borrowPosts,
-      returnNotePosts
-    };
+  componentDidMount() {
+    this.props.fetchPosts();
   }
-
-  async componentDidMount() {
-    this.setPostsState(await API.outPosts());
-  }
-
-  setPostsState(posts) {
-    this.setState({ posts });
-  }
-
-  onAwareReturnPost = postId => {
-    this.setState({
-      awaringReturnPostIds: [...this.state.awaringReturnPostIds, postId]
-    });
-
-    (async () => {
-      await API.awareReturnPost(postId);
-      const curPost = this.state.posts.find(post => post.id === postId);
-      for (const share of curPost.returnShares) {
-        share.isAwareReturn = true;
-      }
-
-      this.setPostsState([
-        ...this.state.posts.filter(post => post.id !== curPost.id),
-        curPost
-      ]);
-      this.setState({
-        awaringReturnPostIds: this.state.awaringReturnPostIds.filter(
-          id => id !== postId
-        )
-      });
-    })();
-  };
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
   };
 
-  // CRUD START --------------------------------
-  onOpenCrudDialog_create = () => {
-    const post = null;
-    this.onOpenCrudDialog_edit(post);
-  };
-
-  onOpenCrudDialog_edit = post => {
-    this.setState({
-      isOpenCrudDialog: true,
-      curEditPost: post,
-      curCrudPostSessionID: Date.now().toString()
-    });
-  };
-
-  onCrudDialogOk = (postID, title, description, isActive) => {
-    this.setState({
-      isCrudingPost: true
-    });
-
-    (async () => {
-      if (postID) {
-        const {
-          updatedTitle,
-          updatedDescription,
-          updatedIsActive
-        } = await API.updatePost(postID, title, description, isActive);
-        const [oldPost] = this.state.posts.filter(post => post.id === postID);
-        oldPost.title = updatedTitle;
-        oldPost.description = updatedDescription;
-        oldPost.isActive = updatedIsActive;
-        this.setState({
-          posts: [
-            ...this.state.posts.filter(post => post.id !== postID),
-            oldPost
-          ]
-        });
-      } else {
-        const {
-          createdId,
-          createdIsActive,
-          createdTitle,
-          createdDescription,
-          createdDateCreated
-        } = await API.createPost(title, description, isActive);
-        const newPost = new Post(
-          createdId,
-          this.props.loginUser,
-          createdIsActive,
-          createdTitle,
-          createdDescription,
-          new Date(createdDateCreated),
-          []
-        );
-        this.setState({ posts: [...this.state.posts, newPost] });
-      }
-      this.setState({ isCrudingPost: false, isOpenCrudDialog: false });
-    })();
-  };
-
-  onCrudDialogCancel = () => {
-    this.setState({ isOpenCrudDialog: false });
-  };
-
-  // CRUD END --------------------------------
-
-  // DECISION START --------------------------
-  onOpenDecideDialog = post => {
-    this.setState({
-      isOpenDecisionDialog: true,
-      curDecidePost: post
-    });
-  };
-
-  onExitDecisionDialog = () => {
-    this.setState({
-      isOpenDecisionDialog: false,
-      curDecidePost: null
-    });
-  };
-
-  _approveShare = (shareID, isApprove) => {
-    this.setState({ isDecidingPost: true });
-    (async () => {
-      const decidedIsApprove = await API.approveShare(shareID, isApprove);
-      const [decidedPost] = this.state.posts.filter(post =>
-        post.shares.some(share => share.id === shareID)
-      );
-      const [decidedShare] = decidedPost.shares.filter(
-        share => share.id === shareID
-      );
-      decidedShare.isApprove = decidedIsApprove;
-      decidedPost.shares = [
-        ...decidedPost.shares.filter(share => share.id !== shareID),
-        decidedShare
-      ];
-      this.setPostsState([
-        ...this.state.posts.filter(post => post.id !== decidedPost.id),
-        decidedPost
-      ]);
-      this.setState({ curDecidePost: decidedPost, isDecidingPost: false });
-    })();
-  };
-
-  onUndoDeniedShare = shareID => {
-    this._approveShare(shareID, undefined);
-  };
-
-  onUndoApproveShare = shareID => {
-    this._approveShare(shareID, undefined);
-  };
-
-  onDecideShare = (shareID, isApprove) => {
-    if (isApprove === undefined) {
-      throw Error("Unexpected decision");
-    }
-
-    this._approveShare(shareID, isApprove);
-  };
-  // DECISION END --------------------------
-
   _genPostList = (listId, posts) => (
     <OutPostList
       listId={listId}
       posts={posts}
-      onEditPost={this.onOpenCrudDialog_edit}
-      onDecidePost={this.onOpenDecideDialog}
-      onAwareReturnPost={this.onAwareReturnPost}
-      awaringReturnPostIds={this.state.awaringReturnPostIds}
+      onUpdatePost={this.props.onOpenUpdatePostDialog}
+      onDecidePost={this.props.onOpenDecideDialog}
+      onAwareReturnPostClick={this.props.onAwareReturnPost}
+      awaringReturnPostIds={this.props.awaringReturnPostIds}
     />
   );
 
   _getPostsContent() {
     const {
       posts,
-      requestNotePosts,
+      requestAlertPosts,
       borrowPosts,
-      returnNotePosts,
-      selectTab
-    } = this.state;
+      returnAlertPosts,
+      returnShares,
 
+      //crud
+      onOpenCreatePostDialog
+    } = this.props;
+    const { selectTab } = this.state;
     return (
       <Fragment>
         <AppBodyBannerStyle>
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
-            onCreateNewPost={this.onOpenCrudDialog_create}
+            onCreateNewPostClick={onOpenCreatePostDialog}
             allCount={posts.length}
-            requestCount={requestNotePosts.length}
+            requestCount={requestAlertPosts.length}
             borrowCount={borrowPosts.length}
-            returnCount={returnNotePosts.length}
-            historyCount={this.state.returnShares.length}
+            returnCount={returnAlertPosts.length}
+            historyCount={returnShares.length}
           />
         </AppBodyBannerStyle>
 
@@ -273,17 +109,20 @@ class OutPostManagementComponent extends Component {
           <TabPanel show={selectTab === OutPostTabEnum.REQUEST}>
             {this._genPostList(
               "outPostList-requestNote-react",
-              requestNotePosts
+              requestAlertPosts
             )}
           </TabPanel>
           <TabPanel show={selectTab === OutPostTabEnum.BORROW}>
             {this._genPostList("outPostList-borrow-react", borrowPosts)}
           </TabPanel>
           <TabPanel show={selectTab === OutPostTabEnum.RETURN}>
-            {this._genPostList("outPostList-returnNote-react", returnNotePosts)}
+            {this._genPostList(
+              "outPostList-returnNote-react",
+              returnAlertPosts
+            )}
           </TabPanel>
           <TabPanel show={selectTab === OutPostTabEnum.HISTORY}>
-            <OutPostAllHistoryList shares={this.state.returnShares} />
+            <OutPostAllHistoryList shares={returnShares} />
           </TabPanel>
         </AppCenterWrapStyle>
       </Fragment>
@@ -292,7 +131,7 @@ class OutPostManagementComponent extends Component {
 
   render() {
     let content;
-    if (this.state.posts) {
+    if (this.props.isInitPosts) {
       content = this._getPostsContent();
     } else {
       content = (
@@ -302,30 +141,47 @@ class OutPostManagementComponent extends Component {
       );
     }
 
+    const {
+      //crud
+      isOpenCrudDialog,
+      crudPostDialogPrefill,
+      isCrudingPost,
+      onCrudDialogOk,
+      onCrudDialogCancel,
+
+      //decide
+      isOpenDecisionDialog,
+      curDecidePost,
+      isDecidingPost,
+      onUndoApproveShare,
+      onUndoDenyShare,
+      onDecideShare,
+      onExitDecisionDialog
+    } = this.props;
+
     return (
       <div id="outPostManagementComponent-react">
         {content}
 
-        {this.state.curCrudPostSessionID && (
+        {isOpenCrudDialog && (
           <OutPostCrudDialog
-            key={this.state.curCrudPostSessionID}
-            isOpen={this.state.isOpenCrudDialog}
-            post={this.state.curEditPost}
-            isCrudingPost={this.state.isCrudingPost}
-            onOk={this.onCrudDialogOk}
-            onCancel={this.onCrudDialogCancel}
+            isOpen={isOpenCrudDialog}
+            post={crudPostDialogPrefill}
+            isCrudingPost={isCrudingPost}
+            onOk={onCrudDialogOk}
+            onCancel={onCrudDialogCancel}
           />
         )}
 
-        {this.state.isOpenDecisionDialog && (
+        {isOpenDecisionDialog && (
           <OutPostDecisionDialog
-            isOpen={this.state.isOpenDecisionDialog}
-            post={this.state.curDecidePost}
-            isDecidingPost={this.state.isDecidingPost}
-            onUndoApproveShare={this.onUndoApproveShare}
-            onUndoDeniedShare={this.onUndoDeniedShare}
-            onDecideShare={this.onDecideShare}
-            onExit={this.onExitDecisionDialog}
+            isOpen={isOpenDecisionDialog}
+            post={curDecidePost}
+            isDecidingPost={isDecidingPost}
+            onUndoApproveShare={onUndoApproveShare}
+            onUndoDenyShare={onUndoDenyShare}
+            onDecideShare={onDecideShare}
+            onExit={onExitDecisionDialog}
           />
         )}
       </div>

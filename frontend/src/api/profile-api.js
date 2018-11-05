@@ -149,12 +149,12 @@ const deleteShare = async shareId => {
 };
 
 const approveShare = async (shareId, isApprove) => {
-  const { isApprove: updatedIsApprove } = await post("profile.approveShare", {
+  const { isApprove: resultIsApprove } = await post("profile.approveShare", {
     shareId,
     isApprove
   });
 
-  return updatedIsApprove;
+  return resultIsApprove;
 };
 
 const returnShare = async shareId => {

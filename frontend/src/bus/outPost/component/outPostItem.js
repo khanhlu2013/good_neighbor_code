@@ -10,22 +10,22 @@ import PostItemFootStyle from "../../post/component/style/postItem_foot_style";
 function OutPostItem(props) {
   const {
     post,
-    onEditPost,
+    onUpdatePost,
     onDecidePost,
     isAwaringReturn,
-    onAwareReturnPost
+    onAwareReturnPostClick
   } = props;
 
-  const onEditBtnClicked = e => {
-    onEditPost(post);
+  const onUpdateBtnClicked = e => {
+    onUpdatePost(post);
   };
 
   const onDecidePostClick = e => {
     onDecidePost(post);
   };
 
-  const onAwareReturnClick = e => {
-    onAwareReturnPost(post.id);
+  const _onAwareReturnClick = e => {
+    onAwareReturnPostClick(post.id);
   };
 
   const curBorrowShare = post.curBorrowShare;
@@ -33,7 +33,7 @@ function OutPostItem(props) {
   return (
     <PostItemStyle id="outPost-item-react">
       <OutPostItemHead
-        onEditPost={onEditBtnClicked}
+        onUpdatePost={onUpdateBtnClicked}
         dateCreate={post.dateCreate}
       />
       <PostItemBody post={post} />
@@ -45,7 +45,7 @@ function OutPostItem(props) {
             ) : (
               <button
                 id="outPostItem-awareReturnBtn-react"
-                onClick={onAwareReturnClick}
+                onClick={_onAwareReturnClick}
                 className="btn btn-sm btn-success"
               >
                 {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
@@ -71,9 +71,9 @@ function OutPostItem(props) {
 
 OutPostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  onEditPost: PropTypes.func.isRequired,
+  onUpdatePost: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired,
-  onAwareReturnPost: PropTypes.func.isRequired,
+  onAwareReturnPostClick: PropTypes.func.isRequired,
   isAwaringReturn: PropTypes.bool.isRequired
 };
 
