@@ -141,20 +141,18 @@ class ConnectionManagementComponent extends Component {
   };
 
   render() {
-    let { connections, isInitConnections } = this.props;
-    let content;
+    let { connections, isInitConnections, isFetchingConnections } = this.props;
 
-    if (isInitConnections) {
-      content = this._getConnectionContent(connections);
-    } else {
-      content = (
-        <h1 className="text-center">
-          <LoadingIcon text="loading" />
-        </h1>
-      );
-    }
-
-    return <div id="ConnectionManagement-react">{content}</div>;
+    return (
+      <div id="ConnectionManagement-react">
+        {isInitConnections && this._getConnectionContent(connections)}
+        {isFetchingConnections && (
+          <h1 className="text-center">
+            <LoadingIcon text="loading" />
+          </h1>
+        )}
+      </div>
+    );
   }
 }
 

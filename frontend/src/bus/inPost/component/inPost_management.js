@@ -114,18 +114,18 @@ class InPostManagementComponent extends Component {
   }
 
   render() {
-    let content;
-    if (this.props.isInitPosts) {
-      content = this._getPostsContent(this.props.posts);
-    } else {
-      content = (
-        <h1 className="text-center">
-          <LoadingIcon text="loading" />
-        </h1>
-      );
-    }
+    const { posts, isInitPosts, isFetchingPosts } = this.props;
 
-    return <div id="inPostManagement-react">{content}</div>;
+    return (
+      <div id="inPostManagement-react">
+        {isFetchingPosts && (
+          <h1 className="text-center">
+            <LoadingIcon text="loading" />
+          </h1>
+        )}
+        {isInitPosts && this._getPostsContent(posts)}
+      </div>
+    );
   }
 }
 

@@ -19,7 +19,7 @@ describe("InPost", () => {
     false
   );
 
-  it("tables (all, request, borrow, return) can display data correctly", () => {
+  it("tables (all, request, borrow, return) can display static data correctly", () => {
     //no request and not active info
     cy.setupDb([lu, tu], [connection], [inActivePost]);
     cy.loadApp();
@@ -74,7 +74,7 @@ describe("InPost", () => {
     ui.inPost.snap("with return data");
   });
 
-  it("tables(all, request, borrow, return) has buttons to make, undo, aware, return request", () => {
+  it("user can request, undo request, aware, return post", () => {
     //can make request
     cy.setupDb([lu, tu], [connection], [post]);
     cy.loadApp();

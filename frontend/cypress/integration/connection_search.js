@@ -1,5 +1,6 @@
 import { ui, tab } from "../helper/ui";
 import { createUser, createConnection } from "../helper/model";
+import { toASCII } from "punycode";
 
 describe("Connection search", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
@@ -14,7 +15,7 @@ describe("Connection search", () => {
     cy.login(lu.email);
 
     tab.connection.focus();
-
+    tab.connection.search.focus();
     searchAndSnap("empty email", "");
     searchAndSnap("invalid email", "xyz");
     searchAndSnap("self search email", lu.email);
@@ -26,6 +27,7 @@ describe("Connection search", () => {
     cy.login(lu.email);
 
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Show search not found", notFoundEmail);
     searchAndSnap("Show found search result", tu.email);
   });
@@ -39,6 +41,7 @@ describe("Connection search", () => {
     cy.loadApp();
     cy.login(lu.email);
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Can search in connection", tu.email);
 
     //out user
@@ -47,6 +50,7 @@ describe("Connection search", () => {
     cy.insertConnections([out_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Can search out connection", tu.email);
 
     //friend user
@@ -55,6 +59,7 @@ describe("Connection search", () => {
     cy.insertConnections([friend_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Can search friend connection", tu.email);
 
     //in-deny user
@@ -63,6 +68,7 @@ describe("Connection search", () => {
     cy.insertConnections([in_deny_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Can search in-deny connection", tu.email);
 
     //out-deny user
@@ -71,6 +77,7 @@ describe("Connection search", () => {
     cy.insertConnections([out_deny_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.search.focus();
     searchAndSnap("Can search out-deny connection", tu.email);
   });
 
@@ -81,25 +88,26 @@ describe("Connection search", () => {
 
     //create connection
     tab.connection.focus();
+    tab.connection.search.focus();
     ui.connection.search.exe(tu.email);
     ui.connection.search.getCreateConnectionBtn().click();
     ui.connection.search.snap("can invite user");
   });
 
-  it("LoadingIcon (search/invite)", () => {
-    cy.setupDb([lu, tu]);
-    cy.loadApp();
-    cy.login(lu.email);
+  // it("LoadingIcon (search/invite)", () => {
+  //   cy.setupDb([lu, tu]);
+  //   cy.loadApp();
+  //   cy.login(lu.email);
 
-    tab.connection.focus();
-    ui.connection.search.exe(tu.email);
-    ui.connection.search.getSearchBtnLoadingIcon().should("be.visible");
-    ui.connection.search.snapRightAway("Show loadingIcon during search user");
+  //   tab.connection.focus();
+  //   ui.connection.search.exe(tu.email);
+  //   ui.connection.search.getSearchBtnLoadingIcon().should("be.visible");
+  //   ui.connection.search.snapRightAway("Show loadingIcon during search user");
 
-    ui.connection.search.getCreateConnectionBtn().click();
-    ui.connection.search.getInviteBtnLoadingIcon().should("be.visible");
-    ui.connection.search.snapRightAway("Show loadingIcon during invite user");
-  });
+  //   ui.connection.search.getCreateConnectionBtn().click();
+  //   ui.connection.search.getInviteBtnLoadingIcon().should("be.visible");
+  //   ui.connection.search.snapRightAway("Show loadingIcon during invite user");
+  // });
 });
 
 function searchAndSnap(snapshotName, email) {

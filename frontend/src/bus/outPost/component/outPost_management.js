@@ -130,16 +130,7 @@ class OutPostManagementComponent extends Component {
   }
 
   render() {
-    let content;
-    if (this.props.isInitPosts) {
-      content = this._getPostsContent();
-    } else {
-      content = (
-        <h1 className="text-center">
-          <LoadingIcon text="loading" />
-        </h1>
-      );
-    }
+    const { isInitPosts, isFetchingPosts } = this.props;
 
     const {
       //crud
@@ -161,7 +152,12 @@ class OutPostManagementComponent extends Component {
 
     return (
       <div id="outPostManagementComponent-react">
-        {content}
+        {isFetchingPosts && (
+          <h1 className="text-center">
+            <LoadingIcon text="loading" />
+          </h1>
+        )}
+        {isInitPosts && this._getPostsContent()}
 
         {isOpenCrudDialog && (
           <OutPostCrudDialog

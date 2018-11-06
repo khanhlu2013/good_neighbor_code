@@ -14,6 +14,7 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.loadApp();
     cy.login(lu.email);
     tab.connection.focus();
+    tab.connection.inConnection.focus();
     ui.connection.snap("Can display in connection");
 
     //out user
@@ -22,6 +23,7 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([out_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.outConnection.focus();
     ui.connection.snap("Can display out connection");
 
     //friend user
@@ -30,14 +32,16 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([friend_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.friend.focus();
     ui.connection.snap("Can display friend connection");
 
     //in-deny user
     cy.clearConnectionDb();
-    const in_deny_connection = createConnection(lu, tu, true, false);
+    const in_deny_connection = createConnection(tu, lu, true, false);
     cy.insertConnections([in_deny_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.deny.focus();
     ui.connection.snap("Can display in-deny connection");
 
     //out-deny user
@@ -46,6 +50,7 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([out_deny_connection]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.deny.focus();
     ui.connection.snap("Can display out-deny connection");
   });
 
@@ -58,8 +63,12 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.loadApp();
     cy.login(lu.email);
     tab.connection.focus();
+    tab.connection.inConnection.focus();
+    ui.connection.snap("in_friend table can approve - before");
     ui.connection.inRequests_approve(0);
-    ui.connection.snap("in_friend table can approve");
+    ui.connection.snap("in_friend table can approve - 1");
+    tab.connection.friend.focus();
+    ui.connection.snap("in_friend table can approve - 2");
 
     //in-friend table can deny
     cy.clearConnectionDb();
@@ -67,8 +76,12 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([con]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.inConnection.focus();
+    ui.connection.snap("in_friend table can deny - before");
     ui.connection.inRequests_deny(0);
-    ui.connection.snap("in_friend table can deny");
+    ui.connection.snap("in_friend table can deny - 1");
+    tab.connection.deny.focus();
+    ui.connection.snap("in_friend table can deny - 2");
 
     //friend table can remove
     cy.clearConnectionDb();
@@ -76,8 +89,12 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([con]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.friend.focus();
+    ui.connection.snap("friend table can remove - before");
     ui.connection.friends_deny(0);
-    ui.connection.snap("friend table can remove");
+    ui.connection.snap("friend table can remove - 1");
+    tab.connection.deny.focus();
+    ui.connection.snap("friend table can remove - 2");
 
     //out friend table can remove
     cy.clearConnectionDb();
@@ -85,8 +102,12 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([con]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.outConnection.focus();
+    ui.connection.snap("out-friend table can remove - before");
     ui.connection.outConnectionTable.deny(0);
-    ui.connection.snap("out-friend table can remove");
+    ui.connection.snap("out-friend table can remove - 1");
+    tab.connection.deny.focus();
+    ui.connection.snap("out-friend table can remove - 2");
 
     //deny table can undo
     cy.clearConnectionDb();
@@ -94,56 +115,65 @@ describe("Connection Tables(friend,in,out,deny)", () => {
     cy.insertConnections([con]);
     cy.loadApp();
     tab.connection.focus();
+    tab.connection.deny.focus();
+    ui.connection.snap("deny-friend table can undo - before");
     ui.connection.denyRequests_approve(0);
-    ui.connection.snap("deny-friend table can undo");
+    ui.connection.snap("deny-friend table can undo - 1");
+    tab.connection.friend.focus();
+    ui.connection.snap("deny-friend table can undo - 2");
   });
 
-  it("LoadingIcon", () => {
-    cy.setupDb([lu, tu]);
+  // it("LoadingIcon", () => {
+  //   cy.setupDb([lu, tu]);
 
-    //in-friend table can approve
-    let con = createConnection(tu, lu, true, undefined);
-    cy.insertConnections([con]);
-    cy.loadApp();
-    cy.login(lu.email);
-    tab.connection.focus();
-    ui.connection.inRequests_approve(0);
-    ui.connection.snapRightAway("in_friend table can approve");
+  //   //in-friend table can approve
+  //   let con = createConnection(tu, lu, true, undefined);
+  //   cy.insertConnections([con]);
+  //   cy.loadApp();
+  //   cy.login(lu.email);
+  //   tab.connection.focus();
+  //   tab.connection.inConnection.focus();
+  //   ui.connection.inRequests_approve(0);
+  //   ui.connection.snapRightAway("in_friend table can approve");
 
-    //in-friend table can deny
-    cy.clearConnectionDb();
-    con = createConnection(tu, lu, true, undefined);
-    cy.insertConnections([con]);
-    cy.loadApp();
-    tab.connection.focus();
-    ui.connection.inRequests_deny(0);
-    ui.connection.snapRightAway("in_friend table can deny");
+  //   //in-friend table can deny
+  //   cy.clearConnectionDb();
+  //   con = createConnection(tu, lu, true, undefined);
+  //   cy.insertConnections([con]);
+  //   cy.loadApp();
+  //   tab.connection.focus();
+  //   tab.connection.inConnection.focus();
+  //   ui.connection.inRequests_deny(0);
+  //   ui.connection.snapRightAway("in_friend table can deny");
 
-    //friend table can remove
-    cy.clearConnectionDb();
-    con = createConnection(tu, lu, true, true);
-    cy.insertConnections([con]);
-    cy.loadApp();
-    tab.connection.focus();
-    ui.connection.friends_deny(0);
-    ui.connection.snapRightAway("friend table can remove");
+  //   //friend table can remove
+  //   cy.clearConnectionDb();
+  //   con = createConnection(tu, lu, true, true);
+  //   cy.insertConnections([con]);
+  //   cy.loadApp();
+  //   tab.connection.focus();
+  //   tab.connection.friend.focus();
+  //   ui.connection.friends_deny(0);
+  //   ui.connection.snapRightAway("friend table can remove");
 
-    //out friend table can remove
-    cy.clearConnectionDb();
-    con = createConnection(lu, tu, true, undefined);
-    cy.insertConnections([con]);
-    cy.loadApp();
-    tab.connection.focus();
-    ui.connection.outConnectionTable.deny(0);
-    ui.connection.snapRightAway("out-friend table can remove");
+  //   //out friend table can remove
+  //   cy.clearConnectionDb();
+  //   con = createConnection(lu, tu, true, undefined);
+  //   cy.insertConnections([con]);
+  //   cy.loadApp();
+  //   tab.connection.focus();
+  //   tab.connection.outConnection.focus();
+  //   ui.connection.outConnectionTable.deny(0);
+  //   ui.connection.snapRightAway("out-friend table can remove");
 
-    //deny table can undo
-    cy.clearConnectionDb();
-    con = createConnection(tu, lu, true, false);
-    cy.insertConnections([con]);
-    cy.loadApp();
-    tab.connection.focus();
-    ui.connection.denyRequests_approve(0);
-    ui.connection.snapRightAway("deny-friend table can undo");
-  });
+  //   //deny table can undo
+  //   cy.clearConnectionDb();
+  //   con = createConnection(tu, lu, true, false);
+  //   cy.insertConnections([con]);
+  //   cy.loadApp();
+  //   tab.connection.focus();
+  //   tab.connection.deny.focus();
+  //   ui.connection.denyRequests_approve(0);
+  //   ui.connection.snapRightAway("deny-friend table can undo");
+  // });
 });

@@ -6,7 +6,7 @@ import {
   createShare
 } from "../helper/model.js";
 
-describe("notification static", () => {
+describe("alert static", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 
@@ -19,7 +19,7 @@ describe("notification static", () => {
       cy.loadApp();
       cy.login(lu.email);
 
-      tab.connection.snap();
+      tab.connection.inConnection.snap();
     });
   });
 

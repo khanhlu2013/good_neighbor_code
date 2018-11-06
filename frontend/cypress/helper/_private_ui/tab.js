@@ -31,10 +31,21 @@ const OutPostTab = {
   history: { ...tab_generator("tabSelector-outPost-history-react") }
 };
 
+const ConnectionTab = {
+  ...tab_generator("tabSelector-connection-react"),
+  friend: { ...tab_generator("tabSelector-connection-friend-react") },
+  outConnection: { ...tab_generator("tabSelector-connection-myRequest-react") },
+  inConnection: {
+    ...tab_generator("tabSelector-connection-friendRequest-react")
+  },
+  search: { ...tab_generator("tabSelector-connection-search-react") },
+  deny: { ...tab_generator("tabSelector-connection-deny-react") }
+};
+
 const tab = {
   inPost: InPostTab,
   outPost: OutPostTab,
-  connection: { ...tab_generator("tabSelector-connection-react") }
+  connection: ConnectionTab
 };
 
 export { tab };
