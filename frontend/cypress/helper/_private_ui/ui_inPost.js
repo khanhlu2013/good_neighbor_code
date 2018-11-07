@@ -47,9 +47,6 @@ const _genList = listId => ({
       .find("#outPostItem-returnBtn-react")
       .click();
   },
-  snapRightAway: name => {
-    cy.get(`#${listId}`).snapshot({ name });
-  },
   snap: name => {
     waitForMainPageLoadingFinish();
     cy.get(`#${listId}`).snapshot({ name });
@@ -66,9 +63,6 @@ const list = {
 const inPostUi = {
   list,
   waitForMainPageLoadingFinish,
-  snapRightAway: name => {
-    cy.get("#inPostManagement-react").snapshot({ name });
-  },
   snap: name => {
     waitForMainPageLoadingFinish();
     cy.get("#inPostManagement-react").snapshot({ name });

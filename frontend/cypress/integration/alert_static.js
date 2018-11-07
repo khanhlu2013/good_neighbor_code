@@ -6,7 +6,7 @@ import {
   createShare
 } from "../helper/model.js";
 
-describe("alert static", () => {
+describe("alert static: can display static data correctly without user dynamic interaction", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 
@@ -19,7 +19,11 @@ describe("alert static", () => {
       cy.loadApp();
       cy.login(lu.email);
 
-      tab.connection.inConnection.snap();
+      tab.connection.focus();
+      tab.connection.snap("can show friend request - appHeaderTabBar");
+      tab.connection.inConnection.snap(
+        "can show friend request - appBodyTabBar"
+      );
     });
   });
 
@@ -32,8 +36,8 @@ describe("alert static", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("master");
-      tab.outPost.waitingList.snap("request");
+      tab.outPost.snap("can show post request - appHeaderTabBar");
+      tab.outPost.request.snap("can show post request - appBodyTabBar");
     });
     it("can show unaware return", () => {
       const connection = createConnection(tu, lu, true, true);
@@ -56,8 +60,8 @@ describe("alert static", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("master");
-      tab.outPost.return.snap("return");
+      tab.outPost.snap("can show unaware return - appHeaderTabBar");
+      tab.outPost.return.snap("can show unaware return - appBodyTabBar");
     });
     it("can show combine request and unaware return", () => {
       const connection = createConnection(tu, lu, true, true);
@@ -87,9 +91,15 @@ describe("alert static", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("master");
-      tab.outPost.waitingList.snap("request");
-      tab.outPost.return.snap("return");
+      tab.outPost.snap(
+        "can show combine alert for request and unawareReturn - appHeaderTabBar"
+      );
+      tab.outPost.request.snap(
+        "can show separate alert for request - appBodyTabBar"
+      );
+      tab.outPost.return.snap(
+        "can show separate alert for unAwareReturn - appBodyTabBar"
+      );
     });
   });
 
@@ -117,8 +127,10 @@ describe("alert static", () => {
       cy.login(lu.email);
 
       tab.inPost.focus();
-      tab.inPost.snap("master");
-      tab.inPost.approve.snap("approve");
+      tab.inPost.snap("can show alert for approve post - appHeaderTabBar");
+      tab.inPost.approve.snap(
+        "can show alert for approve post - appBodyTabBar"
+      );
     });
   });
 });

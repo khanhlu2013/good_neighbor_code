@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { InPostTabEnum } from "./inPost_tabEnum";
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AppBodyTabItem from "../../../share/appBodyTabItem";
-import NotificationItem from "../../../share/notificationItem";
+import AlertItem from "../../../share/alertItem";
 import { nullOrRequiredValidator } from "../../../share/util";
 
 function InPostTabBar(props) {
@@ -112,7 +112,7 @@ function _generateTabItem(
       iconName={iconName}
       onSelect={onSelect}
       notificationItem={
-        <NotificationItem count={noteCount} isImportant={isImportant} />
+        <AlertItem count={noteCount} isImportant={isImportant} />
       }
       isResponsive={isResponsive}
     />

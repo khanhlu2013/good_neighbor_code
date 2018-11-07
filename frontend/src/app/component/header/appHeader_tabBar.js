@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
 import { TabItem } from "../../../share/tabItem";
-import NotificationItem from "../../../share/notificationItem";
+import AlertItem from "../../../share/alertItem";
 import AppTabEnum from "../appTabEnum";
 
 const TabItemContainerStart = styled.div`
@@ -101,9 +101,7 @@ function _generateTabItem(
         caption={caption}
         iconName={iconName}
         onSelect={onSelect}
-        notificationItem={
-          <NotificationItem count={noteCount} isImportant={true} />
-        }
+        notificationItem={<AlertItem count={noteCount} isImportant={true} />}
         selectColor="white"
         unSelectColor="rgb(192, 203, 211)"
         hoverColor="white"

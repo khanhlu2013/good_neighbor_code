@@ -52,10 +52,6 @@ const _genList = listId => ({
       .find("#outPostItem-editBtn-react")
       .click();
   },
-
-  snapRightAway: name => {
-    cy.get(`#${listId}`).snapshot({ name });
-  },
   snap: name => {
     waitForMainPageLoadingFinish();
     cy.get(`#${listId}`).snapshot({ name });
@@ -71,9 +67,6 @@ const list = {
 
 //- CRUD-DIALOG
 const crudDialog = {
-  snapRightAway: name => {
-    cy.get("#outPostCrudDialogForm-react").snapshot({ name });
-  },
   fillOut: post => {
     cy.get("#outPostCrudDialogForm-react :text")
       .clear()
@@ -87,6 +80,10 @@ const crudDialog = {
     } else {
       isActiveCheckBox.uncheck();
     }
+  },
+  snap: name => {
+    waitForCrudDialogLoadingFinish();
+    cy.get("#outPostCrudDialogForm-react").snapshot({ name });
   },
   submit: () => {
     cy.get("#outPostCrudDialogForm-react :submit").click();
@@ -128,9 +125,6 @@ const decisionDialog = {
     waitForDecisionDialogLoadingFinish();
     cy.get("#outPostDecisionDialog-react").snapshot({ name });
   },
-  snapRightAway: name => {
-    cy.get("#outPostDecisionDialog-react").snapshot({ name });
-  },
   exit: () => {
     cy.get("#OutPostDecisionDialogExitBtn").click();
   },
@@ -147,9 +141,6 @@ const outPostUi = {
   waitForMainPageLoadingFinish,
   snap: name => {
     waitForMainPageLoadingFinish();
-    cy.get("#outPostManagement-react").snapshot({ name });
-  },
-  snapRightAway: name => {
     cy.get("#outPostManagement-react").snapshot({ name });
   }
 };

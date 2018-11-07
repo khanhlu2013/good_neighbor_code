@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import ConnectionManagementComponent from "./component/connection_management";
-import fetchConnections from "./action/fetchConnection.action";
-import createConnection from "./action/createConnection.action";
-import updateConnection from "./action/updateConnection.action";
+import ConnectionManagementComponent from "../component/connection_management";
+import fetchConnections from "../action/fetchConnection.action";
+import createConnection from "../action/createConnection.action";
+import updateConnection from "../action/updateConnection.action";
 
 const mapStateToProps = (state, ownProps) => {
   const {

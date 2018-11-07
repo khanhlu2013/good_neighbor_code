@@ -1,4 +1,4 @@
-export const filterInPostApproveAlert = (posts, loginUserId) => {
+export const selectInPostApproveAlert = (posts, loginUserId) => {
   if (!loginUserId) {
     return [];
   }

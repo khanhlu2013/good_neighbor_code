@@ -31,6 +31,7 @@ import {
   RECEIVE_FETCH_OUTPOSTS
 } from "../action/fetchOutPosts.action";
 import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
+import update from "immutability-helper";
 
 const defaultState = {
   posts: [],
@@ -133,13 +134,35 @@ const outPostReducer = (state = defaultState, action) => {
         ...state,
         awaringReturnPostIds: [...state.awaringReturnPostIds, action.postId]
       };
-    case RECEIVE_AWARE_RETURN_POST:
+    case RECEIVE_AWARE_RETURN_POST: {
+      const { posts } = state;
+      const curPost = posts.find(post => post.id === action.postId);
+      const curReturnShare = curPost.unawareReturnShareLatest;
+      const curReturnShare_update = update(curReturnShare, {
+        isAwareReturn: { $set: true }
+      });
+      const shares_update = [
+        ...curPost.shares.filter(
+          share => share.id !== curReturnShare_update.id
+        ),
+        curReturnShare_update
+      ];
+      const curPost_update = update(curPost, {
+        shares: { $set: shares_update }
+      });
+      const posts_update = [
+        ...posts.filter(post => post.id !== curPost.id),
+        curPost_update
+      ];
+
       return {
         ...state,
+        posts: posts_update,
         awaringReturnPostIds: state.awaringReturnPostIds.filter(
-          post => post.id !== action.postId
+          id => id !== action.postId
         )
       };
+    }
 
     case RECEIVE_LOGGED_OUT_SUCCESS:
       return defaultState;

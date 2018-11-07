@@ -105,37 +105,4 @@ describe("InPost", () => {
     ui.inPost.list.all.return(post);
     ui.inPost.snap("user can return borrow");
   });
-
-  it("LoadingIcon", () => {
-    const post = createPost(tu, "title 1", "description 1");
-
-    //main page
-    cy.setupDb([lu, tu], [connection], [post]);
-    cy.loadApp();
-    cy.login(lu.email);
-    ui.inPost.waitForMainPageLoadingFinish();
-
-    //all post table
-    ui.inPost.list.all.request(post);
-    ui.inPost.list.all.snapRightAway("all post table -> make request");
-
-    //request table
-    ui.inPost.list.all.undoRequest(post);
-    ui.inPost.list.all.snapRightAway("request table -> undo request");
-
-    //borrow table - aware
-    let share = createShare(post, lu, true);
-    cy.insertShares([share]);
-    cy.loadApp();
-    ui.inPost.list.all.awareApprove(post);
-    ui.inPost.list.all.snapRightAway("borrow table -> aware");
-
-    //borrow table - return
-    cy.clearShareDb();
-    share = createShare(post, lu, true, true);
-    cy.insertShares([share]);
-    cy.loadApp();
-    ui.inPost.list.all.return(post);
-    ui.inPost.list.all.snapRightAway("borrow table -> return");
-  });
 });

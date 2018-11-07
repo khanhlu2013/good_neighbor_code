@@ -12,9 +12,6 @@ const connectionUi = {
     );
     cy.get("#ConnectionManagement-react").snapshot({ name });
   },
-  snapRightAway: name => {
-    cy.get("#ConnectionManagement-react").snapshot({ name });
-  },
   search: {
     exe: email => {
       cy.get("#SearchByEmail-react>form>input:text")
@@ -25,9 +22,6 @@ const connectionUi = {
       cy.get("#SearchByEmail-react #LoadingIcon-react").should(
         "not.be.visible"
       );
-      cy.get("#SearchByEmail-react").snapshot({ name });
-    },
-    snapRightAway: name => {
       cy.get("#SearchByEmail-react").snapshot({ name });
     },
     getSearchBtnLoadingIcon: () =>

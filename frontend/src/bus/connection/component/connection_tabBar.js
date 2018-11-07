@@ -2,12 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
-import NotificationItem from "../../../share/notificationItem";
+import AlertItem from "../../../share/alertItem";
 import ConnectionTabEnum from "./connection_tabEnum";
 import AppBodyTabItem from "../../../share/appBodyTabItem";
 
 function ConnectionTabBar(props) {
-  const { selectTab, onTabChange } = props;
+  const {
+    selectTab,
+    onTabChange,
+    friendConnectionCount,
+    inConnectionCount,
+    outConnectionCount,
+    denyConnectionCount
+  } = props;
 
   const onSelectFriend = e => {
     onTabChange(ConnectionTabEnum.FRIEND);
@@ -33,7 +40,7 @@ function ConnectionTabBar(props) {
         "all friends",
         "user-friends",
         onSelectFriend,
-        0,
+        friendConnectionCount,
         false,
         false
       )}
@@ -44,7 +51,7 @@ function ConnectionTabBar(props) {
         "my request",
         "sign-out-alt",
         onSelectMyRequest,
-        0,
+        outConnectionCount,
         false,
         true
       )}
@@ -55,7 +62,7 @@ function ConnectionTabBar(props) {
         "friend request",
         "sign-in-alt",
         onSelectFriendRequest,
-        0,
+        inConnectionCount,
         true,
         true
       )}
@@ -77,7 +84,7 @@ function ConnectionTabBar(props) {
         "deny",
         "user-slash",
         onSelectDeny,
-        0,
+        denyConnectionCount,
         false,
         true
       )}
@@ -103,7 +110,7 @@ function _generateTabItem(
       iconName={iconName}
       onSelect={onSelect}
       notificationItem={
-        <NotificationItem count={noteCount} isImportant={isImportant} />
+        <AlertItem count={noteCount} isImportant={isImportant} />
       }
       isResponsive={isResponsive}
     />
@@ -112,7 +119,11 @@ function _generateTabItem(
 
 ConnectionTabBar.propTypes = {
   selectTab: PropTypes.instanceOf(ConnectionTabEnum).isRequired,
-  onTabChange: PropTypes.func.isRequired
+  onTabChange: PropTypes.func.isRequired,
+  friendConnectionCount: PropTypes.number.isRequired,
+  inConnectionCount: PropTypes.number.isRequired,
+  outConnectionCount: PropTypes.number.isRequired,
+  denyConnectionCount: PropTypes.number.isRequired
 };
 
 export default ConnectionTabBar;

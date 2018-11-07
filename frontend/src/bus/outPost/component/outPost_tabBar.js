@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import OutPostTabEnum from "./outPost_tabEnum";
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AppBodyTabItem from "../../../share/appBodyTabItem";
-import NotificationItem from "../../../share/notificationItem";
+import AlertItem from "../../../share/alertItem";
 import { nullOrRequiredValidator } from "../../../share/util";
 
 const NewPostButtonStyle = styled.div`
@@ -129,7 +129,7 @@ function _generateTabItem(
       iconName={iconName}
       onSelect={onSelect}
       notificationItem={
-        <NotificationItem count={noteCount} isImportant={isImportant} />
+        <AlertItem count={noteCount} isImportant={isImportant} />
       }
       isResponsive={isResponsive}
     />

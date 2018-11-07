@@ -6,7 +6,7 @@ import {
   createShare
 } from "../helper/model";
 
-describe("notification dynamic", () => {
+describe("alert dynamic: alert info can update accordingly to user dynamic interaction", () => {
   const lu = createUser("Lu Tran", "lu@us.com");
   const tu = createUser("Tu Nguyen", "tu@pr.com");
 
@@ -17,9 +17,12 @@ describe("notification dynamic", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.connection.focus();
-      tab.connection.snap("before");
+      tab.connection.inConnection.focus();
+      tab.connection.snap("before - appHeaderTabBar");
+      tab.connection.inConnection.snap("before - appBodyTabBar");
       ui.connection.inRequests_approve(0);
-      tab.connection.snap("after");
+      tab.connection.snap("after - appHeaderTabBar");
+      tab.connection.inConnection.snap("after - appBodyTabBar");
     });
   });
 
@@ -32,14 +35,16 @@ describe("notification dynamic", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("before");
+      tab.outPost.snap("before - appHeaderTabBar");
+      tab.outPost.request.snap("before - appBodyTabBar");
 
-      tab.outPost.waitingList.focus();
+      tab.outPost.request.focus();
       ui.outPost.list.requestNote.decide(post);
       ui.outPost.decisionDialog.decide(tu, true);
       ui.outPost.decisionDialog.exit();
 
-      tab.outPost.snap("after");
+      tab.outPost.snap("after - appHeaderTabBar");
+      tab.outPost.request.snap("after - appBodyTabBar");
     });
 
     it("can update unaware return", () => {
@@ -63,11 +68,13 @@ describe("notification dynamic", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.outPost.focus();
-      tab.outPost.snap("before");
+      tab.outPost.snap("before - appHeaderTabBar");
+      tab.outPost.return.snap("before - appBodyTabBar");
 
       tab.outPost.return.focus();
       ui.outPost.list.returnNote.awareReturn(post);
-      tab.outPost.snap("after");
+      tab.outPost.snap("after - appHeaderTabBar");
+      tab.outPost.return.snap("after - appBodyTabBar");
     });
   });
 
@@ -93,9 +100,11 @@ describe("notification dynamic", () => {
       cy.loadApp();
       cy.login(lu.email);
       tab.inPost.approve.focus();
-      tab.inPost.snapRightAway("before");
+      tab.inPost.snap("before - appHeaderTabBar");
+      tab.inPost.approve.snap("before - appBodyTabBar");
       ui.inPost.list.approveNote.awareApprove(post);
-      tab.inPost.snap("after");
+      tab.inPost.snap("after - appHeaderTabBar");
+      tab.inPost.approve.snap("after - appBodyTabBar");
     });
   });
 });

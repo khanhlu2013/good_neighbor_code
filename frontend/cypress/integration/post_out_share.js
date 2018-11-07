@@ -85,30 +85,4 @@ describe("Outpost share ", () => {
     ui.outPost.decisionDialog.undoDenied(tu);
     ui.outPost.decisionDialog.snap("Dialog can undo denied request");
   });
-
-  // it("LoadingIcon", () => {
-  //   const share = createShare(post, tu);
-  //   cy.setupDb([lu, tu], [connection], [post], [share]);
-  //   cy.loadApp();
-  //   cy.login(lu.email);
-  //   tab.outPost.focus();
-  //   ui.outPost.waitForMainPageLoadingFinish();
-  //   ui.outPost.list.all.decide(post);
-
-  //   //approve request
-  //   ui.outPost.decisionDialog.decide(tu, true);
-  //   ui.outPost.decisionDialog.snapRightAway("approving ...");
-
-  //   //undo approve
-  //   ui.outPost.decisionDialog.undoApprove();
-  //   ui.outPost.decisionDialog.snapRightAway("undo approved ...");
-
-  //   //deny request
-  //   ui.outPost.decisionDialog.decide(tu, false);
-  //   ui.outPost.decisionDialog.snapRightAway("deny request ...");
-
-  //   //undo denied
-  //   ui.outPost.decisionDialog.undoDenied(tu);
-  //   ui.outPost.decisionDialog.snapRightAway("undo denied request ...");
-  // });
 });

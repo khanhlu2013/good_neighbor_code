@@ -16,7 +16,7 @@ import {
   undoApproveShare
 } from "../action/decideOutPost.action";
 import { awareReturnPost } from "../action/awareReturnPost.action";
-import { filterOutPostRequestAlert } from "../outPost.alert";
+import { selectOutPostRequestAlert } from "../outPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
   let returnShares = [];
@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
     );
     returnShares = [].concat(...returnShares2D);
 
-    requestAlertPosts = filterOutPostRequestAlert(posts);
+    requestAlertPosts = selectOutPostRequestAlert(posts);
     borrowPosts = posts.filter(post => post.curBorrowShare);
     returnAlertPosts = posts.filter(post => post.unawareReturnShareLatest);
   }

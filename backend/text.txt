@@ -149,8 +149,17 @@ isInitPost and isFetchingPost think about these 2
 ---
 ok, i have gone far with redux. lets just continue with connection , make the testing solid. 
 ---
-i am testing the alert in tab bar, and it doesn't show loading icon. i need to test if data is init / fetch
-  . now i have fetching and isInit. lets just talk about my app. why did i need to came up with isInit. because if i am not fetching. it doesn't mean that data is init. originally i have fetching as null. this mean i only use isFetching. lets say, if i have a use case of not fetching. may be i am just doing a animation. then fetch. isFetching is false while animate, so i am not spin the loader. but do i display empty list? no, because i also check for isInit. so i guess i can  spin only when fetch. and show only when init. perfect. solve. how do i tackle this in code?
-
+fix the test for the connection inDeny, outDeny i don't get this
 ---
-time to fix the fishy AlertItem
+
+. for selector , why selectOutPostReturnAlert isn't get use in side outPost?
+  . make sure do not pass multiple source of trurth into the comp. the comp should compute stuff using the selector. 
+---
+MYREQUEST -> in/out request , change the html element id too (2 places)
+---
+lets kill the testing topic
+   .lets create a selector and compute the data. 
+   . create selector for each category : friend, inFriend, outFriend, deny
+   . use inFriend for alert. 
+
+

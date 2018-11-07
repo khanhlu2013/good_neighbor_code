@@ -14,6 +14,12 @@ import ConnectionTabEnum from "./connection_tabEnum.js";
 import ConnectionTabBar from "./connection_tabBar.js";
 import ConnectionInTable from "./connectionTable_in.js";
 import User from "../../../model/user.js";
+import {
+  friendConnectionSelector,
+  outConnectionSelector,
+  inConnectionSelector,
+  denyConnectionSelector
+} from "../connection.selector.js";
 
 const Style = styled.div`
   ${AppCenterWrapMixin};
@@ -62,28 +68,10 @@ class ConnectionManagementComponent extends Component {
     let { selectTab } = this.state;
     const { updatingConnectionIds, isCreatingConnection } = this.props;
 
-    const friends = connections.filter(
-      connection => connection.isApproveByFrom && connection.isApproveByTo
-    );
-    const inFriends = connections.filter(
-      connection =>
-        connection.to.id === loginUserId &&
-        connection.isApproveByFrom &&
-        connection.isApproveByTo === undefined
-    );
-    const outFriends = connections.filter(
-      connection =>
-        connection.from.id === loginUserId &&
-        connection.isApproveByFrom &&
-        connection.isApproveByTo === undefined
-    );
-    const rejectedFriends = connections.filter(
-      connection =>
-        (connection.to.id === loginUserId &&
-          connection.isApproveByTo === false) ||
-        (connection.from.id === loginUserId &&
-          connection.isApproveByFrom === false)
-    );
+    const friends = friendConnectionSelector(connections, loginUserId);
+    const inConnections = inConnectionSelector(connections, loginUserId);
+    const outConnections = outConnectionSelector(connections, loginUserId);
+    const denyConnections = denyConnectionSelector(connections, loginUserId);
 
     return (
       <Fragment>
@@ -91,6 +79,10 @@ class ConnectionManagementComponent extends Component {
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
+            friendConnectionCount={friends.length}
+            inConnectionCount={inConnections.length}
+            outConnectionCount={outConnections.length}
+            denyConnectionCount={denyConnections.length}
           />
         </AppBodyBannerStyle>
 
@@ -105,7 +97,7 @@ class ConnectionManagementComponent extends Component {
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
             <ConnectionInTable
-              connections={inFriends}
+              connections={inConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               onUpdateConnectionClick={this.props.onUpdateConnection}
@@ -113,7 +105,7 @@ class ConnectionManagementComponent extends Component {
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.MYREQUEST}>
             <ConnectionOutTable
-              connections={outFriends}
+              connections={outConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               onUpdateConnectionClick={this.props.onUpdateConnection}
@@ -121,7 +113,7 @@ class ConnectionManagementComponent extends Component {
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.DENY}>
             <ConnectionDenyTable
-              connections={rejectedFriends}
+              connections={denyConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
               onUpdateConnectionClick={this.props.onUpdateConnection}
