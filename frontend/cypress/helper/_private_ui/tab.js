@@ -29,9 +29,11 @@ const OutPostTab = {
 const ConnectionTab = {
   ...tab_generator("tabSelector-connection-react"),
   friend: { ...tab_generator("tabSelector-connection-friend-react") },
-  outConnection: { ...tab_generator("tabSelector-connection-myRequest-react") },
+  outConnection: {
+    ...tab_generator("tabSelector-connection-outConnection-react")
+  },
   inConnection: {
-    ...tab_generator("tabSelector-connection-friendRequest-react")
+    ...tab_generator("tabSelector-connection-inConnection-react")
   },
   search: { ...tab_generator("tabSelector-connection-search-react") },
   deny: { ...tab_generator("tabSelector-connection-deny-react") }

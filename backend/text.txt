@@ -155,11 +155,7 @@ fix the test for the connection inDeny, outDeny i don't get this
 . for selector , why selectOutPostReturnAlert isn't get use in side outPost?
   . make sure do not pass multiple source of trurth into the comp. the comp should compute stuff using the selector. 
 ---
-MYREQUEST -> in/out request , change the html element id too (2 places)
 ---
-lets kill the testing topic
-   .lets create a selector and compute the data. 
-   . create selector for each category : friend, inFriend, outFriend, deny
-   . use inFriend for alert. 
 
+onSelectMyRequest
 

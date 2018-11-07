@@ -95,7 +95,7 @@ class ConnectionManagementComponent extends Component {
               onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
-          <TabPanel show={selectTab === ConnectionTabEnum.FRIENDREQUEST}>
+          <TabPanel show={selectTab === ConnectionTabEnum.IN_CONNECTION}>
             <ConnectionInTable
               connections={inConnections}
               updatingConnectionIds={updatingConnectionIds}
@@ -103,7 +103,7 @@ class ConnectionManagementComponent extends Component {
               onUpdateConnectionClick={this.props.onUpdateConnection}
             />
           </TabPanel>
-          <TabPanel show={selectTab === ConnectionTabEnum.MYREQUEST}>
+          <TabPanel show={selectTab === ConnectionTabEnum.OUT_CONNECTION}>
             <ConnectionOutTable
               connections={outConnections}
               updatingConnectionIds={updatingConnectionIds}

@@ -3,8 +3,8 @@ import { Enum } from "enumify";
 class ConnectionTabEnum extends Enum {}
 ConnectionTabEnum.initEnum([
   "FRIEND",
-  "MYREQUEST",
-  "FRIENDREQUEST",
+  "OUT_CONNECTION",
+  "IN_CONNECTION",
   "SEARCH",
   "DENY"
 ]);

@@ -19,11 +19,11 @@ function ConnectionTabBar(props) {
   const onSelectFriend = e => {
     onTabChange(ConnectionTabEnum.FRIEND);
   };
-  const onSelectMyRequest = e => {
-    onTabChange(ConnectionTabEnum.MYREQUEST);
+  const onSelectOutConnection = e => {
+    onTabChange(ConnectionTabEnum.OUT_CONNECTION);
   };
-  const onSelectFriendRequest = e => {
-    onTabChange(ConnectionTabEnum.FRIENDREQUEST);
+  const onSelectInConnection = e => {
+    onTabChange(ConnectionTabEnum.IN_CONNECTION);
   };
   const onSelectSearch = e => {
     onTabChange(ConnectionTabEnum.SEARCH);
@@ -46,22 +46,22 @@ function ConnectionTabBar(props) {
       )}
 
       {_generateTabItem(
-        "tabSelector-connection-myRequest-react",
-        selectTab === ConnectionTabEnum.MYREQUEST,
+        "tabSelector-connection-outConnection-react",
+        selectTab === ConnectionTabEnum.OUT_CONNECTION,
         "my request",
         "sign-out-alt",
-        onSelectMyRequest,
+        onSelectOutConnection,
         outConnectionCount,
         false,
         true
       )}
 
       {_generateTabItem(
-        "tabSelector-connection-friendRequest-react",
-        selectTab === ConnectionTabEnum.FRIENDREQUEST,
+        "tabSelector-connection-inConnection-react",
+        selectTab === ConnectionTabEnum.IN_CONNECTION,
         "friend request",
         "sign-in-alt",
-        onSelectFriendRequest,
+        onSelectInConnection,
         inConnectionCount,
         true,
         true

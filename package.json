@@ -9,7 +9,7 @@
     "sm": "npm run start:mongo",
     "sbt": "npm run start:backend:testenv --prefix ./backend",
     "sft": "npm run start:frontend:testenv --prefix ./frontend",
-    "co": "npm run cypress:open --prefix ./frontend"
+    "sc": "npm run cypress:open --prefix ./frontend"
   },
   "author": "",
   "license": "ISC"
