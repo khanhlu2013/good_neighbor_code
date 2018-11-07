@@ -16,7 +16,10 @@ import {
   undoApproveShare
 } from "../action/decideOutPost.action";
 import { awareReturnPost } from "../action/awareReturnPost.action";
-import { selectOutPostRequestAlert } from "../outPost.selector";
+import {
+  selectOutPostRequestAlert,
+  selectOutPostReturnAlert
+} from "../outPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
   let returnShares = [];
@@ -44,7 +47,7 @@ const mapStateToProps = (state, ownProps) => {
 
     requestAlertPosts = selectOutPostRequestAlert(posts);
     borrowPosts = posts.filter(post => post.curBorrowShare);
-    returnAlertPosts = posts.filter(post => post.unawareReturnShareLatest);
+    returnAlertPosts = selectOutPostReturnAlert(posts);
   }
 
   return {
