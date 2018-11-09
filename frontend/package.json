@@ -20,13 +20,12 @@
     "classnames": "^2.2.6",
     "enumify": "^1.0.4",
     "immutability-helper": "^2.8.1",
-    "jest": "^23.5.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-modal": "^3.5.1",
     "react-redux": "^5.0.7",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.1.1",
     "react-spinners": "^0.4.4",
     "react-youtube": "^7.6.0",
     "redux": "^4.0.1",
@@ -42,6 +41,6 @@
     "cypress": "^3.1.1",
     "gh-pages": "^2.0.0",
     "mongodb": "^3.1.4",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.6.1"
   }
 }

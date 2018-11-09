@@ -109,3 +109,8 @@
 ---
 . change connection change inpost test
 . update inPost test to show other tab
+---
+
+ok, it is the time for me to learn testing. lets just read an article and get start. 
+read an article about BDD 
+
