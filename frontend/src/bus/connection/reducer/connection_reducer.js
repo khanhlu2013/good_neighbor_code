@@ -46,7 +46,8 @@ const connectionReducer = (state = defaultState, action) => {
     case RECEIVE_CREATE_CONNECTION:
       return {
         ...state,
-        connections: [...state.connections, action.connection]
+        connections: [...state.connections, action.connection],
+        isCreatingConnection: false
       };
 
     case INFORM_UPDATE_CONNECTION:

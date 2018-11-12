@@ -44,7 +44,7 @@ class Share {
     return this.isApprove === undefined;
   }
 
-  get isBorrow() {
+  isCurrentlyBorrow() {
     return this.isApprove === true && this.isReturn === false;
   }
 

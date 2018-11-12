@@ -114,3 +114,30 @@
 ok, it is the time for me to learn testing. lets just read an article and get start. 
 read an article about BDD 
 
+---
+
+please apply on facebook
+
+---
+
+ok, great work on jest and enzyme. i need to test more just to get more familiarity. ok, more on this later. 
+. what now? dont just do 1 thing. do multiple. work on find work and learn at the same time. 
+. cover letter, resume
+. apply facebook, amazon, linkIn.
+. what to learn ? time for react native?
+. learn algorithm too. and become a kick ass developer
+
+. may be I need a schedule to balance thing. yes. i am a serious professsion now. i will work around 7 hour a day. start my day just like anyone else. 
+
+--
+before continue to test inPostAllHistoryList, i like to refactor this a bit. this just just a list of share no more no less right? why do i need to care about where this shares is comming from? well the comming from is just a ui render style. so it cool. i can make a more genereic but why?any way, 
+
+
+  . run cypress
+  . test emzyme
+  . then do the same for outPost.
+
+  fuck , i dont have a history in my snap shot e2e
+  ---
+
+myRequestShare only find one request, what if i request multiple time?

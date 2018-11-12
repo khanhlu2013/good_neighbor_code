@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostListNoData from "../../post/component/postListNoData";
-import PostAllHistoryListStyle from "../../post/component/style/postAll_historyList_style";
 import { date2String } from "../../../share/util";
 
 function OutPostAllHistoryList(props) {
@@ -13,21 +12,19 @@ function OutPostAllHistoryList(props) {
   }
 
   return (
-    <PostAllHistoryListStyle>
-      <table
-        id="OutShareReturnTable-react"
-        className="table table-sm table-striped table-bordered"
-      >
-        <thead className="thead-light">
-          <tr>
-            <th>date</th>
-            <th>post</th>
-            <th>borrower</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    </PostAllHistoryListStyle>
+    <table
+      id="OutShareReturnTable-react"
+      className="table table-sm table-striped table-bordered"
+    >
+      <thead className="thead-light">
+        <tr>
+          <th>date</th>
+          <th>post</th>
+          <th>borrower</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 
@@ -40,7 +37,7 @@ function TableRow(props) {
   const { post } = share;
 
   return (
-    <tr className="OutShareReturnTableRow">
+    <tr>
       <td>{date2String(share.dateReturn)}</td>
       <td>{post.title}</td>
       <td>{share.borrower.getNameAndEmail()}</td>

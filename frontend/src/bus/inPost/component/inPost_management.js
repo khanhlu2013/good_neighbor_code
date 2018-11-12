@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { InPostAllHistoryList } from "./inPost_allHistoryList";
-import { InPostList } from "./inPostList";
-import { InPostTabBar } from "./inPost_tabBar";
-import { InPostTabEnum } from "./inPost_tabEnum";
+import InPostUserHistoryList from "./inPost_userHistoryList";
+import InPostList from "./inPostList";
+import InPostTabBar from "./inPost_tabBar";
+import InPostTabEnum from "./inPost_tabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
+import PostUserHistoryListStyle from "../../post/component/style/postUser_historyList_style";
 
 class InPostManagementComponent extends Component {
   static propTypes = {
@@ -106,7 +107,9 @@ class InPostManagementComponent extends Component {
             {generateList("inPostList-borrow-react", borrowPosts)}
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.HISTORY}>
-            <InPostAllHistoryList shares={this.props.returnShares} />
+            <PostUserHistoryListStyle>
+              <InPostUserHistoryList shares={this.props.returnShares} />
+            </PostUserHistoryListStyle>
           </TabPanel>
         </AppCenterWrapStyle>
       </Fragment>

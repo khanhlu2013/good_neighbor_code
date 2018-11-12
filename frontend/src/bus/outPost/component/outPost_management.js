@@ -10,9 +10,10 @@ import TabPanel from "../../../share/style/tabPanel_style";
 import OutPostCrudDialog from "./crudDialog";
 import OutPostDecisionDialog from "./decisionDialog";
 import OutPostList from "./outPostList";
-import OutPostAllHistoryList from "./outPost_allHistoryList";
 import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
+import PostUserHistoryListStyle from "../../post/component/style/postUser_historyList_style";
+import OutPostAllHistoryList from "./outPost_allHistoryList";
 
 class OutPostManagementComponent extends Component {
   static propTypes = {
@@ -122,7 +123,9 @@ class OutPostManagementComponent extends Component {
             )}
           </TabPanel>
           <TabPanel show={selectTab === OutPostTabEnum.HISTORY}>
-            <OutPostAllHistoryList shares={returnShares} />
+            <PostUserHistoryListStyle>
+              <OutPostAllHistoryList shares={returnShares} />
+            </PostUserHistoryListStyle>
           </TabPanel>
         </AppCenterWrapStyle>
       </Fragment>

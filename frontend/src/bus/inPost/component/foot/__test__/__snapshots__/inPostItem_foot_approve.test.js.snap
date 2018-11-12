@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPostItem_foot_approve loading icon is display during aware approve 1`] = `
+<div
+  className="text-success"
+>
+  request approved.
+  <span
+    className="ml-1"
+  >
+    <LoadingIcon
+      text="aware approve"
+    />
+  </span>
+  <button
+    className="btn btn-sm btn-warning ml-1"
+    id="outPostItem-returnBtn-react"
+    onClick={[Function]}
+  >
+    return item
+  </button>
+</div>
+`;
+
+exports[`inPostItem_foot_approve loading icon is display during return 1`] = `
+<div
+  className="text-success"
+>
+  request approved.
+  <span
+    className="ml-1"
+  >
+    <span>
+      You've received.
+    </span>
+  </span>
+  <LoadingIcon
+    text="return"
+  />
+</div>
+`;
+
+exports[`inPostItem_foot_approve match snapshot 1`] = `
+<div
+  className="text-success"
+>
+  request approved.
+  <span
+    className="ml-1"
+  >
+    <button
+      className="btn btn-sm btn-success"
+      id="outPostItem-awareApproveBtn-react"
+      onClick={[Function]}
+    >
+      confirm approved
+    </button>
+  </span>
+  <button
+    className="btn btn-sm btn-warning ml-1"
+    id="outPostItem-returnBtn-react"
+    onClick={[Function]}
+  >
+    return item
+  </button>
+</div>
+`;

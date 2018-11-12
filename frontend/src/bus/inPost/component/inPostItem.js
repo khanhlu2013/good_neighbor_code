@@ -27,7 +27,7 @@ function InPostItem(props) {
         postId={post.id}
         loginUser={loginUser}
         isActive={post.isActive}
-        curBorrowShare={post.curBorrowShare}
+        currentlyBorrowShare={post.curBorrowShare}
         myRequestShare={
           post.requestShares.find(
             share => share.borrower.id === loginUser.id

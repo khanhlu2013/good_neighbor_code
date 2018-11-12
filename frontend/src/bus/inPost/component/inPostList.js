@@ -63,4 +63,4 @@ InPostList.propTypes = {
   loginUser: PropTypes.object.isRequired
 };
 
-export { InPostList };
+export default InPostList;

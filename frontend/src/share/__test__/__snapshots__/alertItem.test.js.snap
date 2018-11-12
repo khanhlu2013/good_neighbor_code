@@ -23,29 +23,3 @@ exports[`AlertItem can display count and isImportant of true 1`] = `
   </div>
 </div>
 `;
-
-exports[`AlertItem can display count and isImportant property 1`] = `
-<div
-  className="sc-bdVaJa cLamRz"
->
-  <div
-    className="sc-bwzfXH gMdCgE"
-  >
-    3
-  </div>
-</div>
-`;
-
-exports[`AlertItem can display count and isImportant property 2`] = `
-<div
-  className="sc-bdVaJa cLamRz"
-  count={4}
-  isImportant={false}
->
-  <div
-    className="sc-bwzfXH gMdCgE"
-  >
-    3
-  </div>
-</div>
-`;

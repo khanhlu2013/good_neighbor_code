@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPost_tabBar to match snapshot 1`] = `
+<styled.div>
+  <AppBodyTabItem
+    caption="all friend posts"
+    iconName="globe"
+    id="tabSelector-inPost-all-react"
+    isResponsive={false}
+    isSelect={true}
+    notificationItem={
+      <AlertItem
+        count={0}
+        isImportant={false}
+      />
+    }
+    onSelect={[Function]}
+  />
+  <AppBodyTabItem
+    caption="request"
+    iconName="question"
+    id="tabSelector-inPost-request-react"
+    isResponsive={true}
+    isSelect={false}
+    notificationItem={
+      <AlertItem
+        count={1}
+        isImportant={false}
+      />
+    }
+    onSelect={[Function]}
+  />
+  <AppBodyTabItem
+    caption="approve"
+    iconName="check"
+    id="tabSelector-inPost-approve-react"
+    isResponsive={true}
+    isSelect={false}
+    notificationItem={
+      <AlertItem
+        count={2}
+        isImportant={true}
+      />
+    }
+    onSelect={[Function]}
+  />
+  <AppBodyTabItem
+    caption="borrow"
+    iconName="hand-holding-heart"
+    id="tabSelector-inPost-borrow-react"
+    isResponsive={true}
+    isSelect={false}
+    notificationItem={
+      <AlertItem
+        count={3}
+        isImportant={false}
+      />
+    }
+    onSelect={[Function]}
+  />
+  <AppBodyTabItem
+    caption="history"
+    iconName="history"
+    id="tabSelector-inPost-history-react"
+    isResponsive={true}
+    isSelect={false}
+    notificationItem={
+      <AlertItem
+        count={4}
+        isImportant={false}
+      />
+    }
+    onSelect={[Function]}
+  />
+</styled.div>
+`;

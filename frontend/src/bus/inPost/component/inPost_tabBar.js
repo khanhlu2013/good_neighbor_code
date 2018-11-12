@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { InPostTabEnum } from "./inPost_tabEnum";
+import InPostTabEnum from "./inPost_tabEnum";
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AppBodyTabItem from "../../../share/appBodyTabItem";
 import AlertItem from "../../../share/alertItem";
@@ -129,4 +129,4 @@ InPostTabBar.propTypes = {
   historyCount: nullOrRequiredValidator("number")
 };
 
-export { InPostTabBar };
+export default InPostTabBar;

@@ -13,7 +13,7 @@ function InPostItemFoot(props) {
     postId,
     loginUser,
     isActive,
-    curBorrowShare,
+    currentlyBorrowShare,
     myRequestShare,
     isRequestingPost,
     isDeleteingShare,
@@ -32,16 +32,16 @@ function InPostItemFoot(props) {
       <InPostItemFootRequest
         isDeleteingShare={isDeleteingShare}
         onUnRequestPost={onUnRequestPost}
-        myRequestShareId={myRequestShare.id}
+        requestShareId={myRequestShare.id}
       />
     );
   } else if (
-    curBorrowShare !== null &&
-    curBorrowShare.borrower.id === loginUser.id
+    currentlyBorrowShare !== null &&
+    currentlyBorrowShare.borrower.id === loginUser.id
   ) {
     content = (
       <InPostItemFootApprove
-        curBorrowShare={curBorrowShare}
+        approveShare={currentlyBorrowShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
         onAwareApprovePost={onAwareApprovePost}
@@ -66,7 +66,7 @@ InPostItemFoot.propTypes = {
   postId: PropTypes.string.isRequired,
   loginUser: PropTypes.instanceOf(User).isRequired,
   isActive: PropTypes.bool.isRequired,
-  curBorrowShare: nullOrRequiredValidator("object", Share),
+  currentlyBorrowShare: nullOrRequiredValidator("object", Share),
   myRequestShare: nullOrRequiredValidator("object", Share),
   isRequestingPost: PropTypes.bool.isRequired,
   isDeleteingShare: PropTypes.bool.isRequired,

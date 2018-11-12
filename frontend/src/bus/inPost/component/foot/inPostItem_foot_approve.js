@@ -6,7 +6,7 @@ import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootApprove(props) {
   const {
-    curBorrowShare,
+    approveShare,
     isAwaringShare,
     isReturningShare,
     onAwareApprovePost,
@@ -14,16 +14,16 @@ function InPostItemFootApprove(props) {
   } = props;
 
   const onAwareShareClicked = e => {
-    onAwareApprovePost(curBorrowShare.id);
+    onAwareApprovePost(approveShare.id);
   };
   const onReturnShareClicked = e => {
-    onReturnPost(curBorrowShare.id);
+    onReturnPost(approveShare.id);
   };
 
   let awareContent;
-  if (!curBorrowShare.isAwareApprove) {
+  if (!approveShare.isAwareApprove) {
     if (isAwaringShare) {
-      awareContent = <LoadingIcon text={"receiving"} />;
+      awareContent = <LoadingIcon text={"aware approve"} />;
     } else {
       awareContent = (
         <button
@@ -40,7 +40,7 @@ function InPostItemFootApprove(props) {
   }
   let returnContent;
   if (isReturningShare) {
-    returnContent = <LoadingIcon text={"returning"} />;
+    returnContent = <LoadingIcon text={"return"} />;
   } else {
     returnContent = (
       <button
@@ -62,7 +62,7 @@ function InPostItemFootApprove(props) {
 }
 
 InPostItemFootApprove.propTypes = {
-  curBorrowShare: PropTypes.instanceOf(Share).isRequired,
+  approveShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
   onAwareApprovePost: PropTypes.func.isRequired,
