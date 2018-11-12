@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import User from "../../../../model/user";
 import Share from "../../../../model/share";
 import PostItemFootStyle from "../../../post/component/style/postItem_foot_style";
-import InPostItemFootApprove from "./inPostItem_foot_approve";
-import InPostItemFootShop from "./inPostItem_foot_shop";
-import InPostItemFootRequest from "./inPostItem_foot_request";
 import { nullOrRequiredValidator } from "../../../../share/util";
+import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
+import InPostItemFootApproveContainer from "../../container/foot/inPostItem_foot_approve.con";
+import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 
 function InPostItemFoot(props) {
   const {
@@ -18,20 +18,15 @@ function InPostItemFoot(props) {
     isRequestingPost,
     isUnRequestingPost,
     isAwaringShare,
-    isReturningShare,
-    requestPostHandler,
-    unRequestPostHandler,
-    awareApprovePostHandler,
-    returnPostHandler
+    isReturningShare
   } = props;
 
   let content;
 
   if (myRequestShare) {
     content = (
-      <InPostItemFootRequest
+      <InPostItemFootRequestContainer
         isUnRequestingPost={isUnRequestingPost}
-        unRequestPostHandler={unRequestPostHandler}
         requestShareId={myRequestShare.id}
       />
     );
@@ -40,20 +35,17 @@ function InPostItemFoot(props) {
     currentlyBorrowShare.borrower.id === loginUser.id
   ) {
     content = (
-      <InPostItemFootApprove
+      <InPostItemFootApproveContainer
         approveShare={currentlyBorrowShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
-        awareApprovePostHandler={awareApprovePostHandler}
-        returnPostHandler={returnPostHandler}
       />
     );
   } else if (isActive) {
     content = (
-      <InPostItemFootShop
+      <InPostItemFootShopContainer
         postId={postId}
         isRequestingPost={isRequestingPost}
-        requestPostHandler={requestPostHandler}
       />
     );
   } else {
@@ -71,11 +63,7 @@ InPostItemFoot.propTypes = {
   isRequestingPost: PropTypes.bool.isRequired,
   isUnRequestingPost: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
-  isReturningShare: PropTypes.bool.isRequired,
-  requestPostHandler: PropTypes.func.isRequired,
-  unRequestPostHandler: PropTypes.func.isRequired,
-  awareApprovePostHandler: PropTypes.func.isRequired,
-  returnPostHandler: PropTypes.func.isRequired
+  isReturningShare: PropTypes.bool.isRequired
 };
 
 export default InPostItemFoot;

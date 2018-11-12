@@ -11,10 +11,6 @@ function InPostList(props) {
     deletingShareIds,
     awaringShareIds,
     returningShareIds,
-    requestPostHandler,
-    unRequestPostHandler,
-    awareApprovePostHandler,
-    returnPostHandler,
     loginUser
   } = props;
 
@@ -29,10 +25,6 @@ function InPostList(props) {
           key={post.id}
           loginUser={loginUser}
           post={post}
-          requestPostHandler={requestPostHandler}
-          unRequestPostHandler={unRequestPostHandler}
-          awareApprovePostHandler={awareApprovePostHandler}
-          returnPostHandler={returnPostHandler}
           isRequestingPost={requestingPostIds.includes(post.id)}
           isUnRequestingPost={post.shares.some(share =>
             deletingShareIds.includes(share.id)
@@ -56,10 +48,6 @@ InPostList.propTypes = {
   deletingShareIds: PropTypes.array.isRequired,
   awaringShareIds: PropTypes.array.isRequired,
   returningShareIds: PropTypes.array.isRequired,
-  requestPostHandler: PropTypes.func.isRequired,
-  unRequestPostHandler: PropTypes.func.isRequired,
-  awareApprovePostHandler: PropTypes.func.isRequired,
-  returnPostHandler: PropTypes.func.isRequired,
   loginUser: PropTypes.object.isRequired
 };
 

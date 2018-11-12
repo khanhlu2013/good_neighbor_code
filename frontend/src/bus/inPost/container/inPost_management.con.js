@@ -1,11 +1,7 @@
 import { connect } from "react-redux";
 import InPostManagementComponent from "../component/inPost_management";
-import requestInPost from "../action/requestInPost.action";
-import unRequestInPost from "../action/unRequestInPost.action";
 import fetchInPosts from "../action/fetchInPosts.action";
 import { selectInPostApproveAlert } from "../inPost.selector";
-import awareApproveInPost from "../action/awareApproveInPost.action";
-import returnInPost from "../action/returnInPost.action";
 
 const mapStateToProps = (state, ownProps) => {
   const loginUser = state.auth.loginUser;
@@ -34,11 +30,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchInPosts: () => dispatch(fetchInPosts()),
-  requestPostHandler: postId => dispatch(requestInPost(postId)),
-  unRequestPostHandler: shareId => dispatch(unRequestInPost(shareId)),
-  awareApprovePostHandler: shareId => dispatch(awareApproveInPost(shareId)),
-  returnPostHandler: shareId => dispatch(returnInPost(shareId))
+  fetchInPosts: () => dispatch(fetchInPosts())
 });
 
 const InPostManagementContainer = connect(
