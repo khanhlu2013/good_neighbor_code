@@ -50,6 +50,12 @@ class Post {
     }
     return result;
   }
+
+  getUserLatestRequestShare(userId) {
+    return (
+      this.requestShares.find(share => share.borrower.id === userId) || null
+    );
+  }
 }
 
 export default Post;

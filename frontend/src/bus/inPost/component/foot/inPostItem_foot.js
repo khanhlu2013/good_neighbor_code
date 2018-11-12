@@ -16,13 +16,13 @@ function InPostItemFoot(props) {
     currentlyBorrowShare,
     myRequestShare,
     isRequestingPost,
-    isDeleteingShare,
+    isUnRequestingPost,
     isAwaringShare,
     isReturningShare,
-    onRequestPost,
-    onUnRequestPost,
-    onAwareApprovePost,
-    onReturnPost
+    requestPostHandler,
+    unRequestPostHandler,
+    awareApprovePostHandler,
+    returnPostHandler
   } = props;
 
   let content;
@@ -30,8 +30,8 @@ function InPostItemFoot(props) {
   if (myRequestShare) {
     content = (
       <InPostItemFootRequest
-        isDeleteingShare={isDeleteingShare}
-        onUnRequestPost={onUnRequestPost}
+        isUnRequestingPost={isUnRequestingPost}
+        unRequestPostHandler={unRequestPostHandler}
         requestShareId={myRequestShare.id}
       />
     );
@@ -44,8 +44,8 @@ function InPostItemFoot(props) {
         approveShare={currentlyBorrowShare}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
-        onAwareApprovePost={onAwareApprovePost}
-        onReturnPost={onReturnPost}
+        awareApprovePostHandler={awareApprovePostHandler}
+        returnPostHandler={returnPostHandler}
       />
     );
   } else if (isActive) {
@@ -53,7 +53,7 @@ function InPostItemFoot(props) {
       <InPostItemFootShop
         postId={postId}
         isRequestingPost={isRequestingPost}
-        onRequestPost={onRequestPost}
+        requestPostHandler={requestPostHandler}
       />
     );
   } else {
@@ -69,13 +69,13 @@ InPostItemFoot.propTypes = {
   currentlyBorrowShare: nullOrRequiredValidator("object", Share),
   myRequestShare: nullOrRequiredValidator("object", Share),
   isRequestingPost: PropTypes.bool.isRequired,
-  isDeleteingShare: PropTypes.bool.isRequired,
+  isUnRequestingPost: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onRequestPost: PropTypes.func.isRequired,
-  onUnRequestPost: PropTypes.func.isRequired,
-  onAwareApprovePost: PropTypes.func.isRequired,
-  onReturnPost: PropTypes.func.isRequired
+  requestPostHandler: PropTypes.func.isRequired,
+  unRequestPostHandler: PropTypes.func.isRequired,
+  awareApprovePostHandler: PropTypes.func.isRequired,
+  returnPostHandler: PropTypes.func.isRequired
 };
 
 export default InPostItemFoot;

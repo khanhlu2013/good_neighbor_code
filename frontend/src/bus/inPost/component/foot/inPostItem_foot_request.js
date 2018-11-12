@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootRequest(props) {
-  const { requestShareId, isDeleteingShare, onUnRequestPost } = props;
+  const { requestShareId, isUnRequestingPost, unRequestPostHandler } = props;
 
-  const onUndoRequestClicked = e => {
-    onUnRequestPost(requestShareId);
+  const handleUndoRequest = e => {
+    unRequestPostHandler(requestShareId);
   };
 
   let content;
-  if (isDeleteingShare) {
+  if (isUnRequestingPost) {
     content = <LoadingIcon text="undo" />;
   } else {
     content = (
       <button
         id="outPostItem-undoRequestBtn-react"
-        onClick={onUndoRequestClicked}
+        onClick={handleUndoRequest}
         className="btn btn-warning"
       >
         undo
@@ -34,7 +34,7 @@ function InPostItemFootRequest(props) {
 
 InPostItemFootRequest.propTypes = {
   requestShareId: PropTypes.string.isRequired,
-  isDeleteingShare: PropTypes.bool.isRequired,
-  onUnRequestPost: PropTypes.func.isRequired
+  isUnRequestingPost: PropTypes.bool.isRequired,
+  unRequestPostHandler: PropTypes.func.isRequired
 };
 export default InPostItemFootRequest;

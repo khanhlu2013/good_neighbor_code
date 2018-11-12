@@ -9,15 +9,15 @@ function InPostItemFootApprove(props) {
     approveShare,
     isAwaringShare,
     isReturningShare,
-    onAwareApprovePost,
-    onReturnPost
+    awareApprovePostHandler,
+    returnPostHandler
   } = props;
 
-  const onAwareShareClicked = e => {
-    onAwareApprovePost(approveShare.id);
+  const awareApprovePostClickHandler = e => {
+    awareApprovePostHandler(approveShare.id);
   };
-  const onReturnShareClicked = e => {
-    onReturnPost(approveShare.id);
+  const returnPostClickHandler = e => {
+    returnPostHandler(approveShare.id);
   };
 
   let awareContent;
@@ -29,7 +29,7 @@ function InPostItemFootApprove(props) {
         <button
           id="outPostItem-awareApproveBtn-react"
           className="btn btn-sm btn-success"
-          onClick={onAwareShareClicked}
+          onClick={awareApprovePostClickHandler}
         >
           confirm approved
         </button>
@@ -46,7 +46,7 @@ function InPostItemFootApprove(props) {
       <button
         id="outPostItem-returnBtn-react"
         className="btn btn-sm btn-warning ml-1"
-        onClick={onReturnShareClicked}
+        onClick={returnPostClickHandler}
       >
         return item
       </button>
@@ -65,7 +65,7 @@ InPostItemFootApprove.propTypes = {
   approveShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onAwareApprovePost: PropTypes.func.isRequired,
-  onReturnPost: PropTypes.func.isRequired
+  awareApprovePostHandler: PropTypes.func.isRequired,
+  returnPostHandler: PropTypes.func.isRequired
 };
 export default InPostItemFootApprove;

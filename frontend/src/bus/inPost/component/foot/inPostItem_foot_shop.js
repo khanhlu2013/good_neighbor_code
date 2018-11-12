@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootShop(props) {
-  const { postId, isRequestingPost, onRequestPost } = props;
+  const { postId, isRequestingPost, requestPostHandler } = props;
 
-  const onRequestPostClicked = e => {
-    onRequestPost(postId);
+  const requestPostClickHandler = e => {
+    requestPostHandler(postId);
   };
 
   let content;
@@ -18,7 +18,7 @@ function InPostItemFootShop(props) {
       <button
         id="outPostItem-requestBtn-react"
         className="btn btn-success"
-        onClick={onRequestPostClicked}
+        onClick={requestPostClickHandler}
       >
         request
       </button>
@@ -30,6 +30,6 @@ function InPostItemFootShop(props) {
 InPostItemFootShop.propTypes = {
   postId: PropTypes.string.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
-  onRequestPost: PropTypes.func.isRequired
+  requestPostHandler: PropTypes.func.isRequired
 };
 export default InPostItemFootShop;

@@ -8,13 +8,13 @@ describe("inPostItem_foot_shop", () => {
   describe("loading icon", () => {
     it("show during requesting post", () => {
       const postId = "1";
-      const onRequestPost = jest.fn();
+      const requestPostHandler = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootShop
           postId={postId}
           isRequestingPost={true}
-          onRequestPost={onRequestPost}
+          requestPostHandler={requestPostHandler}
         />
       );
       expect(wrap).toMatchSnapshot();
@@ -24,13 +24,13 @@ describe("inPostItem_foot_shop", () => {
 
     it("not show when not requesting post", () => {
       const postId = "1";
-      const onRequestPost = jest.fn();
+      const requestPostHandler = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootShop
           postId={postId}
           isRequestingPost={false}
-          onRequestPost={onRequestPost}
+          requestPostHandler={requestPostHandler}
         />
       );
       expect(wrap).toMatchSnapshot();
@@ -39,19 +39,19 @@ describe("inPostItem_foot_shop", () => {
     });
   });
 
-  it("trigger onRequestPost callback when request btn is clicked", () => {
+  it("trigger requestPostHandler callback when request btn is clicked", () => {
     const postId = "1";
-    const onRequestPost = jest.fn();
+    const requestPostHandler = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootShop
         postId={postId}
         isRequestingPost={false}
-        onRequestPost={onRequestPost}
+        requestPostHandler={requestPostHandler}
       />
     );
     wrap.find("#outPostItem-requestBtn-react").simulate("click");
-    expect(onRequestPost.mock.calls.length).toBe(1);
-    expect(onRequestPost.mock.calls[0][0]).toBe("1");
+    expect(requestPostHandler.mock.calls.length).toBe(1);
+    expect(requestPostHandler.mock.calls[0][0]).toBe("1");
   });
 });

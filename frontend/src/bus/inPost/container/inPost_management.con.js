@@ -35,10 +35,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchInPosts: () => dispatch(fetchInPosts()),
-  onRequestPost: postId => dispatch(requestInPost(postId)),
-  onUnRequestPost: shareId => dispatch(unRequestInPost(shareId)),
-  onAwareApprovePost: shareId => dispatch(awareApproveInPost(shareId)),
-  onReturnPost: shareId => dispatch(returnInPost(shareId))
+  requestPostHandler: postId => dispatch(requestInPost(postId)),
+  unRequestPostHandler: shareId => dispatch(unRequestInPost(shareId)),
+  awareApprovePostHandler: shareId => dispatch(awareApproveInPost(shareId)),
+  returnPostHandler: shareId => dispatch(returnInPost(shareId))
 });
 
 const InPostManagementContainer = connect(

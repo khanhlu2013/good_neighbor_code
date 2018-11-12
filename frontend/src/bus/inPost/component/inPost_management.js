@@ -28,10 +28,10 @@ class InPostManagementComponent extends Component {
     awaringShareIds: PropTypes.array.isRequired,
     returningShareIds: PropTypes.array.isRequired,
     //action handler
-    onRequestPost: PropTypes.func.isRequired,
-    onUnRequestPost: PropTypes.func.isRequired,
-    onAwareApprovePost: PropTypes.func.isRequired,
-    onReturnPost: PropTypes.func.isRequired
+    requestPostHandler: PropTypes.func.isRequired,
+    unRequestPostHandler: PropTypes.func.isRequired,
+    awareApprovePostHandler: PropTypes.func.isRequired,
+    returnPostHandler: PropTypes.func.isRequired
   };
 
   state = {
@@ -69,10 +69,10 @@ class InPostManagementComponent extends Component {
         deletingShareIds={this.props.deletingShareIds}
         awaringShareIds={this.props.awaringShareIds}
         returningShareIds={this.props.returningShareIds}
-        onRequestPost={this.props.onRequestPost}
-        onUnRequestPost={this.props.onUnRequestPost}
-        onAwareApprovePost={this.props.onAwareApprovePost}
-        onReturnPost={this.props.onReturnPost}
+        requestPostHandler={this.props.requestPostHandler}
+        unRequestPostHandler={this.props.unRequestPostHandler}
+        awareApprovePostHandler={this.props.awareApprovePostHandler}
+        returnPostHandler={this.props.returnPostHandler}
       />
     );
 

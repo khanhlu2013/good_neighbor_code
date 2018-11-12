@@ -11,14 +11,18 @@ function InPostItem(props) {
     loginUser,
     post,
     isRequestingPost,
-    isDeleteingShare,
+    isUnRequestingPost,
     isAwaringShare,
     isReturningShare,
-    onRequestPost,
-    onUnRequestPost,
-    onAwareApprovePost,
-    onReturnPost
+    requestPostHandler,
+    unRequestPostHandler,
+    awareApprovePostHandler,
+    returnPostHandler
   } = props;
+  const myRequestShare =
+    post.requestShares.find(share => share.borrower.id === loginUser.id) ||
+    null;
+
   return (
     <PostItemStyle id="inPost-item-react">
       <InPostItemHead postUser={post.user} dateCreate={post.dateCreate} />
@@ -28,19 +32,15 @@ function InPostItem(props) {
         loginUser={loginUser}
         isActive={post.isActive}
         currentlyBorrowShare={post.curBorrowShare}
-        myRequestShare={
-          post.requestShares.find(
-            share => share.borrower.id === loginUser.id
-          ) || null
-        }
+        myRequestShare={myRequestShare}
         isRequestingPost={isRequestingPost}
-        isDeleteingShare={isDeleteingShare}
+        isUnRequestingPost={isUnRequestingPost}
         isAwaringShare={isAwaringShare}
         isReturningShare={isReturningShare}
-        onRequestPost={onRequestPost}
-        onUnRequestPost={onUnRequestPost}
-        onAwareApprovePost={onAwareApprovePost}
-        onReturnPost={onReturnPost}
+        requestPostHandler={requestPostHandler}
+        unRequestPostHandler={unRequestPostHandler}
+        awareApprovePostHandler={awareApprovePostHandler}
+        returnPostHandler={returnPostHandler}
       />
     </PostItemStyle>
   );
@@ -49,13 +49,13 @@ InPostItem.propTypes = {
   loginUser: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
-  isDeleteingShare: PropTypes.bool.isRequired,
+  isUnRequestingPost: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  onRequestPost: PropTypes.func.isRequired,
-  onUnRequestPost: PropTypes.func.isRequired,
-  onAwareApprovePost: PropTypes.func.isRequired,
-  onReturnPost: PropTypes.func.isRequired
+  requestPostHandler: PropTypes.func.isRequired,
+  unRequestPostHandler: PropTypes.func.isRequired,
+  awareApprovePostHandler: PropTypes.func.isRequired,
+  returnPostHandler: PropTypes.func.isRequired
 };
 
 export { InPostItem };

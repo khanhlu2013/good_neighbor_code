@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import InPostItemFootApprove from "../inPostItem_foot_approve";
 import { rawsToPosts } from "../../../../../api/_private_api_helper";
 import LoadingIcon from "../../../../../share/loadingIcon";
@@ -8,16 +8,16 @@ describe("inPostItem_foot_approve", () => {
   describe("loading icon", () => {
     it("is display during aware approve", () => {
       const unAwareApproveShare = getMyApproveShare(false);
-      const onAwareApprovePost = jest.fn();
-      const onReturnPost = jest.fn();
+      const awareApprovePostHandler = jest.fn();
+      const returnPostHandler = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootApprove
           approveShare={unAwareApproveShare}
           isAwaringShare={true}
           isReturningShare={false}
-          onAwareApprovePost={onAwareApprovePost}
-          onReturnPost={onReturnPost}
+          awareApprovePostHandler={awareApprovePostHandler}
+          returnPostHandler={returnPostHandler}
         />
       );
       expect(wrap.find(LoadingIcon).props().text).toBe("aware approve");
@@ -26,16 +26,16 @@ describe("inPostItem_foot_approve", () => {
 
     it("is display during return", () => {
       const approveShare = getMyApproveShare(true);
-      const onAwareApprovePost = jest.fn();
-      const onReturnPost = jest.fn();
+      const awareApprovePostHandler = jest.fn();
+      const returnPostHandler = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootApprove
           approveShare={approveShare}
           isAwaringShare={false}
           isReturningShare={true}
-          onAwareApprovePost={onAwareApprovePost}
-          onReturnPost={onReturnPost}
+          awareApprovePostHandler={awareApprovePostHandler}
+          returnPostHandler={returnPostHandler}
         />
       );
       expect(wrap.find(LoadingIcon).props().text).toBe("return");
@@ -43,42 +43,42 @@ describe("inPostItem_foot_approve", () => {
     });
   });
 
-  it("trigger onAwareApprovePost and onReturnPost callback correctly", () => {
+  it("trigger awareApprovePostHandler and returnPostHandler callback correctly", () => {
     const shareId = "shareId1";
     const approveShare = getMyApproveShare(false, shareId);
-    const onAwareApprovePost = jest.fn();
-    const onReturnPost = jest.fn();
+    const awareApprovePostHandler = jest.fn();
+    const returnPostHandler = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootApprove
         approveShare={approveShare}
         isAwaringShare={false}
         isReturningShare={false}
-        onAwareApprovePost={onAwareApprovePost}
-        onReturnPost={onReturnPost}
+        awareApprovePostHandler={awareApprovePostHandler}
+        returnPostHandler={returnPostHandler}
       />
     );
     wrap.find("#outPostItem-awareApproveBtn-react").simulate("click");
-    expect(onAwareApprovePost.mock.calls).toHaveLength(1);
-    expect(onAwareApprovePost.mock.calls[0][0]).toBe(shareId);
+    expect(awareApprovePostHandler.mock.calls).toHaveLength(1);
+    expect(awareApprovePostHandler.mock.calls[0][0]).toBe(shareId);
 
     wrap.find("#outPostItem-returnBtn-react").simulate("click");
-    expect(onReturnPost.mock.calls).toHaveLength(1);
-    expect(onReturnPost.mock.calls[0][0]).toBe(shareId);
+    expect(returnPostHandler.mock.calls).toHaveLength(1);
+    expect(returnPostHandler.mock.calls[0][0]).toBe(shareId);
   });
 
   it("match snapshot", () => {
     const approveShare = getMyApproveShare(false);
-    const onAwareApprovePost = jest.fn();
-    const onReturnPost = jest.fn();
+    const awareApprovePostHandler = jest.fn();
+    const returnPostHandler = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootApprove
         approveShare={approveShare}
         isAwaringShare={false}
         isReturningShare={false}
-        onAwareApprovePost={onAwareApprovePost}
-        onReturnPost={onReturnPost}
+        awareApprovePostHandler={awareApprovePostHandler}
+        returnPostHandler={returnPostHandler}
       />
     );
 
