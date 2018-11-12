@@ -4,15 +4,7 @@ import { InPostItem } from "./inPostItem";
 import PostListNoData from "../../post/component/postListNoData";
 
 function InPostList(props) {
-  const {
-    listId,
-    posts,
-    requestingPostIds,
-    deletingShareIds,
-    awaringShareIds,
-    returningShareIds,
-    loginUser
-  } = props;
+  const { listId, posts, loginUser } = props;
 
   let content;
   if (posts.length === 0) {
@@ -21,21 +13,7 @@ function InPostList(props) {
     content = posts
       .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
       .map(post => (
-        <InPostItem
-          key={post.id}
-          loginUser={loginUser}
-          post={post}
-          isRequestingPost={requestingPostIds.includes(post.id)}
-          isUnRequestingPost={post.shares.some(share =>
-            deletingShareIds.includes(share.id)
-          )}
-          isAwaringShare={post.shares.some(share =>
-            awaringShareIds.includes(share.id)
-          )}
-          isReturningShare={post.shares.some(share =>
-            returningShareIds.includes(share.id)
-          )}
-        />
+        <InPostItem key={post.id} loginUser={loginUser} post={post} />
       ));
   }
 
@@ -44,10 +22,6 @@ function InPostList(props) {
 InPostList.propTypes = {
   listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
-  requestingPostIds: PropTypes.array.isRequired,
-  deletingShareIds: PropTypes.array.isRequired,
-  awaringShareIds: PropTypes.array.isRequired,
-  returningShareIds: PropTypes.array.isRequired,
   loginUser: PropTypes.object.isRequired
 };
 

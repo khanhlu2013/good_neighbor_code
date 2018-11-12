@@ -14,40 +14,24 @@ function InPostItemFoot(props) {
     loginUser,
     isActive,
     currentlyBorrowShare,
-    myRequestShare,
-    isRequestingPost,
-    isUnRequestingPost,
-    isAwaringShare,
-    isReturningShare
+    myRequestShare
   } = props;
 
   let content;
 
   if (myRequestShare) {
     content = (
-      <InPostItemFootRequestContainer
-        isUnRequestingPost={isUnRequestingPost}
-        requestShareId={myRequestShare.id}
-      />
+      <InPostItemFootRequestContainer requestShareId={myRequestShare.id} />
     );
   } else if (
     currentlyBorrowShare !== null &&
     currentlyBorrowShare.borrower.id === loginUser.id
   ) {
     content = (
-      <InPostItemFootApproveContainer
-        approveShare={currentlyBorrowShare}
-        isAwaringShare={isAwaringShare}
-        isReturningShare={isReturningShare}
-      />
+      <InPostItemFootApproveContainer approveShare={currentlyBorrowShare} />
     );
   } else if (isActive) {
-    content = (
-      <InPostItemFootShopContainer
-        postId={postId}
-        isRequestingPost={isRequestingPost}
-      />
-    );
+    content = <InPostItemFootShopContainer postId={postId} />;
   } else {
     content = <div>Post is no longer active</div>;
   }
@@ -59,11 +43,7 @@ InPostItemFoot.propTypes = {
   loginUser: PropTypes.instanceOf(User).isRequired,
   isActive: PropTypes.bool.isRequired,
   currentlyBorrowShare: nullOrRequiredValidator("object", Share),
-  myRequestShare: nullOrRequiredValidator("object", Share),
-  isRequestingPost: PropTypes.bool.isRequired,
-  isUnRequestingPost: PropTypes.bool.isRequired,
-  isAwaringShare: PropTypes.bool.isRequired,
-  isReturningShare: PropTypes.bool.isRequired
+  myRequestShare: nullOrRequiredValidator("object", Share)
 };
 
 export default InPostItemFoot;

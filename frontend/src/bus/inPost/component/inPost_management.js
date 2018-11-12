@@ -21,12 +21,7 @@ class InPostManagementComponent extends Component {
     isFetchingPosts: PropTypes.bool.isRequired,
     isInitPosts: PropTypes.bool.isRequired,
     approveAlertPosts: PropTypes.array.isRequired,
-    returnShares: PropTypes.array.isRequired,
-    //pending action
-    requestingPostIds: PropTypes.array.isRequired,
-    deletingShareIds: PropTypes.array.isRequired,
-    awaringShareIds: PropTypes.array.isRequired,
-    returningShareIds: PropTypes.array.isRequired
+    returnShares: PropTypes.array.isRequired
   };
 
   state = {
@@ -60,10 +55,6 @@ class InPostManagementComponent extends Component {
         listId={listId}
         loginUser={this.props.loginUser}
         posts={postArray}
-        requestingPostIds={this.props.requestingPostIds}
-        deletingShareIds={this.props.deletingShareIds}
-        awaringShareIds={this.props.awaringShareIds}
-        returningShareIds={this.props.returningShareIds}
       />
     );
 

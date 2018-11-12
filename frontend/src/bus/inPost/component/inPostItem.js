@@ -7,14 +7,7 @@ import PostItemStyle from "../../post/component/style/postItem_style";
 import InPostItemHead from "./inPostItem_head";
 
 function InPostItem(props) {
-  const {
-    loginUser,
-    post,
-    isRequestingPost,
-    isUnRequestingPost,
-    isAwaringShare,
-    isReturningShare
-  } = props;
+  const { loginUser, post } = props;
   const myRequestShare =
     post.requestShares.find(share => share.borrower.id === loginUser.id) ||
     null;
@@ -29,21 +22,13 @@ function InPostItem(props) {
         isActive={post.isActive}
         currentlyBorrowShare={post.curBorrowShare}
         myRequestShare={myRequestShare}
-        isRequestingPost={isRequestingPost}
-        isUnRequestingPost={isUnRequestingPost}
-        isAwaringShare={isAwaringShare}
-        isReturningShare={isReturningShare}
       />
     </PostItemStyle>
   );
 }
 InPostItem.propTypes = {
   loginUser: PropTypes.object.isRequired,
-  post: PropTypes.object.isRequired,
-  isRequestingPost: PropTypes.bool.isRequired,
-  isUnRequestingPost: PropTypes.bool.isRequired,
-  isAwaringShare: PropTypes.bool.isRequired,
-  isReturningShare: PropTypes.bool.isRequired
+  post: PropTypes.object.isRequired
 };
 
 export { InPostItem };

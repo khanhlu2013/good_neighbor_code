@@ -20,12 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingPosts: state.inPost.isFetchingPosts,
     isInitPosts: state.inPost.isInitPosts,
     approveAlertPosts,
-    returnShares,
-    //pending work
-    requestingPostIds: state.inPost.requestingPostIds,
-    deletingShareIds: state.inPost.deletingShareIds,
-    awaringShareIds: state.inPost.awaringShareIds,
-    returningShareIds: state.inPost.returningShareIds
+    returnShares
   };
 };
 
