@@ -1,16 +1,18 @@
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import InPostItemFoot from "../../component/foot/inPostItem_foot";
 
 const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
   const post = state.inPost.posts.find(post => post.id === postId);
   const currentlyBorrowShare = post.curBorrowShare;
-  let myBorrowShare = null;
+  let myBorrowShareId = null;
   if (
     currentlyBorrowShare &&
     currentlyBorrowShare.borrower.id === state.auth.loginUser.id
   ) {
-    myBorrowShare = currentlyBorrowShare;
+    myBorrowShareId = currentlyBorrowShare.id;
   }
   const myRequestShare =
     post.requestShares.find(
@@ -19,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     ...ownProps,
-    myBorrowShare,
+    myBorrowShareId,
     myRequestShareId: myRequestShare ? myRequestShare.id : null,
     isActive: post.isActive
   };
@@ -29,4 +31,8 @@ const InPostItemFootContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(InPostItemFoot);
+InPostItemFootContainer.propTypes = {
+  postId: PropTypes.string.isRequired
+};
+
 export default InPostItemFootContainer;

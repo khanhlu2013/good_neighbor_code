@@ -145,3 +145,7 @@ myRequestShare only find one request, what if i request multiple time?
 ---
 what is my plan today? 30 percent of job search right? ok. i will start doing that in the afternoon. now i will have all the fun for myself. learning. doing. tackle that , make some test. 
 
+---
+
+foot component -> take myApproveShareId
+InPostItemFootApproveContainer -> approveShareId
