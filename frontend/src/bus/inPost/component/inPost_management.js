@@ -51,11 +51,7 @@ class InPostManagementComponent extends Component {
     );
 
     const generateList = (listId, postArray) => (
-      <InPostList
-        listId={listId}
-        loginUser={this.props.loginUser}
-        posts={postArray}
-      />
+      <InPostList listId={listId} posts={postArray} />
     );
 
     return (

@@ -9,27 +9,16 @@ import InPostItemFootApproveContainer from "../../container/foot/inPostItem_foot
 import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 
 function InPostItemFoot(props) {
-  const {
-    postId,
-    loginUser,
-    isActive,
-    currentlyBorrowShare,
-    myRequestShare
-  } = props;
+  const { postId, isActive, myBorrowShare, myRequestShareId } = props;
 
   let content;
 
-  if (myRequestShare) {
+  if (myRequestShareId) {
     content = (
-      <InPostItemFootRequestContainer requestShareId={myRequestShare.id} />
+      <InPostItemFootRequestContainer requestShareId={myRequestShareId} />
     );
-  } else if (
-    currentlyBorrowShare !== null &&
-    currentlyBorrowShare.borrower.id === loginUser.id
-  ) {
-    content = (
-      <InPostItemFootApproveContainer approveShare={currentlyBorrowShare} />
-    );
+  } else if (myBorrowShare) {
+    content = <InPostItemFootApproveContainer approveShare={myBorrowShare} />;
   } else if (isActive) {
     content = <InPostItemFootShopContainer postId={postId} />;
   } else {
@@ -42,8 +31,8 @@ InPostItemFoot.propTypes = {
   postId: PropTypes.string.isRequired,
   loginUser: PropTypes.instanceOf(User).isRequired,
   isActive: PropTypes.bool.isRequired,
-  currentlyBorrowShare: nullOrRequiredValidator("object", Share),
-  myRequestShare: nullOrRequiredValidator("object", Share)
+  myBorrowShare: nullOrRequiredValidator("object", Share),
+  myRequestShareId: nullOrRequiredValidator("string")
 };
 
 export default InPostItemFoot;
