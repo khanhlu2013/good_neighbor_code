@@ -5,36 +5,38 @@ import InPostItemFootShop from "../inPostItem_foot_shop";
 import LoadingIcon from "../../../../../share/loadingIcon";
 
 describe("inPostItem_foot_shop", () => {
-  it("render correctly when isRequestingPost is true", () => {
-    const postId = "1";
-    const onRequestPost = jest.fn();
+  describe("loading icon", () => {
+    it("show during requesting post", () => {
+      const postId = "1";
+      const onRequestPost = jest.fn();
 
-    const wrap = shallow(
-      <InPostItemFootShop
-        postId={postId}
-        isRequestingPost={true}
-        onRequestPost={onRequestPost}
-      />
-    );
-    expect(wrap).toMatchSnapshot();
-    expect(wrap.find(LoadingIcon)).toHaveLength(1);
-    expect(wrap.find("button")).toHaveLength(0);
-  });
+      const wrap = shallow(
+        <InPostItemFootShop
+          postId={postId}
+          isRequestingPost={true}
+          onRequestPost={onRequestPost}
+        />
+      );
+      expect(wrap).toMatchSnapshot();
+      expect(wrap.find(LoadingIcon)).toHaveLength(1);
+      expect(wrap.find("button")).toHaveLength(0);
+    });
 
-  it("render correctly when isRequestingPost is false", () => {
-    const postId = "1";
-    const onRequestPost = jest.fn();
+    it("not show when not requesting post", () => {
+      const postId = "1";
+      const onRequestPost = jest.fn();
 
-    const wrap = shallow(
-      <InPostItemFootShop
-        postId={postId}
-        isRequestingPost={false}
-        onRequestPost={onRequestPost}
-      />
-    );
-    expect(wrap).toMatchSnapshot();
-    expect(wrap.find(LoadingIcon)).toHaveLength(0);
-    expect(wrap.find("button")).toHaveLength(1);
+      const wrap = shallow(
+        <InPostItemFootShop
+          postId={postId}
+          isRequestingPost={false}
+          onRequestPost={onRequestPost}
+        />
+      );
+      expect(wrap).toMatchSnapshot();
+      expect(wrap.find(LoadingIcon)).toHaveLength(0);
+      expect(wrap.find("button")).toHaveLength(1);
+    });
   });
 
   it("trigger onRequestPost callback when request btn is clicked", () => {

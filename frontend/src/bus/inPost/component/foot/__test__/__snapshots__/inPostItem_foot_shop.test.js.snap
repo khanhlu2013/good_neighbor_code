@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inPostItem_foot_shop render correctly when isRequestingPost is false 1`] = `
+exports[`inPostItem_foot_shop loading icon not show when not requesting post 1`] = `
 <button
   className="btn btn-success"
   id="outPostItem-requestBtn-react"
@@ -10,7 +10,7 @@ exports[`inPostItem_foot_shop render correctly when isRequestingPost is false 1`
 </button>
 `;
 
-exports[`inPostItem_foot_shop render correctly when isRequestingPost is true 1`] = `
+exports[`inPostItem_foot_shop loading icon show during requesting post 1`] = `
 <LoadingIcon
   text="requesting"
 />
