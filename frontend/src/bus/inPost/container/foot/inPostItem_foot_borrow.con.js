@@ -3,13 +3,18 @@ import PropTypes from "prop-types";
 
 import awareApproveInPost from "../../action/awareApproveInPost.action";
 import returnInPost from "../../action/returnInPost.action";
-import InPostItemFootApprove from "../../component/foot/inPostItem_foot_approve";
+import InPostItemFootBorrow from "../../component/foot/inPostItem_foot_borrow";
 
 const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;
+  const post = state.inPost.posts.find(post =>
+    post.shares.some(share => share.id === shareId)
+  );
+  const share = post.shares.find(share => share.id === shareId);
 
   return {
-    ...ownProps,
+    myBorrowShare: share,
+    isAwareApprove: share.isAwareApprove,
     isAwaringShare: state.inPost.awaringShareIds.includes(shareId),
     isReturningShare: state.inPost.returningShareIds.includes(shareId)
   };
@@ -18,12 +23,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   awareApprovePostHandler: shareId => dispatch(awareApproveInPost(shareId)),
   returnPostHandler: shareId => dispatch(returnInPost(shareId))
 });
-const InPostItemFootApproveContainer = connect(
+const InPostItemFootBorrowContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootApprove);
-InPostItemFootApproveContainer.propTypes = {
+)(InPostItemFootBorrow);
+InPostItemFootBorrowContainer.propTypes = {
   myBorrowShareId: PropTypes.string.isRequired
 };
 
-export default InPostItemFootApproveContainer;
+export default InPostItemFootBorrowContainer;

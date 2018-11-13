@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
 
 function InPostItemFootRequest(props) {
-  const { requestShareId, isUnRequestingPost, unRequestPostHandler } = props;
+  const { myRequestShareId, isUnRequestingPost, unRequestPostHandler } = props;
 
   const handleUndoRequest = e => {
-    unRequestPostHandler(requestShareId);
+    unRequestPostHandler(myRequestShareId);
   };
 
   let content;
@@ -33,7 +33,7 @@ function InPostItemFootRequest(props) {
 }
 
 InPostItemFootRequest.propTypes = {
-  requestShareId: PropTypes.string.isRequired,
+  myRequestShareId: PropTypes.string.isRequired,
   isUnRequestingPost: PropTypes.bool.isRequired,
   unRequestPostHandler: PropTypes.func.isRequired
 };

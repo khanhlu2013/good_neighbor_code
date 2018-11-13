@@ -149,3 +149,5 @@ what is my plan today? 30 percent of job search right? ok. i will start doing th
 
 foot component -> take myApproveShareId
 InPostItemFootApproveContainer -> approveShareId
+
+---

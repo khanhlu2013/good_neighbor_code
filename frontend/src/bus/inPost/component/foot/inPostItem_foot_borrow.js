@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Share from "../../../../model/share";
 import LoadingIcon from "../../../../share/loadingIcon";
+import Share from "../../../../model/share";
 
-function InPostItemFootApprove(props) {
+function InPostItemFootBorrow(props) {
   const {
-    approveShare,
+    myBorrowShare,
     isAwaringShare,
     isReturningShare,
     awareApprovePostHandler,
@@ -14,14 +14,14 @@ function InPostItemFootApprove(props) {
   } = props;
 
   const awareApprovePostClickHandler = e => {
-    awareApprovePostHandler(approveShare.id);
+    awareApprovePostHandler(myBorrowShare.id);
   };
   const returnPostClickHandler = e => {
-    returnPostHandler(approveShare.id);
+    returnPostHandler(myBorrowShare.id);
   };
 
   let awareContent;
-  if (!approveShare.isAwareApprove) {
+  if (!myBorrowShare.isAwareApprove) {
     if (isAwaringShare) {
       awareContent = <LoadingIcon text={"aware approve"} />;
     } else {
@@ -61,11 +61,11 @@ function InPostItemFootApprove(props) {
   );
 }
 
-InPostItemFootApprove.propTypes = {
-  approveShare: PropTypes.instanceOf(Share).isRequired,
+InPostItemFootBorrow.propTypes = {
+  myBorrowShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
   awareApprovePostHandler: PropTypes.func.isRequired,
   returnPostHandler: PropTypes.func.isRequired
 };
-export default InPostItemFootApprove;
+export default InPostItemFootBorrow;

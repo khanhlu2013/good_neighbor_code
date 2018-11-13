@@ -5,11 +5,11 @@ import InPostItemFootRequest from "../../component/foot/inPostItem_foot_request"
 import unRequestInPost from "../../action/unRequestInPost.action";
 
 const mapStateToProps = (state, ownProps) => {
+  const { myRequestShareId } = ownProps;
+
   return {
-    ...ownProps,
-    isUnRequestingPost: state.inPost.deletingShareIds.includes(
-      ownProps.myRequestShareId
-    )
+    myRequestShareId,
+    isUnRequestingPost: state.inPost.deletingShareIds.includes(myRequestShareId)
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({

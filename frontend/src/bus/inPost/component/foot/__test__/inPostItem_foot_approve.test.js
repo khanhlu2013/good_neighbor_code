@@ -1,19 +1,19 @@
 import React from "react";
 import { shallow } from "enzyme";
-import InPostItemFootApprove from "../inPostItem_foot_approve";
+import InPostItemFootBorrow from "../inPostItem_foot_borrow";
 import { rawsToPosts } from "../../../../../api/_private_api_helper";
 import LoadingIcon from "../../../../../share/loadingIcon";
 
 describe("inPostItem_foot_approve", () => {
   describe("loading icon", () => {
     it("is display during aware approve", () => {
-      const unAwareApproveShare = getMyApproveShare(false);
+      const myBorrowShare = getMyApproveShare(false);
       const awareApprovePostHandler = jest.fn();
       const returnPostHandler = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootApprove
-          approveShare={unAwareApproveShare}
+        <InPostItemFootBorrow
+          myBorrowShare={myBorrowShare}
           isAwaringShare={true}
           isReturningShare={false}
           awareApprovePostHandler={awareApprovePostHandler}
@@ -25,13 +25,13 @@ describe("inPostItem_foot_approve", () => {
     });
 
     it("is display during return", () => {
-      const approveShare = getMyApproveShare(true);
+      const myBorrowShare = getMyApproveShare(true);
       const awareApprovePostHandler = jest.fn();
       const returnPostHandler = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootApprove
-          approveShare={approveShare}
+        <InPostItemFootBorrow
+          myBorrowShare={myBorrowShare}
           isAwaringShare={false}
           isReturningShare={true}
           awareApprovePostHandler={awareApprovePostHandler}
@@ -45,13 +45,13 @@ describe("inPostItem_foot_approve", () => {
 
   it("trigger awareApprovePostHandler and returnPostHandler callback correctly", () => {
     const shareId = "shareId1";
-    const approveShare = getMyApproveShare(false, shareId);
+    const myBorrowShare = getMyApproveShare(false, shareId);
     const awareApprovePostHandler = jest.fn();
     const returnPostHandler = jest.fn();
 
     const wrap = shallow(
-      <InPostItemFootApprove
-        approveShare={approveShare}
+      <InPostItemFootBorrow
+        myBorrowShare={myBorrowShare}
         isAwaringShare={false}
         isReturningShare={false}
         awareApprovePostHandler={awareApprovePostHandler}
@@ -68,13 +68,13 @@ describe("inPostItem_foot_approve", () => {
   });
 
   it("match snapshot", () => {
-    const approveShare = getMyApproveShare(false);
+    const myBorrowShare = getMyApproveShare(false);
     const awareApprovePostHandler = jest.fn();
     const returnPostHandler = jest.fn();
 
     const wrap = shallow(
-      <InPostItemFootApprove
-        approveShare={approveShare}
+      <InPostItemFootBorrow
+        myBorrowShare={myBorrowShare}
         isAwaringShare={false}
         isReturningShare={false}
         awareApprovePostHandler={awareApprovePostHandler}

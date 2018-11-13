@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import PostItemFootStyle from "../../../post/component/style/postItem_foot_style";
 import { nullOrRequiredValidator } from "../../../../share/util";
 import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
-import InPostItemFootApproveContainer from "../../container/foot/inPostItem_foot_approve.con";
+import InPostItemFootBorrowContainer from "../../container/foot/inPostItem_foot_borrow.con";
 import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 
 function InPostItemFoot(props) {
@@ -17,7 +17,7 @@ function InPostItemFoot(props) {
     );
   } else if (myBorrowShareId) {
     content = (
-      <InPostItemFootApproveContainer myBorrowShareId={myBorrowShareId} />
+      <InPostItemFootBorrowContainer myBorrowShareId={myBorrowShareId} />
     );
   } else if (isActive) {
     content = <InPostItemFootShopContainer postId={postId} />;
