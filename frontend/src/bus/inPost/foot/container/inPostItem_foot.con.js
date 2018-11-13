@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
-import InPostItemFoot from "../../component/foot/inPostItem_foot";
+import InPostItemFoot from "../component/inPostItem_foot";
 
 const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import PostItemBody from "../../post/component/postItem_body";
 import PostItemStyle from "../../post/component/style/postItem_style";
 import InPostItemHead from "./inPostItem_head";
-import InPostItemFootContainer from "../container/foot/inPostItem_foot.con";
+import InPostItemFootContainer from "../foot/container/inPostItem_foot.con";
 
 function InPostItem(props) {
   const { post } = props;

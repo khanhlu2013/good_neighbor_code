@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import InPostItemFootRequest from "../../component/foot/inPostItem_foot_request";
 import unRequestInPost from "../../action/unRequestInPost.action";
+import InPostItemFootRequest from "../component/inPostItem_foot_request";
 
 const mapStateToProps = (state, ownProps) => {
   const { myRequestShareId } = ownProps;
