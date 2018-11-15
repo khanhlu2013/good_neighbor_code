@@ -13,3 +13,16 @@ export const selectInPostApproveAlert = (posts, loginUserId) => {
     )
   );
 };
+
+const requestingPostIds = state => state.inPost.requestingPostIds;
+
+const isRequestingPost = (state, postId) => {
+  return requestingPostIds(state).includes(postId);
+};
+
+const InPostSelector = {
+  isRequestingPost,
+  requestingPostIds
+};
+
+export default InPostSelector;

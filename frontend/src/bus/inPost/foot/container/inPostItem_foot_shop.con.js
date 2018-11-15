@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 
 import requestInPost from "../../action/requestInPost.action";
 import InPostItemFootShop from "../component/inPostItem_foot_shop";
+import InPostSelector from "../../inPost.selector";
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
   return {
     postId,
-    isRequestingPost: state.inPost.requestingPostIds.includes(postId)
+    isRequestingPost: InPostSelector.isRequestingPost(state, postId)
   };
 };
-const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
   requestPostHandler: postId => dispatch(requestInPost(postId))
 });
 
