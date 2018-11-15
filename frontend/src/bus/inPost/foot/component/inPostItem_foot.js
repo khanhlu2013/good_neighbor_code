@@ -5,20 +5,15 @@ import InPostItemFootBorrowContainer from "../container/inPostItem_foot_borrow.c
 import InPostItemFootRequestContainer from "../container/inPostItem_foot_request.con";
 import InPostItemFootShopContainer from "../container/inPostItem_foot_shop.con";
 import Post from "../../../../model/post";
+import { __getRequestOrBorrowShare } from "./inPostItem_foot.helper";
 
 function InPostItemFoot(props) {
   const { post, loginUserId } = props;
 
-  //myBorrowShare
-  const curBorrowShare = post.curBorrowShare;
-  let myBorrowShare = null;
-  if (curBorrowShare && curBorrowShare.borrower.id === loginUserId) {
-    myBorrowShare = curBorrowShare;
-  }
-
-  //myRequestShare
-  const myRequestShare =
-    post.requestShares.find(share => share.borrower.id === loginUserId) || null;
+  const {
+    userRequestShare: myRequestShare,
+    userBorrowShare: myBorrowShare
+  } = __getRequestOrBorrowShare(post, loginUserId);
 
   let content;
 

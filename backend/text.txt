@@ -147,8 +147,5 @@ what is my plan today? 30 percent of job search right? ok. i will start doing th
 
 ---
 onRollDice is actually a rollDiceHandler
----
-foot component -> take myApproveShareId
-InPostItemFootApproveContainer -> approveShareId
 
----
+
