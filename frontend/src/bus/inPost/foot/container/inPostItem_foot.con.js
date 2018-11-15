@@ -1,31 +1,21 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import InPostItemFoot from "../component/inPostItem_foot";
+import InPostSelector from "../../inPost.selector";
+import AuthSelector from "../../../../app/auth.selector";
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
-  const post = state.inPost.posts.find(post => post.id === postId);
-  const currentlyBorrowShare = post.curBorrowShare;
-  let myBorrowShareId = null;
-  if (
-    currentlyBorrowShare &&
-    currentlyBorrowShare.borrower.id === state.auth.loginUser.id
-  ) {
-    myBorrowShareId = currentlyBorrowShare.id;
-  }
-  const myRequestShare =
-    post.requestShares.find(
-      share => share.borrower.id === state.auth.loginUser.id
-    ) || null;
+  const post = InPostSelector.post(state, postId);
+  const loginUser = AuthSelector.loginUser(state);
 
   return {
-    postId,
-    myBorrowShareId,
-    myRequestShareId: myRequestShare ? myRequestShare.id : null,
-    isActive: post.isActive
+    post,
+    loginUserId: loginUser.id
   };
 };
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+
+export const mapDispatchToProps = (dispatch, ownProps) => ({});
 const InPostItemFootContainer = connect(
   mapStateToProps,
   mapDispatchToProps

@@ -130,7 +130,7 @@ const outPosts = async () => {
 // - inPost
 const inPosts = async () => {
   const postsRaw = await get("profile.inPosts", {}); //inPosts <-> [{user,post,shares}, ...]
-  // console.log(JSON.stringify(postsRaw, null, 2));
+  console.log(JSON.stringify(postsRaw, null, 2));
   return rawsToPosts(postsRaw);
 };
 

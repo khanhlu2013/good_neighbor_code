@@ -1,26 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostItemFootStyle from "../../../post/component/style/postItem_foot_style";
-import { nullOrRequiredValidator } from "../../../../share/util";
 import InPostItemFootBorrowContainer from "../container/inPostItem_foot_borrow.con";
 import InPostItemFootRequestContainer from "../container/inPostItem_foot_request.con";
 import InPostItemFootShopContainer from "../container/inPostItem_foot_shop.con";
+import Post from "../../../../model/post";
 
 function InPostItemFoot(props) {
-  const { postId, isActive, myBorrowShareId, myRequestShareId } = props;
+  const { post, loginUserId } = props;
+
+  //myBorrowShare
+  const curBorrowShare = post.curBorrowShare;
+  let myBorrowShare = null;
+  if (curBorrowShare && curBorrowShare.borrower.id === loginUserId) {
+    myBorrowShare = curBorrowShare;
+  }
+
+  //myRequestShare
+  const myRequestShare =
+    post.requestShares.find(share => share.borrower.id === loginUserId) || null;
 
   let content;
 
-  if (myRequestShareId) {
+  if (myRequestShare) {
     content = (
-      <InPostItemFootRequestContainer myRequestShareId={myRequestShareId} />
+      <InPostItemFootRequestContainer myRequestShareId={myRequestShare.id} />
     );
-  } else if (myBorrowShareId) {
+  } else if (myBorrowShare) {
     content = (
-      <InPostItemFootBorrowContainer myBorrowShareId={myBorrowShareId} />
+      <InPostItemFootBorrowContainer myBorrowShareId={myBorrowShare.id} />
     );
-  } else if (isActive) {
-    content = <InPostItemFootShopContainer postId={postId} />;
+  } else if (post.isActive) {
+    content = <InPostItemFootShopContainer postId={post.id} />;
   } else {
     content = <div>Post is no longer active</div>;
   }
@@ -28,10 +39,8 @@ function InPostItemFoot(props) {
   return <PostItemFootStyle>{content}</PostItemFootStyle>;
 }
 InPostItemFoot.propTypes = {
-  postId: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  myBorrowShareId: nullOrRequiredValidator("string"),
-  myRequestShareId: nullOrRequiredValidator("string")
+  post: PropTypes.instanceOf(Post).isRequired,
+  loginUserId: PropTypes.string.isRequired
 };
 
 export default InPostItemFoot;

@@ -1,9 +1,9 @@
 import AuthSelector from "../../app/auth.selector";
 
 //raw
-const posts = state => state.inPost.posts;
-const requestingPostIds = state => state.inPost.requestingPostIds;
-const deletingShareIds = state => state.inPost.deletingShareIds;
+const _posts = state => state.inPost.posts;
+const _requestingPostIds = state => state.inPost.requestingPostIds;
+const _deletingShareIds = state => state.inPost.deletingShareIds;
 
 //calculated
 const approveAlertPosts = state => {
@@ -13,7 +13,7 @@ const approveAlertPosts = state => {
     return [];
   }
 
-  posts().filter(post =>
+  return _posts(state).filter(post =>
     post.shares.some(
       share =>
         share.borrower.id === loginUser.loginUserId &&
@@ -25,19 +25,20 @@ const approveAlertPosts = state => {
 };
 
 const isRequestingPost = (state, postId) => {
-  return requestingPostIds(state).includes(postId);
+  return _requestingPostIds(state).includes(postId);
 };
 const isUnRequestingPost = (state, shareId) => {
-  return deletingShareIds(state).includes(shareId);
+  return _deletingShareIds(state).includes(shareId);
 };
 const isAwaringShare = (state, shareId) =>
   state.inPost.awaringShareIds.includes(shareId);
 const isReturningShare = (state, shareId) =>
   state.inPost.returningShareIds.includes(shareId);
-
-const share = (state, shareId) => {
-  const posts = posts(state);
-  const post = posts(state).find(post =>
+const _post = (state, postId) => {
+  return _posts(state).find(post => post.id === postId);
+};
+const _share = (state, shareId) => {
+  const post = _posts(state).find(post =>
     post.shares.some(share => share.id === shareId)
   );
   const share = post.shares.find(share => share.id === shareId);
@@ -47,14 +48,17 @@ const share = (state, shareId) => {
 //export
 const InPostSelector = {
   //raw
-  posts,
-  requestingPostIds,
-  deletingShareIds,
+  posts: _posts,
+  requestingPostIds: _requestingPostIds,
+  deletingShareIds: _deletingShareIds,
 
   //calculate
-  share,
-  isRequestingPost,
+  post: _post,
+  share: _share,
   approveAlertPosts,
+
+  //ing
+  isRequestingPost,
   isUnRequestingPost,
   isAwaringShare,
   isReturningShare
