@@ -13,7 +13,7 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  requestPostHandler: postId => dispatch(requestInPost(postId))
+  onRequestPost: postId => dispatch(requestInPost(postId))
 });
 
 const InPostItemFootShopContainer = connect(

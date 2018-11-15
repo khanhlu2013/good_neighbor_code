@@ -4,7 +4,7 @@ import InPostItemFootBorrow from "../inPostItem_foot_borrow";
 import { rawsToPosts } from "../../../../../api/_private_api_helper";
 import LoadingIcon from "../../../../../share/loadingIcon";
 
-describe("inPostItem_foot_approve", () => {
+describe("inPostItem_foot_borrow", () => {
   describe("loading icon", () => {
     it("is display during aware approve", () => {
       const myBorrowShare = getMyApproveShare(false);

@@ -14,7 +14,7 @@ export const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  unRequestPostHandler: shareId => dispatch(unRequestInPost(shareId))
+  onUnRequestPost: shareId => dispatch(unRequestInPost(shareId))
 });
 const InPostItemFootRequestContainer = connect(
   mapStateToProps,

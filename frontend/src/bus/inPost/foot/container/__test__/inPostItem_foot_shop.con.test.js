@@ -41,7 +41,7 @@ describe("inPostItem_foot_shop container", () => {
     const dispatch = jest.fn();
     const props = mapDispatchToProps(dispatch);
     const postId = "postIdStub";
-    props.requestPostHandler(postId);
+    props.onRequestPost(postId);
 
     expect(requestInPost).toHaveBeenCalledWith(postId);
     expect(dispatch).toHaveBeenCalledWith(requestInPostAction);

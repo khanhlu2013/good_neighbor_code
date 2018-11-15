@@ -139,13 +139,10 @@ before continue to test inPostAllHistoryList, i like to refactor this a bit. thi
 
   fuck , i dont have a history in my snap shot e2e
   ---
-
-myRequestShare only find one request, what if i request multiple time?
-
+alright, what now , lets freaking cover all test. 
 ---
-what is my plan today? 30 percent of job search right? ok. i will start doing that in the afternoon. now i will have all the fun for myself. learning. doing. tackle that , make some test. 
-
+inpost : approve -> borrow
 ---
-onRollDice is actually a rollDiceHandler
+ok, the fixture stuff is really scare me as a bloat it, is it the right way, lets think about it. 
 
-
+if my model fail, all my test started to fail again. right. this is a big problem. i need to disconnect my model with my test. starting from the freaking post. 

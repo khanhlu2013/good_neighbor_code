@@ -36,7 +36,7 @@ describe("inPostItem_foot_request container", () => {
     const action = "actionStub";
     unRequestInPost.mockReturnValue(action);
 
-    props.unRequestPostHandler(shareId);
+    props.onUnRequestPost(shareId);
     expect(unRequestInPost).toHaveBeenCalledWith(shareId);
     expect(dispatch).toHaveBeenCalledWith(action);
   });

@@ -16,7 +16,7 @@ function InPostItemFootBorrow(props) {
   const onAwareApprovePostClick = e => {
     onAwareApprovePost(myBorrowShare.id);
   };
-  const returnPostClickHandler = e => {
+  const onReturnPostClick = e => {
     onReturnPost(myBorrowShare.id);
   };
 
@@ -46,7 +46,7 @@ function InPostItemFootBorrow(props) {
       <button
         id="outPostItem-returnBtn-react"
         className="btn btn-sm btn-warning ml-1"
-        onClick={returnPostClickHandler}
+        onClick={onReturnPostClick}
       >
         return item
       </button>

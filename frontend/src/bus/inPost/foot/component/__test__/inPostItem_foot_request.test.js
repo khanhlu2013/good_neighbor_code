@@ -10,7 +10,7 @@ describe("inPostItem_foot_request", () => {
         <InPostItemFootRequest
           myRequestShareId="1"
           isUnRequestingPost={true}
-          unRequestPostHandler={jest.fn()}
+          onUnRequestPost={jest.fn()}
         />
       );
       expect(wrap.find(LoadingIcon).props().text).toBe("undo");
@@ -21,27 +21,27 @@ describe("inPostItem_foot_request", () => {
         <InPostItemFootRequest
           myRequestShareId="1"
           isUnRequestingPost={false}
-          unRequestPostHandler={jest.fn()}
+          onUnRequestPost={jest.fn()}
         />
       );
       expect(wrap.find(LoadingIcon)).toHaveLength(0);
     });
   });
 
-  it("to call unRequestPostHandler correctly", () => {
+  it("to call onUnRequestPost correctly", () => {
     const shareId = "shareIdStr";
-    const unRequestPostHandler = jest.fn();
+    const onUnRequestPost = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootRequest
         myRequestShareId={shareId}
         isUnRequestingPost={false}
-        unRequestPostHandler={unRequestPostHandler}
+        onUnRequestPost={onUnRequestPost}
       />
     );
     wrap.find("#outPostItem-undoRequestBtn-react").simulate("click");
-    expect(unRequestPostHandler.mock.calls).toHaveLength(1);
-    expect(unRequestPostHandler.mock.calls[0][0]).toBe(shareId);
+    expect(onUnRequestPost.mock.calls).toHaveLength(1);
+    expect(onUnRequestPost.mock.calls[0][0]).toBe(shareId);
   });
 
   it("to match snapshot", () => {
@@ -49,7 +49,7 @@ describe("inPostItem_foot_request", () => {
       <InPostItemFootRequest
         myRequestShareId="1"
         isUnRequestingPost={false}
-        unRequestPostHandler={jest.fn()}
+        onUnRequestPost={jest.fn()}
       />
     );
     expect(wrap).toMatchSnapshot();

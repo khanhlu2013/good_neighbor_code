@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inPostItem_foot_approve loading icon is display during aware approve 1`] = `
+exports[`inPostItem_foot_borrow loading icon is display during aware approve 1`] = `
 <div
   className="text-success"
 >
@@ -22,7 +22,7 @@ exports[`inPostItem_foot_approve loading icon is display during aware approve 1`
 </div>
 `;
 
-exports[`inPostItem_foot_approve loading icon is display during return 1`] = `
+exports[`inPostItem_foot_borrow loading icon is display during return 1`] = `
 <div
   className="text-success"
 >
@@ -40,7 +40,7 @@ exports[`inPostItem_foot_approve loading icon is display during return 1`] = `
 </div>
 `;
 
-exports[`inPostItem_foot_approve match snapshot 1`] = `
+exports[`inPostItem_foot_borrow match snapshot 1`] = `
 <div
   className="text-success"
 >
