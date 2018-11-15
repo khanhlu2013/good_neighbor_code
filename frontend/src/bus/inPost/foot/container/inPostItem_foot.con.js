@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     ) || null;
 
   return {
-    ...ownProps,
+    postId,
     myBorrowShareId,
     myRequestShareId: myRequestShare ? myRequestShare.id : null,
     isActive: post.isActive

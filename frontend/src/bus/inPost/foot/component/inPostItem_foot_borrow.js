@@ -9,15 +9,15 @@ function InPostItemFootBorrow(props) {
     myBorrowShare,
     isAwaringShare,
     isReturningShare,
-    awareApprovePostHandler,
-    returnPostHandler
+    onAwareApprovePost,
+    onReturnPost
   } = props;
 
-  const awareApprovePostClickHandler = e => {
-    awareApprovePostHandler(myBorrowShare.id);
+  const onAwareApprovePostClick = e => {
+    onAwareApprovePost(myBorrowShare.id);
   };
   const returnPostClickHandler = e => {
-    returnPostHandler(myBorrowShare.id);
+    onReturnPost(myBorrowShare.id);
   };
 
   let awareContent;
@@ -29,7 +29,7 @@ function InPostItemFootBorrow(props) {
         <button
           id="outPostItem-awareApproveBtn-react"
           className="btn btn-sm btn-success"
-          onClick={awareApprovePostClickHandler}
+          onClick={onAwareApprovePostClick}
         >
           confirm approved
         </button>
@@ -65,7 +65,7 @@ InPostItemFootBorrow.propTypes = {
   myBorrowShare: PropTypes.instanceOf(Share).isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
-  awareApprovePostHandler: PropTypes.func.isRequired,
-  returnPostHandler: PropTypes.func.isRequired
+  onAwareApprovePost: PropTypes.func.isRequired,
+  onReturnPost: PropTypes.func.isRequired
 };
 export default InPostItemFootBorrow;

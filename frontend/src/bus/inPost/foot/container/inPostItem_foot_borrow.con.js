@@ -4,24 +4,20 @@ import PropTypes from "prop-types";
 import awareApproveInPost from "../../action/awareApproveInPost.action";
 import returnInPost from "../../action/returnInPost.action";
 import InPostItemFootBorrow from "../component/inPostItem_foot_borrow";
+import InPostSelector from "../../inPost.selector";
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;
-  const post = state.inPost.posts.find(post =>
-    post.shares.some(share => share.id === shareId)
-  );
-  const share = post.shares.find(share => share.id === shareId);
 
   return {
-    myBorrowShare: share,
-    isAwareApprove: share.isAwareApprove,
-    isAwaringShare: state.inPost.awaringShareIds.includes(shareId),
-    isReturningShare: state.inPost.returningShareIds.includes(shareId)
+    myBorrowShare: InPostSelector.share(state, shareId),
+    isAwaringShare: InPostSelector.isAwaringShare(state, shareId),
+    isReturningShare: InPostSelector.isReturningShare(state, shareId)
   };
 };
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  awareApprovePostHandler: shareId => dispatch(awareApproveInPost(shareId)),
-  returnPostHandler: shareId => dispatch(returnInPost(shareId))
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+  onAwareApprovePost: shareId => dispatch(awareApproveInPost(shareId)),
+  onReturnPost: shareId => dispatch(returnInPost(shareId))
 });
 const InPostItemFootBorrowContainer = connect(
   mapStateToProps,

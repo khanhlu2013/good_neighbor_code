@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import InPostManagementComponent from "../component/inPost_management";
 import fetchInPosts from "../action/fetchInPosts.action";
-import { selectInPostApproveAlert } from "../inPost.selector";
+import InPostSelector from "../inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
   const loginUser = state.auth.loginUser;
   const posts = state.inPost.posts;
-  const approveAlertPosts = selectInPostApproveAlert(posts, loginUser.id);
+  const approveAlertPosts = InPostSelector.approveAlertPosts(state);
 
   const myInShares2D = posts.map(post =>
     post.shares.filter(share => share.borrower.id === loginUser.id)

@@ -8,16 +8,16 @@ describe("inPostItem_foot_approve", () => {
   describe("loading icon", () => {
     it("is display during aware approve", () => {
       const myBorrowShare = getMyApproveShare(false);
-      const awareApprovePostHandler = jest.fn();
-      const returnPostHandler = jest.fn();
+      const onAwareApprovePost = jest.fn();
+      const onReturnPost = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootBorrow
           myBorrowShare={myBorrowShare}
           isAwaringShare={true}
           isReturningShare={false}
-          awareApprovePostHandler={awareApprovePostHandler}
-          returnPostHandler={returnPostHandler}
+          onAwareApprovePost={onAwareApprovePost}
+          onReturnPost={onReturnPost}
         />
       );
       expect(wrap.find(LoadingIcon).props().text).toBe("aware approve");
@@ -26,16 +26,16 @@ describe("inPostItem_foot_approve", () => {
 
     it("is display during return", () => {
       const myBorrowShare = getMyApproveShare(true);
-      const awareApprovePostHandler = jest.fn();
-      const returnPostHandler = jest.fn();
+      const onAwareApprovePost = jest.fn();
+      const onReturnPost = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootBorrow
           myBorrowShare={myBorrowShare}
           isAwaringShare={false}
           isReturningShare={true}
-          awareApprovePostHandler={awareApprovePostHandler}
-          returnPostHandler={returnPostHandler}
+          onAwareApprovePost={onAwareApprovePost}
+          onReturnPost={onReturnPost}
         />
       );
       expect(wrap.find(LoadingIcon).props().text).toBe("return");
@@ -43,42 +43,42 @@ describe("inPostItem_foot_approve", () => {
     });
   });
 
-  it("trigger awareApprovePostHandler and returnPostHandler callback correctly", () => {
+  it("trigger onAwareApprovePost and onReturnPost callback correctly", () => {
     const shareId = "shareId1";
     const myBorrowShare = getMyApproveShare(false, shareId);
-    const awareApprovePostHandler = jest.fn();
-    const returnPostHandler = jest.fn();
+    const onAwareApprovePost = jest.fn();
+    const onReturnPost = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootBorrow
         myBorrowShare={myBorrowShare}
         isAwaringShare={false}
         isReturningShare={false}
-        awareApprovePostHandler={awareApprovePostHandler}
-        returnPostHandler={returnPostHandler}
+        onAwareApprovePost={onAwareApprovePost}
+        onReturnPost={onReturnPost}
       />
     );
     wrap.find("#outPostItem-awareApproveBtn-react").simulate("click");
-    expect(awareApprovePostHandler.mock.calls).toHaveLength(1);
-    expect(awareApprovePostHandler.mock.calls[0][0]).toBe(shareId);
+    expect(onAwareApprovePost.mock.calls).toHaveLength(1);
+    expect(onAwareApprovePost.mock.calls[0][0]).toBe(shareId);
 
     wrap.find("#outPostItem-returnBtn-react").simulate("click");
-    expect(returnPostHandler.mock.calls).toHaveLength(1);
-    expect(returnPostHandler.mock.calls[0][0]).toBe(shareId);
+    expect(onReturnPost.mock.calls).toHaveLength(1);
+    expect(onReturnPost.mock.calls[0][0]).toBe(shareId);
   });
 
   it("match snapshot", () => {
     const myBorrowShare = getMyApproveShare(false);
-    const awareApprovePostHandler = jest.fn();
-    const returnPostHandler = jest.fn();
+    const onAwareApprovePost = jest.fn();
+    const onReturnPost = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootBorrow
         myBorrowShare={myBorrowShare}
         isAwaringShare={false}
         isReturningShare={false}
-        awareApprovePostHandler={awareApprovePostHandler}
-        returnPostHandler={returnPostHandler}
+        onAwareApprovePost={onAwareApprovePost}
+        onReturnPost={onReturnPost}
       />
     );
 

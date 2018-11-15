@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import { selectInPostApproveAlert } from "../../bus/inPost/inPost.selector";
+import InPostSelector from "../../bus/inPost/inPost.selector";
 import {
   selectOutPostRequestAlert,
   selectOutPostReturnAlert
@@ -14,10 +14,7 @@ const mapStateToProps = (state, ownProps) => {
   const loginUserId = loginUser && loginUser.id;
 
   //inPost
-  const inPostAlertCount = selectInPostApproveAlert(
-    state.inPost.posts,
-    loginUserId
-  ).length;
+  const inPostAlertCount = InPostSelector.approveAlertPosts(state).length;
 
   //outpost
   const outPosts = state.outPost.posts;

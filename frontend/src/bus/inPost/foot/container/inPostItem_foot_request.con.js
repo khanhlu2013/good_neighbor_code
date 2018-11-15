@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 
 import unRequestInPost from "../../action/unRequestInPost.action";
 import InPostItemFootRequest from "../component/inPostItem_foot_request";
+import InPostSelector from "../../inPost.selector";
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const { myRequestShareId } = ownProps;
 
   return {
     myRequestShareId,
-    isUnRequestingPost: state.inPost.deletingShareIds.includes(myRequestShareId)
+    isUnRequestingPost: InPostSelector.isUnRequestingPost(state)
   };
 };
-const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
   unRequestPostHandler: shareId => dispatch(unRequestInPost(shareId))
 });
 const InPostItemFootRequestContainer = connect(

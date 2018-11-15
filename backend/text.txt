@@ -152,11 +152,3 @@ foot component -> take myApproveShareId
 InPostItemFootApproveContainer -> approveShareId
 
 ---
-
-90k
-80k 
-70k
-
----
-
-30-40 1h.
