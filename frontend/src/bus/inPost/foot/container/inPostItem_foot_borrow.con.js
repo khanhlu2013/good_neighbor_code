@@ -8,13 +8,16 @@ import InPostSelector from "../../inPost.selector";
 
 export const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;
+  const myBorrowShare = InPostSelector.share(state, shareId);
 
   return {
-    myBorrowShare: InPostSelector.share(state, shareId),
+    myBorrowShareId: shareId,
+    isAwareApproveBorrowShare: myBorrowShare.isAwareApprove,
     isAwaringShare: InPostSelector.isAwaringShare(state, shareId),
     isReturningShare: InPostSelector.isReturningShare(state, shareId)
   };
 };
+
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   onAwareApprovePost: shareId => dispatch(awareApproveInPost(shareId)),
   onReturnPost: shareId => dispatch(returnInPost(shareId))

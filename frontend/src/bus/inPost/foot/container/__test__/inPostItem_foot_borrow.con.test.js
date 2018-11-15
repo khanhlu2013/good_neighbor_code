@@ -20,9 +20,8 @@ describe("inPostItem_foot_borrow container", () => {
   it("can map state to props", () => {
     const myBorrowShareId = "myBorrowShareIdStub";
     const ownProps = { myBorrowShareId };
-    const state = "stateStub";
-
-    const share = "shareStub";
+    const isAwareApprove = "isAwareApproveStub";
+    const share = { id: myBorrowShareId, isAwareApprove };
     const isAwaringShare = "isAwaringShareStub";
     const isReturningShare = "isReturningShareStub";
 
@@ -32,9 +31,10 @@ describe("inPostItem_foot_borrow container", () => {
       .fn()
       .mockReturnValue(isReturningShare);
 
-    const props = mapStateToProps(state, ownProps);
+    const props = mapStateToProps("stateStub", ownProps);
 
-    expect(props.myBorrowShare).toBe(share);
+    expect(props.myBorrowShareId).toBe(myBorrowShareId);
+    expect(props.isAwareApproveBorrowShare).toBe(isAwareApprove);
     expect(props.isAwaringShare).toBe(isAwaringShare);
     expect(props.isReturningShare).toBe(isReturningShare);
   });

@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import LoadingIcon from "../../../../share/loadingIcon";
-import Share from "../../../../model/share";
 
 function InPostItemFootBorrow(props) {
   const {
-    myBorrowShare,
+    myBorrowShareId,
+    isAwareApproveBorrowShare,
     isAwaringShare,
     isReturningShare,
     onAwareApprovePost,
@@ -14,14 +14,14 @@ function InPostItemFootBorrow(props) {
   } = props;
 
   const onAwareApprovePostClick = e => {
-    onAwareApprovePost(myBorrowShare.id);
+    onAwareApprovePost(myBorrowShareId);
   };
   const onReturnPostClick = e => {
-    onReturnPost(myBorrowShare.id);
+    onReturnPost(myBorrowShareId);
   };
 
   let awareContent;
-  if (!myBorrowShare.isAwareApprove) {
+  if (!isAwareApproveBorrowShare) {
     if (isAwaringShare) {
       awareContent = <LoadingIcon text={"aware approve"} />;
     } else {
@@ -62,7 +62,8 @@ function InPostItemFootBorrow(props) {
 }
 
 InPostItemFootBorrow.propTypes = {
-  myBorrowShare: PropTypes.instanceOf(Share).isRequired,
+  myBorrowShareId: PropTypes.string.isRequired,
+  isAwareApproveBorrowShare: PropTypes.bool.isRequired,
   isAwaringShare: PropTypes.bool.isRequired,
   isReturningShare: PropTypes.bool.isRequired,
   onAwareApprovePost: PropTypes.func.isRequired,

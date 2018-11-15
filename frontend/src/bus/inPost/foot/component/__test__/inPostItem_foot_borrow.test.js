@@ -1,19 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 import InPostItemFootBorrow from "../inPostItem_foot_borrow";
-import { rawsToPosts } from "../../../../../api/_private_api_helper";
 import LoadingIcon from "../../../../../share/loadingIcon";
 
 describe("inPostItem_foot_borrow", () => {
   describe("loading icon", () => {
     it("is display during aware approve", () => {
-      const myBorrowShare = getMyApproveShare(false);
       const onAwareApprovePost = jest.fn();
       const onReturnPost = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootBorrow
-          myBorrowShare={myBorrowShare}
+          myBorrowShareId={"myBorrowShareIdStub"}
+          isAwareApproveBorrowShare={false}
           isAwaringShare={true}
           isReturningShare={false}
           onAwareApprovePost={onAwareApprovePost}
@@ -25,13 +24,13 @@ describe("inPostItem_foot_borrow", () => {
     });
 
     it("is display during return", () => {
-      const myBorrowShare = getMyApproveShare(true);
       const onAwareApprovePost = jest.fn();
       const onReturnPost = jest.fn();
 
       const wrap = shallow(
         <InPostItemFootBorrow
-          myBorrowShare={myBorrowShare}
+          myBorrowShareId={"myBorrowShareIdStub"}
+          isAwareApproveBorrowShare={true}
           isAwaringShare={false}
           isReturningShare={true}
           onAwareApprovePost={onAwareApprovePost}
@@ -44,14 +43,14 @@ describe("inPostItem_foot_borrow", () => {
   });
 
   it("trigger onAwareApprovePost and onReturnPost callback correctly", () => {
-    const shareId = "shareId1";
-    const myBorrowShare = getMyApproveShare(false, shareId);
+    const myBorrowShareId = "myBorrowShareIdStub";
     const onAwareApprovePost = jest.fn();
     const onReturnPost = jest.fn();
 
     const wrap = shallow(
       <InPostItemFootBorrow
-        myBorrowShare={myBorrowShare}
+        myBorrowShareId={myBorrowShareId}
+        isAwareApproveBorrowShare={false}
         isAwaringShare={false}
         isReturningShare={false}
         onAwareApprovePost={onAwareApprovePost}
@@ -60,72 +59,41 @@ describe("inPostItem_foot_borrow", () => {
     );
     wrap.find("#outPostItem-awareApproveBtn-react").simulate("click");
     expect(onAwareApprovePost.mock.calls).toHaveLength(1);
-    expect(onAwareApprovePost.mock.calls[0][0]).toBe(shareId);
+    expect(onAwareApprovePost.mock.calls[0][0]).toBe(myBorrowShareId);
 
     wrap.find("#outPostItem-returnBtn-react").simulate("click");
     expect(onReturnPost.mock.calls).toHaveLength(1);
-    expect(onReturnPost.mock.calls[0][0]).toBe(shareId);
+    expect(onReturnPost.mock.calls[0][0]).toBe(myBorrowShareId);
   });
 
   it("match snapshot", () => {
-    const myBorrowShare = getMyApproveShare(false);
     const onAwareApprovePost = jest.fn();
     const onReturnPost = jest.fn();
 
-    const wrap = shallow(
+    //not yet aware share
+    let wrap = shallow(
       <InPostItemFootBorrow
-        myBorrowShare={myBorrowShare}
+        myBorrowShareId={"myBorrowShareIdStub"}
+        isAwareApproveBorrowShare={false}
         isAwaringShare={false}
         isReturningShare={false}
         onAwareApprovePost={onAwareApprovePost}
         onReturnPost={onReturnPost}
       />
     );
+    expect(wrap).toMatchSnapshot("not yet aware share");
 
-    expect(wrap).toMatchSnapshot();
+    //already awared share
+    wrap = shallow(
+      <InPostItemFootBorrow
+        myBorrowShareId={"myBorrowShareIdStub"}
+        isAwareApproveBorrowShare={true}
+        isAwaringShare={false}
+        isReturningShare={false}
+        onAwareApprovePost={onAwareApprovePost}
+        onReturnPost={onReturnPost}
+      />
+    );
+    expect(wrap).toMatchSnapshot("already awared share");
   });
 });
-
-function getMyApproveShare(
-  isAwareApprove,
-  shareId = "5be87de80c0c37087779f79e"
-) {
-  const rawFixture = [
-    {
-      shares: [
-        {
-          _id: shareId,
-          isAwareApprove: isAwareApprove,
-          isReturn: true,
-          isAwareReturn: false,
-          post: "5be87ddf0c0c37087779f79d",
-          borrower: {
-            _id: "5be87d7a3ade200000fc9539",
-            email: "me@me.com",
-            name: "I Myself Me"
-          },
-          dateCreate: "2018-11-11T19:07:20.808Z",
-          __v: 0,
-          isApprove: true,
-          dateReturn: "2018-11-11T19:07:52.731Z"
-        }
-      ],
-      user: {
-        _id: "5be87d7a3ade200000fc9538",
-        email: "stranger@person.com",
-        name: "Stranger Person"
-      },
-      post: {
-        _id: "5be87ddf0c0c37087779f79d",
-        isActive: true,
-        user: "5be87d7a3ade200000fc9538",
-        title: "stranger",
-        description: "stranger",
-        dateCreate: "2018-11-11T19:07:11.934Z",
-        __v: 0
-      }
-    }
-  ];
-  const posts = rawsToPosts(rawFixture);
-  return posts[0].shares[0];
-}
