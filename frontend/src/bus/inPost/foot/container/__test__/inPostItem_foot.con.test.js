@@ -1,23 +1,40 @@
-import React from "react";
 import { mapStateToProps, mapDispatchToProps } from "../inPostItem_foot.con";
 import InPostSelector from "../../../inPost.selector";
 import AuthSelector from "../../../../../app/auth.selector";
+import * as helper from "../../component/inPostItem_foot.helper";
 
 describe("inPostItem_foot container", () => {
   it("can map state to props", () => {
-    const state = "stateStub";
     const postId = "postIdStub";
+    const state = "stateStub";
     const ownProps = { postId };
-    const post = "postStub";
+    const isActive = "isActiveStub";
+    const post = { id: postId, isActive };
     const loginUserId = "loginUserIdStub";
+    const loginUser = { id: loginUserId };
+    const myRequestShareId = "myRequestShareIdStub";
+    const myBorrowShareId = "myBorrowShareIdStub";
+    const userBorrowShare = { id: myBorrowShareId };
+    const userRequestShare = { id: myRequestShareId };
 
-    InPostSelector.post = jest.fn().mockReturnValue(post);
-    AuthSelector.loginUser = jest.fn().mockReturnValue({ id: loginUserId });
+    jest.spyOn(InPostSelector, "post").mockReturnValueOnce(post);
+    jest.spyOn(AuthSelector, "loginUser").mockReturnValueOnce(loginUser);
+    jest
+      .spyOn(helper, "__getRequestOrBorrowShare")
+      .mockReturnValueOnce({ userBorrowShare, userRequestShare });
 
     const props = mapStateToProps(state, ownProps);
+
     expect(InPostSelector.post).toHaveBeenCalledWith(state, postId);
-    expect(props.post).toBe(post);
-    expect(props.loginUserId).toBe(loginUserId);
+    expect(AuthSelector.loginUser).toHaveBeenCalledWith(state);
+    expect(helper.__getRequestOrBorrowShare).toHaveBeenCalledWith(
+      post,
+      loginUserId
+    );
+
+    expect(props.postId).toBe(postId);
+    expect(props.myRequestShareId).toBe(myRequestShareId);
+    expect(props.myBorrowShareId).toBe(myBorrowShareId);
   });
 
   it("can map dispatch to props", () => {

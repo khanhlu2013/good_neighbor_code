@@ -3,15 +3,23 @@ import PropTypes from "prop-types";
 import InPostItemFoot from "../component/inPostItem_foot";
 import InPostSelector from "../../inPost.selector";
 import AuthSelector from "../../../../app/auth.selector";
+import { __getRequestOrBorrowShare } from "../component/inPostItem_foot.helper";
 
 export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
   const post = InPostSelector.post(state, postId);
   const loginUser = AuthSelector.loginUser(state);
 
+  const {
+    userBorrowShare: myBorrowShare,
+    userRequestShare: myRequestShare
+  } = __getRequestOrBorrowShare(post, loginUser.id);
+
   return {
-    post,
-    loginUserId: loginUser.id
+    postId: post.id,
+    myRequestShareId: myRequestShare ? myRequestShare.id : null,
+    myBorrowShareId: myBorrowShare ? myBorrowShare.id : null,
+    isActivePost: post.isActive
   };
 };
 

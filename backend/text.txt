@@ -146,3 +146,12 @@ inpost : approve -> borrow
 ok, the fixture stuff is really scare me as a bloat it, is it the right way, lets think about it. 
 
 if my model fail, all my test started to fail again. right. this is a big problem. i need to disconnect my model with my test. starting from the freaking post. 
+---
+  __esModule: true,
+---
+organize the helper
+---
+change the interface to take in 
+  . myRequestShareId
+  . myBorrowShareId
+  . isActivePost

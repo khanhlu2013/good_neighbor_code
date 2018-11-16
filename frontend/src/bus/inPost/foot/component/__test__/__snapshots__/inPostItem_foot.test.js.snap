@@ -11,7 +11,7 @@ exports[`inPostItem_foot render approve post foot correctly 1`] = `
 exports[`inPostItem_foot render non-request and non-approve and active post foot correctly 1`] = `
 <styled.div>
   <Connect(InPostItemFootShop)
-    postId="5bed10308c57346a4063160c"
+    postId="postIdStub"
   />
 </styled.div>
 `;
