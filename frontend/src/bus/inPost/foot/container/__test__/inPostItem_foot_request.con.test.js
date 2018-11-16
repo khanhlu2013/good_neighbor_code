@@ -3,11 +3,7 @@ import {
   mapDispatchToProps
 } from "../inPostItem_foot_request.con";
 
-jest.mock("../../../action/unRequestInPost.action", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-import unRequestInPost from "../../../action/unRequestInPost.action";
+import * as UnRequestInPostActionModule from "../../../action/unRequestInPost.action";
 import InPostSelector from "../../../inPost.selector";
 
 describe("inPostItem_foot_request container", () => {
@@ -34,10 +30,11 @@ describe("inPostItem_foot_request container", () => {
     const props = mapDispatchToProps(dispatch);
     const shareId = "shareIdStub";
     const action = "actionStub";
-    unRequestInPost.mockReturnValue(action);
+    jest.spyOn(UnRequestInPostActionModule, "default");
+    UnRequestInPostActionModule.default.mockReturnValueOnce(action);
 
     props.onUnRequestPost(shareId);
-    expect(unRequestInPost).toHaveBeenCalledWith(shareId);
+    expect(UnRequestInPostActionModule.default).toHaveBeenCalledWith(shareId);
     expect(dispatch).toHaveBeenCalledWith(action);
   });
 });

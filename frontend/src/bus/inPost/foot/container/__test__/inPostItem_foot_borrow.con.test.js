@@ -4,17 +4,8 @@ import {
 } from "../inPostItem_foot_borrow.con";
 import InPostSelector from "../../../inPost.selector";
 
-jest.mock("../../../action/awareApproveInPost.action", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-jest.mock("../../../action/returnInPost.action", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-
-import awareApproveInPost from "../../../action/awareApproveInPost.action";
-import returnInPost from "../../../action/returnInPost.action";
+import * as AwareApproveInPostActionModule from "../../../action/awareApproveInPost.action";
+import * as ReturnInPostActionModule from "../../../action/returnInPost.action";
 
 describe("inPostItem_foot_borrow container", () => {
   it("can map state to props", () => {
@@ -45,9 +36,14 @@ describe("inPostItem_foot_borrow container", () => {
 
     //train result
     const awareApproveInPostAction = "awareApproveInPostActionStub";
-    awareApproveInPost.mockReturnValue(awareApproveInPostAction);
+    jest.spyOn(AwareApproveInPostActionModule, "default");
+    AwareApproveInPostActionModule.default.mockReturnValueOnce(
+      awareApproveInPostAction
+    );
+
     const returnInPostAction = "returnInPostActionStub";
-    returnInPost.mockReturnValue(returnInPostAction);
+    jest.spyOn(ReturnInPostActionModule, "default");
+    ReturnInPostActionModule.default.mockReturnValueOnce(returnInPostAction);
 
     //execute subject
     const props = mapDispatchToProps(dispatch);

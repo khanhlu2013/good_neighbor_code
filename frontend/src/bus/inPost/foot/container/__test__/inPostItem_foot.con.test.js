@@ -1,7 +1,7 @@
 import { mapStateToProps, mapDispatchToProps } from "../inPostItem_foot.con";
 import InPostSelector from "../../../inPost.selector";
 import AuthSelector from "../../../../../app/auth.selector";
-import * as helper from "../../component/inPostItem_foot.helper";
+import * as helper from "../inPostItem_foot.selector";
 
 describe("inPostItem_foot container", () => {
   it("can map state to props", () => {
@@ -22,9 +22,7 @@ describe("inPostItem_foot container", () => {
     jest
       .spyOn(helper, "__getRequestOrBorrowShare")
       .mockReturnValueOnce({ userBorrowShare, userRequestShare });
-
     const props = mapStateToProps(state, ownProps);
-
     expect(InPostSelector.post).toHaveBeenCalledWith(state, postId);
     expect(AuthSelector.loginUser).toHaveBeenCalledWith(state);
     expect(helper.__getRequestOrBorrowShare).toHaveBeenCalledWith(

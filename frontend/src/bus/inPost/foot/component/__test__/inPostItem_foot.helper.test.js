@@ -1,5 +1,5 @@
 import { rawsToPosts } from "../../../../../api/_private_api_helper";
-import { __getRequestOrBorrowShare } from "../inPostItem_foot.helper";
+import { __getRequestOrBorrowShare } from "../../container/inPostItem_foot.selector";
 
 describe("inPostItem_foot helper __getRequestOrBorrowShare", () => {
   it("can return null request share and null borrow share correctly", () => {

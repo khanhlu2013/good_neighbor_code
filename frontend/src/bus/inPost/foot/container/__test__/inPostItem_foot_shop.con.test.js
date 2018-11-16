@@ -4,11 +4,7 @@ import {
 } from "../inPostItem_foot_shop.con";
 import InPostSelector from "../../../inPost.selector";
 
-jest.mock("../../../action/requestInPost.action.js", () => ({
-  __esModule: true,
-  default: jest.fn()
-}));
-import requestInPost from "../../../action/requestInPost.action";
+import * as RequestInPostActionModule from "../../../action/requestInPost.action";
 
 describe("inPostItem_foot_shop container", () => {
   it("can match state to props", () => {
@@ -35,7 +31,8 @@ describe("inPostItem_foot_shop container", () => {
 
   it("can match dispatch to props", () => {
     const requestInPostAction = "requestInPostActionStub";
-    requestInPost.mockReturnValue(requestInPostAction);
+    jest.spyOn(RequestInPostActionModule, "default");
+    RequestInPostActionModule.default.mockReturnValue(requestInPostAction);
 
     //create a dispatch mock
     const dispatch = jest.fn();
@@ -43,7 +40,7 @@ describe("inPostItem_foot_shop container", () => {
     const postId = "postIdStub";
     props.onRequestPost(postId);
 
-    expect(requestInPost).toHaveBeenCalledWith(postId);
+    expect(RequestInPostActionModule.default).toHaveBeenCalledWith(postId);
     expect(dispatch).toHaveBeenCalledWith(requestInPostAction);
   });
 });

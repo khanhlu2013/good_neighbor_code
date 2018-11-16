@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import InPostItemFoot from "../component/inPostItem_foot";
 import InPostSelector from "../../inPost.selector";
 import AuthSelector from "../../../../app/auth.selector";
-import { __getRequestOrBorrowShare } from "../component/inPostItem_foot.helper";
+import { __getRequestOrBorrowShare } from "./inPostItem_foot.selector";
 
 export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
