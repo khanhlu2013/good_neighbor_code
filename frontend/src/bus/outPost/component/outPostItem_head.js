@@ -1,11 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import {
-  PostItemHeadStyle,
-  PostItemHeadLeftStyle
-} from "../../post/component/style/postItem_head_style";
 import { date2String } from "../../../share/util";
+
+const Style = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const LeftStyle = styled.div`
+  flex-grow: 1;
+`;
 
 function OutPostItemHead(props) {
   const { dateCreate, onUpdatePost } = props;
@@ -15,8 +21,8 @@ function OutPostItemHead(props) {
   };
 
   return (
-    <PostItemHeadStyle>
-      <PostItemHeadLeftStyle>
+    <Style>
+      <LeftStyle>
         <button
           id="outPostItem-editBtn-react"
           onClick={onUpdatePostClicked}
@@ -24,12 +30,12 @@ function OutPostItemHead(props) {
         >
           edit post
         </button>
-      </PostItemHeadLeftStyle>
+      </LeftStyle>
 
       <div className="text-secondary font-weight-light">
         {`post on: ${date2String(dateCreate)}`}
       </div>
-    </PostItemHeadStyle>
+    </Style>
   );
 }
 

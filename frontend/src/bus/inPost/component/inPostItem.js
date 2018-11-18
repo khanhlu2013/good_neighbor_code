@@ -11,7 +11,11 @@ function InPostItem(props) {
 
   return (
     <PostItemStyle id="inPost-item-react">
-      <InPostItemHead postUser={post.user} dateCreate={post.dateCreate} />
+      <InPostItemHead
+        postUserName={post.user.name}
+        postUserEmail={post.user.email}
+        dateCreate={post.dateCreate}
+      />
       <PostItemBody post={post} />
       <InPostItemFootContainer postId={post.id} />
     </PostItemStyle>

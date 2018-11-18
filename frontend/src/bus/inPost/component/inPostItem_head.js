@@ -1,33 +1,41 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import User from "../../../model/user";
-import {
-  PostItemHeadStyle,
-  PostItemHeadLeftStyle
-} from "../../post/component/style/postItem_head_style";
-import { date2String } from "../../../share/util";
+import { date2String, nullOrRequiredValidator } from "../../../share/util";
+
+const Style = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const LeftStyle = styled.div`
+  flex-grow: 1;
+`;
 
 function InPostItemHead(props) {
-  const { postUser, dateCreate } = props;
+  const { postUserName, postUserEmail, dateCreate } = props;
   return (
-    <PostItemHeadStyle>
-      <PostItemHeadLeftStyle>
-        <span className="text-primary font-weight-bold">{postUser.name}</span>
-        <span className="text-secondary font-weight-light">
-          {` ${postUser.email}`}
-        </span>
-      </PostItemHeadLeftStyle>
+    <Style>
+      <LeftStyle>
+        <span className="text-primary font-weight-bold">{postUserName}</span>
+        {postUserEmail && (
+          <span className="text-secondary font-weight-light">
+            {` ${postUserEmail}`}
+          </span>
+        )}
+      </LeftStyle>
 
       <div className="text-secondary font-weight-light">
         {`post on: ${date2String(dateCreate)}`}
       </div>
-    </PostItemHeadStyle>
+    </Style>
   );
 }
 
 InPostItemHead.propTypes = {
-  postUser: PropTypes.instanceOf(User).isRequired,
+  postUserName: PropTypes.string.isRequired,
+  postUserEmail: nullOrRequiredValidator("string"),
   dateCreate: PropTypes.instanceOf(Date).isRequired
 };
 
