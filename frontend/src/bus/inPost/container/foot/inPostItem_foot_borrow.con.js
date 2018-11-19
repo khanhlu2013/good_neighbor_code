@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import awareApproveInPost from "../../action/awareApproveInPost.action";
 import returnInPost from "../../action/returnInPost.action";
-import InPostItemFootBorrow from "../component/inPostItem_foot_borrow";
 import InPostSelector from "../../inPost.selector";
+import InPostItemFootBorrow from "../../component/foot/inPostItem_foot_borrow";
 
 export const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PostItemFootStyle from "../../../post/component/style/postItem_foot_style";
-import InPostItemFootBorrowContainer from "../container/inPostItem_foot_borrow.con";
-import InPostItemFootRequestContainer from "../container/inPostItem_foot_request.con";
-import InPostItemFootShopContainer from "../container/inPostItem_foot_shop.con";
 import { nullOrRequiredValidator } from "../../../../share/util";
+import InPostItemFootBorrowContainer from "../../container/foot/inPostItem_foot_borrow.con";
+import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
+import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 
 function InPostItemFoot(props) {
   const { postId, myRequestShareId, myBorrowShareId, isActivePost } = props;
