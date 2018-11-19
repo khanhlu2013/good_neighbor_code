@@ -1,9 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 import InPostItemFoot from "../inPostItem_foot";
-import InPostItemFootRequestContainer from "../../container/inPostItem_foot_request.con";
-import InPostItemFootBorrowContainer from "../../container/inPostItem_foot_borrow.con";
-import * as helper from "../../container/inPostItem_foot.selector";
+import InPostItemFootRequestContainer from "../../../container/foot/inPostItem_foot_request.con";
+import InPostItemFootBorrowContainer from "../../../container/foot/inPostItem_foot_borrow.con";
+import * as helper from "../../../container/foot/inPostItem_foot.selector";
 
 jest.spyOn(helper, "__getRequestOrBorrowShare");
 
