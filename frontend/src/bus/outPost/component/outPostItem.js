@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostItemBody from "../../post/component/postItem_body";
-import PostItemStyle from "../../post/component/style/postItem_style";
 import OutPostItemHead from "./outPostItem_head";
 import LoadingIcon from "../../../share/loadingIcon";
-import PostItemFootStyle from "../../post/component/style/postItem_foot_style";
+import PostItemFootStyle from "../../post/style/postItem_foot_style";
+import PostItemStyle from "../../post/style/postItem_style";
 
 function OutPostItem(props) {
   const {

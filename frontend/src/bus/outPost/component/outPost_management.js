@@ -12,8 +12,8 @@ import OutPostDecisionDialog from "./decisionDialog";
 import OutPostList from "./outPostList";
 import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
-import PostUserHistoryListStyle from "../../post/component/style/postUser_historyList_style";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
+import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 
 class OutPostManagementComponent extends Component {
   static propTypes = {

@@ -9,7 +9,7 @@ import LoadingIcon from "../../../share/loadingIcon";
 import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
-import PostUserHistoryListStyle from "../../post/component/style/postUser_historyList_style";
+import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 
 class InPostManagementComponent extends Component {
   static propTypes = {

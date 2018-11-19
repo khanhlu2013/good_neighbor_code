@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostItemBody from "../../post/component/postItem_body";
-import PostItemStyle from "../../post/component/style/postItem_style";
 import InPostItemHead from "./inPostItem_head";
 import InPostItemFootContainer from "../container/foot/inPostItem_foot.con";
+import PostItemStyle from "../../post/style/postItem_style";
 
 function InPostItem(props) {
   const { post } = props;
