@@ -3,7 +3,7 @@ import InPostManagementComponent from "../component/inPost_management";
 import fetchInPosts from "../action/fetchInPosts.action";
 import InPostSelector from "../inPost.selector";
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   return {
     posts: InPostSelector.posts(state),
     isFetchingPosts: InPostSelector.isFetchingPosts(state),
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchInPosts: () => dispatch(fetchInPosts())
 });
 
