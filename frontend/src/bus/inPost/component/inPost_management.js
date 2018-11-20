@@ -13,13 +13,15 @@ import PostUserHistoryListStyle from "../../post/style/postUser_historyList_styl
 
 class InPostManagementComponent extends Component {
   static propTypes = {
-    loginUser: PropTypes.object.isRequired,
     //init data
     fetchInPosts: PropTypes.func.isRequired,
-    //data
+    //raw
     posts: PropTypes.array.isRequired,
     isFetchingPosts: PropTypes.bool.isRequired,
     isInitPosts: PropTypes.bool.isRequired,
+    //calculated
+    requestPosts: PropTypes.array.isRequired,
+    borrowPosts: PropTypes.array.isRequired,
     approveAlertPosts: PropTypes.array.isRequired,
     returnShares: PropTypes.array.isRequired
   };
@@ -36,23 +38,15 @@ class InPostManagementComponent extends Component {
     this.setState({ selectTab });
   };
 
-  _getPostsContent(posts) {
+  _getPostsContent() {
     const { selectTab } = this.state;
-
-    const requestPosts = posts.filter(post =>
-      post.requestShares.some(
-        share => share.borrower.id === this.props.loginUser.id
-      )
-    );
-    const borrowPosts = posts.filter(
-      post =>
-        post.curBorrowShare &&
-        post.curBorrowShare.borrower.id === this.props.loginUser.id
-    );
-
-    const generateList = (listId, postArray) => (
-      <InPostList listId={listId} posts={postArray} />
-    );
+    const {
+      posts,
+      requestPosts,
+      approveAlertPosts,
+      borrowPosts,
+      returnShares
+    } = this.props;
 
     return (
       <Fragment>
@@ -62,31 +56,37 @@ class InPostManagementComponent extends Component {
             onTabChange={this.onTabChange}
             allCount={posts.length}
             requestCount={requestPosts.length}
-            approveCount={this.props.approveAlertPosts.length}
+            approveCount={approveAlertPosts.length}
             borrowCount={borrowPosts.length}
-            historyCount={this.props.returnShares.length}
+            historyCount={returnShares.length}
           />
         </AppBodyBannerStyle>
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === InPostTabEnum.ALL}>
-            {generateList("inPostList-all-react", posts)}
+            <InPostList listId={"inPostList-all-react"} posts={posts} />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.REQUEST}>
-            {generateList("inPostList-request-react", requestPosts)}
+            <InPostList
+              listId={"inPostList-request-react"}
+              posts={requestPosts}
+            />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.APPROVE}>
-            {generateList(
-              "inPostList-approveNote-react",
-              this.props.approveAlertPosts
-            )}
+            <InPostList
+              listId={"inPostList-approveNote-react"}
+              posts={approveAlertPosts}
+            />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.BORROW}>
-            {generateList("inPostList-borrow-react", borrowPosts)}
+            <InPostList
+              listId={"inPostList-borrow-react"}
+              posts={borrowPosts}
+            />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.HISTORY}>
             <PostUserHistoryListStyle>
-              <InPostUserHistoryList shares={this.props.returnShares} />
+              <InPostUserHistoryList shares={returnShares} />
             </PostUserHistoryListStyle>
           </TabPanel>
         </AppCenterWrapStyle>
@@ -95,7 +95,7 @@ class InPostManagementComponent extends Component {
   }
 
   render() {
-    const { posts, isInitPosts, isFetchingPosts } = this.props;
+    const { isInitPosts, isFetchingPosts } = this.props;
 
     return (
       <div id="inPostManagement-react">
@@ -104,7 +104,7 @@ class InPostManagementComponent extends Component {
             <LoadingIcon text="loading" />
           </h1>
         )}
-        {isInitPosts && this._getPostsContent(posts)}
+        {isInitPosts && this._getPostsContent()}
       </div>
     );
   }

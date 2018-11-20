@@ -4,23 +4,15 @@ import fetchInPosts from "../action/fetchInPosts.action";
 import InPostSelector from "../inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
-  const loginUser = state.auth.loginUser;
-  const posts = state.inPost.posts;
-  const approveAlertPosts = InPostSelector.approveAlertPosts(state);
-
-  const myInShares2D = posts.map(post =>
-    post.shares.filter(share => share.borrower.id === loginUser.id)
-  );
-  const myInShares1D = [].concat(...myInShares2D);
-  const returnShares = myInShares1D.filter(share => share.isReturn);
-
   return {
-    loginUser,
-    posts,
-    isFetchingPosts: state.inPost.isFetchingPosts,
-    isInitPosts: state.inPost.isInitPosts,
-    approveAlertPosts,
-    returnShares
+    posts: InPostSelector.posts(state),
+    isFetchingPosts: InPostSelector.isFetchingPosts(state),
+    isInitPosts: InPostSelector.isInitPosts(state),
+    //calculate data
+    requestPosts: InPostSelector.requestPosts(state),
+    borrowPosts: InPostSelector.borrowPosts(state),
+    approveAlertPosts: InPostSelector.approveAlertPosts(state),
+    returnShares: InPostSelector.returnShares(state)
   };
 };
 

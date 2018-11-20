@@ -149,3 +149,7 @@ lets just dead focus on 1 thing: how can i test InPostItemHead. it easy, create 
 postItemHeadStyle postItemHeadLeftSytle need to be more cohesion.
 ---
 inPostManagement
+  . componentDidMount
+
+--
+remove loginUser from inPostManagement, move borrowPosts and RequestPosts out

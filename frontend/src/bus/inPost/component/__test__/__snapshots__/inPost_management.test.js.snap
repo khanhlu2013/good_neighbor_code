@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPost_management component on render -> can show all posts 1`] = `
+<InPostList
+  listId="inPostList-all-react"
+  posts={
+    Array [
+      Post {
+        "dateCreate": 2018-11-20T13:04:20.390Z,
+        "description": "p description",
+        "id": "5bf406545407a8bb75578493",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf40631236352000018b0eb",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      },
+    ]
+  }
+/>
+`;
+
+exports[`inPost_management component on render -> can show approve posts 1`] = `
+<InPostList
+  listId="inPostList-approveNote-react"
+  posts={
+    Array [
+      Post {
+        "dateCreate": 2018-11-20T13:04:20.390Z,
+        "description": "p description",
+        "id": "5bf406545407a8bb75578493",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf40631236352000018b0eb",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      },
+    ]
+  }
+/>
+`;
+
+exports[`inPost_management component on render -> can show borrow posts 1`] = `
+<InPostList
+  listId="inPostList-borrow-react"
+  posts={
+    Array [
+      Post {
+        "dateCreate": 2018-11-20T13:04:20.390Z,
+        "description": "p description",
+        "id": "5bf406545407a8bb75578493",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf40631236352000018b0eb",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      },
+    ]
+  }
+/>
+`;
+
+exports[`inPost_management component on render -> can show emptiness when not loading and not init posts 1`] = `
+<div
+  id="inPostManagement-react"
+/>
+`;
+
+exports[`inPost_management component on render -> can show request posts 1`] = `
+<InPostList
+  listId="inPostList-request-react"
+  posts={
+    Array [
+      Post {
+        "dateCreate": 2018-11-20T13:04:20.390Z,
+        "description": "p description",
+        "id": "5bf406545407a8bb75578493",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf40631236352000018b0eb",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      },
+    ]
+  }
+/>
+`;
+
+exports[`inPost_management component on render -> can show user history list 1`] = `
+<InPostUserHistoryList
+  shares={
+    Array [
+      Share {
+        "borrower": User {
+          "email": "me@me.com",
+          "id": "5bf40631236352000018b0ed",
+          "name": "I Myself Me",
+          "profileImageUrl": undefined,
+        },
+        "dateCreate": 2018-11-20T13:24:20.555Z,
+        "dateReturn": 2018-11-20T13:24:35.347Z,
+        "id": "5bf40b045407a8bb75578494",
+        "isApprove": true,
+        "isAwareApprove": true,
+        "isAwareReturn": false,
+        "isReturn": true,
+        "post": Post {
+          "dateCreate": 2018-11-20T13:04:20.390Z,
+          "description": "p description",
+          "id": "5bf406545407a8bb75578493",
+          "isActive": true,
+          "shares": Array [
+            [Circular],
+          ],
+          "title": "p title",
+          "user": User {
+            "email": "my@friend.com",
+            "id": "5bf40631236352000018b0eb",
+            "name": "My Friend",
+            "profileImageUrl": undefined,
+          },
+        },
+      },
+    ]
+  }
+/>
+`;
