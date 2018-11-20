@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPostList when render empty data -> can match snapshot 1`] = `
+<div
+  id="listId"
+>
+  <PostListNoData />
+</div>
+`;
+
+exports[`inPostList when render list data -> can match snapshot 1`] = `
+<div
+  id="listId"
+>
+  <InPostItem
+    key="5bf214825407a8bb75578491"
+    post={
+      Post {
+        "dateCreate": 2018-11-19T01:40:18.758Z,
+        "description": "p2 description",
+        "id": "5bf214825407a8bb75578491",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p2 title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf2141272372400006b4579",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      }
+    }
+  />
+  <InPostItem
+    key="5bf214775407a8bb75578490"
+    post={
+      Post {
+        "dateCreate": 2018-11-19T01:40:07.625Z,
+        "description": "p1 description",
+        "id": "5bf214775407a8bb75578490",
+        "isActive": true,
+        "shares": Array [],
+        "title": "p1 title",
+        "user": User {
+          "email": "my@friend.com",
+          "id": "5bf2141272372400006b4579",
+          "name": "My Friend",
+          "profileImageUrl": undefined,
+        },
+      }
+    }
+  />
+</div>
+`;
