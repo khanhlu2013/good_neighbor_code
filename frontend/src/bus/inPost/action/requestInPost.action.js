@@ -1,4 +1,5 @@
 import API from "../../../api/profile-api";
+import AuthSelector from "../../../app/auth.selector";
 export const INFORM_REQUEST_INPOST = "INFORM_REQUEST_INPOST";
 export const RECEIVE_REQUEST_INPOST = "RECEIVE_REQUEST_INPOST";
 
@@ -15,7 +16,7 @@ const requestInPost = postId => (dispatch, getState) => {
         postId,
         shareId,
         shareDateCreate,
-        loginUser: getState().auth.loginUser
+        loginUser: AuthSelector.loginUser(getState())
       })
   );
 };
