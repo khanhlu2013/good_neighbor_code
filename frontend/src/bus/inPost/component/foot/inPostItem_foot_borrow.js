@@ -17,6 +17,12 @@ function InPostItemFootBorrow(props) {
     onAwareApprovePost(myBorrowShareId);
   };
   const onReturnPostClick = e => {
+    // this confirm need to be handle in unit test with jest, thus i am delay this
+    // if (
+    //   !window.confirm(`You are returning '${postTitle}'. This can not be undo!`)
+    // ) {
+    //   return;
+    // }
     onReturnPost(myBorrowShareId);
   };
 

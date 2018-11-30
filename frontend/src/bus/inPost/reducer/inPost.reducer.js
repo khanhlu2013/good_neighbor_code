@@ -19,10 +19,6 @@ import {
   INFORM_AWARE_APPROVE_INPOST
 } from "../action/awareApproveInPost.action";
 import {
-  receiveAwareApproveInPost_reducerHelper,
-  informAwareApproveInPost_reducerHelper
-} from "./helper/awareApproveInPost.reducerHelper";
-import {
   recieveUnRequetedInPost_reducerHelper,
   informUnRequestInPost_reducerHelper
 } from "./helper/unRequestInPost.reducerHelper";
@@ -35,6 +31,7 @@ import {
   receiveReturnInPost
 } from "./helper/returnInPost.reducerHelper";
 import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
+import update from "immutability-helper";
 
 const defaultInPostState = {
   posts: [],
@@ -85,13 +82,29 @@ const inPostReducer = (state = defaultInPostState, action) => {
 
     //AWARE
     case INFORM_AWARE_APPROVE_INPOST:
-      return informAwareApproveInPost_reducerHelper(state, action.shareId);
+      return update(state, { awaringShareIds: { $push: [action.shareId] } });
+
     case RECEIVE_AWARE_APPROVE_INPOST:
-      return receiveAwareApproveInPost_reducerHelper(
-        state,
-        action.shareId,
-        action.isAwareApprove
+      const { shareId, isAwareApprove } = action;
+      const postIndex = state.posts.findIndex(post =>
+        post.shares.some(share => share.id === shareId)
       );
+      const shareIndex = state.posts[postIndex].shares.findIndex(
+        share => share.id === shareId
+      );
+
+      return update(state, {
+        posts: {
+          [postIndex]: {
+            shares: {
+              [shareIndex]: { isAwareApprove: { $set: isAwareApprove } }
+            }
+          }
+        },
+        awaringShareIds: {
+          $set: state.awaringShareIds.filter(id => id !== shareId)
+        }
+      });
 
     //RETURN
     case INFORM_RETURN_INPOST:

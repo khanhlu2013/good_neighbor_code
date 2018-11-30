@@ -5,7 +5,7 @@ import awareApproveInPost, {
 import API from "../../../../api/profile-api";
 
 describe("awareApproveInPost action", () => {
-  it("works", async () => {
+  it("when invoke with shareId -> dispatch inform, call API, then dispatch API resolve result", async () => {
     //setup
     const shareId = "shareIdFake";
     const isAwareApprove = "isAwareApproveFake";
