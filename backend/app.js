@@ -20,12 +20,12 @@ const app = express();
 //   });
 // }
 
-// app.use(
-//   cors({
-//     origin: [new url.URL(keys.FRONTEND_URL).origin],
-//     credentials: true
-//   })
-// );
+app.use(
+  cors({
+    origin: [new url.URL(keys.FRONTEND_URL).origin],
+    credentials: true
+  })
+);
 app.use(bodyParser.json());
 app.use(
   session({

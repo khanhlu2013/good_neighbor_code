@@ -154,9 +154,6 @@ inPostManagement
 --
 remove loginUser from inPostManagement, move borrowPosts and RequestPosts out
 ---
-immutability helper. 
-inpost reducer helper and then test them
+factor out redux folder ready to share. 
 ---
-web -> we can listen to an onClick on div
-native -> only a few touchable and button
-native -> sometimes event handler doesn't receive the event argument 
+create render props for AppComponent. 
