@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import PostItemHistoryList from "./postItem_historyList";
 import PostItemRequestList from "./postItem_requestlist";
-import Post from "../../../model/post";
+import Post from "@gn/common/model/post";
 
 const Style = styled.div`
   margin-top: 10px;

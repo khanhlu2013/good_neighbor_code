@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import User from "../model/user";
+import User from "@gn/common/model/user";
 
 const noProfileImageFileName = "no_profile_image.png";
 

@@ -1,7 +1,7 @@
-import Connection from "../model/connection";
-import User from "../model/user";
-import Post from "../model/post";
-import Share from "../model/share";
+import Connection from "@gn/common/model/connection";
+import User from "@gn/common/model/user";
+import Post from "@gn/common/model/post";
+import Share from "@gn/common/model/share";
 
 const rawToConnection = raw => {
   const { _id: id, from, to, isApproveByTo, isApproveByFrom } = raw;

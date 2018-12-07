@@ -1,5 +1,5 @@
 import API from "../../../api/profile-api";
-import Post from "../../../model/post";
+import Post from "@gn/common/model/post";
 
 //CRUD
 export const OPEN_UPDATE_POST_DIALOG = "OPEN_UPDATE_POST_DIALOG";

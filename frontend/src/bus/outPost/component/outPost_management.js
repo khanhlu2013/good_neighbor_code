@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { nullOrRequiredValidator } from "../../../share/util";
-import Post from "../../../model/post";
+import Post from "@gn/common/model/post";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";

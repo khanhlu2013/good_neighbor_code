@@ -13,7 +13,7 @@ import ConnectionDenyTable from "./connectionTable_deny.js";
 import ConnectionTabEnum from "./connection_tabEnum.js";
 import ConnectionTabBar from "./connection_tabBar.js";
 import ConnectionInTable from "./connectionTable_in.js";
-import User from "../../../model/user.js";
+import User from "@gn/common/model/user";
 import {
   friendConnectionSelector,
   outConnectionSelector,

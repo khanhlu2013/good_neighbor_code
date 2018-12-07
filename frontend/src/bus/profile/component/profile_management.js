@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import User from "../../../model/user";
+import User from "@gn/common/model/user";
 import LoadingIcon from "../../../share/loadingIcon";
 import { ShadowBoxMixin } from "../../../share/style/shadowBox_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";

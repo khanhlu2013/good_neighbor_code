@@ -5,7 +5,7 @@ import classNames from "classnames";
 import _ from "lodash";
 import update from "immutability-helper";
 
-import Post from "../../../model/post";
+import Post from "@gn/common/model/post";
 import LoadingIcon from "../../../share/loadingIcon";
 import { nullOrRequiredValidator } from "../../../share/util";
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import PostListNoData from "../../post/component/postListNoData";
 import { date2String } from "../../../share/util";
-import Share from "../../../model/share";
+import Share from "@gn/common/model/share";
 
 function InPostUserHistoryList(props) {
   const { shares } = props;
