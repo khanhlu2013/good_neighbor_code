@@ -40,9 +40,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onAppTabChange: appTab => dispatch(changeAppTab(appTab))
 });
-const AppHeaderContainer = connect(
+const AppHeaderConnect = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AppHeaderComponent);
 
-export default AppHeaderContainer;
+export default AppHeaderConnect;

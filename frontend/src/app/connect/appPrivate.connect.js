@@ -5,6 +5,6 @@ import PrivateAppComponent from "../component/appPrivate.js";
 const mapStateToProps = (state, ownProps) => ({
   selectAppTab: state.selectAppTab
 });
-const PrivateAppContainer = connect(mapStateToProps)(PrivateAppComponent);
+const PrivateAppConnect = connect(mapStateToProps)(PrivateAppComponent);
 
-export default PrivateAppContainer;
+export default PrivateAppConnect;

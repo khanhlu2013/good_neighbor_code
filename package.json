@@ -1,14 +1,14 @@
 {
-  "name": "good-neighboors",
+  "name": "good-neighbor",
   "version": "1.0.0",
-  "description": "",
+  "description": "A social networking app to help friends share stuffs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:mongo": "~/mongo/bin/mongod --dbpath ~/mongo-data",
     "sm": "npm run start:mongo",
-    "sbt": "npm run start:backend:testenv --prefix ./backend",
-    "sft": "npm run start:frontend:testenv --prefix ./frontend",
+    "sb": "npm run start:backend --prefix ./backend",
+    "sf": "npm run start:frontend --prefix ./frontend",
     "sc": "npm run cypress:open --prefix ./frontend"
   },
   "author": "",

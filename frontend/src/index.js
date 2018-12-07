@@ -11,12 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.css";
 import "./css/myBootstrap.css";
 import "./css/reactModal.css";
-import AppContainer from "./app/container/app.con";
 import authReducer from "./app/reducer/auth.reducer";
 import connectionReducer from "./bus/connection/reducer/connection_reducer";
 import inPostReducer from "./bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
+import AppView from "./app/view/app.view";
+import AppConnect from "./app/connect/app.connect";
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
@@ -34,7 +35,7 @@ const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <AppConnect view={AppView} />
   </Provider>,
   document.getElementById("root")
 );

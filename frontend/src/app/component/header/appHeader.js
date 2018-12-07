@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import User from "../../../model/user";
-import GoogleLogin from "../googleLogin";
 import AppTabEnum from "../appTabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
+import API_URL from "../../../api/api-url";
+import GoogleLoginController from "../../controller/googleLogin.controller";
+import GoogleLoginView from "../../view/googleLogin.view";
 
 const Banner = styled.div`
   ${BannerMixin} background-color: rgb(36, 54, 65);
@@ -34,6 +36,9 @@ const AuthCheckWrap = styled.div`
 const GoogleLoginWrap = styled.div`
   align-self: center;
 `;
+function onGoogleLogin() {
+  window.location.href = API_URL("auth.google");
+}
 
 function AppHeaderComponent(props) {
   const {
@@ -59,7 +64,10 @@ function AppHeaderComponent(props) {
   } else if (loginUser === null) {
     content = (
       <GoogleLoginWrap>
-        <GoogleLogin />
+        <GoogleLoginController
+          onGoogleLogin={onGoogleLogin}
+          view={GoogleLoginView}
+        />
       </GoogleLoginWrap>
     );
   } else {

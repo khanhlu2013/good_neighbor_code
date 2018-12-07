@@ -1,19 +1,19 @@
-const mode = process.env.NODE_ENV || "development"; //mode default = development
+const mode = process.env.NODE_ENV; //mode default = development
 
-if (!["production", "development", "test"].includes(mode)) {
+//verify mode is setup correctly either on local or production
+if (!["production", "development"].includes(mode)) {
   throw Error(`Unexpected mode ${mode}`);
 }
 
 if (mode !== "production") {
-  //setting up process.env for development or test.
-  const keyValues = require("./keys-local-for-test-and-dev")[mode];
+  const keyValues = require("./keys-local-for-dev");
   Object.assign(process.env, keyValues);
 } else {
   //production env need to be manaully set on production server
 }
 
 // ------------------------------------------------------------------------------------------------
-// at this stage, i dont care what NODE_ENV is. process.env is already configed for backend to work
+// at this stage, either evn is production or local, process.env is fully configed for the backend
 // ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
@@ -25,9 +25,10 @@ const keys = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   GOOGLE_REDIRECT_URL: process.env.GOOGLE_REDIRECT_URL,
-
   NODE_ENV: mode
 };
+
+//verify that either production or development env is setup correctly
 Object.entries(keys).forEach(([key, value]) => {
   if (value === undefined) {
     throw Error(`Environment variable '${key}' is not set.`);
