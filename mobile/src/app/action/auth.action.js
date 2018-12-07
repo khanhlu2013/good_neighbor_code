@@ -1,4 +1,4 @@
-import API from "../../api/profile-api";
+import { API } from "@good-neighbor/common";
 
 //AUTH CHECK
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";

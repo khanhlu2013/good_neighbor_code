@@ -15,7 +15,8 @@
     "redux-thunk": "^2.3.0",
     "route-node": "^3.4.2",
     "underscore": "^1.9.1",
-    "validator": "^10.9.0"
+    "validator": "^10.9.0",
+    "@gn/common": "1.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
