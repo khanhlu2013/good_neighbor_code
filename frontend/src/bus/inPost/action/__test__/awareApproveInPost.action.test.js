@@ -2,7 +2,7 @@ import awareApproveInPost, {
   INFORM_AWARE_APPROVE_INPOST,
   RECEIVE_AWARE_APPROVE_INPOST
 } from "../awareApproveInPost.action";
-import API from "../../../../api/profile-api";
+import API from "@gn/common/api";
 
 describe("awareApproveInPost action", () => {
   it("when invoke with shareId -> dispatch inform, call API, then dispatch API resolve result", async () => {

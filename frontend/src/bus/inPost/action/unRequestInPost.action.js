@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 
 export const INFORM_UNREQUEST_INPOST = "INFORM_UNREQUEST_INPOST";
 export const RECEIVE_UNREQUEST_INPOST = "RECEIVE_UNREQUEST_INPOST";

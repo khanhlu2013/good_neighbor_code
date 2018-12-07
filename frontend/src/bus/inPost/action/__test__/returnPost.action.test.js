@@ -2,7 +2,7 @@ import returnInPost, {
   INFORM_RETURN_INPOST,
   RECEIVE_RETURN_INPOST
 } from "../returnInPost.action";
-import API from "../../../../api/profile-api";
+import API from "@gn/common/api";
 
 describe("returnInPost action", () => {
   it("works", async () => {

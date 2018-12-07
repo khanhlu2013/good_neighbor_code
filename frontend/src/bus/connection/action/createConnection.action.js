@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 import fetchInPosts from "../../inPost/action/fetchInPosts.action";
 
 export const INFORM_CREATE_CONNECTION = "INFORM_CREATE_CONNECTION";

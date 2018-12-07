@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 import AuthSelector from "../../../app/auth.selector";
 export const INFORM_REQUEST_INPOST = "INFORM_REQUEST_INPOST";
 export const RECEIVE_REQUEST_INPOST = "RECEIVE_REQUEST_INPOST";

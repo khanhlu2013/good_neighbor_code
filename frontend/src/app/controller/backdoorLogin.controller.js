@@ -1,6 +1,6 @@
 import { Component } from "react";
 import validator from "validator";
-import API from "../../api/profile-api";
+import API from "@gn/common/api";
 import { storeBackdoorLoginUser } from "../action/auth.action";
 import PropTypes from "prop-types";
 

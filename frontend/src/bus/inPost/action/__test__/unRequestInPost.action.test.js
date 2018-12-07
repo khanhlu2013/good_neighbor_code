@@ -2,7 +2,7 @@ import unRequestInPost, {
   INFORM_UNREQUEST_INPOST,
   RECEIVE_UNREQUEST_INPOST
 } from "../unRequestInPost.action";
-import API from "../../../../api/profile-api";
+import API from "@gn/common/api";
 
 describe("unRequestInPost action", () => {
   it("works", async () => {

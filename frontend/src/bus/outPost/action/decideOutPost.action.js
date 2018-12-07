@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 
 //DECIDE
 export const OPEN_DECISION_DIALOG = "OPEN_DECISION_DIALOG";

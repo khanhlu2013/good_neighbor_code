@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 
 export const INFORM_AWARE_APPROVE_INPOST = "INFORM_AWARE_APPROVE_INPOST";
 export const RECEIVE_AWARE_APPROVE_INPOST = "RECEIVE_AWARE_APPROVE_INPOST";

@@ -2,7 +2,7 @@ import requestInPost, {
   INFORM_REQUEST_INPOST,
   RECEIVE_REQUEST_INPOST
 } from "../requestInPost.action";
-import API from "../../../../api/profile-api";
+import API from "@gn/common/api";
 import AuthSelector from "../../../../app/auth.selector";
 
 describe("requestInPost action", () => {

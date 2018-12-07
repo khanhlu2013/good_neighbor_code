@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 
 export const INFORM_AWARE_RETURN_POST = "INFORM_AWARE_RETURN_POST";
 export const RECEIVE_AWARE_RETURN_POST = "RECEIVE_AWARE_RETURN_POST";

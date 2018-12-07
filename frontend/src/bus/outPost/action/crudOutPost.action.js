@@ -1,4 +1,4 @@
-import API from "../../../api/profile-api";
+import API from "@gn/common/api";
 import Post from "@gn/common/model/post";
 
 //CRUD

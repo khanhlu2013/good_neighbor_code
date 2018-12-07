@@ -3,7 +3,7 @@ import fetchInPosts, {
   RECEIVE_FETCH_INPOSTS
 } from "../fetchInPosts.action";
 import AuthSelector from "../../../../app/auth.selector";
-import API from "../../../../api/profile-api";
+import API from "@gn/common/api";
 
 describe("fetchInPosts action", () => {
   it("works", async () => {

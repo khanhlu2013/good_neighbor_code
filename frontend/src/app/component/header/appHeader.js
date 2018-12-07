@@ -8,7 +8,7 @@ import LoadingIcon from "../../../share/loadingIcon";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
-import API_URL from "../../../api/api-url";
+import API_URL from "@gn/common/api/api-url";
 import GoogleLoginController from "../../controller/googleLogin.controller";
 import GoogleLoginView from "../../view/googleLogin.view";
 
