@@ -39,7 +39,8 @@
     "route-node": "^3.4.0",
     "styled-components": "^4.0.2",
     "underscore": "^1.9.1",
-    "validator": "^10.5.0"
+    "validator": "^10.5.0",
+    "common": "1.0.0"
   },
   "devDependencies": {
     "@cypress/snapshot": "^2.0.1",

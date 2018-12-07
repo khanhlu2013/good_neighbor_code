@@ -1,4 +1,10 @@
 {
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "mobile",
+    "common"
+  ],
   "name": "good-neighbor",
   "version": "1.0.0",
   "description": "A social networking app to help friends share stuffs",

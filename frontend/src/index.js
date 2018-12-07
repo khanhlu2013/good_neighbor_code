@@ -18,6 +18,9 @@ import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
 import AppView from "./app/view/app.view";
 import AppConnect from "./app/connect/app.connect";
+import commonFunction from "common";
+
+commonFunction();
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
