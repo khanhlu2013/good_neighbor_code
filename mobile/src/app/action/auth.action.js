@@ -1,4 +1,4 @@
-import API from "@api";
+import API from "../../common/api";
 
 //AUTH CHECK
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";
