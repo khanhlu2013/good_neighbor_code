@@ -1,8 +1,8 @@
 import { Component } from "react";
 import validator from "validator";
-import { API } from "@good-neighbor/common";
 import { storeBackdoorLoginUser } from "../action/auth.action";
 import PropTypes from "prop-types";
+import API from "../../common/api";
 
 export default class BackdoorLoginController extends Component {
   state = {

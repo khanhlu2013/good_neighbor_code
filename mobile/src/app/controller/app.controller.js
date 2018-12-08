@@ -1,8 +1,8 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 
-import User from "../../model/user";
 import { nullOrRequiredValidator } from "../../share/util";
+import User from "../../common/model/user";
 
 class AppController extends Component {
   static propTypes = {

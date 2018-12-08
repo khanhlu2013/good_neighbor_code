@@ -1,4 +1,4 @@
-import { API } from "@good-neighbor/common";
+import API from "@api";
 
 //AUTH CHECK
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";
