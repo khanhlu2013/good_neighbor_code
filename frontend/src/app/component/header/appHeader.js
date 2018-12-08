@@ -9,8 +9,8 @@ import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
 import API_URL from "@gn/common/api/api-url";
-import GoogleLoginController from "../../controller/googleLogin.controller";
 import GoogleLoginView from "../../view/googleLogin.view";
+import GoogleLoginRPC from "@gn/common/app/rpc/googleLogin.rpc";
 
 const Banner = styled.div`
   ${BannerMixin} background-color: rgb(36, 54, 65);
@@ -36,7 +36,7 @@ const AuthCheckWrap = styled.div`
 const GoogleLoginWrap = styled.div`
   align-self: center;
 `;
-function onGoogleLogin() {
+function onGoogleLoginWeb() {
   window.location.href = API_URL("auth.google");
 }
 
@@ -64,8 +64,8 @@ function AppHeaderComponent(props) {
   } else if (loginUser === null) {
     content = (
       <GoogleLoginWrap>
-        <GoogleLoginController
-          onGoogleLogin={onGoogleLogin}
+        <GoogleLoginRPC
+          onGoogleLogin={onGoogleLoginWeb}
           view={GoogleLoginView}
         />
       </GoogleLoginWrap>

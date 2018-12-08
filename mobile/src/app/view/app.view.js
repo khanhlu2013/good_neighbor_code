@@ -1,7 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import BackdoorLoginConnect from "../connect/backdoorLogin.connect";
 import BackDoorLoginView from "./backdoorLogin.view";
+import GoogleLoginRPC from "../../common/app/rpc/googleLogin.rpc";
+import GoogleLoginView from "./googleLogin.view";
+
+function onGoogleLoginMobile() {}
 
 export default function AppView(loginUser, isCheckedAuth) {
   let appContent;
@@ -17,9 +21,11 @@ export default function AppView(loginUser, isCheckedAuth) {
     <View id="app-react">
       {loginUser === null && (
         <View>
-          <TouchableOpacity>
-            <Text>Google Login</Text>
-          </TouchableOpacity>
+          <GoogleLoginRPC
+            onGoogleLogin={onGoogleLoginMobile}
+            view={GoogleLoginView}
+          />
+
           <BackdoorLoginConnect view={BackDoorLoginView} />
         </View>
       )}
