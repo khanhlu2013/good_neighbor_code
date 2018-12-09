@@ -10,7 +10,7 @@ import {
 import { inConnectionSelector } from "../../bus/connection/connection.selector";
 
 const mapStateToProps = (state, ownProps) => {
-  const { loginUser, isCheckingAuth } = state.auth;
+  const { loginUser, isCheckedAuth } = state.auth;
   const loginUserId = loginUser && loginUser.id;
 
   //inPost
@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
   ).length;
   return {
     loginUser,
-    isCheckingAuth,
+    isCheckedAuth,
     selectAppTab: state.selectAppTab,
     inPostAlertCount,
     outPostAlertCount,

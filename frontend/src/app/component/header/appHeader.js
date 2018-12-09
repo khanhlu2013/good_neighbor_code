@@ -29,10 +29,6 @@ const AppIconWrap = styled.div`
   font-size: 1.3em;
   user-select: none;
 `;
-const AuthCheckWrap = styled.div`
-  color: white;
-  align-self: center;
-`;
 const GoogleLoginWrap = styled.div`
   align-self: center;
 `;
@@ -43,7 +39,7 @@ function onGoogleLoginWeb() {
 function AppHeaderComponent(props) {
   const {
     loginUser,
-    isCheckingAuth,
+    isCheckedAuth,
     onAppTabChange,
     selectAppTab,
     inPostAlertCount,
@@ -53,13 +49,7 @@ function AppHeaderComponent(props) {
 
   let content;
 
-  if (isCheckingAuth) {
-    content = (
-      <AuthCheckWrap>
-        <LoadingIcon text="loading" />
-      </AuthCheckWrap>
-    );
-  } else if (loginUser === undefined) {
+  if (isCheckedAuth === false) {
     content = null;
   } else if (loginUser === null) {
     content = (

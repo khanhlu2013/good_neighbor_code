@@ -9,14 +9,15 @@ class AppController extends Component {
   }
 
   render() {
-    const { loginUser, view, isCheckedAuth } = this.props;
-    return view(loginUser, isCheckedAuth);
+    const { loginUser, isCheckingAuth, isCheckedAuth, view } = this.props;
+    return view(loginUser, isCheckingAuth, isCheckedAuth);
   }
 }
 
 AppController.propTypes = {
   loginUser: nullOrRequiredValidator("object", User),
   isCheckedAuth: PropTypes.bool.isRequired,
+  isCheckingAuth: PropTypes.bool.isRequired,
   authCheck: PropTypes.func.isRequired,
   view: PropTypes.func.isRequired
 };

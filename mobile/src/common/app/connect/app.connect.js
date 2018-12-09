@@ -6,6 +6,7 @@ import { checkAuth } from "../action/auth.action";
 const AppConnect = connect(
   state => ({
     loginUser: AuthSelector.loginUser(state),
+    isCheckingAuth: AuthSelector.isCheckingAuth(state),
     isCheckedAuth: AuthSelector.isCheckedAuth(state)
   }),
   dispatch => ({ authCheck: () => dispatch(checkAuth()) })

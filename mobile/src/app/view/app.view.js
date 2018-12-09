@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import BackDoorLoginView from "./backdoorLogin.view";
 import GoogleLoginRPC from "../../common/app/controller/googleLogin.controller";
 import GoogleLoginView from "./googleLogin.view";
@@ -9,12 +9,12 @@ function onGoogleLoginMobile() {
   alert("under construction");
 }
 
-export default function AppView(loginUser, isCheckedAuth) {
+export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
   let appContent;
   const publicContent = null;
 
-  if (!isCheckedAuth) {
-    appContent = <Text>auth is not check yet ...</Text>;
+  if (isCheckingAuth) {
+    appContent = <ActivityIndicator size="large" />;
   } else if (loginUser === null) {
     appContent = publicContent;
   } else {
@@ -23,7 +23,7 @@ export default function AppView(loginUser, isCheckedAuth) {
 
   return (
     <View id="app-react">
-      {loginUser === null && (
+      {loginUser === null && isCheckedAuth && (
         <View>
           <GoogleLoginRPC
             onGoogleLogin={onGoogleLoginMobile}
