@@ -30,7 +30,7 @@ import {
   INFORM_FETCH_OUTPOSTS,
   RECEIVE_FETCH_OUTPOSTS
 } from "../action/fetchOutPosts.action";
-import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
+import { RECEIVE_LOGGED_OUT_SUCCESS } from "@gn/common/app/action/auth.action";
 import update from "immutability-helper";
 
 const defaultState = {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { logOut } from "../../../app/action/auth.action";
+import { logOut } from "@gn/common/app/action/auth.action";
 import ProfileManagementComponent from "../component/profile_management";
 
 const mapStateToProps = (state, ownProps) => ({

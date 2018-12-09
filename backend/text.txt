@@ -164,4 +164,8 @@ i need to store the session id on locally. auth check will include this id.
 so i like to combine connect and controller, they are logic + state right? unless i find the need to separate this. which mean if i have a different state tree, or different selector logic, i can swap it in, but my god, i do not want to deal with this. this is impractical which mean it is better to combine these. i will call it connect i guess. or controller. while it is not separate but it still contain significant amount of logic. lets leave it alone then. ok.
 
 ---
-time to solve google login lets review it on the web first. where it is start and how? i think it is just a href. 
+ok, what now, i do not like rpc. and i also like to connect it as well. 
+what next then? lets fix that for the backdoor login right?
+
+. factor out appController from frontend into the common. 
+. use it for mobile

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import { checkAuth } from "../action/auth.action";
-import AppController from "../controller/app.controller";
+import { checkAuth } from "@gn/common/app/action/auth.action";
+import AppController from "@gn/common/app/controller/app.controller";
 
 const AppConnect = connect(
   state => ({

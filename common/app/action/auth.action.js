@@ -1,4 +1,4 @@
-import API from "@gn/common/api";
+import API from "../../api";
 
 //AUTH CHECK
 export const INFORM_CHECKING_AUTH = "INFORM_CHECKING_AUTH";
@@ -30,10 +30,3 @@ export const logOut = () => (dispatch, getState) => {
     });
   });
 };
-
-//BACKDOOR LOGIN
-export const STORE_BACKDOOR_LOGIN_USER = "STORE_BACKDOOR_LOGIN_USER";
-export const storeBackdoorLoginUser = backdoorLoginUser => ({
-  type: STORE_BACKDOOR_LOGIN_USER,
-  backdoorLoginUser
-});

@@ -11,7 +11,7 @@ import {
   RECIEVE_UPDATE_CONNECTION
 } from "../action/updateConnection.action";
 import update from "immutability-helper";
-import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
+import { RECEIVE_LOGGED_OUT_SUCCESS } from "@gn/common/app/action/auth.action";
 
 const defaultState = {
   connections: [],

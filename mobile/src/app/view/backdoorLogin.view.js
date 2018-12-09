@@ -35,7 +35,7 @@ export default function BackDoorLoginView(
     nameIsRequireButEmpty
   );
   const emailInputStyle = getEmailInputStyle(isTryToSubmitInvalidEmail);
-  const nameInputStyle = getNameInputStyle(nameIsRequireButEmpty);
+  const nameInputStyle = getNameInputStyle(isNameRequire);
 
   return (
     <View style={containerStyles.x}>
@@ -57,7 +57,7 @@ export default function BackDoorLoginView(
         autoCapitalize="words"
         autoCorrect={false}
       />
-      {nameIsRequireButEmpty && (
+      {isNameRequire && (
         <Text style={{ color: "red" }}>
           email is not found. Name is require to create new account
         </Text>
@@ -109,7 +109,7 @@ const inputStyles = StyleSheet.create({
     marginTop: SPACE_BETWEEN_ITEMS
   },
   email_tryToSubmitInvalidEmail: { borderColor: "red" },
-  name_nameIsRequiredButEmpty: { borderColor: "red" }
+  name_nameIsRequired: { borderColor: "red" }
 });
 
 const headerStyles = StyleSheet.create({
@@ -159,10 +159,10 @@ function getEmailInputStyle(isTryToSubmitInvalidEmail) {
   return result;
 }
 
-function getNameInputStyle(nameIsRequireButEmpty) {
+function getNameInputStyle(nameIsRequire) {
   const result = [inputStyles.normalShare, inputStyles.normalName];
-  if (nameIsRequireButEmpty) {
-    result.push(inputStyles.name_nameIsRequiredButEmpty);
+  if (nameIsRequire) {
+    result.push(inputStyles.name_nameIsRequired);
   }
   return result;
 }

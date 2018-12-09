@@ -6,7 +6,7 @@ import {
   //- logout
   INFORM_LOGGING_OUT,
   RECEIVE_LOGGED_OUT_SUCCESS
-} from "@gn/common/app/action/auth.action";
+} from "../action/auth.action";
 
 const defaultAuthState = {
   loginUser: null,
