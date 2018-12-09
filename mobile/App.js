@@ -4,8 +4,8 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import AppView from "./src/app/view/app.view";
-import AppConnect from "./src/common/app/connect/app.connect";
 import authReducer from "./src/common/app/reducer/auth.reducer";
+import AppControllerConnect from "./src/common/app/controller/app.controller";
 
 const rootReducer = combineReducers({
   auth: authReducer
@@ -17,7 +17,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <AppConnect view={AppView} />
+          <AppControllerConnect view={AppView} />
         </View>
       </Provider>
     );

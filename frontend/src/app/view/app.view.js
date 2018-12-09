@@ -6,7 +6,7 @@ import PrivateAppConnect from "../connect/appPrivate.connect";
 import AppHeaderConnect from "../connect/appHeader.connect";
 import PublicAppView from "./publicApp/publicApp.view";
 import LoadingIcon from "../../share/loadingIcon";
-import BackdoorLoginConnect from "@gn/common/app/connect/backdoorLogin.connect";
+import BackdoorLoginControllerConnect from "@gn/common/app/controller/backdoorLogin.controller";
 
 const AuthCheckStyle = styled.div`
   text-align: center;
@@ -37,7 +37,7 @@ export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
       <AppHeaderConnect />
       {loginUser === null && isCheckedAuth && (
         <AppCenterWrapStyle>
-          <BackdoorLoginConnect view={BackDoorLoginView} />
+          <BackdoorLoginControllerConnect view={BackDoorLoginView} />
         </AppCenterWrapStyle>
       )}
       {appContent}

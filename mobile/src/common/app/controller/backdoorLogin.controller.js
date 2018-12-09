@@ -1,11 +1,12 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import validator from "validator";
 
 import { RECEIVE_AUTH_CHECK_RESULT } from "../action/auth.action";
 import API from "../../api";
 
-class BackdoorLoginController extends Component {
+class BackdoorLoginControllerDisconnect extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -86,9 +87,12 @@ class BackdoorLoginController extends Component {
   }
 }
 
-BackdoorLoginController.propsType = {
+BackdoorLoginControllerDisconnect.propsType = {
   dispatch: PropTypes.func.isRequired,
   view: PropTypes.func.isRequired
 };
 
-export default BackdoorLoginController;
+const BackdoorLoginControllerConnect = connect()(
+  BackdoorLoginControllerDisconnect
+); //i need the dispatch function
+export default BackdoorLoginControllerConnect;

@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 
-function GoogleLoginRPC(props) {
+function GoogleLoginController(props) {
   const { onGoogleLogin, view } = props;
 
   return view(onGoogleLogin);
 }
-GoogleLoginRPC.propTypes = {
+GoogleLoginController.propTypes = {
   onGoogleLogin: PropTypes.func.isRequired,
   view: PropTypes.func.isRequired
 };
-export default GoogleLoginRPC;
+export default GoogleLoginController;

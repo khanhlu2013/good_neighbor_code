@@ -16,8 +16,8 @@ import inPostReducer from "./bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
 import AppView from "./app/view/app.view";
+import AppControllerConnect from "@gn/common/app/controller/app.controller";
 import authReducer from "@gn/common/app/reducer/auth.reducer";
-import AppConnect from "@gn/common/app/connect/app.connect";
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {
@@ -35,7 +35,7 @@ const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppConnect view={AppView} />
+    <AppControllerConnect view={AppView} />
   </Provider>,
   document.getElementById("root")
 );

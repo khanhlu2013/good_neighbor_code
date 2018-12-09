@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import BackDoorLoginView from "./backdoorLogin.view";
-import GoogleLoginRPC from "../../common/app/controller/googleLogin.controller";
+import GoogleLoginController from "../../common/app/controller/googleLogin.controller";
 import GoogleLoginView from "./googleLogin.view";
-import BackdoorLoginConnect from "../../common/app/connect/backdoorLogin.connect";
+import BackdoorLoginControllerConnect from "../../common/app/controller/backdoorLogin.controller";
 
 function onGoogleLoginMobile() {
   alert("under construction");
@@ -25,12 +25,12 @@ export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
     <View id="app-react">
       {loginUser === null && isCheckedAuth && (
         <View>
-          <GoogleLoginRPC
+          <GoogleLoginController
             onGoogleLogin={onGoogleLoginMobile}
             view={GoogleLoginView}
           />
 
-          <BackdoorLoginConnect view={BackDoorLoginView} />
+          <BackdoorLoginControllerConnect view={BackDoorLoginView} />
         </View>
       )}
       {appContent}
