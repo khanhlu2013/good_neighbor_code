@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-
+import AuthSelector from "../selector/auth.selector";
+import AppController from "../controller/app.controller";
 import { checkAuth } from "../action/auth.action";
-import AppController from "../../common/app/controller/app.controller";
 
 const AppConnect = connect(
   state => ({
-    loginUser: state.auth.loginUser,
-    isCheckedAuth: state.auth.isCheckedAuth
+    loginUser: AuthSelector.loginUser(state),
+    isCheckedAuth: AuthSelector.isCheckedAuth(state)
   }),
   dispatch => ({ authCheck: () => dispatch(checkAuth()) })
 )(AppController);

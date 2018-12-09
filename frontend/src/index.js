@@ -11,13 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.css";
 import "./css/myBootstrap.css";
 import "./css/reactModal.css";
-import authReducer from "./app/reducer/auth.reducer";
 import connectionReducer from "./bus/connection/reducer/connection_reducer";
 import inPostReducer from "./bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
 import AppView from "./app/view/app.view";
-import AppConnect from "./app/connect/app.connect";
+import authReducer from "@gn/common/app/reducer/auth.reducer";
+import AppConnect from "@gn/common/app/connect/app.connect";
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== "production") {

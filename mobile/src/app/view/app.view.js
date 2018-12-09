@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-import BackdoorLoginConnect from "../connect/backdoorLogin.connect";
 import BackDoorLoginView from "./backdoorLogin.view";
 import GoogleLoginRPC from "../../common/app/controller/googleLogin.controller";
 import GoogleLoginView from "./googleLogin.view";
+import BackdoorLoginConnect from "../../common/app/connect/backdoorLogin.connect";
 
 function onGoogleLoginMobile() {
   alert("under construction");
