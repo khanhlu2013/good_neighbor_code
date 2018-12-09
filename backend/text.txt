@@ -157,7 +157,7 @@ factor out redux folder ready to share.
 ---
 create render props for AppComponent. 
 ---
-
-
-
-
+see if any tool can help me with the navigation prop i guess? not sure. but i am not storing any navigation state inside redux. 
+---
+lets see if i can merge this code into common and use react-navigation. 
+question: how do i use git now, this is a good time to have a remote branch right?

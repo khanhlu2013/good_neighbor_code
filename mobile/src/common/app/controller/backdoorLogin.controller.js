@@ -6,7 +6,7 @@ import validator from "validator";
 import { RECEIVE_AUTH_CHECK_RESULT } from "../action/auth.action";
 import API from "../../api";
 
-class BackdoorLoginControllerDisconnect extends Component {
+class _ extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +62,9 @@ class BackdoorLoginControllerDisconnect extends Component {
           type: RECEIVE_AUTH_CHECK_RESULT,
           authenticatedUser
         });
+        if (authenticatedUser) {
+          this.props.navigation.navigate("PrivateApp");
+        }
       })();
     }
 
@@ -87,12 +90,11 @@ class BackdoorLoginControllerDisconnect extends Component {
   }
 }
 
-BackdoorLoginControllerDisconnect.propsType = {
+_.propsType = {
   dispatch: PropTypes.func.isRequired,
-  view: PropTypes.func.isRequired
+  view: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired
 };
 
-const BackdoorLoginControllerConnect = connect()(
-  BackdoorLoginControllerDisconnect
-); //i need the dispatch function
-export default BackdoorLoginControllerConnect;
+const BackdoorLoginController = connect()(_); //i need the dispatch function
+export default BackdoorLoginController;

@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import User from "@gn/common/model/user";
 import AppTabEnum from "../appTabEnum";
-import LoadingIcon from "../../../share/loadingIcon";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
@@ -84,7 +83,7 @@ function AppHeaderComponent(props) {
 
 AppHeaderComponent.propTypes = {
   loginUser: PropTypes.instanceOf(User),
-  isCheckingAuth: PropTypes.bool.isRequired,
+  isCheckedAuth: PropTypes.bool.isRequired,
   onAppTabChange: PropTypes.func.isRequired,
   selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired,
   inPostAlertCount: PropTypes.number.isRequired,

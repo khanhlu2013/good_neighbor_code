@@ -13,6 +13,7 @@ export const checkAuth = () => (dispatch, getState) => {
       type: RECEIVE_AUTH_CHECK_RESULT,
       authenticatedUser
     });
+    return authenticatedUser;
   });
 };
 
