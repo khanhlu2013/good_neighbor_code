@@ -62,9 +62,6 @@ class _ extends Component {
           type: RECEIVE_AUTH_CHECK_RESULT,
           authenticatedUser
         });
-        // if (authenticatedUser) {
-        //   this.props.navigation.navigate("PrivateApp");
-        // }
       })();
     }
 
@@ -92,8 +89,7 @@ class _ extends Component {
 
 _.propsType = {
   dispatch: PropTypes.func.isRequired,
-  view: PropTypes.func.isRequired,
-  navigation: PropTypes.object.isRequired
+  view: PropTypes.func.isRequired
 };
 
 const BackdoorLoginController = connect()(_); //i need the dispatch function

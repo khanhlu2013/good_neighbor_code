@@ -9,7 +9,7 @@ import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
 import API_URL from "@gn/common/api/api-url";
 import GoogleLoginView from "../../view/googleLogin.view";
-import GoogleLoginRPC from "@gn/common/app/controller/googleLogin.controller";
+import GoogleLoginController from "@gn/common/app/controller/googleLogin.controller";
 
 const Banner = styled.div`
   ${BannerMixin} background-color: rgb(36, 54, 65);
@@ -53,7 +53,7 @@ function AppHeaderComponent(props) {
   } else if (loginUser === null) {
     content = (
       <GoogleLoginWrap>
-        <GoogleLoginRPC
+        <GoogleLoginController
           onGoogleLogin={onGoogleLoginWeb}
           view={GoogleLoginView}
         />
