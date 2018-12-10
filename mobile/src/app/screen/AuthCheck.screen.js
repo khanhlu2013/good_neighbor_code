@@ -1,7 +1,7 @@
 import React from "react";
 
 import authCheckView from "../view/authCheck.view";
-import AuthCheckController from "../../common/app/controller/authCheck.controller";
+import AuthCheckController from "../controller/authCheck.controller";
 
 export default function AuthCheckScreen(props) {
   return (

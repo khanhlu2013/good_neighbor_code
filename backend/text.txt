@@ -161,3 +161,11 @@ see if any tool can help me with the navigation prop i guess? not sure. but i am
 ---
 lets see if i can merge this code into common and use react-navigation. 
 question: how do i use git now, this is a good time to have a remote branch right?
+
+---
+i will leave my app mostly the same for now. lets just focus on the mobile app. 
+
+. so i will leave it alone for the app.
+. move down the app controller into the web. i no longer share it
+. in mobile project, move the controller for the its app out.
+  . copy the common project into mobile

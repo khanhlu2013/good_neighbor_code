@@ -2,12 +2,12 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { nullOrRequiredValidator } from "../../util";
-import User from "../../model/user";
-import AuthSelector from "../selector/auth.selector";
-import { checkAuth } from "../action/auth.action";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
+import { checkAuth } from "@gn/common/app/action/auth.action";
+import { nullOrRequiredValidator } from "@gn/common/util";
+import User from "@gn/common/model/user";
 
-class AppControllerDisconnect extends Component {
+class _ extends Component {
   componentDidMount() {
     this.props.authCheck();
   }
@@ -18,7 +18,7 @@ class AppControllerDisconnect extends Component {
   }
 }
 
-AppControllerDisconnect.propTypes = {
+_.propTypes = {
   loginUser: nullOrRequiredValidator("object", User),
   isCheckedAuth: PropTypes.bool.isRequired,
   isCheckingAuth: PropTypes.bool.isRequired,
@@ -26,13 +26,13 @@ AppControllerDisconnect.propTypes = {
   view: PropTypes.func.isRequired
 };
 
-const AppControllerConnect = connect(
+const AppController = connect(
   state => ({
     loginUser: AuthSelector.loginUser(state),
     isCheckingAuth: AuthSelector.isCheckingAuth(state),
     isCheckedAuth: AuthSelector.isCheckedAuth(state)
   }),
   dispatch => ({ authCheck: () => dispatch(checkAuth()) })
-)(AppControllerDisconnect);
+)(_);
 
-export default AppControllerConnect;
+export default AppController;
