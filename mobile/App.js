@@ -8,7 +8,7 @@ import authReducer from "./src/common/app/reducer/auth.reducer";
 import AuthCheckScreen from "./src/app/screen/AuthCheck.screen";
 import LoginScreen from "./src/app/screen/Login.screen";
 import AuthSelector from "./src/common/app/selector/auth.selector";
-import NavigationService from "./NavigationService";
+import NavigationService from "./src/app/NavigationService";
 
 const rootReducer = combineReducers({
   auth: authReducer
@@ -17,7 +17,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 store.subscribe(() => {
   const loginUser = AuthSelector.loginUser(store.getState());
   if (loginUser !== null) {
-    console.log("navigating to private app");
     NavigationService.navigate("PrivateApp");
   }
 });
