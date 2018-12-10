@@ -1,16 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
 import InPostManagementContainer from "../../bus/inPost/container/inPost_management.con.js";
 import OutPostManagementContainer from "../../bus/outPost/container/outPost_management.con.js";
 import ConnectionManagementContainer from "../../bus/connection/container/connection_management.con.js";
-import AppTabEnum from "../component/appTabEnum";
+import AppTabEnum from "@gn/common/app/appTabEnum";
 
-function PrivateAppWebView(props) {
-  const { selectAppTab } = props;
-
+function PrivateAppWebView(selectAppTab) {
   return (
     <div id="privateApp-react">
       <TabPanel show={selectAppTab === AppTabEnum.INPOST}>
@@ -30,9 +27,4 @@ function PrivateAppWebView(props) {
     </div>
   );
 }
-
-PrivateAppWebView.propTypes = {
-  selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired
-};
-
 export default PrivateAppWebView;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import User from "@gn/common/model/user";
-import AppTabEnum from "../appTabEnum";
+import AppTabEnum from "@gn/common/app/appTabEnum";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";

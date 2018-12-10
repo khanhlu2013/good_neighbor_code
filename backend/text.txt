@@ -161,6 +161,7 @@ see if any tool can help me with the navigation prop i guess? not sure. but i am
 ---
 lets see if i can merge this code into common and use react-navigation. 
 question: how do i use git now, this is a good time to have a remote branch right?
-
+---
+figure out how the lib such as react-redux or enumify is install in the common folder? Right now it doesn't
 ---
 remove authSelector from frontend (mother fucker)
