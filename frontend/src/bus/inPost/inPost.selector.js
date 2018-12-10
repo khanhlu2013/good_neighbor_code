@@ -1,4 +1,4 @@
-import AuthSelector from "../../app/auth.selector";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 
 //raw
 const _posts = state => state.inPost.posts;

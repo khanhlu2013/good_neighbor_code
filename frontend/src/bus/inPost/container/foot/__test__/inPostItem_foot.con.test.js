@@ -1,7 +1,7 @@
 import { mapStateToProps, mapDispatchToProps } from "../inPostItem_foot.con";
 import InPostSelector from "../../../inPost.selector";
-import AuthSelector from "../../../../../app/auth.selector";
 import * as helper from "../inPostItem_foot.selector";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 
 describe("inPostItem_foot container", () => {
   it("can map state to props", () => {

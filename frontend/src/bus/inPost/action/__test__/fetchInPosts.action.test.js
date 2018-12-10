@@ -2,7 +2,7 @@ import fetchInPosts, {
   INFORM_FETCH_INPOSTS,
   RECEIVE_FETCH_INPOSTS
 } from "../fetchInPosts.action";
-import AuthSelector from "../../../../app/auth.selector";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 import API from "@gn/common/api";
 
 describe("fetchInPosts action", () => {
