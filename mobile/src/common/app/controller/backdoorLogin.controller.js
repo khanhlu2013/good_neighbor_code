@@ -62,9 +62,9 @@ class _ extends Component {
           type: RECEIVE_AUTH_CHECK_RESULT,
           authenticatedUser
         });
-        if (authenticatedUser) {
-          this.props.navigation.navigate("PrivateApp");
-        }
+        // if (authenticatedUser) {
+        //   this.props.navigation.navigate("PrivateApp");
+        // }
       })();
     }
 

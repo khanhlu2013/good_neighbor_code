@@ -20,10 +20,7 @@ export default function LoginScreen(props) {
         />
       </View>
 
-      <BackdoorLoginController
-        view={BackDoorLoginView}
-        navigation={props.navigation}
-      />
+      <BackdoorLoginController view={BackDoorLoginView} />
     </View>
   );
 }
