@@ -15,9 +15,12 @@ const rootReducer = combineReducers({
 });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.subscribe(() => {
-  const loginUser = AuthSelector.loginUser(store.getState());
+  const state = store.getState();
+  const loginUser = AuthSelector.loginUser(state);
   if (loginUser !== null) {
     NavigationService.navigate("PrivateApp");
+  } else if (AuthSelector.isCheckedAuth(state)) {
+    NavigationService.navigate("Login");
   }
 });
 const PrivateAppScreen = function() {

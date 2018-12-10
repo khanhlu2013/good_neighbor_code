@@ -6,17 +6,11 @@ import { checkAuth } from "../../common/app/action/auth.action";
 class _ extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    view: PropTypes.func.isRequired,
-    navigation: PropTypes.object.isRequired
+    view: PropTypes.func.isRequired
   };
 
-  async componentDidMount() {
-    const user = await this.props.dispatch(checkAuth());
-    if (user) {
-      this.props.navigation.navigate("PrivateApp");
-    } else {
-      this.props.navigation.navigate("Login");
-    }
+  componentDidMount() {
+    this.props.dispatch(checkAuth());
   }
 
   render() {
