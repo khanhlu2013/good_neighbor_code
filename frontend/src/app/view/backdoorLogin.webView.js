@@ -10,7 +10,7 @@ const Style = styled.div`
   text-align: center;
 `;
 
-export default function BackDoorLoginView(
+export default function BackDoorLoginWebView(
   isEmailValid,
   isNameRequire,
   nameIsEmpty,

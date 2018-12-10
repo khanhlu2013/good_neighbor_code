@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import AppCenterWrapStyle from "../../share/style/appCenterWrap_style";
-import BackDoorLoginView from "./backdoorLogin.view";
+import BackDoorLoginWebView from "./backdoorLogin.webView";
 import PrivateAppConnect from "../connect/appPrivate.connect";
 import AppHeaderConnect from "../connect/appHeader.connect";
-import PublicAppView from "./publicApp/publicApp.view";
 import LoadingIcon from "../../share/loadingIcon";
+import PublicAppWebView from "./publicApp/publicApp.webView";
 import BackdoorLoginController from "@gn/common/app/controller/backdoorLogin.controller";
 
 const AuthCheckStyle = styled.div`
   text-align: center;
 `;
 
-export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
+export default function AppWebView(loginUser, isCheckingAuth, isCheckedAuth) {
   let appContent;
   if (isCheckingAuth) {
     appContent = (
@@ -25,7 +25,7 @@ export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
   } else if (loginUser === null) {
     appContent = (
       <AppCenterWrapStyle>
-        <PublicAppView />
+        <PublicAppWebView />
       </AppCenterWrapStyle>
     );
   } else {
@@ -37,7 +37,7 @@ export default function AppView(loginUser, isCheckingAuth, isCheckedAuth) {
       <AppHeaderConnect />
       {loginUser === null && isCheckedAuth && (
         <AppCenterWrapStyle>
-          <BackdoorLoginController view={BackDoorLoginView} />
+          <BackdoorLoginController view={BackDoorLoginWebView} />
         </AppCenterWrapStyle>
       )}
       {appContent}

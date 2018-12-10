@@ -2,7 +2,7 @@ import React from "react";
 
 import { PlayList } from "./playList";
 
-function PublicAppView() {
+function PublicAppWebView() {
   return (
     <div id="appPublic-react">
       {process.env.NODE_ENV === "production" ? (
@@ -15,4 +15,4 @@ function PublicAppView() {
   );
 }
 
-export default PublicAppView;
+export default PublicAppWebView;

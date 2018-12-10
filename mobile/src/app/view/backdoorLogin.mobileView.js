@@ -8,7 +8,7 @@ import {
   StyleSheet
 } from "react-native";
 
-export default function BackDoorLoginView(
+export default function BackDoorLoginMobileView(
   isEmailValid,
   isNameRequire,
   nameIsEmpty,

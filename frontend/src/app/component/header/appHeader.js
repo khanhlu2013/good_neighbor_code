@@ -7,8 +7,8 @@ import AppTabEnum from "../appTabEnum";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import BannerMixin from "../../../share/style/banner_mixin";
 import AppHeaderTabBar from "./appHeader_tabBar";
+import GoogleLoginWebView from "../../view/googleLogin.webView";
 import API_URL from "@gn/common/api/api-url";
-import GoogleLoginView from "../../view/googleLogin.view";
 import GoogleLoginController from "@gn/common/app/controller/googleLogin.controller";
 
 const Banner = styled.div`
@@ -55,7 +55,7 @@ function AppHeaderComponent(props) {
       <GoogleLoginWrap>
         <GoogleLoginController
           onGoogleLogin={onGoogleLoginWeb}
-          view={GoogleLoginView}
+          view={GoogleLoginWebView}
         />
       </GoogleLoginWrap>
     );

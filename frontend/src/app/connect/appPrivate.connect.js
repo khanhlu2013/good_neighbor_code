@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
-
-import PrivateAppComponent from "../component/appPrivate.js";
+import PrivateAppWebView from "../view/appPrivate.webView";
 
 const mapStateToProps = (state, ownProps) => ({
   selectAppTab: state.selectAppTab
 });
-const PrivateAppConnect = connect(mapStateToProps)(PrivateAppComponent);
+const PrivateAppConnect = connect(mapStateToProps)(PrivateAppWebView);
 
 export default PrivateAppConnect;

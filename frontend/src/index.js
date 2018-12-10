@@ -15,7 +15,7 @@ import connectionReducer from "./bus/connection/reducer/connection_reducer";
 import inPostReducer from "./bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
-import AppView from "./app/view/app.view";
+import AppWebView from "./app/view/app.webView";
 import AppController from "./app/controller/app.controller";
 import authReducer from "@gn/common/app/reducer/auth.reducer";
 
@@ -35,7 +35,7 @@ const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppController view={AppView} />
+    <AppController view={AppWebView} />
   </Provider>,
   document.getElementById("root")
 );

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 
-export default function authCheckView() {
+export default function authCheckMobileView() {
   return (
     <View>
       <Text>check auth</Text>

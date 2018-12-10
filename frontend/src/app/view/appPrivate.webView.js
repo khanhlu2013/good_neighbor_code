@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
 import InPostManagementContainer from "../../bus/inPost/container/inPost_management.con.js";
-import AppTabEnum from "./appTabEnum.js";
 import OutPostManagementContainer from "../../bus/outPost/container/outPost_management.con.js";
 import ConnectionManagementContainer from "../../bus/connection/container/connection_management.con.js";
+import AppTabEnum from "../component/appTabEnum";
 
-function PrivateAppComponent(props) {
+function PrivateAppWebView(props) {
   const { selectAppTab } = props;
 
   return (
@@ -31,8 +31,8 @@ function PrivateAppComponent(props) {
   );
 }
 
-PrivateAppComponent.propTypes = {
+PrivateAppWebView.propTypes = {
   selectAppTab: PropTypes.instanceOf(AppTabEnum).isRequired
 };
 
-export default PrivateAppComponent;
+export default PrivateAppWebView;

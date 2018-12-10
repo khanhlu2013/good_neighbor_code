@@ -2,9 +2,9 @@ import React from "react";
 import { View } from "react-native";
 
 import BackdoorLoginController from "../../common/app/controller/backdoorLogin.controller";
-import BackDoorLoginView from "../view/backdoorLogin.view";
 import GoogleLoginController from "../../common/app/controller/googleLogin.controller";
-import GoogleLoginView from "../view/googleLogin.view";
+import BackDoorLoginMobileView from "../view/backdoorLogin.mobileView";
+import GoogleLoginMobileView from "../view/googleLogin.mobileView";
 
 function onGoogleLoginMobile() {
   alert("under construction");
@@ -16,11 +16,11 @@ export default function LoginScreen(props) {
       <View style={{ marginBottom: 100 }}>
         <GoogleLoginController
           onGoogleLogin={onGoogleLoginMobile}
-          view={GoogleLoginView}
+          view={GoogleLoginMobileView}
         />
       </View>
 
-      <BackdoorLoginController view={BackDoorLoginView} />
+      <BackdoorLoginController view={BackDoorLoginMobileView} />
     </View>
   );
 }

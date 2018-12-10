@@ -1,8 +1,8 @@
 import React from "react";
 
-import authCheckView from "../view/authCheck.view";
 import AuthCheckController from "../controller/authCheck.controller";
+import authCheckMobileView from "../view/authCheck.mobileView";
 
 export default function AuthCheckScreen(props) {
-  return <AuthCheckController view={authCheckView} />;
+  return <AuthCheckController view={authCheckMobileView} />;
 }
