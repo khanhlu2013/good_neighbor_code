@@ -2,7 +2,7 @@ import {
   mapStateToProps,
   mapDispatchToProps
 } from "../inPostItem_foot_borrow.con";
-import InPostSelector from "../../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 import * as AwareApproveInPostActionModule from "../../../action/awareApproveInPost.action";
 import * as ReturnInPostActionModule from "../../../action/returnInPost.action";

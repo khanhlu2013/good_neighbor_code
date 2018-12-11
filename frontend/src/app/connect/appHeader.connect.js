@@ -2,12 +2,12 @@ import { connect } from "react-redux";
 
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import InPostSelector from "../../bus/inPost/inPost.selector";
 import {
   selectOutPostRequestAlert,
   selectOutPostReturnAlert
 } from "../../bus/outPost/outPost.selector";
 import { inConnectionSelector } from "../../bus/connection/connection.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
   const { loginUser, isCheckedAuth } = state.auth;

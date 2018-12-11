@@ -1,6 +1,6 @@
 import React from "react";
 import { mapStateToProps, mapDispatchToProps } from "../inPost_management.con";
-import InPostSelector from "../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import * as FetchInPostsWrap from "../../action/fetchInPosts.action";
 
 describe("inPost_management container", () => {

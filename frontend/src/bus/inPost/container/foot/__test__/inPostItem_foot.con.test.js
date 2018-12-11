@@ -1,5 +1,5 @@
 import { mapStateToProps, mapDispatchToProps } from "../inPostItem_foot.con";
-import InPostSelector from "../../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import * as helper from "../inPostItem_foot.selector";
 import AuthSelector from "@gn/common/app/selector/auth.selector";
 

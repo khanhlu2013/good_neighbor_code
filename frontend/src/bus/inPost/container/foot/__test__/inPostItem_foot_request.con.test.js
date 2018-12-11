@@ -4,7 +4,7 @@ import {
 } from "../inPostItem_foot_request.con";
 
 import * as UnRequestInPostActionModule from "../../../action/unRequestInPost.action";
-import InPostSelector from "../../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 describe("inPostItem_foot_request container", () => {
   it("can map state to props", () => {

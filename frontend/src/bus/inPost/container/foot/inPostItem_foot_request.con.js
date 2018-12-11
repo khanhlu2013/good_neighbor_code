@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import InPostSelector from "../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import InPostItemFootRequest from "../../component/foot/inPostItem_foot_request";
 import unRequestInPost from "@gn/common/bus/inPost/action/unRequestInPost.action";
 

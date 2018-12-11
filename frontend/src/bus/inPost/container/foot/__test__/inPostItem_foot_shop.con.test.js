@@ -2,7 +2,7 @@ import {
   mapStateToProps,
   mapDispatchToProps
 } from "../inPostItem_foot_shop.con";
-import InPostSelector from "../../../inPost.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 import * as RequestInPostActionModule from "../../../action/requestInPost.action";
 
