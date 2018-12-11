@@ -30,8 +30,8 @@ import {
   informReturnInPost,
   receiveReturnInPost
 } from "./helper/returnInPost.reducerHelper";
-import { RECEIVE_LOGGED_OUT_SUCCESS } from "@gn/common/app/action/auth.action";
 import update from "immutability-helper";
+import { RECEIVE_LOGGED_OUT_SUCCESS } from "../../../app/action/auth.action";
 
 const defaultInPostState = {
   posts: [],

@@ -1,5 +1,5 @@
-import AuthSelector from "@gn/common/app/selector/auth.selector";
-import API from "@gn/common/api";
+import AuthSelector from "../../../app/selector/auth.selector";
+import API from "../../../api";
 export const INFORM_REQUEST_INPOST = "INFORM_REQUEST_INPOST";
 export const RECEIVE_REQUEST_INPOST = "RECEIVE_REQUEST_INPOST";
 

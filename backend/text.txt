@@ -164,4 +164,7 @@ question: how do i use git now, this is a good time to have a remote branch righ
 ---
 figure out how the lib such as react-redux or enumify is install in the common folder? Right now it doesn't
 ---
-remove authSelector from frontend (mother fucker)
+ok, instead of my doing/controlling the navigation, i will let the lib do it for me. alright, lets see if i can bring back the react-navigation into the web now right? i wonder if i like to play with the sand box first? why not?
+
+---
+ok, so the controller of private app will need to fetch data . fetch inpost and outpost

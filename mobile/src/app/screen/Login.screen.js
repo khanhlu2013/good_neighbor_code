@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import BackdoorLoginController from "../../common/app/controller/backdoorLogin.controller";
 import GoogleLoginController from "../../common/app/controller/googleLogin.controller";
@@ -12,7 +12,7 @@ function onGoogleLoginMobile() {
 
 export default function LoginScreen(props) {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={{ marginBottom: 100 }}>
         <GoogleLoginController
           onGoogleLogin={onGoogleLoginMobile}
@@ -20,7 +20,17 @@ export default function LoginScreen(props) {
         />
       </View>
 
-      <BackdoorLoginController view={BackDoorLoginMobileView} />
+      <View>
+        <BackdoorLoginController view={BackDoorLoginMobileView} />
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center"
+  }
+});

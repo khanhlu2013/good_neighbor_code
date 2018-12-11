@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import InPostManagementComponent from "../component/inPost_management";
-import fetchInPosts from "../action/fetchInPosts.action";
 import InPostSelector from "../inPost.selector";
+import fetchInPosts from "@gn/common/bus/inPost/action/fetchInPosts.action";
 
 export const mapStateToProps = (state, ownProps) => {
   return {

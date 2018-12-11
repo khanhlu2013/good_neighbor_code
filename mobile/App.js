@@ -5,10 +5,11 @@ import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import authReducer from "./src/common/app/reducer/auth.reducer";
-import AuthCheckScreen from "./src/app/screen/AuthCheck.screen";
-import LoginScreen from "./src/app/screen/Login.screen";
+import AuthCheckScreen from "./src/app/screen/authCheck.screen";
+import LoginScreen from "./src/app/screen/login.screen";
 import AuthSelector from "./src/common/app/selector/auth.selector";
-import NavigationService from "./src/app/NavigationService";
+import NavigationService from "./src/app/navigationService";
+import PrivateAppScreen from "./src/app/screen/privateApp.screen";
 
 const rootReducer = combineReducers({
   auth: authReducer
@@ -23,9 +24,7 @@ store.subscribe(() => {
     NavigationService.navigate("Login");
   }
 });
-const PrivateAppScreen = function() {
-  return <Text>Private app here</Text>;
-};
+
 const TopLevelNavigator = createSwitchNavigator(
   {
     AuthCheck: {
@@ -47,22 +46,11 @@ const AppContainer = createAppContainer(TopLevelNavigator);
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <AppContainer
-          ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
-      </View>
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});

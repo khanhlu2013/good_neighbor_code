@@ -1,4 +1,4 @@
-import API from "@gn/common/api";
+import API from "../../../api";
 
 export const INFORM_RETURN_INPOST = "INFORM_RETURN_INPOST";
 export const RECEIVE_RETURN_INPOST = "RECEIVE_RETURN_INPOST";

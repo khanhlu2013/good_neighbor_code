@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import awareApproveInPost from "../../action/awareApproveInPost.action";
-import returnInPost from "../../action/returnInPost.action";
 import InPostSelector from "../../inPost.selector";
 import InPostItemFootBorrow from "../../component/foot/inPostItem_foot_borrow";
+import returnInPost from "@gn/common/bus/inPost/action/returnInPost.action";
+import awareApproveInPost from "@gn/common/bus/inPost/action/awareApproveInPost.action";
 
 export const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;

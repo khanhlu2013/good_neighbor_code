@@ -1,6 +1,5 @@
 import update from "immutability-helper";
-
-import Share from "@gn/common/model/share";
+import Share from "../../../../model/share";
 
 export const informRequestInPost_reducerHelper = (state, postId) => ({
   ...state,

@@ -12,11 +12,11 @@ import "./css/index.css";
 import "./css/myBootstrap.css";
 import "./css/reactModal.css";
 import connectionReducer from "./bus/connection/reducer/connection_reducer";
-import inPostReducer from "./bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./bus/outPost/reducer/outPost_reducer";
 import selectAppTabReducer from "./app/reducer/selectAppTab.reducer";
 import AppWebView from "./app/view/app.webView";
 import AppController from "./app/controller/app.controller";
+import inPostReducer from "@gn/common/bus/inPost/reducer/inPost.reducer";
 import authReducer from "@gn/common/app/reducer/auth.reducer";
 
 const middleware = [thunk];

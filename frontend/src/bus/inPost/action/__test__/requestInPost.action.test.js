@@ -1,7 +1,7 @@
 import requestInPost, {
   INFORM_REQUEST_INPOST,
   RECEIVE_REQUEST_INPOST
-} from "../requestInPost.action";
+} from "@gn/common/bus/inPost/action/requestInPost.action";
 import AuthSelector from "@gn/common/app/selector/auth.selector";
 import API from "@gn/common/api";
 
