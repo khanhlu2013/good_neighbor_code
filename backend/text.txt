@@ -167,4 +167,17 @@ figure out how the lib such as react-redux or enumify is install in the common f
 ok, instead of my doing/controlling the navigation, i will let the lib do it for me. alright, lets see if i can bring back the react-navigation into the web now right? i wonder if i like to play with the sand box first? why not?
 
 ---
-ok, so the controller of private app will need to fetch data . fetch inpost and outpost
+i want to pay the technical debt and take a look at what i am doing in term of the controller and view. it is quite a boilerplate code. 
+
+why i am doing controller and passing the view. it is because i like to pass in different view right? that way i can share the controller. 
+
+. but do i share the controller, any difficulty?
+. what kind of logic this controller have? is it worth it?
+. is API make sense? it will have benefit if i make the view a comp instead of a func. but they are incredibly similar. or they same? what is the diffferent. 
+
+---
+. the auth check controller can't be reuse: why?
+. can i reuse inPostController?
+
+---
+i can see that the navigation make these incompatible. what now? i guess, i will just not reuse then and move on. this will accumulate debt. can i afford it? not sure. well, lets just move on then. 

@@ -7,7 +7,7 @@ import update from "immutability-helper";
 
 import Post from "@gn/common/model/post";
 import LoadingIcon from "../../../share/loadingIcon";
-import { nullOrRequiredValidator } from "../../../share/util";
+import { nullOrRequiredValidator } from "@gn/common/util";
 
 Modal.setAppElement("#root");
 

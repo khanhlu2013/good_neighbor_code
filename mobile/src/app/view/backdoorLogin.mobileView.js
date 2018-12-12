@@ -7,21 +7,23 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
+import BackdoorLoginPropTypes from "../../common/app/propTypes/backdoorLogin.propTypes";
 
-export default function BackDoorLoginMobileView(
-  isEmailValid,
-  isNameRequire,
-  nameIsEmpty,
-  //---
-  isSubmitFormClicked,
-  isAjaxing,
-  email,
-  name,
-  //---
-  onSubmit,
-  onEmailChange,
-  onNameChange
-) {
+function BackDoorLoginMobileView(props) {
+  const {
+    isEmailValid,
+    isNameRequire,
+    nameIsEmpty,
+    //---
+    isSubmitFormClicked,
+    isAjaxing,
+    email,
+    name,
+    //---
+    onSubmit,
+    onEmailChange,
+    onNameChange
+  } = props;
   //derived variable
   const isTryToSubmitInvalidEmail = isSubmitFormClicked && !isEmailValid;
   const nameIsRequireButEmpty = isNameRequire && nameIsEmpty;
@@ -72,6 +74,8 @@ export default function BackDoorLoginMobileView(
     </View>
   );
 }
+BackDoorLoginMobileView.propTypes = BackdoorLoginPropTypes;
+export default BackDoorLoginMobileView;
 
 // STYLE DECLARATION ----------------------------------
 const SPACE_BETWEEN_ITEMS = 2;

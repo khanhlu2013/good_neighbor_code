@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { nullOrRequiredValidator } from "../../../../share/util";
+import { nullOrRequiredValidator } from "@gn/common/util";
 import InPostItemFootBorrowContainer from "../../container/foot/inPostItem_foot_borrow.con";
 import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
 import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";

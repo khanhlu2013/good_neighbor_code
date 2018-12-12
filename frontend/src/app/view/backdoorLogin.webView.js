@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import className from "classnames";
 import LoadingIcon from "../../share/loadingIcon";
+import BackdoorLoginPropTypes from "@gn/common/app/propTypes/backdoorLogin.propTypes";
 
 const Style = styled.div`
   margin-top: 10px;
@@ -10,20 +11,22 @@ const Style = styled.div`
   text-align: center;
 `;
 
-export default function BackDoorLoginWebView(
-  isEmailValid,
-  isNameRequire,
-  nameIsEmpty,
-  //---
-  isSubmitFormClicked,
-  isAjaxing,
-  email,
-  name,
-  //---
-  onSubmit,
-  onEmailChange,
-  onNameChange
-) {
+function BackDoorLoginWebView(props) {
+  const {
+    isEmailValid,
+    isNameRequire,
+    nameIsEmpty,
+    //---
+    isSubmitFormClicked,
+    isAjaxing,
+    email,
+    name,
+    //---
+    onSubmit,
+    onEmailChange,
+    onNameChange
+  } = props;
+
   const isTryToSubmitInvalidEmail = isSubmitFormClicked && !isEmailValid;
   const _onEmailChange = e => {
     onEmailChange(e.target.value);
@@ -109,3 +112,6 @@ export default function BackDoorLoginWebView(
     </Style>
   );
 }
+
+BackDoorLoginWebView.propTypes = BackdoorLoginPropTypes;
+export default BackDoorLoginWebView;

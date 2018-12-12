@@ -6,7 +6,7 @@ import OutPostTabEnum from "./outPost_tabEnum";
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AppBodyTabItem from "../../../share/appBodyTabItem";
 import AlertItem from "../../../share/alertItem";
-import { nullOrRequiredValidator } from "../../../share/util";
+import { nullOrRequiredValidator } from "@gn/common/util";
 
 const NewPostButtonStyle = styled.div`
   display: flex;

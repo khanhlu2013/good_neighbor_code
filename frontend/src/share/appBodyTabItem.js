@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TabItem } from "./tabItem";
-import { nullOrRequiredValidator } from "./util";
+import { nullOrRequiredValidator } from "@gn/common/util";
 
 function AppBodyTabItem(props) {
   const {

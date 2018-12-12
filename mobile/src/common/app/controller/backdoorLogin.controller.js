@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import validator from "validator";
@@ -69,21 +69,21 @@ class _ extends Component {
   }
 
   render() {
-    return this.props.view(
+    return React.createElement(this.props.view, {
       //derived state
-      this.state.isEmailValid,
-      this.state.isNameRequire,
-      this.state.nameIsEmpty,
+      isEmailValid: this.state.isEmailValid,
+      isNameRequire: this.state.isNameRequire,
+      nameIsEmpty: this.state.nameIsEmpty,
       //raw state
-      this.state.isSubmitFormClicked,
-      this.state.isAjaxing,
-      this.state.email,
-      this.state.name,
+      isSubmitFormClicked: this.state.isSubmitFormClicked,
+      isAjaxing: this.state.isAjaxing,
+      email: this.state.email,
+      name: this.state.name,
       //handler
-      this.onSubmit,
-      this.onEmailChange,
-      this.onNameChange
-    );
+      onSubmit: this.onSubmit,
+      onEmailChange: this.onEmailChange,
+      onNameChange: this.onNameChange
+    });
   }
 }
 

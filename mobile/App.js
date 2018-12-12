@@ -10,7 +10,7 @@ import LoginScreen from "./src/app/screen/login.screen";
 import AuthSelector from "./src/common/app/selector/auth.selector";
 import NavigationService from "./src/app/navigationService";
 import PrivateAppScreen from "./src/app/screen/privateApp.screen";
-import inPostReducer from "@gn/common/bus/inPost/reducer/inPost.reducer";
+import inPostReducer from "./src/common/bus/inPost/reducer/inPost.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,

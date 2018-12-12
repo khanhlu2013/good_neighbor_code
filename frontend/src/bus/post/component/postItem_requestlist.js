@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { date2String } from "../../../share/util";
+import { date2String } from "@gn/common/util";
 
 const Style = styled.div`
   margin-top: 10px;

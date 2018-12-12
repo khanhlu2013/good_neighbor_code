@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 
 import { createBottomTabNavigator } from "react-navigation";
-import InPostScreen from "../../bus/inPost/screen/inPost.screen";
+import InPostManagementScreen from "../../bus/inPost/screen/inPostManagement.screen";
 
 const dummyScreen = function() {
   return <Text>xxxxxx</Text>;
@@ -14,7 +14,7 @@ const dummyScreen2 = function() {
 
 const PrivateApp = createBottomTabNavigator(
   {
-    InPost: { screen: InPostScreen },
+    InPost: { screen: InPostManagementScreen },
     Calendar: { screen: dummyScreen2 },
     Search: { screen: dummyScreen },
     Notifications: { screen: dummyScreen2 },

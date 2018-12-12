@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostListNoData from "../../post/component/postListNoData";
-import { date2String } from "../../../share/util";
+import { date2String } from "@gn/common/util";
 
 function OutPostAllHistoryList(props) {
   const { shares } = props;

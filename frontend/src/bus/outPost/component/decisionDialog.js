@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoadingIcon from "../../../share/loadingIcon";
-import { date2String } from "../../../share/util";
+import { date2String } from "@gn/common/util";
 
 Modal.setAppElement("#root");
 

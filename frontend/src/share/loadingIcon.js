@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { nullOrRequiredValidator } from "./util";
+import { nullOrRequiredValidator } from "@gn/common/util";
 
 class LoadingIcon extends Component {
   state = {

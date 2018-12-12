@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { checkAuth } from "../../common/app/action/auth.action";
@@ -14,7 +14,7 @@ class _ extends Component {
   }
 
   render() {
-    return this.props.view();
+    return React.createElement(this.props.view, {});
   }
 }
 
