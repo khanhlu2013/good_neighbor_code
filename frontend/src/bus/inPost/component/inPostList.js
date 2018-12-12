@@ -2,20 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { InPostItem } from "./inPostItem";
 import PostListNoData from "../../post/component/postListNoData";
+import InPostListController from "@gn/common/bus/inPost/controller/inPostList.controller";
 
 function InPostList(props) {
   const { listId, posts } = props;
-
-  let content;
-  if (posts.length === 0) {
-    content = <PostListNoData />;
-  } else {
-    content = posts
-      .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
-      .map(post => <InPostItem key={post.id} post={post} />);
-  }
-
-  return <div id={listId}>{content}</div>;
+  return (
+    <div id={listId}>
+      <InPostListController
+        posts={posts}
+        inPostView={InPostItem}
+        noInPostDataIndicatorView={PostListNoData}
+      />
+    </div>
+  );
 }
 InPostList.propTypes = {
   listId: PropTypes.string.isRequired,
