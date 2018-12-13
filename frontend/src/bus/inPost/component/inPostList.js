@@ -7,13 +7,13 @@ import InPostListController from "@gn/common/bus/inPost/controller/inPostList.co
 function InPostList(props) {
   const { listId, posts } = props;
   return (
-    <div id={listId}>
-      <InPostListController
-        posts={posts}
-        inPostView={InPostItem}
-        noInPostDataIndicatorView={PostListNoData}
-      />
-    </div>
+    <InPostListController
+      posts={posts}
+      inPostItemView={InPostItem}
+      noInPostDataIndicatorView={PostListNoData}
+      wrapperView="div"
+      listId={listId}
+    />
   );
 }
 InPostList.propTypes = {

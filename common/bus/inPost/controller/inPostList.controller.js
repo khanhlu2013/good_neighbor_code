@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InPostListController(props) {
-  const { posts, inPostView, noInPostDataIndicatorView } = props;
+  const {
+    posts,
+    inPostItemView,
+    noInPostDataIndicatorView,
+    wrapperView,
+    listId
+  } = props;
 
   let content;
   if (posts.length === 0) {
@@ -10,15 +16,20 @@ function InPostListController(props) {
   } else {
     content = posts
       .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
-      .map(post => React.createElement(inPostView, { key: post.id, post }));
+      .map(post => React.createElement(inPostItemView, { key: post.id, post }));
   }
-
-  return content;
+  return React.createElement(wrapperView, { id: listId }, content);
 }
 InPostListController.propTypes = {
   posts: PropTypes.array.isRequired,
-  inPostView: PropTypes.func.isRequired,
-  noInPostDataIndicatorView: PropTypes.func.isRequired
+  inPostItemView: PropTypes.func.isRequired,
+  noInPostDataIndicatorView: PropTypes.func.isRequired,
+  wrapperView: PropTypes.oneOfType([
+    PropTypes.string, //div
+    PropTypes.func, //stateless, class
+    PropTypes.object //ReactNative.View
+  ]),
+  listId: PropTypes.string.isRequired
 };
 
 export default InPostListController;
