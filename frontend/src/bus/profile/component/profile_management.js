@@ -6,7 +6,7 @@ import User from "@gn/common/model/user";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import ProfileImage from "../../../share/profileImage";
-import { ShadowBoxMixin } from "@gn/common/style/shadowBox_style";
+import ShadowBoxMixin from "@gn/common/style/shadowBox.mixin";
 
 const Style = styled.div`
   ${ShadowBoxMixin} margin-top:10px;

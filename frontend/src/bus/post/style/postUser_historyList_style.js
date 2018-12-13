@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ShadowBoxMixin } from "@gn/common/style/shadowBox_style";
+import ShadowBoxMixin from "@gn/common/style/shadowBox.mixin";
 
 const PostUserHistoryListStyle = styled.div`
   margin-top: 10px ${ShadowBoxMixin};

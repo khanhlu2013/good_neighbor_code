@@ -18,7 +18,7 @@ function InPostItemMobileView(props) {
         postUserEmail={email}
         dateCreate={dateCreate}
       />
-      <Text>hello there {post.title}</Text>
+      <Text>{post.title}</Text>
     </PostItemStyle>
   );
 }

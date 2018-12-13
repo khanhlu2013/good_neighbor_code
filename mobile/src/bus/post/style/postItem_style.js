@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import { ShadowBoxMixin } from "../../../common/style/shadowBox_style";
+import PostItemMixin from "../../../common/bus/post/style/postItem.mixin";
 
 const PostItemStyle = styled.View`
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background: white;
-  ${ShadowBoxMixin};
+  ${PostItemMixin}
 `;
 
 export default PostItemStyle;

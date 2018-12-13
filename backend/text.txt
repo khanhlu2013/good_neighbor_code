@@ -173,6 +173,8 @@ why i am doing controller and passing the view. it is because i like to pass in 
 
 . is API make sense? it will have benefit if i make the view a comp instead of a func. but they are incredibly similar. or they same? what is the diffferent. 
 
-
 ---
-ok, so if i can't share the style, then i have to use the share for EACH project to store it. painfull .lets see again if i can share it. what is it that i want to share now? that would be shadowBox. it has the borderBottomWidth
+also fix the mixin to name it as mixxing. only mixin can be share. 
+---
+factor out mixin for PostItem
+create a share folder for both project and create PostItemStyle
