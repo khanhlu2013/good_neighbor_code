@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import PostListNoDataMixin from "@gn/common/bus/post/style/postListNoData.mixin";
-import ShadowBoxMixin from "@gn/common/style/shadowBox.mixin";
 
 const ContainerStyle = styled.div`
   ${PostListNoDataMixin}

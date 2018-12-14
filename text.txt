@@ -140,19 +140,21 @@ before continue to test inPostAllHistoryList, i like to refactor this a bit. thi
 ---
 how should i completely eliminate my test to depend on the structure of the raw json?
 ----------------------
+----------------------
+----------------------
+----------------------
+
+inPostItem_requestList
 
 . the controller
   .the mixxin
     const Style = styled.div`
       margin-top: 10px;
     `;
-  . the propTypes
 
+  . work on the propType share
 
-. create a webView file
-  . export a webView component
-
-. use it on frontend  
 ---
-. find more style at common and move back into each project
-  
+. fix the propType now. make sure it view.propTypes vs controller.propTypes
+
+. also remove the s

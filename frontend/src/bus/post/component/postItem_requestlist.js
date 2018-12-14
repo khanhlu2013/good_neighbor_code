@@ -1,12 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { date2String } from "@gn/common/util";
-
-const Style = styled.div`
-  margin-top: 10px;
-`;
 
 function PostItemRequestList(props) {
   const { shares } = props;
@@ -20,17 +15,15 @@ function PostItemRequestList(props) {
     ));
 
   return (
-    <Style>
-      <table className="my-table table-sm table-bordered table-striped">
-        <thead className="thead-light">
-          <tr className="thead-">
-            <th>request</th>
-            <th>date</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    </Style>
+    <table className="my-table table-sm table-bordered table-striped">
+      <thead className="thead-light">
+        <tr className="thead-">
+          <th>request</th>
+          <th>date</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 }
 PostItemRequestList.propTypes = {

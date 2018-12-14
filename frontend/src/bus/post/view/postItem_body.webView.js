@@ -11,6 +11,14 @@ const Style = styled.div`
   display: flex;
 `;
 
+const PostItemRequestListStyle = styled.div`
+  margin-top: 10px;
+`;
+
+const PostItemHistoryListStyle = styled.div`
+  margin-top: 10px;
+`;
+
 function PostItemBodyWebView(props) {
   const { post } = props;
   const { title, description } = post;
@@ -36,10 +44,14 @@ function PostItemBodyWebView(props) {
         </div>
       )}
       {post.requestShares.length !== 0 && (
-        <PostItemRequestList shares={post.requestShares} />
+        <PostItemRequestListStyle>
+          <PostItemRequestList shares={post.requestShares} />
+        </PostItemRequestListStyle>
       )}
       {post.returnShares.length !== 0 && (
-        <PostItemHistoryList shares={post.returnShares} />
+        <PostItemHistoryListStyle>
+          <PostItemHistoryList shares={post.returnShares} />
+        </PostItemHistoryListStyle>
       )}
     </Style>
   );
