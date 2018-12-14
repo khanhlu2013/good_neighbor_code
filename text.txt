@@ -139,42 +139,21 @@ before continue to test inPostAllHistoryList, i like to refactor this a bit. thi
   fuck , i dont have a history in my snap shot e2e
 ---
 how should i completely eliminate my test to depend on the structure of the raw json?
----
-alright, what now , lets freaking cover all test. 
+----------------------
 
-lets just dead focus on 1 thing: how can i test InPostItemHead. it easy, create a user and just snap it away. move on to inPostItem . before that lets look at PostItemBody. 
+. the controller
+  .the mixxin
+    const Style = styled.div`
+      margin-top: 10px;
+    `;
+  . the propTypes
 
----
-postItemHeadStyle postItemHeadLeftSytle need to be more cohesion.
----
-inPostManagement
-  . componentDidMount
 
---
-remove loginUser from inPostManagement, move borrowPosts and RequestPosts out
----
-factor out redux folder ready to share. 
----
-create render props for AppComponent. 
----
-see if any tool can help me with the navigation prop i guess? not sure. but i am not storing any navigation state inside redux. 
----
-lets see if i can merge this code into common and use react-navigation. 
-question: how do i use git now, this is a good time to have a remote branch right?
----
-figure out how the lib such as react-redux or enumify is install in the common folder? Right now it doesn't
----
-ok, instead of my doing/controlling the navigation, i will let the lib do it for me. alright, lets see if i can bring back the react-navigation into the web now right? i wonder if i like to play with the sand box first? why not?
+. create a webView file
+  . export a webView component
 
----
-i want to pay the technical debt and take a look at what i am doing in term of the controller and view. it is quite a boilerplate code. 
+. use it on frontend  
 
-why i am doing controller and passing the view. it is because i like to pass in different view right? that way i can share the controller. 
-
-. is API make sense? it will have benefit if i make the view a comp instead of a func. but they are incredibly similar. or they same? what is the diffferent. 
-
----
-also fix the mixin to name it as mixxing. only mixin can be share. 
----
-factor out mixin for PostItem
-create a share folder for both project and create PostItemStyle
+------
+too much friction. lets move on. last attempt:
+  . i will fuck the wrap because it too different. 

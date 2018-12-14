@@ -1,18 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-import PostItemHistoryList from "./postItem_historyList";
-import PostItemRequestList from "./postItem_requestlist";
-import Post from "@gn/common/model/post";
+import PostItemHistoryList from "../component/postItem_historyList";
+import PostItemRequestList from "../component/postItem_requestlist";
+import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
+import PostItemBodyViewPropTypes from "@gn/common/bus/post/viewPropTypes/postItemBody.view.propTypes";
 
 const Style = styled.div`
-  margin-top: 10px;
+  ${PostItemBodyMixin}
   display: flex;
-  flex-direction: column;
 `;
 
-function PostItemBody(props) {
+function PostItemBodyWebView(props) {
   const { post } = props;
   const { title, description } = post;
   const curBorrowShare = post.curBorrowShare;
@@ -45,8 +44,6 @@ function PostItemBody(props) {
     </Style>
   );
 }
-PostItemBody.propTypes = {
-  post: PropTypes.instanceOf(Post).isRequired
-};
+PostItemBodyWebView.propTypes = PostItemBodyViewPropTypes;
 
-export default PostItemBody;
+export default PostItemBodyWebView;

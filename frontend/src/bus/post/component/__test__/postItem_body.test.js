@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { rawsToPosts } from "../../../../api/_private_api_helper";
-import PostItemBody from "../postItem_body";
+import PostItemBodyWebView from "../../view/postItem_body.webView";
 
 describe("postItem_body", () => {
   it("when render post item body -> can match snapshot", () => {
@@ -26,7 +26,7 @@ describe("postItem_body", () => {
     ];
 
     const [post] = rawsToPosts(fixtures);
-    const wrap = shallow(<PostItemBody post={post} />);
+    const wrap = shallow(<PostItemBodyWebView post={post} />);
     expect(wrap).toMatchSnapshot();
   });
 
@@ -66,7 +66,7 @@ describe("postItem_body", () => {
       }
     ];
     const [post] = rawsToPosts(fixtures);
-    const wrap = shallow(<PostItemBody post={post} />);
+    const wrap = shallow(<PostItemBodyWebView post={post} />);
     expect(wrap).toMatchSnapshot();
   });
 
@@ -107,7 +107,7 @@ describe("postItem_body", () => {
       }
     ];
     const [post] = rawsToPosts(fixtures);
-    const wrap = shallow(<PostItemBody post={post} />);
+    const wrap = shallow(<PostItemBodyWebView post={post} />);
     expect(wrap).toMatchSnapshot();
   });
 
@@ -149,7 +149,7 @@ describe("postItem_body", () => {
       }
     ];
     const [post] = rawsToPosts(fixtures);
-    const wrap = shallow(<PostItemBody post={post} />);
+    const wrap = shallow(<PostItemBodyWebView post={post} />);
     expect(wrap).toMatchSnapshot();
   });
 });

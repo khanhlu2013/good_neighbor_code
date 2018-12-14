@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Post from "../../../common/model/post";
 import InPostItemHeadMobileView from "./inPostItem_head.mobileView";
 import PostItemStyle from "../../post/style/postItem_style";
+import PostItemBodyMobileView from "../../post/view/postItem_body.mobileView";
 
 function InPostItemMobileView(props) {
   const { post } = props;
@@ -18,7 +19,7 @@ function InPostItemMobileView(props) {
         postUserEmail={email}
         dateCreate={dateCreate}
       />
-      <Text>{post.title}</Text>
+      <PostItemBodyMobileView post={post} />
     </PostItemStyle>
   );
 }
