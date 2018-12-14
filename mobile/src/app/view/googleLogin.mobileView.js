@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import PropTypes from "prop-types";
-import GoogleLoginViewPropTypes from "../../common/app/propTypes/googleLoginView.propTypes";
+import GoogleLoginViewPropType from "../../common/app/propTypes/googleLogin.view.propType";
 
 function GoogleLoginMobileView(props) {
   const { onGoogleLogin } = props;
@@ -11,5 +11,5 @@ function GoogleLoginMobileView(props) {
     </TouchableOpacity>
   );
 }
-GoogleLoginMobileView.propTypes = GoogleLoginViewPropTypes;
+GoogleLoginMobileView.propTypes = GoogleLoginViewPropType;
 export default GoogleLoginMobileView;

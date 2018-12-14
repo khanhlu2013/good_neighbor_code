@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleLoginViewPropTypes from "@gn/common/app/propTypes/googleLoginView.propTypes";
+import GoogleLoginViewPropType from "@gn/common/app/propTypes/googleLogin.view.propType";
 
 function GoogleLoginWebView(props) {
   const { onGoogleLogin } = props;
@@ -9,6 +9,6 @@ function GoogleLoginWebView(props) {
     </button>
   );
 }
-GoogleLoginWebView.propTypes = GoogleLoginViewPropTypes;
+GoogleLoginWebView.propTypes = GoogleLoginViewPropType;
 
 export default GoogleLoginWebView;

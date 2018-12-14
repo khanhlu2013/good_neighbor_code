@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-const GoogleLoginViewPropTypes = {
+const GoogleLoginViewPropType = {
   onGoogleLogin: PropTypes.func.isRequired
 };
 
-export default GoogleLoginViewPropTypes;
+export default GoogleLoginViewPropType;
