@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { View, Text } from "react-native";
 
 import PostItemBodyMixin from "../../../common/bus/post/style/postItemBody.mixin";
-import PostItemBodyViewPropTypes from "../../../common/bus/post/viewPropTypes/postItemBody.view.propTypes";
+import PostItemBodyViewPropType from "../../../common/bus/post/propType/postItemBody.view.propType";
 
 const Style = styled.View`
   ${PostItemBodyMixin}
@@ -31,6 +31,6 @@ function PostItemBodyMobileView(props) {
     </Style>
   );
 }
-PostItemBodyMobileView.propTypes = PostItemBodyViewPropTypes;
+PostItemBodyMobileView.propTypes = PostItemBodyViewPropType;
 
 export default PostItemBodyMobileView;

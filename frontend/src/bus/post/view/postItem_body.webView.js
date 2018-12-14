@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PostItemHistoryList from "../component/postItem_historyList";
 import PostItemRequestList from "../component/postItem_requestlist";
 import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
-import PostItemBodyViewPropTypes from "@gn/common/bus/post/viewPropTypes/postItemBody.view.propTypes";
+import PostItemBodyViewPropType from "@gn/common/bus/post/propType/postItemBody.view.propType";
 
 const Style = styled.div`
   ${PostItemBodyMixin}
@@ -56,6 +56,6 @@ function PostItemBodyWebView(props) {
     </Style>
   );
 }
-PostItemBodyWebView.propTypes = PostItemBodyViewPropTypes;
+PostItemBodyWebView.propTypes = PostItemBodyViewPropType;
 
 export default PostItemBodyWebView;
