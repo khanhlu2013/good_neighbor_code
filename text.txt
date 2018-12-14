@@ -154,3 +154,5 @@ inPostItem_requestList
 
   . work on the propType share
 
+---
+i don't like the way sort is. part of view right? 

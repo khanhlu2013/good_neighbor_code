@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import PostItemHistoryList from "../component/postItem_historyList";
 import PostItemRequestListWebView from "../view/postItem_requestlist.webView";
+import PostItemHistoryListWebView from "./postItem_historyList.webView";
 import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
 import PostItemBodyViewPropType from "@gn/common/bus/post/propType/postItemBody.view.propType";
 
@@ -50,7 +50,7 @@ function PostItemBodyWebView(props) {
       )}
       {post.returnShares.length !== 0 && (
         <PostItemHistoryListStyle>
-          <PostItemHistoryList shares={post.returnShares} />
+          <PostItemHistoryListWebView shares={post.returnShares} />
         </PostItemHistoryListStyle>
       )}
     </Style>

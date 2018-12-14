@@ -5,12 +5,16 @@ import { View, Text } from "react-native";
 import PostItemBodyMixin from "../../../common/bus/post/style/postItemBody.mixin";
 import PostItemBodyViewPropType from "../../../common/bus/post/propType/postItemBody.view.propType";
 import PostItemRequestListMobileView from "./postItem_requestList.mobileView";
+import PostItemHistoryListMobileView from "./postItem_historyList.mobileView";
 
 const Style = styled.View`
   ${PostItemBodyMixin}
 `;
 
 const PostItemRequestListStyle = styled.View`
+  margin-top: 10px;
+`;
+const PostItemHistoryListStyle = styled.View`
   margin-top: 10px;
 `;
 
@@ -37,6 +41,12 @@ function PostItemBodyMobileView(props) {
         <PostItemRequestListStyle>
           <PostItemRequestListMobileView shares={post.requestShares} />
         </PostItemRequestListStyle>
+      )}
+
+      {post.returnShares.length !== 0 && (
+        <PostItemHistoryListStyle>
+          <PostItemHistoryListMobileView shares={post.returnShares} />
+        </PostItemHistoryListStyle>
       )}
     </Style>
   );

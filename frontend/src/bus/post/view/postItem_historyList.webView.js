@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { date2String } from "@gn/common/util";
 
-function PostItemHistoryList(props) {
+function PostItemHistoryListWebView(props) {
   const { shares } = props;
-  const rows = shares
+  const rows = [...shares]
     .sort((s1, s2) => s2.dateReturn - s1.dateReturn)
     .map(share => (
       <tr key={share.id}>
@@ -25,8 +25,8 @@ function PostItemHistoryList(props) {
     </table>
   );
 }
-PostItemHistoryList.propTypes = {
+PostItemHistoryListWebView.propTypes = {
   shares: PropTypes.array.isRequired
 };
 
-export default PostItemHistoryList;
+export default PostItemHistoryListWebView;
