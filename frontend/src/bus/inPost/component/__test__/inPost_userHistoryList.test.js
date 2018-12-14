@@ -2,14 +2,14 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import InPostUserHistoryList from "../inPost_userHistoryList";
-import PostListNoData from "../../../post/component/postListNoData";
 import { rawsToPosts } from "../../../../api/_private_api_helper";
+import PostListNoDataWebView from "../../../post/view/postListNoData.webView";
 
 describe("inPost_userHistoryList", () => {
   it("render empty data correctly", () => {
     const wrap = shallow(<InPostUserHistoryList shares={[]} />);
     expect(wrap).toMatchSnapshot();
-    expect(wrap.find(PostListNoData)).toHaveLength(1);
+    expect(wrap.find(PostListNoDataWebView)).toHaveLength(1);
   });
 
   it("to sort data correctly", () => {

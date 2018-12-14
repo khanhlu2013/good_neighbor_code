@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PostListNoData from "../../post/component/postListNoData";
+import PostListNoDataWebView from "../../post/view/postListNoData.webView";
 import { date2String } from "@gn/common/util";
 
 function OutPostAllHistoryList(props) {
   const { shares } = props;
   const rows = shares.map(share => <TableRow key={share.id} share={share} />);
   if (shares.length === 0) {
-    return <PostListNoData />;
+    return <PostListNoDataWebView />;
   }
 
   return (

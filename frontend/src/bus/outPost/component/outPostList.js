@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OutPostItem from "./outPostItem";
-import PostListNoData from "../../post/component/postListNoData";
+import PostListNoDataWebView from "../../post/view/postListNoData.webView";
 
 function OutPostList(props) {
   const {
@@ -14,7 +14,7 @@ function OutPostList(props) {
   } = props;
   let content;
   if (posts.length === 0) {
-    content = <PostListNoData />;
+    content = <PostListNoDataWebView />;
   } else {
     content = posts
       .sort((p1, p2) => p2.dateCreate - p1.dateCreate)

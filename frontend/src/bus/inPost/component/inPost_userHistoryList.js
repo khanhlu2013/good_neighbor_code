@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PostListNoData from "../../post/component/postListNoData";
+import PostListNoDataWebView from "../../post/view/postListNoData.webView";
 import { date2String } from "@gn/common/util";
 import Share from "@gn/common/model/share";
 
 function InPostUserHistoryList(props) {
   const { shares } = props;
   if (shares.length === 0) {
-    return <PostListNoData />;
+    return <PostListNoDataWebView />;
   }
 
   const rows = shares

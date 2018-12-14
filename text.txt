@@ -154,7 +154,5 @@ how should i completely eliminate my test to depend on the structure of the raw 
 
 . use it on frontend  
 ---
-postListNoData -> postListNoDataWebView
-------
-too much friction. lets move on. last attempt:
-  . i will fuck the wrap because it too different. 
+. find more style at common and move back into each project
+  
