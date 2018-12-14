@@ -13,7 +13,7 @@ const LeftStyle = styled.div`
   flex-grow: 1;
 `;
 
-function InPostItemHead(props) {
+function InPostItemHeadWebView(props) {
   const { postUserName, postUserEmail, dateCreate } = props;
   return (
     <Style>
@@ -33,10 +33,10 @@ function InPostItemHead(props) {
   );
 }
 
-InPostItemHead.propTypes = {
+InPostItemHeadWebView.propTypes = {
   postUserName: PropTypes.string.isRequired,
   postUserEmail: nullOrRequiredValidator("string"),
   dateCreate: PropTypes.instanceOf(Date).isRequired
 };
 
-export default InPostItemHead;
+export default InPostItemHeadWebView;

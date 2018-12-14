@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import InPostItemHead from "./inPostItem_head";
 import InPostItemFootContainer from "../container/foot/inPostItem_foot.con";
 import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
+import InPostItemHeadWebView from "./inPostItem_head.webView";
 
-function InPostItem(props) {
+function InPostItemWebView(props) {
   const { post } = props;
 
   return (
     <PostItemStyle id="inPost-item-react">
-      <InPostItemHead
+      <InPostItemHeadWebView
         postUserName={post.user.name}
         postUserEmail={post.user.email}
         dateCreate={post.dateCreate}
@@ -21,8 +21,8 @@ function InPostItem(props) {
     </PostItemStyle>
   );
 }
-InPostItem.propTypes = {
+InPostItemWebView.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export { InPostItem };
+export default InPostItemWebView;

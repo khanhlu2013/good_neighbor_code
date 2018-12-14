@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import InPostUserHistoryList from "./inPost_userHistoryList";
-import InPostList from "./inPostList";
 import InPostTabBar from "./inPost_tabBar";
 import InPostTabEnum from "./inPost_tabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
@@ -10,6 +9,7 @@ import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
+import InPostListWebView from "../view/inPostList.webView";
 
 class InPostManagementComponent extends Component {
   static propTypes = {
@@ -64,22 +64,22 @@ class InPostManagementComponent extends Component {
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === InPostTabEnum.ALL}>
-            <InPostList listId={"inPostList-all-react"} posts={posts} />
+            <InPostListWebView listId={"inPostList-all-react"} posts={posts} />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.REQUEST}>
-            <InPostList
+            <InPostListWebView
               listId={"inPostList-request-react"}
               posts={requestPosts}
             />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.APPROVE}>
-            <InPostList
+            <InPostListWebView
               listId={"inPostList-approveNote-react"}
               posts={approveAlertPosts}
             />
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.BORROW}>
-            <InPostList
+            <InPostListWebView
               listId={"inPostList-borrow-react"}
               posts={borrowPosts}
             />

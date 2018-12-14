@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 import InPostItemMobileView from "./inPostItem.mobileView";
 import InPostListController from "../../../common/bus/inPost/controller/inPostList.controller";
 import PostListNoDataMobileView from "../../post/view/postListNoData.mobileView";
+import InPostListMobileView from "./inPostList.mobileView";
 
 function InPostManagementMobileView(props) {
   const { posts, isFetchingPosts, isInitPosts } = props;
@@ -14,15 +15,7 @@ function InPostManagementMobileView(props) {
   if (!isInitPosts || isFetchingPosts) {
     content = <ActivityIndicator size="large" />;
   } else {
-    content = (
-      <InPostListController
-        posts={posts}
-        inPostItemView={InPostItemMobileView}
-        noInPostDataIndicatorView={PostListNoDataMobileView}
-        wrapperView={View}
-        listId="testListId"
-      />
-    );
+    content = <InPostListMobileView listId="blahblahID" posts={posts} />;
   }
   return content;
 }
