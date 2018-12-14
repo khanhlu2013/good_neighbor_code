@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import PostItemHistoryList from "../component/postItem_historyList";
-import PostItemRequestList from "../component/postItem_requestlist";
+import PostItemRequestListWebView from "../view/postItem_requestlist.webView";
 import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
 import PostItemBodyViewPropType from "@gn/common/bus/post/propType/postItemBody.view.propType";
 
@@ -45,7 +45,7 @@ function PostItemBodyWebView(props) {
       )}
       {post.requestShares.length !== 0 && (
         <PostItemRequestListStyle>
-          <PostItemRequestList shares={post.requestShares} />
+          <PostItemRequestListWebView shares={post.requestShares} />
         </PostItemRequestListStyle>
       )}
       {post.returnShares.length !== 0 && (

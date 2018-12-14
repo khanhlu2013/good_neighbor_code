@@ -1,6 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import Post from "../../../common/model/post";
 import InPostItemHeadMobileView from "./inPostItem_head.mobileView";

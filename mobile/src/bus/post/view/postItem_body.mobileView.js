@@ -4,9 +4,14 @@ import { View, Text } from "react-native";
 
 import PostItemBodyMixin from "../../../common/bus/post/style/postItemBody.mixin";
 import PostItemBodyViewPropType from "../../../common/bus/post/propType/postItemBody.view.propType";
+import PostItemRequestListMobileView from "./postItem_requestList.mobileView";
 
 const Style = styled.View`
   ${PostItemBodyMixin}
+`;
+
+const PostItemRequestListStyle = styled.View`
+  margin-top: 10px;
 `;
 
 function PostItemBodyMobileView(props) {
@@ -27,6 +32,11 @@ function PostItemBodyMobileView(props) {
         <View>
           <Text>borrowing by: {borrower.getNameAndEmail()}</Text>
         </View>
+      )}
+      {post.requestShares.length !== 0 && (
+        <PostItemRequestListStyle>
+          <PostItemRequestListMobileView shares={post.requestShares} />
+        </PostItemRequestListStyle>
       )}
     </Style>
   );

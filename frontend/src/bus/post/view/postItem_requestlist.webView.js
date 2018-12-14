@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PostItemRequestListViewPropType from "@gn/common/bus/post/propType/postItem_requestList.view.propType";
 
 import { date2String } from "@gn/common/util";
 
-function PostItemRequestList(props) {
+function PostItemRequestListWebView(props) {
   const { shares } = props;
-  const rows = shares
+  const rows = [...shares]
     .sort((s1, s2) => s1.dateCreate - s2.dateCreate)
     .map(share => (
       <tr key={share.id}>
@@ -26,8 +26,6 @@ function PostItemRequestList(props) {
     </table>
   );
 }
-PostItemRequestList.propTypes = {
-  shares: PropTypes.array.isRequired
-};
+PostItemRequestListWebView.propTypes = PostItemRequestListViewPropType;
 
-export default PostItemRequestList;
+export default PostItemRequestListWebView;
