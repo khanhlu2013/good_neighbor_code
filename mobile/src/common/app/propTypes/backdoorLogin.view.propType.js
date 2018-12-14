@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const BackdoorLoginPropTypes = {
+const BackdoorLoginViewPropType = {
   isEmailValid: PropTypes.bool.isRequired,
   isNameRequire: PropTypes.bool.isRequired,
   nameIsEmpty: PropTypes.bool.isRequired,
@@ -15,4 +15,4 @@ const BackdoorLoginPropTypes = {
   onNameChange: PropTypes.func.isRequired
 };
 
-export default BackdoorLoginPropTypes;
+export default BackdoorLoginViewPropType;

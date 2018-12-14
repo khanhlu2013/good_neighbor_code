@@ -158,3 +158,8 @@ inPostItem_requestList
 . fix the propType now. make sure it view.propTypes vs controller.propTypes
 
 . also remove the s
+---
+backdoorLogin.view.propType
+
+. rename both, 
+. use both at mobile view and web view

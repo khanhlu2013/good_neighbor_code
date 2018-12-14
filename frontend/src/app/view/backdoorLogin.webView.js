@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import className from "classnames";
 import LoadingIcon from "../../share/loadingIcon";
-import BackdoorLoginPropTypes from "@gn/common/app/propTypes/backdoorLogin.propTypes";
+import BackdoorLoginViewPropType from "@gn/common/app/propTypes/backdoorLogin.view.propType";
 
 const Style = styled.div`
   margin-top: 10px;
@@ -113,5 +113,5 @@ function BackDoorLoginWebView(props) {
   );
 }
 
-BackDoorLoginWebView.propTypes = BackdoorLoginPropTypes;
+BackDoorLoginWebView.propTypes = BackdoorLoginViewPropType;
 export default BackDoorLoginWebView;

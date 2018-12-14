@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
-import BackdoorLoginPropTypes from "../../common/app/propTypes/backdoorLogin.propTypes";
+import BackdoorLoginViewPropType from "../../common/app/propTypes/backdoorLogin.view.propType";
 
 function BackDoorLoginMobileView(props) {
   const {
@@ -74,7 +74,7 @@ function BackDoorLoginMobileView(props) {
     </View>
   );
 }
-BackDoorLoginMobileView.propTypes = BackdoorLoginPropTypes;
+BackDoorLoginMobileView.propTypes = BackdoorLoginViewPropType;
 export default BackDoorLoginMobileView;
 
 // STYLE DECLARATION ----------------------------------
