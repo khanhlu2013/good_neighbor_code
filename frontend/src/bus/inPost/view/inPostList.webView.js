@@ -2,7 +2,7 @@ import React from "react";
 
 import InPostItemWebView from "./inPostItem.webView";
 import PostListNoDataWebView from "../../post/view/postListNoData.webView";
-import InPostListViewPropTypes from "@gn/common/bus/inPost/viewPropTypes/inPostListView.propTypes";
+import InPostListViewPropType from "@gn/common/bus/inPost/propType/inPostList.view.propType";
 import InPostListController from "@gn/common/bus/inPost/controller/inPostList.controller";
 
 function InPostListWebView(props) {
@@ -17,6 +17,6 @@ function InPostListWebView(props) {
     </div>
   );
 }
-InPostListWebView.propTypes = InPostListViewPropTypes;
+InPostListWebView.propTypes = InPostListViewPropType;
 
 export default InPostListWebView;

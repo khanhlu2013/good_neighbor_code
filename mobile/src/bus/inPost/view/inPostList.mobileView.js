@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import InPostItemMobileView from "./inPostItem.mobileView";
 import PostListNoDataMobileView from "../../post/view/postListNoData.mobileView";
 import InPostListController from "../../../common/bus/inPost/controller/inPostList.controller";
-import InPostListViewPropTypes from "../../../common/bus/inPost/viewPropTypes/inPostListView.propTypes";
+import InPostListViewPropType from "../../../common/bus/inPost/propType/inPostList.view.propType";
 
 function InPostListMobileView(props) {
   const { listId, posts } = props;
@@ -18,6 +18,6 @@ function InPostListMobileView(props) {
     </View>
   );
 }
-InPostListMobileView.propTypes = InPostListViewPropTypes;
+InPostListMobileView.propTypes = InPostListViewPropType;
 
 export default InPostListMobileView;

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
-import BackdoorLoginViewPropType from "../../common/app/propTypes/backdoorLogin.view.propType";
+import BackdoorLoginViewPropType from "../../common/app/propType/backdoorLogin.view.propType";
 
 function BackDoorLoginMobileView(props) {
   const {

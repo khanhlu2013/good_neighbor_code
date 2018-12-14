@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import className from "classnames";
 import LoadingIcon from "../../share/loadingIcon";
-import BackdoorLoginViewPropType from "@gn/common/app/propTypes/backdoorLogin.view.propType";
+import BackdoorLoginViewPropType from "@gn/common/app/propType/backdoorLogin.view.propType";
 
 const Style = styled.div`
   margin-top: 10px;
