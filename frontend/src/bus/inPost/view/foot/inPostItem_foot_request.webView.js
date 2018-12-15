@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
 
-function InPostItemFootRequest(props) {
+function InPostItemFootRequestWebView(props) {
   const { myRequestShareId, isUnRequestingPost, onUnRequestPost } = props;
 
   const handleUndoRequest = e => {
@@ -32,9 +32,9 @@ function InPostItemFootRequest(props) {
   );
 }
 
-InPostItemFootRequest.propTypes = {
+InPostItemFootRequestWebView.propTypes = {
   myRequestShareId: PropTypes.string.isRequired,
   isUnRequestingPost: PropTypes.bool.isRequired,
   onUnRequestPost: PropTypes.func.isRequired
 };
-export default InPostItemFootRequest;
+export default InPostItemFootRequestWebView;

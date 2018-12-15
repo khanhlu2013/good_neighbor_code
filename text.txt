@@ -143,18 +143,10 @@ how should i completely eliminate my test to depend on the structure of the raw 
 ----------------------
 ----------------------
 ----------------------
+. InPostItemFoot
 
-inPostItem_requestList
-
-. the controller
-  .the mixxin
-    const Style = styled.div`
-      margin-top: 10px;
-    `;
-
-  . work on the propType share
-
----
-i don't like the way sort is. part of view right? 
-
-lets create 2 controller with its props types
+-
+ok, lets work on the controller now. rename them, factor them
+-
+for foot, i think i like to encapsulate the logic for the controller to calculate myRequest or myBorrow share.
+  . lets see if i can move them in. 

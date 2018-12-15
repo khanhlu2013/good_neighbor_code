@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import InPostItemFootBorrow from "../inPostItem_foot_borrow";
 import LoadingIcon from "../../../../../share/loadingIcon";
+import InPostItemFootBorrowWebView from "../inPostItem_foot_borrow.webView";
 
 describe("inPostItem_foot_borrow", () => {
   describe("loading icon", () => {
@@ -10,7 +10,7 @@ describe("inPostItem_foot_borrow", () => {
       const onReturnPost = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootBorrow
+        <InPostItemFootBorrowWebView
           myBorrowShareId={"myBorrowShareIdStub"}
           isAwareApproveBorrowShare={false}
           isAwaringShare={true}
@@ -28,7 +28,7 @@ describe("inPostItem_foot_borrow", () => {
       const onReturnPost = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootBorrow
+        <InPostItemFootBorrowWebView
           myBorrowShareId={"myBorrowShareIdStub"}
           isAwareApproveBorrowShare={true}
           isAwaringShare={false}
@@ -48,7 +48,7 @@ describe("inPostItem_foot_borrow", () => {
     const onReturnPost = jest.fn();
 
     const wrap = shallow(
-      <InPostItemFootBorrow
+      <InPostItemFootBorrowWebView
         myBorrowShareId={myBorrowShareId}
         isAwareApproveBorrowShare={false}
         isAwaringShare={false}
@@ -72,7 +72,7 @@ describe("inPostItem_foot_borrow", () => {
 
     //not yet aware share
     let wrap = shallow(
-      <InPostItemFootBorrow
+      <InPostItemFootBorrowWebView
         myBorrowShareId={"myBorrowShareIdStub"}
         isAwareApproveBorrowShare={false}
         isAwaringShare={false}
@@ -85,7 +85,7 @@ describe("inPostItem_foot_borrow", () => {
 
     //already awared share
     wrap = shallow(
-      <InPostItemFootBorrow
+      <InPostItemFootBorrowWebView
         myBorrowShareId={"myBorrowShareIdStub"}
         isAwareApproveBorrowShare={true}
         isAwaringShare={false}

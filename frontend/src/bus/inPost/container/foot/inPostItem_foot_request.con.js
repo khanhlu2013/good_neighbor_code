@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import InPostItemFootRequestWebView from "../../view/foot/inPostItem_foot_request.webView";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
-import InPostItemFootRequest from "../../component/foot/inPostItem_foot_request";
 import unRequestInPost from "@gn/common/bus/inPost/action/unRequestInPost.action";
 
 export const mapStateToProps = (state, ownProps) => {
@@ -19,7 +19,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 const InPostItemFootRequestContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootRequest);
+)(InPostItemFootRequestWebView);
 InPostItemFootRequestContainer.propTypes = {
   myRequestShareId: PropTypes.string.isRequired
 };

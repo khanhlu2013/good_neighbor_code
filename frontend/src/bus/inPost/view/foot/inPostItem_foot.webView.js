@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { nullOrRequiredValidator } from "@gn/common/util";
+import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 import InPostItemFootBorrowContainer from "../../container/foot/inPostItem_foot_borrow.con";
 import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
-import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
 import PostItemFootStyle from "../../../post/style/postItem_foot_style";
 
-function InPostItemFoot(props) {
+function InPostItemFootWebView(props) {
   const { postId, myRequestShareId, myBorrowShareId, isActivePost } = props;
 
   let content;
@@ -27,11 +27,11 @@ function InPostItemFoot(props) {
 
   return <PostItemFootStyle>{content}</PostItemFootStyle>;
 }
-InPostItemFoot.propTypes = {
+InPostItemFootWebView.propTypes = {
   postId: PropTypes.string.isRequired,
   myRequestShareId: nullOrRequiredValidator("string"),
   myBorrowShareId: nullOrRequiredValidator("string"),
   isActivePost: PropTypes.bool.isRequired
 };
 
-export default InPostItemFoot;
+export default InPostItemFootWebView;

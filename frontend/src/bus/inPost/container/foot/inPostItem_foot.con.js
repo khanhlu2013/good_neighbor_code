@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import { __getRequestOrBorrowShare } from "./inPostItem_foot.selector";
-import InPostItemFoot from "../../component/foot/inPostItem_foot";
+import InPostItemFootWebView from "../../view/foot/inPostItem_foot.webView";
 import AuthSelector from "@gn/common/app/selector/auth.selector";
 
 export const mapStateToProps = (state, ownProps) => {
@@ -27,7 +27,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({});
 const InPostItemFootContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFoot);
+)(InPostItemFootWebView);
 InPostItemFootContainer.propTypes = {
   postId: PropTypes.string.isRequired
 };

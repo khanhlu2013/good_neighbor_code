@@ -1,13 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import InPostItemFootRequest from "../inPostItem_foot_request";
 import LoadingIcon from "../../../../../share/loadingIcon";
 
 describe("inPostItem_foot_request", () => {
   describe("loading icon", () => {
     it("show during unRequesting post", () => {
       const wrap = shallow(
-        <InPostItemFootRequest
+        <InPostItemFootRequestWebView
           myRequestShareId="1"
           isUnRequestingPost={true}
           onUnRequestPost={jest.fn()}
@@ -18,7 +17,7 @@ describe("inPostItem_foot_request", () => {
 
     it("not show when not unRequesting post", () => {
       const wrap = shallow(
-        <InPostItemFootRequest
+        <InPostItemFootRequestWebView
           myRequestShareId="1"
           isUnRequestingPost={false}
           onUnRequestPost={jest.fn()}
@@ -33,7 +32,7 @@ describe("inPostItem_foot_request", () => {
     const onUnRequestPost = jest.fn();
 
     const wrap = shallow(
-      <InPostItemFootRequest
+      <InPostItemFootRequestWebView
         myRequestShareId={shareId}
         isUnRequestingPost={false}
         onUnRequestPost={onUnRequestPost}
@@ -46,7 +45,7 @@ describe("inPostItem_foot_request", () => {
 
   it("to match snapshot", () => {
     const wrap = shallow(
-      <InPostItemFootRequest
+      <InPostItemFootRequestWebView
         myRequestShareId="1"
         isUnRequestingPost={false}
         onUnRequestPost={jest.fn()}

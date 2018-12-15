@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import LoadingIcon from "../../../../share/loadingIcon";
 
-function InPostItemFootShop(props) {
+function InPostItemFootShopWebView(props) {
   const { postId, isRequestingPost, onRequestPost } = props;
 
   const onRequestPostClick = e => {
@@ -27,9 +26,9 @@ function InPostItemFootShop(props) {
   return content;
 }
 
-InPostItemFootShop.propTypes = {
+InPostItemFootShopWebView.propTypes = {
   postId: PropTypes.string.isRequired,
   isRequestingPost: PropTypes.bool.isRequired,
   onRequestPost: PropTypes.func.isRequired
 };
-export default InPostItemFootShop;
+export default InPostItemFootShopWebView;

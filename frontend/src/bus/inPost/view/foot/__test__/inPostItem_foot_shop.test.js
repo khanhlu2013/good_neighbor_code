@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import InPostItemFootShop from "../inPostItem_foot_shop";
 import LoadingIcon from "../../../../../share/loadingIcon";
+import InPostItemFootShopWebView from "../inPostItem_foot_shop.webView";
 
 describe("inPostItem_foot_shop", () => {
   describe("loading icon", () => {
@@ -11,7 +11,7 @@ describe("inPostItem_foot_shop", () => {
       const onRequestPost = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootShop
+        <InPostItemFootShopWebView
           postId={postId}
           isRequestingPost={true}
           onRequestPost={onRequestPost}
@@ -27,7 +27,7 @@ describe("inPostItem_foot_shop", () => {
       const onRequestPost = jest.fn();
 
       const wrap = shallow(
-        <InPostItemFootShop
+        <InPostItemFootShopWebView
           postId={postId}
           isRequestingPost={false}
           onRequestPost={onRequestPost}
@@ -44,7 +44,7 @@ describe("inPostItem_foot_shop", () => {
     const onRequestPost = jest.fn();
 
     const wrap = shallow(
-      <InPostItemFootShop
+      <InPostItemFootShopWebView
         postId={postId}
         isRequestingPost={false}
         onRequestPost={onRequestPost}
