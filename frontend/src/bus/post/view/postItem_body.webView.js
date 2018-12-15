@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 import PostItemRequestListWebView from "../view/postItem_requestlist.webView";
 import PostItemHistoryListWebView from "./postItem_historyList.webView";
+import PostItemHistoryListController from "@gn/common/bus/post/controller/postItem_historyList.controller";
 import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
 import PostItemBodyViewPropType from "@gn/common/bus/post/propType/postItemBody.view.propType";
+import PostItemRequestListController from "@gn/common/bus/post/controller/postItem_requestList.controller";
 
 const Style = styled.div`
   ${PostItemBodyMixin}
@@ -45,13 +47,17 @@ function PostItemBodyWebView(props) {
       )}
       {post.requestShares.length !== 0 && (
         <PostItemRequestListStyle>
-          <PostItemRequestListWebView shares={post.requestShares} />
+          <PostItemRequestListController
+            shares={post.requestShares}
+            view={PostItemRequestListWebView}
+          />
         </PostItemRequestListStyle>
       )}
       {post.returnShares.length !== 0 && (
-        <PostItemHistoryListStyle>
-          <PostItemHistoryListWebView shares={post.returnShares} />
-        </PostItemHistoryListStyle>
+        <PostItemHistoryListController
+          shares={post.returnShares}
+          view={PostItemHistoryListWebView}
+        />
       )}
     </Style>
   );

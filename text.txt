@@ -156,3 +156,5 @@ inPostItem_requestList
 
 ---
 i don't like the way sort is. part of view right? 
+
+lets create 2 controller with its props types

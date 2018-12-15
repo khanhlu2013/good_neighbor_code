@@ -27,9 +27,7 @@ function renderItem({ item }) {
 
 function PostItemHistoryListMobileView(props) {
   const { shares } = props;
-  const prepData = [...shares]
-    .sort((s1, s2) => s2.dateReturn - s1.dateReturn)
-    .map(share => ({ share, key: share.id }));
+  const prepData = shares.map(share => ({ share, key: share.id }));
 
   return (
     <Style>

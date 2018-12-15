@@ -6,6 +6,8 @@ import PostItemBodyMixin from "../../../common/bus/post/style/postItemBody.mixin
 import PostItemBodyViewPropType from "../../../common/bus/post/propType/postItemBody.view.propType";
 import PostItemRequestListMobileView from "./postItem_requestList.mobileView";
 import PostItemHistoryListMobileView from "./postItem_historyList.mobileView";
+import PostItemHistoryListController from "../../../common/bus/post/controller/postItem_historyList.controller";
+import PostItemRequestListController from "../../../common/bus/post/controller/postItem_requestList.controller";
 
 const Style = styled.View`
   ${PostItemBodyMixin}
@@ -37,15 +39,22 @@ function PostItemBodyMobileView(props) {
           <Text>borrowing by: {borrower.getNameAndEmail()}</Text>
         </View>
       )}
+
       {post.requestShares.length !== 0 && (
         <PostItemRequestListStyle>
-          <PostItemRequestListMobileView shares={post.requestShares} />
+          <PostItemRequestListController
+            shares={post.requestShares}
+            view={PostItemRequestListMobileView}
+          />
         </PostItemRequestListStyle>
       )}
 
       {post.returnShares.length !== 0 && (
         <PostItemHistoryListStyle>
-          <PostItemHistoryListMobileView shares={post.returnShares} />
+          <PostItemHistoryListController
+            shares={post.returnShares}
+            view={PostItemHistoryListMobileView}
+          />
         </PostItemHistoryListStyle>
       )}
     </Style>

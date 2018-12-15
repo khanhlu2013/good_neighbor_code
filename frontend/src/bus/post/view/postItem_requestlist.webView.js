@@ -5,14 +5,12 @@ import { date2String } from "@gn/common/util";
 
 function PostItemRequestListWebView(props) {
   const { shares } = props;
-  const rows = [...shares]
-    .sort((s1, s2) => s1.dateCreate - s2.dateCreate)
-    .map(share => (
-      <tr key={share.id}>
-        <td>{share.borrower.getNameAndEmail()}</td>
-        <td>{date2String(share.dateCreate)}</td>
-      </tr>
-    ));
+  const rows = shares.map(share => (
+    <tr key={share.id}>
+      <td>{share.borrower.getNameAndEmail()}</td>
+      <td>{date2String(share.dateCreate)}</td>
+    </tr>
+  ));
 
   return (
     <table className="my-table table-sm table-bordered table-striped">
