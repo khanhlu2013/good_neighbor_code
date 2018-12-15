@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function BaseView(props) {
+function PassThroughView(props) {
   const { view } = props;
   return React.createElement(view, props);
 }
-BaseView.propTypes = {
+PassThroughView.propTypes = {
   view: PropTypes.func.isRequired
 };
-export default BaseView;
+export default PassThroughView;

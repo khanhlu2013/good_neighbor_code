@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import InPostItemFootContainer from "../container/foot/inPostItem_foot.con";
 import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
 import InPostItemHeadWebView from "./inPostItem_head.webView";
+import InPostItemFootWebView from "./foot/inPostItem_foot.webView";
+import InPostItemFootController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot.controller";
 
 function InPostItemWebView(props) {
   const { post } = props;
@@ -17,7 +18,7 @@ function InPostItemWebView(props) {
         dateCreate={post.dateCreate}
       />
       <PostItemBodyWebView post={post} />
-      <InPostItemFootContainer postId={post.id} />
+      <InPostItemFootController postId={post.id} view={InPostItemFootWebView} />
     </PostItemStyle>
   );
 }

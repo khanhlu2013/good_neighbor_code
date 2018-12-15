@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import BaseView from "../../../../util/BaseView";
+import PassThroughView from "../../../../util/PassThrough.view";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import unRequestInPost from "@gn/common/bus/inPost/action/unRequestInPost.action";
@@ -20,7 +20,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 const InPostItemFootRequestController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BaseView);
+)(PassThroughView);
 InPostItemFootRequestController.propTypes = {
   myRequestShareId: PropTypes.string.isRequired
 };

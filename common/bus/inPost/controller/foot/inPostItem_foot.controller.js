@@ -1,9 +1,26 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import PassThroughView from "../../../../util/PassThrough.view";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
-import { __getRequestOrBorrowShare } from "./inPostItem_foot.selector";
-import InPostItemFootWebView from "../../view/foot/inPostItem_foot.webView";
 import AuthSelector from "@gn/common/app/selector/auth.selector";
+
+export function __getRequestOrBorrowShare(post, userId) {
+  //userBorrowShare
+  const curBorrowShare = post.curBorrowShare;
+  let userBorrowShare = null;
+  if (curBorrowShare && curBorrowShare.borrower.id === userId) {
+    userBorrowShare = curBorrowShare;
+  }
+
+  //myRequestShare
+  const userRequestShare =
+    post.requestShares.find(share => share.borrower.id === userId) || null;
+
+  return {
+    userBorrowShare,
+    userRequestShare
+  };
+}
 
 export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
@@ -24,12 +41,12 @@ export const mapStateToProps = (state, ownProps) => {
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({});
-const InPostItemFootContainer = connect(
+const InPostItemFootController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootWebView);
-InPostItemFootContainer.propTypes = {
+)(PassThroughView);
+InPostItemFootController.propTypes = {
   postId: PropTypes.string.isRequired
 };
 
-export default InPostItemFootContainer;
+export default InPostItemFootController;

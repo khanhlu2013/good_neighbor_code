@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import BaseView from "../../../../util/BaseView";
+import PassThroughView from "../../../../util/PassThrough.view";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import returnInPost from "@gn/common/bus/inPost/action/returnInPost.action";
@@ -26,7 +26,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 const InPostItemFootBorrowController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BaseView);
+)(PassThroughView);
 InPostItemFootBorrowController.propTypes = {
   myBorrowShareId: PropTypes.string.isRequired
 };
