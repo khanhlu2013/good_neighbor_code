@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { nullOrRequiredValidator } from "@gn/common/util";
-import InPostItemFootShopContainer from "../../container/foot/inPostItem_foot_shop.con";
-import InPostItemFootBorrowContainer from "../../container/foot/inPostItem_foot_borrow.con";
-import InPostItemFootRequestContainer from "../../container/foot/inPostItem_foot_request.con";
 import PostItemFootStyle from "../../../post/style/postItem_foot_style";
+import InPostItemFootShopWebView from "./inPostItem_foot_shop.webView";
+import InPostItemFootRequestController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_request.controller";
+import InPostItemFootRequestWebView from "./inPostItem_foot_request.webView";
+import InPostItemFootBorrowController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_borrow.controller";
+import InPostItemFootBorrowWebView from "./inPostItem_foot_borrow.webView";
+import InPostItemFootShopController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_shop.controller";
 
 function InPostItemFootWebView(props) {
   const { postId, myRequestShareId, myBorrowShareId, isActivePost } = props;
@@ -13,14 +16,25 @@ function InPostItemFootWebView(props) {
 
   if (myRequestShareId) {
     content = (
-      <InPostItemFootRequestContainer myRequestShareId={myRequestShareId} />
+      <InPostItemFootRequestController
+        myRequestShareId={myRequestShareId}
+        view={InPostItemFootRequestWebView}
+      />
     );
   } else if (myBorrowShareId) {
     content = (
-      <InPostItemFootBorrowContainer myBorrowShareId={myBorrowShareId} />
+      <InPostItemFootBorrowController
+        myBorrowShareId={myBorrowShareId}
+        view={InPostItemFootBorrowWebView}
+      />
     );
   } else if (isActivePost) {
-    content = <InPostItemFootShopContainer postId={postId} />;
+    content = (
+      <InPostItemFootShopController
+        postId={postId}
+        view={InPostItemFootShopWebView}
+      />
+    );
   } else {
     content = <div>Post is no longer active</div>;
   }

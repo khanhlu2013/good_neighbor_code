@@ -150,3 +150,6 @@ ok, lets work on the controller now. rename them, factor them
 -
 for foot, i think i like to encapsulate the logic for the controller to calculate myRequest or myBorrow share.
   . lets see if i can move them in. 
+---
+
+at this point, the question is: why do i need a damn baseController. when do i need more specific controller? when i have more props. 

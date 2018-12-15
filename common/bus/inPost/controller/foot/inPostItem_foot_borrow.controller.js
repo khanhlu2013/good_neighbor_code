@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import InPostItemFootBorrowWebView from "../../view/foot/inPostItem_foot_borrow.webView";
+import BaseView from "../../../../util/BaseView";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import returnInPost from "@gn/common/bus/inPost/action/returnInPost.action";
@@ -22,12 +22,13 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   onAwareApprovePost: shareId => dispatch(awareApproveInPost(shareId)),
   onReturnPost: shareId => dispatch(returnInPost(shareId))
 });
-const InPostItemFootBorrowContainer = connect(
+
+const InPostItemFootBorrowController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootBorrowWebView);
-InPostItemFootBorrowContainer.propTypes = {
+)(BaseView);
+InPostItemFootBorrowController.propTypes = {
   myBorrowShareId: PropTypes.string.isRequired
 };
 
-export default InPostItemFootBorrowContainer;
+export default InPostItemFootBorrowController;

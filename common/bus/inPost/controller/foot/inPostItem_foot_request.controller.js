@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import InPostItemFootRequestWebView from "../../view/foot/inPostItem_foot_request.webView";
+import BaseView from "../../../../util/BaseView";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import unRequestInPost from "@gn/common/bus/inPost/action/unRequestInPost.action";
@@ -16,12 +16,13 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   onUnRequestPost: shareId => dispatch(unRequestInPost(shareId))
 });
-const InPostItemFootRequestContainer = connect(
+
+const InPostItemFootRequestController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootRequestWebView);
-InPostItemFootRequestContainer.propTypes = {
+)(BaseView);
+InPostItemFootRequestController.propTypes = {
   myRequestShareId: PropTypes.string.isRequired
 };
 
-export default InPostItemFootRequestContainer;
+export default InPostItemFootRequestController;

@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import BaseView from "../../../../util/BaseView";
 
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 import requestInPost from "@gn/common/bus/inPost/action/requestInPost.action";
-import InPostItemFootShopWebView from "../../view/foot/inPostItem_foot_shop.webView";
 
 export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;
@@ -16,11 +16,11 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   onRequestPost: postId => dispatch(requestInPost(postId))
 });
 
-const InPostItemFootShopContainer = connect(
+const InPostItemFootShopController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostItemFootShopWebView);
-InPostItemFootShopContainer.propTypes = {
+)(BaseView);
+InPostItemFootShopController.propTypes = {
   postId: PropTypes.string.isRequired
 };
-export default InPostItemFootShopContainer;
+export default InPostItemFootShopController;
