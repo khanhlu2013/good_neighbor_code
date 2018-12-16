@@ -154,3 +154,7 @@ create a view
 ---
 . no longer share any style right?
 . xxx.mobileStyle.js
+. proptype is always viewPropType
+---
+. ok, i guess i should work on testing
+. lets stop here and bring all testing back. 

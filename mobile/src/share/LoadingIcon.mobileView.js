@@ -1,14 +1,18 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import styled from "styled-components";
+import { Text, ActivityIndicator } from "react-native";
 import PropTypes from "prop-types";
 
+const Styled = styled.View`
+  flex-direction: row;
+`;
 function LoadingIconMobileView(props) {
   const { text } = props;
   return (
-    <View>
+    <Styled>
       <Text>{text}</Text>
       <ActivityIndicator />
-    </View>
+    </Styled>
   );
 }
 LoadingIconMobileView.propTypes = {

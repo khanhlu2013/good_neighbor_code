@@ -9,7 +9,10 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     myRequestShareId,
-    isUnRequestingPost: InPostSelector.isUnRequestingPost(state)
+    isUnRequestingPost: InPostSelector.isUnRequestingPost(
+      state,
+      myRequestShareId
+    )
   };
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({
