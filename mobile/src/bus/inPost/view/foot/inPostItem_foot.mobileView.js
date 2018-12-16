@@ -10,11 +10,11 @@ import { View, Text } from "react-native";
 // import InPostItemFootViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot.view.propType";
 // import InPostItemFootShopController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_shop.controller";
 import InPostItemFootViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot.view.propType";
+import InPostItemFootShopController from "../../../../common/bus/inPost/controller/foot/inPostItem_foot_shop.controller";
+import InPostItemFootShopMobileView from "./inPostItem_foot_shop.mobileView";
 
 function InPostItemFootMobileView(props) {
   const { postId, myRequestShareId, myBorrowShareId, isActivePost } = props;
-
-  let content = JSON.stringify.props;
 
   // if (myRequestShareId) {
   //   content = (
@@ -41,11 +41,22 @@ function InPostItemFootMobileView(props) {
   //   content = <div>Post is no longer active</div>;
   // }
 
-  return (
-    <View>
-      <Text>{content}</Text>
-    </View>
-  );
+  if (isActivePost) {
+    content = (
+      <InPostItemFootShopController
+        postId={postId}
+        view={InPostItemFootShopMobileView}
+      />
+    );
+  } else {
+    content = (
+      <View>
+        <Text>Post is no longer active</Text>
+      </View>
+    );
+  }
+
+  return <View>{content}</View>;
 }
 InPostItemFootMobileView.propTypes = InPostItemFootViewPropType;
 

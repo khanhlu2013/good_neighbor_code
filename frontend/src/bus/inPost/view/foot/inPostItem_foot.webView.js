@@ -1,5 +1,4 @@
 import React from "react";
-import PostItemFootStyle from "../../../post/style/postItem_foot_style";
 import InPostItemFootShopWebView from "./inPostItem_foot_shop.webView";
 import InPostItemFootRequestController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_request.controller";
 import InPostItemFootRequestWebView from "./inPostItem_foot_request.webView";
@@ -38,7 +37,7 @@ function InPostItemFootWebView(props) {
     content = <div>Post is no longer active</div>;
   }
 
-  return <PostItemFootStyle>{content}</PostItemFootStyle>;
+  return content;
 }
 InPostItemFootWebView.propTypes = InPostItemFootViewPropType;
 

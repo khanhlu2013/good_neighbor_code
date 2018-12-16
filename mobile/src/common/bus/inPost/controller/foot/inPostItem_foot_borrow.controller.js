@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PassThroughView from "../../../../util/PassThrough.view";
-
-import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
-import returnInPost from "@gn/common/bus/inPost/action/returnInPost.action";
-import awareApproveInPost from "@gn/common/bus/inPost/action/awareApproveInPost.action";
+import InPostSelector from "../../inPost.selector";
+import returnInPost from "../../action/returnInPost.action";
+import awareApproveInPost from "../../action/awareApproveInPost.action";
 
 export const mapStateToProps = (state, ownProps) => {
   const shareId = ownProps.myBorrowShareId;

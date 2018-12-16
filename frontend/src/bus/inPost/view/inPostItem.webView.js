@@ -5,6 +5,7 @@ import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
 import InPostItemHeadWebView from "./inPostItem_head.webView";
 import InPostItemFootWebView from "./foot/inPostItem_foot.webView";
+import PostItemFootStyle from "../../post/style/postItem_foot_style";
 import InPostItemFootController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot.controller";
 
 function InPostItemWebView(props) {
@@ -18,7 +19,13 @@ function InPostItemWebView(props) {
         dateCreate={post.dateCreate}
       />
       <PostItemBodyWebView post={post} />
-      <InPostItemFootController postId={post.id} view={InPostItemFootWebView} />
+
+      <PostItemFootStyle>
+        <InPostItemFootController
+          postId={post.id}
+          view={InPostItemFootWebView}
+        />
+      </PostItemFootStyle>
     </PostItemStyle>
   );
 }
