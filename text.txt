@@ -151,5 +151,3 @@ create a view then i display those props. what props? the outer wrap foot which 
 
 create a view
 
----
-lets prep the propTypes

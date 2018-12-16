@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PassThroughView from "../../../../util/PassThrough.view";
-import InPostSelector from "../../inPost.selector";
-import requestInPost from "../../action/requestInPost.action";
+
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
+import requestInPost from "@gn/common/bus/inPost/action/requestInPost.action";
 
 export const mapStateToProps = (state, ownProps) => {
   const { postId } = ownProps;

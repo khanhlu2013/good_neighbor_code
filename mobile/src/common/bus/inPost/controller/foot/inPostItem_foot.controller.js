@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PassThroughView from "../../../../util/PassThrough.view";
-import InPostSelector from "../../inPost.selector";
-import AuthSelector from "../../../../app/selector/auth.selector";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 
 export function __getRequestOrBorrowShare(post, userId) {
   //userBorrowShare
