@@ -139,6 +139,9 @@ before continue to test inPostAllHistoryList, i like to refactor this a bit. thi
   fuck , i dont have a history in my snap shot e2e
 ---
 how should i completely eliminate my test to depend on the structure of the raw json?
+. ok, i guess i should work on testing
+. lets stop here and bring all testing back. well, i just realized that the test for the action is quite questionable interm of its value. it is because action is part of a reducer. it feel like such a detail implementation. anyway, i guess how do i catch the inpostFootRequest controller fail if we forgot to supply shareId to calculate if the post is un-requesting.
+---
 ----------------------
 ----------------------
 ----------------------
@@ -156,5 +159,4 @@ create a view
 . xxx.mobileStyle.js
 . proptype is always viewPropType
 ---
-. ok, i guess i should work on testing
-. lets stop here and bring all testing back. 
+
