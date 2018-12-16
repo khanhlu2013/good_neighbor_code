@@ -3,7 +3,6 @@ import { View, Text } from "react-native";
 
 // import PostItemFootStyle from "../../../post/style/postItem_foot_style";
 // import InPostItemFootShopWebView from "./inPostItem_foot_shop.webView";
-// import InPostItemFootRequestController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_request.controller";
 // import InPostItemFootRequestWebView from "./inPostItem_foot_request.webView";
 // import InPostItemFootBorrowController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot_borrow.controller";
 // import InPostItemFootBorrowWebView from "./inPostItem_foot_borrow.webView";
@@ -12,6 +11,8 @@ import { View, Text } from "react-native";
 import InPostItemFootViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot.view.propType";
 import InPostItemFootShopController from "../../../../common/bus/inPost/controller/foot/inPostItem_foot_shop.controller";
 import InPostItemFootShopMobileView from "./inPostItem_foot_shop.mobileView";
+import InPostItemFootRequestController from "../../../../common/bus/inPost/controller/foot/inPostItem_foot_request.controller";
+import InPostItemFootRequestMobileView from "./inPostItem_foot_request.mobileView";
 
 function InPostItemFootMobileView(props) {
   const { postId, myRequestShareId, myBorrowShareId, isActivePost } = props;
@@ -41,7 +42,14 @@ function InPostItemFootMobileView(props) {
   //   content = <div>Post is no longer active</div>;
   // }
 
-  if (isActivePost) {
+  if (myRequestShareId) {
+    content = (
+      <InPostItemFootRequestController
+        myRequestShareId={myRequestShareId}
+        view={InPostItemFootRequestMobileView}
+      />
+    );
+  } else if (isActivePost) {
     content = (
       <InPostItemFootShopController
         postId={postId}

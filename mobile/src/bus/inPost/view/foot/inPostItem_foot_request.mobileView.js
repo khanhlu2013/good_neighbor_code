@@ -1,37 +1,41 @@
-// import React from "react";
-// import LoadingIcon from "../../../../share/loadingIcon";
-// import InPostItemFootRequestViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_request.view.propType";
+import React from "react";
+import styled from "styled-components";
+import { Text, Button, View } from "react-native";
+import LoadingIconMobileView from "../../../../share/LoadingIcon.mobileView";
+import InPostItemFootRequestViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot_request.view.propType";
 
-// function InPostItemFootRequestWebView(props) {
-//   const { myRequestShareId, isUnRequestingPost, onUnRequestPost } = props;
+const Style = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+function InPostItemFootRequestMobileView(props) {
+  const { myRequestShareId, isUnRequestingPost, onUnRequestPost } = props;
 
-//   const handleUndoRequest = e => {
-//     onUnRequestPost(myRequestShareId);
-//   };
+  const handleUndoRequest = e => {
+    onUnRequestPost(myRequestShareId);
+  };
 
-//   let content;
-//   if (isUnRequestingPost) {
-//     content = <LoadingIcon text="undo" />;
-//   } else {
-//     content = (
-//       <button
-//         id="outPostItem-undoRequestBtn-react"
-//         onClick={handleUndoRequest}
-//         className="btn btn-warning"
-//       >
-//         undo
-//       </button>
-//     );
-//   }
+  let content;
+  if (isUnRequestingPost) {
+    content = <LoadingIconMobileView text="undo" />;
+  } else {
+    content = (
+      <Button
+        title="undo"
+        id="outPostItem-undoRequestBtn-react"
+        onPress={handleUndoRequest}
+      />
+    );
+  }
 
-//   return (
-//     <div className="text-success">
-//       <span className="mr-1">you're in the waiting list.</span>
-//       {content}
-//     </div>
-//   );
-// }
+  return (
+    <Style>
+      <Text>you're in the waiting list.</Text>
+      {content}
+    </Style>
+  );
+}
 
-// InPostItemFootRequestWebView.propTypes = InPostItemFootRequestViewPropType;
+InPostItemFootRequestMobileView.propTypes = InPostItemFootRequestViewPropType;
 
-// export default InPostItemFootRequestWebView;
+export default InPostItemFootRequestMobileView;
