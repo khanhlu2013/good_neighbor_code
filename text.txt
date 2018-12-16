@@ -143,13 +143,13 @@ how should i completely eliminate my test to depend on the structure of the raw 
 ----------------------
 ----------------------
 ----------------------
-. InPostItemFoot
+ok, time for me to make it over the mobile for the foot. top down is good , start with minimal.
 
--
-ok, lets work on the controller now. rename them, factor them
--
-for foot, i think i like to encapsulate the logic for the controller to calculate myRequest or myBorrow share.
-  . lets see if i can move them in. 
+so lets just start with display the postId then right? or just props. ok.
+
+create a view then i display those props. what props? the outer wrap foot which is the post id . ok lets go. 
+
+create a view
+
 ---
-
-at this point, the question is: why do i need a damn baseController. when do i need more specific controller? when i have more props. 
+lets prep the propTypes

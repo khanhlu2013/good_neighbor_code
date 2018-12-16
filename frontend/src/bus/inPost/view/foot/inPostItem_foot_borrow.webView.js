@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
+import InPostItemFootBorrowViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_borrow.view.propType";
 
 function InPostItemFootBorrowWebView(props) {
   const {
@@ -66,12 +66,5 @@ function InPostItemFootBorrowWebView(props) {
   );
 }
 
-InPostItemFootBorrowWebView.propTypes = {
-  myBorrowShareId: PropTypes.string.isRequired,
-  isAwareApproveBorrowShare: PropTypes.bool.isRequired,
-  isAwaringShare: PropTypes.bool.isRequired,
-  isReturningShare: PropTypes.bool.isRequired,
-  onAwareApprovePost: PropTypes.func.isRequired,
-  onReturnPost: PropTypes.func.isRequired
-};
+InPostItemFootBorrowWebView.propTypes = InPostItemFootBorrowViewPropType;
 export default InPostItemFootBorrowWebView;

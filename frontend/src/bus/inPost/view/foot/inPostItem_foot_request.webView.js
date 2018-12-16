@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import LoadingIcon from "../../../../share/loadingIcon";
+import InPostItemFootRequestViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_request.view.propType";
 
 function InPostItemFootRequestWebView(props) {
   const { myRequestShareId, isUnRequestingPost, onUnRequestPost } = props;
@@ -32,9 +32,6 @@ function InPostItemFootRequestWebView(props) {
   );
 }
 
-InPostItemFootRequestWebView.propTypes = {
-  myRequestShareId: PropTypes.string.isRequired,
-  isUnRequestingPost: PropTypes.bool.isRequired,
-  onUnRequestPost: PropTypes.func.isRequired
-};
+InPostItemFootRequestWebView.propTypes = InPostItemFootRequestViewPropType;
+
 export default InPostItemFootRequestWebView;
