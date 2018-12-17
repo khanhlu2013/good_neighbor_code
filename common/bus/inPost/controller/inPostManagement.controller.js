@@ -1,7 +1,19 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import InPostManagementComponent from "../component/inPost_management";
-import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
-import fetchInPosts from "@gn/common/bus/inPost/action/fetchInPosts.action";
+import InPostSelector from "../inPost.selector";
+import fetchInPosts from "../action/fetchInPosts.action";
+
+class _ extends Component {
+  componentDidMount() {
+    this.props.fetchInPosts();
+  }
+
+  render() {
+    const { props } = this;
+    const { view } = props;
+    return React.createElement(view, props);
+  }
+}
 
 export const mapStateToProps = (state, ownProps) => {
   return {
@@ -20,9 +32,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchInPosts: () => dispatch(fetchInPosts())
 });
 
-const InPostManagementContainer = connect(
+const InPostManagementController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InPostManagementComponent);
+)(_);
 
-export default InPostManagementContainer;
+export default InPostManagementController;

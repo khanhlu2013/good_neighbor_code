@@ -160,3 +160,16 @@ create a view
 . proptype is always viewPropType
 ---
 
+ok, the bottom tab navigator add it in then to the inpostmanagement
+
+---
+. so so there is an equivalent to screen in web. that is the container. which is the connected view.
+  . how am i going to organize screen and view to be consistence
+
+---
+delete the inpostmanagementcomponent on web
+there is a inpostManagementController already in mobile?
+
+---
+move the logic for didMount out.
+remove fetchInPost responsibility too yes.

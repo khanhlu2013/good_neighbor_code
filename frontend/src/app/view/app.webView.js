@@ -6,7 +6,7 @@ import AppHeaderConnect from "../connect/appHeader.connect";
 import LoadingIcon from "../../share/loadingIcon";
 import PublicAppWebView from "./publicApp/publicApp.webView";
 import PrivateAppController from "../controller/privateApp.controller";
-import PrivateAppWebView from "./appPrivate.webView";
+import PrivateAppWebView from "./privateApp.webView";
 import BackdoorLoginController from "@gn/common/app/controller/backdoorLogin.controller";
 
 const AuthCheckStyle = styled.div`

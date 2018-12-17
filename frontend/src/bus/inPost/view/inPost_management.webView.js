@@ -1,38 +1,23 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import InPostUserHistoryList from "./inPost_userHistoryList";
-import InPostTabBar from "./inPost_tabBar";
-import InPostTabEnum from "./inPost_tabEnum";
+import InPostUserHistoryList from "../component/inPost_userHistoryList";
+import InPostTabBar from "../component/inPost_tabBar";
+import InPostTabEnum from "../component/inPost_tabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
-import InPostListWebView from "../view/inPostList.webView";
+import InPostListWebView from "./inPostList.webView";
+import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 
-class InPostManagementComponent extends Component {
-  static propTypes = {
-    //init data
-    fetchInPosts: PropTypes.func.isRequired,
-    //raw
-    posts: PropTypes.array.isRequired,
-    isFetchingPosts: PropTypes.bool.isRequired,
-    isInitPosts: PropTypes.bool.isRequired,
-    //calculated
-    requestPosts: PropTypes.array.isRequired,
-    borrowPosts: PropTypes.array.isRequired,
-    approveAlertPosts: PropTypes.array.isRequired,
-    returnShares: PropTypes.array.isRequired
-  };
+class InPostManagementWebView extends Component {
+  static propTypes = InPostManagementPropType;
 
   state = {
     selectTab: InPostTabEnum.ALL
   };
-
-  componentDidMount() {
-    this.props.fetchInPosts();
-  }
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
@@ -110,4 +95,4 @@ class InPostManagementComponent extends Component {
   }
 }
 
-export default InPostManagementComponent;
+export default InPostManagementWebView;

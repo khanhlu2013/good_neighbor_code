@@ -1,7 +1,7 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, SafeAreaView, ScrollView, View } from "react-native";
 
-import { createBottomTabNavigator } from "react-navigation";
+import { createDrawerNavigator, DrawerItems } from "react-navigation";
 import InPostManagementScreen from "../../bus/inPost/screen/inPostManagement.screen";
 
 const dummyScreen = function() {
@@ -12,57 +12,38 @@ const dummyScreen2 = function() {
   return <Text>yyyyyy</Text>;
 };
 
-const PrivateApp = createBottomTabNavigator(
+const CustomDrawerComponent = props => (
+  <SafeAreaView style={{ flex: 1 }}>
+    <View
+      style={{
+        height: 150,
+        backgroundColor: "lime",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      <Text style={{ fontSize: 20 }}>Good Neighbor</Text>
+    </View>
+    <ScrollView>
+      <DrawerItems {...props} />
+    </ScrollView>
+  </SafeAreaView>
+);
+
+const PrivateApp = createDrawerNavigator(
   {
-    InPost: { screen: InPostManagementScreen },
+    inPost: { screen: InPostManagementScreen, title: "Friend Posts" },
     Calendar: { screen: dummyScreen2 },
     Search: { screen: dummyScreen },
     Notifications: { screen: dummyScreen2 },
     Messages: { screen: dummyScreen }
   },
   {
-    tabBarOptions: {
-      activeTintColor: "white",
-      activeBackgroundColor: "#7B3037",
-
-      inactiveTintColor: "lightgrey",
-      inactiveBackgroundColor: "#7B3037",
-
-      showLabel: true,
-      showIcon: true,
-      style: {
-        backgroundColor: "#7B3037"
-      },
-      tabStyle: {},
-      labelStyle: {
-        fontSize: 12
-      }
+    contentComponent: CustomDrawerComponent,
+    contentOptions: {
+      activeTintColor: "orange"
     }
   }
 );
-// PrivateApp.navigationOptions = ({ navigation }) => ({
-//   tabBarIcon: ({ focused, horizontal, tintColor }) => {
-//     const { routeName } = navigation.state;
-//     let iconName;
-//     let iconSize;
-
-//     iconSize = 25;
-
-//     if (routeName === "Social") {
-//       iconName = `ios-people${focused ? "" : "-outline"}`;
-//     } else if (routeName === "Calendar") {
-//       iconName = `ios-calendar${focused ? "" : "-outline"}`;
-//     } else if (routeName === "Search") {
-//       iconName = `ios-search${focused ? "" : "-outline"}`;
-//       iconSize = 40;
-//     } else if (routeName === "Notifications") {
-//       iconName = `ios-notifications${focused ? "" : "-outline"}`;
-//     } else if (routeName === "Messages") {
-//       iconName = `ios-chatboxes${focused ? "" : "-outline"}`;
-//     }
-//     console.log("am i here?");
-//     return <Ionicons name={iconName} size={iconSize} color={tintColor} />;
-//   }
-// });
 
 export default PrivateApp;

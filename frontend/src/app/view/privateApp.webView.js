@@ -2,16 +2,17 @@ import React from "react";
 
 import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
-import InPostManagementContainer from "../../bus/inPost/container/inPost_management.con.js";
 import OutPostManagementContainer from "../../bus/outPost/container/outPost_management.con.js";
 import ConnectionManagementContainer from "../../bus/connection/container/connection_management.con.js";
+import InPostManagementWebView from "../../bus/inPost/view/inPost_management.webView";
+import InPostManagementController from "@gn/common/bus/inPost/controller/inPostManagement.controller";
 import AppTabEnum from "@gn/common/app/appTabEnum";
 
 function PrivateAppWebView(selectAppTab) {
   return (
     <div id="privateApp-react">
       <TabPanel show={selectAppTab === AppTabEnum.INPOST}>
-        <InPostManagementContainer />
+        <InPostManagementController view={InPostManagementWebView} />
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.OUTPOST}>
