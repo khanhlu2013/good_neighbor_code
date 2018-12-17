@@ -163,5 +163,5 @@ create a view
 ok, the bottom tab navigator add it in then to the inpostmanagement
 
 ---
-. so so there is an equivalent to screen in web. that is the container. which is the connected view.
-  . how am i going to organize screen and view to be consistence
+
+. i guess i can just code that into the privateApp. 

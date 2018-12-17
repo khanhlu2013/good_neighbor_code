@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
 
 import InPostUserHistoryList from "../component/inPost_userHistoryList";
 import InPostTabBar from "../component/inPost_tabBar";
@@ -28,8 +27,8 @@ class InPostManagementWebView extends Component {
     const {
       posts,
       requestPosts,
-      approveAlertPosts,
       borrowPosts,
+      approveAlertPosts,
       returnShares
     } = this.props;
 

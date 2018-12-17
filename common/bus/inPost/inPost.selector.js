@@ -27,7 +27,7 @@ const approveAlertPosts = state => {
   return _posts(state).filter(post =>
     post.shares.some(
       share =>
-        share.borrower.id === loginUser.loginUserId &&
+        share.borrower.id === loginUser.id &&
         share.isApprove === true &&
         share.isAwareApprove === false &&
         share.isReturn === false
