@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import InPostManagementMobileView from "../view/inPostManagement.mobileView";
-import InPostManagementController from "../controller/inPostManagement.controller";
 import { Constants } from "expo";
 import { Header, Left, Right, Icon } from "native-base";
+import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
 
 const Style = styled.View`
   margin-top: ${Constants.statusBarHeight};
