@@ -4,6 +4,8 @@ import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import InPostListMobileView from "./inPostList.mobileView";
 import InPostManagementPropType from "../../../common/bus/inPost/propType/inPostManagement.propType";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
+import InPostUserHistoryListController from "../../../common/bus/inPost/controller/inPost_userHistoryList.controller";
+import InPostUserHistoryListMobileView from "./inPost_userHistoryList.mobileView";
 
 const LoadingStyle = styled.View`
   flex: 1;
@@ -39,6 +41,14 @@ function InPostManagementMobileView(props) {
     borrow: {
       screen: props => (
         <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
+      )
+    },
+    history: {
+      screen: props => (
+        <InPostUserHistoryListController
+          shares={returnShares}
+          view={InPostUserHistoryListMobileView}
+        />
       )
     }
   });

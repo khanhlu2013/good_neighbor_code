@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 
-import InPostUserHistoryList from "../component/inPost_userHistoryList";
 import InPostTabBar from "../component/inPost_tabBar";
 import InPostTabEnum from "../component/inPost_tabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
@@ -9,6 +8,8 @@ import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import InPostListWebView from "./inPostList.webView";
+import InPostUserHistoryListWebView from "./inPost_userHistoryList.webView";
+import InPostUserHistoryListController from "@gn/common/bus/inPost/controller/inPost_userHistoryList.controller";
 import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 
 class InPostManagementWebView extends Component {
@@ -70,7 +71,10 @@ class InPostManagementWebView extends Component {
           </TabPanel>
           <TabPanel show={selectTab === InPostTabEnum.HISTORY}>
             <PostUserHistoryListStyle>
-              <InPostUserHistoryList shares={returnShares} />
+              <InPostUserHistoryListController
+                shares={returnShares}
+                view={InPostUserHistoryListWebView}
+              />
             </PostUserHistoryListStyle>
           </TabPanel>
         </AppCenterWrapStyle>
