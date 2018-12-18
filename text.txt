@@ -163,5 +163,13 @@ create a view
 ok, the bottom tab navigator add it in then to the inpostmanagement
 
 ---
+all out here i go
+---
+lets disable the title, and label because label failed me. Plus i do not have full control over it
+  . how do i disable it?
+    . title = null;
+    . display label = null;
 
-. i guess i can just code that into the privateApp. 
+---
+TabBarIcon -> function -> element : Icon is ok, but View is not. 
+TabBarLabel -> function -> element : throw error
