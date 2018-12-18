@@ -34,6 +34,7 @@ function InPostManagementMobileView(props) {
         navigationOptions: {
           title: null,
           tabBarLabel: `all (${posts.length})`
+          // tabBarLabel: <Text>abc</Text>
         }
       },
       request: {
