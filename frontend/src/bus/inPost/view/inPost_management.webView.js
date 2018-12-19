@@ -8,7 +8,7 @@ import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import InPostListWebView from "./inPostList.webView";
 import InPostUserHistoryListWebView from "./inPost_userHistoryList.webView";
-import BusinessBanner from "../../../share/banner/businessBanner";
+import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 import InPostUserHistoryListController from "@gn/common/bus/inPost/controller/inPost_userHistoryList.controller";
 import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 
@@ -35,7 +35,7 @@ class InPostManagementWebView extends Component {
 
     return (
       <Fragment>
-        <BusinessBanner>
+        <BusinessBannerStyle>
           <InPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -45,7 +45,7 @@ class InPostManagementWebView extends Component {
             borrowCount={borrowPosts.length}
             historyCount={returnShares.length}
           />
-        </BusinessBanner>
+        </BusinessBannerStyle>
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === InPostTabEnum.ALL}>

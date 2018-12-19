@@ -19,7 +19,7 @@ import {
   inConnectionSelector,
   denyConnectionSelector
 } from "../connection.selector.js";
-import BusinessBanner from "../../../share/banner/businessBanner";
+import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 
 const Style = styled.div`
   ${AppCenterWrapMixin};
@@ -75,7 +75,7 @@ class ConnectionManagementComponent extends Component {
 
     return (
       <Fragment>
-        <BusinessBanner>
+        <BusinessBannerStyle>
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -84,7 +84,7 @@ class ConnectionManagementComponent extends Component {
             outConnectionCount={outConnections.length}
             denyConnectionCount={denyConnections.length}
           />
-        </BusinessBanner>
+        </BusinessBannerStyle>
 
         <Style>
           <TabPanel show={selectTab === ConnectionTabEnum.FRIEND}>

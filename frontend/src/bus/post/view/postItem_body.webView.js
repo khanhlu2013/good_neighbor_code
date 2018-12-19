@@ -54,10 +54,12 @@ function PostItemBodyWebView(props) {
         </PostItemRequestListStyle>
       )}
       {post.returnShares.length !== 0 && (
-        <PostItemHistoryListController
-          shares={post.returnShares}
-          view={PostItemHistoryListWebView}
-        />
+        <PostItemHistoryListStyle>
+          <PostItemHistoryListController
+            shares={post.returnShares}
+            view={PostItemHistoryListWebView}
+          />
+        </PostItemHistoryListStyle>
       )}
     </Style>
   );

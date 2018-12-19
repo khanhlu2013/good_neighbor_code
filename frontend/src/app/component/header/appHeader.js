@@ -7,7 +7,7 @@ import AppTabEnum from "@gn/common/app/appTabEnum";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import AppHeaderTabBar from "./appHeader_tabBar";
 import GoogleLoginWebView from "../../view/googleLogin.webView";
-import AppBanner from "../../../share/banner/appBanner";
+import AppBannerStyle from "../../../share/style/bannerStyle/appBanner.style";
 import API_URL from "@gn/common/api/api-url";
 import GoogleLoginController from "@gn/common/app/controller/googleLogin.controller";
 
@@ -69,12 +69,12 @@ function AppHeaderComponent(props) {
   }
 
   return (
-    <AppBanner>
+    <AppBannerStyle>
       <CenterWrap>
         <AppIconWrap>Good Neighbor</AppIconWrap>
         {content}
       </CenterWrap>
-    </AppBanner>
+    </AppBannerStyle>
   );
 }
 

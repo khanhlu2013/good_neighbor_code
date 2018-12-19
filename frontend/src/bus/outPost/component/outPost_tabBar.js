@@ -3,9 +3,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import OutPostTabEnum from "./outPost_tabEnum";
-import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import BusinessTabItem from "../../../share/tabItem/businessTabItem";
 import AlertItem from "../../../share/alertItem";
+import BusinessTabBarStyle from "../../../share/style/tabBarStyle/businessTabBar.style";
 import { nullOrRequiredValidator } from "@gn/common/util";
 
 const NewPostButtonStyle = styled.div`
@@ -42,7 +42,7 @@ function OutPostTabBar(props) {
   };
 
   return (
-    <AppBodyTabBarStyle>
+    <BusinessTabBarStyle>
       {_generateTabItem(
         "tabSelector-outPost-all-react",
         selectTab === OutPostTabEnum.ALL,
@@ -107,7 +107,7 @@ function OutPostTabBar(props) {
           new
         </button>
       </NewPostButtonStyle>
-    </AppBodyTabBarStyle>
+    </BusinessTabBarStyle>
   );
 }
 

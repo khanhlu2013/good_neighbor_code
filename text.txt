@@ -183,3 +183,8 @@ organize front end banner and color. can i share it?
       banner
 ---
 
+share.
+  . banner -> bannerStyle
+  . tabBar -> tabBarStyle
+
+  . these are styled component. 

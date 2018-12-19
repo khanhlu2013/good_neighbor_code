@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
 import { GenericTabItem } from "../../../share/tabItem/genericTabItem";
 import AlertItem from "../../../share/alertItem";
+import AppTabBarStyle from "../../../share/style/tabBarStyle/appTabBar.style";
 import AppTabEnum from "@gn/common/app/appTabEnum";
 
 const TabItemContainerStart = styled.div`
@@ -40,7 +40,7 @@ function AppHeaderTabBar(props) {
   };
 
   return (
-    <AppHeaderTabBarStyle>
+    <AppTabBarStyle>
       {_generateTabItem(
         "tabSelector-inPost-react",
         selectAppTab === AppTabEnum.INPOST,
@@ -80,7 +80,7 @@ function AppHeaderTabBar(props) {
         0,
         TabItemContainerEnd
       )}
-    </AppHeaderTabBarStyle>
+    </AppTabBarStyle>
   );
 }
 

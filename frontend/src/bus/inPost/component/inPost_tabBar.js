@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import InPostTabEnum from "./inPost_tabEnum";
-import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import BusinessTabItem from "../../../share/tabItem/businessTabItem";
 import AlertItem from "../../../share/alertItem";
+import BusinessTabBarStyle from "../../../share/style/tabBarStyle/businessTabBar.style";
 import { nullOrRequiredValidator } from "@gn/common/util";
 
 function InPostTabBar(props) {
@@ -35,7 +35,7 @@ function InPostTabBar(props) {
   };
 
   return (
-    <AppBodyTabBarStyle>
+    <BusinessTabBarStyle>
       {_generateTabItem(
         "tabSelector-inPost-all-react",
         selectTab === InPostTabEnum.ALL,
@@ -90,7 +90,7 @@ function InPostTabBar(props) {
         false,
         true
       )}
-    </AppBodyTabBarStyle>
+    </BusinessTabBarStyle>
   );
 }
 

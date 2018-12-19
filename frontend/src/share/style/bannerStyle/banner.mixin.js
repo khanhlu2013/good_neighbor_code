@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { AppMinWidthMixin } from "../mixin/app.mixin";
+import { AppMinWidthMixin } from "../../mixin/app.mixin";
 
 const BannerMixin = css`
   ${AppMinWidthMixin};

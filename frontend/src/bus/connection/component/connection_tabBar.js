@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AlertItem from "../../../share/alertItem";
 import ConnectionTabEnum from "./connection_tabEnum";
 import BusinessTabItem from "../../../share/tabItem/businessTabItem";
+import BusinessTabBarStyle from "../../../share/style/tabBarStyle/businessTabBar.style";
 
 function ConnectionTabBar(props) {
   const {
@@ -33,7 +33,7 @@ function ConnectionTabBar(props) {
   };
 
   return (
-    <AppBodyTabBarStyle>
+    <BusinessTabBarStyle>
       {_generateTabItem(
         "tabSelector-connection-friend-react",
         selectTab === ConnectionTabEnum.FRIEND,
@@ -88,7 +88,7 @@ function ConnectionTabBar(props) {
         false,
         true
       )}
-    </AppBodyTabBarStyle>
+    </BusinessTabBarStyle>
   );
 }
 
