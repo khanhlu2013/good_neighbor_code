@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import BannerMixin from "./banner.mixin";
+import WebBannerMixin from "./webBanner.mixin";
 import { AppCenterWrapMixin } from "../appCenterWrap_style";
+import BusinessBannerMixin from "@gn/common/style/businessBanner.mixin";
 
-const Banner = styled.div`
-  ${BannerMixin} background-color: antiquewhite;
+const Style = styled.div`
+  ${WebBannerMixin} ${BusinessBannerMixin};
 `;
 const CenterWrap = styled.div`
   display: flex;
@@ -14,9 +15,9 @@ const CenterWrap = styled.div`
 
 function BusinessBannerStyle(props) {
   return (
-    <Banner>
+    <Style>
       <CenterWrap>{props.children}</CenterWrap>
-    </Banner>
+    </Style>
   );
 }
 export default BusinessBannerStyle;

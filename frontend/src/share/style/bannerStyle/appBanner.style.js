@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BannerMixin from "./banner.mixin";
+import WebBannerMixin from "./webBanner.mixin";
 
 const AppBannerStyle = styled.div`
-  ${BannerMixin} background-color: rgb(36, 54, 65);
+  ${WebBannerMixin} background-color: rgb(36, 54, 65);
 `;
 
 export default AppBannerStyle;

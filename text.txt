@@ -188,3 +188,7 @@ share.
   . tabBar -> tabBarStyle
 
   . these are styled component. 
+
+  ---
+
+  lets pull out the controller logic for the tabIcon right? yes. 
