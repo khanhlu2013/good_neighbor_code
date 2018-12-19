@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react";
+import { Text, View, Button } from "react-native";
 import styled from "styled-components";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 import { Icon } from "native-base";
@@ -110,9 +110,12 @@ function InPostManagementMobileView(props) {
         }
       }),
       tabBarOptions: {
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-        showLabel: true
+        activeTintColor: "maroon",
+        inactiveTintColor: "rgb(214, 174, 139)",
+        showLabel: true,
+        style: {
+          backgroundColor: "antiquewhite"
+        }
       }
     }
   );

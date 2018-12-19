@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { AppMinWidthMixin, AppMaxWidthMixin } from "./app_mixin";
+import { AppMinWidthMixin, AppMaxWidthMixin } from "../mixin/app.mixin";
 
 export const AppCenterWrapMixin = css`
   ${AppMinWidthMixin} ${AppMaxWidthMixin}

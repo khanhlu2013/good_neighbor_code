@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import LoadingIcon from "../../../share/loadingIcon.js";
-import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style.js";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style.js";
 import TabPanel from "../../../share/style/tabPanel_style.js";
 import SearchByEmail from "./searchByEmail.js";
@@ -20,6 +19,7 @@ import {
   inConnectionSelector,
   denyConnectionSelector
 } from "../connection.selector.js";
+import AppBanner from "../../../share/style/appBanner";
 
 const Style = styled.div`
   ${AppCenterWrapMixin};
@@ -75,7 +75,7 @@ class ConnectionManagementComponent extends Component {
 
     return (
       <Fragment>
-        <AppBodyBannerStyle>
+        <AppBanner>
           <ConnectionTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -84,7 +84,7 @@ class ConnectionManagementComponent extends Component {
             outConnectionCount={outConnections.length}
             denyConnectionCount={denyConnections.length}
           />
-        </AppBodyBannerStyle>
+        </AppBanner>
 
         <Style>
           <TabPanel show={selectTab === ConnectionTabEnum.FRIEND}>

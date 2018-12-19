@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { AppBodyTabBarStyle } from "../../../share/style/tabBar_style";
 import AlertItem from "../../../share/alertItem";
 import ConnectionTabEnum from "./connection_tabEnum";
-import AppBodyTabItem from "../../../share/appBodyTabItem";
+import BusinessTabItem from "../../../share/tabItem/businessTabItem";
 
 function ConnectionTabBar(props) {
   const {
@@ -103,7 +103,7 @@ function _generateTabItem(
   isResponsive
 ) {
   return (
-    <AppBodyTabItem
+    <BusinessTabItem
       id={id}
       isSelect={isSelect}
       caption={caption}

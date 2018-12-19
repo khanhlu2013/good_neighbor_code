@@ -51,7 +51,7 @@ const Underline = styled.div`
     `@media screen and (max-width: ${responsiveBreakPoint}) { margin-top: 9px !important;}`};
 `;
 
-function TabItem(props) {
+function GenericTabItem(props) {
   const {
     id,
     isSelect,
@@ -98,7 +98,7 @@ function TabItem(props) {
   );
 }
 
-TabItem.propTypes = {
+GenericTabItem.propTypes = {
   id: PropTypes.string.isRequired,
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
@@ -112,4 +112,4 @@ TabItem.propTypes = {
   isResponsive: PropTypes.bool.isRequired
 };
 
-export { TabItem };
+export { GenericTabItem };

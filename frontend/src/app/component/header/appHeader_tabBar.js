@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { AppHeaderTabBarStyle } from "../../../share/style/tabBar_style";
-import { TabItem } from "../../../share/tabItem";
+import { GenericTabItem } from "../../../share/tabItem/genericTabItem";
 import AlertItem from "../../../share/alertItem";
 import AppTabEnum from "@gn/common/app/appTabEnum";
 
@@ -95,7 +95,7 @@ function _generateTabItem(
 ) {
   return (
     <Container>
-      <TabItem
+      <GenericTabItem
         id={id}
         isSelect={isSelect}
         caption={caption}

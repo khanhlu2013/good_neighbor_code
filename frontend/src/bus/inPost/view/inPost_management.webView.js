@@ -3,12 +3,12 @@ import React, { Component, Fragment } from "react";
 import InPostTabBar from "../component/inPost_tabBar";
 import InPostTabEnum from "../component/inPost_tabEnum";
 import LoadingIcon from "../../../share/loadingIcon";
-import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import InPostListWebView from "./inPostList.webView";
 import InPostUserHistoryListWebView from "./inPost_userHistoryList.webView";
+import AppBanner from "../../../share/style/appBanner";
 import InPostUserHistoryListController from "@gn/common/bus/inPost/controller/inPost_userHistoryList.controller";
 import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 
@@ -35,7 +35,7 @@ class InPostManagementWebView extends Component {
 
     return (
       <Fragment>
-        <AppBodyBannerStyle>
+        <AppBanner>
           <InPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -45,7 +45,7 @@ class InPostManagementWebView extends Component {
             borrowCount={borrowPosts.length}
             historyCount={returnShares.length}
           />
-        </AppBodyBannerStyle>
+        </AppBanner>
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === InPostTabEnum.ALL}>

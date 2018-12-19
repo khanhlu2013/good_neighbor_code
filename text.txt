@@ -171,5 +171,15 @@ lets disable the title, and label because label failed me. Plus i do not have fu
     . display label = null;
 
 ---
-TabBarIcon -> function -> element : Icon is ok, but View is not. 
-TabBarLabel -> function -> element : throw error
+organize front end banner and color. can i share it?
+  . is banner a style of a component. it is actually style component and both .this mean, style is only css. i need to move it out to component. 
+
+    . 
+      business
+      app
+
+    .
+      tab
+      banner
+---
+

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TabItem } from "./tabItem";
+import { GenericTabItem } from "./genericTabItem";
 import { nullOrRequiredValidator } from "@gn/common/util";
 
-function AppBodyTabItem(props) {
+function BusinessTabItem(props) {
   const {
     id,
     isSelect,
@@ -15,7 +15,7 @@ function AppBodyTabItem(props) {
   } = props;
 
   return (
-    <TabItem
+    <GenericTabItem
       id={id}
       isSelect={isSelect}
       caption={caption}
@@ -31,7 +31,7 @@ function AppBodyTabItem(props) {
   );
 }
 
-AppBodyTabItem.propTypes = {
+BusinessTabItem.propTypes = {
   id: PropTypes.string.isRequired,
   isSelect: PropTypes.bool.isRequired,
   caption: PropTypes.string.isRequired,
@@ -41,4 +41,4 @@ AppBodyTabItem.propTypes = {
   isResponsive: PropTypes.bool.isRequired
 };
 
-export default AppBodyTabItem;
+export default BusinessTabItem;

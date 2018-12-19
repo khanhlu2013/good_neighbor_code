@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { nullOrRequiredValidator } from "@gn/common/util";
 import Post from "@gn/common/model/post";
 import LoadingIcon from "../../../share/loadingIcon";
-import AppBodyBannerStyle from "../../../share/style/appBodyBanner_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import OutPostCrudDialog from "./crudDialog";
@@ -14,6 +13,7 @@ import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
+import AppBanner from "../../../share/style/appBanner";
 
 class OutPostManagementComponent extends Component {
   static propTypes = {
@@ -90,7 +90,7 @@ class OutPostManagementComponent extends Component {
     const { selectTab } = this.state;
     return (
       <Fragment>
-        <AppBodyBannerStyle>
+        <AppBanner>
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -101,7 +101,7 @@ class OutPostManagementComponent extends Component {
             returnCount={returnAlertPosts.length}
             historyCount={returnShares.length}
           />
-        </AppBodyBannerStyle>
+        </AppBanner>
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === OutPostTabEnum.ALL}>
