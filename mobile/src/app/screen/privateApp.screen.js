@@ -2,7 +2,7 @@ import React from "react";
 import { Text, SafeAreaView, ScrollView, View } from "react-native";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
-import InPostManagementScreen from "../../bus/inPost/screen/inPostManagement.screen";
+import InPostManagementScreen from "../../bus/inPost/inPostManagement.screen";
 
 const dummyScreen = function() {
   return <Text>xxxxxx</Text>;
