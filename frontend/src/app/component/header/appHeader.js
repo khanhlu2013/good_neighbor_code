@@ -7,13 +7,10 @@ import AppTabEnum from "@gn/common/app/appTabEnum";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import AppHeaderTabBar from "./appHeader_tabBar";
 import GoogleLoginWebView from "../../view/googleLogin.webView";
-import BannerMixin from "../../../share/mixin/banner.webMixin";
+import AppBanner from "../../../share/banner/appBanner";
 import API_URL from "@gn/common/api/api-url";
 import GoogleLoginController from "@gn/common/app/controller/googleLogin.controller";
 
-const Banner = styled.div`
-  ${BannerMixin} background-color: rgb(36, 54, 65);
-`;
 const CenterWrap = styled.div`
   ${AppCenterWrapMixin} height: 100%;
   display: flex;
@@ -72,12 +69,12 @@ function AppHeaderComponent(props) {
   }
 
   return (
-    <Banner>
+    <AppBanner>
       <CenterWrap>
         <AppIconWrap>Good Neighbor</AppIconWrap>
         {content}
       </CenterWrap>
-    </Banner>
+    </AppBanner>
   );
 }
 

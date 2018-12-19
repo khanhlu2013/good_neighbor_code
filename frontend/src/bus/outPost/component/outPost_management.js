@@ -13,7 +13,7 @@ import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
-import AppBanner from "../../../share/style/appBanner";
+import BusinessBanner from "../../../share/banner/businessBanner";
 
 class OutPostManagementComponent extends Component {
   static propTypes = {
@@ -90,7 +90,7 @@ class OutPostManagementComponent extends Component {
     const { selectTab } = this.state;
     return (
       <Fragment>
-        <AppBanner>
+        <BusinessBanner>
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
@@ -101,7 +101,7 @@ class OutPostManagementComponent extends Component {
             returnCount={returnAlertPosts.length}
             historyCount={returnShares.length}
           />
-        </AppBanner>
+        </BusinessBanner>
 
         <AppCenterWrapStyle>
           <TabPanel show={selectTab === OutPostTabEnum.ALL}>
