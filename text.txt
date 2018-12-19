@@ -189,6 +189,7 @@ share.
 
   . these are styled component. 
 
-  ---
+---
+work on ui for tab item
+---
 
-  lets pull out the controller logic for the tabIcon right? yes. 

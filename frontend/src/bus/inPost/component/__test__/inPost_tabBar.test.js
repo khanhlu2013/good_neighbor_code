@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 
 import InPostTabBar from "../inPost_tabBar";
 import InPostTabEnum from "../inPost_tabEnum";
-import "../../../../registerIcon";
+import "../../../../configIcon";
 
 describe("inPost_tabBar", () => {
   it("to trigger onTabChange callback handler correctly", () => {

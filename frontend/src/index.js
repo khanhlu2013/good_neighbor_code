@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
-import "./registerIcon";
+import "./configIcon";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.css";

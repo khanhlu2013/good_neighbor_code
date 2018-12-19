@@ -3,6 +3,7 @@ import { Text, SafeAreaView, ScrollView, View } from "react-native";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 import InPostManagementScreen from "../../bus/inPost/inPostManagement.screen";
+import OutPostManagementScreen from "../../bus/outPost/outPostManagement.screen";
 
 const dummyScreen = function() {
   return <Text>xxxxxx</Text>;
@@ -32,8 +33,8 @@ const CustomDrawerComponent = props => (
 
 const PrivateApp = createDrawerNavigator(
   {
-    inPost: { screen: InPostManagementScreen, title: "Friend Posts" },
-    Calendar: { screen: dummyScreen2 },
+    inPost: { screen: InPostManagementScreen },
+    outPost: { screen: OutPostManagementScreen },
     Search: { screen: dummyScreen },
     Notifications: { screen: dummyScreen2 },
     Messages: { screen: dummyScreen }

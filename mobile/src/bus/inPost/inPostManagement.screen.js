@@ -4,6 +4,7 @@ import InPostManagementMobileView from "./view/inPostManagement.mobileView";
 import { Constants } from "expo";
 import { Header, Left, Right, Icon } from "native-base";
 import InPostManagementController from "../../common/bus/inPost/controller/inPostManagement.controller";
+import { APP_ICON_SIZE } from "../../share/uiConstant";
 
 const Style = styled.View`
   margin-top: ${Constants.statusBarHeight};
@@ -23,8 +24,13 @@ const InPostManagementScreen = function(props) {
   );
 };
 InPostManagementScreen.navigationOptions = {
+  title: "Friend posts",
   drawerIcon: ({ tintColor }) => (
-    <Icon name="ios-globe" style={{ fontSize: 24, color: tintColor }} />
+    <Icon
+      name="ios-globe"
+      type="Ionicons"
+      style={{ fontSize: APP_ICON_SIZE, color: tintColor }}
+    />
   )
 };
 export default InPostManagementScreen;
