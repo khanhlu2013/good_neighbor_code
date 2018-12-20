@@ -194,3 +194,14 @@ work on ui for tab item
 ---
  i don't feel like sharing PostItemStyle any more. 
  anyway, i don't want to apply a universal style to postItem , style is apply on the context thus can be reuse genericaly. 
+
+---
+postItemStyle
+common:
+  remove margin-top margin-bottom
+
+frontend
+  . fix it so that the context include the margin top and margin bottom
+
+mobile
+  . fix it so that the context include margin 10px;

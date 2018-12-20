@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
 import OutPostItem from "./outPostItem";
 import PostListNoDataWebView from "../../post/view/postListNoData.webView";
+
+const Style = styled.div`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 
 function OutPostList(props) {
   const {
@@ -19,14 +26,15 @@ function OutPostList(props) {
     content = posts
       .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
       .map(post => (
-        <OutPostItem
-          key={post.id}
-          post={post}
-          onUpdatePost={onUpdatePost}
-          onDecidePost={onDecidePost}
-          onAwareReturnPostClick={onAwareReturnPostClick}
-          isAwaringReturn={awaringReturnPostIds.includes(post.id)}
-        />
+        <Style key={post.id}>
+          <OutPostItem
+            post={post}
+            onUpdatePost={onUpdatePost}
+            onDecidePost={onDecidePost}
+            onAwareReturnPostClick={onAwareReturnPostClick}
+            isAwaringReturn={awaringReturnPostIds.includes(post.id)}
+          />
+        </Style>
       ));
   }
 

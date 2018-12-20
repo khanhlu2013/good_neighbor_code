@@ -1,23 +1,16 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 function InPostListController(props) {
-  const { posts, inPostItemView, noInPostDataIndicatorView } = props;
+  const { posts, renderProp } = props;
 
-  let content;
-  if (posts.length === 0) {
-    content = React.createElement(noInPostDataIndicatorView, {});
-  } else {
-    content = posts
-      .sort((p1, p2) => p2.dateCreate - p1.dateCreate)
-      .map(post => React.createElement(inPostItemView, { key: post.id, post }));
-  }
-  return content;
+  const sortedPosts = [...posts].sort(
+    (p1, p2) => p2.dateCreate - p1.dateCreate
+  );
+  return renderProp(sortedPosts);
 }
 InPostListController.propTypes = {
   posts: PropTypes.array.isRequired,
-  inPostItemView: PropTypes.func.isRequired,
-  noInPostDataIndicatorView: PropTypes.func.isRequired
+  renderProp: PropTypes.func.isRequired
 };
 
 export default InPostListController;
