@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, FlatList } from "react-native";
+import { Text } from "react-native";
 import PostItemHistoryListViewPropType from "../../../common/bus/post/propType/postItem_requestList.view.propType";
 import { date2String } from "../../../common/util";
 
@@ -27,12 +27,18 @@ function renderItem({ item }) {
 
 function PostItemHistoryListMobileView(props) {
   const { shares } = props;
-  const prepData = shares.map(share => ({ share, key: share.id }));
 
   return (
     <Style>
       <Text>History</Text>
-      <FlatList data={prepData} renderItem={renderItem} />
+      {shares.map(share => (
+        <ItemStyle key={share.id}>
+          <ItemBorrowerStyle>
+            {share.borrower.getNameAndEmail()}
+          </ItemBorrowerStyle>
+          <Text>{date2String(share.dateReturn)}</Text>
+        </ItemStyle>
+      ))}
     </Style>
   );
 }

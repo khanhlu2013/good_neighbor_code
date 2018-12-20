@@ -15,24 +15,20 @@ const ItemBorrowerStyle = styled.Text`
   flex: 1;
 `;
 
-function renderItem({ item }) {
-  const { share } = item;
-  return (
-    <ItemStyle>
-      <ItemBorrowerStyle>{share.borrower.getNameAndEmail()}</ItemBorrowerStyle>
-      <Text>{date2String(share.dateCreate)}</Text>
-    </ItemStyle>
-  );
-}
-
 function PostItemRequestListMobileView(props) {
   const { shares } = props;
-  const prepData = shares.map(share => ({ share, key: share.id }));
 
   return (
     <Style>
       <Text>Request</Text>
-      <FlatList data={prepData} renderItem={renderItem} />
+      {shares.map(share => (
+        <ItemStyle key={share.id}>
+          <ItemBorrowerStyle>
+            {share.borrower.getNameAndEmail()}
+          </ItemBorrowerStyle>
+          <Text>{date2String(share.dateCreate)}</Text>
+        </ItemStyle>
+      ))}
     </Style>
   );
 }

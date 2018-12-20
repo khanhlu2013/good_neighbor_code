@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+import { View, FlatList } from "react-native";
 import styled from "styled-components";
 
 import InPostItemMobileView from "./inPostItem.mobileView";
@@ -34,13 +34,15 @@ function _renderProp(posts) {
     content = <PostListNoDataMobileView />;
   } else {
     content = (
-      <ScrollView>
-        {posts.map(post => (
-          <Style key={post.id}>
-            <InPostItemMobileView post={post} />
+      <FlatList
+        data={posts}
+        keyExtractor={(item, index) => item.id}
+        renderItem={({ item }) => (
+          <Style>
+            <InPostItemMobileView post={item} />
           </Style>
-        ))}
-      </ScrollView>
+        )}
+      />
     );
   }
   return content;

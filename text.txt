@@ -146,62 +146,132 @@ how should i completely eliminate my test to depend on the structure of the raw 
 ----------------------
 ----------------------
 ----------------------
-ok, time for me to make it over the mobile for the foot. top down is good , start with minimal.
-
-so lets just start with display the postId then right? or just props. ok.
-
-create a view then i display those props. what props? the outer wrap foot which is the post id . ok lets go. 
-
-create a view
-
----
-. no longer share any style right?
-. xxx.mobileStyle.js
-. proptype is always viewPropType
----
-
-ok, the bottom tab navigator add it in then to the inpostmanagement
-
----
-all out here i go
----
-lets disable the title, and label because label failed me. Plus i do not have full control over it
-  . how do i disable it?
-    . title = null;
-    . display label = null;
-
----
-organize front end banner and color. can i share it?
-  . is banner a style of a component. it is actually style component and both .this mean, style is only css. i need to move it out to component. 
-
-    . 
-      business
-      app
-
-    .
-      tab
-      banner
----
-
-share.
-  . banner -> bannerStyle
-  . tabBar -> tabBarStyle
-
-  . these are styled component. 
-
----
 work on ui for tab item
 ---
- i don't feel like sharing PostItemStyle any more. 
- anyway, i don't want to apply a universal style to postItem , style is apply on the context thus can be reuse genericaly. 
 
----
-postItemStyle
-common:
-  remove margin-top margin-bottom
+Invariant Violation: A VirtualizedList contains a cell which itself contains more than one VirtualizedList of the same orientation as the parent list. You must pass a unique listKey prop to each sibling list.
 
-frontend
-  . fix it so that the context include the margin top and margin bottom
+This error is located at:
+    in VirtualizedList (at FlatList.js:662)
+    in FlatList (at postItem_historyList.mobileView.js:35)
+    in RCTView (at View.js:44)
+    in StyledNativeComponent (created by ForwardRef)
+    in PostItemHistoryListMobileView (created by PostItemHistoryListController)
+    in PostItemHistoryListController (at postItem_body.mobileView.js:54)
+    in RCTView (at View.js:44)
+    in StyledNativeComponent (created by ForwardRef)
+    in RCTView (at View.js:44)
+    in StyledNativeComponent (created by ForwardRef)
+    in PostItemBodyMobileView (at inPostItem.mobileView.js:23)
+    in RCTView (at View.js:44)
+    in StyledNativeComponent (created by ForwardRef)
+    in InPostItemMobileView (at inPostList.mobileView.js:40)
+    in RCTView (at View.js:44)
+    in CellRenderer (at VirtualizedList.js:687)
+    in RCTScrollContentView (at ScrollView.js:852)
+    in RCTScrollView (at ScrollView.js:977)
+    in ScrollView (at VirtualizedList.js:1062)
+    in VirtualizedList (at FlatList.js:662)
+    in FlatList (at inPostList.mobileView.js:37)
+    in InPostListController (at inPostList.mobileView.js:14)
+    in RCTView (at View.js:44)
+    in InPostListMobileView (at inPostManagement.mobileView.js:32)
+    in screen (created by SceneView)
+    in SceneView (at createTabNavigator.js:39)
+    in RCTView (at View.js:44)
+    in RCTView (at View.js:44)
+    in ResourceSavingScene (at createBottomTabNavigator.js:113)
+    in RCTView (at View.js:44)
+    in ScreenContainer (at createBottomTabNavigator.js:103)
+    in RCTView (at View.js:44)
+    in TabNavigationView (at createTabNavigator.js:197)
+    in NavigationView (created by Navigator)
+    in Navigator (at createAppContainer.js:388)
+    in NavigationContainer (created by InPostManagementMobileView)
+    in InPostManagementMobileView (created by _)
+    in _ (created by Connect(_))
+    in Connect(_) (at privateApp.screen.js:74)
+    in RCTView (at View.js:44)
+    in StyledNativeComponent (created by ForwardRef)
+    in ScreenTemplate (at privateApp.screen.js:73)
+    in screen (created by SceneView)
+    in SceneView (at DrawerView.js:149)
+    in RCTView (at View.js:44)
+    in RCTView (at View.js:44)
+    in ResourceSavingScene (at DrawerView.js:148)
+    in RCTView (at View.js:44)
+    in ScreenContainer (at DrawerView.js:138)
+    in RCTView (at View.js:44)
+    in AnimatedComponent (at DrawerLayout.js:323)
+    in RCTView (at View.js:44)
+    in AnimatedComponent (at DrawerLayout.js:322)
+    in Handler (at DrawerLayout.js:358)
+    in DrawerLayout (at DrawerView.js:161)
+    in DrawerView (created by Navigator)
+    in Navigator (created by SceneView)
+    in SceneView (created by SwitchView)
+    in SwitchView (created by Navigator)
+    in Navigator (at createAppContainer.js:388)
+    in NavigationContainer (at App.js:51)
+    in Provider (at App.js:50)
+    in App (at registerRootComponent.js:17)
+    in RootErrorBoundary (at registerRootComponent.js:16)
+    in ExpoRootComponent (at renderApplication.js:34)
+    in RCTView (at View.js:44)
+    in RCTView (at View.js:44)
+    in AppContainer (at renderApplication.js:33)
 
-mobile
-  . fix it so that the context include margin 10px;
+_registerAsNestedChild
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:52083:18
+componentDidMount
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:52550:61
+commitLifeCycles
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:17574:45
+commitAllLifeCycles
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:18736:29
+invokeGuardedCallbackImpl
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:9710:21
+invokeGuardedCallback
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:9796:42
+commitRoot
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:18873:34
+completeRoot
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:20017:19
+performWorkOnRoot
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:19957:27
+performWork
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:19877:30
+performSyncWork
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:19852:20
+requestWork
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:19750:26
+scheduleWork
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:19610:22
+enqueueSetState
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:14715:23
+setState
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:6183:37
+onStateChange
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:162267:26
+dispatch
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:144733:17
+<unknown>
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:201061:24
+tryCallOne
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:4200:16
+<unknown>
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:4301:27
+_callTimer
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:23664:17
+_callImmediatesPass
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:23700:19
+callImmediates
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:23919:33
+__callImmediates
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:3595:35
+<unknown>
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:3432:34
+__guard
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:3578:15
+flushedQueue
+    AppEntry.bundle?platform=ios&dev=true&minify=false&hot=false&assetPlugin=%2FUsers%2Flu%2Fplayground%2Fgood-neighbor%2Fmobile%2Fnode_modules%2Fexpo%2Ftools%2FhashAssetFiles.js:3431:21
