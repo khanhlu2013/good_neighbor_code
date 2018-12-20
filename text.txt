@@ -192,4 +192,5 @@ share.
 ---
 work on ui for tab item
 ---
-
+ i don't feel like sharing PostItemStyle any more. 
+ anyway, i don't want to apply a universal style to postItem , style is apply on the context thus can be reuse genericaly. 
