@@ -2,13 +2,14 @@ import React from "react";
 import { Text, View, Button } from "react-native";
 import styled from "styled-components";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
-import { Icon } from "native-base";
 
 import InPostListMobileView from "./inPostList.mobileView";
 import InPostManagementPropType from "../../../common/bus/inPost/propType/inPostManagement.propType";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
 import InPostUserHistoryListController from "../../../common/bus/inPost/controller/inPost_userHistoryList.controller";
 import InPostUserHistoryListMobileView from "./inPost_userHistoryList.mobileView";
+import { BUSINESS_ICON_SIZE } from "../../../share/uiConstant";
+import TabItemMobileView from "../../../share/tabItem.mobileView";
 
 const LoadingStyle = styled.View`
   flex: 1;
@@ -67,44 +68,55 @@ function InPostManagementMobileView(props) {
           const { routeName } = navigation.state;
           let iconName;
           let iconProvider;
-          let caption;
+          let count;
+          let isImportant;
+
           switch (routeName) {
             case "all":
               iconName = "ios-globe";
               iconProvider = "Ionicons";
-              caption = "all friend posts";
+              count = posts.length;
+              isImportant = false;
               break;
             case "request":
               iconName = "question";
               iconProvider = "FontAwesome";
-              caption = "request";
+              count = requestPosts.length;
+              isImportant = false;
               break;
             case "approve":
               iconName = "check";
               iconProvider = "FontAwesome";
-              caption = "approve alert";
+              count = approveAlertPosts.length;
+              isImportant = true;
               break;
             case "borrow":
               iconName = "slideshare";
               iconProvider = "Entypo";
-              caption = "borrow";
+              count = borrowPosts.length;
+              isImportant = false;
               break;
             case "history":
               iconName = "history";
               iconProvider = "FontAwesome";
-              caption = "history";
+              count = returnShares.length;
+              isImportant = false;
               break;
             default:
               iconName = "cancel";
               iconProvider = "MaterialCommunityIcons";
-              caption = null;
+              count = null;
+              isImportant = null;
               break;
           }
           return (
-            <Icon
-              name={iconName}
-              type={iconProvider}
-              style={{ fontSize: 27, color: tintColor }}
+            <TabItemMobileView
+              iconName={iconName}
+              iconProvider={iconProvider}
+              iconSize={BUSINESS_ICON_SIZE}
+              iconColor={tintColor}
+              iconCount={count}
+              iconCountIsImportant={isImportant}
             />
           );
         }
