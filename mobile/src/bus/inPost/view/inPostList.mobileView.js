@@ -23,11 +23,15 @@ function InPostListMobileView(props) {
 InPostListMobileView.propTypes = InPostListViewPropType;
 
 export default InPostListMobileView;
-const Style = styled.View`
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-`;
+
+const ItemSeparator = props => (
+  <View
+    style={{
+      height: 10
+    }}
+  />
+);
+
 function _renderProp(posts) {
   let content;
   if (posts.length === 0) {
@@ -36,12 +40,9 @@ function _renderProp(posts) {
     content = (
       <FlatList
         data={posts}
-        keyExtractor={(item, index) => item.id}
-        renderItem={({ item }) => (
-          <Style>
-            <InPostItemMobileView post={item} />
-          </Style>
-        )}
+        ItemSeparatorComponent={ItemSeparator}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <InPostItemMobileView post={item} />}
       />
     );
   }

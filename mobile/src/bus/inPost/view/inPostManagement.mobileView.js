@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
 import styled from "styled-components";
+import { Container, Content } from "native-base";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 
 import InPostListMobileView from "./inPostList.mobileView";
@@ -16,6 +17,11 @@ const LoadingStyle = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+const Style = styled.View`
+  padding: 10px;
+`;
+
 function InPostManagementMobileView(props) {
   const {
     posts,
@@ -30,36 +36,59 @@ function InPostManagementMobileView(props) {
     {
       all: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={posts} />
+          <Style>
+            <InPostListMobileView listId="blahblahID" posts={posts} />
+          </Style>
         ),
         navigationOptions: {
-          title: null,
-          tabBarLabel: `all (${posts.length})`
-          // tabBarLabel: <Text>abc</Text>
+          title: "all"
         }
       },
       request: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={requestPosts} />
-        )
+          <Style>
+            <InPostListMobileView listId="blahblahID" posts={requestPosts} />
+          </Style>
+        ),
+        navigationOptions: {
+          title: "request"
+        }
       },
       approve: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={approveAlertPosts} />
-        )
+          <Style>
+            <InPostListMobileView
+              listId="blahblahID"
+              posts={approveAlertPosts}
+            />
+          </Style>
+        ),
+        navigationOptions: {
+          title: "approve"
+        }
       },
       borrow: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
-        )
+          <Style>
+            <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
+          </Style>
+        ),
+        navigationOptions: {
+          title: "borrow"
+        }
       },
       history: {
         screen: props => (
-          <InPostUserHistoryListController
-            shares={returnShares}
-            view={InPostUserHistoryListMobileView}
-          />
-        )
+          <Style>
+            <InPostUserHistoryListController
+              shares={returnShares}
+              view={InPostUserHistoryListMobileView}
+            />
+          </Style>
+        ),
+        navigationOptions: {
+          title: "history"
+        }
       }
     },
     {

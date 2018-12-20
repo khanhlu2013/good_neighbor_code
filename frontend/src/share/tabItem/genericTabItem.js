@@ -26,6 +26,7 @@ const IconAndNotificationWrap = styled.div`
 const IconWrap = styled.div`
   font-size: 1.5em;
   line-height: 100%;
+  margin-right: 2px;
   ${props =>
     props.isResponsive &&
     `@media screen and (max-width: ${responsiveBreakPoint}) { font-size: 1.8em !important;}`};

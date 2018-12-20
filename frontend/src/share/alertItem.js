@@ -2,10 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Wrap = styled.div`
-  margin-left: 2px;
-`;
-
 const Style = styled.div`
   background-color: ${props => (props.isImportant ? "red" : "peru")};
   color: white;
@@ -23,7 +19,7 @@ function AlertItem(props) {
   } else {
     html = <Style isImportant={isImportant}>{count}</Style>;
   }
-  return <Wrap>{html}</Wrap>;
+  return html;
 }
 AlertItem.propTypes = {
   count: PropTypes.number.isRequired,
