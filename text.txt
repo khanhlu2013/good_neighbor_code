@@ -151,3 +151,4 @@ work on ui for tab item
 . create a tabIcon on mobile. and lets see if i can share it with web ?
 
 ---
+create a new expo project and figure out if hot reload work. if not investigate a bit. 
