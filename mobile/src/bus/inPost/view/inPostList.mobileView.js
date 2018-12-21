@@ -1,6 +1,5 @@
 import React from "react";
 import { View, FlatList } from "react-native";
-import styled from "styled-components";
 
 import InPostItemMobileView from "./inPostItem.mobileView";
 import PostListNoDataMobileView from "../../post/view/postListNoData.mobileView";
@@ -24,14 +23,6 @@ InPostListMobileView.propTypes = InPostListViewPropType;
 
 export default InPostListMobileView;
 
-const ItemSeparator = props => (
-  <View
-    style={{
-      height: 10
-    }}
-  />
-);
-
 function _renderProp(posts) {
   let content;
   if (posts.length === 0) {
@@ -40,7 +31,6 @@ function _renderProp(posts) {
     content = (
       <FlatList
         data={posts}
-        ItemSeparatorComponent={ItemSeparator}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <InPostItemMobileView post={item} />}
       />

@@ -36,9 +36,7 @@ function InPostManagementMobileView(props) {
     {
       all: {
         screen: props => (
-          <Style>
-            <InPostListMobileView listId="blahblahID" posts={posts} />
-          </Style>
+          <InPostListMobileView listId="blahblahID" posts={posts} />
         ),
         navigationOptions: {
           title: "all"
@@ -46,9 +44,7 @@ function InPostManagementMobileView(props) {
       },
       request: {
         screen: props => (
-          <Style>
-            <InPostListMobileView listId="blahblahID" posts={requestPosts} />
-          </Style>
+          <InPostListMobileView listId="blahblahID" posts={requestPosts} />
         ),
         navigationOptions: {
           title: "request"
@@ -56,12 +52,7 @@ function InPostManagementMobileView(props) {
       },
       approve: {
         screen: props => (
-          <Style>
-            <InPostListMobileView
-              listId="blahblahID"
-              posts={approveAlertPosts}
-            />
-          </Style>
+          <InPostListMobileView listId="blahblahID" posts={approveAlertPosts} />
         ),
         navigationOptions: {
           title: "approve"
@@ -69,9 +60,7 @@ function InPostManagementMobileView(props) {
       },
       borrow: {
         screen: props => (
-          <Style>
-            <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
-          </Style>
+          <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
         ),
         navigationOptions: {
           title: "borrow"

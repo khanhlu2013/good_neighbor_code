@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CaridItem } from "native-base";
 import Post from "../../../common/model/post";
 import InPostItemHeadMobileView from "./inPostItem_head.mobileView";
 import PostItemBodyMobileView from "../../post/view/postItem_body.mobileView";
