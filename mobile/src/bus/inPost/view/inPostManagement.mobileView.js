@@ -16,10 +16,6 @@ const LoadingStyle = styled.View`
   justify-content: center;
 `;
 
-const ScreenPaddingStyle = styled.View`
-  padding: 10px;
-`;
-
 function InPostManagementMobileView(props) {
   const {
     posts,
@@ -34,9 +30,7 @@ function InPostManagementMobileView(props) {
     {
       all: {
         screen: props => (
-          <ScreenPaddingStyle>
-            <InPostListMobileView listId="blahblahID" posts={posts} />
-          </ScreenPaddingStyle>
+          <InPostListMobileView listId="blahblahID" posts={posts} />
         ),
         navigationOptions: {
           title: "all"
@@ -44,9 +38,7 @@ function InPostManagementMobileView(props) {
       },
       request: {
         screen: props => (
-          <ScreenPaddingStyle>
-            <InPostListMobileView listId="blahblahID" posts={requestPosts} />
-          </ScreenPaddingStyle>
+          <InPostListMobileView listId="blahblahID" posts={requestPosts} />
         ),
         navigationOptions: {
           title: "request"
@@ -54,12 +46,7 @@ function InPostManagementMobileView(props) {
       },
       approve: {
         screen: props => (
-          <ScreenPaddingStyle>
-            <InPostListMobileView
-              listId="blahblahID"
-              posts={approveAlertPosts}
-            />
-          </ScreenPaddingStyle>
+          <InPostListMobileView listId="blahblahID" posts={approveAlertPosts} />
         ),
         navigationOptions: {
           title: "approve"
@@ -67,9 +54,7 @@ function InPostManagementMobileView(props) {
       },
       borrow: {
         screen: props => (
-          <ScreenPaddingStyle>
-            <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
-          </ScreenPaddingStyle>
+          <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
         ),
         navigationOptions: {
           title: "borrow"
@@ -77,12 +62,10 @@ function InPostManagementMobileView(props) {
       },
       history: {
         screen: props => (
-          <ScreenPaddingStyle>
-            <InPostUserHistoryListController
-              shares={returnShares}
-              view={InPostUserHistoryListMobileView}
-            />
-          </ScreenPaddingStyle>
+          <InPostUserHistoryListController
+            shares={returnShares}
+            view={InPostUserHistoryListMobileView}
+          />
         ),
         navigationOptions: {
           title: "history"

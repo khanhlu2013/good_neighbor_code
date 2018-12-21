@@ -1,9 +1,13 @@
+import React from "react";
+import { Card } from "native-base";
 import styled from "styled-components";
-import PostItemMixin from "../../../common/bus/post/style/postItem.mixin";
 
-const PostItemStyle = styled.View`
-  ${PostItemMixin}
-  margin:10px;
+const Padding = styled.View`
+  padding: 5px;
 `;
-
+const PostItemStyle = props => (
+  <Card>
+    <Padding>{props.children}</Padding>
+  </Card>
+);
 export default PostItemStyle;
