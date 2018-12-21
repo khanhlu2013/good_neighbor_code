@@ -36,8 +36,7 @@ const CustomDrawerComponent = props => (
   </SafeAreaView>
 );
 
-const _createNavigationOption = (title, iconName, iconType) => ({
-  title,
+const _createNavigationOption = (iconName, iconType) => ({
   drawerIcon: ({ tintColor }) => (
     <Icon
       name={iconName}
@@ -54,12 +53,16 @@ const ScreenStyle = styled.View`
 
 function ScreenTemplate(props) {
   const { children, navigation } = props;
+  console.group(JSON.stringify(navigation.state));
   return (
     <ScreenStyle>
       <Header>
         <Left>
           <Icon name="ios-menu" onPress={() => navigation.openDrawer()} />
         </Left>
+        <Right>
+          <Text>{navigation.state.routeName}</Text>
+        </Right>
       </Header>
       {children}
     </ScreenStyle>
@@ -68,17 +71,13 @@ function ScreenTemplate(props) {
 
 const PrivateApp = createDrawerNavigator(
   {
-    inPost: {
+    ["Friend posts"]: {
       screen: props => (
-        <ScreenTemplate {...props}>
+        <ScreenTemplate navigation={props.navigation}>
           <InPostManagementController view={InPostManagementMobileView} />
         </ScreenTemplate>
       ),
-      navigationOptions: _createNavigationOption(
-        "Friend posts",
-        "ios-globe",
-        "Ionicons"
-      )
+      navigationOptions: _createNavigationOption("ios-globe", "Ionicons")
     },
     outPost: { screen: OutPostManagementScreen },
     Search: { screen: dummyScreen },
