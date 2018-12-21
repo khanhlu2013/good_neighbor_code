@@ -1,7 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
 import styled from "styled-components";
-import { Container, Content } from "native-base";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 
 import InPostListMobileView from "./inPostList.mobileView";
@@ -18,7 +16,7 @@ const LoadingStyle = styled.View`
   justify-content: center;
 `;
 
-const Style = styled.View`
+const ScreenPaddingStyle = styled.View`
   padding: 10px;
 `;
 
@@ -36,7 +34,9 @@ function InPostManagementMobileView(props) {
     {
       all: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={posts} />
+          <ScreenPaddingStyle>
+            <InPostListMobileView listId="blahblahID" posts={posts} />
+          </ScreenPaddingStyle>
         ),
         navigationOptions: {
           title: "all"
@@ -44,7 +44,9 @@ function InPostManagementMobileView(props) {
       },
       request: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={requestPosts} />
+          <ScreenPaddingStyle>
+            <InPostListMobileView listId="blahblahID" posts={requestPosts} />
+          </ScreenPaddingStyle>
         ),
         navigationOptions: {
           title: "request"
@@ -52,7 +54,12 @@ function InPostManagementMobileView(props) {
       },
       approve: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={approveAlertPosts} />
+          <ScreenPaddingStyle>
+            <InPostListMobileView
+              listId="blahblahID"
+              posts={approveAlertPosts}
+            />
+          </ScreenPaddingStyle>
         ),
         navigationOptions: {
           title: "approve"
@@ -60,7 +67,9 @@ function InPostManagementMobileView(props) {
       },
       borrow: {
         screen: props => (
-          <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
+          <ScreenPaddingStyle>
+            <InPostListMobileView listId="blahblahID" posts={borrowPosts} />
+          </ScreenPaddingStyle>
         ),
         navigationOptions: {
           title: "borrow"
@@ -68,12 +77,12 @@ function InPostManagementMobileView(props) {
       },
       history: {
         screen: props => (
-          <Style>
+          <ScreenPaddingStyle>
             <InPostUserHistoryListController
               shares={returnShares}
               view={InPostUserHistoryListMobileView}
             />
-          </Style>
+          </ScreenPaddingStyle>
         ),
         navigationOptions: {
           title: "history"
