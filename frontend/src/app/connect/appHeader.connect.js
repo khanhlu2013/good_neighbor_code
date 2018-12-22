@@ -2,11 +2,11 @@ import { connect } from "react-redux";
 
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
+import { inConnectionSelector } from "../../bus/connection/connection.selector";
 import {
   selectOutPostRequestAlert,
   selectOutPostReturnAlert
-} from "../../bus/outPost/outPost.selector";
-import { inConnectionSelector } from "../../bus/connection/connection.selector";
+} from "@gn/common/bus/outPost/outPost.selector";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {

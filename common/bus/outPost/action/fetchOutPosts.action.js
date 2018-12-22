@@ -1,4 +1,4 @@
-import API from "@gn/common/api";
+import API from "../../../api";
 
 export const INFORM_FETCH_OUTPOSTS = "INFORM_FETCH_OUTPOSTS";
 export const RECEIVE_FETCH_OUTPOSTS = "RECEIVE_FETCH_OUTPOSTS";

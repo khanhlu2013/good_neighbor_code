@@ -1,4 +1,4 @@
-import API from "@gn/common/api";
+import API from "../../../api";
 
 //DECIDE
 export const RECEIVE_DECIDE_POST = "RECEIVE_DECIDE_POST";

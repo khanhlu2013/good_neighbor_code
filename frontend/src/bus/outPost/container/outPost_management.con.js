@@ -1,18 +1,18 @@
 import connect from "react-redux/lib/connect/connect";
 
 import OutPostManagementComponent from "../component/outPost_management";
-import fetchOutPosts from "../action/fetchOutPosts.action";
-import { executeOkCrudPostDialog } from "../action/crudOutPost.action";
+import {
+  selectOutPostRequestAlert,
+  selectOutPostReturnAlert
+} from "@gn/common/bus/outPost/outPost.selector";
+import { fetchOutPosts } from "@gn/common/bus/outPost/action/fetchOutPosts.action";
+import { executeOkCrudPostDialog } from "@gn/common/bus/outPost/action/crudOutPost.action";
 import {
   decideShare,
   undoDenyShare,
   undoApproveShare
-} from "../action/decideOutPost.action";
-import { awareReturnPost } from "../action/awareReturnPost.action";
-import {
-  selectOutPostRequestAlert,
-  selectOutPostReturnAlert
-} from "../outPost.selector";
+} from "@gn/common/bus/outPost/action/decideOutPost.action";
+import { awareReturnPost } from "@gn/common/bus/outPost/action/awareReturnPost.action";
 
 const mapStateToProps = (state, ownProps) => {
   let returnShares = [];

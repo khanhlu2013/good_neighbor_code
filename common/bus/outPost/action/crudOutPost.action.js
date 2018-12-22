@@ -1,5 +1,5 @@
-import API from "@gn/common/api";
-import Post from "@gn/common/model/post";
+import API from "../../../api";
+import Post from "../../../model/post";
 
 //CRUD
 export const RECIEVE_UPDATE_POST = "RECIEVE_UPDATE_POST";
