@@ -3,14 +3,12 @@ import {
   receiveFetchOutPosts_reducerHelper
 } from "./helper/fetchOutPosts.reducerHelper";
 import {
-  INFORM_CRUDE_POST,
   RECIEVE_UPDATE_POST,
   RECEIVE_CREATE_POST,
   OPEN_UPDATE_POST_DIALOG,
   OPEN_CREATE_POST_DIALOG
 } from "../action/crudOutPost.action";
 import {
-  informCrudPost_reducerHelper,
   receiveCreatePost_reducerHelper,
   receiveUpdatePost_reducerHelper
 } from "./helper/crudPost.reducerHelper";
@@ -37,8 +35,7 @@ const defaultState = {
   isInitPosts: false,
   isFetchingPosts: false,
   crud: {
-    crudPostDialogPrefill: null,
-    isCrudingPost: false
+    crudPostDialogPrefill: null
   },
   decide: {
     curDecidePost: null,
@@ -59,20 +56,17 @@ const outPostReducer = (state = defaultState, action) => {
       return {
         ...state,
         crud: {
-          crudPostDialogPrefill: action.post,
-          isCrudingPost: false
+          crudPostDialogPrefill: action.post
         }
       };
     case OPEN_CREATE_POST_DIALOG:
       return {
         ...state,
         crud: {
-          crudPostDialogPrefill: null,
-          isCrudingPost: false
+          crudPostDialogPrefill: null
         }
       };
-    case INFORM_CRUDE_POST:
-      return informCrudPost_reducerHelper(state);
+
     case RECIEVE_UPDATE_POST:
       return receiveUpdatePost_reducerHelper(
         state,

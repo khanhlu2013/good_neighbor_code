@@ -1,13 +1,5 @@
 import update from "immutability-helper";
 
-export const informCrudPost_reducerHelper = state => ({
-  ...state,
-  crud: {
-    ...state.crud,
-    isCrudingPost: true
-  }
-});
-
 export const receiveUpdatePost_reducerHelper = (
   state,
   postId,
@@ -29,7 +21,6 @@ export const receiveUpdatePost_reducerHelper = (
     posts: [...posts.filter(post => post.id !== postId), curPostUpdate],
     crud: {
       crudPostDialogPrefill: null,
-      isCrudingPost: false,
       isOpenCrudDialog: false
     }
   };
@@ -41,7 +32,6 @@ export const receiveCreatePost_reducerHelper = (state, post) => {
     posts: [...state.posts, post],
     crud: {
       crudPostDialogPrefill: null,
-      isCrudingPost: false,
       isOpenCrudDialog: false
     }
   };

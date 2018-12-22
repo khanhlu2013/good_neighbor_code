@@ -14,12 +14,12 @@ require("./configs/passport-config");
 //app/middleware
 const app = express();
 
-// if (process.env.NODE_ENV !== "production") {
-//   app.use(function(req, res, next) {
-//     // setTimeout(next, 70); //this allow test to pass
-//     setTimeout(next, 500); //this allow test to pass
-//   });
-// }
+if (process.env.NODE_ENV !== "production") {
+  app.use(function(req, res, next) {
+    // setTimeout(next, 70); //this allow test to pass
+    setTimeout(next, 500); //this allow test to pass
+  });
+}
 
 app.use(
   cors({

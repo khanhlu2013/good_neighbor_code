@@ -27,11 +27,7 @@ const mapStateToProps = (state, ownProps) => {
   let returnAlertPosts = [];
 
   const { posts, isInitPosts, isFetchingPosts } = state.outPost;
-  const {
-    crudPostDialogPrefill,
-    isCrudingPost,
-    isOpenCrudDialog
-  } = state.outPost.crud;
+  const { crudPostDialogPrefill, isOpenCrudDialog } = state.outPost.crud;
 
   const {
     curDecidePost,
@@ -56,7 +52,6 @@ const mapStateToProps = (state, ownProps) => {
 
     //crud
     crudPostDialogPrefill,
-    isCrudingPost,
     isOpenCrudDialog,
 
     //decide

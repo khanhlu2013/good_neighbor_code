@@ -31,7 +31,6 @@ class OutPostManagementComponent extends Component {
 
     //crud post
     crudPostDialogPrefill: nullOrRequiredValidator("object", Post),
-    isCrudingPost: PropTypes.bool.isRequired,
     onOpenUpdatePostDialog: PropTypes.func.isRequired,
     onOpenCreatePostDialog: PropTypes.func.isRequired,
     onCrudDialogOk: PropTypes.func.isRequired,
@@ -53,7 +52,8 @@ class OutPostManagementComponent extends Component {
 
   state = {
     selectTab: OutPostTabEnum.ALL,
-    isOpenCrudDialog: false
+    isOpenCrudDialog: false,
+    isCrudingPost: false
   };
 
   componentDidMount() {
@@ -142,13 +142,12 @@ class OutPostManagementComponent extends Component {
   }
 
   render() {
-    const { isOpenCrudDialog } = this.state;
+    const { isOpenCrudDialog, isCrudingPost } = this.state;
     const { isInitPosts, isFetchingPosts } = this.props;
 
     const {
       //crud
       crudPostDialogPrefill,
-      isCrudingPost,
       onCrudDialogOk,
 
       //decide
@@ -176,8 +175,13 @@ class OutPostManagementComponent extends Component {
             post={crudPostDialogPrefill}
             isCrudingPost={isCrudingPost}
             onOk={(postId, title, description, isActive) => {
+              this.setState({ isCrudingPost: true });
               onCrudDialogOk(postId, title, description, isActive).then(
-                result => this.setState({ isOpenCrudDialog: false })
+                result =>
+                  this.setState({
+                    isOpenCrudDialog: false,
+                    isCrudingPost: false
+                  })
               );
             }}
             onCancel={this.onCrudDialogCancel}

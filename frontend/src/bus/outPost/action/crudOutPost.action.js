@@ -4,7 +4,6 @@ import Post from "@gn/common/model/post";
 //CRUD
 export const OPEN_UPDATE_POST_DIALOG = "OPEN_UPDATE_POST_DIALOG";
 export const OPEN_CREATE_POST_DIALOG = "OPEN_CREATE_POST_DIALOG";
-export const INFORM_CRUDE_POST = "INFORM_CRUDE_POST";
 export const RECIEVE_UPDATE_POST = "RECIEVE_UPDATE_POST";
 export const RECEIVE_CREATE_POST = "RECEIVE_CREATE_POST";
 
@@ -22,7 +21,6 @@ export const executeOkCrudPostDialog = (
   description,
   isActive
 ) => (dispatch, getState) => {
-  dispatch({ type: INFORM_CRUDE_POST });
   if (postId) {
     return API.updatePost(postId, title, description, isActive).then(
       ({ updatedTitle, updatedDescription, updatedIsActive }) => {
