@@ -5,8 +5,7 @@ import fetchOutPosts from "../action/fetchOutPosts.action";
 import {
   openUpdatePostDialog,
   openCreatePostDialog,
-  executeOkCrudPostDialog,
-  executeCancelCrudPostDialog
+  executeOkCrudPostDialog
 } from "../action/crudOutPost.action";
 import {
   openDecisionDialog,
@@ -85,7 +84,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onOpenCreatePostDialog: () => dispatch(openCreatePostDialog()),
   onCrudDialogOk: (postId, title, description, isActive) =>
     dispatch(executeOkCrudPostDialog(postId, title, description, isActive)),
-  onCrudDialogCancel: () => dispatch(executeCancelCrudPostDialog()),
 
   //decide
   onDecideShare: (shareId, isApprove) =>

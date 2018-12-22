@@ -6,7 +6,6 @@ import {
   INFORM_CRUDE_POST,
   RECIEVE_UPDATE_POST,
   RECEIVE_CREATE_POST,
-  EXECUTE_CANCEL_CRUD_POST_DIALOG,
   OPEN_UPDATE_POST_DIALOG,
   OPEN_CREATE_POST_DIALOG
 } from "../action/crudOutPost.action";
@@ -39,8 +38,7 @@ const defaultState = {
   isFetchingPosts: false,
   crud: {
     crudPostDialogPrefill: null,
-    isCrudingPost: false,
-    isOpenCrudDialog: false
+    isCrudingPost: false
   },
   decide: {
     curDecidePost: null,
@@ -62,8 +60,7 @@ const outPostReducer = (state = defaultState, action) => {
         ...state,
         crud: {
           crudPostDialogPrefill: action.post,
-          isCrudingPost: false,
-          isOpenCrudDialog: true
+          isCrudingPost: false
         }
       };
     case OPEN_CREATE_POST_DIALOG:
@@ -71,16 +68,7 @@ const outPostReducer = (state = defaultState, action) => {
         ...state,
         crud: {
           crudPostDialogPrefill: null,
-          isCrudingPost: false,
-          isOpenCrudDialog: true
-        }
-      };
-    case EXECUTE_CANCEL_CRUD_POST_DIALOG:
-      return {
-        ...state,
-        crud: {
-          ...state.crud,
-          isOpenCrudDialog: false
+          isCrudingPost: false
         }
       };
     case INFORM_CRUDE_POST:
