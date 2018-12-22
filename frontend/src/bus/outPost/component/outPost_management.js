@@ -34,7 +34,6 @@ class OutPostManagementComponent extends Component {
 
     //decide post
     curDecidePost: nullOrRequiredValidator("object", Post),
-    isDecidingPost: PropTypes.bool.isRequired,
     onDecideShare: PropTypes.func.isRequired,
     onUndoDenyShare: PropTypes.func.isRequired,
     onUndoApproveShare: PropTypes.func.isRequired,
@@ -49,6 +48,7 @@ class OutPostManagementComponent extends Component {
 
   state = {
     selectTab: OutPostTabEnum.ALL,
+    //crud
     isOpenCrudDialog: false,
     isCrudingPost: false,
     crudPostDialogPrefill: null
@@ -154,7 +154,6 @@ class OutPostManagementComponent extends Component {
       //decide
       isOpenDecisionDialog,
       curDecidePost,
-      isDecidingPost,
       onUndoApproveShare,
       onUndoDenyShare,
       onDecideShare,
@@ -193,7 +192,6 @@ class OutPostManagementComponent extends Component {
           <OutPostDecisionDialog
             isOpen={isOpenDecisionDialog}
             post={curDecidePost}
-            isDecidingPost={isDecidingPost}
             onUndoApproveShare={onUndoApproveShare}
             onUndoDenyShare={onUndoDenyShare}
             onDecideShare={onDecideShare}

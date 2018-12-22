@@ -24,11 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 
   const { posts, isInitPosts, isFetchingPosts } = state.outPost;
 
-  const {
-    curDecidePost,
-    isDecidingPost,
-    isOpenDecisionDialog
-  } = state.outPost.decide;
+  const { curDecidePost, isOpenDecisionDialog } = state.outPost.decide;
   if (isInitPosts) {
     const returnShares2D = posts.map(post =>
       post.shares.filter(share => share.isReturn)
@@ -47,7 +43,6 @@ const mapStateToProps = (state, ownProps) => {
 
     //decide
     curDecidePost,
-    isDecidingPost,
     isOpenDecisionDialog,
 
     //derived data

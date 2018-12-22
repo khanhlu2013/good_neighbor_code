@@ -29,8 +29,7 @@ export const receiveDecidePost_reducerHelper = (
     ],
     decide: {
       ...state.decide,
-      curDecidePost: updateDecidePost,
-      isDecidingPost: false
+      curDecidePost: updateDecidePost
     }
   };
 };
