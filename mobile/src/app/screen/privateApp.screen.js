@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Text, SafeAreaView, ScrollView, View } from "react-native";
 import styled from "styled-components";
 import { Constants } from "expo";
@@ -68,10 +69,13 @@ function ScreenTemplate(props) {
     </ScreenStyle>
   );
 }
+ScreenTemplate.propTypes = {
+  navigation: PropTypes.object.isRequired
+};
 
 const PrivateApp = createDrawerNavigator(
   {
-    ["Friend posts"]: {
+    inPost: {
       screen: props => (
         <ScreenTemplate navigation={props.navigation}>
           <InPostManagementController view={InPostManagementMobileView} />
@@ -79,7 +83,14 @@ const PrivateApp = createDrawerNavigator(
       ),
       navigationOptions: _createNavigationOption("ios-globe", "Ionicons")
     },
-    outPost: { screen: OutPostManagementScreen },
+    outPost: {
+      screen: props => (
+        <ScreenTemplate navigation={props.navigation}>
+          <OutPostManagementScreen />
+        </ScreenTemplate>
+      ),
+      navigationOptions: _createNavigationOption("briefcase", "FontAwesome")
+    },
     Search: { screen: dummyScreen },
     Notifications: { screen: dummyScreen2 },
     Messages: { screen: dummyScreen }
