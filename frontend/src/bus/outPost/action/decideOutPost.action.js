@@ -1,13 +1,7 @@
 import API from "@gn/common/api";
 
 //DECIDE
-export const OPEN_DECISION_DIALOG = "OPEN_DECISION_DIALOG";
 export const RECEIVE_DECIDE_POST = "RECEIVE_DECIDE_POST";
-
-export const openDecisionDialog = post => ({
-  type: OPEN_DECISION_DIALOG,
-  post
-});
 
 export const decideShare = (shareId, isApprove) => (dispatch, getState) =>
   _setIsApprove(dispatch, getState, shareId, isApprove);

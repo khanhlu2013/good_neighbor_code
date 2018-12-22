@@ -10,10 +10,7 @@ import {
   receiveCreatePost_reducerHelper,
   receiveUpdatePost_reducerHelper
 } from "./helper/crudPost.reducerHelper";
-import {
-  OPEN_DECISION_DIALOG,
-  RECEIVE_DECIDE_POST
-} from "../action/decideOutPost.action";
+import { RECEIVE_DECIDE_POST } from "../action/decideOutPost.action";
 import {
   INFORM_AWARE_RETURN_POST,
   RECEIVE_AWARE_RETURN_POST
@@ -30,9 +27,6 @@ const defaultState = {
   posts: [],
   isInitPosts: false,
   isFetchingPosts: false,
-  decide: {
-    curDecidePost: null
-  },
   awaringReturnPostIds: []
 };
 const outPostReducer = (state = defaultState, action) => {
@@ -55,14 +49,6 @@ const outPostReducer = (state = defaultState, action) => {
       return receiveCreatePost_reducerHelper(state, action.post);
 
     //decide
-    case OPEN_DECISION_DIALOG:
-      return {
-        ...state,
-        decide: {
-          ...state.decide,
-          curDecidePost: action.post
-        }
-      };
     case RECEIVE_DECIDE_POST:
       return receiveDecidePost_reducerHelper(
         state,

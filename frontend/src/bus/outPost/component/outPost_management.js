@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { nullOrRequiredValidator } from "@gn/common/util";
-import Post from "@gn/common/model/post";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import TabPanel from "../../../share/style/tabPanel_style";
@@ -33,11 +31,9 @@ class OutPostManagementComponent extends Component {
     onCrudDialogOk: PropTypes.func.isRequired,
 
     //decide post
-    curDecidePost: nullOrRequiredValidator("object", Post),
     onDecideShare: PropTypes.func.isRequired,
     onUndoDenyShare: PropTypes.func.isRequired,
     onUndoApproveShare: PropTypes.func.isRequired,
-    onOpenDecideDialog: PropTypes.func.isRequired,
 
     //aware return post
     onAwareReturnPost: PropTypes.func.isRequired,
@@ -52,7 +48,8 @@ class OutPostManagementComponent extends Component {
     crudPostDialogPrefill: null,
 
     //decide
-    isOpenDecisionDialog: false
+    isOpenDecisionDialog: false,
+    curDecidePostId: null
   };
 
   componentDidMount() {
@@ -79,8 +76,7 @@ class OutPostManagementComponent extends Component {
         this.setState({ isOpenCrudDialog: true, crudPostDialogPrefill: post });
       }}
       onDecidePost={post => {
-        this.setState({ isOpenDecisionDialog: true });
-        this.props.onOpenDecideDialog(post);
+        this.setState({ isOpenDecisionDialog: true, curDecidePostId: post.id });
       }}
       onAwareReturnPostClick={this.props.onAwareReturnPost}
       awaringReturnPostIds={this.props.awaringReturnPostIds}
@@ -155,11 +151,13 @@ class OutPostManagementComponent extends Component {
       crudPostDialogPrefill,
 
       //decide
-      isOpenDecisionDialog
+      isOpenDecisionDialog,
+      curDecidePostId
     } = this.state;
 
     const {
       //data
+      posts,
       isInitPosts,
       isFetchingPosts,
 
@@ -167,7 +165,7 @@ class OutPostManagementComponent extends Component {
       onCrudDialogOk,
 
       //decide
-      curDecidePost,
+
       onUndoApproveShare,
       onUndoDenyShare,
       onDecideShare
@@ -204,7 +202,7 @@ class OutPostManagementComponent extends Component {
         {isOpenDecisionDialog && (
           <OutPostDecisionDialog
             isOpen={isOpenDecisionDialog}
-            post={curDecidePost}
+            post={posts.find(post => post.id === curDecidePostId)}
             onUndoApproveShare={onUndoApproveShare}
             onUndoDenyShare={onUndoDenyShare}
             onDecideShare={onDecideShare}

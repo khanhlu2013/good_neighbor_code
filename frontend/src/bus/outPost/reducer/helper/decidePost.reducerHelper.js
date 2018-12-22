@@ -26,10 +26,6 @@ export const receiveDecidePost_reducerHelper = (
     posts: [
       ...posts.filter(post => post.id !== updateDecidePost.id),
       updateDecidePost
-    ],
-    decide: {
-      ...state.decide,
-      curDecidePost: updateDecidePost
-    }
+    ]
   };
 };

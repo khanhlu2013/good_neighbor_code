@@ -4,7 +4,6 @@ import OutPostManagementComponent from "../component/outPost_management";
 import fetchOutPosts from "../action/fetchOutPosts.action";
 import { executeOkCrudPostDialog } from "../action/crudOutPost.action";
 import {
-  openDecisionDialog,
   decideShare,
   undoDenyShare,
   undoApproveShare
@@ -23,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
 
   const { posts, isInitPosts, isFetchingPosts } = state.outPost;
 
-  const { curDecidePost } = state.outPost.decide;
   if (isInitPosts) {
     const returnShares2D = posts.map(post =>
       post.shares.filter(share => share.isReturn)
@@ -39,9 +37,6 @@ const mapStateToProps = (state, ownProps) => {
     posts,
     isInitPosts,
     isFetchingPosts,
-
-    //decide
-    curDecidePost,
 
     //derived data
     returnShares,
@@ -67,7 +62,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(decideShare(shareId, isApprove)),
   onUndoDenyShare: shareId => dispatch(undoDenyShare(shareId)),
   onUndoApproveShare: shareId => dispatch(undoApproveShare(shareId)),
-  onOpenDecideDialog: post => dispatch(openDecisionDialog(post)),
 
   //aware return post
   onAwareReturnPost: postId => dispatch(awareReturnPost(postId))
