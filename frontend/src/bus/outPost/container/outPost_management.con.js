@@ -2,11 +2,7 @@ import connect from "react-redux/lib/connect/connect";
 
 import OutPostManagementComponent from "../component/outPost_management";
 import fetchOutPosts from "../action/fetchOutPosts.action";
-import {
-  openUpdatePostDialog,
-  openCreatePostDialog,
-  executeOkCrudPostDialog
-} from "../action/crudOutPost.action";
+import { executeOkCrudPostDialog } from "../action/crudOutPost.action";
 import {
   openDecisionDialog,
   exitDecisionDialog,
@@ -27,7 +23,6 @@ const mapStateToProps = (state, ownProps) => {
   let returnAlertPosts = [];
 
   const { posts, isInitPosts, isFetchingPosts } = state.outPost;
-  const { crudPostDialogPrefill, isOpenCrudDialog } = state.outPost.crud;
 
   const {
     curDecidePost,
@@ -50,10 +45,6 @@ const mapStateToProps = (state, ownProps) => {
     isInitPosts,
     isFetchingPosts,
 
-    //crud
-    crudPostDialogPrefill,
-    isOpenCrudDialog,
-
     //decide
     curDecidePost,
     isDecidingPost,
@@ -75,8 +66,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPosts: () => dispatch(fetchOutPosts()),
 
   //crud
-  onOpenUpdatePostDialog: post => dispatch(openUpdatePostDialog(post)),
-  onOpenCreatePostDialog: () => dispatch(openCreatePostDialog()),
   onCrudDialogOk: (postId, title, description, isActive) =>
     dispatch(executeOkCrudPostDialog(postId, title, description, isActive)),
 

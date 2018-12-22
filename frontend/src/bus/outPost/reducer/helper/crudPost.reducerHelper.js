@@ -18,21 +18,13 @@ export const receiveUpdatePost_reducerHelper = (
 
   return {
     ...state,
-    posts: [...posts.filter(post => post.id !== postId), curPostUpdate],
-    crud: {
-      crudPostDialogPrefill: null,
-      isOpenCrudDialog: false
-    }
+    posts: [...posts.filter(post => post.id !== postId), curPostUpdate]
   };
 };
 
 export const receiveCreatePost_reducerHelper = (state, post) => {
   return {
     ...state,
-    posts: [...state.posts, post],
-    crud: {
-      crudPostDialogPrefill: null,
-      isOpenCrudDialog: false
-    }
+    posts: [...state.posts, post]
   };
 };

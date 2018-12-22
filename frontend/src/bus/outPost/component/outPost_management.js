@@ -30,9 +30,6 @@ class OutPostManagementComponent extends Component {
     returnAlertPosts: PropTypes.array.isRequired,
 
     //crud post
-    crudPostDialogPrefill: nullOrRequiredValidator("object", Post),
-    onOpenUpdatePostDialog: PropTypes.func.isRequired,
-    onOpenCreatePostDialog: PropTypes.func.isRequired,
     onCrudDialogOk: PropTypes.func.isRequired,
 
     //decide post
@@ -53,7 +50,8 @@ class OutPostManagementComponent extends Component {
   state = {
     selectTab: OutPostTabEnum.ALL,
     isOpenCrudDialog: false,
-    isCrudingPost: false
+    isCrudingPost: false,
+    crudPostDialogPrefill: null
   };
 
   componentDidMount() {
@@ -73,8 +71,7 @@ class OutPostManagementComponent extends Component {
       listId={listId}
       posts={posts}
       onUpdatePost={post => {
-        this.props.onOpenUpdatePostDialog(post);
-        this.setState({ isOpenCrudDialog: true });
+        this.setState({ isOpenCrudDialog: true, crudPostDialogPrefill: post });
       }}
       onDecidePost={this.props.onOpenDecideDialog}
       onAwareReturnPostClick={this.props.onAwareReturnPost}
@@ -88,10 +85,9 @@ class OutPostManagementComponent extends Component {
       requestAlertPosts,
       borrowPosts,
       returnAlertPosts,
-      returnShares,
+      returnShares
 
       //crud
-      onOpenCreatePostDialog
     } = this.props;
     const { selectTab } = this.state;
     return (
@@ -101,8 +97,10 @@ class OutPostManagementComponent extends Component {
             selectTab={selectTab}
             onTabChange={this.onTabChange}
             onCreateNewPostClick={() => {
-              onOpenCreatePostDialog();
-              this.setState({ isOpenCrudDialog: true });
+              this.setState({
+                isOpenCrudDialog: true,
+                crudPostDialogPrefill: null
+              });
             }}
             allCount={posts.length}
             requestCount={requestAlertPosts.length}
@@ -142,12 +140,15 @@ class OutPostManagementComponent extends Component {
   }
 
   render() {
-    const { isOpenCrudDialog, isCrudingPost } = this.state;
+    const {
+      isOpenCrudDialog,
+      isCrudingPost,
+      crudPostDialogPrefill
+    } = this.state;
     const { isInitPosts, isFetchingPosts } = this.props;
 
     const {
       //crud
-      crudPostDialogPrefill,
       onCrudDialogOk,
 
       //decide

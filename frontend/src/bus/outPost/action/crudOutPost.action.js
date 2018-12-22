@@ -2,18 +2,8 @@ import API from "@gn/common/api";
 import Post from "@gn/common/model/post";
 
 //CRUD
-export const OPEN_UPDATE_POST_DIALOG = "OPEN_UPDATE_POST_DIALOG";
-export const OPEN_CREATE_POST_DIALOG = "OPEN_CREATE_POST_DIALOG";
 export const RECIEVE_UPDATE_POST = "RECIEVE_UPDATE_POST";
 export const RECEIVE_CREATE_POST = "RECEIVE_CREATE_POST";
-
-export const openUpdatePostDialog = post => ({
-  type: OPEN_UPDATE_POST_DIALOG,
-  post
-});
-export const openCreatePostDialog = () => ({
-  type: OPEN_CREATE_POST_DIALOG
-});
 
 export const executeOkCrudPostDialog = (
   postId,
