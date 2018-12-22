@@ -13,7 +13,7 @@ import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 
-class OutPostManagementComponent extends Component {
+class OutPostManagementComponentWebView extends Component {
   static propTypes = {
     //data
     fetchPosts: PropTypes.func.isRequired,
@@ -213,8 +213,8 @@ class OutPostManagementComponent extends Component {
     );
   }
 }
-OutPostManagementComponent.propType = {
+OutPostManagementComponentWebView.propType = {
   loginUser: PropTypes.object.isRequired
 };
 
-export default OutPostManagementComponent;
+export default OutPostManagementComponentWebView;

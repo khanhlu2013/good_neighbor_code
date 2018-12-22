@@ -1,6 +1,5 @@
 import connect from "react-redux/lib/connect/connect";
 
-import OutPostManagementComponent from "../component/outPost_management";
 import {
   selectOutPostRequestAlert,
   selectOutPostReturnAlert
@@ -13,6 +12,7 @@ import {
   undoApproveShare
 } from "@gn/common/bus/outPost/action/decideOutPost.action";
 import { awareReturnPost } from "@gn/common/bus/outPost/action/awareReturnPost.action";
+import OutPostManagementComponentWebView from "../view/outPost_management.webView";
 
 const mapStateToProps = (state, ownProps) => {
   let returnShares = [];
@@ -70,5 +70,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 const OutPostManagementContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(OutPostManagementComponent);
+)(OutPostManagementComponentWebView);
 export default OutPostManagementContainer;
