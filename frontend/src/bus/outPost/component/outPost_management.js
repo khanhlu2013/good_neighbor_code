@@ -37,9 +37,7 @@ class OutPostManagementComponent extends Component {
     onDecideShare: PropTypes.func.isRequired,
     onUndoDenyShare: PropTypes.func.isRequired,
     onUndoApproveShare: PropTypes.func.isRequired,
-    isOpenDecisionDialog: PropTypes.bool.isRequired,
     onOpenDecideDialog: PropTypes.func.isRequired,
-    onExitDecisionDialog: PropTypes.func.isRequired,
 
     //aware return post
     onAwareReturnPost: PropTypes.func.isRequired,
@@ -51,7 +49,10 @@ class OutPostManagementComponent extends Component {
     //crud
     isOpenCrudDialog: false,
     isCrudingPost: false,
-    crudPostDialogPrefill: null
+    crudPostDialogPrefill: null,
+
+    //decide
+    isOpenDecisionDialog: false
   };
 
   componentDidMount() {
@@ -66,6 +67,10 @@ class OutPostManagementComponent extends Component {
     this.setState({ isOpenCrudDialog: false });
   };
 
+  onExitDecisionDialog = () => {
+    this.setState({ isOpenDecisionDialog: false });
+  };
+
   _genPostList = (listId, posts) => (
     <OutPostList
       listId={listId}
@@ -73,7 +78,10 @@ class OutPostManagementComponent extends Component {
       onUpdatePost={post => {
         this.setState({ isOpenCrudDialog: true, crudPostDialogPrefill: post });
       }}
-      onDecidePost={this.props.onOpenDecideDialog}
+      onDecidePost={post => {
+        this.setState({ isOpenDecisionDialog: true });
+        this.props.onOpenDecideDialog(post);
+      }}
       onAwareReturnPostClick={this.props.onAwareReturnPost}
       awaringReturnPostIds={this.props.awaringReturnPostIds}
     />
@@ -141,23 +149,28 @@ class OutPostManagementComponent extends Component {
 
   render() {
     const {
+      //crud
       isOpenCrudDialog,
       isCrudingPost,
-      crudPostDialogPrefill
+      crudPostDialogPrefill,
+
+      //decide
+      isOpenDecisionDialog
     } = this.state;
-    const { isInitPosts, isFetchingPosts } = this.props;
 
     const {
+      //data
+      isInitPosts,
+      isFetchingPosts,
+
       //crud
       onCrudDialogOk,
 
       //decide
-      isOpenDecisionDialog,
       curDecidePost,
       onUndoApproveShare,
       onUndoDenyShare,
-      onDecideShare,
-      onExitDecisionDialog
+      onDecideShare
     } = this.props;
 
     return (
@@ -195,7 +208,7 @@ class OutPostManagementComponent extends Component {
             onUndoApproveShare={onUndoApproveShare}
             onUndoDenyShare={onUndoDenyShare}
             onDecideShare={onDecideShare}
-            onExit={onExitDecisionDialog}
+            onExit={this.onExitDecisionDialog}
           />
         )}
       </div>

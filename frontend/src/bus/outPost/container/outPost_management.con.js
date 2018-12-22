@@ -5,7 +5,6 @@ import fetchOutPosts from "../action/fetchOutPosts.action";
 import { executeOkCrudPostDialog } from "../action/crudOutPost.action";
 import {
   openDecisionDialog,
-  exitDecisionDialog,
   decideShare,
   undoDenyShare,
   undoApproveShare
@@ -24,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
   const { posts, isInitPosts, isFetchingPosts } = state.outPost;
 
-  const { curDecidePost, isOpenDecisionDialog } = state.outPost.decide;
+  const { curDecidePost } = state.outPost.decide;
   if (isInitPosts) {
     const returnShares2D = posts.map(post =>
       post.shares.filter(share => share.isReturn)
@@ -43,7 +42,6 @@ const mapStateToProps = (state, ownProps) => {
 
     //decide
     curDecidePost,
-    isOpenDecisionDialog,
 
     //derived data
     returnShares,
@@ -70,7 +68,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onUndoDenyShare: shareId => dispatch(undoDenyShare(shareId)),
   onUndoApproveShare: shareId => dispatch(undoApproveShare(shareId)),
   onOpenDecideDialog: post => dispatch(openDecisionDialog(post)),
-  onExitDecisionDialog: () => dispatch(exitDecisionDialog()),
 
   //aware return post
   onAwareReturnPost: postId => dispatch(awareReturnPost(postId))

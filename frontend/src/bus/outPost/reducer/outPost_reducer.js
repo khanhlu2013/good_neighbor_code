@@ -12,7 +12,6 @@ import {
 } from "./helper/crudPost.reducerHelper";
 import {
   OPEN_DECISION_DIALOG,
-  EXIT_DECISION_DIALOG,
   RECEIVE_DECIDE_POST
 } from "../action/decideOutPost.action";
 import {
@@ -32,8 +31,7 @@ const defaultState = {
   isInitPosts: false,
   isFetchingPosts: false,
   decide: {
-    curDecidePost: null,
-    isOpenDecisionDialog: false
+    curDecidePost: null
   },
   awaringReturnPostIds: []
 };
@@ -62,16 +60,7 @@ const outPostReducer = (state = defaultState, action) => {
         ...state,
         decide: {
           ...state.decide,
-          curDecidePost: action.post,
-          isOpenDecisionDialog: true
-        }
-      };
-    case EXIT_DECISION_DIALOG:
-      return {
-        ...state,
-        decide: {
-          ...state.decide,
-          isOpenDecisionDialog: false
+          curDecidePost: action.post
         }
       };
     case RECEIVE_DECIDE_POST:
