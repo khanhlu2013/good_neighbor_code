@@ -3,10 +3,7 @@ import { connect } from "react-redux";
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
 import { inConnectionSelector } from "../../bus/connection/connection.selector";
-import {
-  selectOutPostRequestAlert,
-  selectOutPostReturnAlert
-} from "@gn/common/bus/outPost/outPost.selector";
+import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,9 +14,8 @@ const mapStateToProps = (state, ownProps) => {
   const inPostAlertCount = InPostSelector.approveAlertPosts(state).length;
 
   //outpost
-  const outPosts = state.outPost.posts;
-  const requestAlert_outPosts = selectOutPostRequestAlert(outPosts);
-  const returnAlert_outPosts = selectOutPostReturnAlert(outPosts);
+  const requestAlert_outPosts = OutPostSelector.requestAlertPosts(state);
+  const returnAlert_outPosts = OutPostSelector.returnAlertPosts(state);
   const outPostAlertCount =
     requestAlert_outPosts.length + returnAlert_outPosts.length;
 
