@@ -1,7 +1,7 @@
 import connect from "react-redux/lib/connect/connect";
 
 import { fetchOutPosts } from "@gn/common/bus/outPost/action/fetchOutPosts.action";
-import { executeOkCrudPostDialog } from "@gn/common/bus/outPost/action/crudOutPost.action";
+import { createOrUpdatePost } from "@gn/common/bus/outPost/action/crudOutPost.action";
 import {
   decideShare,
   undoDenyShare,
@@ -32,8 +32,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchPosts: () => dispatch(fetchOutPosts()),
 
   //crud
-  onCrudDialogOk: (postId, title, description, isActive) =>
-    dispatch(executeOkCrudPostDialog(postId, title, description, isActive)),
+  onCreateOrUpdatePost: (postId, title, description, isActive) =>
+    dispatch(createOrUpdatePost(postId, title, description, isActive)),
 
   //decide
   onDecideShare: (shareId, isApprove) =>

@@ -5,12 +5,10 @@ import Post from "../../../model/post";
 export const RECIEVE_UPDATE_POST = "RECIEVE_UPDATE_POST";
 export const RECEIVE_CREATE_POST = "RECEIVE_CREATE_POST";
 
-export const executeOkCrudPostDialog = (
-  postId,
-  title,
-  description,
-  isActive
-) => (dispatch, getState) => {
+export const createOrUpdatePost = (postId, title, description, isActive) => (
+  dispatch,
+  getState
+) => {
   if (postId) {
     return API.updatePost(postId, title, description, isActive).then(
       ({ updatedTitle, updatedDescription, updatedIsActive }) => {

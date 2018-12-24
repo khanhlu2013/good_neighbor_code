@@ -28,7 +28,7 @@ class OutPostManagementComponentWebView extends Component {
     returnAlertPosts: PropTypes.array.isRequired,
 
     //crud post
-    onCrudDialogOk: PropTypes.func.isRequired,
+    onCreateOrUpdatePost: PropTypes.func.isRequired,
 
     //decide post
     onDecideShare: PropTypes.func.isRequired,
@@ -62,6 +62,18 @@ class OutPostManagementComponentWebView extends Component {
 
   onCrudDialogCancel = () => {
     this.setState({ isOpenCrudDialog: false });
+  };
+
+  onCrudDialogOk = (postId, title, description, isActive) => {
+    this.setState({ isCrudingPost: true });
+    this.props
+      .onCreateOrUpdatePost(postId, title, description, isActive)
+      .then(result =>
+        this.setState({
+          isOpenCrudDialog: false,
+          isCrudingPost: false
+        })
+      );
   };
 
   onExitDecisionDialog = () => {
@@ -161,11 +173,7 @@ class OutPostManagementComponentWebView extends Component {
       isInitPosts,
       isFetchingPosts,
 
-      //crud
-      onCrudDialogOk,
-
       //decide
-
       onUndoApproveShare,
       onUndoDenyShare,
       onDecideShare
@@ -185,16 +193,7 @@ class OutPostManagementComponentWebView extends Component {
             isOpen={isOpenCrudDialog}
             post={crudPostDialogPrefill}
             isCrudingPost={isCrudingPost}
-            onOk={(postId, title, description, isActive) => {
-              this.setState({ isCrudingPost: true });
-              onCrudDialogOk(postId, title, description, isActive).then(
-                result =>
-                  this.setState({
-                    isOpenCrudDialog: false,
-                    isCrudingPost: false
-                  })
-              );
-            }}
+            onOk={this.onCrudDialogOk}
             onCancel={this.onCrudDialogCancel}
           />
         )}
