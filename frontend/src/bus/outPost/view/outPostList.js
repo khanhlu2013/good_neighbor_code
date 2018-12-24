@@ -15,7 +15,7 @@ function OutPostList(props) {
     listId,
     posts,
     onOpenUpdatePostDialog,
-    onDecidePost,
+    onOpenDecidePostDialog,
     onAwareReturnPostClick,
     awaringReturnPostIds
   } = props;
@@ -30,7 +30,7 @@ function OutPostList(props) {
           <OutPostItem
             post={post}
             onOpenUpdatePostDialog={onOpenUpdatePostDialog}
-            onDecidePost={onDecidePost}
+            onOpenDecidePostDialog={onOpenDecidePostDialog}
             onAwareReturnPostClick={onAwareReturnPostClick}
             isAwaringReturn={awaringReturnPostIds.includes(post.id)}
           />
@@ -44,7 +44,7 @@ OutPostList.propTypes = {
   listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   onOpenUpdatePostDialog: PropTypes.func.isRequired,
-  onDecidePost: PropTypes.func.isRequired,
+  onOpenDecidePostDialog: PropTypes.func.isRequired,
   onAwareReturnPostClick: PropTypes.func.isRequired,
   awaringReturnPostIds: PropTypes.array.isRequired
 };

@@ -76,6 +76,20 @@ class OutPostManagementComponentWebView extends Component {
       );
   };
 
+  onOpenUpdatePostDialog = postId => {
+    this.setState({
+      isOpenCrudDialog: true,
+      postIdForDialogToCreateOrUpdate: postId
+    });
+  };
+
+  onOpenDecidePostDialog = postId => {
+    this.setState({
+      isOpenDecisionDialog: true,
+      curDecidePostId: postId
+    });
+  };
+
   onExitDecisionDialog = () => {
     this.setState({ isOpenDecisionDialog: false });
   };
@@ -84,15 +98,8 @@ class OutPostManagementComponentWebView extends Component {
     <OutPostList
       listId={listId}
       posts={posts}
-      onOpenUpdatePostDialog={postId => {
-        this.setState({
-          isOpenCrudDialog: true,
-          postIdForDialogToCreateOrUpdate: postId
-        });
-      }}
-      onDecidePost={post => {
-        this.setState({ isOpenDecisionDialog: true, curDecidePostId: post.id });
-      }}
+      onOpenUpdatePostDialog={this.onOpenUpdatePostDialog}
+      onOpenDecidePostDialog={this.onOpenDecidePostDialog}
       onAwareReturnPostClick={this.props.onAwareReturnPost}
       awaringReturnPostIds={this.props.awaringReturnPostIds}
     />

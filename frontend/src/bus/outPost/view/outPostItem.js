@@ -11,13 +11,13 @@ function OutPostItem(props) {
   const {
     post,
     onOpenUpdatePostDialog,
-    onDecidePost,
+    onOpenDecidePostDialog,
     isAwaringReturn,
     onAwareReturnPostClick
   } = props;
 
   const onDecidePostClick = e => {
-    onDecidePost(post);
+    onOpenDecidePostDialog(post.id);
   };
 
   const _onAwareReturnClick = e => {
@@ -69,7 +69,7 @@ function OutPostItem(props) {
 OutPostItem.propTypes = {
   post: PropTypes.object.isRequired,
   onOpenUpdatePostDialog: PropTypes.func.isRequired,
-  onDecidePost: PropTypes.func.isRequired,
+  onOpenDecidePostDialog: PropTypes.func.isRequired,
   onAwareReturnPostClick: PropTypes.func.isRequired,
   isAwaringReturn: PropTypes.bool.isRequired
 };
