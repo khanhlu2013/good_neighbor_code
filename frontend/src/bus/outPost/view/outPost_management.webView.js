@@ -44,8 +44,8 @@ class OutPostManagementComponentWebView extends Component {
     selectTab: OutPostTabEnum.ALL,
     //crud
     isOpenCrudDialog: false,
+    postIdForDialogToCreateOrUpdate: null,
     isCrudingPost: false,
-    crudPostDialogPrefill: null,
 
     //decide
     isOpenDecisionDialog: false,
@@ -85,7 +85,10 @@ class OutPostManagementComponentWebView extends Component {
       listId={listId}
       posts={posts}
       onUpdatePost={post => {
-        this.setState({ isOpenCrudDialog: true, crudPostDialogPrefill: post });
+        this.setState({
+          isOpenCrudDialog: true,
+          postIdForDialogToCreateOrUpdate: post.id
+        });
       }}
       onDecidePost={post => {
         this.setState({ isOpenDecisionDialog: true, curDecidePostId: post.id });
@@ -115,7 +118,7 @@ class OutPostManagementComponentWebView extends Component {
             onCreateNewPostClick={() => {
               this.setState({
                 isOpenCrudDialog: true,
-                crudPostDialogPrefill: null
+                postIdForDialogToCreateOrUpdate: null
               });
             }}
             allCount={posts.length}
@@ -160,7 +163,7 @@ class OutPostManagementComponentWebView extends Component {
       //crud
       isOpenCrudDialog,
       isCrudingPost,
-      crudPostDialogPrefill,
+      postIdForDialogToCreateOrUpdate,
 
       //decide
       isOpenDecisionDialog,
@@ -191,7 +194,13 @@ class OutPostManagementComponentWebView extends Component {
         {isOpenCrudDialog && (
           <OutPostCrudDialog
             isOpen={isOpenCrudDialog}
-            post={crudPostDialogPrefill}
+            post={
+              postIdForDialogToCreateOrUpdate === null
+                ? null
+                : posts.find(
+                    post => post.id === postIdForDialogToCreateOrUpdate
+                  )
+            }
             isCrudingPost={isCrudingPost}
             onOk={this.onCrudDialogOk}
             onCancel={this.onCrudDialogCancel}
