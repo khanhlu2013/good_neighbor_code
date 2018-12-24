@@ -84,10 +84,10 @@ class OutPostManagementComponentWebView extends Component {
     <OutPostList
       listId={listId}
       posts={posts}
-      onUpdatePost={post => {
+      onOpenUpdatePostDialog={postId => {
         this.setState({
           isOpenCrudDialog: true,
-          postIdForDialogToCreateOrUpdate: post.id
+          postIdForDialogToCreateOrUpdate: postId
         });
       }}
       onDecidePost={post => {

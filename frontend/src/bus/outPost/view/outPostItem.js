@@ -10,15 +10,11 @@ import PostItemBodyWebView from "../../post/view/postItem_body.webView";
 function OutPostItem(props) {
   const {
     post,
-    onUpdatePost,
+    onOpenUpdatePostDialog,
     onDecidePost,
     isAwaringReturn,
     onAwareReturnPostClick
   } = props;
-
-  const onUpdateBtnClicked = e => {
-    onUpdatePost(post);
-  };
 
   const onDecidePostClick = e => {
     onDecidePost(post);
@@ -33,7 +29,8 @@ function OutPostItem(props) {
   return (
     <PostItemStyle id="outPost-item-react">
       <OutPostItemHead
-        onUpdatePost={onUpdateBtnClicked}
+        postId={post.id}
+        onOpenUpdatePostDialog={onOpenUpdatePostDialog}
         dateCreate={post.dateCreate}
       />
       <PostItemBodyWebView post={post} />
@@ -71,7 +68,7 @@ function OutPostItem(props) {
 
 OutPostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  onUpdatePost: PropTypes.func.isRequired,
+  onOpenUpdatePostDialog: PropTypes.func.isRequired,
   onDecidePost: PropTypes.func.isRequired,
   onAwareReturnPostClick: PropTypes.func.isRequired,
   isAwaringReturn: PropTypes.bool.isRequired

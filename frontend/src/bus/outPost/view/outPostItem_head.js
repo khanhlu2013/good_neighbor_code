@@ -14,10 +14,10 @@ const LeftStyle = styled.div`
 `;
 
 function OutPostItemHead(props) {
-  const { dateCreate, onUpdatePost } = props;
+  const { dateCreate, onOpenUpdatePostDialog, postId } = props;
 
   const onUpdatePostClicked = e => {
-    onUpdatePost();
+    onOpenUpdatePostDialog(postId);
   };
 
   return (
@@ -40,7 +40,8 @@ function OutPostItemHead(props) {
 }
 
 OutPostItemHead.propTypes = {
-  onUpdatePost: PropTypes.func.isRequired,
+  postId: PropTypes.string.isRequired,
+  onOpenUpdatePostDialog: PropTypes.func.isRequired,
   dateCreate: PropTypes.instanceOf(Date).isRequired
 };
 
