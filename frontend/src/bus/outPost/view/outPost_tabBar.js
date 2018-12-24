@@ -17,7 +17,7 @@ function OutPostTabBar(props) {
   const {
     selectTab,
     onTabChange,
-    onCreateNewPostClick,
+    onOpenCreatePostDialog,
     allCount,
     requestCount,
     borrowCount,
@@ -101,7 +101,7 @@ function OutPostTabBar(props) {
       <NewPostButtonStyle>
         <button
           id="createPostBtn-react"
-          onClick={onCreateNewPostClick}
+          onClick={onOpenCreatePostDialog}
           className="btn btn-success"
         >
           new
@@ -139,7 +139,7 @@ function _generateTabItem(
 OutPostTabBar.propTypes = {
   selectTab: PropTypes.instanceOf(OutPostTabEnum).isRequired,
   onTabChange: PropTypes.func.isRequired,
-  onCreateNewPostClick: PropTypes.func.isRequired,
+  onOpenCreatePostDialog: PropTypes.func.isRequired,
   allCount: nullOrRequiredValidator("number"),
   requestCount: nullOrRequiredValidator("number"),
   borrowCount: nullOrRequiredValidator("number"),

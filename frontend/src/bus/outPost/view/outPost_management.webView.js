@@ -83,6 +83,13 @@ class OutPostManagementComponentWebView extends Component {
     });
   };
 
+  onOpenCreatePostDialog = () => {
+    this.setState({
+      isOpenCrudDialog: true,
+      postIdForDialogToCreateOrUpdate: null
+    });
+  };
+
   onOpenDecidePostDialog = postId => {
     this.setState({
       isOpenDecisionDialog: true,
@@ -122,12 +129,7 @@ class OutPostManagementComponentWebView extends Component {
           <OutPostTabBar
             selectTab={selectTab}
             onTabChange={this.onTabChange}
-            onCreateNewPostClick={() => {
-              this.setState({
-                isOpenCrudDialog: true,
-                postIdForDialogToCreateOrUpdate: null
-              });
-            }}
+            onOpenCreatePostDialog={this.onOpenCreatePostDialog}
             allCount={posts.length}
             requestCount={requestAlertPosts.length}
             borrowCount={borrowPosts.length}
