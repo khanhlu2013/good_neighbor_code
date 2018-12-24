@@ -1,15 +1,15 @@
 import connect from "react-redux/lib/connect/connect";
 
-import { fetchOutPosts } from "@gn/common/bus/outPost/action/fetchOutPosts.action";
-import { createOrUpdatePost } from "@gn/common/bus/outPost/action/crudOutPost.action";
+import { fetchOutPosts } from "../action/fetchOutPosts.action";
+import { createOrUpdatePost } from "../action/crudOutPost.action";
 import {
   decideShare,
   undoDenyShare,
   undoApproveShare
-} from "@gn/common/bus/outPost/action/decideOutPost.action";
-import { awareReturnPost } from "@gn/common/bus/outPost/action/awareReturnPost.action";
-import OutPostManagementComponentWebView from "../view/outPost_management.webView";
-import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
+} from "../action/decideOutPost.action";
+import { awareReturnPost } from "../action/awareReturnPost.action";
+import OutPostSelector from "../outPost.selector";
+import PassThroughView from "../../../util/PassThrough.view";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -45,8 +45,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onAwareReturnPost: postId => dispatch(awareReturnPost(postId))
 });
 
-const OutPostManagementContainer = connect(
+const OutPostManagementController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(OutPostManagementComponentWebView);
-export default OutPostManagementContainer;
+)(PassThroughView);
+export default OutPostManagementController;

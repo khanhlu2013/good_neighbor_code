@@ -13,7 +13,7 @@ import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 
-class OutPostManagementComponentWebView extends Component {
+class OutPostManagementWebView extends Component {
   static propTypes = {
     //data
     fetchPosts: PropTypes.func.isRequired,
@@ -51,10 +51,6 @@ class OutPostManagementComponentWebView extends Component {
     isOpenDecisionDialog: false,
     curDecidePostId: null
   };
-
-  componentDidMount() {
-    this.props.fetchPosts();
-  }
 
   onTabChange = selectTab => {
     this.setState({ selectTab });
@@ -230,8 +226,8 @@ class OutPostManagementComponentWebView extends Component {
     );
   }
 }
-OutPostManagementComponentWebView.propType = {
+OutPostManagementWebView.propType = {
   loginUser: PropTypes.object.isRequired
 };
 
-export default OutPostManagementComponentWebView;
+export default OutPostManagementWebView;
