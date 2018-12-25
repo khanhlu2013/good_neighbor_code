@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import connect from "react-redux/lib/connect/connect";
 
 import { fetchOutPosts } from "../action/fetchOutPosts.action";
@@ -9,7 +10,16 @@ import {
 } from "../action/decideOutPost.action";
 import { awareReturnPost } from "../action/awareReturnPost.action";
 import OutPostSelector from "../outPost.selector";
-import PassThroughView from "../../../util/PassThrough.view";
+
+class _ extends Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
+  render() {
+    return React.createElement(this.props.view, this.props);
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -48,5 +58,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 const OutPostManagementController = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PassThroughView);
+)(_);
 export default OutPostManagementController;
