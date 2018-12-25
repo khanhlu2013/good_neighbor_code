@@ -5,12 +5,13 @@ import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import TabPanel from "../../../share/style/tabPanel_style";
 import OutPostCrudDialog from "./crudDialog";
 import OutPostDecisionDialog from "./decisionDialog";
-import OutPostList from "./outPostList";
+import OutPostListWebView from "./outPostList.webView";
 import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import OutPostListController from "@gn/common/bus/outPost/controller/outPostList.controller";
 import OutPostManagementPropType from "@gn/common/bus/outPost/propType/outPostManagement.propType";
 
 class OutPostManagementWebView extends Component {
@@ -74,13 +75,14 @@ class OutPostManagementWebView extends Component {
   };
 
   _genPostList = (listId, posts) => (
-    <OutPostList
+    <OutPostListController
       listId={listId}
       posts={posts}
       onOpenUpdatePostDialog={this.onOpenUpdatePostDialog}
       onOpenDecidePostDialog={this.onOpenDecidePostDialog}
       onAwareReturnPostClick={this.props.onAwareReturnPost}
       awaringReturnPostIds={this.props.awaringReturnPostIds}
+      view={OutPostListWebView}
     />
   );
 
