@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
 
 import LoadingIcon from "../../../share/loadingIcon";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
@@ -12,33 +11,10 @@ import OutPostTabEnum from "./outPost_tabEnum";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import OutPostManagementPropType from "@gn/common/bus/outPost/propType/outPostManagement.propType";
 
 class OutPostManagementWebView extends Component {
-  static propTypes = {
-    //data
-    fetchPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired,
-    isInitPosts: PropTypes.bool.isRequired,
-    isFetchingPosts: PropTypes.bool.isRequired,
-
-    //derived data
-    returnShares: PropTypes.array.isRequired,
-    requestAlertPosts: PropTypes.array.isRequired,
-    borrowPosts: PropTypes.array.isRequired,
-    returnAlertPosts: PropTypes.array.isRequired,
-
-    //crud post
-    onCreateOrUpdatePost: PropTypes.func.isRequired,
-
-    //decide post
-    onDecideShare: PropTypes.func.isRequired,
-    onUndoDenyShare: PropTypes.func.isRequired,
-    onUndoApproveShare: PropTypes.func.isRequired,
-
-    //aware return post
-    onAwareReturnPost: PropTypes.func.isRequired,
-    awaringReturnPostIds: PropTypes.array.isRequired
-  };
+  static propTypes = OutPostManagementPropType;
 
   state = {
     selectTab: OutPostTabEnum.ALL,
@@ -226,8 +202,5 @@ class OutPostManagementWebView extends Component {
     );
   }
 }
-OutPostManagementWebView.propType = {
-  loginUser: PropTypes.object.isRequired
-};
 
 export default OutPostManagementWebView;

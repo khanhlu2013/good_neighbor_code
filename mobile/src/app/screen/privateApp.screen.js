@@ -6,10 +6,11 @@ import { Constants } from "expo";
 import { Header, Left, Right, Icon } from "native-base";
 
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
-import OutPostManagementScreen from "../../bus/outPost/outPostManagement.screen";
 import { APP_ICON_SIZE } from "../../share/uiConstant";
 import InPostManagementController from "../../common/bus/inPost/controller/inPostManagement.controller";
 import InPostManagementMobileView from "../../bus/inPost/view/inPostManagement.mobileView";
+import OutPostManagementMobileView from "../../bus/outPost/outPostManagement.mobileView";
+import OutPostManagementController from "../../common/bus/outPost/controller/outPostManagement.controller";
 
 const dummyScreen = function() {
   return <Text>xxxxxx</Text>;
@@ -86,7 +87,7 @@ const PrivateApp = createDrawerNavigator(
     outPost: {
       screen: props => (
         <ScreenTemplate navigation={props.navigation}>
-          <OutPostManagementScreen />
+          <OutPostManagementController view={OutPostManagementMobileView} />
         </ScreenTemplate>
       ),
       navigationOptions: _createNavigationOption("briefcase", "FontAwesome")

@@ -11,10 +11,12 @@ import AuthSelector from "./src/common/app/selector/auth.selector";
 import NavigationService from "./src/app/navigationService";
 import PrivateAppScreen from "./src/app/screen/privateApp.screen";
 import inPostReducer from "./src/common/bus/inPost/reducer/inPost.reducer";
+import outPostReducer from "./src/common/bus/outPost/reducer/outPost_reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  inPost: inPostReducer
+  inPost: inPostReducer,
+  outPost: outPostReducer
 });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.subscribe(() => {
