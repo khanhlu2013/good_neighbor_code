@@ -55,7 +55,6 @@ const ScreenStyle = styled.View`
 
 function ScreenTemplate(props) {
   const { children, navigation } = props;
-  console.group(JSON.stringify(navigation.state));
   return (
     <ScreenStyle>
       <Header>
