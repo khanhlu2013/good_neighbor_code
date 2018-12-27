@@ -79,7 +79,7 @@ const InPostManagementScreen = props => (
 );
 InPostManagementScreen.router = InPostManagementNavigator.router;
 
-const Nav = createDrawerNavigator(
+const PrivateAppNavigator = createDrawerNavigator(
   {
     inPost: {
       screen: InPostManagementScreen,
@@ -138,8 +138,8 @@ const ScreenStyle = styled.View`
   flex: 1;
 `;
 
-class PrivateAppNavigator extends Component {
-  static router = Nav.router;
+class PrivateAppView extends Component {
+  static router = PrivateAppNavigator.router;
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     fetchInPosts: PropTypes.func.isRequired,
@@ -157,7 +157,7 @@ class PrivateAppNavigator extends Component {
   render() {
     const { navigation, inPostsAlertCount, outPostsAlertCount } = this.props;
     return (
-      <Nav
+      <PrivateAppNavigator
         navigation={navigation}
         screenProps={{ inPostsAlertCount, outPostsAlertCount }}
       />
@@ -165,4 +165,4 @@ class PrivateAppNavigator extends Component {
   }
 }
 
-export default PrivateAppNavigator;
+export default PrivateAppView;
