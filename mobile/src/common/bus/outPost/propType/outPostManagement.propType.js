@@ -7,10 +7,10 @@ const OutPostManagementPropType = {
   isFetchingPosts: PropTypes.bool.isRequired,
 
   //derived data
-  returnShares: PropTypes.array.isRequired,
   requestAlertPosts: PropTypes.array.isRequired,
   borrowPosts: PropTypes.array.isRequired,
   returnAlertPosts: PropTypes.array.isRequired,
+  returnShares: PropTypes.array.isRequired,
 
   //crud post
   onCreateOrUpdatePost: PropTypes.func.isRequired,

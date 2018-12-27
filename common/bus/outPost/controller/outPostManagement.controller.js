@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import connect from "react-redux/lib/connect/connect";
 
-import { fetchOutPosts } from "../action/fetchOutPosts.action";
+import fetchOutPosts from "../action/fetchOutPosts.action";
 import { createOrUpdatePost } from "../action/crudOutPost.action";
 import {
   decideShare,
