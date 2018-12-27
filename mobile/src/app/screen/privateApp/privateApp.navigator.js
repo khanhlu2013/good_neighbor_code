@@ -1,24 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { createDrawerNavigator, DrawerItems } from "react-navigation";
 import { Text, SafeAreaView, ScrollView, View } from "react-native";
+import { Header, Left, Right, Icon } from "native-base";
 import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import { Constants } from "expo";
+import TabItemMobileView from "../../../share/tabItem.mobileView";
+import { APP_ICON_SIZE } from "../../../share/uiConstant";
+import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
+import InPostManagementMobileView from "../../../bus/inPost/view/inPostManagement.mobileView";
+import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
+import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.mobileView";
 
-import { APP_ICON_SIZE } from "../../share/uiConstant";
-import { Header, Left, Right, Icon } from "native-base";
-import fetchInPosts from "../../common/bus/inPost/action/fetchInPosts.action";
-import { fetchOutPosts } from "../../common/bus/outPost/action/fetchOutPosts.action";
-import InPostManagementMobileView from "../../bus/inPost/view/inPostManagement.mobileView";
-import OutPostManagementController from "../../common/bus/outPost/controller/outPostManagement.controller";
-import InPostManagementController from "../../common/bus/inPost/controller/inPostManagement.controller";
-import InPostSelector from "../../common/bus/inPost/inPost.selector";
-import OutPostSelector from "../../common/bus/outPost/outPost.selector";
-import OutPostManagementMobileView from "../../bus/outPost/outPostManagement.mobileView";
-import TabItemMobileView from "../../share/tabItem.mobileView";
-
-const CustomDrawerComponent = props => (
+const DrawerView = props => (
   <SafeAreaView style={{ flex: 1 }}>
     <View
       style={{
@@ -36,13 +31,7 @@ const CustomDrawerComponent = props => (
   </SafeAreaView>
 );
 
-const _createNavigationOption = (
-  iconName,
-  iconProvider,
-  title
-  // iconCount,
-  // iconIsImportant
-) => {
+const _createNavigationOption = (iconName, iconProvider, title) => {
   return ({ navigation, screenProps }) => {
     const { inPostsAlertCount, outPostsAlertCount } = screenProps;
     const { routeName } = navigation.state;
@@ -75,35 +64,44 @@ const _createNavigationOption = (
   };
 };
 
+const inPostRouteTitle = "Friend Posts";
+const outPostRouteTitle = "My Posts";
+
 const Nav = createDrawerNavigator(
   {
     inPost: {
       screen: props => (
-        <ScreenTemplate navigation={props.navigation}>
+        <ScreenTemplate
+          navigation={props.navigation}
+          routeTitle={inPostRouteTitle}
+        >
           <InPostManagementController view={InPostManagementMobileView} />
         </ScreenTemplate>
       ),
       navigationOptions: _createNavigationOption(
         "ios-globe",
         "Ionicons",
-        "Friend Posts"
+        inPostRouteTitle
       )
     },
     outPost: {
       screen: props => (
-        <ScreenTemplate navigation={props.navigation}>
+        <ScreenTemplate
+          navigation={props.navigation}
+          routeTitle={outPostRouteTitle}
+        >
           <OutPostManagementController view={OutPostManagementMobileView} />
         </ScreenTemplate>
       ),
       navigationOptions: _createNavigationOption(
         "briefcase",
         "FontAwesome",
-        "My Posts"
+        outPostRouteTitle
       )
     }
   },
   {
-    contentComponent: CustomDrawerComponent,
+    contentComponent: DrawerView,
     contentOptions: {
       activeTintColor: "orange"
     }
@@ -111,7 +109,7 @@ const Nav = createDrawerNavigator(
 );
 
 function ScreenTemplate(props) {
-  const { children, navigation } = props;
+  const { children, navigation, routeTitle } = props;
   return (
     <ScreenStyle>
       <Header>
@@ -119,7 +117,7 @@ function ScreenTemplate(props) {
           <Icon name="ios-menu" onPress={() => navigation.openDrawer()} />
         </Left>
         <Right>
-          <Text>{navigation.state.routeName}</Text>
+          <Text>{routeTitle}</Text>
         </Right>
       </Header>
       {children}
@@ -137,6 +135,13 @@ const ScreenStyle = styled.View`
 
 class PrivateAppNavigator extends Component {
   static router = Nav.router;
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    fetchInPosts: PropTypes.func.isRequired,
+    fetchOutPosts: PropTypes.func.isRequired,
+    inPostsAlertCount: PropTypes.number.isRequired,
+    outPostsAlertCount: PropTypes.number.isRequired
+  };
 
   componentDidMount() {
     const { fetchInPosts, fetchOutPosts } = this.props;
@@ -155,20 +160,4 @@ class PrivateAppNavigator extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  inPostsAlertCount: InPostSelector.approveAlertPosts(state).length,
-  outPostsAlertCount:
-    OutPostSelector.requestAlertPosts(state).length +
-    OutPostSelector.returnAlertPosts(state).length
-});
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchInPosts: () => dispatch(fetchInPosts()),
-  fetchOutPosts: () => dispatch(fetchOutPosts())
-});
-
-const PrivateAppHere = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PrivateAppNavigator);
-
-export default PrivateAppHere;
+export default PrivateAppNavigator;

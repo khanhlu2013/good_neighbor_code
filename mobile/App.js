@@ -9,10 +9,9 @@ import AuthCheckScreen from "./src/app/screen/authCheck.screen";
 import LoginScreen from "./src/app/screen/login.screen";
 import AuthSelector from "./src/common/app/selector/auth.selector";
 import NavigationService from "./src/app/navigationService";
-import PrivateAppScreen from "./src/app/screen/privateApp.screen";
 import inPostReducer from "./src/common/bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./src/common/bus/outPost/reducer/outPost_reducer";
-import PrivateAppHere from "./src/app/navigator/privateApp.navigator";
+import PrivateAppScreen from "./src/app/screen/privateApp/privateApp.screen";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -39,8 +38,7 @@ const TopLevelNavigator = createSwitchNavigator(
       screen: LoginScreen
     },
     PrivateApp: {
-      // screen: PrivateAppScreen
-      screen: PrivateAppHere
+      screen: PrivateAppScreen
     }
   },
   {
