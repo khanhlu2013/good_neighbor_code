@@ -1,37 +1,20 @@
-import React, { Component } from "react";
-import { createDrawerNavigator, DrawerItems } from "react-navigation";
-import { Text, SafeAreaView, ScrollView, View } from "react-native";
+import React from "react";
+import { createDrawerNavigator } from "react-navigation";
+import { Text } from "react-native";
 import { Header, Left, Right, Icon } from "native-base";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Constants } from "expo";
 
-import TabItemMobileView from "../../share/tabItem.mobileView";
-import { APP_ICON_SIZE } from "../../share/uiConstant";
-import InPostManagementController from "../../common/bus/inPost/controller/inPostManagement.controller";
+import TabItemMobileView from "../../../share/tabItem.mobileView";
+import { APP_ICON_SIZE } from "../../../share/uiConstant";
+import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
 import InPostManagementMobileView, {
   InPostManagementNavigator
-} from "../../bus/inPost/view/inPostManagement.mobileView";
-import OutPostManagementController from "../../common/bus/outPost/controller/outPostManagement.controller";
-import OutPostManagementMobileView from "../../bus/outPost/outPostManagement.mobileView";
-
-const DrawerView = props => (
-  <SafeAreaView style={{ flex: 1 }}>
-    <View
-      style={{
-        height: 150,
-        backgroundColor: "lime",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <Text style={{ fontSize: 20 }}>Good Neighbor</Text>
-    </View>
-    <ScrollView>
-      <DrawerItems {...props} />
-    </ScrollView>
-  </SafeAreaView>
-);
+} from "../../../bus/inPost/view/inPostManagement.mobileView";
+import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
+import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.mobileView";
+import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
 
 const _createNavigationOption = (iconName, iconProvider, title) => {
   return ({ navigation, screenProps }) => {
@@ -131,11 +114,17 @@ const PrivateAppNavigator = createDrawerNavigator(
     }
   },
   {
-    contentComponent: DrawerView,
+    contentComponent: PrivateAppNavigationDrawerView,
     contentOptions: {
       activeTintColor: "orange"
     }
   }
 );
+PrivateAppNavigator.propTypes = {
+  screenProps: PropTypes.shape({
+    inPostsAlertCount: PropTypes.number.isRequired,
+    outPostsAlertCount: PropTypes.number.isRequired
+  }).isRequired
+};
 
 export default PrivateAppNavigator;

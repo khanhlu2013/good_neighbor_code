@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import PrivateAppNavigator from "../navigation/privateApp.navigation";
+import PrivateAppNavigator from "../navigation/privateApp/privateApp.navigation";
 
 class PrivateAppMobileView extends Component {
   static propTypes = {

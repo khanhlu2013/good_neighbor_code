@@ -1,7 +1,7 @@
 import React from "react";
 
 import PrivateAppMobileController from "../controller/privateApp.mobileController";
-import PrivateAppNavigator from "../navigation/privateApp.navigation";
+import PrivateAppNavigator from "../navigation/privateApp/privateApp.navigation";
 import PrivateAppMobileView from "../view/privateApp.mobileView";
 
 function PrivateAppScreen(props) {
