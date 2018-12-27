@@ -11,7 +11,7 @@ import AuthSelector from "./src/common/app/selector/auth.selector";
 import NavigationService from "./src/app/navigationService";
 import inPostReducer from "./src/common/bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "./src/common/bus/outPost/reducer/outPost_reducer";
-import PrivateAppScreen from "./src/app/screen/privateApp/privateApp.screen";
+import PrivateAppScreen from "./src/app/screen/privateApp.screen";
 
 const rootReducer = combineReducers({
   auth: authReducer,
