@@ -9,7 +9,9 @@ import { Constants } from "expo";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import { APP_ICON_SIZE } from "../../../share/uiConstant";
 import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
-import InPostManagementMobileView from "../../../bus/inPost/view/inPostManagement.mobileView";
+import InPostManagementMobileView, {
+  InPostManagementNavigator
+} from "../../../bus/inPost/view/inPostManagement.mobileView";
 import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
 import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.mobileView";
 
@@ -67,17 +69,20 @@ const _createNavigationOption = (iconName, iconProvider, title) => {
 const inPostRouteTitle = "Friend Posts";
 const outPostRouteTitle = "My Posts";
 
+const InPostManagementScreen = props => (
+  <ScreenTemplate navigation={props.navigation} routeTitle={inPostRouteTitle}>
+    <InPostManagementController
+      navigation={props.navigation}
+      view={InPostManagementMobileView}
+    />
+  </ScreenTemplate>
+);
+InPostManagementScreen.router = InPostManagementNavigator.router;
+
 const Nav = createDrawerNavigator(
   {
     inPost: {
-      screen: props => (
-        <ScreenTemplate
-          navigation={props.navigation}
-          routeTitle={inPostRouteTitle}
-        >
-          <InPostManagementController view={InPostManagementMobileView} />
-        </ScreenTemplate>
-      ),
+      screen: InPostManagementScreen,
       navigationOptions: _createNavigationOption(
         "ios-globe",
         "Ionicons",
