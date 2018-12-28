@@ -9,12 +9,11 @@ import { Constants } from "expo";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import { APP_ICON_SIZE } from "../../../share/uiConstant";
 import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
-import InPostManagementMobileView, {
-  InPostManagementNavigator
-} from "../../../bus/inPost/view/inPostManagement.mobileView";
+import InPostManagementMobileView from "../../../bus/inPost/view/inPostManagement.mobileView";
 import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
 import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.mobileView";
 import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
+import InPostManagementNavigator from "../../../bus/inPost/navigation/inPostManagement.navigation";
 
 const _createNavigationOption = (iconName, iconProvider, title) => {
   return ({ navigation, screenProps }) => {
