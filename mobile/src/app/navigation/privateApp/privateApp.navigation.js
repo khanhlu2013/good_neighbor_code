@@ -11,6 +11,19 @@ import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.
 import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
 import InPostManagementNavigator from "../../../bus/inPost/navigation/inPostManagement.navigation";
 
+export function PrivateAppRouteToTitleMapper(routeName) {
+  switch (routeName) {
+    case "inPost":
+      return "Friend Posts";
+
+    case "outPost":
+      return "My Posts";
+
+    default:
+      throw Error(`Unexpected '${routeName}' for routeName`);
+  }
+}
+
 const _createNavigationOption = (iconName, iconProvider) => {
   return ({ navigation, screenProps }) => {
     const { inPostsAlertCount, outPostsAlertCount } = screenProps;
@@ -38,7 +51,8 @@ const _createNavigationOption = (iconName, iconProvider) => {
           iconCount={alertCount}
           iconCountIsImportant={true}
         />
-      )
+      ),
+      title: PrivateAppRouteToTitleMapper(routeName)
     };
   };
 };

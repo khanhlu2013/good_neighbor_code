@@ -5,7 +5,9 @@ import { Constants } from "expo";
 import { Header, Left, Right, Icon } from "native-base";
 
 import PrivateAppMobileController from "../controller/privateApp.mobileController";
-import PrivateAppNavigator from "../navigation/privateApp/privateApp.navigation";
+import PrivateAppNavigator, {
+  PrivateAppRouteToTitleMapper
+} from "../navigation/privateApp/privateApp.navigation";
 import PrivateAppMobileView from "../view/privateApp.mobileView";
 
 const Style = styled.View`
@@ -17,7 +19,9 @@ function PrivateAppScreen(props) {
   const { navigation } = props;
   const { routes: topRoutes, index: curTopRouteIndex } = navigation.state;
 
-  const displayInfo = topRoutes[curTopRouteIndex].routeName;
+  const title = PrivateAppRouteToTitleMapper(
+    topRoutes[curTopRouteIndex].routeName
+  );
 
   return (
     <Style>
@@ -26,7 +30,7 @@ function PrivateAppScreen(props) {
           <Icon name="ios-menu" onPress={() => navigation.toggleDrawer()} />
         </Left>
         <Right>
-          <Text>{displayInfo}</Text>
+          <Text>{title}</Text>
         </Right>
       </Header>
       <PrivateAppMobileController
