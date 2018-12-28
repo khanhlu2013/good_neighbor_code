@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
-import { View, Text } from "react-native";
 import OutPostManagementPropType from "../../common/bus/outPost/propType/outPostManagement.propType";
-import OutPostListController from "../../common/bus/outPost/controller/outPostList.controller";
-import OutPostListMobileView from "./outPostList.mobileView";
+import OutPostManagementNavigator from "./navigation/outPostManagement.navigation";
 
 class OutPostManagementMobileView extends Component {
   static propTypes = OutPostManagementPropType;
@@ -30,6 +27,7 @@ class OutPostManagementMobileView extends Component {
       posts,
       isInitPosts,
       isFetchingPosts,
+      awaringReturnPostIds,
 
       //derived data
       requestAlertPosts,
@@ -37,48 +35,47 @@ class OutPostManagementMobileView extends Component {
       returnAlertPosts,
       returnShares,
 
-      //crud post
+      //handler - crud post
       onCreateOrUpdatePost,
 
-      //decide post
+      //handler - decide post
       onDecideShare,
       onUndoDenyShare,
       onUndoApproveShare,
 
-      //aware return post
-      onAwareReturnPost,
-      awaringReturnPostIds
+      //handler - aware return post
+      onAwareReturnPost
     } = this.props;
 
-    const nav = createBottomTabNavigator({
-      all: {
-        screen: props => (
-          <OutPostListController
-            posts={posts}
-            view={OutPostListMobileView}
-            awaringReturnPostIds={awaringReturnPostIds}
-            onOpenUpdatePostDialog={this.onOpenUpdatePostDialog}
-            onOpenDecidePostDialog={this.onOpenDecidePostDialog}
-            onAwareReturnPostClick={onAwareReturnPost}
-          />
-        ),
-        navigationOptions: {
-          title: "all"
-        }
-      },
-      request: {
-        screen: props => (
-          <OutPostListController
-            posts={requestAlertPosts}
-            view={OutPostListMobileView}
-          />
-        ),
-        navigationOptions: {
-          title: "request"
-        }
-      }
-    });
-    return React.createElement(createAppContainer(nav));
+    return (
+      <OutPostManagementNavigator
+        navigation={this.props.navigation}
+        screenProps={{
+          //data
+          posts,
+          isInitPosts,
+          isFetchingPosts,
+          awaringReturnPostIds,
+
+          //derivedData
+          requestAlertPosts,
+          borrowPosts,
+          returnAlertPosts,
+          returnShares,
+
+          //crud post
+          onCreateOrUpdatePost,
+
+          //decide post
+          onDecideShare,
+          onUndoDenyShare,
+          onUndoApproveShare,
+
+          //handler - aware return post
+          onAwareReturnPost
+        }}
+      />
+    );
   }
 }
 
