@@ -1,10 +1,6 @@
 import React from "react";
 import { createDrawerNavigator } from "react-navigation";
-import { Text } from "react-native";
-import { Header, Left, Right, Icon } from "native-base";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Constants } from "expo";
 
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import { APP_ICON_SIZE } from "../../../share/uiConstant";
@@ -15,7 +11,7 @@ import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.
 import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
 import InPostManagementNavigator from "../../../bus/inPost/navigation/inPostManagement.navigation";
 
-const _createNavigationOption = (iconName, iconProvider, title) => {
+const _createNavigationOption = (iconName, iconProvider) => {
   return ({ navigation, screenProps }) => {
     const { inPostsAlertCount, outPostsAlertCount } = screenProps;
     const { routeName } = navigation.state;
@@ -42,47 +38,16 @@ const _createNavigationOption = (iconName, iconProvider, title) => {
           iconCount={alertCount}
           iconCountIsImportant={true}
         />
-      ),
-      title
+      )
     };
   };
 };
 
-const inPostRouteTitle = "Friend Posts";
-const outPostRouteTitle = "My Posts";
-
-const ScreenStyle = styled.View`
-  margin-top: ${Constants.statusBarHeight};
-  flex: 1;
-`;
-
-function ScreenTemplate(props) {
-  const { children, navigation, routeTitle } = props;
-  return (
-    <ScreenStyle>
-      <Header>
-        <Left>
-          <Icon name="ios-menu" onPress={() => navigation.openDrawer()} />
-        </Left>
-        <Right>
-          <Text>{routeTitle}</Text>
-        </Right>
-      </Header>
-      {children}
-    </ScreenStyle>
-  );
-}
-ScreenTemplate.propTypes = {
-  navigation: PropTypes.object.isRequired
-};
-
 const InPostManagementScreen = props => (
-  <ScreenTemplate navigation={props.navigation} routeTitle={inPostRouteTitle}>
-    <InPostManagementController
-      navigation={props.navigation}
-      view={InPostManagementMobileView}
-    />
-  </ScreenTemplate>
+  <InPostManagementController
+    navigation={props.navigation}
+    view={InPostManagementMobileView}
+  />
 );
 InPostManagementScreen.router = InPostManagementNavigator.router;
 
@@ -90,26 +55,13 @@ const PrivateAppNavigator = createDrawerNavigator(
   {
     inPost: {
       screen: InPostManagementScreen,
-      navigationOptions: _createNavigationOption(
-        "ios-globe",
-        "Ionicons",
-        inPostRouteTitle
-      )
+      navigationOptions: _createNavigationOption("ios-globe", "Ionicons")
     },
     outPost: {
       screen: props => (
-        <ScreenTemplate
-          navigation={props.navigation}
-          routeTitle={outPostRouteTitle}
-        >
-          <OutPostManagementController view={OutPostManagementMobileView} />
-        </ScreenTemplate>
+        <OutPostManagementController view={OutPostManagementMobileView} />
       ),
-      navigationOptions: _createNavigationOption(
-        "briefcase",
-        "FontAwesome",
-        outPostRouteTitle
-      )
+      navigationOptions: _createNavigationOption("briefcase", "FontAwesome")
     }
   },
   {
