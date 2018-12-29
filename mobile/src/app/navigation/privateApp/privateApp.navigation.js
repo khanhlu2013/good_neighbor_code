@@ -1,12 +1,10 @@
-import React from "react";
 import { createDrawerNavigator } from "react-navigation";
 import PropTypes from "prop-types";
 
-import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
-import OutPostManagementMobileView from "../../../bus/outPost/outPostManagement.mobileView";
 import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
-import { createPrivateAppNavigationOption } from "./privateApp.navigationHelper";
 import InPostManagementScreen from "../../../bus/inPost/screen/inPostManagement.screen";
+import { createPrivateAppNavigationOption } from "./privateApp.navigationHelper";
+import OutPostManagementScreen from "../../../bus/outPost/screen/outPostManagement.screen";
 
 export function PrivateAppRouteToTitleMapper(routeName) {
   switch (routeName) {
@@ -31,9 +29,7 @@ const PrivateAppNavigator = createDrawerNavigator(
       )
     },
     outPost: {
-      screen: props => (
-        <OutPostManagementController view={OutPostManagementMobileView} />
-      ),
+      screen: OutPostManagementScreen,
       navigationOptions: createPrivateAppNavigationOption(
         "briefcase",
         "FontAwesome"

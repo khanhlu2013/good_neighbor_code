@@ -40,6 +40,6 @@ function OutPostListMobileView(props) {
 
   return <View id={listId}>{content}</View>;
 }
-OutPostListMobileView.propTypes = OutPostListPropType;
+// OutPostListMobileView.propTypes = OutPostListPropType;
 
 export default OutPostListMobileView;

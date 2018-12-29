@@ -13,7 +13,7 @@ import InPostListMobileView from "../view/inPostList.mobileView";
 
 const InPostManagementNavigator = createBottomTabNavigator(
   {
-    all: {
+    inPost_all: {
       screen: props => (
         <InPostListMobileView
           listId={DUMMY_ID}
@@ -24,7 +24,7 @@ const InPostManagementNavigator = createBottomTabNavigator(
         title: "all"
       }
     },
-    request: {
+    inPost_request: {
       screen: props => (
         <InPostListMobileView
           listId={DUMMY_ID}
@@ -35,7 +35,7 @@ const InPostManagementNavigator = createBottomTabNavigator(
         title: "request"
       }
     },
-    approve: {
+    inPost_approve: {
       screen: props => (
         <InPostListMobileView
           listId={DUMMY_ID}
@@ -46,7 +46,7 @@ const InPostManagementNavigator = createBottomTabNavigator(
         title: "approve"
       }
     },
-    borrow: {
+    inPost_borrow: {
       screen: props => (
         <InPostListMobileView
           listId={DUMMY_ID}
@@ -57,7 +57,7 @@ const InPostManagementNavigator = createBottomTabNavigator(
         title: "borrow"
       }
     },
-    history: {
+    inPost_history: {
       screen: props => (
         <InPostUserHistoryListController
           shares={props.screenProps.returnShares}
@@ -79,31 +79,31 @@ const InPostManagementNavigator = createBottomTabNavigator(
         let isImportant;
 
         switch (routeName) {
-          case "all":
+          case "inPost_all":
             iconName = "ios-globe";
             iconProvider = "Ionicons";
             count = screenProps.posts.length;
             isImportant = false;
             break;
-          case "request":
+          case "inPost_request":
             iconName = "question";
             iconProvider = "FontAwesome";
             count = screenProps.requestPosts.length;
             isImportant = false;
             break;
-          case "approve":
+          case "inPost_approve":
             iconName = "check";
             iconProvider = "FontAwesome";
             count = screenProps.approveAlertPosts.length;
             isImportant = true;
             break;
-          case "borrow":
+          case "inPost_borrow":
             iconName = "slideshare";
             iconProvider = "Entypo";
             count = screenProps.borrowPosts.length;
             isImportant = false;
             break;
-          case "history":
+          case "inPost_history":
             iconName = "history";
             iconProvider = "FontAwesome";
             count = screenProps.returnShares.length;
