@@ -8,7 +8,7 @@ import OutPostListController from "../../../common/bus/outPost/controller/outPos
 import DUMMY_ID from "../../../share/dummyId";
 
 const OutPostManagementNavigator = createBottomTabNavigator({
-  all: {
+  outPost_all: {
     screen: props => {
       const { screenProps } = props;
       const {
@@ -34,7 +34,7 @@ const OutPostManagementNavigator = createBottomTabNavigator({
       title: "all"
     }
   },
-  request: {
+  outPost_request: {
     screen: props => {
       const { screenProps } = props;
       const {
