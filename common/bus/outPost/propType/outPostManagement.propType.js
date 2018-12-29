@@ -5,6 +5,7 @@ const OutPostManagementPropType = {
   posts: PropTypes.array.isRequired,
   isInitPosts: PropTypes.bool.isRequired,
   isFetchingPosts: PropTypes.bool.isRequired,
+  awaringReturnPostIds: PropTypes.array.isRequired,
 
   //derived data
   requestAlertPosts: PropTypes.array.isRequired,
@@ -21,8 +22,7 @@ const OutPostManagementPropType = {
   onUndoApproveShare: PropTypes.func.isRequired,
 
   //aware return post
-  onAwareReturnPost: PropTypes.func.isRequired,
-  awaringReturnPostIds: PropTypes.array.isRequired
+  onAwareReturnPost: PropTypes.func.isRequired
 };
 
 export default OutPostManagementPropType;
