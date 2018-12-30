@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import OutPostItemHeadPropType from "@gn/common/bus/outPost/propType/outPostItemHead.propType";
 
 import { date2String } from "@gn/common/util";
 
@@ -13,19 +13,15 @@ const LeftStyle = styled.div`
   flex-grow: 1;
 `;
 
-function OutPostItemHead(props) {
-  const { dateCreate, onOpenUpdatePostDialog, postId } = props;
-
-  const onUpdatePostClicked = e => {
-    onOpenUpdatePostDialog(postId);
-  };
+function OutPostItemHeadWebView(props) {
+  const { dateCreate, onUpdatePostClick } = props;
 
   return (
     <Style>
       <LeftStyle>
         <button
           id="outPostItem-editBtn-react"
-          onClick={onUpdatePostClicked}
+          onClick={onUpdatePostClick}
           className="btn btn-sm btn-primary"
         >
           edit post
@@ -39,10 +35,6 @@ function OutPostItemHead(props) {
   );
 }
 
-OutPostItemHead.propTypes = {
-  postId: PropTypes.string.isRequired,
-  onOpenUpdatePostDialog: PropTypes.func.isRequired,
-  dateCreate: PropTypes.instanceOf(Date).isRequired
-};
+OutPostItemHeadWebView.propTypes = OutPostItemHeadPropType;
 
-export default OutPostItemHead;
+export default OutPostItemHeadWebView;

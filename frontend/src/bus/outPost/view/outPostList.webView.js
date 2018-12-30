@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import OutPostItem from "./outPostItem";
 import PostListNoDataWebView from "../../post/view/postListNoData.webView";
+import OutPostItemWebView from "./outPostItem.webView";
 import OutPostListPropType from "@gn/common/bus/outPost/propType/outPostList.propType";
 
 const Style = styled.div`
@@ -25,7 +25,7 @@ function OutPostListWebView(props) {
   } else {
     content = posts.map(post => (
       <Style key={post.id}>
-        <OutPostItem
+        <OutPostItemWebView
           post={post}
           onOpenUpdatePostDialog={onOpenUpdatePostDialog}
           onOpenDecidePostDialog={onOpenDecidePostDialog}

@@ -5,7 +5,7 @@ import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
 import InPostItemHeadWebView from "./inPostItem_head.webView";
 import InPostItemFootWebView from "./foot/inPostItem_foot.webView";
-import PostItemFootStyle from "../../post/style/postItem_foot_style";
+import PostItemFootWebStyle from "../../post/style/postItemFoot.webStyle";
 import InPostItemFootController from "@gn/common/bus/inPost/controller/foot/inPostItem_foot.controller";
 
 function InPostItemWebView(props) {
@@ -20,12 +20,12 @@ function InPostItemWebView(props) {
       />
       <PostItemBodyWebView post={post} />
 
-      <PostItemFootStyle>
+      <PostItemFootWebStyle>
         <InPostItemFootController
           postId={post.id}
           view={InPostItemFootWebView}
         />
-      </PostItemFootStyle>
+      </PostItemFootWebStyle>
     </PostItemStyle>
   );
 }

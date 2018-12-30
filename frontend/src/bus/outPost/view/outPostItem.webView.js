@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import OutPostItemHead from "./outPostItem_head";
+import OutPostItemHeadWebView from "./outPostItemHead.webView";
 import LoadingIcon from "../../../share/loadingIcon";
-import PostItemFootStyle from "../../post/style/postItem_foot_style";
 import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
+import PostItemFootWebStyle from "../../post/style/postItemFoot.webStyle";
 
-function OutPostItem(props) {
+function OutPostItemWebView(props) {
   const {
     post,
     onOpenUpdatePostDialog,
@@ -16,25 +16,25 @@ function OutPostItem(props) {
     onAwareReturnPostClick
   } = props;
 
-  const onDecidePostClick = e => {
+  function onDecidePostClick() {
     onOpenDecidePostDialog(post.id);
-  };
-
-  const _onAwareReturnClick = e => {
+  }
+  function onAwareReturnClick() {
     onAwareReturnPostClick(post.id);
-  };
-
+  }
+  function onUpdatePostClick() {
+    onOpenUpdatePostDialog(post.id);
+  }
   const curBorrowShare = post.curBorrowShare;
 
   return (
     <PostItemStyle id="outPost-item-react">
-      <OutPostItemHead
-        postId={post.id}
-        onOpenUpdatePostDialog={onOpenUpdatePostDialog}
+      <OutPostItemHeadWebView
+        onUpdatePostClick={onUpdatePostClick}
         dateCreate={post.dateCreate}
       />
       <PostItemBodyWebView post={post} />
-      <PostItemFootStyle>
+      <PostItemFootWebStyle>
         {post.unawareReturnShareLatest && (
           <span>
             {isAwaringReturn ? (
@@ -42,7 +42,7 @@ function OutPostItem(props) {
             ) : (
               <button
                 id="outPostItem-awareReturnBtn-react"
-                onClick={_onAwareReturnClick}
+                onClick={onAwareReturnClick}
                 className="btn btn-sm btn-success"
               >
                 {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
@@ -61,12 +61,12 @@ function OutPostItem(props) {
             share
           </button>
         )}
-      </PostItemFootStyle>
+      </PostItemFootWebStyle>
     </PostItemStyle>
   );
 }
 
-OutPostItem.propTypes = {
+OutPostItemWebView.propTypes = {
   post: PropTypes.object.isRequired,
   onOpenUpdatePostDialog: PropTypes.func.isRequired,
   onOpenDecidePostDialog: PropTypes.func.isRequired,
@@ -74,4 +74,4 @@ OutPostItem.propTypes = {
   isAwaringReturn: PropTypes.bool.isRequired
 };
 
-export default OutPostItem;
+export default OutPostItemWebView;

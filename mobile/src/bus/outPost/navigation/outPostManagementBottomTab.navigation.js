@@ -1,9 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "react-navigation";
 
-import OutPostListMobileView from "../outPostList.mobileView";
 import OutPostListController from "../../../common/bus/outPost/controller/outPostList.controller";
 import DUMMY_ID from "../../../share/dummyId";
+import OutPostListMobileView from "../view/outPostList.mobileView";
 
 const OutPostManagementBottomTabNavigator = createBottomTabNavigator({
   outPost_all: {

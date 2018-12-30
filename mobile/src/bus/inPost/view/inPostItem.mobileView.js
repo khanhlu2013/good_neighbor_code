@@ -6,7 +6,7 @@ import InPostItemHeadMobileView from "./inPostItem_head.mobileView";
 import PostItemBodyMobileView from "../../post/view/postItem_body.mobileView";
 import InPostItemFootController from "../../../common/bus/inPost/controller/foot/inPostItem_foot.controller";
 import InPostItemFootMobileView from "./foot/inPostItem_foot.mobileView";
-import PostItemFootMobileStyle from "../../post/style/postItem_foot.mobileStyle";
+import PostItemFootMobileStyle from "../../post/style/postItemFoot.mobileStyle";
 import PostItemStyle from "../../post/style/postItem_style";
 
 function InPostItemMobileView(props) {
