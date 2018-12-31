@@ -1,42 +1,41 @@
-import React from "react";
-import { View } from "react-native";
+import React, { Fragment } from "react";
+import { Button, Text } from "native-base";
+import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
+import OutPostItemFootPropType from "../../../common/bus/outPost/propType/outPostItemFoot.propType";
 
 function OutPostItemFootMobileView(props) {
   const {
-    post,
+    postId,
+
+    //aware
     isAwaringReturn,
-    onAwareReturnClick,
+    borrowerOfTheLatestUnawareReturn,
+    onAwareReturnPostClick,
+
+    //decide
+    isDecidablePost,
     onDecidePostClick
   } = props;
-
   return (
-    <View>
-      {post.unawareReturnShareLatest && (
-        <span>
+    <Fragment>
+      {borrowerOfTheLatestUnawareReturn && (
+        <View>
           {isAwaringReturn ? (
-            <LoadingIcon text={"confirming"} />
+            <LoadingIconMobileView text={"confirming"} />
           ) : (
-            <button
-              id="outPostItem-awareReturnBtn-react"
-              onClick={onAwareReturnClick}
-              className="btn btn-sm btn-success"
-            >
-              {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
-            </button>
+            <Button onPress={() => onAwareReturnPostClick(postId)}>
+              <Text>{`confirm returned by ${borrowerOfTheLatestUnawareReturn.getNameAndEmail()}`}</Text>
+            </Button>
           )}
-        </span>
+        </View>
       )}
-      {(post.denyShares.length !== 0 ||
-        post.requestShares.length !== 0 ||
-        curBorrowShare) && (
-        <button
-          id="outPostItem-decisionBtn-react"
-          onClick={onDecidePostClick}
-          className="btn btn-sm btn-success ml-1"
-        >
-          share
-        </button>
+      {isDecidablePost && (
+        <Button onPress={() => onDecidePostClick(postId)}>
+          <Text>share</Text>
+        </Button>
       )}
-    </View>
+    </Fragment>
   );
 }
+OutPostItemFootMobileView.propTypes = OutPostItemFootPropType;
+export default OutPostItemFootMobileView;

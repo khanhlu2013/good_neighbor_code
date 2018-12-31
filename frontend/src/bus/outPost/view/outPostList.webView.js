@@ -29,9 +29,9 @@ function OutPostListWebView(props) {
         <Style key={post.id}>
           <OutPostItemWebView
             post={post}
-            onUpdatePostClick={() => onUpdatePostClick(postId)}
-            onDecidePostClick={() => onDecidePostClick(postId)}
-            onAwareReturnPostClick={() => onAwareReturnPostClick(postId)}
+            onUpdatePostClick={onUpdatePostClick}
+            onDecidePostClick={onDecidePostClick}
+            onAwareReturnPostClick={() => onAwareReturnPostClick}
             isAwaringReturn={awaringReturnPostIds.includes(post.id)}
           />
         </Style>

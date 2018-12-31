@@ -18,11 +18,22 @@ const OutPostManagementNavigator = createStackNavigator(
   }
 );
 
-const View = props => {
-  const { posts, requestAlertPosts } = props;
+const OutPostManagementMobileView = props => {
+  const {
+    posts,
+    requestAlertPosts,
+    awaringReturnPostIds,
+    onUpdatePostClick,
+    onDecidePostClick,
+    onAwareReturnPostClick
+  } = props;
   const screenProps = {
     posts,
-    requestAlertPosts
+    requestAlertPosts,
+    awaringReturnPostIds,
+    onUpdatePostClick,
+    onDecidePostClick,
+    onAwareReturnPostClick
   };
   return (
     <OutPostManagementNavigator
@@ -34,7 +45,10 @@ const View = props => {
 
 function OutPostManagementScreen(props) {
   return (
-    <OutPostManagementController navigation={props.navigation} view={View} />
+    <OutPostManagementController
+      navigation={props.navigation}
+      view={OutPostManagementMobileView}
+    />
   );
 }
 OutPostManagementScreen.router = OutPostManagementNavigator.router;

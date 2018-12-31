@@ -5,9 +5,13 @@ import OutPostItemFootPropType from "@gn/common/bus/outPost/propType/outPostItem
 function OutPostItemFootWebView(props) {
   const {
     postId,
+
+    //aware
     isAwaringReturn,
     borrowerOfTheLatestUnawareReturn,
     onAwareReturnPostClick,
+
+    //decide
     isDecidablePost,
     onDecidePostClick
   } = props;

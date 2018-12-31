@@ -5,13 +5,18 @@ import OutPostItemHeadMobileView from "./outPostItemHead.mobileView";
 import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyMobileView from "../../post/view/postItem_body.mobileView";
 import PostItemFootMobileStyle from "../../post/style/postItemFoot.mobileStyle";
+import OutPostItemFootMobileView from "./outPostItemFoot.mobileView";
+import OutPostItemFootLogic from "../../../common/bus/outPost/controller/outPostItemFoot.logic";
 
 function PostItemMobileView(props) {
-  const { post } = props;
-
-  function onUpdatePostClick() {
-    console.log("On update post click; id = ", post.id);
-  }
+  const {
+    post,
+    onUpdatePostClick,
+    onDecidePostClick,
+    onAwareReturnPostClick,
+    isAwaringReturn
+  } = props;
+  const postId = post.id;
 
   return (
     <PostItemStyle>
@@ -22,14 +27,33 @@ function PostItemMobileView(props) {
       />
       <PostItemBodyMobileView post={post} />
       <PostItemFootMobileStyle>
-        <Text>bottom</Text>
+        <OutPostItemFootMobileView
+          postId={postId}
+          //aware return
+          isAwaringReturn={isAwaringReturn}
+          borrowerOfTheLatestUnawareReturn={OutPostItemFootLogic.getBorrowerOfTheLatestUnawareReturn(
+            post
+          )}
+          onAwareReturnPostClick={onAwareReturnPostClick}
+          //decide
+          isDecidablePost={OutPostItemFootLogic.isDecidablePost(post)}
+          onDecidePostClick={onDecidePostClick}
+        />
       </PostItemFootMobileStyle>
     </PostItemStyle>
   );
 }
 
 function OutPostListMobileView(props) {
-  const { listId, posts } = props;
+  const {
+    listId,
+    posts,
+    onUpdatePostClick,
+    onDecidePostClick,
+    onAwareReturnPostClick,
+    awaringReturnPostIds
+  } = props;
+
   let content;
   if (posts.length === 0) {
     content = <PostListNoDataMobileView />;
@@ -38,7 +62,15 @@ function OutPostListMobileView(props) {
       <FlatList
         data={posts}
         keyExtractor={item => item.id}
-        renderItem={({ item: post }) => <PostItemMobileView post={post} />}
+        renderItem={({ item: post }) => (
+          <PostItemMobileView
+            post={post}
+            onUpdatePostClick={onUpdatePostClick}
+            onDecidePostClick={onDecidePostClick}
+            onAwareReturnPostClick={() => onAwareReturnPostClick}
+            isAwaringReturn={awaringReturnPostIds.includes(post.id)}
+          />
+        )}
       />
     );
   }

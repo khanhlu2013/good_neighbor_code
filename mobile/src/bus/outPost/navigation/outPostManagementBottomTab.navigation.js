@@ -5,39 +5,33 @@ import OutPostListController from "../../../common/bus/outPost/controller/outPos
 import DUMMY_ID from "../../../share/dummyId";
 import OutPostListMobileView from "../view/outPostList.mobileView";
 
+function screenFactory(routeTitle, postListKeyFromScreenProps) {
+  return {
+    screen: props => {
+      const { screenProps } = props;
+
+      const postList = screenProps[postListKeyFromScreenProps];
+      return (
+        <OutPostListController
+          view={OutPostListMobileView}
+          listId={DUMMY_ID}
+          posts={postList}
+          awaringReturnPostIds={screenProps.awaringReturnPostIds}
+          onUpdatePostClick={screenProps.onUpdatePostClick}
+          onDecidePostClick={screenProps.onDecidePostClick}
+          onAwareReturnPostClick={screenProps.onAwareReturnPostClick}
+        />
+      );
+    },
+    navigationOptions: {
+      title: routeTitle
+    }
+  };
+}
+
 const OutPostManagementBottomTabNavigator = createBottomTabNavigator({
-  outPost_all: {
-    screen: props => {
-      const { screenProps } = props;
-      const { posts } = screenProps;
-      return (
-        <OutPostListController
-          view={OutPostListMobileView}
-          listId={DUMMY_ID}
-          posts={posts}
-        />
-      );
-    },
-    navigationOptions: {
-      title: "all"
-    }
-  },
-  outPost_request: {
-    screen: props => {
-      const { screenProps } = props;
-      const { requestAlertPosts } = screenProps;
-      return (
-        <OutPostListController
-          view={OutPostListMobileView}
-          listId={DUMMY_ID}
-          posts={requestAlertPosts}
-        />
-      );
-    },
-    navigationOptions: {
-      title: "request"
-    }
-  }
+  outPost_all: screenFactory("all", "posts"),
+  outPost_request: screenFactory("request", "requestAlertPosts")
 });
 
 export default OutPostManagementBottomTabNavigator;
