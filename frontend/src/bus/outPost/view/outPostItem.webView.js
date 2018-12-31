@@ -10,21 +10,11 @@ import PostItemFootWebStyle from "../../post/style/postItemFoot.webStyle";
 function OutPostItemWebView(props) {
   const {
     post,
-    onOpenUpdatePostDialog,
-    onOpenDecidePostDialog,
     isAwaringReturn,
+    onUpdatePostClick,
+    onDecidePostClick,
     onAwareReturnPostClick
   } = props;
-
-  function onDecidePostClick() {
-    onOpenDecidePostDialog(post.id);
-  }
-  function onAwareReturnClick() {
-    onAwareReturnPostClick(post.id);
-  }
-  function onUpdatePostClick() {
-    onOpenUpdatePostDialog(post.id);
-  }
   const curBorrowShare = post.curBorrowShare;
 
   return (
@@ -42,7 +32,7 @@ function OutPostItemWebView(props) {
             ) : (
               <button
                 id="outPostItem-awareReturnBtn-react"
-                onClick={onAwareReturnClick}
+                onClick={onAwareReturnPostClick}
                 className="btn btn-sm btn-success"
               >
                 {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
@@ -68,8 +58,8 @@ function OutPostItemWebView(props) {
 
 OutPostItemWebView.propTypes = {
   post: PropTypes.object.isRequired,
-  onOpenUpdatePostDialog: PropTypes.func.isRequired,
-  onOpenDecidePostDialog: PropTypes.func.isRequired,
+  onUpdatePostClick: PropTypes.func.isRequired,
+  onDecidePostClick: PropTypes.func.isRequired,
   onAwareReturnPostClick: PropTypes.func.isRequired,
   isAwaringReturn: PropTypes.bool.isRequired
 };

@@ -14,8 +14,8 @@ function OutPostListWebView(props) {
   const {
     listId,
     posts,
-    onOpenUpdatePostDialog,
-    onOpenDecidePostDialog,
+    onUpdatePostClick,
+    onDecidePostClick,
     onAwareReturnPostClick,
     awaringReturnPostIds
   } = props;
@@ -23,17 +23,20 @@ function OutPostListWebView(props) {
   if (posts.length === 0) {
     content = <PostListNoDataWebView />;
   } else {
-    content = posts.map(post => (
-      <Style key={post.id}>
-        <OutPostItemWebView
-          post={post}
-          onOpenUpdatePostDialog={onOpenUpdatePostDialog}
-          onOpenDecidePostDialog={onOpenDecidePostDialog}
-          onAwareReturnPostClick={onAwareReturnPostClick}
-          isAwaringReturn={awaringReturnPostIds.includes(post.id)}
-        />
-      </Style>
-    ));
+    content = posts.map(post => {
+      const postId = post.id;
+      return (
+        <Style key={post.id}>
+          <OutPostItemWebView
+            post={post}
+            onUpdatePostClick={() => onUpdatePostClick(postId)}
+            onDecidePostClick={() => onDecidePostClick(postId)}
+            onAwareReturnPostClick={() => onAwareReturnPostClick(postId)}
+            isAwaringReturn={awaringReturnPostIds.includes(post.id)}
+          />
+        </Style>
+      );
+    });
   }
 
   return <div id={listId}>{content}</div>;

@@ -4,8 +4,8 @@ const OutPostListPropType = {
   listId: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   awaringReturnPostIds: PropTypes.array.isRequired,
-  onOpenUpdatePostDialog: PropTypes.func.isRequired,
-  onOpenDecidePostDialog: PropTypes.func.isRequired,
+  onUpdatePostClick: PropTypes.func.isRequired,
+  onDecidePostClick: PropTypes.func.isRequired,
   onAwareReturnPostClick: PropTypes.func.isRequired
 };
 

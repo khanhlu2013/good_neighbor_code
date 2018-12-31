@@ -44,5 +44,4 @@ function OutPostListMobileView(props) {
 
   return <View id={listId}>{content}</View>;
 }
-
 export default OutPostListMobileView;
