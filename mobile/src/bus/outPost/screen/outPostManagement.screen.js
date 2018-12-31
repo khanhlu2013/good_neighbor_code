@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import { Text } from "react-native";
 
 import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
 import { createStackNavigator } from "react-navigation";
@@ -18,30 +19,39 @@ const OutPostManagementNavigator = createStackNavigator(
   }
 );
 
-const OutPostManagementMobileView = props => {
-  const {
-    posts,
-    requestAlertPosts,
-    awaringReturnPostIds,
-    onUpdatePostClick,
-    onDecidePostClick,
-    onAwareReturnPostClick
-  } = props;
-  const screenProps = {
-    posts,
-    requestAlertPosts,
-    awaringReturnPostIds,
-    onUpdatePostClick,
-    onDecidePostClick,
-    onAwareReturnPostClick
+class OutPostManagementMobileView extends Component {
+  onUpdatePostClick = postId => {
+    this.props.navigation.navigate("outPost_crudDialog");
   };
-  return (
-    <OutPostManagementNavigator
-      screenProps={screenProps}
-      navigation={props.navigation}
-    />
-  );
-};
+
+  onDecidePostClick = postId => {
+    this.props.navigation.navigate("outPost_decisionDialog");
+  };
+
+  render() {
+    const {
+      navigation,
+      posts,
+      requestAlertPosts,
+      awaringReturnPostIds,
+      onAwareReturnPostClick
+    } = this.props;
+    const screenProps = {
+      posts,
+      requestAlertPosts,
+      awaringReturnPostIds,
+      onUpdatePostClick: this.onUpdatePostClick,
+      onDecidePostClick: this.onDecidePostClick,
+      onAwareReturnPostClick
+    };
+    return (
+      <OutPostManagementNavigator
+        screenProps={screenProps}
+        navigation={navigation}
+      />
+    );
+  }
+}
 
 function OutPostManagementScreen(props) {
   return (
