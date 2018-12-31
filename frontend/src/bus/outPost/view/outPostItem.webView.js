@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import OutPostItemHeadWebView from "./outPostItemHead.webView";
-import LoadingIcon from "../../../share/loadingIcon";
 import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyWebView from "../../post/view/postItem_body.webView";
 import PostItemFootWebStyle from "../../post/style/postItemFoot.webStyle";
+import OutPostItemFootWebView from "./outPostItemFoot.webView";
+import OutPostItemFootLogic from "@gn/common/bus/outPost/controller/outPostItemFoot.logic";
 
 function OutPostItemWebView(props) {
   const {
@@ -17,8 +18,6 @@ function OutPostItemWebView(props) {
   } = props;
   const postId = post.id;
 
-  const curBorrowShare = post.curBorrowShare;
-
   return (
     <PostItemStyle id="outPost-item-react">
       <OutPostItemHeadWebView
@@ -28,32 +27,18 @@ function OutPostItemWebView(props) {
       />
       <PostItemBodyWebView post={post} />
       <PostItemFootWebStyle>
-        {post.unawareReturnShareLatest && (
-          <span>
-            {isAwaringReturn ? (
-              <LoadingIcon text={"confirming"} />
-            ) : (
-              <button
-                id="outPostItem-awareReturnBtn-react"
-                onClick={() => onAwareReturnPostClick(postId)}
-                className="btn btn-sm btn-success"
-              >
-                {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
-              </button>
-            )}
-          </span>
-        )}
-        {(post.denyShares.length !== 0 ||
-          post.requestShares.length !== 0 ||
-          curBorrowShare) && (
-          <button
-            id="outPostItem-decisionBtn-react"
-            onClick={() => onDecidePostClick(postId)}
-            className="btn btn-sm btn-success ml-1"
-          >
-            share
-          </button>
-        )}
+        <OutPostItemFootWebView
+          postId={postId}
+          //aware return
+          isAwaringReturn={isAwaringReturn}
+          borrowerOfTheLatestUnawareReturn={OutPostItemFootLogic.getBorrowerOfTheLatestUnawareReturn(
+            post
+          )}
+          onAwareReturnPostClick={onAwareReturnPostClick}
+          //decide
+          isDecidablePost={OutPostItemFootLogic.isDecidablePost(post)}
+          onDecidePostClick={onDecidePostClick}
+        />
       </PostItemFootWebStyle>
     </PostItemStyle>
   );
