@@ -16,6 +16,7 @@ function PostItemMobileView(props) {
   return (
     <PostItemStyle>
       <OutPostItemHeadMobileView
+        postId={post.id}
         onUpdatePostClick={onUpdatePostClick}
         dateCreate={post.dateCreate}
       />

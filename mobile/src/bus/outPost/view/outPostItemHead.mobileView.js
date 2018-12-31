@@ -16,12 +16,12 @@ const LeftStyle = styled.View`
 `;
 
 function OutPostItemHeadMobileView(props) {
-  const { dateCreate, onUpdatePostClick } = props;
+  const { postId, dateCreate, onUpdatePostClick } = props;
 
   return (
     <Style>
       <LeftStyle>
-        <Button small onPress={onUpdatePostClick}>
+        <Button small onPress={() => onUpdatePostClick(postId)}>
           <Text>edit post</Text>
         </Button>
       </LeftStyle>

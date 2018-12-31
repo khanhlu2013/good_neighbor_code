@@ -15,11 +15,14 @@ function OutPostItemWebView(props) {
     onDecidePostClick,
     onAwareReturnPostClick
   } = props;
+  const postId = post.id;
+
   const curBorrowShare = post.curBorrowShare;
 
   return (
     <PostItemStyle id="outPost-item-react">
       <OutPostItemHeadWebView
+        postId={postId}
         onUpdatePostClick={onUpdatePostClick}
         dateCreate={post.dateCreate}
       />
@@ -32,7 +35,7 @@ function OutPostItemWebView(props) {
             ) : (
               <button
                 id="outPostItem-awareReturnBtn-react"
-                onClick={onAwareReturnPostClick}
+                onClick={() => onAwareReturnPostClick(postId)}
                 className="btn btn-sm btn-success"
               >
                 {`confirm returned by ${post.unawareReturnShareLatest.borrower.getNameAndEmail()}`}
@@ -45,7 +48,7 @@ function OutPostItemWebView(props) {
           curBorrowShare) && (
           <button
             id="outPostItem-decisionBtn-react"
-            onClick={onDecidePostClick}
+            onClick={() => onDecidePostClick(postId)}
             className="btn btn-sm btn-success ml-1"
           >
             share

@@ -14,14 +14,14 @@ const LeftStyle = styled.div`
 `;
 
 function OutPostItemHeadWebView(props) {
-  const { dateCreate, onUpdatePostClick } = props;
+  const { postId, dateCreate, onUpdatePostClick } = props;
 
   return (
     <Style>
       <LeftStyle>
         <button
           id="outPostItem-editBtn-react"
-          onClick={onUpdatePostClick}
+          onClick={() => onUpdatePostClick(postId)}
           className="btn btn-sm btn-primary"
         >
           edit post
