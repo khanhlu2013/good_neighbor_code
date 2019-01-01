@@ -15,24 +15,13 @@ import {
   Button
 } from "native-base";
 
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 
 import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
 import { createStackNavigator } from "react-navigation";
 import OutPostManagementBottomTabNavigator from "../navigation/outPostManagementBottomTab.navigation";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
-
-import * as Yup from "yup";
-
-const OutPostItemSchemaValidation = Yup.object().shape({
-  title: Yup.string()
-    .min(3, "Too Short!")
-    .required("Required"),
-  description: Yup.string()
-    .min(5, "Too Short!")
-    .required("Required"),
-  isActive: Yup.boolean().required("Required")
-});
+import OutPostItemSchemaValidation from "../../../common/bus/outPost/validation/outPostItem.validation";
 
 const CrudPostDialogScreen = props => {
   const { navigation, screenProps } = props;
