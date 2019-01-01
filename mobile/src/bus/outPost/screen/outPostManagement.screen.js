@@ -49,7 +49,6 @@ const CrudPostDialogScreen = props => {
   };
 
   const render = props => {
-    console.log(JSON.stringify(props.errors, null, 4));
     return (
       <Container>
         <Content>
@@ -66,7 +65,7 @@ const CrudPostDialogScreen = props => {
                 value={props.values.title}
               />
             </Item>
-            <Item floatingLabel last>
+            <Item floatingLabel>
               <Label style={props.errors.description ? { color: "red" } : {}}>
                 {`description${
                   props.errors.description
@@ -75,14 +74,13 @@ const CrudPostDialogScreen = props => {
                 }`}
               </Label>
               <Input
-                keyboardType="default"
                 onChangeText={props.handleChange("description")}
                 value={props.values.description}
               />
             </Item>
             <ListItem>
               <Left>
-                <Text>is active</Text>
+                <Label>is active</Label>
               </Left>
               <Right>
                 <Switch
