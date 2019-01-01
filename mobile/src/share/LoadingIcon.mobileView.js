@@ -6,6 +6,7 @@ import { nullOrRequiredValidator } from "../common/util";
 
 const Styled = styled.View`
   flex-direction: row;
+  align-items: center;
 `;
 function LoadingIconMobileView(props) {
   const { text, size = "small" } = props;
