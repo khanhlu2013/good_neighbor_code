@@ -24,7 +24,6 @@ function OutPostListWebView(props) {
     content = <PostListNoDataWebView />;
   } else {
     content = posts.map(post => {
-      const postId = post.id;
       return (
         <Style key={post.id}>
           <OutPostItemWebView
