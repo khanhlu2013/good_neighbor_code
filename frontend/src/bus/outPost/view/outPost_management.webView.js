@@ -11,6 +11,7 @@ import OutPostTabEnum from "./outPost_tabEnum";
 import OutPostAllHistoryList from "./outPost_allHistoryList";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import OutPostDecisionDialogController from "@gn/common/bus/outPost/controller/outPostDecisionDialog.controller";
 import OutPostListController from "@gn/common/bus/outPost/controller/outPostList.controller";
 import OutPostManagementPropType from "@gn/common/bus/outPost/propType/outPostManagement.propType";
 
@@ -191,7 +192,8 @@ class OutPostManagementWebView extends Component {
         )}
 
         {isOpenDecisionDialog && (
-          <OutPostDecisionDialog
+          <OutPostDecisionDialogController
+            view={OutPostDecisionDialog}
             isOpen={isOpenDecisionDialog}
             post={posts.find(post => post.id === curDecidePostId)}
             onUndoApproveShare={onUndoApproveShare}

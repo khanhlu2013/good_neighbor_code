@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,114 +7,87 @@ import { date2String } from "@gn/common/util";
 
 Modal.setAppElement("#root");
 
-class OutPostDecisionDialog extends Component {
-  state = {
-    isDecidingPost: false
+function OutPostDecisionDialog(props) {
+  const {
+    isOpen,
+    post,
+    onUndoApproveShare,
+    onUndoDenyShare,
+    onDecideShare,
+    onExit,
+    isDecidingPost
+  } = props;
+
+  const borrowShare = post.curBorrowShare;
+  const borrower = borrowShare ? borrowShare.borrower : null;
+
+  const onExitBtnClicked = e => {
+    onExit();
   };
 
-  render() {
-    const { isDecidingPost } = this.state;
-
-    const {
-      isOpen,
-      post,
-      onUndoApproveShare,
-      onUndoDenyShare,
-      onDecideShare,
-      onExit
-    } = this.props;
-
-    const wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn = asyncFn => (
-      ...args
-    ) => {
-      /**
-       * Take in an original async function and return an enhance function.
-       * The enhance function's only purpose is to receive args when it is invoked by the client
-       * These arg will be pass through the original function for consumption
-       * The original function will also be wrap by setState to indicate before and after.
-       */
-      this.setState({ isDecidingPost: true });
-      asyncFn(...args).then(result => this.setState({ isDecidingPost: false }));
-    };
-
-    const borrowShare = post.curBorrowShare;
-    const borrower = borrowShare ? borrowShare.borrower : null;
-
-    const onUndoApproveBtnClicked = e => {
-      wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
-        onUndoApproveShare
-      )(borrowShare.id);
-    };
-    const onExitBtnClicked = e => {
-      onExit();
-    };
-
-    const content = (
-      <Fragment>
-        <h3 className="text-center">
-          Current borrower: {borrower ? borrower.email : "none"}
-          {borrower && (
-            <button
-              className="btn btn-lg btn-warning"
-              id="OutPostDecisionDialogUndoApproveBtn"
-              onClick={onUndoApproveBtnClicked}
-            >
-              undo
-            </button>
-          )}
-        </h3>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-7">
-              <RequestTable
-                shares={post.requestShares}
-                onDecideShare={wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
-                  onDecideShare
-                )}
-              />
-            </div>
-            <div className="col-sm-5">
-              <DeniedTable
-                shares={post.denyShares}
-                onUndoDenyShare={wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
-                  onUndoDenyShare
-                )}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
+  const content = (
+    <Fragment>
+      <h3 className="text-center">
+        Current borrower: {borrower ? borrower.email : "none"}
+        {borrower && (
           <button
             className="btn btn-lg btn-warning"
-            id="OutPostDecisionDialogExitBtn"
-            onClick={onExitBtnClicked}
+            id="OutPostDecisionDialogUndoApproveBtn"
+            onClick={() => {
+              onUndoApproveShare(borrowShare.id);
+            }}
           >
-            exit
+            undo
           </button>
-        </div>
-      </Fragment>
-    );
+        )}
+      </h3>
 
-    return (
-      <Modal
-        isOpen={isOpen}
-        shouldCloseOnOverlayClick={false}
-        shouldCloseOnEsc={false}
-      >
-        <div id="outPostDecisionDialog-react">
-          <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
-          {isDecidingPost ? (
-            <h1 className="text-center">
-              <LoadingIcon text="please wait" />
-            </h1>
-          ) : (
-            content
-          )}
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-7">
+            <RequestTable
+              shares={post.requestShares}
+              onDecideShare={onDecideShare}
+            />
+          </div>
+          <div className="col-sm-5">
+            <DeniedTable
+              shares={post.denyShares}
+              onUndoDenyShare={onUndoDenyShare}
+            />
+          </div>
         </div>
-      </Modal>
-    );
-  }
+      </div>
+      <div className="text-center">
+        <button
+          className="btn btn-lg btn-warning"
+          id="OutPostDecisionDialogExitBtn"
+          onClick={onExitBtnClicked}
+        >
+          exit
+        </button>
+      </div>
+    </Fragment>
+  );
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      shouldCloseOnOverlayClick={false}
+      shouldCloseOnEsc={false}
+    >
+      <div id="outPostDecisionDialog-react">
+        <h1 className="ReactModal__title">{`Share '${post.title}'`}</h1>
+        {isDecidingPost ? (
+          <h1 className="text-center">
+            <LoadingIcon text="please wait" />
+          </h1>
+        ) : (
+          content
+        )}
+      </div>
+    </Modal>
+  );
 }
 
 OutPostDecisionDialog.propTypes = {
@@ -123,7 +96,8 @@ OutPostDecisionDialog.propTypes = {
   onUndoApproveShare: PropTypes.func.isRequired,
   onUndoDenyShare: PropTypes.func.isRequired,
   onDecideShare: PropTypes.func.isRequired,
-  onExit: PropTypes.func.isRequired
+  onExit: PropTypes.func.isRequired,
+  isDecidingPost: PropTypes.bool.isRequired
 };
 
 const denyTableFromClass = "col-10";
