@@ -24,16 +24,26 @@ class OutPostDecisionDialog extends Component {
       onExit
     } = this.props;
 
-    const wrapBeforeAfter_isDecidingPost_state = fn => (...args) => {
+    const wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn = asyncFn => (
+      ...args
+    ) => {
+      /**
+       * Take in an original async function and return an enhance function.
+       * The enhance function's only purpose is to receive args when it is invoked by the client
+       * These arg will be pass through the original function for consumption
+       * The original function will also be wrap by setState to indicate before and after.
+       */
       this.setState({ isDecidingPost: true });
-      fn(...args).then(result => this.setState({ isDecidingPost: false }));
+      asyncFn(...args).then(result => this.setState({ isDecidingPost: false }));
     };
 
     const borrowShare = post.curBorrowShare;
     const borrower = borrowShare ? borrowShare.borrower : null;
 
     const onUndoApproveBtnClicked = e => {
-      wrapBeforeAfter_isDecidingPost_state(onUndoApproveShare)(borrowShare.id);
+      wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
+        onUndoApproveShare
+      )(borrowShare.id);
     };
     const onExitBtnClicked = e => {
       onExit();
@@ -59,7 +69,7 @@ class OutPostDecisionDialog extends Component {
             <div className="col-sm-7">
               <RequestTable
                 shares={post.requestShares}
-                onDecideShare={wrapBeforeAfter_isDecidingPost_state(
+                onDecideShare={wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
                   onDecideShare
                 )}
               />
@@ -67,7 +77,7 @@ class OutPostDecisionDialog extends Component {
             <div className="col-sm-5">
               <DeniedTable
                 shares={post.denyShares}
-                onUndoDenyShare={wrapBeforeAfter_isDecidingPost_state(
+                onUndoDenyShare={wrapBeforeAfter_isDecidingPost_stateSetting_aroundAsyncFn(
                   onUndoDenyShare
                 )}
               />
