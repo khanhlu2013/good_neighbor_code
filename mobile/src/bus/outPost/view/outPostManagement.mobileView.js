@@ -15,16 +15,25 @@ class OutPostManagementMobileView extends Component {
       post: this.getPostById(postId)
     });
   };
-
   render() {
     const {
       navigation,
+
+      //data
       posts,
-      requestAlertPosts,
       awaringReturnPostIds,
+
+      //derived data
+      requestAlertPosts,
+
+      //handler
       onAwareReturnPostClick,
-      onCreateOrUpdatePost
+      onCreateOrUpdatePost,
+      onUndoApproveShare,
+      onUndoDenyShare,
+      onDecideShare
     } = this.props;
+
     const screenProps = {
       posts,
       requestAlertPosts,
@@ -32,7 +41,10 @@ class OutPostManagementMobileView extends Component {
       onUpdatePostClick: this.onUpdatePostClick,
       onDecidePostClick: this.onDecidePostClick,
       onAwareReturnPostClick,
-      onCreateOrUpdatePost
+      onCreateOrUpdatePost,
+      onUndoApproveShare,
+      onUndoDenyShare,
+      onDecideShare
     };
     return (
       <OutPostManagementNavigator
