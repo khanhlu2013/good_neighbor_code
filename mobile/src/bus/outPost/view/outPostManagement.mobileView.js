@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import OutPostManagementNavigator from "../navigation/outPostManagement.navigation";
 
 class OutPostManagementMobileView extends Component {
+  state = {
+    curDecidePostId: null
+  };
   getPostById = postId => this.props.posts.find(post => post.id === postId);
 
   onUpdatePostClick = postId => {
@@ -11,9 +14,9 @@ class OutPostManagementMobileView extends Component {
   };
 
   onDecidePostClick = postId => {
-    this.props.navigation.navigate("outPost_decisionDialog", {
-      post: this.getPostById(postId)
-    });
+    this.setState({ curDecidePostId: postId }, () =>
+      this.props.navigation.navigate("outPost_decisionDialog")
+    );
   };
   render() {
     const {
@@ -40,11 +43,15 @@ class OutPostManagementMobileView extends Component {
       awaringReturnPostIds,
       onUpdatePostClick: this.onUpdatePostClick,
       onDecidePostClick: this.onDecidePostClick,
+
       onAwareReturnPostClick,
       onCreateOrUpdatePost,
       onUndoApproveShare,
       onUndoDenyShare,
-      onDecideShare
+      onDecideShare,
+
+      //non-redux-state
+      curDecidePost: this.getPostById(this.state.curDecidePostId)
     };
     return (
       <OutPostManagementNavigator

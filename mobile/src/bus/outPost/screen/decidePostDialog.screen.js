@@ -16,6 +16,7 @@ import {
 import { date2String, nullOrRequiredValidator } from "../../../common/util";
 import OutPostDecisionDialogController from "../../../common/bus/outPost/controller/outPostDecisionDialog.controller";
 import Share from "../../../common/model/share";
+import Post from "../../../common/model/post";
 
 function DenialListMobileView(props) {
   const { isDecidingPost, denyShares, onUndoDenyShare } = props;
@@ -125,9 +126,11 @@ function DecisionPostDialogView(props) {
     onUndoApproveShare,
     onUndoDenyShare,
     onDecideShare,
-    isDecidingPost
+    isDecidingPost,
+    curDecidePost
   } = props;
-  const post = navigation.getParam("post");
+
+  const post = curDecidePost;
 
   return (
     <Container>
@@ -169,13 +172,19 @@ DecisionPostDialogView.propTypes = {
   onUndoApproveShare: PropTypes.func.isRequired,
   onUndoDenyShare: PropTypes.func.isRequired,
   onDecideShare: PropTypes.func.isRequired,
-  isDecidingPost: PropTypes.bool.isRequired
+  isDecidingPost: PropTypes.bool.isRequired,
+  curDecidePost: PropTypes.instanceOf(Post)
 };
 
 function DecisionPostDialogScreen(props) {
   const { screenProps, navigation } = props;
 
-  const { onUndoApproveShare, onUndoDenyShare, onDecideShare } = screenProps;
+  const {
+    onUndoApproveShare,
+    onUndoDenyShare,
+    onDecideShare,
+    curDecidePost
+  } = screenProps;
   return (
     <OutPostDecisionDialogController
       view={DecisionPostDialogView}
@@ -183,6 +192,7 @@ function DecisionPostDialogScreen(props) {
       onUndoApproveShare={onUndoApproveShare}
       onUndoDenyShare={onUndoDenyShare}
       onDecideShare={onDecideShare}
+      curDecidePost={curDecidePost}
     />
   );
 }
