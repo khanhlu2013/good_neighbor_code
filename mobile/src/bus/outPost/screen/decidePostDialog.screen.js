@@ -17,6 +17,7 @@ import { date2String, nullOrRequiredValidator } from "../../../common/util";
 import OutPostDecisionDialogController from "../../../common/bus/outPost/controller/outPostDecisionDialog.controller";
 import Share from "../../../common/model/share";
 import Post from "../../../common/model/post";
+import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
 
 function DenialListMobileView(props) {
   const { isDecidingPost, denyShares, onUndoDenyShare } = props;
@@ -137,32 +138,39 @@ function DecisionPostDialogView(props) {
       <Header>
         <Text>{`share '${post.title}' post`}</Text>
       </Header>
-      <Content>
-        <CurrentBorrowerMobileView
-          isDecidingPost={isDecidingPost}
-          curBorrowShare={post.curBorrowShare}
-          onUndoApproveShare={onUndoApproveShare}
-        />
 
-        <WaitingListMobileView
-          isDecidingPost={isDecidingPost}
-          requestShares={post.requestShares}
-          onDecideShare={onDecideShare}
-        />
+      {isDecidingPost ? (
+        <Content>
+          <LoadingIconMobileView text="please wait" size="large" />
+        </Content>
+      ) : (
+        <Content>
+          <CurrentBorrowerMobileView
+            isDecidingPost={isDecidingPost}
+            curBorrowShare={post.curBorrowShare}
+            onUndoApproveShare={onUndoApproveShare}
+          />
 
-        <DenialListMobileView
-          isDecidingPost={isDecidingPost}
-          denyShares={post.denyShares}
-          onUndoDenyShare={onUndoDenyShare}
-        />
+          <WaitingListMobileView
+            isDecidingPost={isDecidingPost}
+            requestShares={post.requestShares}
+            onDecideShare={onDecideShare}
+          />
 
-        <Button
-          style={{ alignSelf: "center", marginTop: 30 }}
-          onPress={() => navigation.pop()}
-        >
-          <Text>done</Text>
-        </Button>
-      </Content>
+          <DenialListMobileView
+            isDecidingPost={isDecidingPost}
+            denyShares={post.denyShares}
+            onUndoDenyShare={onUndoDenyShare}
+          />
+
+          <Button
+            style={{ alignSelf: "center", marginTop: 30 }}
+            onPress={() => navigation.pop()}
+          >
+            <Text>done</Text>
+          </Button>
+        </Content>
+      )}
     </Container>
   );
 }
