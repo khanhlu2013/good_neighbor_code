@@ -22,12 +22,15 @@ class OutPostManagementMobileView extends Component {
     const {
       navigation,
 
-      //data
+      //raw data
       posts,
       awaringReturnPostIds,
 
       //derived data
       requestAlertPosts,
+      borrowPosts,
+      returnAlertPosts,
+      returnShares,
 
       //handler
       onAwareReturnPostClick,
@@ -38,12 +41,21 @@ class OutPostManagementMobileView extends Component {
     } = this.props;
 
     const screenProps = {
+      //raw data
       posts,
-      requestAlertPosts,
       awaringReturnPostIds,
+
+      //derived data
+      requestAlertPosts,
+      borrowPosts,
+      returnAlertPosts,
+      returnShares,
+
+      //ui handler
       onUpdatePostClick: this.onUpdatePostClick,
       onDecidePostClick: this.onDecidePostClick,
 
+      //api handler
       onAwareReturnPostClick,
       onCreateOrUpdatePost,
       onUndoApproveShare,

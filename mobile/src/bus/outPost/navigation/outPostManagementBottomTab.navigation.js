@@ -33,6 +33,8 @@ function screenFactory(routeTitle, postListKeyFromScreenProps) {
 const OutPostManagementBottomTabNavigator = createBottomTabNavigator({
   outPost_all: screenFactory("all", "posts"),
   outPost_request: screenFactory("request", "requestAlertPosts"),
+  outPost_borrow: screenFactory("borrow", "borrowPosts"),
+  outPost_return: screenFactory("return", "returnAlertPosts"),
   AddButton: {
     screen: () => null,
     navigationOptions: ({ navigation }) => ({
