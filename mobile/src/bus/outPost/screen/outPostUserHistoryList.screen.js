@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+
 import {
   Container,
   Header,
@@ -10,8 +11,8 @@ import {
   Body,
   Text
 } from "native-base";
-import OutPostUserHistoryListPropType from "../../../common/bus/outPost/propType/outPostUserHistoryList.propTypes";
 import { date2String } from "../../../common/util";
+import OutPostUserHistoryListPropType from "../../../common/bus/outPost/propType/outPostUserHistoryList.propTypes";
 
 function OutPostUserHistoryListScreen(props) {
   const { shares } = props;
@@ -41,6 +42,6 @@ function OutPostUserHistoryListScreen(props) {
   );
 }
 
-// OutPostUserHistoryListScreen.propTypes = OutPostUserHistoryListPropType;
+OutPostUserHistoryListScreen.propTypes = OutPostUserHistoryListPropType;
 
 export default OutPostUserHistoryListScreen;
