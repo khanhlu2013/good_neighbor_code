@@ -1,12 +1,12 @@
 import { createStackNavigator } from "react-navigation";
 import OutPostManagementBottomTabNavigator from "../navigation/outPostManagementBottomTab.navigation";
-import CrudPostDialogScreen from "../screen/crudPostDialog.screen";
-import DecisionPostDialogScreen from "../screen/decidePostDialog.screen";
+import OutPostDecisionDialogScreen from "../screen/outPostDecisionDialog.screen";
+import OutPostCrudDialogScreen from "../screen/outPostCrudDialog.screen";
 
 const OutPostManagementNavigator = createStackNavigator(
   {
-    outPost_crudDialog: CrudPostDialogScreen,
-    outPost_decisionDialog: DecisionPostDialogScreen,
+    outPost_crudDialog: OutPostCrudDialogScreen,
+    outPost_decisionDialog: OutPostDecisionDialogScreen,
     outPost_bottomTab: OutPostManagementBottomTabNavigator
   },
   {

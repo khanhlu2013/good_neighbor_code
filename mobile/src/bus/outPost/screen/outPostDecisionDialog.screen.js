@@ -187,7 +187,7 @@ DecisionPostDialogView.propTypes = {
   curDecidePost: PropTypes.instanceOf(Post)
 };
 
-function DecisionPostDialogScreen(props) {
+function OutPostDecisionDialogScreen(props) {
   const { screenProps, navigation } = props;
 
   const {
@@ -208,4 +208,4 @@ function DecisionPostDialogScreen(props) {
   );
 }
 
-export default DecisionPostDialogScreen;
+export default OutPostDecisionDialogScreen;

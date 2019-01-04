@@ -20,7 +20,7 @@ import { Formik } from "formik";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
 import OutPostItemSchemaValidation from "../../../common/bus/outPost/validation/outPostItem.validation";
 
-const CrudPostDialogScreen = props => {
+const OutPostCrudDialogScreen = props => {
   const { navigation, screenProps } = props;
 
   let post = navigation.getParam("post");
@@ -137,4 +137,4 @@ const CrudPostDialogScreen = props => {
   );
 };
 
-export default CrudPostDialogScreen;
+export default OutPostCrudDialogScreen;
