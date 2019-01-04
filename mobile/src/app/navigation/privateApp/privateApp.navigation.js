@@ -1,10 +1,10 @@
 import { createDrawerNavigator } from "react-navigation";
 import PropTypes from "prop-types";
 
-import PrivateAppNavigationDrawerView from "./navigationDrawer.view";
 import InPostManagementScreen from "../../../bus/inPost/screen/inPostManagement.screen";
 import { createPrivateAppNavigationOption } from "./privateApp.navigationHelper";
 import OutPostManagementScreen from "../../../bus/outPost/screen/outPostManagement.screen";
+import PrivateAppNavigationMasterDrawerView from "./navigationMasterDrawer.view";
 
 export function PrivateAppRouteToTitleMapper(routeName) {
   switch (routeName) {
@@ -37,7 +37,7 @@ const PrivateAppNavigator = createDrawerNavigator(
     }
   },
   {
-    contentComponent: PrivateAppNavigationDrawerView,
+    contentComponent: PrivateAppNavigationMasterDrawerView,
     contentOptions: {
       activeTintColor: "orange"
     }

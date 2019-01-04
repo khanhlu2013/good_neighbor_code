@@ -2,7 +2,7 @@ import React from "react";
 import { DrawerItems } from "react-navigation";
 import { Text, SafeAreaView, ScrollView, View } from "react-native";
 
-const PrivateAppNavigationDrawerView = props => (
+const PrivateAppNavigationMasterDrawerView = props => (
   <SafeAreaView style={{ flex: 1 }}>
     <View
       style={{
@@ -20,4 +20,4 @@ const PrivateAppNavigationDrawerView = props => (
   </SafeAreaView>
 );
 
-export default PrivateAppNavigationDrawerView;
+export default PrivateAppNavigationMasterDrawerView;
