@@ -23,7 +23,10 @@ import OutPostItemSchemaValidation from "../../../common/bus/outPost/validation/
 const CrudPostDialogScreen = props => {
   const { navigation, screenProps } = props;
 
-  let post = navigation.getParam("post", {});
+  let post = navigation.getParam("post");
+  if (!post) {
+    post = {};
+  }
   const postId = post.id || null;
   const initialValues = {
     title: post.title || "",
