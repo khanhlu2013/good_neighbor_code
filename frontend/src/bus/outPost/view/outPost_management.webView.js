@@ -8,9 +8,9 @@ import OutPostDecisionDialog from "./decisionDialog";
 import OutPostListWebView from "./outPostList.webView";
 import OutPostTabBar from "./outPost_tabBar";
 import OutPostTabEnum from "./outPost_tabEnum";
-import OutPostUserHistoryListWebView from "./outPostUserHistoryList.webView";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import PostUserHistoryListWebView from "../../post/view/postUserHistoryList.webView";
 import OutPostDecisionDialogController from "@gn/common/bus/outPost/controller/outPostDecisionDialog.controller";
 import OutPostListController from "@gn/common/bus/outPost/controller/outPostList.controller";
 import OutPostManagementPropType from "@gn/common/bus/outPost/propType/outPostManagement.propType";
@@ -134,7 +134,7 @@ class OutPostManagementWebView extends Component {
           </TabPanel>
           <TabPanel show={selectTab === OutPostTabEnum.HISTORY}>
             <PostUserHistoryListStyle>
-              <OutPostUserHistoryListWebView shares={returnShares} />
+              <PostUserHistoryListWebView shares={returnShares} />
             </PostUserHistoryListStyle>
           </TabPanel>
         </AppCenterWrapStyle>

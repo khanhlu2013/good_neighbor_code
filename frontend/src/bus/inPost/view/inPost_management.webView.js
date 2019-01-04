@@ -7,8 +7,8 @@ import TabPanel from "../../../share/style/tabPanel_style";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import PostUserHistoryListStyle from "../../post/style/postUser_historyList_style";
 import InPostListWebView from "./inPostList.webView";
-import InPostUserHistoryListWebView from "./inPost_userHistoryList.webView";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import PostUserHistoryListWebView from "../../post/view/postUserHistoryList.webView";
 import InPostUserHistoryListController from "@gn/common/bus/inPost/controller/inPost_userHistoryList.controller";
 import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 
@@ -73,7 +73,7 @@ class InPostManagementWebView extends Component {
             <PostUserHistoryListStyle>
               <InPostUserHistoryListController
                 shares={returnShares}
-                view={InPostUserHistoryListWebView}
+                view={PostUserHistoryListWebView}
               />
             </PostUserHistoryListStyle>
           </TabPanel>

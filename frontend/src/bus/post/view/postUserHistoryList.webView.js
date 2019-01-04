@@ -1,10 +1,10 @@
 import React from "react";
 
-import PostListNoDataWebView from "../../post/view/postListNoData.webView";
-import InPostUserHistoryListPropType from "@gn/common/bus/inPost/propType/inPost_userHistoryList.propType";
+import PostListNoDataWebView from "./postListNoData.webView";
+import PostUserHistoryListPropType from "@gn/common/bus/post/propType/postUserHistoryList.propTypes";
 import { date2String } from "@gn/common/util";
 
-function InPostUserHistoryListWebView(props) {
+function PostUserHistoryListWebView(props) {
   const { shares } = props;
   if (shares.length === 0) {
     return <PostListNoDataWebView />;
@@ -26,18 +26,11 @@ function InPostUserHistoryListWebView(props) {
       id="InShareReturnTable-react"
       className="table table-sm table-striped table-bordered"
     >
-      <thead className="thead-light">
-        <tr>
-          <th>date</th>
-          <th>post</th>
-          <th>lender</th>
-        </tr>
-      </thead>
       <tbody>{rows}</tbody>
     </table>
   );
 }
 
-InPostUserHistoryListWebView.propTypes = InPostUserHistoryListPropType;
+PostUserHistoryListWebView.propTypes = PostUserHistoryListPropType;
 
-export default InPostUserHistoryListWebView;
+export default PostUserHistoryListWebView;
