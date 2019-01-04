@@ -16,7 +16,7 @@ function OutPostListWebView(props) {
     posts,
     onUpdatePostClick,
     onDecidePostClick,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
     awaringReturnPostIds
   } = props;
   let content;
@@ -30,7 +30,7 @@ function OutPostListWebView(props) {
             post={post}
             onUpdatePostClick={onUpdatePostClick}
             onDecidePostClick={onDecidePostClick}
-            onAwareReturnPostClick={() => onAwareReturnPostClick}
+            onAwareReturnPost={onAwareReturnPost}
             isAwaringReturn={awaringReturnPostIds.includes(post.id)}
           />
         </Style>

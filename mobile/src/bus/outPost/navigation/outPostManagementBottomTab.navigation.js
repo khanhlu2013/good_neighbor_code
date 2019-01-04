@@ -20,7 +20,7 @@ function screenFactory(routeTitle, postListKeyFromScreenProps) {
           awaringReturnPostIds={screenProps.awaringReturnPostIds}
           onUpdatePostClick={screenProps.onUpdatePostClick}
           onDecidePostClick={screenProps.onDecidePostClick}
-          onAwareReturnPostClick={screenProps.onAwareReturnPostClick}
+          onAwareReturnPost={screenProps.onAwareReturnPost}
         />
       );
     },

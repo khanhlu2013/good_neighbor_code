@@ -10,7 +10,7 @@ function OutPostItemFootMobileView(props) {
     //aware
     isAwaringReturn,
     borrowerOfTheLatestUnawareReturn,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
 
     //decide
     isDecidablePost,
@@ -21,9 +21,9 @@ function OutPostItemFootMobileView(props) {
       {borrowerOfTheLatestUnawareReturn && (
         <View>
           {isAwaringReturn ? (
-            <LoadingIconMobileView text={"confirming"} />
+            <LoadingIconMobileView text={"confirming"} size="large" />
           ) : (
-            <Button onPress={() => onAwareReturnPostClick(postId)}>
+            <Button onPress={() => onAwareReturnPost(postId)}>
               <Text>{`confirm returned by ${borrowerOfTheLatestUnawareReturn.getNameAndEmail()}`}</Text>
             </Button>
           )}

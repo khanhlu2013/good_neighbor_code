@@ -33,7 +33,7 @@ class OutPostManagementMobileView extends Component {
       returnShares,
 
       //handler
-      onAwareReturnPostClick,
+      onAwareReturnPost,
       onCreateOrUpdatePost,
       onUndoApproveShare,
       onUndoDenyShare,
@@ -56,7 +56,7 @@ class OutPostManagementMobileView extends Component {
       onDecidePostClick: this.onDecidePostClick,
 
       //api handler
-      onAwareReturnPostClick,
+      onAwareReturnPost,
       onCreateOrUpdatePost,
       onUndoApproveShare,
       onUndoDenyShare,

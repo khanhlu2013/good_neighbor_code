@@ -13,7 +13,7 @@ function PostItemMobileView(props) {
     post,
     onUpdatePostClick,
     onDecidePostClick,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
     isAwaringReturn
   } = props;
   const postId = post.id;
@@ -34,7 +34,7 @@ function PostItemMobileView(props) {
           borrowerOfTheLatestUnawareReturn={OutPostItemFootLogic.getBorrowerOfTheLatestUnawareReturn(
             post
           )}
-          onAwareReturnPostClick={onAwareReturnPostClick}
+          onAwareReturnPost={onAwareReturnPost}
           //decide
           isDecidablePost={OutPostItemFootLogic.isDecidablePost(post)}
           onDecidePostClick={onDecidePostClick}
@@ -50,7 +50,7 @@ function OutPostListMobileView(props) {
     posts,
     onUpdatePostClick,
     onDecidePostClick,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
     awaringReturnPostIds
   } = props;
 
@@ -67,7 +67,7 @@ function OutPostListMobileView(props) {
             post={post}
             onUpdatePostClick={onUpdatePostClick}
             onDecidePostClick={onDecidePostClick}
-            onAwareReturnPostClick={() => onAwareReturnPostClick}
+            onAwareReturnPost={onAwareReturnPost}
             isAwaringReturn={awaringReturnPostIds.includes(post.id)}
           />
         )}

@@ -13,7 +13,7 @@ function OutPostItemWebView(props) {
     post,
     onUpdatePostClick,
     onDecidePostClick,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
     isAwaringReturn
   } = props;
   const postId = post.id;
@@ -34,7 +34,7 @@ function OutPostItemWebView(props) {
           borrowerOfTheLatestUnawareReturn={OutPostItemFootLogic.getBorrowerOfTheLatestUnawareReturn(
             post
           )}
-          onAwareReturnPostClick={onAwareReturnPostClick}
+          onAwareReturnPost={onAwareReturnPost}
           //decide
           isDecidablePost={OutPostItemFootLogic.isDecidablePost(post)}
           onDecidePostClick={onDecidePostClick}

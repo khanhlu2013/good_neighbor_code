@@ -81,7 +81,7 @@ class OutPostManagementWebView extends Component {
       posts={posts}
       onUpdatePostClick={this.onOpenUpdatePostDialog}
       onDecidePostClick={this.onOpenDecidePostDialog}
-      onAwareReturnPostClick={this.props.onAwareReturnPost}
+      onAwareReturnPost={this.props.onAwareReturnPost}
       awaringReturnPostIds={this.props.awaringReturnPostIds}
       view={OutPostListWebView}
     />

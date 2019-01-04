@@ -6,7 +6,7 @@ const OutPostListPropType = {
   awaringReturnPostIds: PropTypes.array.isRequired,
   onUpdatePostClick: PropTypes.func.isRequired,
   onDecidePostClick: PropTypes.func.isRequired,
-  onAwareReturnPostClick: PropTypes.func.isRequired
+  onAwareReturnPost: PropTypes.func.isRequired
 };
 
 export default OutPostListPropType;

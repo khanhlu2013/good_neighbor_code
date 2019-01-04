@@ -6,7 +6,7 @@ const OutPostItemFootPropType = {
   postId: PropTypes.string.isRequired,
   isAwaringReturn: PropTypes.bool.isRequired,
   borrowerOfTheLatestUnawareReturn: nullOrRequiredValidator("object", User),
-  onAwareReturnPostClick: PropTypes.func.isRequired,
+  onAwareReturnPost: PropTypes.func.isRequired,
   isDecidablePost: PropTypes.bool.isRequired,
   onDecidePostClick: PropTypes.func.isRequired
 };

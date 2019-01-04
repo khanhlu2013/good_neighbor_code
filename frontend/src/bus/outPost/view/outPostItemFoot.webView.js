@@ -9,7 +9,7 @@ function OutPostItemFootWebView(props) {
     //aware
     isAwaringReturn,
     borrowerOfTheLatestUnawareReturn,
-    onAwareReturnPostClick,
+    onAwareReturnPost,
 
     //decide
     isDecidablePost,
@@ -24,7 +24,7 @@ function OutPostItemFootWebView(props) {
           ) : (
             <button
               id="outPostItem-awareReturnBtn-react"
-              onClick={() => onAwareReturnPostClick(postId)}
+              onClick={() => onAwareReturnPost(postId)}
               className="btn btn-sm btn-success"
             >
               {`confirm returned by ${borrowerOfTheLatestUnawareReturn.getNameAndEmail()}`}
