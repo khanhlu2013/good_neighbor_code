@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostListNoDataWebView from "../../post/view/postListNoData.webView";
+import Share from "@gn/common/model/share";
+import OutPostUserHistoryListPropType from "@gn/common/bus/outPost/propType/outPostUserHistoryList.propTypes";
 import { date2String } from "@gn/common/util";
 
-function OutPostAllHistoryList(props) {
+function OutPostUserHistoryListWebView(props) {
   const { shares } = props;
   const rows = shares.map(share => <TableRow key={share.id} share={share} />);
   if (shares.length === 0) {
@@ -28,9 +30,7 @@ function OutPostAllHistoryList(props) {
   );
 }
 
-OutPostAllHistoryList.propTypes = {
-  shares: PropTypes.array.isRequired
-};
+OutPostUserHistoryListWebView.propTypes = OutPostUserHistoryListPropType;
 
 function TableRow(props) {
   const { share } = props;
@@ -45,7 +45,7 @@ function TableRow(props) {
   );
 }
 TableRow.propTypes = {
-  share: PropTypes.object.isRequired
+  share: PropTypes.instanceOf(Share).isRequired
 };
 
-export default OutPostAllHistoryList;
+export default OutPostUserHistoryListWebView;
