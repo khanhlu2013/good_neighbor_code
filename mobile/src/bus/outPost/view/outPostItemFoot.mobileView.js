@@ -30,7 +30,7 @@ function OutPostItemFootMobileView(props) {
         </View>
       )}
       {isDecidablePost && (
-        <Button onPress={() => onDecidePostClick(postId)}>
+        <Button small success onPress={() => onDecidePostClick(postId)}>
           <Text>share</Text>
         </Button>
       )}
