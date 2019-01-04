@@ -11,7 +11,8 @@ import {
   Left,
   Body,
   Right,
-  Icon
+  Icon,
+  View
 } from "native-base";
 import { date2String, nullOrRequiredValidator } from "../../../common/util";
 import OutPostDecisionDialogController from "../../../common/bus/outPost/controller/outPostDecisionDialog.controller";
@@ -140,9 +141,11 @@ function DecisionPostDialogView(props) {
       </Header>
 
       {isDecidingPost ? (
-        <Content>
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
           <LoadingIconMobileView text="please wait" size="large" />
-        </Content>
+        </View>
       ) : (
         <Content>
           <CurrentBorrowerMobileView
