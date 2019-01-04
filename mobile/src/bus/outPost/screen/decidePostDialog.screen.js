@@ -144,7 +144,7 @@ function DecisionPostDialogView(props) {
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <LoadingIconMobileView text="please wait" size="large" />
+          <LoadingIconMobileView text="please wait" />
         </View>
       ) : (
         <Content>

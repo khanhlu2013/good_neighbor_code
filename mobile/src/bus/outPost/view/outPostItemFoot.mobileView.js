@@ -21,7 +21,7 @@ function OutPostItemFootMobileView(props) {
       {borrowerOfTheLatestUnawareReturn && (
         <View>
           {isAwaringReturn ? (
-            <LoadingIconMobileView text={"confirming"} size="large" />
+            <LoadingIconMobileView text={"confirming"} />
           ) : (
             <Button small success onPress={() => onAwareReturnPost(postId)}>
               <Text>{`confirm returned by ${borrowerOfTheLatestUnawareReturn.getNameAndEmail()}`}</Text>

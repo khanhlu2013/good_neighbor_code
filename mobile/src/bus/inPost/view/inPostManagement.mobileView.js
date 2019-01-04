@@ -27,7 +27,7 @@ function InPostManagementMobileView(props) {
   if (!isInitPosts || isFetchingPosts) {
     content = (
       <LoadingStyle>
-        <LoadingIconMobileView text="loading post" size="large" />
+        <LoadingIconMobileView text="loading post" />
       </LoadingStyle>
     );
   } else {

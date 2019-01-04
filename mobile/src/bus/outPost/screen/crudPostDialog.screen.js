@@ -99,7 +99,7 @@ const CrudPostDialogScreen = props => {
               }}
             >
               {props.isSubmitting ? (
-                <LoadingIconMobileView text="please wait" size="large" />
+                <LoadingIconMobileView text="please wait" />
               ) : (
                 <Fragment>
                   <Button
