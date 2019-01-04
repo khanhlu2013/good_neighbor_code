@@ -6,7 +6,7 @@ import { Button, Text, Icon } from "native-base";
 import OutPostListController from "../../../common/bus/outPost/controller/outPostList.controller";
 import DUMMY_ID from "../../../share/dummyId";
 import OutPostListMobileView from "../view/outPostList.mobileView";
-import OutPostUserHistoryListScreen from "../screen/outPostUserHistoryList.screen";
+import PostUserHistoryListMobileView from "../../post/view/postUserHistoryList.mobileView";
 
 function screenFactory(routeTitle, postListKeyFromScreenProps) {
   return {
@@ -42,7 +42,7 @@ const OutPostManagementBottomTabNavigator = createBottomTabNavigator({
       const { screenProps } = props;
       const { returnShares } = screenProps;
 
-      return <OutPostUserHistoryListScreen shares={returnShares} />;
+      return <PostUserHistoryListMobileView shares={returnShares} />;
     },
     navigationOptions: {
       title: "history"

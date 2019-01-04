@@ -12,9 +12,9 @@ import {
   Text
 } from "native-base";
 import { date2String } from "../../../common/util";
-import OutPostUserHistoryListPropType from "../../../common/bus/outPost/propType/outPostUserHistoryList.propTypes";
+import PostUserHistoryListPropType from "../../../common/bus/post/propType/postUserHistoryList.propTypes";
 
-function OutPostUserHistoryListScreen(props) {
+function PostUserHistoryListMobileView(props) {
   const { shares } = props;
 
   return (
@@ -42,6 +42,6 @@ function OutPostUserHistoryListScreen(props) {
   );
 }
 
-OutPostUserHistoryListScreen.propTypes = OutPostUserHistoryListPropType;
+PostUserHistoryListMobileView.propTypes = PostUserHistoryListPropType;
 
-export default OutPostUserHistoryListScreen;
+export default PostUserHistoryListMobileView;

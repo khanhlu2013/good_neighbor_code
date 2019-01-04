@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import Share from "../../../model/share";
 
-const InPostUserHistoryListPropType = {
+const PostUserHistoryListPropType = {
   shares: PropTypes.arrayOf(PropTypes.instanceOf(Share)).isRequired
 };
 
-export default InPostUserHistoryListPropType;
+export default PostUserHistoryListPropType;

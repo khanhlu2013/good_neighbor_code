@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 import Post from "../../../common/model/post";
 import Share from "../../../common/model/share";
-import InPostUserHistoryListMobileView from "../view/inPost_userHistoryList.mobileView";
 import InPostUserHistoryListController from "../../../common/bus/inPost/controller/inPost_userHistoryList.controller";
 import { BUSINESS_ICON_SIZE } from "../../../share/uiConstant";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import DUMMY_ID from "../../../share/dummyId";
 import InPostListMobileView from "../view/inPostList.mobileView";
+import PostUserHistoryListMobileView from "../../post/view/postUserHistoryList.mobileView";
 
 const InPostManagementNavigator = createBottomTabNavigator(
   {
@@ -61,7 +61,7 @@ const InPostManagementNavigator = createBottomTabNavigator(
       screen: props => (
         <InPostUserHistoryListController
           shares={props.screenProps.returnShares}
-          view={InPostUserHistoryListMobileView}
+          view={PostUserHistoryListMobileView}
         />
       ),
       navigationOptions: {

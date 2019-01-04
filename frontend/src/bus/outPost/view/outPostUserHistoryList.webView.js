@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostListNoDataWebView from "../../post/view/postListNoData.webView";
+import PostUserHistoryListPropType from "@gn/common/bus/post/propType/postUserHistoryList.propTypes";
 import Share from "@gn/common/model/share";
-import OutPostUserHistoryListPropType from "@gn/common/bus/outPost/propType/outPostUserHistoryList.propTypes";
 import { date2String } from "@gn/common/util";
 
 function OutPostUserHistoryListWebView(props) {
@@ -30,7 +30,7 @@ function OutPostUserHistoryListWebView(props) {
   );
 }
 
-OutPostUserHistoryListWebView.propTypes = OutPostUserHistoryListPropType;
+OutPostUserHistoryListWebView.propTypes = PostUserHistoryListPropType;
 
 function TableRow(props) {
   const { share } = props;
