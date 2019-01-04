@@ -29,10 +29,10 @@ function OutPostUserHistoryListScreen(props) {
             <ListItem thumbnail key={share.id}>
               <Body>
                 <Text>{share.post.title}</Text>
-                <Text note>{date2String(share.dateReturn)}</Text>
+                <Text note>{share.borrower.getNameAndEmail()}</Text>
               </Body>
               <Right>
-                <Text>{share.borrower.getNameAndEmail()}</Text>
+                <Text>{date2String(share.dateReturn)}</Text>
               </Right>
             </ListItem>
           ))}
