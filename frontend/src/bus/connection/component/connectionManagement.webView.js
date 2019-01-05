@@ -29,7 +29,6 @@ const Style = styled.div`
 class ConnectionManagementWebView extends Component {
   static propTypes = {
     loginUser: PropTypes.instanceOf(User).isRequired,
-    fetchConnections: PropTypes.func.isRequired,
     isFetchingConnections: PropTypes.bool.isRequired,
     isInitConnections: PropTypes.bool.isRequired,
     connections: PropTypes.array.isRequired,
@@ -53,10 +52,6 @@ class ConnectionManagementWebView extends Component {
         connection.isApproveByFrom &&
         connection.isApproveByTo === undefined
     ).length;
-  }
-
-  componentDidMount() {
-    this.props.fetchConnections();
   }
 
   onTabChange = selectTab => {

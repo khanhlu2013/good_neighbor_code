@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import thunk from "redux-thunk";
@@ -12,11 +11,13 @@ import NavigationService from "./src/app/navigationService";
 import inPostReducer from "@gn/common/bus/inPost/reducer/inPost.reducer";
 import outPostReducer from "@gn/common/bus/outPost/reducer/outPost_reducer";
 import PrivateAppScreen from "./src/app/screen/privateApp.screen";
+import connectionReducer from "@gn/common/bus/connection/reducer/connection_reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   inPost: inPostReducer,
-  outPost: outPostReducer
+  outPost: outPostReducer,
+  connection: connectionReducer
 });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.subscribe(() => {
