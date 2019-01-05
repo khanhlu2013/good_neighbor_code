@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Button, Text, View } from "native-base";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
-import OutPostItemFootPropType from "../../../common/bus/outPost/propType/outPostItemFoot.propType";
+import OutPostItemFootPropType from "@gn/common/bus/outPost/propType/outPostItemFoot.propType";
 
 function OutPostItemFootMobileView(props) {
   const {

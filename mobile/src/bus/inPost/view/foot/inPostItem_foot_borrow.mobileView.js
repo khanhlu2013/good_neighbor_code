@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Text, View } from "react-native";
-import InPostItemFootBorrowViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot_borrow.view.propType";
+import InPostItemFootBorrowViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_borrow.view.propType";
 import LoadingIconMobileView from "../../../../share/LoadingIcon.mobileView";
 
 const Style = styled.View`

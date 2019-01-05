@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import styled from "styled-components";
-import PostListNoDataMixin from "../../../common/bus/post/style/postListNoData.mixin";
+import PostListNoDataMixin from "@gn/common/bus/post/style/postListNoData.mixin";
 
 const ContainerStyle = styled.View`
   ${PostListNoDataMixin}

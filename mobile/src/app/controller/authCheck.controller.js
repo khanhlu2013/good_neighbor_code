@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { checkAuth } from "../../common/app/action/auth.action";
+import { checkAuth } from "@gn/common/app/action/auth.action";
 
 class _ extends Component {
   static propTypes = {

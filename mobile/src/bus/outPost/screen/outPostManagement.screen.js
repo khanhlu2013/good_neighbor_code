@@ -1,6 +1,6 @@
 import React from "react";
 
-import OutPostManagementController from "../../../common/bus/outPost/controller/outPostManagement.controller";
+import OutPostManagementController from "@gn/common/bus/outPost/controller/outPostManagement.controller";
 import OutPostManagementMobileView from "../view/outPostManagement.mobileView";
 import OutPostManagementNavigator from "../navigation/outPostManagement.navigation";
 

@@ -11,8 +11,8 @@ import {
   Body,
   Text
 } from "native-base";
-import { date2String } from "../../../common/util";
-import PostUserHistoryListPropType from "../../../common/bus/post/propType/postUserHistoryList.propTypes";
+import { date2String } from "@gn/common/util";
+import PostUserHistoryListPropType from "@gn/common/bus/post/propType/postUserHistoryList.propTypes";
 
 function PostUserHistoryListMobileView(props) {
   const { shares } = props;

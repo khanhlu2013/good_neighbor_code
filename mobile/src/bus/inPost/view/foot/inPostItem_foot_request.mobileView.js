@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Text, Button, View } from "react-native";
 import LoadingIconMobileView from "../../../../share/LoadingIcon.mobileView";
-import InPostItemFootRequestViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot_request.view.propType";
+import InPostItemFootRequestViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_request.view.propType";
 
 const Style = styled.View`
   flex-direction: row;

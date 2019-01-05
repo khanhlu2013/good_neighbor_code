@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Text } from "native-base";
 import styled from "styled-components";
 
-import { date2String } from "../../../common/util";
-import OutPostItemHeadPropType from "../../../common/bus/outPost/propType/outPostItemHead.propType";
+import { date2String } from "@gn/common/util";
+import OutPostItemHeadPropType from "@gn/common/bus/outPost/propType/outPostItemHead.propType";
 
 const Style = styled.View`
   flex-direction: row;

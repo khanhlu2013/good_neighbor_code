@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-native";
 import LoadingIconMobileView from "../../../../share/LoadingIcon.mobileView";
-import InPostItemFootShopViewPropType from "../../../../common/bus/inPost/propType/foot/inPostItem_foot_shop.view.propType";
+import InPostItemFootShopViewPropType from "@gn/common/bus/inPost/propType/foot/inPostItem_foot_shop.view.propType";
 
 function InPostItemFootShopMobileView(props) {
   const { postId, isRequestingPost, onRequestPost } = props;

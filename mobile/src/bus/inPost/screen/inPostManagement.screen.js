@@ -1,5 +1,5 @@
 import React from "react";
-import InPostManagementController from "../../../common/bus/inPost/controller/inPostManagement.controller";
+import InPostManagementController from "@gn/common/bus/inPost/controller/inPostManagement.controller";
 import InPostManagementMobileView from "../view/inPostManagement.mobileView";
 import InPostManagementNavigator from "../navigation/inPostManagement.navigation";
 

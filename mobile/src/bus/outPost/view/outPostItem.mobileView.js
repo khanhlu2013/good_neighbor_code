@@ -4,7 +4,7 @@ import PostItemStyle from "../../post/style/postItem_style";
 import PostItemBodyMobileView from "../../post/view/postItem_body.mobileView";
 import PostItemFootMobileStyle from "../../post/style/postItemFoot.mobileStyle";
 import OutPostItemFootMobileView from "./outPostItemFoot.mobileView";
-import OutPostItemFootLogic from "../../../common/bus/outPost/controller/outPostItemFoot.logic";
+import OutPostItemFootLogic from "@gn/common/bus/outPost/controller/outPostItemFoot.logic";
 
 function OutPostItemMobileView(props) {
   const {

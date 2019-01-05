@@ -18,7 +18,7 @@ import {
 import { Formik } from "formik";
 
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
-import OutPostItemSchemaValidation from "../../../common/bus/outPost/validation/outPostItem.validation";
+import OutPostItemSchemaValidation from "@gn/common/bus/outPost/validation/outPostItem.validation";
 
 const OutPostCrudDialogScreen = props => {
   const { navigation, screenProps } = props;

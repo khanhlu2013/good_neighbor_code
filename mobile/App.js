@@ -4,13 +4,13 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import authReducer from "./src/common/app/reducer/auth.reducer";
+import authReducer from "@gn/common/app/reducer/auth.reducer";
 import AuthCheckScreen from "./src/app/screen/authCheck.screen";
 import LoginScreen from "./src/app/screen/login.screen";
-import AuthSelector from "./src/common/app/selector/auth.selector";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 import NavigationService from "./src/app/navigationService";
-import inPostReducer from "./src/common/bus/inPost/reducer/inPost.reducer";
-import outPostReducer from "./src/common/bus/outPost/reducer/outPost_reducer";
+import inPostReducer from "@gn/common/bus/inPost/reducer/inPost.reducer";
+import outPostReducer from "@gn/common/bus/outPost/reducer/outPost_reducer";
 import PrivateAppScreen from "./src/app/screen/privateApp.screen";
 
 const rootReducer = combineReducers({

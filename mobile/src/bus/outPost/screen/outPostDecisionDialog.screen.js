@@ -14,10 +14,10 @@ import {
   Icon,
   View
 } from "native-base";
-import { date2String, nullOrRequiredValidator } from "../../../common/util";
-import OutPostDecisionDialogController from "../../../common/bus/outPost/controller/outPostDecisionDialog.controller";
-import Share from "../../../common/model/share";
-import Post from "../../../common/model/post";
+import { date2String, nullOrRequiredValidator } from "@gn/common/util";
+import OutPostDecisionDialogController from "@gn/common/bus/outPost/controller/outPostDecisionDialog.controller";
+import Share from "@gn/common/model/share";
+import Post from "@gn/common/model/post";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
 
 function DenialListMobileView(props) {

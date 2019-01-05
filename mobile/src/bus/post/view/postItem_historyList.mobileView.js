@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Text } from "react-native";
-import PostItemHistoryListViewPropType from "../../../common/bus/post/propType/postItem_requestList.view.propType";
-import { date2String } from "../../../common/util";
+import PostItemHistoryListViewPropType from "@gn/common/bus/post/propType/postItem_requestList.view.propType";
+import { date2String } from "@gn/common/util";
 
 const Style = styled.View`
   padding: 5px;

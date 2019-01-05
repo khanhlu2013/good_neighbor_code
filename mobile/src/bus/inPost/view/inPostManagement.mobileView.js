@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import InPostManagementPropType from "../../../common/bus/inPost/propType/inPostManagement.propType";
+import InPostManagementPropType from "@gn/common/bus/inPost/propType/inPostManagement.propType";
 import LoadingIconMobileView from "../../../share/LoadingIcon.mobileView";
 import InPostManagementNavigator from "../navigation/inPostManagement.navigation";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import { date2String, nullOrRequiredValidator } from "../../../common/util";
+import { date2String, nullOrRequiredValidator } from "@gn/common/util";
 
 const Style = styled.View`
   flex-direction : row

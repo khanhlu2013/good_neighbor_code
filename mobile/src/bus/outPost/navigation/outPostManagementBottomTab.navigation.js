@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "react-navigation";
 import { View, StyleSheet } from "react-native";
 import { Button, Text, Icon } from "native-base";
-import OutPostListController from "../../../common/bus/outPost/controller/outPostList.controller";
+import OutPostListController from "@gn/common/bus/outPost/controller/outPostList.controller";
 import DUMMY_ID from "../../../share/dummyId";
 import OutPostListMobileView from "../view/outPostList.mobileView";
 import PostUserHistoryListMobileView from "../../post/view/postUserHistoryList.mobileView";

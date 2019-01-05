@@ -3,8 +3,8 @@ import { View, FlatList } from "react-native";
 
 import InPostItemMobileView from "./inPostItem.mobileView";
 import PostListNoDataMobileView from "../../post/view/postListNoData.mobileView";
-import InPostListController from "../../../common/bus/inPost/controller/inPostList.controller";
-import InPostListViewPropType from "../../../common/bus/inPost/propType/inPostList.view.propType";
+import InPostListController from "@gn/common/bus/inPost/controller/inPostList.controller";
+import InPostListViewPropType from "@gn/common/bus/inPost/propType/inPostList.view.propType";
 
 function InPostListMobileView(props) {
   const { listId, posts } = props;

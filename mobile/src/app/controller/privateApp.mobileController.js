@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import OutPostSelector from "../../common/bus/outPost/outPost.selector";
-import fetchInPosts from "../../common/bus/inPost/action/fetchInPosts.action";
-import fetchOutPosts from "../../common/bus/outPost/action/fetchOutPosts.action";
-import InPostSelector from "../../common/bus/inPost/inPost.selector";
+import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
+import fetchInPosts from "@gn/common/bus/inPost/action/fetchInPosts.action";
+import fetchOutPosts from "@gn/common/bus/outPost/action/fetchOutPosts.action";
+import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 class _ extends Component {
   componentDidMount() {

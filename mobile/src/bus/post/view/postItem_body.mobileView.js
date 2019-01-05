@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { View, Text } from "react-native";
 
-import PostItemBodyMixin from "../../../common/bus/post/style/postItemBody.mixin";
-import PostItemBodyViewPropType from "../../../common/bus/post/propType/postItemBody.view.propType";
+import PostItemBodyMixin from "@gn/common/bus/post/style/postItemBody.mixin";
+import PostItemBodyViewPropType from "@gn/common/bus/post/propType/postItemBody.view.propType";
 import PostItemRequestListMobileView from "./postItem_requestList.mobileView";
 import PostItemHistoryListMobileView from "./postItem_historyList.mobileView";
-import PostItemHistoryListController from "../../../common/bus/post/controller/postItem_historyList.controller";
-import PostItemRequestListController from "../../../common/bus/post/controller/postItem_requestList.controller";
+import PostItemHistoryListController from "@gn/common/bus/post/controller/postItem_historyList.controller";
+import PostItemRequestListController from "@gn/common/bus/post/controller/postItem_requestList.controller";
 
 const Style = styled.View`
   ${PostItemBodyMixin}

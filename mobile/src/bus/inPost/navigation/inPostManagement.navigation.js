@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "react-navigation";
 import PropTypes from "prop-types";
 
-import Post from "../../../common/model/post";
-import Share from "../../../common/model/share";
-import InPostUserHistoryListController from "../../../common/bus/inPost/controller/inPost_userHistoryList.controller";
+import Post from "@gn/common/model/post";
+import Share from "@gn/common/model/share";
+import InPostUserHistoryListController from "@gn/common/bus/inPost/controller/inPost_userHistoryList.controller";
 import { BUSINESS_ICON_SIZE } from "../../../share/uiConstant";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import DUMMY_ID from "../../../share/dummyId";
