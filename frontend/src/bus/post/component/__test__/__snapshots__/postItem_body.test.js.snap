@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`postItem_body when render borrower info -> can match snapshot 1`] = `
+<styled.div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      title: 
+    </span>
+    post title
+  </div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      description: 
+    </span>
+    post description
+  </div>
+  <div
+    className="text-left mt-1"
+  >
+    <mark>
+      <span
+        className="text-muted font-weight-light"
+      >
+        borrowing by: 
+      </span>
+      I Myself Me, me@me.com
+    </mark>
+  </div>
+</styled.div>
+`;
+
+exports[`postItem_body when render post item body -> can match snapshot 1`] = `
+<styled.div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      title: 
+    </span>
+    post title
+  </div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      description: 
+    </span>
+    post description
+  </div>
+</styled.div>
+`;
+
+exports[`postItem_body when render request info -> can match snapshot 1`] = `
+<styled.div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      title: 
+    </span>
+    post title
+  </div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      description: 
+    </span>
+    post description
+  </div>
+  <PostItemRequestList
+    shares={
+      Array [
+        Share {
+          "borrower": User {
+            "email": "me@me.com",
+            "id": "5bf2104597b7220000dd6bad",
+            "name": "I Myself Me",
+            "profileImageUrl": undefined,
+          },
+          "dateCreate": 2018-11-19T01:28:34.088Z,
+          "dateReturn": Date { NaN },
+          "id": "5bf211c25407a8bb7557848c",
+          "isApprove": undefined,
+          "isAwareApprove": false,
+          "isAwareReturn": false,
+          "isReturn": false,
+          "post": Post {
+            "dateCreate": 2018-11-19T01:23:02.405Z,
+            "description": "post description",
+            "id": "5bf210765407a8bb7557848b",
+            "isActive": true,
+            "shares": Array [
+              [Circular],
+            ],
+            "title": "post title",
+            "user": User {
+              "email": "my@friend.com",
+              "id": "5bf2104597b7220000dd6bab",
+              "name": "My Friend",
+              "profileImageUrl": undefined,
+            },
+          },
+        },
+      ]
+    }
+  />
+</styled.div>
+`;
+
+exports[`postItem_body when render return info -> can match snapshot 1`] = `
+<styled.div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      title: 
+    </span>
+    post title
+  </div>
+  <div>
+    <span
+      className="text-secondary font-weight-light"
+    >
+      description: 
+    </span>
+    post description
+  </div>
+  <PostItemHistoryList
+    shares={
+      Array [
+        Share {
+          "borrower": User {
+            "email": "me@me.com",
+            "id": "5bf2104597b7220000dd6bad",
+            "name": "I Myself Me",
+            "profileImageUrl": undefined,
+          },
+          "dateCreate": 2018-11-19T01:28:34.088Z,
+          "dateReturn": 2018-11-19T01:31:22.523Z,
+          "id": "5bf211c25407a8bb7557848c",
+          "isApprove": true,
+          "isAwareApprove": true,
+          "isAwareReturn": false,
+          "isReturn": true,
+          "post": Post {
+            "dateCreate": 2018-11-19T01:23:02.405Z,
+            "description": "post description",
+            "id": "5bf210765407a8bb7557848b",
+            "isActive": true,
+            "shares": Array [
+              [Circular],
+            ],
+            "title": "post title",
+            "user": User {
+              "email": "my@friend.com",
+              "id": "5bf2104597b7220000dd6bab",
+              "name": "My Friend",
+              "profileImageUrl": undefined,
+            },
+          },
+        },
+      ]
+    }
+  />
+</styled.div>
+`;

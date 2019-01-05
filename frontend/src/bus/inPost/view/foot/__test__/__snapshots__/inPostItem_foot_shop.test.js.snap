@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPostItem_foot_shop loading icon not show when not requesting post 1`] = `
+<button
+  className="btn btn-success"
+  id="outPostItem-requestBtn-react"
+  onClick={[Function]}
+>
+  request
+</button>
+`;
+
+exports[`inPostItem_foot_shop loading icon show during requesting post 1`] = `
+<LoadingIcon
+  text="requesting"
+/>
+`;

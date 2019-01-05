@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inPostItem_foot render approve post foot correctly 1`] = `
+<styled.div>
+  <Connect(InPostItemFootBorrow)
+    myBorrowShareId="5bed125a8c57346a4063160d"
+  />
+</styled.div>
+`;
+
+exports[`inPostItem_foot render non-request and non-approve and active post foot correctly 1`] = `
+<styled.div>
+  <Connect(InPostItemFootShop)
+    postId="postIdStub"
+  />
+</styled.div>
+`;
+
+exports[`inPostItem_foot render non-request and non-approve and non-active post foot correctly 1`] = `
+<styled.div>
+  <div>
+    Post is no longer active
+  </div>
+</styled.div>
+`;
+
+exports[`inPostItem_foot render request post foot correctly 1`] = `
+<styled.div>
+  <Connect(InPostItemFootRequest)
+    myRequestShareId="5bed125a8c57346a4063160d"
+  />
+</styled.div>
+`;

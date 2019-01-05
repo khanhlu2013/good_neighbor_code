@@ -1,0 +1,19 @@
+.ReactModal__title {
+  text-align: center;
+  margin: 40px;
+}
+
+.ReactModal__Content {
+  margin: 0 auto;
+  width: 80%;
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity 150ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}
