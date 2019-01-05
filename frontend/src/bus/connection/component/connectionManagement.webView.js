@@ -26,7 +26,7 @@ const Style = styled.div`
   margin-top: 10px;
 `;
 
-class ConnectionManagementComponent extends Component {
+class ConnectionManagementWebView extends Component {
   static propTypes = {
     loginUser: PropTypes.instanceOf(User).isRequired,
     fetchConnections: PropTypes.func.isRequired,
@@ -148,4 +148,4 @@ class ConnectionManagementComponent extends Component {
   }
 }
 
-export default ConnectionManagementComponent;
+export default ConnectionManagementWebView;

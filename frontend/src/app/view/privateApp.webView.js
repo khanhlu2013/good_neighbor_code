@@ -1,13 +1,14 @@
 import React from "react";
 
-import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import TabPanel from "../../share/style/tabPanel_style.js";
-import ConnectionManagementContainer from "../../bus/connection/container/connection_management.con.js";
 import InPostManagementWebView from "../../bus/inPost/view/inPost_management.webView";
 import OutPostManagementController from "@gn/common/bus/outPost/controller/outPostManagement.controller";
 import InPostManagementController from "@gn/common/bus/inPost/controller/inPostManagement.controller";
 import AppTabEnum from "@gn/common/app/appTabEnum";
 import OutPostManagementWebView from "../../bus/outPost/view/outPost_management.webView";
+import ConnectionManagementWebView from "../../bus/connection/component/connectionManagement.webView";
+import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
+import ConnectionManagementController from "@gn/common/bus/connection/controller/connectionManagement.controller";
 
 function PrivateAppWebView(selectAppTab) {
   return (
@@ -21,7 +22,7 @@ function PrivateAppWebView(selectAppTab) {
       </TabPanel>
 
       <TabPanel show={selectAppTab === AppTabEnum.CONNECTION}>
-        <ConnectionManagementContainer />
+        <ConnectionManagementController view={ConnectionManagementWebView} />
       </TabPanel>
       <TabPanel show={selectAppTab === AppTabEnum.PROFILE}>
         <ProfileManagementContainer />
