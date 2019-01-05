@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import User from "@gn/common/model/user";
-import AppTabEnum from "@gn/common/app/appTabEnum";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style";
 import AppHeaderTabBar from "./appHeader_tabBar";
 import GoogleLoginWebView from "../../view/googleLogin.webView";
 import AppBannerStyle from "../../../share/style/bannerStyle/appBanner.style";
+import AppTabEnum from "../../appTabEnum";
 import API_URL from "@gn/common/api/api-url";
 import GoogleLoginController from "@gn/common/app/controller/googleLogin.controller";
 

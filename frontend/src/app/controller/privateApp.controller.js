@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import AppTabEnum from "../appTabEnum";
 
 import selectAppTab from "@gn/common/app/selector/selectAppTab.selector";
-import AppTabEnum from "@gn/common/app/appTabEnum";
 
 function _(props) {
   const { selectAppTab, view } = props;

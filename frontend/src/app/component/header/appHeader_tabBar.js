@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { GenericTabItem } from "../../../share/tabItem/genericTabItem";
 import AlertItem from "../../../share/alertItem";
 import AppTabBarStyle from "../../../share/style/tabBarStyle/appTabBar.style";
-import AppTabEnum from "@gn/common/app/appTabEnum";
+import AppTabEnum from "../../appTabEnum";
 
 const TabItemContainerStart = styled.div`
   margin-right: 20px;
