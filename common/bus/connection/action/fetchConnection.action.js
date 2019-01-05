@@ -1,4 +1,4 @@
-import API from "@gn/common/api";
+import API from "../../../api";
 
 export const INFORM_FETCH_CONNECTIONS = "INFORM_FETCH_CONNECTIONS";
 export const RECEIVE_FETCH_CONNECTIONS = "RECEIVE_FETCH_CONNECTIONS";

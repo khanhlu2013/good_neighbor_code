@@ -1,5 +1,5 @@
-import fetchInPosts from "@gn/common/bus/inPost/action/fetchInPosts.action";
-import API from "@gn/common/api";
+import API from "../../../api";
+import fetchInPosts from "../../inPost/action/fetchInPosts.action";
 
 export const INFORM_UPDATE_CONNECTION = "INFORM_UPDATE_CONNECTION";
 export const RECIEVE_UPDATE_CONNECTION = "RECIEVE_UPDATE_CONNECTION";
