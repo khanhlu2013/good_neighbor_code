@@ -14,11 +14,11 @@ import ConnectionTabBar from "./connection_tabBar.js";
 import ConnectionInTable from "./connectionTable_in.js";
 import User from "@gn/common/model/user";
 import {
-  friendConnectionSelector,
-  outConnectionSelector,
-  inConnectionSelector,
-  denyConnectionSelector
-} from "../connection.selector.js";
+  friendConnectionFilter,
+  outConnectionFilter,
+  inConnectionFilter,
+  denyConnectionFilter
+} from "../connection.filter.js";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 
 const Style = styled.div`
@@ -68,10 +68,10 @@ class ConnectionManagementComponent extends Component {
     let { selectTab } = this.state;
     const { updatingConnectionIds, isCreatingConnection } = this.props;
 
-    const friends = friendConnectionSelector(connections, loginUserId);
-    const inConnections = inConnectionSelector(connections, loginUserId);
-    const outConnections = outConnectionSelector(connections, loginUserId);
-    const denyConnections = denyConnectionSelector(connections, loginUserId);
+    const friends = friendConnectionFilter(connections, loginUserId);
+    const inConnections = inConnectionFilter(connections, loginUserId);
+    const outConnections = outConnectionFilter(connections, loginUserId);
+    const denyConnections = denyConnectionFilter(connections, loginUserId);
 
     return (
       <Fragment>

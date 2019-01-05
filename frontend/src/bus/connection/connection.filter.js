@@ -1,4 +1,4 @@
-export const friendConnectionSelector = (connections, loginUserId) =>
+export const friendConnectionFilter = (connections, loginUserId) =>
   connections.filter(
     connection =>
       connection.isApproveByFrom &&
@@ -6,7 +6,7 @@ export const friendConnectionSelector = (connections, loginUserId) =>
       (connection.to.id === loginUserId || connection.from.id === loginUserId)
   );
 
-export const inConnectionSelector = (connections, loginUserId) =>
+export const inConnectionFilter = (connections, loginUserId) =>
   connections.filter(
     connection =>
       connection.to.id === loginUserId &&
@@ -14,7 +14,7 @@ export const inConnectionSelector = (connections, loginUserId) =>
       connection.isApproveByTo === undefined
   );
 
-export const outConnectionSelector = (connections, loginUserId) =>
+export const outConnectionFilter = (connections, loginUserId) =>
   connections.filter(
     connection =>
       connection.from.id === loginUserId &&
@@ -22,7 +22,7 @@ export const outConnectionSelector = (connections, loginUserId) =>
       connection.isApproveByTo === undefined
   );
 
-export const denyConnectionSelector = (connections, loginUserId) =>
+export const denyConnectionFilter = (connections, loginUserId) =>
   connections.filter(
     connection =>
       (connection.to.id === loginUserId &&

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import { inConnectionSelector } from "../../bus/connection/connection.selector";
+import { inConnectionFilter } from "../../bus/connection/connection.filter";
 import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     requestAlert_outPosts.length + returnAlert_outPosts.length;
 
   //connection
-  const connectionAlertCount = inConnectionSelector(
+  const connectionAlertCount = inConnectionFilter(
     state.connection.connections,
     loginUserId
   ).length;
