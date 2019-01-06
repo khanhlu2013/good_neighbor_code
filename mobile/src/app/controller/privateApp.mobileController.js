@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import AuthSelector from "@gn/common/app/selector/auth.selector";
 import ConnectionSelector from "@gn/common/bus/connection/connection.selector";
-import { inConnectionFilter } from "@gn/common/bus/connection/connection.filter";
 
 import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
 import fetchInPosts from "@gn/common/bus/inPost/action/fetchInPosts.action";

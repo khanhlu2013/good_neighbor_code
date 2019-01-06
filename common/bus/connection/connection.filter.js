@@ -30,3 +30,12 @@ export const denyConnectionFilter = (connections, loginUserId) =>
       (connection.from.id === loginUserId &&
         connection.isApproveByFrom === false)
   );
+
+const ConnectionFilter = {
+  friend: friendConnectionFilter,
+  in: inConnectionFilter,
+  out: outConnectionFilter,
+  deny: denyConnectionFilter
+};
+
+export default ConnectionFilter;

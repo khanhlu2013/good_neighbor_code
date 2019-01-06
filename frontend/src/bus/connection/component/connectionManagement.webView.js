@@ -13,13 +13,8 @@ import ConnectionTabEnum from "./connection_tabEnum.js";
 import ConnectionTabBar from "./connection_tabBar.js";
 import ConnectionInTable from "./connectionTable_in.js";
 import User from "@gn/common/model/user";
-import {
-  friendConnectionFilter,
-  outConnectionFilter,
-  inConnectionFilter,
-  denyConnectionFilter
-} from "@gn/common/bus/connection/connection.filter";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import ConnectionFilter from "@gn/common/bus/connection/connection.filter";
 
 const Style = styled.div`
   ${AppCenterWrapMixin};
@@ -63,10 +58,10 @@ class ConnectionManagementWebView extends Component {
     let { selectTab } = this.state;
     const { updatingConnectionIds, isCreatingConnection } = this.props;
 
-    const friends = friendConnectionFilter(connections, loginUserId);
-    const inConnections = inConnectionFilter(connections, loginUserId);
-    const outConnections = outConnectionFilter(connections, loginUserId);
-    const denyConnections = denyConnectionFilter(connections, loginUserId);
+    const friends = ConnectionFilter.friend(connections, loginUserId);
+    const inConnections = ConnectionFilter.in(connections, loginUserId);
+    const outConnections = ConnectionFilter.out(connections, loginUserId);
+    const denyConnections = ConnectionFilter.deny(connections, loginUserId);
 
     return (
       <Fragment>
