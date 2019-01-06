@@ -6,12 +6,30 @@ import createConnection from "../action/createConnection.action";
 import updateConnection from "../action/updateConnection.action";
 
 class _ extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isCreatingConnection: false
+    };
+    this.onCreateConnection = this.onCreateConnection.bind(this);
+  }
   componentDidMount() {
     this.props.fetchConnections();
   }
 
+  onCreateConnection(...args) {
+    this.setState({ isCreatingConnection: true }, async () => {
+      await this.props.onCreateConnection(...args);
+      this.setState({ isCreatingConnection: false });
+    });
+  }
+
   render() {
-    return React.createElement(this.props.view, this.props);
+    return React.createElement(this.props.view, {
+      ...this.props,
+      onCreateConnection: this.onCreateConnection,
+      isCreatingConnection: this.state.isCreatingConnection
+    });
   }
 }
 
@@ -20,7 +38,6 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingConnections,
     isInitConnections,
     connections,
-    isCreatingConnection,
     updatingConnectionIds
   } = state.connection;
 
@@ -29,7 +46,6 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingConnections,
     isInitConnections,
     connections,
-    isCreatingConnection,
     updatingConnectionIds
   };
 };

@@ -2,10 +2,7 @@ import {
   INFORM_FETCH_CONNECTIONS,
   RECEIVE_FETCH_CONNECTIONS
 } from "../action/fetchConnection.action";
-import {
-  INFORM_CREATE_CONNECTION,
-  RECEIVE_CREATE_CONNECTION
-} from "../action/createConnection.action";
+import { RECEIVE_CREATE_CONNECTION } from "../action/createConnection.action";
 import {
   INFORM_UPDATE_CONNECTION,
   RECIEVE_UPDATE_CONNECTION
@@ -17,9 +14,6 @@ const defaultState = {
   connections: [],
   isInitConnections: false,
   isFetchingConnections: false,
-
-  //create
-  isCreatingConnection: false,
 
   //update
   updatingConnectionIds: []
@@ -37,17 +31,10 @@ const connectionReducer = (state = defaultState, action) => {
         isFetchingConnections: false
       };
 
-    case INFORM_CREATE_CONNECTION:
-      return {
-        ...state,
-        isCreatingConnection: true
-      };
-
     case RECEIVE_CREATE_CONNECTION:
       return {
         ...state,
-        connections: [...state.connections, action.connection],
-        isCreatingConnection: false
+        connections: [...state.connections, action.connection]
       };
 
     case INFORM_UPDATE_CONNECTION:
