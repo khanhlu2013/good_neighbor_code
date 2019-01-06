@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
-import { inConnectionFilter } from "../../bus/connection/connection.filter";
+import { inConnectionFilter } from "@gn/common/bus/connection/connection.filter";
 import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 

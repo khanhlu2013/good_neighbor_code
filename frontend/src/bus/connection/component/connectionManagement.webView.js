@@ -18,7 +18,7 @@ import {
   outConnectionFilter,
   inConnectionFilter,
   denyConnectionFilter
-} from "../connection.filter.js";
+} from "@gn/common/bus/connection/connection.filter";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
 
 const Style = styled.div`
