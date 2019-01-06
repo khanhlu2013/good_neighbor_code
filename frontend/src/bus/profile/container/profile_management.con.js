@@ -2,10 +2,11 @@ import { connect } from "react-redux";
 
 import { logOut } from "@gn/common/app/action/auth.action";
 import ProfileManagementComponent from "../component/profile_management";
+import AuthSelector from "@gn/common/app/selector/auth.selector";
 
 const mapStateToProps = (state, ownProps) => ({
-  isLoggingOut: state.auth.isLoggingOut,
-  loginUser: state.auth.loginUser
+  isLoggingOut: AuthSelector.isLoggingOut(state),
+  loginUser: AuthSelector.loginUser(state)
 });
 const mapDispatchToProp = (dispatch, ownProps) => ({
   onLogOutClick: () => dispatch(logOut())

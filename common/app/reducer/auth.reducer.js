@@ -39,13 +39,3 @@ const authReducer = (state = defaultAuthState, action) => {
 };
 
 export default authReducer;
-
-/*
-
-  authReducer = {
-    isCheckingAuth : boolean,
-    isLoggingOut: boolean,
-    loginUser : instanceof User; value = (undefined | null | User)
-  }
-
-*/
