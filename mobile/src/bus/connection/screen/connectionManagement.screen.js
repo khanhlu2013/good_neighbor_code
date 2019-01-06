@@ -1,10 +1,16 @@
 import React from "react";
-import { Text } from "native-base";
+
+import ConnectionManagementMobileView from "../view/connectionManagement.mobileView";
+import ConnectionManagementNavigator from "../navigation/connectionManagement.navigation";
+import ConnectionManagementController from "@gn/common/bus/connection/controller/connectionManagement.controller";
 
 function ConnectionManagementScreen(props) {
   return (
-    <Text>`connection alert : ${props.screenProps.connectionAlertCount}`</Text>
+    <ConnectionManagementController
+      navigation={props.navigation}
+      view={ConnectionManagementMobileView}
+    />
   );
 }
-
+ConnectionManagementScreen.router = ConnectionManagementNavigator.router;
 export default ConnectionManagementScreen;

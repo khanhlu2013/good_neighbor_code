@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import fetchConnections from "../action/fetchConnection.action";
 import createConnection from "../action/createConnection.action";
@@ -54,4 +55,7 @@ const ConnectionManagementController = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_);
+ConnectionManagementController.propTypes = {
+  view: PropTypes.func.isRequired
+};
 export default ConnectionManagementController;
