@@ -5,8 +5,8 @@ import BackDoorLoginWebView from "./backdoorLogin.webView";
 import AppHeaderConnect from "../connect/appHeader.connect";
 import LoadingIcon from "../../share/loadingIcon";
 import PublicAppWebView from "./publicApp/publicApp.webView";
-import PrivateAppController from "../controller/privateApp.controller";
 import PrivateAppWebView from "./privateApp.webView";
+import PrivateAppWebController from "../controller/privateApp.webController";
 import BackdoorLoginController from "@gn/common/app/controller/backdoorLogin.controller";
 
 const AuthCheckStyle = styled.div`
@@ -30,7 +30,7 @@ export default function AppWebView(loginUser, isCheckingAuth, isCheckedAuth) {
       </AppCenterWrapStyle>
     );
   } else {
-    appContent = <PrivateAppController view={PrivateAppWebView} />;
+    appContent = <PrivateAppWebController view={PrivateAppWebView} />;
   }
 
   return (

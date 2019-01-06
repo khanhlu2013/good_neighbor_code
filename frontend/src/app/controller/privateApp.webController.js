@@ -16,5 +16,5 @@ _.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   selectAppTab: selectAppTab(state)
 });
-const PrivateAppController = connect(mapStateToProps)(_);
-export default PrivateAppController;
+const PrivateAppWebController = connect(mapStateToProps)(_);
+export default PrivateAppWebController;
