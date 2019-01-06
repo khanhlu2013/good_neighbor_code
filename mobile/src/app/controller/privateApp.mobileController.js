@@ -31,10 +31,7 @@ const mapStateToProps = (state, ownProps) => ({
   outPostsAlertCount:
     OutPostSelector.requestAlertPosts(state).length +
     OutPostSelector.returnAlertPosts(state).length,
-  connectionAlertCount: inConnectionFilter(
-    ConnectionSelector.connections(state),
-    AuthSelector.loginUser(state).id
-  ).length
+  connectionAlertCount: ConnectionSelector.connectionAlertCount(state)
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchInPosts: () => dispatch(fetchInPosts()),

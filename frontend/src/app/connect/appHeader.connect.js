@@ -4,14 +4,12 @@ import { changeAppTab } from "../action/selectAppTab.action";
 import AppHeaderComponent from "../component/header/appHeader";
 import ConnectionSelector from "@gn/common/bus/connection/connection.selector";
 import AuthSelector from "@gn/common/app/selector/auth.selector";
-import { inConnectionFilter } from "@gn/common/bus/connection/connection.filter";
 import OutPostSelector from "@gn/common/bus/outPost/outPost.selector";
 import InPostSelector from "@gn/common/bus/inPost/inPost.selector";
 
 const mapStateToProps = (state, ownProps) => {
   const loginUser = AuthSelector.loginUser(state);
   const isCheckedAuth = AuthSelector.isCheckedAuth(state);
-  const loginUserId = loginUser && loginUser.id;
 
   //inPost
   const inPostAlertCount = InPostSelector.approveAlertPosts(state).length;
@@ -23,9 +21,7 @@ const mapStateToProps = (state, ownProps) => {
     requestAlert_outPosts.length + returnAlert_outPosts.length;
 
   //connection
-  const connections = ConnectionSelector.connections(state);
-  const connectionAlertCount = inConnectionFilter(connections, loginUserId)
-    .length;
+  const connectionAlertCount = ConnectionSelector.connectionAlertCount(state);
   return {
     loginUser,
     isCheckedAuth,
