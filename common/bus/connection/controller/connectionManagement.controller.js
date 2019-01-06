@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import fetchConnections from "../action/fetchConnection.action";
 import createConnection from "../action/createConnection.action";
 import updateConnection from "../action/updateConnection.action";
+import AuthSelector from "../../../app/selector/auth.selector";
+import ConnectionSelector from "../connection.selector";
 
 class _ extends Component {
   constructor(props) {
@@ -34,19 +36,12 @@ class _ extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    isFetchingConnections,
-    isInitConnections,
-    connections,
-    updatingConnectionIds
-  } = state.connection;
-
   return {
-    loginUser: state.auth.loginUser,
-    isFetchingConnections,
-    isInitConnections,
-    connections,
-    updatingConnectionIds
+    loginUser: AuthSelector.loginUser(state),
+    isFetchingConnections: ConnectionSelector.isFetchingConnections(state),
+    isInitConnections: ConnectionSelector.isInitConnections(state),
+    connections: ConnectionSelector.connections(state),
+    updatingConnectionIds: ConnectionSelector.updatingConnectionIds(state)
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({
