@@ -27,13 +27,13 @@ class SearchByEmailController extends Component {
 
     const emailValid = validator.isEmail(email);
     const selfSearch = loginUser.email === email;
-
+    const searchedConnection = calculateSearchConnection(
+      searchedUser,
+      loginUser,
+      connections
+    );
     return {
-      searchedConnection: calculateSearchConnection(
-        searchedUser,
-        loginUser,
-        connections
-      ),
+      searchedConnection,
       responseMessageAboutSearchInput: calculateResponseMessageAboutSearchInput(
         emailValid,
         selfSearch,
@@ -41,6 +41,10 @@ class SearchByEmailController extends Component {
         searchSubmited,
         isSearching,
         searchedUser
+      ),
+      responseMessageAboutSearchResult: calculateResponseMessageAboutSearchResult(
+        searchedConnection,
+        loginUser
       ),
       emailValid,
       selfSearch
@@ -98,6 +102,7 @@ class SearchByEmailController extends Component {
       //derived state
       searchedConnection,
       responseMessageAboutSearchInput,
+      responseMessageAboutSearchResult,
 
       //handler
       onSearchChange: this.onSearchChange,
@@ -165,5 +170,69 @@ function calculateSearchConnection(searchedUser, loginUser, connections) {
     throw Error("Unexpected duplicate connections");
   } else if (lst.length === 1) {
     return lst[0];
+  }
+}
+
+function calculateResponseMessageAboutSearchResult(
+  searchedConnection,
+  loginUser
+) {
+  if (!searchedConnection) {
+    return null;
+  }
+
+  const searchedUser = searchedConnection.getTheOtherUser(loginUser.id);
+  if (
+    /*you init the connection*/
+    searchedConnection.from.id === loginUser.id
+  ) {
+    message = `You invited ${searchedUser.name}. `;
+    if (
+      /*but you changed your mind*/
+      searchedConnection.isApproveByFrom === false
+    ) {
+      message += `But you changed your mind.`;
+    } else {
+      /*and you havent changed your mind yet*/
+      if (
+        /*searchedUser haven't responsed you*/
+        searchedConnection.isApproveByTo === undefined
+      ) {
+        message += `Please wait for approval!`;
+      } else if (
+        /*searchedUser approved you*/
+        searchedConnection.isApproveByTo === true
+      ) {
+        message += `And you are friends!`;
+      } else {
+        /*searchedUser denided you*/
+        message += `But sorry, you got denied!`;
+      }
+    }
+  } else {
+    /*searchedUser init the connection*/
+    message = `${searchedUser.name} invited you. `;
+    if (
+      /*but searchedUser changed her mind*/
+      searchedConnection.isApproveByFrom === false
+    ) {
+      message += `But changed his/her mind. Sorry!`;
+    } else {
+      /*and searchedUser havent changed her mind yet*/
+      if (
+        /*you havent responsed searchedUser*/
+        searchedConnection.isApproveByTo === undefined
+      ) {
+        message += `Please response.`;
+      } else if (
+        /*you approved searchedUser*/
+        searchedConnection.isApproveByTo === true
+      ) {
+        message += `And you accpected!`;
+      } else {
+        /*you denied searchedUser*/
+        message += `And you denied.`;
+      }
+    }
   }
 }

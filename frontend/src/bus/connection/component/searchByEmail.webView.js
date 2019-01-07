@@ -1,8 +1,8 @@
 import React from "react";
 
 import LoadingIcon from "../../../share/loadingIcon.js";
+import SearchByEmailResultDisplayPropType from "@gn/common/bus/connection/propType/searchByEmailResultDisplay.propType";
 import SearchByEmailPropType from "@gn/common/bus/connection/propType/searchByEmail.propType";
-import SearchResultDisplayPropType from "@gn/common/bus/connection/propType/searchResultDisplay.propType";
 
 function SearchByEmailWebView(props) {
   const {
@@ -19,6 +19,7 @@ function SearchByEmailWebView(props) {
     //derived state
     searchedConnection,
     responseMessageAboutSearchInput,
+    responseMessageAboutSearchResult,
 
     //handler
     onSearchChange,
@@ -50,8 +51,9 @@ function SearchByEmailWebView(props) {
       )}
 
       {searchedUser && (
-        <SearchResultDisplayWebView
+        <SearchByEmailResultDisplayWebView
           loginUser={loginUser}
+          responseMessageAboutSearchResult={responseMessageAboutSearchResult}
           searchedUser={searchedUser}
           searchedConnection={searchedConnection}
           isCreatingConnection={isCreatingConnection}
@@ -63,20 +65,15 @@ function SearchByEmailWebView(props) {
 }
 SearchByEmailWebView.propTypes = SearchByEmailPropType;
 
-function SearchResultDisplayWebView(props) {
+function SearchByEmailResultDisplayWebView(props) {
   const {
-    loginUser,
+    responseMessageAboutSearchResult,
     searchedUser,
     searchedConnection,
     isCreatingConnection,
     onCreateConnection
   } = props;
 
-  const _onCreateConnectionClick = evt => {
-    onCreateConnection(searchedUser.id);
-  };
-
-  let message = "";
   let action = null;
 
   if (
@@ -90,77 +87,24 @@ function SearchResultDisplayWebView(props) {
         <button
           className="btn btn-success"
           id="createConnectionBtn"
-          onClick={_onCreateConnectionClick}
+          onClick={() => {
+            onCreateConnection(searchedUser.id);
+          }}
         >
           Invite {searchedUser.name}
         </button>
       );
     }
-  } else {
-    /*you and searchedUser have exchanged invitation*/
-    if (
-      /*you init the connection*/
-      searchedConnection.from.id === loginUser.id
-    ) {
-      message = `You invited ${searchedUser.name}. `;
-      if (
-        /*but you changed your mind*/
-        searchedConnection.isApproveByFrom === false
-      ) {
-        message += `But you changed your mind.`;
-      } else {
-        /*and you havent changed your mind yet*/
-        if (
-          /*searchedUser haven't responsed you*/
-          searchedConnection.isApproveByTo === undefined
-        ) {
-          message += `Please wait for approval!`;
-        } else if (
-          /*searchedUser approved you*/
-          searchedConnection.isApproveByTo === true
-        ) {
-          message += `And you are friends!`;
-        } else {
-          /*searchedUser denided you*/
-          message += `But sorry, you got denied!`;
-        }
-      }
-    } else {
-      /*searchedUser init the connection*/
-      message = `${searchedUser.name} invited you. `;
-      if (
-        /*but searchedUser changed her mind*/
-        searchedConnection.isApproveByFrom === false
-      ) {
-        message += `But changed his/her mind. Sorry!`;
-      } else {
-        /*and searchedUser havent changed her mind yet*/
-        if (
-          /*you havent responsed searchedUser*/
-          searchedConnection.isApproveByTo === undefined
-        ) {
-          message += `Please response.`;
-        } else if (
-          /*you approved searchedUser*/
-          searchedConnection.isApproveByTo === true
-        ) {
-          message += `And you accpected!`;
-        } else {
-          /*you denied searchedUser*/
-          message += `And you denied.`;
-        }
-      }
-    }
   }
 
   return (
     <div id="CrudConnectionControlPanel-react">
-      {message}
+      {responseMessageAboutSearchResult}
       {action}
     </div>
   );
 }
 
-SearchResultDisplayWebView.propTypes = SearchResultDisplayPropType;
+SearchByEmailResultDisplayWebView.propTypes = SearchByEmailResultDisplayPropType;
 
 export default SearchByEmailWebView;

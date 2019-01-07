@@ -17,6 +17,7 @@ const SearchByEmailPropType = {
   //derived state
   searchedConnection: PropTypes.instanceOf(Connection),
   responseMessageAboutSearchInput: nullOrRequiredValidator("string"),
+  responseMessageAboutSearchResult: nullOrRequiredValidator("string"),
 
   //handler
   onSearchChange: PropTypes.func.isRequired,
