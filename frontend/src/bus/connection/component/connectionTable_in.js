@@ -10,7 +10,7 @@ function ConnectionInTable(props) {
   const {
     connections,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     updatingConnectionIds
   } = props;
 
@@ -20,7 +20,7 @@ function ConnectionInTable(props) {
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
       loginUserId={loginUserId}
-      onUpdateConnectionClick={onUpdateConnectionClick}
+      onUpdateConnection={onUpdateConnection}
     />
   ));
 
@@ -50,22 +50,22 @@ ConnectionInTable.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 function TableRow(props) {
   const {
     connection,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     isUpdatingConnection
   } = props;
 
   const approveClick = () => {
-    onUpdateConnectionClick(connection.id, true);
+    onUpdateConnection(connection.id, true);
   };
   const denyClick = () => {
-    onUpdateConnectionClick(connection.id, false);
+    onUpdateConnection(connection.id, false);
   };
 
   return (
@@ -106,7 +106,7 @@ TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 export default ConnectionInTable;

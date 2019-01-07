@@ -10,7 +10,7 @@ function ConnectionFriendTable(props) {
   const {
     connections,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     updatingConnectionIds
   } = props;
 
@@ -21,7 +21,7 @@ function ConnectionFriendTable(props) {
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
       loginUserId={loginUserId}
-      onUpdateConnectionClick={onUpdateConnectionClick}
+      onUpdateConnection={onUpdateConnection}
     />
   ));
   return (
@@ -45,18 +45,18 @@ ConnectionFriendTable.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 function TableRow(props) {
   const {
     connection,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     isUpdatingConnection
   } = props;
   const denyClick = () => {
-    onUpdateConnectionClick(connection.id, false);
+    onUpdateConnection(connection.id, false);
   };
   return (
     <tr className="ConnectionTableRow d-flex">
@@ -83,7 +83,7 @@ TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 export default ConnectionFriendTable;

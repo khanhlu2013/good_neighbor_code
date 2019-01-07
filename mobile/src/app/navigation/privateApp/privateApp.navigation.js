@@ -18,7 +18,7 @@ export function PrivateAppRouteToTitleMapper(routeName) {
       return "My Posts";
 
     case "connection":
-      return "Friends";
+      return "Network";
 
     default:
       throw Error(`Unexpected '${routeName}' for routeName`);

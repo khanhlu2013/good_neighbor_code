@@ -82,7 +82,7 @@ class ConnectionManagementWebView extends Component {
               connections={friends}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              onUpdateConnectionClick={this.props.onUpdateConnection}
+              onUpdateConnection={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.IN_CONNECTION}>
@@ -90,7 +90,7 @@ class ConnectionManagementWebView extends Component {
               connections={inConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              onUpdateConnectionClick={this.props.onUpdateConnection}
+              onUpdateConnection={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.OUT_CONNECTION}>
@@ -98,7 +98,7 @@ class ConnectionManagementWebView extends Component {
               connections={outConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              onUpdateConnectionClick={this.props.onUpdateConnection}
+              onUpdateConnection={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.DENY}>
@@ -106,7 +106,7 @@ class ConnectionManagementWebView extends Component {
               connections={denyConnections}
               updatingConnectionIds={updatingConnectionIds}
               loginUserId={loginUserId}
-              onUpdateConnectionClick={this.props.onUpdateConnection}
+              onUpdateConnection={this.props.onUpdateConnection}
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.SEARCH}>

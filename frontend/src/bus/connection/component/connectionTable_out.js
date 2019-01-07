@@ -10,7 +10,7 @@ function ConnectionOutTable(props) {
   const {
     connections,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     updatingConnectionIds
   } = props;
 
@@ -20,7 +20,7 @@ function ConnectionOutTable(props) {
       connection={connection}
       isUpdatingConnection={updatingConnectionIds.includes(connection.id)}
       loginUserId={loginUserId}
-      onUpdateConnectionClick={onUpdateConnectionClick}
+      onUpdateConnection={onUpdateConnection}
     />
   ));
 
@@ -45,19 +45,19 @@ ConnectionOutTable.propTypes = {
   connections: PropTypes.array.isRequired,
   updatingConnectionIds: PropTypes.array.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 function TableRow(props) {
   const {
     connection,
     loginUserId,
-    onUpdateConnectionClick,
+    onUpdateConnection,
     isUpdatingConnection
   } = props;
 
   const onRemoveClick = () => {
-    onUpdateConnectionClick(connection.id, false);
+    onUpdateConnection(connection.id, false);
   };
 
   return (
@@ -85,7 +85,7 @@ TableRow.propTypes = {
   connection: PropTypes.object.isRequired,
   isUpdatingConnection: PropTypes.bool.isRequired,
   loginUserId: PropTypes.string.isRequired,
-  onUpdateConnectionClick: PropTypes.func.isRequired
+  onUpdateConnection: PropTypes.func.isRequired
 };
 
 export default ConnectionOutTable;
