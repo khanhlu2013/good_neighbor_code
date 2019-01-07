@@ -83,7 +83,7 @@ class SearchByEmailController extends Component {
 
     const { email, searchedUser, isSearching } = this.state;
 
-    const { searchedConnection, searchResultResponseMessage } = this.state;
+    const { searchedConnection, responseMessageAboutSearchInput } = this.state;
 
     const viewProps = {
       loginUser,
@@ -97,7 +97,7 @@ class SearchByEmailController extends Component {
 
       //derived state
       searchedConnection,
-      searchResultResponseMessage,
+      responseMessageAboutSearchInput,
 
       //handler
       onSearchChange: this.onSearchChange,
