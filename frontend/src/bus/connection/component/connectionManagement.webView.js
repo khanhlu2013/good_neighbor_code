@@ -5,7 +5,6 @@ import styled from "styled-components";
 import LoadingIcon from "../../../share/loadingIcon.js";
 import { AppCenterWrapMixin } from "../../../share/style/appCenterWrap_style.js";
 import TabPanel from "../../../share/style/tabPanel_style.js";
-import SearchByEmail from "./searchByEmail.js";
 import ConnectionFriendTable from "./connectionTable_friend.js";
 import ConnectionOutTable from "./connectionTable_out.js";
 import ConnectionDenyTable from "./connectionTable_deny.js";
@@ -14,6 +13,8 @@ import ConnectionTabBar from "./connection_tabBar.js";
 import ConnectionInTable from "./connectionTable_in.js";
 import User from "@gn/common/model/user";
 import BusinessBannerStyle from "../../../share/style/bannerStyle/businessBanner.style";
+import SearchByEmailWebView from "./searchByEmail.webView";
+import SearchByEmailController from "@gn/common/bus/connection/controller/searchByEmail.controller";
 import ConnectionFilter from "@gn/common/bus/connection/connection.filter";
 
 const Style = styled.div`
@@ -110,11 +111,12 @@ class ConnectionManagementWebView extends Component {
             />
           </TabPanel>
           <TabPanel show={selectTab === ConnectionTabEnum.SEARCH}>
-            <SearchByEmail
+            <SearchByEmailController
               loginUser={this.props.loginUser}
               connections={connections}
-              onCreateConnectionClick={this.props.onCreateConnection}
+              onCreateConnection={this.props.onCreateConnection}
               isCreatingConnection={isCreatingConnection}
+              view={SearchByEmailWebView}
             />
           </TabPanel>
         </Style>
