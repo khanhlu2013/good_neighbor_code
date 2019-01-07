@@ -18,7 +18,7 @@ function SearchByEmailWebView(props) {
 
     //derived state
     searchedConnection,
-    searchResultResponseMessage,
+    responseMessageAboutSearchInput,
 
     //handler
     onSearchChange,
@@ -45,8 +45,8 @@ function SearchByEmailWebView(props) {
           <input className="btn btn-primary" type="submit" value="search" />
         )}
       </form>
-      {searchResultResponseMessage && (
-        <p className="lead">{searchResultResponseMessage}</p>
+      {responseMessageAboutSearchInput && (
+        <p className="lead">{responseMessageAboutSearchInput}</p>
       )}
 
       {searchedUser && (

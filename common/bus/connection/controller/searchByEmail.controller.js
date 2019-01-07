@@ -34,7 +34,7 @@ class SearchByEmailController extends Component {
         loginUser,
         connections
       ),
-      searchResultResponseMessage: calculateSearchResultResponseMessage(
+      responseMessageAboutSearchInput: calculateResponseMessageAboutSearchInput(
         emailValid,
         selfSearch,
         email,
@@ -116,7 +116,7 @@ SearchByEmailController.propTypes = {
 export default SearchByEmailController;
 
 // - helper
-function calculateSearchResultResponseMessage(
+function calculateResponseMessageAboutSearchInput(
   emailValid,
   selfSearch,
   email,
