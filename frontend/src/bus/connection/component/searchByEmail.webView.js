@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import LoadingIcon from "../../../share/loadingIcon.js";
-import SearchByEmailPropTypes from "@gn/common/bus/connection/propType/searchByEmail.propType";
+import SearchByEmailPropType from "@gn/common/bus/connection/propType/searchByEmail.propType";
 
 function SearchByEmailWebView(props) {
   const {
@@ -15,39 +15,16 @@ function SearchByEmailWebView(props) {
     //controller state
     email,
     searchedUser,
-    searchSubmited,
     isSearching,
 
     //derived state
     searchedConnection,
-    emailValid,
-    emailEmpty,
-    emailNotEmptyAndNotValid,
-    selfSearch,
+    searchResultResponseMessage,
 
     //handler
     onSearchChange,
     onSearchSubmit
   } = props;
-
-  let msg = null;
-  if (searchSubmited && emailEmpty) {
-    msg = null; //ignore empty search text
-  } else if (searchSubmited && emailNotEmptyAndNotValid) {
-    msg = "Email is invalid!";
-  } else if (selfSearch) {
-    msg = "Can't add yourself as friend!";
-  } else if (
-    !searchedUser &&
-    searchSubmited &&
-    !isSearching &&
-    emailValid &&
-    !selfSearch
-  ) {
-    msg = "Result not found!";
-  } else if (searchedUser) {
-    msg = `Found ${searchedUser.name}, email: ${searchedUser.email}`;
-  }
 
   return (
     <div id="SearchByEmail-react" className="text-center">
@@ -69,7 +46,9 @@ function SearchByEmailWebView(props) {
           <input className="btn btn-primary" type="submit" value="search" />
         )}
       </form>
-      {msg && <p className="lead">{msg}</p>}
+      {searchResultResponseMessage && (
+        <p className="lead">{searchResultResponseMessage}</p>
+      )}
 
       {searchedUser && (
         <CrudConnectionControlPanel
@@ -83,7 +62,7 @@ function SearchByEmailWebView(props) {
     </div>
   );
 }
-SearchByEmailWebView.propTypes = SearchByEmailPropTypes;
+SearchByEmailWebView.propTypes = SearchByEmailPropType;
 
 function CrudConnectionControlPanel(props) {
   const {
