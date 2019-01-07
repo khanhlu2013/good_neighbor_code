@@ -1,9 +1,8 @@
 import React from "react";
 
-import PropTypes from "prop-types";
-
 import LoadingIcon from "../../../share/loadingIcon.js";
 import SearchByEmailPropType from "@gn/common/bus/connection/propType/searchByEmail.propType";
+import SearchResultDisplayPropType from "@gn/common/bus/connection/propType/searchResultDisplay.propType";
 
 function SearchByEmailWebView(props) {
   const {
@@ -51,7 +50,7 @@ function SearchByEmailWebView(props) {
       )}
 
       {searchedUser && (
-        <CrudConnectionControlPanel
+        <SearchResultDisplayWebView
           loginUser={loginUser}
           searchedUser={searchedUser}
           searchedConnection={searchedConnection}
@@ -64,7 +63,7 @@ function SearchByEmailWebView(props) {
 }
 SearchByEmailWebView.propTypes = SearchByEmailPropType;
 
-function CrudConnectionControlPanel(props) {
+function SearchResultDisplayWebView(props) {
   const {
     loginUser,
     searchedUser,
@@ -162,12 +161,6 @@ function CrudConnectionControlPanel(props) {
   );
 }
 
-CrudConnectionControlPanel.propTypes = {
-  loginUser: PropTypes.object.isRequired,
-  searchedUser: PropTypes.object.isRequired,
-  searchedConnection: PropTypes.object, //if null we can create connection
-  isCreatingConnection: PropTypes.bool.isRequired,
-  onCreateConnection: PropTypes.func.isRequired
-};
+SearchResultDisplayWebView.propTypes = SearchResultDisplayPropType;
 
 export default SearchByEmailWebView;
