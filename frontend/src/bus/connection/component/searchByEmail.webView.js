@@ -36,7 +36,7 @@ function SearchByEmailWebView(props) {
       >
         <input
           type="text"
-          placeholder="by email"
+          placeholder="search email"
           value={email}
           onChange={e => onSearchChange(e.target.value)}
         />

@@ -28,8 +28,10 @@ class _ extends Component {
   }
 
   render() {
-    return React.createElement(this.props.view, {
-      ...this.props,
+    const { navigation, view } = this.props;
+
+    return React.createElement(view, {
+      ...this.props, //navigation obj and connect redux
       onCreateConnection: this.onCreateConnection,
       isCreatingConnection: this.state.isCreatingConnection
     });

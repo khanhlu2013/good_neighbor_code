@@ -8,9 +8,14 @@ import OutConnectionScreen from "../screen/outConnection.screen";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
 import { BUSINESS_ICON_SIZE } from "../../../share/uiConstant";
 import ConnectionFilter from "../../../../../common/bus/connection/connection.filter";
+import SearchByEmailScreen from "../screen/searchByEmail.screen";
 
 const ConnectionManagementNavigator = createBottomTabNavigator(
   {
+    connection_search: {
+      screen: SearchByEmailScreen,
+      navigationOptions: { title: "search" }
+    },
     connection_friend: {
       screen: FriendConnectionScreen,
       navigationOptions: { title: "friend" }
@@ -40,6 +45,12 @@ const ConnectionManagementNavigator = createBottomTabNavigator(
         let isImportant;
 
         switch (routeName) {
+          case "connection_search":
+            iconName = "search";
+            iconProvider = "FontAwesome";
+            count = 0;
+            isImportant = false;
+            break;
           case "connection_friend":
             iconName = "users";
             iconProvider = "FontAwesome";

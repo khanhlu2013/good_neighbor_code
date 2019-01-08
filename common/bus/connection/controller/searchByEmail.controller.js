@@ -87,7 +87,11 @@ class SearchByEmailController extends Component {
 
     const { email, searchedUser, isSearching } = this.state;
 
-    const { searchedConnection, responseMessageAboutSearchInput } = this.state;
+    const {
+      searchedConnection,
+      responseMessageAboutSearchInput,
+      responseMessageAboutSearchResult
+    } = this.state;
 
     const viewProps = {
       loginUser,
@@ -182,6 +186,7 @@ function calculateResponseMessageAboutSearchResult(
   }
 
   const searchedUser = searchedConnection.getTheOtherUser(loginUser.id);
+  let message;
   if (
     /*you init the connection*/
     searchedConnection.from.id === loginUser.id
@@ -235,4 +240,6 @@ function calculateResponseMessageAboutSearchResult(
       }
     }
   }
+
+  return message;
 }
