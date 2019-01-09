@@ -54,61 +54,59 @@ function SearchByEmailMobileView(props) {
         )}
       </View>
 
-      {/* {searchedUser && (
+      {searchedUser && (
         <SearchByEmailResultDisplayWebView
-          loginUser={loginUser}
           responseMessageAboutSearchResult={responseMessageAboutSearchResult}
           searchedUser={searchedUser}
           searchedConnection={searchedConnection}
           isCreatingConnection={isCreatingConnection}
           onCreateConnection={onCreateConnection}
         />
-      )} */}
+      )}
     </Fragment>
   );
 }
 SearchByEmailMobileView.propTypes = SearchByEmailPropType;
 
-// function SearchByEmailResultDisplayWebView(props) {
-//   const {
-//     responseMessageAboutSearchResult,
-//     searchedUser,
-//     searchedConnection,
-//     isCreatingConnection,
-//     onCreateConnection
-//   } = props;
+function SearchByEmailResultDisplayWebView(props) {
+  const {
+    responseMessageAboutSearchResult,
+    searchedUser,
+    searchedConnection,
+    isCreatingConnection,
+    onCreateConnection
+  } = props;
 
-//   let action = null;
+  let action = null;
 
-//   if (
-//     /*you and searchedUser haven't exchanged invitation yet*/
-//     searchedConnection === null
-//   ) {
-//     if (isCreatingConnection) {
-//       action = <LoadingIconMobileView text={`Inviting ${searchedUser.name}`} />;
-//     } else {
-//       action = (
-//         <button
-//           className="btn btn-success"
-//           id="createConnectionBtn"
-//           onClick={() => {
-//             onCreateConnection(searchedUser.id);
-//           }}
-//         >
-//           Invite {searchedUser.name}
-//         </button>
-//       );
-//     }
-//   }
+  if (
+    /*you and searchedUser haven't exchanged invitation yet*/
+    searchedConnection === null
+  ) {
+    if (isCreatingConnection) {
+      action = <LoadingIconMobileView text={`Inviting ${searchedUser.name}`} />;
+    } else {
+      action = (
+        <Button
+          full
+          onPress={() => {
+            onCreateConnection(searchedUser.id);
+          }}
+        >
+          <Text>Invite {searchedUser.name}</Text>
+        </Button>
+      );
+    }
+  }
 
-//   return (
-//     <div id="CrudConnectionControlPanel-react">
-//       {responseMessageAboutSearchResult}
-//       {action}
-//     </div>
-//   );
-// }
+  return (
+    <View style={{ alignItems: "center" }}>
+      <Text>{responseMessageAboutSearchResult}</Text>
+      {action}
+    </View>
+  );
+}
 
-// SearchByEmailResultDisplayWebView.propTypes = SearchByEmailResultDisplayPropType;
+SearchByEmailResultDisplayWebView.propTypes = SearchByEmailResultDisplayPropType;
 
 export default SearchByEmailMobileView;

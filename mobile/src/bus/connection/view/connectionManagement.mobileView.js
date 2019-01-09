@@ -12,8 +12,8 @@ function ConnectionManagementMobileView(props) {
     updatingConnectionIds,
 
     onCreateConnection,
-    onUpdateConnection,
-    isCreatingConnection
+    onUpdateConnection
+    // isCreatingConnection
   } = props;
 
   const screenProps = {
@@ -24,8 +24,8 @@ function ConnectionManagementMobileView(props) {
     updatingConnectionIds,
 
     onCreateConnection,
-    onUpdateConnection,
-    isCreatingConnection
+    onUpdateConnection
+    // isCreatingConnection
   };
 
   return (

@@ -75,7 +75,6 @@ function SearchByEmailResultDisplayWebView(props) {
   } = props;
 
   let action = null;
-
   if (
     /*you and searchedUser haven't exchanged invitation yet*/
     searchedConnection === null

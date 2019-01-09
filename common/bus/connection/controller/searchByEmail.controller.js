@@ -14,11 +14,13 @@ class SearchByEmailController extends Component {
       email: "",
       searchedUser: null,
       searchSubmited: false,
-      isSearching: false
+      isSearching: false,
+      isCreatingConnection: false
     };
 
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onCreateConnection = this.onCreateConnection.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -77,15 +79,22 @@ class SearchByEmailController extends Component {
     }
   }
 
-  render() {
-    const {
-      view,
-      loginUser,
-      onCreateConnection,
-      isCreatingConnection
-    } = this.props;
+  onCreateConnection(...args) {
+    this.setState({ isCreatingConnection: true }, async () => {
+      await this.props.onCreateConnection(...args);
+      this.setState({ isCreatingConnection: false });
+    });
+  }
 
-    const { email, searchedUser, isSearching } = this.state;
+  render() {
+    const { view, loginUser } = this.props;
+
+    const {
+      email,
+      searchedUser,
+      isSearching,
+      isCreatingConnection
+    } = this.state;
 
     const {
       searchedConnection,
@@ -95,13 +104,12 @@ class SearchByEmailController extends Component {
 
     const viewProps = {
       loginUser,
-      isCreatingConnection,
-      onCreateConnection,
 
       //state
       email,
       searchedUser,
       isSearching,
+      isCreatingConnection,
 
       //derived state
       searchedConnection,
@@ -110,7 +118,8 @@ class SearchByEmailController extends Component {
 
       //handler
       onSearchChange: this.onSearchChange,
-      onSearchSubmit: this.onSearchSubmit
+      onSearchSubmit: this.onSearchSubmit,
+      onCreateConnection: this.onCreateConnection
     };
     return React.createElement(view, viewProps);
   }
@@ -118,7 +127,6 @@ class SearchByEmailController extends Component {
 SearchByEmailController.propTypes = {
   loginUser: PropTypes.instanceOf(User).isRequired,
   connections: PropTypes.arrayOf(PropTypes.instanceOf(Connection)).isRequired,
-  isCreatingConnection: PropTypes.bool.isRequired,
   onCreateConnection: PropTypes.func.isRequired
 };
 
@@ -174,6 +182,8 @@ function calculateSearchConnection(searchedUser, loginUser, connections) {
     throw Error("Unexpected duplicate connections");
   } else if (lst.length === 1) {
     return lst[0];
+  } else {
+    return null;
   }
 }
 
@@ -182,7 +192,7 @@ function calculateResponseMessageAboutSearchResult(
   loginUser
 ) {
   if (!searchedConnection) {
-    return null;
+    return "You are not friends yet!";
   }
 
   const searchedUser = searchedConnection.getTheOtherUser(loginUser.id);

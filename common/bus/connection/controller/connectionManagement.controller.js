@@ -9,32 +9,17 @@ import AuthSelector from "../../../app/selector/auth.selector";
 import ConnectionSelector from "../connection.selector";
 
 class _ extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isCreatingConnection: false
-    };
-    this.onCreateConnection = this.onCreateConnection.bind(this);
-  }
   componentDidMount() {
     this.props.fetchConnections();
   }
 
-  onCreateConnection(...args) {
-    this.setState({ isCreatingConnection: true }, async () => {
-      await this.props.onCreateConnection(...args);
-      this.setState({ isCreatingConnection: false });
-    });
-  }
-
   render() {
-    const { navigation, view } = this.props;
+    const { view } = this.props;
 
-    return React.createElement(view, {
-      ...this.props, //navigation obj and connect redux
-      onCreateConnection: this.onCreateConnection,
-      isCreatingConnection: this.state.isCreatingConnection
-    });
+    return React.createElement(
+      view,
+      this.props //navigation_obj and redux_connection
+    );
   }
 }
 

@@ -28,7 +28,6 @@ class ConnectionManagementWebView extends Component {
     isFetchingConnections: PropTypes.bool.isRequired,
     isInitConnections: PropTypes.bool.isRequired,
     connections: PropTypes.array.isRequired,
-    isCreatingConnection: PropTypes.bool.isRequired,
     onCreateConnection: PropTypes.func.isRequired,
     updatingConnectionIds: PropTypes.array.isRequired,
     onUpdateConnection: PropTypes.func.isRequired
