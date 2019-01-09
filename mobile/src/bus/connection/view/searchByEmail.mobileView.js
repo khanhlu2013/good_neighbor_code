@@ -55,7 +55,7 @@ function SearchByEmailMobileView(props) {
       </View>
 
       {searchedUser && (
-        <SearchByEmailResultDisplayWebView
+        <SearchByEmailResultDisplayMobileView
           responseMessageAboutSearchConnectionResult={
             responseMessageAboutSearchConnectionResult
           }
@@ -70,7 +70,7 @@ function SearchByEmailMobileView(props) {
 }
 SearchByEmailMobileView.propTypes = SearchByEmailPropType;
 
-function SearchByEmailResultDisplayWebView(props) {
+function SearchByEmailResultDisplayMobileView(props) {
   const {
     responseMessageAboutSearchConnectionResult,
     searchedUser,
@@ -109,6 +109,6 @@ function SearchByEmailResultDisplayWebView(props) {
   );
 }
 
-SearchByEmailResultDisplayWebView.propTypes = SearchByEmailResultDisplayPropType;
+SearchByEmailResultDisplayMobileView.propTypes = SearchByEmailResultDisplayPropType;
 
 export default SearchByEmailMobileView;
