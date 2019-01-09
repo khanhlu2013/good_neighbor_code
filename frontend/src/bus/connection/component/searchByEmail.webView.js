@@ -19,7 +19,7 @@ function SearchByEmailWebView(props) {
     //derived state
     searchedConnection,
     responseMessageAboutSearchInput,
-    responseMessageAboutSearchResult,
+    responseMessageAboutSearchConnectionResult,
 
     //handler
     onSearchChange,
@@ -53,7 +53,9 @@ function SearchByEmailWebView(props) {
       {searchedUser && (
         <SearchByEmailResultDisplayWebView
           loginUser={loginUser}
-          responseMessageAboutSearchResult={responseMessageAboutSearchResult}
+          responseMessageAboutSearchConnectionResult={
+            responseMessageAboutSearchConnectionResult
+          }
           searchedUser={searchedUser}
           searchedConnection={searchedConnection}
           isCreatingConnection={isCreatingConnection}
@@ -67,7 +69,7 @@ SearchByEmailWebView.propTypes = SearchByEmailPropType;
 
 function SearchByEmailResultDisplayWebView(props) {
   const {
-    responseMessageAboutSearchResult,
+    responseMessageAboutSearchConnectionResult,
     searchedUser,
     searchedConnection,
     isCreatingConnection,
@@ -98,7 +100,7 @@ function SearchByEmailResultDisplayWebView(props) {
 
   return (
     <div id="CrudConnectionControlPanel-react">
-      {responseMessageAboutSearchResult}
+      {responseMessageAboutSearchConnectionResult}
       {action}
     </div>
   );

@@ -21,7 +21,7 @@ function SearchByEmailMobileView(props) {
     //derived state
     searchedConnection,
     responseMessageAboutSearchInput,
-    responseMessageAboutSearchResult,
+    responseMessageAboutSearchConnectionResult,
 
     //handler
     onSearchChange,
@@ -56,7 +56,9 @@ function SearchByEmailMobileView(props) {
 
       {searchedUser && (
         <SearchByEmailResultDisplayWebView
-          responseMessageAboutSearchResult={responseMessageAboutSearchResult}
+          responseMessageAboutSearchConnectionResult={
+            responseMessageAboutSearchConnectionResult
+          }
           searchedUser={searchedUser}
           searchedConnection={searchedConnection}
           isCreatingConnection={isCreatingConnection}
@@ -70,7 +72,7 @@ SearchByEmailMobileView.propTypes = SearchByEmailPropType;
 
 function SearchByEmailResultDisplayWebView(props) {
   const {
-    responseMessageAboutSearchResult,
+    responseMessageAboutSearchConnectionResult,
     searchedUser,
     searchedConnection,
     isCreatingConnection,
@@ -101,7 +103,7 @@ function SearchByEmailResultDisplayWebView(props) {
 
   return (
     <View style={{ alignItems: "center" }}>
-      <Text>{responseMessageAboutSearchResult}</Text>
+      <Text>{responseMessageAboutSearchConnectionResult}</Text>
       {action}
     </View>
   );
