@@ -1,6 +1,6 @@
 import RouteNode from "route-node";
 
-const { NODE_ENV } = process.env;
+const NODE_ENV = get_NODE_ENV();
 let BACKEND_BASE_URL;
 let BACKEND_PORT;
 
@@ -9,6 +9,7 @@ if (NODE_ENV === "production") {
   BACKEND_PORT = "";
 } else {
   BACKEND_BASE_URL = "http://localhost";
+  //BACKEND_BASE_URL = "http://10.0.2.2"; //this is for android emulator.since adroid emulator has it own localhost or 127.0.0.1 ; 10.0.2.2 is a alias for local host for android emulator for development purpose.
   BACKEND_PORT = "3001";
 }
 
@@ -58,3 +59,16 @@ const API_URL = (dottedPath, params) => {
 };
 
 export default API_URL;
+
+// - private ---
+function get_NODE_ENV() {
+  /*
+    NOTE that this code is in common project. 
+    
+    When is is build together with the web app by CreateReactApp, process.env.NODE_ENV will be set based on npm run or npm test or npm build which set it to "development" or "test" or "production"
+
+    When it is build by expo mobile/reactNative app, it will have to be set by expo. i am not sure what is this going to be but i know for sure that for local development, this var is not "production" . Since i haven't build production code for mobile, lets just move on here. 
+
+  */
+  return process.env.NODE_ENV;
+}
