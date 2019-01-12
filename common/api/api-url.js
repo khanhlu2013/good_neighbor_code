@@ -1,5 +1,4 @@
 import RouteNode from "route-node";
-import BACKEND_URL_CONFIG from "../config/backend_url";
 
 const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [
@@ -48,19 +47,11 @@ export default API_URL;
 
 // - private ---
 function _get_backend_url() {
-  const prod_dev_test = _get_prod_dev_test();
-  let base;
-  let port;
-
-  if (prod_dev_test === "production") {
-    base = BACKEND_URL_CONFIG.production.BASE_URL;
-    port = BACKEND_URL_CONFIG.production.PORT;
+  if (_get_prod_dev_test() === "production") {
+    return BACKEND_URL.production;
   } else {
-    base = BACKEND_URL_CONFIG.local.BASE_URL;
-    port = BACKEND_URL_CONFIG.local.PORT;
+    return BACKEND_URL.local;
   }
-
-  return `${base}:${port}`;
 }
 
 function _get_prod_dev_test() {

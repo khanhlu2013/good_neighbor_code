@@ -34,16 +34,13 @@ Configuration for web/mobile (frontend) development and production
 
 The file /common/config/backend_url.js contain the setup for local/development. In my case, it is hardcode as below
 
-const BACKEND_URL_CONFIG = {
-local: {
-BASE_URL: "http://localhost",
-PORT: "3001"
-},
-production: {
-BASE_URL: "https://goodneighbor-backend-test.herokuapp.com",
-PORT: ""
-}
+```
+const BACKEND_URL = {
+  local: "http://localhost:3001",
+  // local : "http://10.0.2.2",
+  production: "https://goodneighbor-backend-test.herokuapp.com"
 };
-export default BACKEND_URL_CONFIG;
+export default BACKEND_URL;
+```
 
-Edit this file to fit with your setup for local and production env.
+Edit this file to match with your setup for local and production env.
