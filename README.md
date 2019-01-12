@@ -12,6 +12,7 @@ Configuration for backend local development
 
 Create a git ignore file at backend/configs/keys-local-for-dev.js with the content below
 
+```
 module.exports = {
 SESSION_SECRET: "my_local_session_secrete",
 FRONTEND_URL: "my_frontend_url" // e.g. "http://localhost:3002",
@@ -21,6 +22,7 @@ GOOGLE_CLIENT_ID: "my_google_client_id",
 GOOGLE_CLIENT_SECRET: "my_google_client_secrete",
 GOOGLE_REDIRECT_URL: "my_google_redirect_url"
 };
+```
 
 ---
 
