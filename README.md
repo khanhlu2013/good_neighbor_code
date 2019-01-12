@@ -14,7 +14,7 @@ Create a git ignore file at backend/configs/keys-local-for-dev.js with the conte
 
 module.exports = {
 SESSION_SECRET: "my_local_session_secrete",
-FRONTEND_URL: "my_frontend_url\*" // e.g. "http://localhost:3002",
+FRONTEND_URL: "my_frontend_url" // e.g. "http://localhost:3002",
 PORT: "back_end_port" // e.g. 3001
 MONGODB_URI: "my_mongo_db_uri" // e.g. "mongodb://localhost:27017/my_db_name",
 GOOGLE_CLIENT_ID: "my_google_client_id",
