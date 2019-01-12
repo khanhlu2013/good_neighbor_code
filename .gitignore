@@ -4,7 +4,7 @@ text.txt
 /node_modules
 
 /backend/node_modules
-/backend/configs/keys-local-for-test-and-dev.js
+/backend/configs/keys-local-for-dev.js
 /backend/.DS_Store
 
 # See https://help.github.com/ignore-files/ for more about ignoring files.
