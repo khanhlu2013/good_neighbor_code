@@ -27,3 +27,9 @@ GOOGLE_REDIRECT_URL: "my_google_redirect_url"
 Configuration for backend production server on heroku
 
 Setup the env var on heroku with the key listed above for local dev. Exception: heroku will set the PORT for you automatically, so that you don't have to set this on heroku config var production server.
+
+---
+
+Configuration for web/mobile (frontend) development and production
+
+Edit the file /common/config/backend_url.js accordingly to reflect your development and deployment setup.

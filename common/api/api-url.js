@@ -1,19 +1,5 @@
 import RouteNode from "route-node";
-
-const NODE_ENV = get_NODE_ENV();
-let BACKEND_BASE_URL;
-let BACKEND_PORT;
-
-if (NODE_ENV === "production") {
-  BACKEND_BASE_URL = "https://goodneighbor-backend-test.herokuapp.com";
-  BACKEND_PORT = "";
-} else {
-  BACKEND_BASE_URL = "http://localhost";
-  //BACKEND_BASE_URL = "http://10.0.2.2"; //this is for android emulator.since adroid emulator has it own localhost or 127.0.0.1 ; 10.0.2.2 is a alias for local host for android emulator for development purpose.
-  BACKEND_PORT = "3001";
-}
-
-const BACKEND_URL = `${BACKEND_BASE_URL}:${BACKEND_PORT}`;
+import BACKEND_URL_CONFIG from "../config/backend_url";
 
 const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [
@@ -55,20 +41,34 @@ const API_URL = (dottedPath, params) => {
     throw Error(`${dottedPath} is not found!`);
   }
 
-  return BACKEND_URL + path;
+  return _get_backend_url() + path;
 };
 
 export default API_URL;
 
 // - private ---
-function get_NODE_ENV() {
+function _get_backend_url() {
+  const prod_dev_test = _get_prod_dev_test();
+  let base;
+  let port;
+
+  if (prod_dev_test === "production") {
+    base = BACKEND_URL_CONFIG.production.BASE_URL;
+    port = BACKEND_URL_CONFIG.production.PORT;
+  } else {
+    base = BACKEND_URL_CONFIG.local.BASE_URL;
+    port = BACKEND_URL_CONFIG.local.PORT;
+  }
+
+  return `${base}:${port}`;
+}
+
+function _get_prod_dev_test() {
   /*
     NOTE that this code is in common project. 
-    
-    When is is build together with the web app by CreateReactApp, process.env.NODE_ENV will be set based on npm run or npm test or npm build which set it to "development" or "test" or "production"
-
+    When is is build together with the web app by CreateReactApp, process.env.prod_dev_test will be set based on npm run or npm test or npm build which set it to "development" or "test" or "production"
     When it is build by expo mobile/reactNative app, it will have to be set by expo. i am not sure what is this going to be but i know for sure that for local development, this var is not "production" . Since i haven't build production code for mobile, lets just move on here. 
 
   */
-  return process.env.NODE_ENV;
+  return process.env.prod_dev_test;
 }
