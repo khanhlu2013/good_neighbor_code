@@ -32,4 +32,18 @@ Setup the env var on heroku with the key listed above for local dev. Exception: 
 
 Configuration for web/mobile (frontend) development and production
 
-Edit the file /common/config/backend_url.js accordingly to reflect your development and deployment setup.
+The file /common/config/backend_url.js contain the setup for local/development. In my case, it is hardcode as below
+
+const BACKEND_URL_CONFIG = {
+local: {
+BASE_URL: "http://localhost",
+PORT: "3001"
+},
+production: {
+BASE_URL: "https://goodneighbor-backend-test.herokuapp.com",
+PORT: ""
+}
+};
+export default BACKEND_URL_CONFIG;
+
+Edit this file to fit with your setup for local and production env.
