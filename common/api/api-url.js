@@ -1,4 +1,5 @@
 import RouteNode from "route-node";
+import BACKEND_URL from "../config/backend_url";
 
 const API_NODE = new RouteNode("", "", [
   new RouteNode("profile", "/profile", [
