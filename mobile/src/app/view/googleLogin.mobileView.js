@@ -8,6 +8,8 @@ function GoogleLoginMobileView(props) {
   const { onGoogleLogin } = props;
   async function onGoogleLoginx() {
     let redirectUrl = "http://localhost:3001/auth/google/redirect";
+    // let redirectUrl = "https://goodneighbor-backend-test.herokuapp.com/auth/google/redirect";
+
     const CLIENT_ID =
       "1070281627663-pcknen1ofn660k7hs9b9sm0ko60jcteg.apps.googleusercontent.com";
     const url =
@@ -16,7 +18,6 @@ function GoogleLoginMobileView(props) {
       `&scope=profile%20email` +
       `&client_id=${CLIENT_ID}`;
     let result = await WebBrowser.openAuthSessionAsync(url, redirectUrl);
-    console.log(JSON.stringify(result, null, 4));
   }
   return (
     <TouchableOpacity style={{ alignItems: "center" }} onPress={onGoogleLoginx}>
