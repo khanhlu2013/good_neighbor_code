@@ -8,6 +8,7 @@ import PrivateAppNavigationMasterDrawerView from "./navigationMasterDrawer.view"
 import ConnectionManagementScreen from "../../../bus/connection/screen/connectionManagement.screen";
 import { APP_ICON_SIZE } from "../../../share/uiConstant";
 import TabItemMobileView from "../../../share/tabItem.mobileView";
+import ProfileManagementScreen from "../../../bus/profile/screen/profileManagement.screen";
 
 export function PrivateAppRouteToTitleMapper(routeName) {
   switch (routeName) {
@@ -19,6 +20,9 @@ export function PrivateAppRouteToTitleMapper(routeName) {
 
     case "connection":
       return "Network";
+
+    case "profile":
+      return "Profile";
 
     default:
       throw Error(`Unexpected '${routeName}' for routeName`);
@@ -47,6 +51,10 @@ const PrivateAppNavigator = createDrawerNavigator(
         "users",
         "FontAwesome"
       )
+    },
+    profile: {
+      screen: ProfileManagementScreen,
+      navigationOptions: createPrivateAppNavigationOption("user", "FontAwesome")
     }
   },
   {
@@ -87,6 +95,10 @@ function createPrivateAppNavigationOption(iconName, iconProvider) {
 
       case "connection":
         alertCount = connectionAlertCount;
+        break;
+
+      case "profile":
+        alertCount = 0;
         break;
 
       default:

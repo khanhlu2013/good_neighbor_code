@@ -6,9 +6,10 @@ import OutPostManagementController from "@gn/common/bus/outPost/controller/outPo
 import InPostManagementController from "@gn/common/bus/inPost/controller/inPostManagement.controller";
 import OutPostManagementWebView from "../../bus/outPost/view/outPost_management.webView";
 import ConnectionManagementWebView from "../../bus/connection/component/connectionManagement.webView";
-import ProfileManagementContainer from "../../bus/profile/container/profile_management.con";
 import AppTabEnum from "../appTabEnum";
 import ConnectionManagementController from "@gn/common/bus/connection/controller/connectionManagement.controller";
+import ProfileManagementWebView from "../../bus/profile/view/profileManagement.webView.js";
+import ProfileManagementController from "@gn/common/bus/profile/controller/profileManagement.controller";
 
 function PrivateAppWebView(selectAppTab) {
   return (
@@ -25,7 +26,7 @@ function PrivateAppWebView(selectAppTab) {
         <ConnectionManagementController view={ConnectionManagementWebView} />
       </TabPanel>
       <TabPanel show={selectAppTab === AppTabEnum.PROFILE}>
-        <ProfileManagementContainer />
+        <ProfileManagementController view={ProfileManagementWebView} />
       </TabPanel>
     </div>
   );

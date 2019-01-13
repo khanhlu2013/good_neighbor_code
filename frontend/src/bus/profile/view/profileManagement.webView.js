@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-import User from "@gn/common/model/user";
 import LoadingIcon from "../../../share/loadingIcon";
 import AppCenterWrapStyle from "../../../share/style/appCenterWrap_style";
 import ProfileImage from "../../../share/profileImage";
+import ProfileManagementPropType from "@gn/common/bus/profile/propType/profileManagement.propType";
 import ShadowBoxMixin from "@gn/common/style/shadowBox.mixin";
 
 const Style = styled.div`
@@ -14,8 +13,8 @@ const Style = styled.div`
   text-align: center;
 `;
 
-function ProfileManagementComponent(props) {
-  const { isLoggingOut, loginUser, onLogOutClick } = props;
+function ProfileManagementWebView(props) {
+  const { isLoggingOut, loginUser, onLogOut } = props;
 
   return (
     <AppCenterWrapStyle>
@@ -31,7 +30,7 @@ function ProfileManagementComponent(props) {
           ) : (
             <button
               id="appLogOutBtn-react"
-              onClick={onLogOutClick}
+              onClick={onLogOut}
               className="btn btn-warning"
             >
               logout
@@ -43,10 +42,6 @@ function ProfileManagementComponent(props) {
   );
 }
 
-ProfileManagementComponent.propTypes = {
-  isLoggingOut: PropTypes.bool.isRequired,
-  loginUser: PropTypes.instanceOf(User).isRequired,
-  onLogOutClick: PropTypes.func.isRequired
-};
+ProfileManagementWebView.propTypes = ProfileManagementPropType;
 
-export default ProfileManagementComponent;
+export default ProfileManagementWebView;
